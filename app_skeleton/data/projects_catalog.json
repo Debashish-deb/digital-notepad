@@ -1,0 +1,1873 @@
+[
+  {
+    "project_index": 1,
+    "project_code": "Myelonets",
+    "project_name": "3D Myelonets",
+    "project_short_title": "3D Myelonets",
+    "project_lead": "Pablo Siliceo",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "spatial_omics",
+    "category_label": "Spatial & Multi-Omics Studies",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "The 3D CyCiF - Myelonets project focuses on a particular emphasis on myeloid cell aggregates (myelonets).",
+    "project_summary": "The 3D CyCiF - Myelonets project focuses on a particular emphasis on myeloid cell aggregates (myelonets).",
+    "collaborators": [
+      "Anastasia Kachalova",
+      "Ada Junquera"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "1_3D_Myelonets-20260602T171540Z-3-001",
+    "folder_structure": [
+      "1_3D_Myelonets"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Pablo Siliceo",
+        "role": "project_lead"
+      },
+      {
+        "name": "Anastasia Kachalova",
+        "role": "collaborator"
+      },
+      {
+        "name": "Ada Junquera",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 2,
+    "project_code": "HaikalaCollab",
+    "project_name": "Lung Haikala Collab",
+    "project_short_title": "Lung Haikala Collab",
+    "project_lead": "Ada junquera",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Lung Cancer",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "Check the position of a potential target for check where the target is in these patient's blocks",
+    "project_summary": "Check the position of a potential target for check where the target is in these patient's blocks",
+    "collaborators": [],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "2. Methods and experiments-20260602T110526Z-3-001",
+    "folder_structure": [
+      "2. Methods and experiments"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Ada junquera",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 3,
+    "project_code": "Fanconi",
+    "project_name": "Fanconi Anemia - Alfredo Collab",
+    "project_short_title": "Fanconi Anemia - Alfredo Collab",
+    "project_lead": "Pablo Siliceo",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Fanconi Anemia / SCC",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": ": 2. Explore a mouse antibody panel for t-CycIF",
+    "project_summary": ": 2. Explore a mouse antibody panel for t-CycIF",
+    "collaborators": [],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "3_FA-20260602T171547Z-3-001",
+    "folder_structure": [
+      "3_FA"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Pablo Siliceo",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 4,
+    "project_code": "CellCycle",
+    "project_name": "Cell Cycle",
+    "project_short_title": "Cell Cycle",
+    "project_lead": "Ada Junquera",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "spatial_omics",
+    "category_label": "Spatial & Multi-Omics Studies",
+    "priority": "high",
+    "project_type": "spatial_profiling",
+    "research_question": "Aim is to study the CellCycle IDS samples (mainly HRP, mass-spec (results can be found under this folder).",
+    "project_summary": "Aim is to study the CellCycle IDS samples (mainly HRP, mass-spec (results can be found under this folder).",
+    "collaborators": [],
+    "modalities": [
+      "tCycIF",
+      "Xenium",
+      "GeoMx",
+      "RareCyte Proteopicking"
+    ],
+    "cohort_size": "28 patient samples (tCycIF discovery cohort)",
+    "repository": "https://github.com/farkkilab/cellcycle",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "4_CellCycle",
+    "folder_structure": [
+      "Archive",
+      "Data & Figures",
+      "Guidelines",
+      "Management & planning",
+      "Meetings & Updates",
+      "Methods & Experiments",
+      "Presentations",
+      "Writing & dissemination"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Ada Junquera",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 5,
+    "project_code": "EMT",
+    "project_name": "EMT",
+    "project_short_title": "EMT - Discontinued",
+    "project_lead": "Zhihan Liang",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "discontinued",
+    "category": "spatial_omics",
+    "category_label": "Spatial & Multi-Omics Studies",
+    "priority": "low",
+    "project_type": "spatial_profiling",
+    "research_question": "Profiling of EMT through tcycif and geomx **Description:** Profiling of EMT through tcycif and geomx",
+    "project_summary": "Profiling of EMT through tcycif and geomx **Description:** Profiling of EMT through tcycif and geomx",
+    "collaborators": [
+      "Aleksandra Shabanova"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "5_EMT-20260602T171604Z-3-001",
+    "folder_structure": [
+      "5_EMT"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Zhihan Liang",
+        "role": "project_lead"
+      },
+      {
+        "name": "Aleksandra Shabanova",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 6,
+    "project_code": "LeppaCollab",
+    "project_name": "Leppä Collab",
+    "project_short_title": "Leppä Collab",
+    "project_lead": "Saundaryah Shah",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Lymphoma / Lymph Node",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "Human Lymph Node/ Spleen/lymphomas, tcycif being done by Leppä lab technician.",
+    "project_summary": "Human Lymph Node/ Spleen/lymphomas, tcycif being done by Leppä lab technician.",
+    "collaborators": [
+      "Ilja Nystrand"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "6. Archive-20260602T110541Z-3-001",
+    "folder_structure": [
+      "6. Archive"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Saundaryah Shah",
+        "role": "project_lead"
+      },
+      {
+        "name": "Ilja Nystrand",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 7,
+    "project_code": "TLS",
+    "project_name": "TLS",
+    "project_short_title": "TLS",
+    "project_lead": "Zhihan Liang",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "spatial_omics",
+    "category_label": "Spatial & Multi-Omics Studies",
+    "priority": "high",
+    "project_type": "spatial_profiling",
+    "research_question": "The aim is to study tertiary lymphoid structures (TLSs) will be analyzed.",
+    "project_summary": "The aim is to study tertiary lymphoid structures (TLSs) will be analyzed.",
+    "collaborators": [
+      "wet-lab"
+    ],
+    "modalities": [
+      "H&E WSI",
+      "Bulk RNA-seq",
+      "tCycIF",
+      "GeoMx",
+      "BCR profiling"
+    ],
+    "cohort_size": "Multi-histology ovarian cancer cohort",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "7_TLS",
+    "folder_structure": [
+      "1. Management & Planning",
+      "2. Methods & Experiments",
+      "3. Data & Figures",
+      "4. Meetings & Updates",
+      "5. Writing & Dissemination",
+      "6. Archive"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Zhihan Liang",
+        "role": "project_lead"
+      },
+      {
+        "name": "wet-lab",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 8,
+    "project_code": "iPDC_1.0",
+    "project_name": "iPDC_1.0",
+    "project_short_title": "iPDC_1.0",
+    "project_lead": "Matilda Salko",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "platform_model",
+    "category_label": "Patient-Derived Models & Platforms",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "Functional testing of novel immunotherapy combinations [[https://www.biorxiv.org/content/10.1101/2024.02.15.579904v1]{.underline}](https://www.biorxiv.org/content/10.1101/2024.02.15.579904v1)",
+    "project_summary": "Functional testing of novel immunotherapy combinations [[https://www.biorxiv.org/content/10.1101/2024.02.15.579904v1]{.underline}](https://www.biorxiv.org/content/10.1101/2024.02.15.579904v1)",
+    "collaborators": [
+      "Ashwini Nagaraj"
+    ],
+    "modalities": [
+      "iPDC functional assays",
+      "Flow cytometry"
+    ],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "https://www.biorxiv.org/content/10.1101/2024.02.15.579904v1",
+    "timeline": "",
+    "folder_path": "8_iPDC_1.0-20260602T171624Z-3-001",
+    "folder_structure": [
+      "8_iPDC_1.0"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Matilda Salko",
+        "role": "project_lead"
+      },
+      {
+        "name": "Ashwini Nagaraj",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 9,
+    "project_code": "EyeMT",
+    "project_name": "EyeMT",
+    "project_short_title": "EyeMT",
+    "project_lead": "Iga Niemiec",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "spatial_omics",
+    "category_label": "Spatial & Multi-Omics Studies",
+    "priority": "high",
+    "project_type": "spatial_profiling",
+    "research_question": "and the overall outcome of the patients",
+    "project_summary": "and the overall outcome of the patients",
+    "collaborators": [
+      "Aleksandra Shabanova"
+    ],
+    "modalities": [
+      "tCycIF",
+      "GeoMx",
+      "WES"
+    ],
+    "cohort_size": "Batch 1: n=16, Batch 2: n=14, Batch 3: n=30",
+    "repository": "https://github.com/farkkilab/eyeMT/tree/aleksandra",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "9_EyeMT",
+    "folder_structure": [
+      "1. Management and planning",
+      "2. Methods and experiments",
+      "3. Data and figures",
+      "4. Meetings and updates",
+      "5. Writing and dissemination",
+      "6. Archive"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Iga Niemiec",
+        "role": "project_lead"
+      },
+      {
+        "name": "Aleksandra Shabanova",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 10,
+    "project_code": "SaloCollab",
+    "project_name": "Tuula Salo Collab",
+    "project_short_title": "Tuula Salo Collab",
+    "project_lead": "Saundaryah Shah",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Head & Neck SCC",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "Head and Neck squamous cells carcinoma ,tcycif performed by Saun for Saalo group.",
+    "project_summary": "Head and Neck squamous cells carcinoma ,tcycif performed by Saun for Saalo group.",
+    "collaborators": [
+      "Martina Giacomini"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001",
+    "folder_structure": [
+      "32_Proteomics_Varjosalo_collab_2024"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Saundaryah Shah",
+        "role": "project_lead"
+      },
+      {
+        "name": "Martina Giacomini",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 11,
+    "project_code": "VanharantaCollab",
+    "project_name": "Vanharanta Collab",
+    "project_short_title": "Vanharanta Collab - Discontinued",
+    "project_lead": "Saundaryah Shah",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "discontinued",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "low",
+    "project_type": "spatial_profiling",
+    "research_question": "Vanharanta Collab - Discontinued",
+    "project_summary": "",
+    "collaborators": [
+      "Anastasia Khacklova"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "",
+    "folder_structure": [],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Saundaryah Shah",
+        "role": "project_lead"
+      },
+      {
+        "name": "Anastasia Khacklova",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 12,
+    "project_code": "SPACE",
+    "project_name": "SPACE",
+    "project_short_title": "SPACE",
+    "project_lead": "Ziqi Kang",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "flagship",
+    "category_label": "Flagship Research Programs",
+    "priority": "high",
+    "project_type": "spatial_profiling",
+    "research_question": "SPACE means Precision oncology of spatial immune escape integrate multiomic datasets.",
+    "project_summary": "SPACE means Precision oncology of spatial immune escape integrate multiomic datasets.",
+    "collaborators": [
+      "Ulla-Maija Haltia",
+      "Matilda Salko",
+      "Anastasia Lundgren",
+      "Andreas Hainari",
+      "Venla Kaislo",
+      "Saundaryah Shah",
+      "Foteni",
+      "Ksenia",
+      "Lina",
+      "Matias Aiskovich",
+      "Olavi Goussev",
+      "Angela Szabo"
+    ],
+    "modalities": [
+      "tCycIF",
+      "WES",
+      "RNA-seq",
+      "H&E WSI"
+    ],
+    "cohort_size": "Batch 1: n=80, Batch 2: n=39 chemo-naive HGSC",
+    "repository": "https://github.com/farkkilab/SPACE",
+    "publication": "",
+    "timeline": "August 2024 – Present",
+    "folder_path": "12_SPACE",
+    "folder_structure": [
+      "1_Management & planning",
+      "2_Methods & Experiments",
+      "3_Data & Figures",
+      "4_Meetings",
+      "5_Writing",
+      "6_Archive"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Ziqi Kang",
+        "role": "project_lead"
+      },
+      {
+        "name": "Ulla-Maija Haltia",
+        "role": "collaborator"
+      },
+      {
+        "name": "Matilda Salko",
+        "role": "collaborator"
+      },
+      {
+        "name": "Anastasia Lundgren",
+        "role": "collaborator"
+      },
+      {
+        "name": "Andreas Hainari",
+        "role": "collaborator"
+      },
+      {
+        "name": "Venla Kaislo",
+        "role": "collaborator"
+      },
+      {
+        "name": "Saundaryah Shah",
+        "role": "collaborator"
+      },
+      {
+        "name": "Foteni",
+        "role": "collaborator"
+      },
+      {
+        "name": "Ksenia",
+        "role": "collaborator"
+      },
+      {
+        "name": "Lina",
+        "role": "collaborator"
+      },
+      {
+        "name": "Matias Aiskovich",
+        "role": "collaborator"
+      },
+      {
+        "name": "Olavi Goussev",
+        "role": "collaborator"
+      },
+      {
+        "name": "Angela Szabo",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 13,
+    "project_code": "sciSet",
+    "project_name": "sciSet",
+    "project_short_title": "sciSet - Finished",
+    "project_lead": "Sara Palomino",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "completed",
+    "category": "flagship",
+    "category_label": "Flagship Research Programs",
+    "priority": "low",
+    "project_type": "spatial_profiling",
+    "research_question": "[:]{.underline} Cancer Cell Published Paper \"Chemotherapy cancer\".",
+    "project_summary": "[:]{.underline} Cancer Cell Published Paper \"Chemotherapy cancer\".",
+    "collaborators": [
+      "Wenqing Chen",
+      "Inga-Maria Launonen"
+    ],
+    "modalities": [
+      "tCycIF",
+      "Spatial proteomics"
+    ],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "Cancer Cell 2024 — Chemotherapy induces myeloid-driven spatially confined T cell exhaustion",
+    "timeline": "",
+    "folder_path": "",
+    "folder_structure": [],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Sara Palomino",
+        "role": "project_lead"
+      },
+      {
+        "name": "Wenqing Chen",
+        "role": "collaborator"
+      },
+      {
+        "name": "Inga-Maria Launonen",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 14,
+    "project_code": "CIN2",
+    "project_name": "CIN2 Virtanen Collab",
+    "project_short_title": "CIN2 Virtanen Collab",
+    "project_lead": "Ella Anttila",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Cervical CIN2",
+    "status": "active",
+    "category": "clinical_collaboration",
+    "category_label": "Clinical Trial Collaborations",
+    "priority": "high",
+    "project_type": "spatial_profiling",
+    "research_question": "Collaborative project with Virtanen Lab based on a single-center, prospective cohort trial (ISRCTN91953024) of 258 women under 31 years old with CIN2 managed with active surveillance and followed for up to 24 months. The project aims to identify spatial TME and transcriptomic differences between pro",
+    "project_summary": "Collaborative project with Virtanen Lab based on a single-center, prospective cohort trial (ISRCTN91953024) of 258 women under 31 years old with CIN2 managed with active surveillance and followed for up to 24 months. The project aims to identify spatial TME and transcriptomic differences between progressive, regressive, or persistent lesions. 67 biopsies from 60 patients were selected (15 quick regressors in 1 year, 15 slow regressors in 2 years, 30 non-regressors, plus 3 matched invasive carcinoma progressions). Integrates multi-pass t-CycIF proteomics (Ella/Naipunya/Saundarya) and GeoMx spatial transcriptomics. Implements cell segmentation via Oskari Lehtonen's pipeline, Tribus cell calling, spatial Recurrent Cellular Neighborhoods (RCN) mapping (DBSCAN/spatial count at 100um), spatial LDA, and correlates cell type proportions with clinical outcomes, HPV high-risk/low-risk types (including HPV16 status), and E4 viral replication relocation status. **Description:** Collaborative project with Virtanen Lab based on a single-center, prospective cohort trial (ISRCTN91953024) of 258 women under 31 years old with CIN2 managed with active surveillance and followed for up to 24 months. The project aims to identify spatial TME and transcriptomic differences between progressive, regressive, or persistent lesions. 67 biopsies from 60 patients were selected (15 quick regressors in 1 year, 15 slow regressors in 2 years, 30 non-regressors, plus 3 matched invasive carcinoma progressions). Integrates multi-pass t-CycIF proteomics (Ella/Naipunya/Saundarya) and GeoMx spatial transcriptomics. Implements cell segmentation via Oskari Lehtonen's pipeline, Tribus cell calling, spatial Recurrent Cellular Neighborhoods (RCN) mapping (DBSCAN/spatial count at 100um), spatial LDA, and correlates cell type proportions with clinical outcomes, HPV high-risk/low-risk types (including HPV16 status), and E4 viral replication relocation status.",
+    "collaborators": [
+      "Anni Virtanen",
+      "Oskari Lehtonen",
+      "Saundarya Shah",
+      "Zhihan Liang",
+      "Kaiyang Zhang",
+      "Anniina Färkkilä",
+      "Naipunya Guruprasad"
+    ],
+    "modalities": [
+      "t-CycIF",
+      "GeoMx"
+    ],
+    "cohort_size": "67 biopsies from 60 patients (ISRCTN91953024)",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "14_CIN2_project",
+    "folder_structure": [
+      "Archive",
+      "Data & Figures",
+      "Ella",
+      "Management & Planning",
+      "Meetings & Updates",
+      "Methods & Experiment",
+      "Writing & dissemination"
+    ],
+    "ethics_approval_reference": "ISRCTN91953024",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Ella Anttila",
+        "role": "project_lead"
+      },
+      {
+        "name": "Anni Virtanen",
+        "role": "collaborator"
+      },
+      {
+        "name": "Oskari Lehtonen",
+        "role": "collaborator"
+      },
+      {
+        "name": "Saundarya Shah",
+        "role": "collaborator"
+      },
+      {
+        "name": "Zhihan Liang",
+        "role": "collaborator"
+      },
+      {
+        "name": "Kaiyang Zhang",
+        "role": "collaborator"
+      },
+      {
+        "name": "Anniina Färkkilä",
+        "role": "collaborator"
+      },
+      {
+        "name": "Naipunya Guruprasad",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 15,
+    "project_code": "iPDC_2.0",
+    "project_name": "iPDC_2.0",
+    "project_short_title": "iPDC_2.0",
+    "project_lead": "María Hincapié-Otero",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "platform_model",
+    "category_label": "Patient-Derived Models & Platforms",
+    "priority": "high",
+    "project_type": "spatial_profiling",
+    "research_question": "The aim is to create a novel 3D HGSC model through high-throughput drug testing.",
+    "project_summary": "The aim is to create a novel 3D HGSC model through high-throughput drug testing.",
+    "collaborators": [],
+    "modalities": [
+      "GeoMx",
+      "tCycIF",
+      "Flow cytometry",
+      "3D ex vivo model"
+    ],
+    "cohort_size": "GeoMx Batch 2: n=13",
+    "repository": "",
+    "publication": "",
+    "timeline": "2023 – Present",
+    "folder_path": "15_icPDC",
+    "folder_structure": [
+      "Abstracts",
+      "Calculation_sheets",
+      "Data",
+      "Literature_reviews",
+      "Logbooks",
+      "Meeting_notes",
+      "Posters",
+      "Presentations",
+      "Protocols"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "María Hincapié-Otero",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 16,
+    "project_code": "Ovca_VTE",
+    "project_name": "Ovca-VTE_2024",
+    "project_short_title": "Ovca-VTE_2024",
+    "project_lead": "Matilda Salko",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "spatial_omics",
+    "category_label": "Spatial & Multi-Omics Studies",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "The aim is to study clinical and transcriptomic factors advanced ovarian cancer.",
+    "project_summary": "The aim is to study clinical and transcriptomic factors advanced ovarian cancer.",
+    "collaborators": [],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "",
+    "folder_structure": [],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Matilda Salko",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 17,
+    "project_code": "Auria",
+    "project_name": "Auria - Sorger Collab",
+    "project_short_title": "Auria - Sorger Collab",
+    "project_lead": "Wenqing Chen",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Triple-Negative Breast Cancer",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "Collaborative project with the Sorger Lab (Harvard Systems Pharmacology) profiling oxidative stress and hypoxia in triple-negative breast cancer (TNBC) to classify metabolically distinct environments and their associated immune cell populations. The study utilizes 9 multiplexed t-CycIF TMA images (o",
+    "project_summary": "Collaborative project with the Sorger Lab (Harvard Systems Pharmacology) profiling oxidative stress and hypoxia in triple-negative breast cancer (TNBC) to classify metabolically distinct environments and their associated immune cell populations. The study utilizes 9 multiplexed t-CycIF TMA images (originally 13) containing 345 cores (originally 368 cores, representing 3.68M cells total) from a cohort of 186 TNBC patients (stage 1–4 with annotated clinical survival). The 34-antibody t-CycIF panel includes specific oxidative stress/antioxidant and functional markers (GCLC, NQO1, TXNRD1, GLUT1, Ki67, PCNA, pS6, E-cadherin, pRB, pSTAT3, Vimentin, H2ax, H3K27me3). Analyzes how antioxidant marker levels (GCLC, NQO1, TXNRD1) define high/low stress niches, evaluates EMT-like metabolic states in tumor niches (GCLC+ Vimentin+ cancer cells vs other tumor cells), maps spatial Recurrent Cellular Neighborhoods (RCNs), and integrates findings with public single-cell RNA-seq and Visium spatial transcriptomics datasets. **Description:** Collaborative project with the Sorger Lab (Harvard Systems Pharmacology) profiling oxidative stress and hypoxia in triple-negative breast cancer (TNBC) to classify metabolically distinct environments and their associated immune cell populations. The study utilizes 9 multiplexed t-CycIF TMA images (originally 13) containing 345 cores (originally 368 cores, representing 3.68M cells total) from a cohort of 186 TNBC patients (stage 1–4 with annotated clinical survival). The 34-antibody t-CycIF panel includes specific oxidative stress/antioxidant and functional markers (GCLC, NQO1, TXNRD1, GLUT1, Ki67, PCNA, pS6, E-cadherin, pRB, pSTAT3, Vimentin, H2ax, H3K27me3). Analyzes how antioxidant marker levels (GCLC, NQO1, TXNRD1) define high/low stress niches, evaluates EMT-like metabolic states in tumor niches (GCLC+ Vimentin+ cancer cells vs other tumor cells), maps spatial Recurrent Cellular Neighborhoods (RCNs), and integrates findings with public single-cell RNA-seq and Visium spatial transcriptomics datasets.",
+    "collaborators": [
+      "Inga-Maria Launonen",
+      "Ziqi Kang",
+      "Saundarya Shah",
+      "Aleksandra Shabanova"
+    ],
+    "modalities": [
+      "t-CycIF TMA",
+      "scRNA-seq",
+      "Visium"
+    ],
+    "cohort_size": "186 TNBC patients, 345 TMA cores (3.68M cells)",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "17_Auria",
+    "folder_structure": [
+      "Code",
+      "Figures",
+      "Presentations"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Wenqing Chen",
+        "role": "project_lead"
+      },
+      {
+        "name": "Inga-Maria Launonen",
+        "role": "collaborator"
+      },
+      {
+        "name": "Ziqi Kang",
+        "role": "collaborator"
+      },
+      {
+        "name": "Saundarya Shah",
+        "role": "collaborator"
+      },
+      {
+        "name": "Aleksandra Shabanova",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 18,
+    "project_code": "SC_Integration",
+    "project_name": "Single cell integration - Kuijjer Collab",
+    "project_short_title": "Single cell integration - Kuijjer Collab",
+    "project_lead": "Sara Palomino",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "**Description:**",
+    "project_summary": "**Description:**",
+    "collaborators": [],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "18_Single_cell_integration-Kuijjer_Collab-20260602T171943Z-3-001",
+    "folder_structure": [
+      "18_Single_cell_integration-Kuijjer_Collab"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Sara Palomino",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 19,
+    "project_code": "Organoids",
+    "project_name": "Long_term_organoids",
+    "project_short_title": "Long_term_organoids",
+    "project_lead": "Joonas Jukonen",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "platform_model",
+    "category_label": "Patient-Derived Models & Platforms",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "Aim is to produce a library of long-term organoids types present in both organoid cultures and dissociated patient cells.",
+    "project_summary": "Aim is to produce a library of long-term organoids types present in both organoid cultures and dissociated patient cells.",
+    "collaborators": [],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "",
+    "folder_structure": [],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Joonas Jukonen",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 20,
+    "project_code": "vTMA",
+    "project_name": "vTMA",
+    "project_short_title": "vTMA",
+    "project_lead": "Antti Toivanen",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "infrastructure",
+    "category_label": "Infrastructure & Cohorts",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": ": The aim of this project is to determine the size and concordant with whole slide imaging.",
+    "project_summary": ": The aim of this project is to determine the size and concordant with whole slide imaging.",
+    "collaborators": [
+      "Fernando Perez",
+      "Pablo Siliceo"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "20_Virtual_TMA_project-20260602T171951Z-3-001",
+    "folder_structure": [
+      "20_Virtual_TMA_project"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Antti Toivanen",
+        "role": "project_lead"
+      },
+      {
+        "name": "Fernando Perez",
+        "role": "collaborator"
+      },
+      {
+        "name": "Pablo Siliceo",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 21,
+    "project_code": "KRAS",
+    "project_name": "Kras_Vähärautio collab",
+    "project_short_title": "Kras_Vähärautio collab",
+    "project_lead": "Wenqing Chen",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "spatial_omics",
+    "category_label": "Spatial & Multi-Omics Studies",
+    "priority": "high",
+    "project_type": "spatial_profiling",
+    "research_question": "This project integrates tCycIF, single-cell, and TCGA detection. This project is a collaboration with Vähärautio Lab.",
+    "project_summary": "This project integrates tCycIF, single-cell, and TCGA detection. This project is a collaboration with Vähärautio Lab.",
+    "collaborators": [
+      "Jun Dai"
+    ],
+    "modalities": [
+      "tCycIF",
+      "scRNA-seq",
+      "WES",
+      "WGS",
+      "CosMx"
+    ],
+    "cohort_size": "WES n=23, WGS n=100, scRNA-seq n=102, CosMx n=30",
+    "repository": "https://github.com/farkkilab/KRAS",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "21_Kras_project",
+    "folder_structure": [
+      "Plots",
+      "Presentations"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Wenqing Chen",
+        "role": "project_lead"
+      },
+      {
+        "name": "Jun Dai",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 22,
+    "project_code": "NKI",
+    "project_name": "NKI",
+    "project_short_title": "NKI",
+    "project_lead": "Fernando Perez",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "completed",
+    "category": "flagship",
+    "category_label": "Flagship Research Programs",
+    "priority": "high",
+    "project_type": "spatial_profiling",
+    "research_question": ": Analysis of a large cohort of 265 HGSC patients using 10 TMAs (four cores per tumor) to profile HLA-class II expression on cancer cells and its association with survival and clinical outcomes. This study was provisionally accepted/published in *Cancer Discovery* 2026 (doi:10.1158/2159-8290.CD-25-1",
+    "project_summary": ": Analysis of a large cohort of 265 HGSC patients using 10 TMAs (four cores per tumor) to profile HLA-class II expression on cancer cells and its association with survival and clinical outcomes. This study was provisionally accepted/published in *Cancer Discovery* 2026 (doi:10.1158/2159-8290.CD-25-1492). Integrates 30-antibody t-CycIF proteomics, Whole Slide Image (WSI) validations from the Oncosys-OVA (HRPritti) cohort, and GeoMx Spatial Transcriptomics. Custom preprocessing was developed using OpenCV denoising, Ilastik (DAPI+LaminB) pixel classification, CellProfiler segmentation, and Tribus cell-type calling. MultiNicheNetR ligand-receptor profiling was performed to map tumor-immune cell interactions (CD4+, CD8+, regulatory T cells, DCs vs tumor cells) in MHCII-expressing niches, validated via GeoMx. Includes immunopeptidomic profiling (with Cerullo's laboratory) of MHCII peptides from 12 HGSC study samples (Anastasia). **Description**: Analysis of a large cohort of 265 HGSC patients using 10 TMAs (four cores per tumor) to profile HLA-class II expression on cancer cells and its association with survival and clinical outcomes. This study was provisionally accepted/published in *Cancer Discovery* 2026 (doi:10.1158/2159-8290.CD-25-1492). Integrates 30-antibody t-CycIF proteomics, Whole Slide Image (WSI) validations from the Oncosys-OVA (HRPritti) cohort, and GeoMx Spatial Transcriptomics. Custom preprocessing was developed using OpenCV denoising, Ilastik (DAPI+LaminB) pixel classification, CellProfiler segmentation, and Tribus cell-type calling. MultiNicheNetR ligand-receptor profiling was performed to map tumor-immune cell interactions (CD4+, CD8+, regulatory T cells, DCs vs tumor cells) in MHCII-expressing niches, validated via GeoMx. Includes immunopeptidomic profiling (with Cerullo's laboratory) of MHCII peptides from 12 HGSC study samples (Anastasia).",
+    "collaborators": [
+      "Julia Casado",
+      "Jacopo",
+      "Salvatore",
+      "Anastasia Kachalova",
+      "Lilyan",
+      "Aleksandra Shabanova"
+    ],
+    "modalities": [
+      "t-CycIF TMA",
+      "GeoMx",
+      "scRNA-seq",
+      "Immunopeptidomics"
+    ],
+    "cohort_size": "265 HGSC tumors across 10 TMAs",
+    "repository": "https://github.com/farkkilab/devNKI-scripts",
+    "publication": "Cancer Discovery 2026 (doi:10.1158/2159-8290.CD-25-1492)",
+    "timeline": "",
+    "folder_path": "22_NKI",
+    "folder_structure": [
+      "1. Management and planning",
+      "2. Methods and experiments",
+      "3. Data and figures",
+      "4. Meetings and updates",
+      "5. Writing and dissemination",
+      "6. Archive"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Fernando Perez",
+        "role": "project_lead"
+      },
+      {
+        "name": "Julia Casado",
+        "role": "collaborator"
+      },
+      {
+        "name": "Jacopo",
+        "role": "collaborator"
+      },
+      {
+        "name": "Salvatore",
+        "role": "collaborator"
+      },
+      {
+        "name": "Anastasia Kachalova",
+        "role": "collaborator"
+      },
+      {
+        "name": "Lilyan",
+        "role": "collaborator"
+      },
+      {
+        "name": "Aleksandra Shabanova",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 23,
+    "project_code": "ovaHRDscar",
+    "project_name": "ovaHRDscar_oncosysOVA",
+    "project_short_title": "ovaHRDscar_oncosysOVA",
+    "project_lead": "Matilda Salko",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "genomics",
+    "category_label": "Genomics & Sequencing",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": ": Analysis of SNP-array data to calculate ovaHRDscar values from Oncosys OVA tumors.",
+    "project_summary": ": Analysis of SNP-array data to calculate ovaHRDscar values from Oncosys OVA tumors.",
+    "collaborators": [
+      "Fernando Perez"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "23_ovaHRDscar_OncosysOVA-20260602T172010Z-3-001",
+    "folder_structure": [
+      "23_ovaHRDscar_OncosysOVA"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Matilda Salko",
+        "role": "project_lead"
+      },
+      {
+        "name": "Fernando Perez",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 24,
+    "project_code": "HGSC_scRNAseq",
+    "project_name": "HGSC_scRNAseq_Vähärautio_collab",
+    "project_short_title": "HGSC_scRNAseq_Vähärautio_collab",
+    "project_lead": "Joonas Jukonen",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "scRNAseq of ONCOSYS-Ova matched patient cells and organoid samples.",
+    "project_summary": "scRNAseq of ONCOSYS-Ova matched patient cells and organoid samples.",
+    "collaborators": [
+      "Jun Dai",
+      "Anastasia Lundgren"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "24_HGSC_scRNAseq_collab_AVlab-20260602T172014Z-3-001",
+    "folder_structure": [
+      "24_HGSC_scRNAseq_collab_AVlab"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Joonas Jukonen",
+        "role": "project_lead"
+      },
+      {
+        "name": "Jun Dai",
+        "role": "collaborator"
+      },
+      {
+        "name": "Anastasia Lundgren",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 25,
+    "project_code": "Sequencing",
+    "project_name": "Sequencing_ONCOSYS_OVA",
+    "project_short_title": "Sequencing_ONCOSYS_OVA",
+    "project_lead": "Anastasia Lundgren",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "genomics",
+    "category_label": "Genomics & Sequencing",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "SNP array, WES and bulk RNAseq of ONCOSYS-Ova samples **Description:** SNP array, WES and bulk RNAseq of ONCOSYS-Ova samples",
+    "project_summary": "SNP array, WES and bulk RNAseq of ONCOSYS-Ova samples **Description:** SNP array, WES and bulk RNAseq of ONCOSYS-Ova samples",
+    "collaborators": [],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "25_Sequencing_ONCOSYS_OVA-20260602T172019Z-3-001",
+    "folder_structure": [
+      "25_Sequencing_ONCOSYS_OVA"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Anastasia Lundgren",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 26,
+    "project_code": "Endometrial_HRD",
+    "project_name": "Endometrial-HRD",
+    "project_short_title": "Endometrial-HRD",
+    "project_lead": "Fernando Perez",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Endometrial Cancer",
+    "status": "active",
+    "category": "genomics",
+    "category_label": "Genomics & Sequencing",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "Analysis of HRD scars in a endometrial cancer cohort from the Helsinki by using SNP-arrays.",
+    "project_summary": "Analysis of HRD scars in a endometrial cancer cohort from the Helsinki by using SNP-arrays.",
+    "collaborators": [
+      "Ulla-Maija Haltia"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "",
+    "folder_structure": [],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Fernando Perez",
+        "role": "project_lead"
+      },
+      {
+        "name": "Ulla-Maija Haltia",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 27,
+    "project_code": "Mesenchymal_Ovca",
+    "project_name": "Mesenchymal ovca - Virtanen collab",
+    "project_short_title": "Mesenchymal ovca - Virtanen collab",
+    "project_lead": "Aleksandra Shabanova",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "Our primary objective is to explore how the immune microenvironment.",
+    "project_summary": "Our primary objective is to explore how the immune microenvironment.",
+    "collaborators": [
+      "Kaiyan Zhang"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "",
+    "folder_structure": [],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Aleksandra Shabanova",
+        "role": "project_lead"
+      },
+      {
+        "name": "Kaiyan Zhang",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 28,
+    "project_code": "DCIS",
+    "project_name": "DCIS Englund collab",
+    "project_short_title": "DCIS Englund collab",
+    "project_lead": "Saudaryah Shah",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Breast DCIS",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": ": Investigation of macrophages in early in situ breast cancer.",
+    "project_summary": ": Investigation of macrophages in early in situ breast cancer.",
+    "collaborators": [
+      "Anu Prakash"
+    ],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "28_DCIS-20260602T172041Z-3-001",
+    "folder_structure": [
+      "28_DCIS"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Saudaryah Shah",
+        "role": "project_lead"
+      },
+      {
+        "name": "Anu Prakash",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 29,
+    "project_code": "Tribus",
+    "project_name": "Tribus",
+    "project_short_title": "Tribus",
+    "project_lead": "Ziqi Kang",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "completed",
+    "category": "computational_tool",
+    "category_label": "Computational Tools & Software",
+    "priority": "low",
+    "project_type": "computational_tool",
+    "research_question": "**Description: \\[Published\\]** Custom computational package featuring a knowledge-based, multi-stage single-cell classification algorithm that uses logical gating trees of marker expressions to annotate cell types in multiplexed imaging datasets (e.g. t-CycIF) without manual labeling or hard thresho",
+    "project_summary": "**Description: \\[Published\\]** Custom computational package featuring a knowledge-based, multi-stage single-cell classification algorithm that uses logical gating trees of marker expressions to annotate cell types in multiplexed imaging datasets (e.g. t-CycIF) without manual labeling or hard thresholds. Published in *Bioinformatics* (doi:10.1093/bioinformatics/btaf082). Benchmarked against three state-of-the-art classifiers on four public datasets with ground truth, demonstrating superior accuracy and a runtime reduction of an order of magnitude. Performance validated on two large whole-slide imaging datasets from the lab. Code is open-sourced at [farkkilab/tribus](https://github.com/farkkilab/tribus), with benchmarking data and notebooks hosted on [Synapse (syn63884734)](https://www.synapse.org/Synapse:syn63884734).",
+    "collaborators": [
+      "Angela Szabo",
+      "Teodora Farago",
+      "Fernando Perez",
+      "Ada Junquera",
+      "Saundarya Shah",
+      "Inga-Maria Launonen",
+      "Ella Anttila",
+      "Julia Casado",
+      "Kevin Elias",
+      "Anni Virtanen",
+      "Ulla-Maija Haltia",
+      "Anniina Färkkilä"
+    ],
+    "modalities": [
+      "Multiplexed imaging (t-CycIF)"
+    ],
+    "cohort_size": "",
+    "repository": "https://github.com/farkkilab/tribus",
+    "publication": "Bioinformatics 2025 (doi:10.1093/bioinformatics/btaf082)",
+    "timeline": "",
+    "folder_path": "29_Tribus",
+    "folder_structure": [
+      "Figures",
+      "Meeting notes",
+      "Slides",
+      "final_manuscript"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Ziqi Kang",
+        "role": "project_lead"
+      },
+      {
+        "name": "Angela Szabo",
+        "role": "collaborator"
+      },
+      {
+        "name": "Teodora Farago",
+        "role": "collaborator"
+      },
+      {
+        "name": "Fernando Perez",
+        "role": "collaborator"
+      },
+      {
+        "name": "Ada Junquera",
+        "role": "collaborator"
+      },
+      {
+        "name": "Saundarya Shah",
+        "role": "collaborator"
+      },
+      {
+        "name": "Inga-Maria Launonen",
+        "role": "collaborator"
+      },
+      {
+        "name": "Ella Anttila",
+        "role": "collaborator"
+      },
+      {
+        "name": "Julia Casado",
+        "role": "collaborator"
+      },
+      {
+        "name": "Kevin Elias",
+        "role": "collaborator"
+      },
+      {
+        "name": "Anni Virtanen",
+        "role": "collaborator"
+      },
+      {
+        "name": "Ulla-Maija Haltia",
+        "role": "collaborator"
+      },
+      {
+        "name": "Anniina Färkkilä",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 30,
+    "project_code": "Pixel_AI",
+    "project_name": "Pixel_AI (TMEncoder)",
+    "project_short_title": "Pixel_AI (TMEncoder)",
+    "project_lead": "Ziqi Kang",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "computational_tool",
+    "category_label": "Computational Tools & Software",
+    "priority": "medium",
+    "project_type": "computational_tool",
+    "research_question": "Deep learning computational pipeline utilizing a Variational Autoencoder (VAE) and Vector Quantized VAE (VQ-VAE) model (Tissue Microenvironment Encoder - TMEncoder) to extract explainable latent embeddings directly from multi-channel multiplexed images (multiplex CycIF) without prior cell segmentati",
+    "project_summary": "Deep learning computational pipeline utilizing a Variational Autoencoder (VAE) and Vector Quantized VAE (VQ-VAE) model (Tissue Microenvironment Encoder - TMEncoder) to extract explainable latent embeddings directly from multi-channel multiplexed images (multiplex CycIF) without prior cell segmentation. Reduces 30+ channel dimensions into under 10 dimensions representing tissue archetypes. Applied to unsupervised image profiling (spatial motifs and recurrent cellular neighborhood mapping) and automatic ROI selection for spatial transcriptomics (GeoMx/Xenium) using latent space embeddings, downstream classifiers, and Grad-CAM visualization. Merged as a core component of Project 12: SPACE. **Description:** Deep learning computational pipeline utilizing a Variational Autoencoder (VAE) and Vector Quantized VAE (VQ-VAE) model (Tissue Microenvironment Encoder - TMEncoder) to extract explainable latent embeddings directly from multi-channel multiplexed images (multiplex CycIF) without prior cell segmentation. Reduces 30+ channel dimensions into under 10 dimensions representing tissue archetypes. Applied to unsupervised image profiling (spatial motifs and recurrent cellular neighborhood mapping) and automatic ROI selection for spatial transcriptomics (GeoMx/Xenium) using latent space embeddings, downstream classifiers, and Grad-CAM visualization. Merged as a core component of Project 12: SPACE.",
+    "collaborators": [
+      "Matias Aiskovich",
+      "Olavi Goussev",
+      "Angela Szabo",
+      "Fernando Perez"
+    ],
+    "modalities": [
+      "Multiplex CycIF",
+      "VAE/VQ-VAE deep learning"
+    ],
+    "cohort_size": "NKI TMA + 92 SPACE WSI",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "30_Pixel_AI - TMEncoder",
+    "folder_structure": [
+      "Description_of_NKI_samples",
+      "Slides"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Ziqi Kang",
+        "role": "project_lead"
+      },
+      {
+        "name": "Matias Aiskovich",
+        "role": "collaborator"
+      },
+      {
+        "name": "Olavi Goussev",
+        "role": "collaborator"
+      },
+      {
+        "name": "Angela Szabo",
+        "role": "collaborator"
+      },
+      {
+        "name": "Fernando Perez",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 31,
+    "project_code": "SPACEjoint",
+    "project_name": "SPACEjoint",
+    "project_short_title": "SPACEjoint",
+    "project_lead": "Venla Kaislo",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "computational_tool",
+    "category_label": "Computational Tools & Software",
+    "priority": "medium",
+    "project_type": "computational_tool",
+    "research_question": "An integrated, reproducible computational pipeline to model overall survival (OS) and progression-free survival (PFS) in ovarian cancer by combining multi-modal patient-level data. Integrates clinical labels (stage, drug combinations), genomic profiles (WES, HRD/HRP ratios, CNA status for CCNE1, MYC",
+    "project_summary": "An integrated, reproducible computational pipeline to model overall survival (OS) and progression-free survival (PFS) in ovarian cancer by combining multi-modal patient-level data. Integrates clinical labels (stage, drug combinations), genomic profiles (WES, HRD/HRP ratios, CNA status for CCNE1, MYC, MECOM from iMTB report), and multiplexed spatial proteomics features (derived from t-CycIF via SPACEstat). Employs survival models (Kaplan-Meier, Cox proportional hazards, Lasso regression), feature engineering (Variance Inflation Factor [VIF] redundancy checks, correlation heatmaps), and MOFA2 (Multi-Omics Factor Analysis) for unsupervised multi-modal integration. Spatial inputs include RCN proportions (RCN3, RCN9, RCN11), global/local immune-TSI distances, immune infiltration index (tumor vs stroma densities), nearest neighbor distance (NND), cluster density, and Gini density. Results are integrated directly with Project 12: SPACE. **Description:** An integrated, reproducible computational pipeline to model overall survival (OS) and progression-free survival (PFS) in ovarian cancer by combining multi-modal patient-level data. Integrates clinical labels (stage, drug combinations), genomic profiles (WES, HRD/HRP ratios, CNA status for CCNE1, MYC, MECOM from iMTB report), and multiplexed spatial proteomics features (derived from t-CycIF via SPACEstat). Employs survival models (Kaplan-Meier, Cox proportional hazards, Lasso regression), feature engineering (Variance Inflation Factor [VIF] redundancy checks, correlation heatmaps), and MOFA2 (Multi-Omics Factor Analysis) for unsupervised multi-modal integration. Spatial inputs include RCN proportions (RCN3, RCN9, RCN11), global/local immune-TSI distances, immune infiltration index (tumor vs stroma densities), nearest neighbor distance (NND), cluster density, and Gini density. Results are integrated directly with Project 12: SPACE.",
+    "collaborators": [
+      "Ziqi Kang",
+      "Matilda Salko",
+      "Angela Szabo",
+      "Andreas Hainari"
+    ],
+    "modalities": [
+      "Clinical data",
+      "WES/CNA",
+      "SPACEstat spatial metrics"
+    ],
+    "cohort_size": "",
+    "repository": "https://github.com/farkkilab/SPACE",
+    "publication": "",
+    "timeline": "2025 – Present",
+    "folder_path": "31_SPACEjoint",
+    "folder_structure": [
+      "1_Management & planning",
+      "2_Methods & Experiments",
+      "3_Data & Figures",
+      "4_Meetings & Updates",
+      "5_Writing",
+      "6_Archive"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Venla Kaislo",
+        "role": "project_lead"
+      },
+      {
+        "name": "Ziqi Kang",
+        "role": "collaborator"
+      },
+      {
+        "name": "Matilda Salko",
+        "role": "collaborator"
+      },
+      {
+        "name": "Angela Szabo",
+        "role": "collaborator"
+      },
+      {
+        "name": "Andreas Hainari",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 32,
+    "project_code": "Proteomics",
+    "project_name": "Proteomics_Varjosalo_collab_2024",
+    "project_short_title": "Proteomics_Varjosalo_collab_2024",
+    "project_lead": "Anastasia Lundgren",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "96 ONCOSYS-Ova FF samples, 20mg, submitted to Markku Varjosalo lab for proteomics analysis.",
+    "project_summary": "96 ONCOSYS-Ova FF samples, 20mg, submitted to Markku Varjosalo lab for proteomics analysis.",
+    "collaborators": [],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001",
+    "folder_structure": [
+      "32_Proteomics_Varjosalo_collab_2024"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Anastasia Lundgren",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 33,
+    "project_code": "FINPROVE",
+    "project_name": "FINPROVE_gyn_cancers",
+    "project_short_title": "FINPROVE_gyn_cancers",
+    "project_lead": "Anni Suoknuuti",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "spatial_omics",
+    "category_label": "Spatial & Multi-Omics Studies",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "NanoString and tCycIF analyses for a cohort of gynecological cancer patients who have received MEKi therapy.",
+    "project_summary": "NanoString and tCycIF analyses for a cohort of gynecological cancer patients who have received MEKi therapy.",
+    "collaborators": [],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "33_FINPROVE_gyn_cancers-20260602T172058Z-3-001",
+    "folder_structure": [
+      "33_FINPROVE_gyn_cancers"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Anni Suoknuuti",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 35,
+    "project_code": "SPACEstat",
+    "project_name": "SPACEstat",
+    "project_short_title": "SPACEstat",
+    "project_lead": "Ziqi Kang",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "computational_tool",
+    "category_label": "Computational Tools & Software",
+    "priority": "high",
+    "project_type": "computational_tool",
+    "research_question": "An automated Python/R spatial statistics software framework designed for quantitative profiling of the tumor microenvironment (TME) in large whole-slide multiplexed images (such as t-CycIF). Features include immune residency identification (tumor vs stroma local context classification parallelized d",
+    "project_summary": "An automated Python/R spatial statistics software framework designed for quantitative profiling of the tumor microenvironment (TME) in large whole-slide multiplexed images (such as t-CycIF). Features include immune residency identification (tumor vs stroma local context classification parallelized down to 2 minutes), tumor-stroma interface (TSI) contour mapping and continuous distance metrics, nearest neighbor distance (NND), cluster density, and Gini diversity. Incorporates advanced distance-based network modeling (Delaunay triangulation with distance cutoffs) to map single-cell and multi-cell type immune hubs (co-aggregates of up to 5 immune cell types), analyzing hub interaction and repulsion networks using PySAL, NetworkX, Rtree, and KDTree. Serves as the primary spatial statistics engine for Projects 12 and 9, with benchmarking validated on public CODEX and MIBI-TOF datasets. Available at [Kkkzq/SPACEstat](https://github.com/Kkkzq/SPACEstat/tree/main). **Description:** An automated Python/R spatial statistics software framework designed for quantitative profiling of the tumor microenvironment (TME) in large whole-slide multiplexed images (such as t-CycIF). Features include immune residency identification (tumor vs stroma local context classification parallelized down to 2 minutes), tumor-stroma interface (TSI) contour mapping and continuous distance metrics, nearest neighbor distance (NND), cluster density, and Gini diversity. Incorporates advanced distance-based network modeling (Delaunay triangulation with distance cutoffs) to map single-cell and multi-cell type immune hubs (co-aggregates of up to 5 immune cell types), analyzing hub interaction and repulsion networks using PySAL, NetworkX, Rtree, and KDTree. Serves as the primary spatial statistics engine for Projects 12 and 9, with benchmarking validated on public CODEX and MIBI-TOF datasets. Available at [Kkkzq/SPACEstat](https://github.com/Kkkzq/SPACEstat/tree/main).",
+    "collaborators": [
+      "Elias Ruuska",
+      "Aleksandra Shabanova"
+    ],
+    "modalities": [
+      "t-CycIF whole-slide spatial statistics"
+    ],
+    "cohort_size": "",
+    "repository": "https://github.com/Kkkzq/SPACEstat/tree/main",
+    "publication": "",
+    "timeline": "March 2025 – Present",
+    "folder_path": "35_SPACEstat",
+    "folder_structure": [
+      "1_Management & Planning",
+      "2_Methods & Experiments",
+      "3_Data & Figures",
+      "4_Meetings & Updates",
+      "5_Writing",
+      "6_Archive"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Ziqi Kang",
+        "role": "project_lead"
+      },
+      {
+        "name": "Elias Ruuska",
+        "role": "collaborator"
+      },
+      {
+        "name": "Aleksandra Shabanova",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 37,
+    "project_code": "TMA_Cohorts",
+    "project_name": "TMA cohorts",
+    "project_short_title": "TMA cohorts",
+    "project_lead": "Hanna Elomaa",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "infrastructure",
+    "category_label": "Infrastructure & Cohorts",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "Samples included in TMA cohort with PDS-samples. Cohort taken.",
+    "project_summary": "Samples included in TMA cohort with PDS-samples. Cohort taken.",
+    "collaborators": [],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "37_TMA_cohorts-20260602T172129Z-3-001",
+    "folder_structure": [
+      "37_TMA_cohorts"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Hanna Elomaa",
+        "role": "project_lead"
+      }
+    ]
+  },
+  {
+    "project_index": 38,
+    "project_code": "ADC",
+    "project_name": "ADC project",
+    "project_short_title": "ADC project",
+    "project_lead": "Andreas Hainari",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "spatial_omics",
+    "category_label": "Spatial & Multi-Omics Studies",
+    "priority": "high",
+    "project_type": "spatial_profiling",
+    "research_question": "Spatiotemporal and molecular mapping of antibody-drug conjugate (ADC) targets (such as VTCN1 and other clinical candidates) in the HGSC microenvironment. The project integrates multi-pass t-CycIF spatial proteomics (Andreas/Saundarya), 58 GeoMx spatial transcriptomics samples (preprocessed/deconvolu",
+    "project_summary": "Spatiotemporal and molecular mapping of antibody-drug conjugate (ADC) targets (such as VTCN1 and other clinical candidates) in the HGSC microenvironment. The project integrates multi-pass t-CycIF spatial proteomics (Andreas/Saundarya), 58 GeoMx spatial transcriptomics samples (preprocessed/deconvoluted by Iga Niemiec), bulk RNA-seq deconvolution (PRISM/CyberPRISM compartment profiling by Anni), and Xenium spatial transcriptomics. Computational workflows include batch correction (ComBat), target specificity differential expression (limma tumor vs stroma), Spearman co-expression analysis, extreme group DE profiling (comparing high vs low ADC target expressors), and defining spatial metrics to measure inter-patient and intra-tumoral heterogeneity of ADC targets. **Description:** Spatiotemporal and molecular mapping of antibody-drug conjugate (ADC) targets (such as VTCN1 and other clinical candidates) in the HGSC microenvironment. The project integrates multi-pass t-CycIF spatial proteomics (Andreas/Saundarya), 58 GeoMx spatial transcriptomics samples (preprocessed/deconvoluted by Iga Niemiec), bulk RNA-seq deconvolution (PRISM/CyberPRISM compartment profiling by Anni), and Xenium spatial transcriptomics. Computational workflows include batch correction (ComBat), target specificity differential expression (limma tumor vs stroma), Spearman co-expression analysis, extreme group DE profiling (comparing high vs low ADC target expressors), and defining spatial metrics to measure inter-patient and intra-tumoral heterogeneity of ADC targets.",
+    "collaborators": [
+      "Anni Lindfors",
+      "Ziqi Kang",
+      "Ada Junquera",
+      "Nika Mikhailava",
+      "Iga Niemiec",
+      "Sara Palomino",
+      "Saundarya Shah",
+      "Anni Virtanen",
+      "Ulla-Maija Haltia",
+      "Anniina Färkkilä"
+    ],
+    "modalities": [
+      "t-CycIF",
+      "GeoMx",
+      "Bulk RNA-seq",
+      "Xenium"
+    ],
+    "cohort_size": "ONCOSYS-OVA Batch 1: n=39 + 58 GeoMx samples",
+    "repository": "",
+    "publication": "",
+    "timeline": "May 2025 – Present",
+    "folder_path": "38_ADC_project-20260602T172138Z-3-001",
+    "folder_structure": [
+      "38_ADC_project"
+    ],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "Andreas Hainari",
+        "role": "project_lead"
+      },
+      {
+        "name": "Anni Lindfors",
+        "role": "collaborator"
+      },
+      {
+        "name": "Ziqi Kang",
+        "role": "collaborator"
+      },
+      {
+        "name": "Ada Junquera",
+        "role": "collaborator"
+      },
+      {
+        "name": "Nika Mikhailava",
+        "role": "collaborator"
+      },
+      {
+        "name": "Iga Niemiec",
+        "role": "collaborator"
+      },
+      {
+        "name": "Sara Palomino",
+        "role": "collaborator"
+      },
+      {
+        "name": "Saundarya Shah",
+        "role": "collaborator"
+      },
+      {
+        "name": "Anni Virtanen",
+        "role": "collaborator"
+      },
+      {
+        "name": "Ulla-Maija Haltia",
+        "role": "collaborator"
+      },
+      {
+        "name": "Anniina Färkkilä",
+        "role": "collaborator"
+      }
+    ]
+  },
+  {
+    "project_index": 66,
+    "project_code": "SideProjects",
+    "project_name": "Side projects handled by Saun",
+    "project_short_title": "Side projects handled by Saun",
+    "project_lead": "",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "support",
+    "category_label": "Support & Validation",
+    "priority": "medium",
+    "project_type": "spatial_profiling",
+    "research_question": "Eg: Antibody chamber validation and bleaching protocol checking",
+    "project_summary": "Eg: Antibody chamber validation and bleaching protocol checking",
+    "collaborators": [],
+    "modalities": [],
+    "cohort_size": "",
+    "repository": "",
+    "publication": "",
+    "timeline": "",
+    "folder_path": "",
+    "folder_structure": [],
+    "ethics_approval_reference": "",
+    "current_blockers": "",
+    "next_actions": "",
+    "latest_update": "",
+    "members": [
+      {
+        "name": "",
+        "role": "project_lead"
+      }
+    ]
+  }
+]

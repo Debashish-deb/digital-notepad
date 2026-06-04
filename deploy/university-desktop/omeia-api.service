@@ -1,0 +1,23 @@
+[Unit]
+Description=OMEIA Lab Assistant FastAPI (university desktop)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=omeia
+Group=omeia
+WorkingDirectory=/opt/omeia/digital-notepad
+EnvironmentFile=/opt/omeia/deploy/university-desktop/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/omeia/venv/bin/uvicorn app_skeleton.api.main:app --host 127.0.0.1 --port 8000 --workers 1
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+
+# Hardening (adjust if you need broader filesystem access)
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

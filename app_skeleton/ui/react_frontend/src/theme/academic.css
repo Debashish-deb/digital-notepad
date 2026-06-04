@@ -1,0 +1,764 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Academic Digital NotePad Theme — research notebook / manuscript-grade UI
+   Path: app_skeleton/ui/react_frontend/src/theme/academic.css
+
+   Purpose:
+   - A warm paper academic theme with serif headings, navy ink, muted citations,
+     research metadata chips, readable tables, manuscript notes, file previews,
+     and print-safe output.
+   - Designed as a theme layer. It should load after index.css and before/with
+     App.css overrides, or simply after both if your bundler allows it.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Source+Sans+3:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+html[data-theme='academic'] {
+  color-scheme: light;
+
+  /* Academic paper palette */
+  --bg-app: #e9e3d7;
+  --bg-page: #fbf8f1;
+  --bg-surface: #fffdf8;
+  --bg-surface-hover: #f4efe4;
+  --bg-elevated: #ffffff;
+  --bg-input: #fffefa;
+  --bg-inset: #f3edde;
+  --bg-table-hover: rgba(30, 58, 95, 0.055);
+  --bg-badge: rgba(30, 58, 95, 0.095);
+
+  /* Ink and annotation */
+  --text-primary: #172235;
+  --text-secondary: #35445a;
+  --text-muted: #6b7280;
+  --text-faint: #87909f;
+  --text-on-accent: #fffdf8;
+
+  /* Research accents */
+  --color-primary: #1e3a5f;
+  --color-primary-strong: #132842;
+  --color-primary-soft: rgba(30, 58, 95, 0.12);
+  --color-accent: #496a8f;
+  --color-accent-2: #6b4f2a;
+  --color-success: #2f6f4e;
+  --color-warning: #a55d08;
+  --color-danger: #983232;
+  --color-info: #315f82;
+  --color-citation: #5b4f9a;
+  --color-highlight: #fff1b8;
+
+  /* Borders and rings */
+  --border-color: rgba(30, 58, 95, 0.16);
+  --border-strong: rgba(30, 58, 95, 0.28);
+  --border-focus: #1e3a5f;
+  --ring-focus: 0 0 0 3px rgba(30, 58, 95, 0.18), 0 0 0 1px rgba(30, 58, 95, 0.28);
+
+  /* Typography */
+  --font-sans: 'Source Sans 3', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Source Serif 4', 'Libre Baskerville', Georgia, serif;
+  --font-serif: 'Source Serif 4', 'Libre Baskerville', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+
+  /* Layout tokens used by App.css/index.css */
+  --radius-xs: 5px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --shadow-card: 0 1px 2px rgba(30, 58, 95, 0.06), 0 12px 32px rgba(30, 58, 95, 0.085);
+  --shadow-card-hover: 0 2px 4px rgba(30, 58, 95, 0.08), 0 18px 48px rgba(30, 58, 95, 0.12);
+  --shadow-inset-paper: inset 0 1px 0 rgba(255, 255, 255, 0.72), inset 0 -1px 0 rgba(30, 58, 95, 0.035);
+  --theme-transition: background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, transform 0.18s ease;
+
+  background: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[data-theme='academic'] body {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255, 252, 240, 0.85), transparent 30rem),
+    radial-gradient(circle at 92% 12%, rgba(30, 58, 95, 0.075), transparent 24rem),
+    linear-gradient(180deg, #eee8dd 0%, var(--bg-app) 36%, #e4ddd0 100%);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+
+html[data-theme='academic'] ::selection {
+  background: color-mix(in srgb, var(--color-highlight) 72%, var(--color-primary) 10%);
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+html[data-theme='academic'] :where(h1, h2, h3, h4, h5, h6,
+  .panel-title,
+  .sidebar-title,
+  .page-title-gradient,
+  .module-shell-title,
+  .project-intro-title,
+  .projects-category-title,
+  .roster-name,
+  #app-current-section) {
+  font-family: var(--font-display) !important;
+  font-weight: 650;
+  letter-spacing: -0.012em;
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] h1,
+html[data-theme='academic'] .page-title-gradient {
+  font-size: clamp(2rem, 1.35rem + 2vw, 3.4rem);
+  line-height: 1.04;
+}
+
+html[data-theme='academic'] h2,
+html[data-theme='academic'] .panel-title {
+  line-height: 1.18;
+}
+
+html[data-theme='academic'] p,
+html[data-theme='academic'] li,
+html[data-theme='academic'] .markdown-body,
+html[data-theme='academic'] .module-shell-lead,
+html[data-theme='academic'] .page-subtitle,
+html[data-theme='academic'] .project-intro-summary,
+html[data-theme='academic'] .expandable-text-body {
+  line-height: 1.64;
+}
+
+/* App canvas: paper grid + notebook margin */
+html[data-theme='academic'] .app-container {
+  background:
+    linear-gradient(90deg, rgba(152, 50, 50, 0.16) 0 1px, transparent 1px) 5.65rem 0 / 1px 100%,
+    linear-gradient(rgba(30, 58, 95, 0.045) 1px, transparent 1px) 0 1.25rem / 100% 2rem,
+    radial-gradient(circle at 5rem 7rem, rgba(30, 58, 95, 0.055), transparent 12rem),
+    var(--bg-app);
+}
+
+html[data-theme='academic'] .app-container::before {
+  opacity: 0.45;
+  background-image:
+    linear-gradient(rgba(30, 58, 95, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 95, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 76%);
+}
+
+/* Sidebar: quiet archive/library rail */
+html[data-theme='academic'] .sidebar {
+  border-right: 1px solid var(--border-color);
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.95), rgba(244, 239, 228, 0.92)),
+    var(--bg-surface);
+  box-shadow: 2px 0 16px rgba(30, 58, 95, 0.07);
+  backdrop-filter: blur(18px) saturate(1.04);
+}
+
+html[data-theme='academic'] .sidebar-logo img {
+  filter: drop-shadow(0 8px 16px rgba(30, 58, 95, 0.16));
+}
+
+html[data-theme='academic'] .sidebar-title {
+  color: var(--color-primary);
+  font-size: 1.28rem;
+}
+
+html[data-theme='academic'] .sidebar-item {
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+html[data-theme='academic'] .sidebar-item:hover {
+  background: rgba(30, 58, 95, 0.065);
+  border-color: rgba(30, 58, 95, 0.12);
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] .sidebar-item.active,
+html[data-theme='academic'] .sidebar-item[aria-current='page'] {
+  background: linear-gradient(90deg, rgba(30, 58, 95, 0.14), rgba(30, 58, 95, 0.055));
+  border-color: rgba(30, 58, 95, 0.18);
+  border-left: 4px solid var(--color-primary);
+  color: var(--color-primary-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+html[data-theme='academic'] .sidebar-footer {
+  border-top-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+/* Sticky manuscript header */
+html[data-theme='academic'] .app-topline {
+  border: 1px solid rgba(30, 58, 95, 0.13);
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.92), rgba(248, 244, 236, 0.84));
+  box-shadow: 0 8px 28px rgba(30, 58, 95, 0.085);
+  backdrop-filter: blur(20px) saturate(1.06);
+}
+
+html[data-theme='academic'] .app-topline-eyebrow,
+html[data-theme='academic'] .project-intro-eyebrow,
+html[data-theme='academic'] .metric-label,
+html[data-theme='academic'] .form-label,
+html[data-theme='academic'] .dt-field-label,
+html[data-theme='academic'] .text-title-4 {
+  color: var(--color-accent);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.085em;
+  text-transform: uppercase;
+}
+
+html[data-theme='academic'] .app-topline-status::before {
+  background: var(--color-success);
+  box-shadow: 0 0 0 4px rgba(47, 111, 78, 0.13);
+}
+
+/* Cards and panels */
+html[data-theme='academic'] :where(.panel, .metric-card, .project-card, .roster-card, .timeline-card,
+  .dt-timeline-card, .dt-group, .pcl-asset-row, .pcl-figure-card, .feed-item,
+  .audit-log-item, .project-intro-team-card, .folder-structure-item, .workspace-empty-state,
+  .panel-inset, .pfb-layout, .pfb-folder-item, .pfb-file-btn) {
+  border-color: var(--border-color);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 253, 248, 0.92)),
+    var(--bg-surface);
+  box-shadow: var(--shadow-card), var(--shadow-inset-paper);
+}
+
+html[data-theme='academic'] :where(.panel, .metric-card, .project-card, .roster-card, .timeline-card,
+  .dt-timeline-card, .dt-group, .pcl-asset-row, .pcl-figure-card, .feed-item,
+  .audit-log-item):hover {
+  border-color: color-mix(in srgb, var(--color-primary) 38%, var(--border-color));
+  box-shadow: var(--shadow-card-hover), var(--shadow-inset-paper);
+}
+
+html[data-theme='academic'] .panel {
+  border-radius: var(--radius-lg);
+}
+
+html[data-theme='academic'] .panel-title {
+  position: relative;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(30, 58, 95, 0.12);
+}
+
+html[data-theme='academic'] .panel-title::after {
+  content: '';
+  position: absolute;
+  inset-block-end: -1px;
+  inset-inline-start: 0;
+  width: 4.5rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), transparent);
+}
+
+/* Metrics */
+html[data-theme='academic'] .metrics-grid,
+html[data-theme='academic'] .digital-twin-metrics,
+html[data-theme='academic'] .ingestion-metrics-grid {
+  gap: clamp(0.85rem, 1.2vw, 1.35rem);
+}
+
+html[data-theme='academic'] .metric-card,
+html[data-theme='academic'] .ingestion-metric-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 253, 248, 0.98), rgba(247, 242, 231, 0.96));
+}
+
+html[data-theme='academic'] .metric-card::before,
+html[data-theme='academic'] .ingestion-metric-card::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 4px;
+  background: var(--color-primary);
+}
+
+html[data-theme='academic'] .metric-value,
+html[data-theme='academic'] .projects-stat-value,
+html[data-theme='academic'] .ingestion-metric-value {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  font-feature-settings: 'tnum';
+}
+
+/* Forms */
+html[data-theme='academic'] :where(.form-input, .form-textarea, .form-select, .search-input, .dt-input, .dt-input-sm) {
+  border-color: rgba(30, 58, 95, 0.18);
+  background:
+    linear-gradient(180deg, #fffefa, #fbf7ee);
+  color: var(--text-primary);
+  box-shadow: inset 0 1px 2px rgba(30, 58, 95, 0.045);
+}
+
+html[data-theme='academic'] :where(.form-input, .form-textarea, .form-select, .search-input, .dt-input, .dt-input-sm):focus {
+  border-color: var(--border-focus);
+  box-shadow: var(--ring-focus), inset 0 1px 2px rgba(30, 58, 95, 0.045);
+}
+
+html[data-theme='academic'] :where(.form-input, .form-textarea, .search-input)::placeholder {
+  color: color-mix(in srgb, var(--text-muted) 74%, transparent);
+}
+
+/* Buttons */
+html[data-theme='academic'] .btn {
+  border-radius: 999px;
+  font-weight: 750;
+  letter-spacing: 0.004em;
+  transition: var(--theme-transition);
+}
+
+html[data-theme='academic'] .btn-primary,
+html[data-theme='academic'] .btn-success {
+  color: var(--text-on-accent);
+  border-color: var(--color-primary);
+  background: linear-gradient(180deg, #2a4f79, var(--color-primary));
+  box-shadow: 0 10px 24px rgba(30, 58, 95, 0.18);
+}
+
+html[data-theme='academic'] .btn-primary:hover,
+html[data-theme='academic'] .btn-success:hover {
+  background: linear-gradient(180deg, #355d88, #173456);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(30, 58, 95, 0.22);
+}
+
+html[data-theme='academic'] .btn-secondary,
+html[data-theme='academic'] .btn-sm,
+html[data-theme='academic'] .copy-path-btn,
+html[data-theme='academic'] .module-subnav-item,
+html[data-theme='academic'] .tab-button,
+html[data-theme='academic'] .report-nav-btn {
+  border-color: rgba(30, 58, 95, 0.14);
+  background: rgba(255, 253, 248, 0.68);
+  color: var(--text-secondary);
+}
+
+html[data-theme='academic'] .btn-secondary:hover,
+html[data-theme='academic'] .copy-path-btn:hover,
+html[data-theme='academic'] .module-subnav-item:hover,
+html[data-theme='academic'] .tab-button:hover,
+html[data-theme='academic'] .report-nav-btn:hover {
+  background: rgba(30, 58, 95, 0.075);
+  border-color: rgba(30, 58, 95, 0.24);
+  color: var(--color-primary-strong);
+}
+
+html[data-theme='academic'] .btn-danger {
+  color: #fffdfa;
+  background: linear-gradient(180deg, #b14a4a, var(--color-danger));
+}
+
+/* Tabs and local navigation */
+html[data-theme='academic'] .tabs-header,
+html[data-theme='academic'] .module-subnav,
+html[data-theme='academic'] .report-nav {
+  border-color: var(--border-color);
+}
+
+html[data-theme='academic'] .tab-button.active,
+html[data-theme='academic'] .module-subnav-item.active,
+html[data-theme='academic'] .report-nav-btn.active {
+  color: var(--color-primary-strong);
+  background: color-mix(in srgb, var(--color-primary) 10%, white);
+  border-color: color-mix(in srgb, var(--color-primary) 30%, var(--border-color));
+  box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+
+html[data-theme='academic'] .tab-button.active::after {
+  background: var(--color-primary);
+}
+
+/* Tables: manuscript data tables */
+html[data-theme='academic'] :where(.custom-table, .digital-twin-table) {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+html[data-theme='academic'] :where(.custom-table th, .digital-twin-table th) {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, #f4efe4, #ece4d5);
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+html[data-theme='academic'] :where(.custom-table td, .digital-twin-table td) {
+  border-bottom: 1px solid rgba(30, 58, 95, 0.105);
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] :where(.custom-table tbody tr:hover, .digital-twin-table tr:hover td) {
+  background: var(--bg-table-hover);
+}
+
+html[data-theme='academic'] .digital-twin-table .mono,
+html[data-theme='academic'] code,
+html[data-theme='academic'] .dt-source,
+html[data-theme='academic'] .smart-link-path,
+html[data-theme='academic'] .pcl-asset-path,
+html[data-theme='academic'] .project-card-code {
+  font-family: var(--font-mono);
+  font-feature-settings: 'liga' 0, 'tnum' 1;
+}
+
+/* Markdown / note body */
+html[data-theme='academic'] .markdown-body,
+html[data-theme='academic'] .prose-block,
+html[data-theme='academic'] .workspace-highlight-text,
+html[data-theme='academic'] .digital-twin-summary,
+html[data-theme='academic'] .timeline-content,
+html[data-theme='academic'] .pcl-excerpt {
+  color: var(--text-secondary);
+}
+
+html[data-theme='academic'] .markdown-body blockquote,
+html[data-theme='academic'] .text-footnote,
+html[data-theme='academic'] .citation-footnote,
+html[data-theme='academic'] .research-note,
+html[data-theme='academic'] .note-callout {
+  border-left: 3px solid color-mix(in srgb, var(--color-primary) 46%, transparent);
+  padding: 0.7rem 0.9rem;
+  margin: 0.85rem 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--bg-surface));
+  color: var(--text-secondary);
+}
+
+html[data-theme='academic'] .text-footnote,
+html[data-theme='academic'] .citation-footnote {
+  font-size: 0.82rem;
+  line-height: 1.48;
+  color: var(--text-muted);
+}
+
+html[data-theme='academic'] mark,
+html[data-theme='academic'] .highlight {
+  border-radius: 0.22em;
+  background: linear-gradient(180deg, transparent 28%, var(--color-highlight) 28% 86%, transparent 86%);
+  color: inherit;
+  padding-inline: 0.08em;
+}
+
+html[data-theme='academic'] .code-block,
+html[data-theme='academic'] .digital-twin-source-preview,
+html[data-theme='academic'] .pfb-preview-content {
+  border-color: rgba(30, 58, 95, 0.16);
+  background:
+    linear-gradient(rgba(30, 58, 95, 0.036) 1px, transparent 1px) 0 0 / 100% 1.65rem,
+    #f8f4eb;
+  color: #24334a;
+  box-shadow: inset 0 1px 4px rgba(30, 58, 95, 0.055);
+}
+
+/* Chat as research marginalia */
+html[data-theme='academic'] .chat-container {
+  border-color: var(--border-color);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card);
+}
+
+html[data-theme='academic'] .chat-messages {
+  background:
+    linear-gradient(rgba(30, 58, 95, 0.04) 1px, transparent 1px) 0 1.1rem / 100% 2rem,
+    var(--bg-page);
+}
+
+html[data-theme='academic'] .chat-bubble {
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(30, 58, 95, 0.07);
+}
+
+html[data-theme='academic'] .chat-bubble.user {
+  border-color: rgba(30, 58, 95, 0.16);
+  background: #f2ecdf;
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] .chat-bubble.assistant {
+  border-color: rgba(30, 58, 95, 0.18);
+  background: color-mix(in srgb, var(--color-primary) 8%, white);
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] .chat-input-area {
+  background: color-mix(in srgb, var(--bg-inset) 78%, white);
+  border-top-color: var(--border-color);
+}
+
+/* Project / digital twin / file browser */
+html[data-theme='academic'] .project-card-code,
+html[data-theme='academic'] .project-repo-link,
+html[data-theme='academic'] .smart-link-anchor,
+html[data-theme='academic'] .smart-link-btn,
+html[data-theme='academic'] .expandable-text-toggle,
+html[data-theme='academic'] .dt-file-link,
+html[data-theme='academic'] .dt-timeline-card h4 {
+  color: var(--color-primary);
+}
+
+html[data-theme='academic'] .project-tag,
+html[data-theme='academic'] .dt-badge,
+html[data-theme='academic'] .projects-category-count,
+html[data-theme='academic'] .dt-group-count,
+html[data-theme='academic'] .pfb-folder-count,
+html[data-theme='academic'] .project-intro-chip,
+html[data-theme='academic'] .dt-meeting-chip,
+html[data-theme='academic'] .file-type-badge {
+  border-color: rgba(30, 58, 95, 0.13);
+  background: rgba(30, 58, 95, 0.075);
+  color: var(--color-primary-strong);
+  backdrop-filter: blur(8px);
+}
+
+html[data-theme='academic'] .file-type-badge.tone-doc { color: #285a8d; background: rgba(40, 90, 141, 0.12); }
+html[data-theme='academic'] .file-type-badge.tone-image { color: #2f6f4e; background: rgba(47, 111, 78, 0.12); }
+html[data-theme='academic'] .file-type-badge.tone-data { color: #8a5a00; background: rgba(165, 93, 8, 0.12); }
+html[data-theme='academic'] .file-type-badge.tone-code { color: #5b4f9a; background: rgba(91, 79, 154, 0.12); }
+html[data-theme='academic'] .file-type-badge.tone-pres { color: #9a4e10; background: rgba(154, 78, 16, 0.12); }
+html[data-theme='academic'] .file-type-badge.tone-bio { color: #2f6f4e; background: rgba(47, 111, 78, 0.12); }
+html[data-theme='academic'] .file-type-badge.tone-media { color: #93406f; background: rgba(147, 64, 111, 0.12); }
+
+html[data-theme='academic'] .dt-badge.warning,
+html[data-theme='academic'] .dt-edit-hint {
+  border-color: color-mix(in srgb, var(--color-warning) 48%, transparent);
+  color: var(--color-warning);
+  background: color-mix(in srgb, var(--color-warning) 10%, white);
+}
+
+html[data-theme='academic'] .dt-save-msg,
+html[data-theme='academic'] .project-folder-indicator {
+  color: var(--color-success);
+}
+
+html[data-theme='academic'] .dt-exclusion-list,
+html[data-theme='academic'] .btn-icon.danger:hover {
+  color: var(--color-danger);
+}
+
+html[data-theme='academic'] .timeline-container {
+  border-left-color: rgba(30, 58, 95, 0.22);
+}
+
+html[data-theme='academic'] .timeline-badge {
+  background: var(--bg-page);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 5px rgba(30, 58, 95, 0.08);
+}
+
+html[data-theme='academic'] .timeline-date,
+html[data-theme='academic'] .projects-stat-value {
+  color: var(--color-primary);
+}
+
+html[data-theme='academic'] .pcl-figure-card img,
+html[data-theme='academic'] .pcl-figure-img,
+html[data-theme='academic'] .pcl-thumb {
+  background:
+    linear-gradient(45deg, #efe8da 25%, transparent 25%),
+    linear-gradient(-45deg, #efe8da 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #efe8da 75%),
+    linear-gradient(-45deg, transparent 75%, #efe8da 75%),
+    #fbf8f1;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+  background-size: 16px 16px;
+}
+
+html[data-theme='academic'] .pcl-lightbox {
+  background: rgba(23, 34, 53, 0.82);
+  backdrop-filter: blur(14px);
+}
+
+/* Project folder browser / data pad */
+html[data-theme='academic'] .data-pad-hierarchy {
+  border-bottom-color: color-mix(in srgb, var(--color-primary) 18%, var(--border-color));
+}
+
+html[data-theme='academic'] .data-pad-filter-bar,
+html[data-theme='academic'] .pfb-layout {
+  background: color-mix(in srgb, var(--bg-surface) 86%, var(--bg-inset));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+html[data-theme='academic'] .pfb-folder-group-header,
+html[data-theme='academic'] .workspace-subpanel-title {
+  font-family: var(--font-display);
+  font-weight: 650;
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] .pfb-file-table thead {
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--bg-surface));
+}
+
+html[data-theme='academic'] .pfb-file-btn:hover,
+html[data-theme='academic'] .pfb-folder-item:hover {
+  transform: translateX(2px);
+}
+
+/* Ingestion metrics from user's academic.css */
+html[data-theme='academic'] .ingestion-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  margin-top: 0.75rem;
+}
+
+html[data-theme='academic'] .ingestion-metric-card {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+html[data-theme='academic'] .ingestion-metric-label {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Useful academic note utilities */
+html[data-theme='academic'] .academic-note-card,
+html[data-theme='academic'] .manuscript-card,
+html[data-theme='academic'] .lab-log-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(90deg, rgba(152, 50, 50, 0.12) 0 1px, transparent 1px) 3.5rem 0 / 1px 100%,
+    linear-gradient(rgba(30, 58, 95, 0.045) 1px, transparent 1px) 0 1.1rem / 100% 1.9rem,
+    var(--bg-page);
+  box-shadow: var(--shadow-card);
+  padding: clamp(1rem, 2vw, 1.4rem);
+}
+
+html[data-theme='academic'] .citation-pill,
+html[data-theme='academic'] .method-pill,
+html[data-theme='academic'] .evidence-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 1.55rem;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid rgba(30, 58, 95, 0.13);
+  border-radius: 999px;
+  background: rgba(30, 58, 95, 0.075);
+  color: var(--color-primary-strong);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+html[data-theme='academic'] .citation-pill {
+  color: var(--color-citation);
+  background: color-mix(in srgb, var(--color-citation) 10%, white);
+}
+
+html[data-theme='academic'] .method-pill {
+  color: var(--color-info);
+  background: color-mix(in srgb, var(--color-info) 10%, white);
+}
+
+html[data-theme='academic'] .evidence-pill {
+  color: var(--color-success);
+  background: color-mix(in srgb, var(--color-success) 10%, white);
+}
+
+/* Scrollbars */
+html[data-theme='academic'] ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html[data-theme='academic'] ::-webkit-scrollbar-track {
+  background: #efe8da;
+}
+
+html[data-theme='academic'] ::-webkit-scrollbar-thumb {
+  background: rgba(30, 58, 95, 0.24);
+  border: 2px solid #efe8da;
+  border-radius: 999px;
+}
+
+html[data-theme='academic'] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(30, 58, 95, 0.38);
+}
+
+@media (max-width: 860px) {
+  html[data-theme='academic'] .app-container {
+    background:
+      linear-gradient(rgba(30, 58, 95, 0.045) 1px, transparent 1px) 0 1.25rem / 100% 2rem,
+      var(--bg-app);
+  }
+
+  html[data-theme='academic'] .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme='academic'] *,
+  html[data-theme='academic'] *::before,
+  html[data-theme='academic'] *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  html[data-theme='academic'] {
+    --border-color: rgba(30, 58, 95, 0.38);
+    --border-strong: rgba(30, 58, 95, 0.58);
+    --text-secondary: #26364c;
+    --text-muted: #4e5a6a;
+  }
+}
+
+@media print {
+  html[data-theme='academic'],
+  html[data-theme='academic'] body,
+  html[data-theme='academic'] .app-container,
+  html[data-theme='academic'] .main-content,
+  html[data-theme='academic'] .app-content-shell {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  html[data-theme='academic'] :where(.sidebar, .app-topline, .skip-link, .btn, .theme-toggle-btn, .chat-input-area) {
+    display: none !important;
+  }
+
+  html[data-theme='academic'] :where(.panel, .metric-card, .project-card, .timeline-card, .custom-table, .digital-twin-table) {
+    box-shadow: none !important;
+    border-color: #999 !important;
+    break-inside: avoid;
+  }
+
+  html[data-theme='academic'] a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    color: #444;
+  }
+}

@@ -1,0 +1,2 @@
+document_code,title,source_type,project_code,modality,owner,path_or_uri,version,sensitivity_level,status,ingest_priority,notes
+DOC-SPACE-001,SPACE project summary,project_summary,SPACE,multi_modal,TBD,docs/space_summary.md,v1,internal,draft,high,No patient data

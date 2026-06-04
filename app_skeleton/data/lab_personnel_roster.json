@@ -1,0 +1,509 @@
+{
+  "source": "/Users/debashishdeb/Documents/lab-newspaper-site-react",
+  "source_files": [
+    "src/data/labMembers.js",
+    "src/pages/data.jsx (alumniData)"
+  ],
+  "email_rule": "firstname.lastname@helsinki.fi; ä→a, ö→o, å→a; inferred when not listed",
+  "generated_at": "2026-06-03",
+  "production_credentials": "deferred — user will provide Firebase, Supabase, Cloudflare via .env later",
+  "agreed_policies_ref": "docs/14_PRODUCTION_DECISIONS.md",
+  "proposed_platform_admins": {
+    "farkkila_lab_admin": {
+      "email": "anniina.farkkila@helsinki.fi",
+      "name": "Anniina Färkkilä",
+      "note": "PI + platform admin (user confirmed)"
+    },
+    "platform_it_admin": {
+      "email": "debashish.deb@helsinki.fi",
+      "name": "Debashish Deb",
+      "note": "IT Specialist — platform admin (user confirmed)"
+    },
+    "lab_coordinator_admin": {
+      "email": "joonas.jukonen@helsinki.fi",
+      "name": "Joonas Jukonen",
+      "note": "Research Coordinator — platform admin (user confirmed)"
+    },
+    "digital_pathology_admin": {
+      "email": null,
+      "note": "NEEDS_USER_DECISION — not on lab public site"
+    }
+  },
+  "allowlist_candidate_count": 34,
+  "members": [
+    {
+      "name": "Anniina Färkkilä, MD PhD",
+      "role": "Tenure track Professor in Translational Gynecologic Oncology",
+      "category": "Principal Investigator",
+      "status": "current",
+      "email": "anniina.farkkila@helsinki.fi",
+      "email_source": "listed",
+      "email_listed": "anniina.farkkila@helsinki.fi"
+    },
+    {
+      "name": "Anastasia Lundgren, MSc",
+      "role": "Lab Manager",
+      "category": "Staff Scientists",
+      "status": "current",
+      "email": "anastasia.lundgren@helsinki.fi",
+      "email_source": "listed",
+      "email_listed": "Anastasia.lundgren@helsinki.fi"
+    },
+    {
+      "name": "Debashish Deb, MSc",
+      "role": "IT Specialist",
+      "category": "Staff Scientists",
+      "status": "current",
+      "email": "debashish.deb@helsinki.fi",
+      "email_source": "listed",
+      "email_listed": "debashish.deb@helsinki.fi"
+    },
+    {
+      "name": "Joonas Jukonen, PhD",
+      "role": "Research Coordinator",
+      "category": "Staff Scientists",
+      "status": "current",
+      "email": "joonas.jukonen@helsinki.fi",
+      "email_source": "listed",
+      "email_listed": "joonas.jukonen@helsinki.fi"
+    },
+    {
+      "name": "Maija Vääriskoski, MSc Midwife",
+      "role": "Clinical Research Coordinator",
+      "category": "Staff Scientists",
+      "status": "current",
+      "email": "maija.vaariskoski@helsinki.fi",
+      "email_source": "listed",
+      "email_listed": "maija.vääriskoski@helsinki.fi"
+    },
+    {
+      "name": "Saundarya (Saun) Shah, MSc",
+      "role": "Spatial Profiling Manager",
+      "category": "Staff Scientists",
+      "status": "current",
+      "email": "saundarya.shah@helsinki.fi",
+      "email_source": "listed",
+      "email_listed": "saundarya.shah@helsinki.fi"
+    },
+    {
+      "name": "Hanna Elomaa, PhD",
+      "role": "Postdoctoral Researcher",
+      "category": "Postdoctoral Researchers",
+      "status": "current",
+      "email": "hanna.elomaa@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Inga-Maria Launonen, MD",
+      "role": "Postdoctoral Researcher",
+      "category": "Postdoctoral Researchers",
+      "status": "current",
+      "email": "inga-maria.launonen@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Sara Palomino, PhD",
+      "role": "Postdoctoral Researcher",
+      "category": "Postdoctoral Researchers",
+      "status": "current",
+      "email": "sara.palomino@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Ada Junquera, MSc",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "ada.junquera@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Aleksandra Shabanova, MSc",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "aleksandra.shabanova@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Andreas Hainari, BMed",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "andreas.hainari@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Anni Suoknuuti, BMed",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "anni.suoknuuti@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Ella Anttila, MD",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "ella.anttila@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Iga Niemiec, MSc",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "iga.niemiec@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Kürşat Birgin, MSc",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "kursat.birgin@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "María Hincapié Otero, MSc",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "maria.otero@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Matilda Salko, MD",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "matilda.salko@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Naipunya Guruprasad, MSc",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "naipunya.guruprasad@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Pablo Siliceo Portugal, MSc",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "pablo.portugal@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Silja Kauppila, BMed",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "silja.kauppila@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Wenqing Chen, MSc",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "wenqing.chen@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Zhihan Liang, MSc",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "zhihan.liang@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Ziqi Kang, MSc",
+      "role": "Doctoral Researcher",
+      "category": "Doctoral Researchers",
+      "status": "current",
+      "email": "ziqi.kang@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Anni Härkönen, BMed",
+      "role": "Medical student",
+      "category": "Medical Students",
+      "status": "current",
+      "email": "anni.harkonen@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Anni Lindfors, MSc",
+      "role": "Genetics Master's Programme",
+      "category": "Master's Students",
+      "status": "current",
+      "email": "anni.lindfors@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Antti Toivanen, BSc",
+      "role": "LSI Master's Programme",
+      "category": "Master's Students",
+      "status": "current",
+      "email": "antti.toivanen@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Elias Ruuska, BSc",
+      "role": "Genetics Master's Programme",
+      "category": "Master's Students",
+      "status": "current",
+      "email": "elias.ruuska@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Nika Mikhailava, BSc",
+      "role": "Genetics Master's Programme",
+      "category": "Master's Students",
+      "status": "current",
+      "email": "nika.mikhailava@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Foteini Chamchougia, BSc",
+      "role": "Technical Assistant",
+      "category": "Trainees",
+      "status": "current",
+      "email": "foteini.chamchougia@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Noora Hautamäki, MSc",
+      "role": "Research Assistant",
+      "category": "Trainees",
+      "status": "current",
+      "email": "noora.hautamaki@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Karen Ahlnäs, MSc Midwife",
+      "role": "Clinical Research Nurse",
+      "category": "Clinical Researchers",
+      "status": "current",
+      "email": "karen.ahlnas@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Laura Haapasalo, Midwife",
+      "role": "Study Nurse",
+      "category": "Clinical Researchers",
+      "status": "current",
+      "email": "laura.haapasalo@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Ulla-Maija Haltia, MD PhD",
+      "role": "Gynecologic Oncologist",
+      "category": "Clinical Researchers",
+      "status": "current",
+      "email": "ulla-maija.haltia@helsinki.fi",
+      "email_source": "inferred",
+      "email_listed": null
+    },
+    {
+      "name": "Ashwini Nagaraj, PhD",
+      "focus": "Ashwini Nagaraj's research focused on establishing high-grade serous ovarian cancer patient-derived immunocompetent models for functional testing of immunotherapeutic agents.",
+      "category": "Postdoctoral Researchers",
+      "status": "alumni",
+      "email": "ashwini.nagaraj@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Elina Pietilä, PhD",
+      "focus": "Elina Pietilä worked on precision medicine in high-grade serous ovarian cancer using immunocompetent patient-derived ex-vivo cultures.",
+      "category": "Postdoctoral Researchers",
+      "status": "alumni",
+      "email": "elina.pietila@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Julia Casado, PhD",
+      "focus": "Julia Casado's research focused on the tumor microenvironment analysis from highly-multiplexed images, developing algorithms for cell type and state identification.",
+      "category": "Postdoctoral Researchers",
+      "status": "alumni",
+      "email": "julia.casado@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Fernando Perez, PhD",
+      "focus": "Fernando Perez's research focused on identifying genomic and tumor microenvironment biomarkers that predict chemotherapy response in ovarian cancer.",
+      "category": "Doctoral Researchers",
+      "status": "alumni",
+      "email": "fernando.perez@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Aino Elomaa, BSc",
+      "focus": "Aino Elomaa coordinated the ONCOSYS-Ova sample collection as Laboratory and Clinical Sample Coordinator.",
+      "category": "Staff",
+      "status": "alumni",
+      "email": "aino.elomaa@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Angéla Szabó, MSc",
+      "focus": "Angéla Szabó's work focused on cell-type calling and image analysis.",
+      "category": "Staff",
+      "status": "alumni",
+      "email": "angela.szabo@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Abhilash VA, MSc",
+      "focus": "Abhilash VA performed evaluations of immune cell-specific functional responses in patient-derived immunocompetent cultures.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "abhilash.va@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Aditi Sirsikar, BSc",
+      "focus": "Aditi Sirsikar's responsibilities included analyzing multi-dimensional drug response data from patient-derived immunocompetent cultures.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "aditi.sirsikar@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Alva Grönholm, BSc",
+      "focus": "Alva Grönholm focused on performing bioinformatic analyses for the cell cycle project on highly multiplexed imaging data.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "alva.gronholm@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Arttu Peltola, BSc",
+      "focus": "Arttu Peltola contributed to improving the image processing pipeline by developing a metric and framework to evaluate and optimize segmentation performance.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "arttu.peltola@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Assel Kalmenova, MSc",
+      "focus": "Assel Kalmenova worked on the expansion of high-grade serous ovarian cancer organoids and analysis of the tumor microenvironment.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "assel.kalmenova@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Eveliina Holappa, BSc",
+      "focus": "Eveliina Holappa's tasks focused on patient sample processing, 3D cell culture, and flow cytometry experiments.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "eveliina.holappa@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Foteini Chamchougia, MSc",
+      "focus": "Foteini Chamchougia was involved in multiple projects analyzing patient-derived samples using spatial techniques like tCycIF.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "foteini.chamchougia@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Gayani Anandagoda, BSc",
+      "focus": "Gayani Anandagoda applied bioinformatics and machine learning tools to spatial transcriptomic data to analyze the tumor microenvironment.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "gayani.anandagoda@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Lina Maltrovsky, BSc",
+      "focus": "Lina Maltrovsky focused on combining highly multiplexed imaging with proteomics analysis.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "lina.maltrovsky@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Matías Aiskovich, MSc",
+      "focus": "Matías Aiskovich applied bioinformatics and machine learning to tumor omics data, focusing on computer vision models for multiplexed imaging.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "matias.aiskovich@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Olavi Goussev, MSc (Tech)",
+      "focus": "Olavi Goussev focused on the development of machine learning processes and feature engineering for analyzing tumor microenvironments.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "olavi.goussev@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Panagiotis Lilis, BSc",
+      "focus": "Panagiotis Lilis specialized in cell culture and establishing long-term 3D ovarian tumor organoid cultures.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "panagiotis.lilis@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Sarah Wolf, BSc",
+      "focus": "Sarah Wolf supported patient sample processing and biobanking, and assisted with drug testing in complex in vitro models of the tumor microenvironment.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "sarah.wolf@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Teodóra Faragó, MSc",
+      "focus": "Teodóra Faragó's tasks consisted of automatic cell-type calling and computational analysis.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "teodora.farago@helsinki.fi",
+      "email_source": "inferred"
+    },
+    {
+      "name": "Venla Kaislo, BSc",
+      "focus": "Venla Kaislo's research focused on omics data analysis and multimodal clinical modeling for ovarian cancer.",
+      "category": "Other Students",
+      "status": "alumni",
+      "email": "venla.kaislo@helsinki.fi",
+      "email_source": "inferred"
+    }
+  ]
+}

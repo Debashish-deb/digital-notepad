@@ -1,0 +1,3 @@
+variable_name,display_name,data_type,allowed_values,unit,valid_min,valid_max,missing_value_codes,definition,curation_rule,sensitivity_level,source_columns
+pfs_months,Progression-free survival,numeric,,months,0,,NA;unknown,Months from diagnosis to progression or censoring,Must be calculated from validated date columns only,restricted,date_diag_sample;progression_date;date_update
+platinum_response,Platinum response,categorical,sensitive|resistant|refractory|unknown,,,,NA;unknown,Project-defined response to platinum therapy,Exact rule must be documented per project,restricted,Platinum_based_treatment;line;progression_date

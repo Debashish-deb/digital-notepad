@@ -1,0 +1,52 @@
+# Secrets and local env
+configs/.env
+configs/.env.*
+!configs/.env.example
+configs/secrets/
+*.pem
+*.key
+firebase-adminsdk*.json
+**/service-account*.json
+
+# Local lab evidence (never commit)
+database/
+../OMEIA-database/
+OMEIA-database/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+.venv-local/
+venv/
+
+# Node / frontend build
+node_modules/
+dist/
+*.local
+
+# Runtime / generated data
+app_skeleton/data/logs/
+app_skeleton/data/ingestion_reports/
+app_skeleton/data/raw_asset_inventory.csv
+app_skeleton/data/raw_asset_inventory.json
+app_skeleton/data/processed_projects/
+app_skeleton/ui/react_frontend/public/processed/
+app_skeleton/data/processor.pid
+app_skeleton/data/processor_state.json
+
+# Large local media (mount or set CSC_MEDIA_DIR)
+CSC/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Misc local notes
+plan.md
+channels_quantification.csv
+processor.txt

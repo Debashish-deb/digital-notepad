@@ -1,0 +1,197 @@
+import { useCallback, useEffect, useState } from 'react';
+import { Activity, Shield } from 'lucide-react';
+import AuthLoginPanel from '../components/AuthLoginPanel.jsx';
+import { apiGet, apiPost } from '../api/client.js';
+import { useApiContext } from '../api/ApiContext.jsx';
+
+export default function AdministrationScreen({ title, description, onNavigate }) {
+  const { onAuthToken } = useApiContext();
+  const [emails, setEmails] = useState([]);
+  const [jobs, setJobs] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  const [newEmail, setNewEmail] = useState('');
+  const [note, setNote] = useState(null);
+  const [error, setError] = useState(null);
+  const [authConfig, setAuthConfig] = useState(null);
+  const [connectors, setConnectors] = useState(null);
+  const [health, setHealth] = useState(null);
+  const [digRuns, setDigRuns] = useState([]);
+
+  const load = useCallback(async () => {
+    setError(null);
+    try {
+      const [e, j, t, auth, conn, h, runs] = await Promise.all([
+        apiGet('/api/admin/allowed-emails').catch(() => ({ emails: [] })),
+        apiGet('/api/admin/ingestion-jobs').catch(() => ({ jobs: [] })),
+        apiGet('/api/admin/review-tasks').catch(() => ({ tasks: [] })),
+        apiGet('/api/auth/config').catch(() => null),
+        apiGet('/api/platform/connectors').catch(() => null),
+        apiGet('/health').catch(() => null),
+        apiGet('/api/digitalize/runs', { params: new URLSearchParams({ limit: '10' }) }).catch(() => ({ runs: [] })),
+      ]);
+      setEmails(e.emails || []);
+      setJobs(j.jobs || []);
+      setTasks(t.tasks || []);
+      setAuthConfig(auth);
+      setConnectors(conn);
+      setHealth(h);
+      setDigRuns(runs.runs || []);
+    } catch (err) {
+      setError(String(err.message || err));
+    }
+  }, []);
+
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  const addEmail = async () => {
+    const email = newEmail.trim().toLowerCase();
+    if (!email.includes('@')) return;
+    try {
+      const params = new URLSearchParams({ email, status: 'approved' });
+      await apiPost(`/api/admin/allowed-emails?${params}`);
+      setNewEmail('');
+      setNote(`Added ${email} to allowlist.`);
+      load();
+    } catch (err) {
+      setError(String(err.message || err));
+    }
+  };
+
+  const goToIngestion = () => {
+    if (onNavigate) onNavigate('data_storage', 'ingestion');
+  };
+
+  return (
+    <div className="stack-md">
+      <div className="panel">
+        <h3 className="panel-title">
+          <Shield size={18} /> {title || 'Administration'}
+        </h3>
+        <p className="panel-lead prose-block">
+          {description || 'Platform health, connectors, allowlist, and ingestion jobs.'}
+        </p>
+        {note && <p className="text-footnote citation-footnote muted">{note}</p>}
+        {error && <p className="text-footnote" style={{ color: 'var(--color-danger)' }}>{error}</p>}
+      </div>
+
+      {health && (
+        <div className="panel">
+          <h4 className="text-title-3">
+            <Activity size={16} style={{ verticalAlign: 'middle' }} /> API health
+          </h4>
+          <ul className="stack-sm" style={{ listStyle: 'none', padding: 0 }}>
+            <li className="text-footnote">Status: {health.status}</li>
+            <li className="text-footnote">
+              Database: {health.database_connected ? 'connected' : 'unavailable'}
+            </li>
+            <li className="text-footnote">
+              LLM ({health.llm_client_provider}): {health.llm_client_healthy ? 'healthy' : 'degraded'}
+            </li>
+          </ul>
+        </div>
+      )}
+
+      <AuthLoginPanel
+        onToken={(token) => {
+          onAuthToken(token);
+          setNote('Signed in — API requests include Authorization Bearer when auth is enabled.');
+        }}
+      />
+
+      {authConfig && (
+        <div className="panel">
+          <h4 className="text-title-3">Auth configuration</h4>
+          {authConfig.firebase && (
+            <p className="text-footnote muted">
+              Firebase: {authConfig.firebase.project_name} ({authConfig.firebase.project_id}) —{' '}
+              {authConfig.firebase.auth_method === 'email_password' ? 'Email/Password' : authConfig.firebase.auth_method}
+              {authConfig.auth_disabled ? ' · PLATFORM_AUTH_DISABLED (dev bypass)' : ''}
+            </p>
+          )}
+        </div>
+      )}
+
+      {connectors?.storage_primary && (
+        <div className="panel">
+          <h4 className="text-title-3">Platform connectors</h4>
+          <ul className="stack-sm" style={{ listStyle: 'none', padding: 0 }}>
+            {Object.entries(connectors.storage_primary).map(([id, row]) => (
+              <li key={id} className="text-footnote">
+                <strong>{id}</strong>: {row.configured ? 'configured' : 'not configured'}
+                {row.required_for_production_files ? ' · required' : ' · optional'}
+              </li>
+            ))}
+          </ul>
+          {connectors.supabase && (
+            <p className="text-footnote citation-footnote muted" style={{ marginTop: '0.5rem' }}>
+              Supabase: {connectors.supabase.hosted_configured ? 'hosted configured' : 'local fallback'}
+            </p>
+          )}
+        </div>
+      )}
+
+      <div className="panel">
+        <h4 className="text-title-3">Allowed emails</h4>
+        <div className="disk-pad-toolbar">
+          <input
+            className="input"
+            placeholder="university.email@helsinki.fi"
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
+          />
+          <button type="button" className="btn btn-secondary btn-sm" onClick={addEmail}>
+            Add
+          </button>
+        </div>
+        <ul className="stack-sm" style={{ listStyle: 'none', padding: 0 }}>
+          {emails.map((row) => (
+            <li key={row.email} className="text-footnote">
+              {row.email} — {row.status}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="panel">
+        <h4 className="text-title-3">Ingestion jobs</h4>
+        {!jobs.length && <p className="text-footnote muted">No jobs recorded yet.</p>}
+        <ul className="stack-sm" style={{ listStyle: 'none', padding: 0 }}>
+          {jobs.map((j) => (
+            <li key={j.job_id} className="text-caption">
+              {j.job_type} — {j.status} ({j.items_processed}/{j.items_total})
+            </li>
+          ))}
+        </ul>
+        {onNavigate && (
+          <button type="button" className="btn btn-sm" style={{ marginTop: '0.75rem' }} onClick={goToIngestion}>
+            Open ingestion dashboard
+          </button>
+        )}
+      </div>
+
+      <div className="panel">
+        <h4 className="text-title-3">Digitalization runs</h4>
+        <ul className="stack-sm" style={{ listStyle: 'none', padding: 0 }}>
+          {digRuns.map((r) => (
+            <li key={r.run_id} className="text-caption">
+              {r.mode} · {r.project_name || '—'} · {r.status}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="panel">
+        <h4 className="text-title-3">Open review tasks</h4>
+        <ul className="stack-sm" style={{ listStyle: 'none', padding: 0, maxHeight: 240, overflow: 'auto' }}>
+          {tasks.slice(0, 30).map((t) => (
+            <li key={t.task_id} className="text-caption">
+              {t.asset_id} — {(Number(t.assignment_confidence) * 100).toFixed(0)}%
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}

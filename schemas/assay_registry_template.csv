@@ -1,0 +1,2 @@
+assay_run_code,project_code,sample_code,assay_type,platform,batch_code,panel_code,run_date,operator,protocol_version,raw_file_uri,processed_file_uri,qc_status,notes
+SYNTH_TCYCIF_RUN_001,SPACE,SYNTH_SAMPLE_001,tcycif,OME-TIFF,BATCH_SYNTH,PANEL_SYNTH,,TBD,v0,/raw/path,/processed/path,unknown,Synthetic placeholder

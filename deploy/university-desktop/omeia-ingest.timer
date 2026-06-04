@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily OMEIA storage scan and optional Supabase sync
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=900
+Unit=omeia-ingest.service
+
+[Install]
+WantedBy=timers.target

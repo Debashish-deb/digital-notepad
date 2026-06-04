@@ -1,0 +1,15 @@
+# TLS reverse proxy — replace api.example.fi with your public hostname.
+# Caddy obtains certificates automatically when DNS points to this host.
+#
+# Install: sudo cp Caddyfile.example /etc/caddy/Caddyfile && sudo systemctl reload caddy
+
+api.example.fi {
+    encode gzip zstd
+    reverse_proxy 127.0.0.1:8000
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+}

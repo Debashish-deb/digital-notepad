@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pydantic
+psycopg[binary]
+qdrant-client
+neo4j
+pandas
+pyyaml
+python-dotenv
+streamlit
+requests
+sqlalchemy
+openai
+firebase-admin
+

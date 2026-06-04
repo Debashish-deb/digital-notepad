@@ -1,0 +1,18 @@
+[Unit]
+Description=OMEIA scheduled read-only ingestion
+After=network-online.target omeia-api.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=omeia
+Group=omeia
+WorkingDirectory=/opt/omeia/digital-notepad
+EnvironmentFile=/opt/omeia/deploy/university-desktop/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/omeia/venv/bin/python scripts/scheduled_ingest.py --max-entries 500
+Nice=10
+IOSchedulingClass=idle
+
+[Install]
+WantedBy=multi-user.target

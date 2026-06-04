@@ -1,0 +1,1062 @@
+/* Mac+ Visual Upgrade Layer
+   Drop this file beside the upgraded screens and import it once from any screen.
+   It enhances the existing class names without changing data flow or component logic. */
+
+:root {
+  --mac-bg-0: #eae5d8;
+  /* warm paper — matches index.css light --bg-app */
+  --mac-bg-1: #e0dbd0;
+  --mac-ink: #0a0a0a;
+  /* pitch black */
+  --mac-ink-soft: #111111;
+  --mac-muted: #333333;
+  --mac-card: rgba(255, 253, 248, 0.95);
+  --mac-card-strong: #fffdf8;
+  /* warm white panels */
+  --mac-border: rgba(30, 58, 95, 0.16);
+  --mac-border-strong: rgba(30, 58, 95, 0.28);
+  --mac-shadow: 0 22px 70px rgba(30, 58, 95, 0.14);
+  --mac-shadow-soft: 0 12px 36px rgba(30, 58, 95, 0.09);
+  --mac-ring: rgba(56, 189, 248, 0.36);
+  --mac-blue: #2563eb;
+  --mac-cyan: #06b6d4;
+  --mac-indigo: #6366f1;
+  --mac-violet: #8b5cf6;
+  --mac-emerald: #10b981;
+  --mac-radius-xl: 28px;
+  --mac-radius-lg: 22px;
+  --mac-radius-md: 16px;
+  --mac-radius-sm: 12px;
+  --mac-ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mac-bg-0: #07111f;
+    --mac-bg-1: #0f172a;
+    --mac-ink: #f8fafc;
+    --mac-ink-soft: #cbd5e1;
+    --mac-muted: #94a3b8;
+    --mac-card: rgba(15, 23, 42, 0.68);
+    --mac-card-strong: rgba(15, 23, 42, 0.82);
+    --mac-border: rgba(148, 163, 184, 0.18);
+    --mac-border-strong: rgba(148, 163, 184, 0.30);
+    --mac-blue: #60a5fa;
+    --mac-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+    --mac-shadow-soft: 0 16px 42px rgba(0, 0, 0, 0.24);
+  }
+}
+
+/* Ambient app canvas */
+body {
+  color: var(--mac-ink);
+  background: var(--mac-bg-0);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+/* ─── Light theme: pitch-black text on all light surfaces ─── */
+html[data-theme="light"] body,
+html[data-theme="light"] .panel,
+html[data-theme="light"] .metric-card,
+html[data-theme="light"] .project-card,
+html[data-theme="light"] .overview-theme-card,
+html[data-theme="light"] .roster-card,
+html[data-theme="light"] .workspace-context-card,
+html[data-theme="light"] .feed-item,
+html[data-theme="light"] .feed-item-accent,
+html[data-theme="light"] .audit-log-item,
+html[data-theme="light"] .lab-knowledge-results,
+html[data-theme="light"] .lab-knowledge-detail,
+html[data-theme="light"] .tabs-header,
+html[data-theme="light"] .tab-bar,
+html[data-theme="light"] .sidebar,
+html[data-theme="light"] .page-header,
+html[data-theme="light"] .module-page-header,
+html[data-theme="light"] .app-topline,
+html[data-theme="light"] p,
+html[data-theme="light"] span,
+html[data-theme="light"] div,
+html[data-theme="light"] li,
+html[data-theme="light"] td,
+html[data-theme="light"] th,
+html[data-theme="light"] label,
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6 {
+  color: #0a0a0a;
+}
+
+/* Muted/secondary text stays dark but slightly lighter */
+html[data-theme="light"] .muted,
+html[data-theme="light"] .text-muted,
+html[data-theme="light"] .mac-muted,
+html[data-theme="light"] .page-subtitle,
+html[data-theme="light"] .page-lead,
+html[data-theme="light"] .panel-lead,
+html[data-theme="light"] .text-body-secondary,
+html[data-theme="light"] .text-footnote,
+html[data-theme="light"] .citation-footnote {
+  color: #333333;
+}
+
+/* Universal premium surface treatment */
+.page-header,
+.module-page-header,
+.panel,
+.overview-theme-card,
+.project-card,
+.roster-card,
+.workspace-context-card,
+.metric-card,
+.feed-item,
+.feed-item-accent,
+.audit-log-item,
+.digital-twin-source-preview,
+.lab-knowledge-results,
+.lab-knowledge-detail,
+.workspace-nav,
+.tabs-header,
+.tab-bar,
+.projects-toolbar,
+.projects-stats-bar,
+.disk-pad-toolbar {
+  position: relative;
+  border: 1px solid var(--mac-border);
+  border-radius: var(--mac-radius-lg);
+  background: var(--mac-card-strong);
+  box-shadow: var(--mac-shadow-soft);
+  backdrop-filter: saturate(150%) blur(18px);
+  -webkit-backdrop-filter: saturate(150%) blur(18px);
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .page-header,
+  .module-page-header,
+  .panel,
+  .overview-theme-card,
+  .project-card,
+  .roster-card,
+  .workspace-context-card,
+  .metric-card,
+  .feed-item,
+  .feed-item-accent,
+  .audit-log-item,
+  .digital-twin-source-preview,
+  .lab-knowledge-results,
+  .lab-knowledge-detail,
+  .workspace-nav,
+  .tabs-header,
+  .tab-bar,
+  .projects-toolbar,
+  .projects-stats-bar,
+  .disk-pad-toolbar {
+    background:
+      linear-gradient(180deg, rgba(15, 23, 42, .78), rgba(15, 23, 42, .54)),
+      linear-gradient(135deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
+  }
+}
+
+.panel::before,
+.project-card::before,
+.overview-theme-card::before,
+.metric-card::before,
+.roster-card::before,
+.workspace-context-card::before,
+.feed-item::before,
+.audit-log-item::before,
+.lab-knowledge-results::before,
+.lab-knowledge-detail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  /* Suppressed in light mode to preserve text contrast */
+  opacity: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .panel::before,
+  .project-card::before,
+  .overview-theme-card::before,
+  .metric-card::before,
+  .roster-card::before,
+  .workspace-context-card::before,
+  .feed-item::before,
+  .audit-log-item::before,
+  .lab-knowledge-results::before,
+  .lab-knowledge-detail::before {
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, .06), transparent 34%),
+      radial-gradient(circle at 16% 0%, rgba(56, 189, 248, .12), transparent 25rem),
+      radial-gradient(circle at 100% 10%, rgba(139, 92, 246, .08), transparent 22rem);
+    opacity: 1;
+  }
+}
+
+.panel>*,
+.project-card>*,
+.overview-theme-card>*,
+.metric-card>*,
+.roster-card>*,
+.workspace-context-card>*,
+.feed-item>*,
+.audit-log-item>*,
+.lab-knowledge-results>*,
+.lab-knowledge-detail>* {
+  position: relative;
+  z-index: 1;
+}
+
+.panel,
+.overview-theme-card,
+.project-card,
+.roster-card,
+.workspace-context-card,
+.metric-card,
+.feed-item,
+.audit-log-item {
+  transition:
+    transform 220ms var(--mac-ease),
+    box-shadow 220ms var(--mac-ease),
+    border-color 220ms var(--mac-ease),
+    background 220ms var(--mac-ease);
+}
+
+.panel:hover,
+.overview-theme-card:hover,
+.project-card:hover,
+.roster-card:hover,
+.workspace-context-card:hover,
+.metric-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--mac-border-strong);
+  box-shadow: var(--mac-shadow);
+}
+
+/* Page headers get a macOS window feel */
+.page-header,
+.module-page-header {
+  padding: clamp(1.25rem, 2.2vw, 2rem);
+  margin-bottom: 1.25rem;
+  border-radius: var(--mac-radius-xl);
+  box-shadow: var(--mac-shadow);
+}
+
+.page-header::after,
+.module-page-header::after {
+  content: "";
+  position: absolute;
+  left: 1.2rem;
+  top: 1rem;
+  width: 3.2rem;
+  height: .78rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at .38rem .39rem, #ff5f57 0 .31rem, transparent .32rem),
+    radial-gradient(circle at 1.55rem .39rem, #ffbd2e 0 .31rem, transparent .32rem),
+    radial-gradient(circle at 2.72rem .39rem, #28c840 0 .31rem, transparent .32rem);
+  filter: drop-shadow(0 2px 4px rgba(15, 23, 42, .12));
+  opacity: .92;
+}
+
+.page-title-gradient,
+.text-title-1 {
+  letter-spacing: -0.045em;
+  line-height: .96;
+  background:
+    linear-gradient(115deg, #0f172a 4%, #1d4ed8 36%, #7c3aed 66%, #06b6d4 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-wrap: balance;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .page-title-gradient,
+  .text-title-1 {
+    background:
+      linear-gradient(115deg, #f8fafc 4%, #93c5fd 35%, #c4b5fd 68%, #5eead4 98%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+.page-subtitle,
+.page-lead,
+.panel-lead,
+.text-body-secondary,
+.muted {
+  color: var(--mac-ink-soft);
+}
+
+.panel-title,
+.text-title-3,
+.feed-item-title,
+.project-card-title,
+.roster-name,
+.projects-category-title {
+  color: var(--mac-ink);
+  letter-spacing: -0.026em;
+  text-wrap: balance;
+}
+
+/* Layout rhythm */
+.stack-lg {
+  gap: 1.25rem;
+}
+
+.stack-md {
+  gap: 1rem;
+}
+
+.stack-sm {
+  gap: .7rem;
+}
+
+.grid-2col,
+.grid-3col,
+.grid-4col,
+.overview-theme-grid,
+.metrics-grid,
+.projects-grid,
+.roster-grid {
+  gap: clamp(.9rem, 1.6vw, 1.25rem);
+}
+
+.panel,
+.overview-theme-card {
+  padding: clamp(1rem, 1.6vw, 1.4rem);
+}
+
+.overview-theme-grid {
+  align-items: stretch;
+}
+
+.overview-theme-card,
+.project-card {
+  min-height: 100%;
+}
+
+/* Buttons */
+.btn,
+button.btn,
+.smart-link-btn,
+.project-card-action {
+  position: relative;
+  isolation: isolate;
+  min-height: 2.35rem;
+  border-radius: 999px !important;
+  border: 1px solid rgba(148, 163, 184, .34);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition:
+    transform 170ms var(--mac-ease),
+    box-shadow 170ms var(--mac-ease),
+    border-color 170ms var(--mac-ease),
+    filter 170ms var(--mac-ease);
+}
+
+.btn:hover,
+.smart-link-btn:hover,
+.project-card-action:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.08);
+}
+
+.btn:active,
+.smart-link-btn:active,
+.project-card-action:active {
+  transform: translateY(0) scale(.99);
+}
+
+.btn-primary {
+  color: #fff !important;
+  border-color: rgba(37, 99, 235, .24) !important;
+  background:
+    linear-gradient(135deg, #2563eb, #7c3aed 58%, #06b6d4) !important;
+  box-shadow:
+    0 14px 30px rgba(37, 99, 235, .24),
+    inset 0 1px 0 rgba(255, 255, 255, .24);
+}
+
+/* ─── Tab & nav: themed color per mode ─── */
+
+/* BASE (light mode defaults) */
+.tab-button,
+.sidebar-item,
+.workspace-nav-item {
+  /* Warm paper surface — no gradient wash */
+  color: #1e3a5f !important;
+  /* rich navy — not pitch black */
+  background: rgba(255, 253, 248, 0.72) !important;
+  border: 1px solid rgba(30, 58, 95, 0.18) !important;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  box-shadow:
+    0 2px 8px rgba(30, 58, 95, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+/* Dark mode inactive tabs */
+@media (prefers-color-scheme: dark) {
+
+  .tab-button,
+  .sidebar-item,
+  .workspace-nav-item {
+    color: rgba(148, 211, 255, 0.82) !important;
+    /* soft sky-blue tint */
+    background: rgba(15, 23, 42, 0.62) !important;
+    border: 1px solid rgba(148, 163, 184, 0.14) !important;
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* data-theme overrides (explicit class-based theming) */
+html[data-theme="light"] .tab-button,
+html[data-theme="light"] .sidebar-item,
+html[data-theme="light"] .workspace-nav-item {
+  color: #1e3a5f !important;
+  background: rgba(255, 253, 248, 0.82) !important;
+  border: 1px solid rgba(30, 58, 95, 0.18) !important;
+}
+
+html[data-theme="dark"] .tab-button,
+html[data-theme="dark"] .sidebar-item,
+html[data-theme="dark"] .workspace-nav-item {
+  color: rgba(148, 211, 255, 0.82) !important;
+  background: rgba(15, 23, 42, 0.62) !important;
+  border: 1px solid rgba(148, 163, 184, 0.14) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Hover — text drifts toward active accent */
+.tab-button:hover,
+.sidebar-item:hover,
+.workspace-nav-item:hover,
+.disk-pad-folder-item:hover {
+  transform: translateY(-1px) scale(1.012);
+}
+
+html[data-theme="light"] .tab-button:hover,
+html[data-theme="light"] .sidebar-item:hover,
+html[data-theme="light"] .workspace-nav-item:hover {
+  color: #312e81 !important;
+  /* deep indigo on hover */
+  border-color: rgba(49, 46, 129, 0.28) !important;
+  background: rgba(238, 232, 255, 0.72) !important;
+}
+
+html[data-theme="dark"] .tab-button:hover,
+html[data-theme="dark"] .sidebar-item:hover,
+html[data-theme="dark"] .workspace-nav-item:hover {
+  color: #7dd3fc !important;
+  /* bright sky-blue on hover */
+  border-color: rgba(125, 211, 252, 0.28) !important;
+  background: rgba(14, 165, 233, 0.10) !important;
+}
+
+/* Active tabs — vivid gradient pill */
+.tab-button.active,
+.sidebar-item.active,
+.workspace-nav-item.active,
+.disk-pad-folder-item.active,
+.scope-chip.is-checked {
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Active: dark mode — electric blue→violet→cyan */
+@media (prefers-color-scheme: dark) {
+
+  .tab-button.active,
+  .sidebar-item.active,
+  .workspace-nav-item.active,
+  .disk-pad-folder-item.active,
+  .scope-chip.is-checked {
+    background:
+      linear-gradient(135deg, #0ea5e9 0%, #6366f1 52%, #2dd4bf 100%) !important;
+    box-shadow:
+      0 0 0 1px rgba(99, 102, 241, 0.38),
+      0 8px 28px rgba(14, 165, 233, 0.32),
+      0 20px 44px rgba(99, 102, 241, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.26) !important;
+  }
+}
+
+/* Active: light mode — ink navy→indigo→ocean teal */
+@media (prefers-color-scheme: light) {
+
+  .tab-button.active,
+  .sidebar-item.active,
+  .workspace-nav-item.active,
+  .disk-pad-folder-item.active,
+  .scope-chip.is-checked {
+    background:
+      linear-gradient(135deg, #1e3a5f 0%, #4338ca 55%, #0d9488 100%) !important;
+    box-shadow:
+      0 0 0 1px rgba(67, 56, 202, 0.30),
+      0 8px 24px rgba(30, 58, 95, 0.26),
+      0 18px 40px rgba(67, 56, 202, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+  }
+}
+
+/* data-theme explicit active overrides */
+html[data-theme="dark"] .tab-button.active,
+html[data-theme="dark"] .sidebar-item.active,
+html[data-theme="dark"] .workspace-nav-item.active,
+html[data-theme="dark"] .scope-chip.is-checked {
+  background:
+    linear-gradient(135deg, #0ea5e9 0%, #6366f1 52%, #2dd4bf 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(99, 102, 241, 0.38),
+    0 8px 28px rgba(14, 165, 233, 0.32),
+    0 20px 44px rgba(99, 102, 241, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26) !important;
+}
+
+html[data-theme="light"] .tab-button.active,
+html[data-theme="light"] .sidebar-item.active,
+html[data-theme="light"] .workspace-nav-item.active,
+html[data-theme="light"] .scope-chip.is-checked {
+  background:
+    linear-gradient(135deg, #1e3a5f 0%, #4338ca 55%, #0d9488 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(67, 56, 202, 0.30),
+    0 8px 24px rgba(30, 58, 95, 0.26),
+    0 18px 40px rgba(67, 56, 202, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Small button sizing */
+.btn-sm {
+  min-height: 2rem;
+  padding-inline: .85rem;
+}
+
+/* Tab/nav container layout */
+.tabs-header,
+.tab-bar,
+.workspace-nav,
+.disk-pad-toolbar,
+.projects-toolbar {
+  padding: .45rem;
+  gap: .45rem;
+}
+
+/* Tab shape + animation */
+.tab-button,
+.sidebar-item,
+.workspace-nav-item,
+.disk-pad-folder-item {
+  border-radius: 16px !important;
+  transition:
+    color 200ms var(--mac-ease),
+    transform 170ms var(--mac-ease),
+    background 200ms var(--mac-ease),
+    border-color 200ms var(--mac-ease),
+    box-shadow 200ms var(--mac-ease);
+}
+
+/* Inputs */
+.form-input,
+.form-select,
+.form-textarea,
+.input,
+select,
+textarea,
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="email"] {
+  border-radius: 16px !important;
+  border: 1px solid var(--mac-border) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .88), rgba(255, 255, 255, .66)) !important;
+  color: var(--mac-ink) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .72),
+    0 8px 18px rgba(15, 23, 42, .05);
+  transition:
+    border-color 180ms var(--mac-ease),
+    box-shadow 180ms var(--mac-ease),
+    background 180ms var(--mac-ease);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .form-input,
+  .form-select,
+  .form-textarea,
+  .input,
+  select,
+  textarea,
+  input[type="text"],
+  input[type="search"],
+  input[type="number"],
+  input[type="email"] {
+    background:
+      linear-gradient(180deg, rgba(30, 41, 59, .78), rgba(15, 23, 42, .66)) !important;
+  }
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus,
+.input:focus,
+select:focus,
+textarea:focus,
+input:focus {
+  outline: none !important;
+  border-color: rgba(56, 189, 248, .68) !important;
+  box-shadow:
+    0 0 0 4px var(--mac-ring),
+    inset 0 1px 0 rgba(255, 255, 255, .62),
+    0 12px 28px rgba(14, 165, 233, .12) !important;
+}
+
+.form-label {
+  color: var(--mac-ink-soft);
+  font-size: .76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* Lists, feeds, tables */
+.feed-scroll,
+.markdown-body,
+.prose-block,
+.code-block,
+.disk-pad-preview-body {
+  border-radius: var(--mac-radius-md);
+}
+
+.feed-scroll {
+  padding-right: .25rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(96, 165, 250, .45) transparent;
+}
+
+.feed-scroll::-webkit-scrollbar {
+  width: .7rem;
+}
+
+.feed-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.feed-scroll::-webkit-scrollbar-thumb {
+  border: .2rem solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+  background-color: rgba(96, 165, 250, .45);
+}
+
+.feed-item,
+.audit-log-item,
+.feed-item-accent {
+  margin-bottom: .75rem;
+  border-radius: 18px;
+}
+
+.feed-item-meta,
+.audit-log-meta,
+.text-caption,
+.text-footnote,
+.project-card-meta,
+.workspace-context-meta {
+  color: var(--mac-muted);
+}
+
+.table,
+.digital-twin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: var(--mac-radius-md);
+  background: rgba(255, 255, 255, .46);
+  box-shadow: inset 0 0 0 1px var(--mac-border);
+}
+
+.table th,
+.digital-twin-table th {
+  color: var(--mac-ink-soft);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  background: rgba(148, 163, 184, .12);
+}
+
+.table td,
+.table th,
+.digital-twin-table td,
+.digital-twin-table th {
+  border-bottom: 1px solid var(--mac-border);
+}
+
+/* Code and markdown */
+.code-block,
+.prose-block.text-mono,
+.text-mono {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, .94), rgba(15, 23, 42, .86)) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(148, 163, 184, .22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .08),
+    0 16px 38px rgba(15, 23, 42, .20);
+}
+
+.markdown-body {
+  color: var(--mac-ink-soft);
+  line-height: 1.68;
+}
+
+/* Metrics and KPI bars */
+.metrics-grid .metric-card,
+.metric-card.accent,
+.projects-stat,
+.workspace-vitals-stack .metric-card {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(56, 189, 248, .18), transparent 20rem),
+    linear-gradient(180deg, rgba(255, 255, 255, .84), rgba(255, 255, 255, .58));
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .metrics-grid .metric-card,
+  .metric-card.accent,
+  .projects-stat,
+  .workspace-vitals-stack .metric-card {
+    background:
+      radial-gradient(circle at 12% 0%, rgba(56, 189, 248, .18), transparent 20rem),
+      linear-gradient(180deg, rgba(30, 41, 59, .78), rgba(15, 23, 42, .66));
+  }
+}
+
+.metric-value,
+.projects-stat-value {
+  letter-spacing: -0.05em;
+  color: var(--mac-ink);
+}
+
+.metric-label,
+.projects-stat-label {
+  color: var(--mac-muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 800;
+}
+
+/* Project cards */
+.projects-page {
+  isolation: isolate;
+}
+
+.project-card {
+  border-radius: 26px;
+  padding: clamp(1rem, 1.6vw, 1.35rem);
+}
+
+.project-card-index,
+.project-card-status,
+.project-card-priority,
+.project-tag,
+.scope-chip {
+  border-radius: 999px;
+  border: 1px solid var(--mac-border);
+  background: rgba(255, 255, 255, .48);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55);
+}
+
+.project-card-code {
+  color: var(--mac-blue);
+}
+
+.project-repo-link,
+.smart-link,
+.smart-link.external {
+  color: var(--mac-blue);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Workspace */
+.workspace-layout {
+  gap: clamp(1rem, 2vw, 1.35rem);
+}
+
+.workspace-nav {
+  align-self: start;
+  position: sticky;
+  top: 1rem;
+}
+
+.workspace-main {
+  min-width: 0;
+}
+
+.workspace-context-card {
+  padding: 1rem;
+}
+
+.workspace-context-code {
+  color: var(--mac-blue);
+  font-weight: 800;
+}
+
+.checklist-item {
+  border: 1px solid var(--mac-border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .46);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .56);
+}
+
+.checklist-checkbox {
+  accent-color: var(--mac-blue);
+}
+
+/* Knowledge/browser details */
+.lab-knowledge-layout {
+  gap: 1rem;
+}
+
+.lab-knowledge-results,
+.lab-knowledge-detail {
+  padding: clamp(1rem, 1.6vw, 1.25rem);
+}
+
+.disk-pad-folder-item,
+.lab-knowledge-hit {
+  cursor: pointer;
+}
+
+/* Status panels */
+.panel-danger {
+  border-color: rgba(248, 113, 113, .38) !important;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(248, 113, 113, .16), transparent 18rem),
+    var(--mac-card-strong) !important;
+}
+
+.panel-warning {
+  border-color: rgba(251, 191, 36, .42) !important;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(251, 191, 36, .18), transparent 18rem),
+    var(--mac-card-strong) !important;
+}
+
+.text-empty {
+  color: var(--mac-muted);
+  text-align: center;
+}
+
+/* Loading polish */
+.spin {
+  filter: drop-shadow(0 4px 12px rgba(37, 99, 235, .24));
+}
+
+/* Accessible focus */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+.sidebar-item:focus-visible,
+.tab-button:focus-visible,
+.workspace-nav-item:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--mac-ring) !important;
+}
+
+/* Responsive tightening */
+@media (max-width: 900px) {
+
+  .page-header,
+  .module-page-header {
+    border-radius: 22px;
+  }
+
+  .workspace-nav {
+    position: relative;
+    top: auto;
+  }
+
+  .grid-2col,
+  .grid-3col,
+  .grid-4col,
+  .overview-theme-grid,
+  .metrics-grid,
+  .projects-grid,
+  .roster-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .panel:hover,
+  .overview-theme-card:hover,
+  .project-card:hover,
+  .roster-card:hover,
+  .workspace-context-card:hover,
+  .metric-card:hover,
+  .btn:hover,
+  .smart-link-btn:hover,
+  .project-card-action:hover {
+    transform: none;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Academic-grade utilities (ported from academic.css)
+   These work in both dark and light themes.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Panel title underline accent bar */
+.panel-title {
+  position: relative;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--mac-border);
+}
+
+.panel-title::after {
+  content: '';
+  position: absolute;
+  inset-block-end: -1px;
+  inset-inline-start: 0;
+  width: 3.5rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary, var(--mac-blue)), transparent);
+  border-radius: 999px;
+}
+
+/* Metric card left accent stripe */
+.metric-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 4px;
+  background: var(--color-primary, var(--mac-blue));
+  border-radius: 0 2px 2px 0;
+}
+
+/* Lab-specific note cards with ruled lines */
+.lab-log-card,
+.academic-note-card,
+.manuscript-card {
+  border: 1px solid var(--mac-border);
+  border-radius: var(--mac-radius-lg);
+  background: var(--mac-card-strong);
+  box-shadow: var(--mac-shadow-soft);
+  padding: clamp(1rem, 2vw, 1.4rem);
+}
+
+/* Research annotation pills */
+.citation-pill,
+.method-pill,
+.evidence-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 1.55rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border: 1px solid;
+}
+
+.citation-pill {
+  color: var(--color-citation, #5b4f9a);
+  border-color: rgba(91, 79, 154, 0.22);
+  background: rgba(91, 79, 154, 0.10);
+}
+
+.method-pill {
+  color: var(--color-accent, #496a8f);
+  border-color: rgba(73, 106, 143, 0.22);
+  background: rgba(73, 106, 143, 0.10);
+}
+
+.evidence-pill {
+  color: var(--color-success, #2f6f4e);
+  border-color: rgba(47, 111, 78, 0.22);
+  background: rgba(47, 111, 78, 0.10);
+}
+
+/* Text highlighting (academic mark) */
+mark,
+.highlight {
+  border-radius: 0.22em;
+  background: linear-gradient(180deg, transparent 28%, rgba(255, 241, 184, 0.82) 28% 86%, transparent 86%);
+  color: inherit;
+  padding-inline: 0.1em;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Print styles (from academic.css) — clean paper output for lab reports
+   ─────────────────────────────────────────────────────────────────────────── */
+@media print {
+
+  body,
+  .app-container,
+  .main-content,
+  .app-content-shell {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .sidebar,
+  .app-topline,
+  .skip-link,
+  .theme-toggle-btn,
+  .chat-input-area,
+  .btn {
+    display: none !important;
+  }
+
+  .panel,
+  .metric-card,
+  .project-card,
+  .custom-table {
+    box-shadow: none !important;
+    border-color: #999 !important;
+    break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    color: #444;
+  }
+}

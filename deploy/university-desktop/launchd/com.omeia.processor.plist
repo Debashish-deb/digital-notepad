@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.omeia.processor</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>REPLACE_WITH_VENV/bin/python</string>
+    <string>REPLACE_WITH_REPO_ROOT/scripts/autonomous_processor.py</string>
+    <string>--daemon</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>REPLACE_WITH_REPO_ROOT</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PYTHONUNBUFFERED</key>
+    <string>1</string>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>REPLACE_WITH_REPO_ROOT/app_skeleton/data/logs/autonomous_processor.log</string>
+  <key>StandardErrorPath</key>
+  <string>REPLACE_WITH_REPO_ROOT/app_skeleton/data/logs/autonomous_processor.log</string>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <!-- Interval between pipeline cycles is PROCESSOR_INTERVAL_SEC inside --daemon (default 3600). -->
+</dict>
+</plist>

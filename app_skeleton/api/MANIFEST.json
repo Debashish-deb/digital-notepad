@@ -1,0 +1,45 @@
+{
+  "generated_at_utc": "2026-06-03T08:12:25.840869Z",
+  "files": [
+    {
+      "name": "README_UPGRADE.md",
+      "size_bytes": 2521,
+      "sha256": "59624b25510914dcb0099a2adc4a6200e1e0b8701f437bb4d3b5261d4f98ed3b"
+    },
+    {
+      "name": "agents.py",
+      "size_bytes": 17005,
+      "sha256": "692ea872618c61ab83e3315c64cf16b0558ed65b9c163fd4a6ecc6b60e0f2f58"
+    },
+    {
+      "name": "clinical_tools.py",
+      "size_bytes": 13314,
+      "sha256": "a487aa72ba3925cf530b18e648427ee3ef4bd55db2706a0dfe35177964b9fd85"
+    },
+    {
+      "name": "document_extraction.py",
+      "size_bytes": 52095,
+      "sha256": "993227301cacf4e44a841508c5a23155861728516169219ddd7a658ca2e133b9"
+    },
+    {
+      "name": "feature_warehouse.py",
+      "size_bytes": 19959,
+      "sha256": "ea42b770d744ad2b34d1dac34aff7bc449d808cb4ad73925834265b89924fa16"
+    },
+    {
+      "name": "llm_client.py",
+      "size_bytes": 13839,
+      "sha256": "f6ecef75244f5c67dd2346d0168d5edcb59dc92dd7d90d1ae4ef27fca339b0fc"
+    },
+    {
+      "name": "main.py",
+      "size_bytes": 93620,
+      "sha256": "9bffec7ca8f7d96f121292b79bf28c80e92d7fc770a1b89df97a9eb744642eb8"
+    },
+    {
+      "name": "paths.py",
+      "size_bytes": 2647,
+      "sha256": "0f551c845d7d253d30047130356204c68a8107fac1cd9a577ff2defc984e618f"
+    }
+  ]
+}

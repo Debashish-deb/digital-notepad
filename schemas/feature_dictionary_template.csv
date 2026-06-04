@@ -1,0 +1,11 @@
+feature_name,display_name,feature_group,entity_level,data_type,unit,source_modality,calculation_method
+tumor_cell_density,Tumor cell density,spatial_composition,sample,numeric,cells_per_mm2,tcycif,Count of PanCK+ cells per mm2 tissue area
+immune_infiltration_score,Immune infiltration score,spatial_composition,sample,numeric,score_0_1,tcycif,CD3+CD8+ area fraction within tumor compartment
+cd8_tcell_density,CD8+ T cell density,immune_microenvironment,sample,numeric,cells_per_mm2,tcycif,KDTree density of CD8+ cells within 50µm neighborhoods
+tls_proximity_score,TLS proximity score,immune_architecture,sample,numeric,score_0_1,tcycif,Minimum distance from tumor core to TLS-like clusters
+stroma_caf_fraction,Stromal CAF fraction,spatial_composition,sample,numeric,fraction,tcycif,AlphaSMA+PDPN+ cells / total cells in stroma ROI
+hrd_signature_score,HRD signature score,genomic,sample,numeric,score_0_1,wes,Composite LOH + TAI + LST normalized score
+pfs_months,Progression-free survival,clinical,patient,numeric,months,clinical,Months from diagnosis to progression or censoring
+os_months,Overall survival,clinical,patient,numeric,months,clinical,Months from diagnosis to death or censoring
+brca_status,BRCA mutation status,clinical,patient,categorical,,clinical,germline or somatic BRCA1/2 mutation call
+platinum_response,Platinum response,clinical,patient,categorical,,clinical,Project-defined platinum sensitivity classification

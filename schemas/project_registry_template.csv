@@ -1,0 +1,3 @@
+project_code,project_name,project_lead,pi,disease_focus,short_description,start_date,status,default_sensitivity,notes
+SPACE,Precision Oncology of Spatial Immune Escape Mechanisms in Ovarian Cancer,TBD,TBD,HGSC,Spatial immune escape in chemo-naive HGSC,,active,internal,Placeholder; no patient data
+EyeMT,Immune escape multiomics integration,TBD,TBD,HGSC,tCyCIF + GeoMx + WES integration,,active,internal,Placeholder; no patient data
