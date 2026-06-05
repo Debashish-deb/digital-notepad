@@ -111,3 +111,7 @@ export async function apiPatch(path, options = {}) {
 export async function apiPut(path, options = {}) {
   return apiFetch(path, { ...options, method: 'PUT' });
 }
+
+export async function apiDelete(path, options = {}) {
+  return apiFetch(path, { ...options, method: 'DELETE' });
+}

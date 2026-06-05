@@ -13,7 +13,7 @@ from app_skeleton.storage.env import datacloud_logical_root, pdrive_mount_path
 LOGGER = logging.getLogger(__name__)
 
 PREVIEW_FOLDER_NAME = "12_APP_PREVIEWS"
-IMAGE_EXTENSIONS = frozenset({".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp", ".tif", ".tiff"})
+IMAGE_EXTENSIONS = frozenset({".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp", ".tif", ".tiff", ".pdf"})
 HUGE_IMAGE_BYTES = int(os.getenv("THUMBNAIL_SKIP_IMAGE_BYTES", str(50 * 1024 * 1024)))
 MAX_THUMBNAILS_PER_RUN = int(os.getenv("THUMBNAIL_MAX_PER_RUN", "25"))
 THUMB_MAX_EDGE = int(os.getenv("THUMBNAIL_MAX_EDGE", "256"))
@@ -57,6 +57,26 @@ def _try_pillow_resize(src: Path, dest: Path) -> bool:
         return False
 
 
+def _try_pymupdf_render(src: Path, dest: Path) -> bool:
+    try:
+        import fitz  # type: ignore
+    except ImportError:
+        return False
+    try:
+        doc = fitz.open(str(src))
+        if len(doc) == 0:
+            return False
+        page = doc[0]
+        # Render at 72 dpi (zoom 1.0) or higher to get a decent thumbnail
+        pix = page.get_pixmap(matrix=fitz.Matrix(0.5, 0.5))
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        pix.save(str(dest), "jpg")
+        return True
+    except Exception as exc:
+        LOGGER.debug("thumbnail skip pdf %s: %s", src, exc)
+        return False
+
+
 def generate_thumbnail(source_path: Path, *, force: bool = False) -> dict[str, Any]:
     """Create a small JPEG preview; huge images return metadata only."""
     src = source_path.expanduser().resolve()
@@ -84,7 +104,15 @@ def generate_thumbnail(source_path: Path, *, force: bool = False) -> dict[str, A
             "bytes": size,
         }
 
-    if _try_pillow_resize(src, dest):
+    if src.suffix.lower() == ".pdf":
+        if _try_pymupdf_render(src, dest):
+            return {
+                "status": "created",
+                "source": str(src),
+                "preview_path": str(dest),
+                "bytes": size,
+            }
+    elif _try_pillow_resize(src, dest):
         return {
             "status": "created",
             "source": str(src),

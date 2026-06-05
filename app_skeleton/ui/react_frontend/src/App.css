@@ -2,6 +2,7 @@
    Farkki Lab Assistant — premium app-shell, resilience and accessibility layer
    Imported by App.jsx after index.css + typography.css.
    ───────────────────────────────────────────────────────────────────────────── */
+@import url('./theme/MaxGradeVisualSystem.css');
 
 :root {
   --shell-max-width: 1520px;
@@ -348,8 +349,7 @@ button:disabled,
     padding-inline: clamp(0.85rem, 2vw, 1.35rem);
   }
 
-  .grid-2col,
-  .workspace-layout {
+  .grid-2col {
     grid-template-columns: 1fr;
   }
 
@@ -881,4 +881,11 @@ html[data-theme='academic'] .overview-news-row {
   .chat-container {
     min-height: 520px;
   }
+}
+
+/* Workspace constraints */
+.workspace-layout {
+  gap: clamp(1rem, 2vw, 1.35rem);
+  max-width: 1600px;
+  margin: 0 auto;
 }

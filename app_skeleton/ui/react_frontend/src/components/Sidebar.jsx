@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dna, Sun, Moon } from 'lucide-react';
+import { Dna, Sun, Moon, Search } from 'lucide-react';
 import { MAIN_NAV } from '../config/navigation';
 
 const THEME_CYCLE = ['dark', 'light'];
@@ -13,6 +13,7 @@ export default function Sidebar({
   setTheme,
   apiHealth,
   apiUrl,
+  onOpenSearch,
 }) {
   const activeMain = navMain;
 
@@ -21,6 +22,27 @@ export default function Sidebar({
       <div className="sidebar-logo">
         <Dna size={32} color="var(--color-primary)" />
         <span className="sidebar-title">Farkki Digital Research NotePad</span>
+      </div>
+
+      <div style={{ padding: '0 1rem', marginBottom: '1rem' }}>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={onOpenSearch}
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            justifyContent: 'center',
+            background: 'rgba(255,255,255,0.05)',
+            border: '1px solid var(--border-color)',
+            color: 'var(--text-secondary)',
+          }}
+        >
+          <Search size={16} />
+          <span>Search Registry...</span>
+        </button>
       </div>
 
       <nav className="sidebar-menu" aria-label="Main lab sections">

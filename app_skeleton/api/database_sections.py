@@ -57,6 +57,12 @@ DATABASE_SECTIONS: dict[str, DatabaseSection] = {
         "relative_root": "ORDERS & RELATED INFORMATION/Archive",
         "description": "Historical orders, quotes, and archived procurement records.",
     },
+    "meetings": {
+        "id": "meetings",
+        "label": "Meetings",
+        "relative_root": "MEETINGS",
+        "description": "Lab meetings, agendas, and minutes.",
+    },
     "social_misc": {
         "id": "social_misc",
         "label": "Social & miscellaneous",

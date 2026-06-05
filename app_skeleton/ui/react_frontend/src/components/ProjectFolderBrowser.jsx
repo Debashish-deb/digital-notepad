@@ -39,6 +39,8 @@ import FileTypeBadge from './FileTypeBadge.jsx';
 import CopyPathButton from './CopyPathButton.jsx';
 import SmartLink from './SmartLink.jsx';
 import DataPadEditor from './DataPadEditor.jsx';
+import DocumentFormatter from './DocumentFormatter.jsx';
+import { useTaskpad } from '../contexts/TaskpadContext.jsx';
 import { fetchDatapadSectionSummary } from '../api/datapad.js';
 
 const PREVIEW_LIMIT = 12000;
@@ -137,6 +139,7 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
   const [collapsedGroups, setCollapsedGroups] = useState(() => new Set());
   const [foldersDrawerOpen, setFoldersDrawerOpen] = useState(false);
   const [sectionSummary, setSectionSummary] = useState(null);
+  const { openTaskpad } = useTaskpad();
 
   const contentRoot = twin?.content_root || twin?.folder_path || null;
   const folderGroups = useMemo(() => groupFolders(folders), [folders]);
@@ -203,6 +206,38 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
         (f.path || '').toLowerCase().includes(q)
     );
   }, [sortedFiles, fileQuery]);
+
+  const groupedFiles = useMemo(() => {
+    const groups = {
+      documents: [],
+      figures: [],
+      data_files: [],
+      code_scripts: [],
+      other: []
+    };
+    
+    visibleFiles.forEach(file => {
+      const ext = inferExtension(file.name, file.extension);
+      let cat = 'other';
+      
+      if (file.asset_type) {
+        if (['documents', 'writing', 'presentations'].includes(file.asset_type)) cat = 'documents';
+        else if (['figures', 'images', 'videos'].includes(file.asset_type)) cat = 'figures';
+        else if (['data_files', 'tables'].includes(file.asset_type)) cat = 'data_files';
+        else if (['text_files', 'scripts'].includes(file.asset_type)) cat = 'code_scripts';
+        else cat = 'other';
+      } else {
+         if (['.pdf', '.doc', '.docx', '.rtf', '.txt', '.md'].includes(ext)) cat = 'documents';
+         else if (['.png', '.jpg', '.jpeg', '.svg', '.tif', '.tiff', '.gif'].includes(ext)) cat = 'figures';
+         else if (['.csv', '.tsv', '.xlsx', '.xls', '.json', '.h5', '.rds'].includes(ext)) cat = 'data_files';
+         else if (['.py', '.r', '.sh', '.js', '.ipynb'].includes(ext)) cat = 'code_scripts';
+      }
+      
+      groups[cat].push(file);
+    });
+    
+    return groups;
+  }, [visibleFiles]);
 
   const breadcrumbParts = useMemo(() => {
     const parts = [displayName, 'Data Pad'];
@@ -562,49 +597,56 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
                     : 'No files match your filter.'}
                 </p>
               ) : (
-                <div className="pfb-file-table-wrap">
-                  <table className="pfb-file-table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Size</th>
-                        <th scope="col">Modified</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {visibleFiles.map((file) => {
-                        const norm = normalizeRelPath(file.path);
-                        const rowStatus = getFilePreviewStatus(file, twin, norm);
-                        return (
-                          <tr
-                            key={file.path}
-                            className={selectedFile?.path === file.path ? 'active' : ''}
-                          >
-                            <td>
-                              <button
-                                type="button"
-                                className="pfb-file-row-btn"
+                <div className="pfb-file-grouped-wrap">
+                  {Object.entries(groupedFiles).map(([category, files]) => {
+                    if (!files.length) return null;
+                    const labels = {
+                      documents: 'Documents & Writing',
+                      figures: 'Figures & Imaging',
+                      data_files: 'Data Assets',
+                      code_scripts: 'Scripts & Code',
+                      other: 'Other Files'
+                    };
+                    return (
+                      <div key={category} className="pfb-file-category">
+                        <h5 className="pfb-category-title">
+                          {labels[category]} <span className="muted">({files.length})</span>
+                        </h5>
+                        <div className="pfb-file-grid">
+                          {files.map((file) => {
+                            const norm = normalizeRelPath(file.path);
+                            const rowStatus = getFilePreviewStatus(file, twin, norm);
+                            return (
+                              <div
+                                key={file.path}
+                                className={`pfb-file-card ${selectedFile?.path === file.path ? 'active' : ''}`}
                                 onClick={() => loadFilePreview(file)}
                                 title={file.path}
                               >
-                                <FileText size={14} aria-hidden />
-                                <span className="pfb-file-name">{file.name}</span>
-                                <span className={`pfb-index-badge tone-${rowStatus.tone}`}>
-                                  {rowStatus.label}
-                                </span>
-                              </button>
-                            </td>
-                            <td>
-                              <FileTypeBadge file={file} />
-                            </td>
-                            <td className="pfb-file-meta-cell">{formatFileSize(file.size_bytes)}</td>
-                            <td className="pfb-file-meta-cell">{formatModifiedAt(file.modified_at)}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+                                <div className="pfb-file-card-header">
+                                  <div className="pfb-file-card-icon">
+                                    <FileTypeBadge file={file} />
+                                  </div>
+                                  <div className="pfb-file-card-info">
+                                    <span className="pfb-file-name">{file.name}</span>
+                                    <span className="pfb-file-meta">
+                                      {formatFileSize(file.size_bytes)} • {formatModifiedAt(file.modified_at)}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="pfb-file-card-footer">
+                                  <span className={`pfb-index-badge tone-${rowStatus.tone}`}>
+                                    {rowStatus.label}
+                                  </span>
+                                  <FileText size={14} className="muted" aria-hidden />
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </>
@@ -684,7 +726,12 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
               )}
               {previewSlice && !['.md', '.txt', '.html', '.rtf'].includes(selectedExt) && (
                 <>
-                  <pre className="pfb-preview-content markdown-body">{previewSlice}</pre>
+                  <div style={{ padding: '1.5rem', background: 'var(--mac-bg-primary)', border: '1px solid var(--mac-border)', borderRadius: '6px' }}>
+                    <DocumentFormatter 
+                      text={previewSlice} 
+                      onCreateTask={(text) => openTaskpad(text)}
+                    />
+                  </div>
                   {preview.length > PREVIEW_LIMIT && (
                     <button
                       type="button"

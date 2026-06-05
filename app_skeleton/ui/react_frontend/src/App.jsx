@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar';
 import ModuleShell from './components/ModuleShell';
 import ErrorBoundary from './components/ErrorBoundary';
 import DashboardScreen from './screens/DashboardScreen';
+import GlobalSearchOverlay from './components/GlobalSearchOverlay';
 import ProjectsScreen from './screens/ProjectsScreen';
 import NotebookWikiScreen from './screens/NotebookWikiScreen';
 import DecisionsScreen from './screens/DecisionsScreen';
@@ -14,12 +15,15 @@ import LabKnowledgeScreen from './screens/LabKnowledgeScreen';
 import DataStorageScreen from './screens/DataStorageScreen';
 import AdministrationScreen from './screens/AdministrationScreen';
 import IngestionDashboard from './screens/IngestionDashboard';
+import DigitalizationDashboard from './screens/DigitalizationDashboard';
 import KnowledgeSearchScreen from './screens/KnowledgeSearchScreen';
 import LabCorpusBrowser from './components/LabCorpusBrowser.jsx';
 import { getApiUrl, apiFetch } from './api/client.js';
 import { useApiContext } from './api/ApiContext.jsx';
 import ComputationalToolsScreen from './screens/ComputationalToolsScreen';
 import CycifScreen from './screens/CycifScreen';
+import { TaskpadProvider } from './contexts/TaskpadContext.jsx';
+
 import {
   OrdersTasksPanel,
   OrdersRegisterPanel,
@@ -32,6 +36,9 @@ import {
   WetLabInventoryPanel,
 } from './screens/WetLabScreen';
 import { projectsCatalog } from './data/projectsCatalog.js';
+import { teamDirectory } from './data/teamDirectory.js';
+import { activityLogs } from './data/activityLogs.js';
+import { platformStats } from './data/platformStats.js';
 import { mergeProjectRecord } from './utils/projectUtils.js';
 import {
   MAIN_NAV,
@@ -79,7 +86,7 @@ function migrateLegacyNav(stored) {
     notebook: { main: 'projects_data', sub: 'notebook' },
     chat: { main: 'ai_assistant', sub: 'copilot' },
     decisions: { main: 'projects_data', sub: 'decisions' },
-    tasks: { main: 'orders', sub: 'tasks' },
+    tasks: { main: 'projects_data', sub: 'portfolio' },
     bioinformatics: { main: 'computational', sub: 'onboarding' },
     features: { main: 'projects_data', sub: 'features' },
     ai_assistant: { main: 'ai_assistant', sub: 'prompts' },
@@ -126,12 +133,24 @@ function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [dbProjects, setDbProjects] = useState(() => mergeProjectsWithCatalog(projectsCatalog));
   const [projectCodes, setProjectCodesState] = useState(DEFAULT_PROJECT_CODES);
-  const [stats, setStats] = useState(DEFAULT_STATS);
-  const [team, setTeam] = useState([]);
-  const [auditLogs, setAuditLogs] = useState([]);
+  const [stats, setStats] = useState(platformStats || DEFAULT_STATS);
+  const [team, setTeam] = useState(teamDirectory || []);
+  const [auditLogs, setAuditLogs] = useState(activityLogs || []);
   const [loadState, setLoadState] = useState({ phase: 'idle', message: 'Ready' });
   const [theme, setTheme] = useState(() => safeStorageGet('theme', 'dark'));
   const [apiHealth, setApiHealth] = useState(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const activeTitle = sectionTitle(navMain, navSub);
   const isLoading = loadState.phase === 'loading' || loadState.phase === 'refreshing';
@@ -157,13 +176,6 @@ function App() {
 
   const commonProps = useMemo(() => ({ dbProjects, API_URL: resolvedApiUrl }), [dbProjects, resolvedApiUrl]);
 
-  const fetchStats = useCallback(async (signal) => {
-    const params = new URLSearchParams();
-    normalizeProjectCodes(projectCodes).forEach((code) => params.append('project_code', code));
-    const data = await fetchJson('/stats', { signal, timeoutMs: 10_000, params });
-    setStats(data && typeof data === 'object' ? data : DEFAULT_STATS);
-  }, [projectCodes]);
-
   const fetchProjects = useCallback(async (signal) => {
     const data = await fetchJson('/projects', { signal, timeoutMs: 14_000 });
     if (Array.isArray(data) && data.length > 0) {
@@ -173,33 +185,18 @@ function App() {
     }
   }, []);
 
-  const fetchTeam = useCallback(async (signal) => {
-    const data = await fetchJson('/team', { signal, timeoutMs: 10_000 });
-    setTeam(Array.isArray(data) ? data : []);
-  }, []);
-
-  const fetchAuditLogs = useCallback(async (signal) => {
-    const data = await fetchJson('/auto_logs', { signal, timeoutMs: 10_000 });
-    setAuditLogs(Array.isArray(data) ? data : []);
-  }, []);
-
   const refreshReferenceData = useCallback(async (signal, phase = 'refreshing') => {
-    setLoadState({ phase, message: 'Syncing workspace data…' });
-    const results = await Promise.allSettled([
-      fetchProjects(signal),
-      fetchTeam(signal),
-      fetchAuditLogs(signal),
-    ]);
-    const failures = results.filter((r) => r.status === 'rejected');
-    if (failures.length) {
+    setLoadState({ phase, message: 'Syncing project list…' });
+    try {
+      await fetchProjects(signal);
+      setLoadState({ phase: 'ready', message: 'Projects synced' });
+    } catch (err) {
       setLoadState({
         phase: 'warning',
-        message: 'Using cached/local workspace data where the API was unavailable.',
+        message: 'Using cached project list where the API was unavailable.',
       });
-      return;
     }
-    setLoadState({ phase: 'ready', message: 'Workspace synced' });
-  }, [fetchAuditLogs, fetchProjects, fetchTeam]);
+  }, [fetchProjects]);
 
   const renderScreenBody = () => {
     const screen = subNav.screen;
@@ -214,7 +211,7 @@ function App() {
             projectCodes={projectCodes}
             setProjectCodes={setProjectCodes}
             dbProjects={dbProjects}
-            API_URL={API_URL}
+            API_URL={resolvedApiUrl}
             hideHeader
             onNavigate={handleNavChange}
           />
@@ -224,7 +221,7 @@ function App() {
           <LabKnowledgeScreen
             subId={navSub}
             navSub={subNav}
-            API_URL={API_URL}
+            API_URL={resolvedApiUrl}
             title={subNav.label}
             description={subNav.description}
           />
@@ -236,6 +233,10 @@ function App() {
             description={subNav.description}
             section={subNav.dataSection || 'all'}
           />
+        );
+      case 'digitalization':
+        return (
+          <DigitalizationDashboard title={subNav.label} description={subNav.description} />
         );
       case 'ingestion_dashboard':
         return (
@@ -260,7 +261,7 @@ function App() {
       case 'tasks':
         return <OrdersTasksPanel {...commonProps} hideHeader />;
       case 'orders_billing':
-        return <OrdersBillingPanel API_URL={API_URL} />;
+        return <OrdersBillingPanel API_URL={resolvedApiUrl} />;
       case 'orders_register':
         return <OrdersRegisterPanel />;
       case 'orders_related':
@@ -282,7 +283,7 @@ function App() {
       case 'features':
         return <FeatureClinicalScreen {...commonProps} hideHeader />;
       case 'wet_protocols':
-        return <WetLabProtocolsPanel API_URL={API_URL} />;
+        return <WetLabProtocolsPanel API_URL={resolvedApiUrl} />;
       case 'wet_tasks':
         return <WetLabTasksPanel {...commonProps} hideHeader categoryFilter="Wet_Lab" />;
       case 'wet_inventory':
@@ -293,6 +294,8 @@ function App() {
         return <CycifScreen {...commonProps} variant="install" embedded />;
       case 'cycif_structure':
         return <CycifScreen {...commonProps} variant="structure" embedded />;
+      case 'cycif_knowledge':
+        return <CycifScreen {...commonProps} variant="knowledge" embedded />;
       case 'bioinformatics':
         return (
           <BioinformaticsHubScreen
@@ -365,11 +368,7 @@ function App() {
     return () => controller.abort();
   }, [refreshReferenceData]);
 
-  useEffect(() => {
-    const controller = new AbortController();
-    fetchStats(controller.signal).catch(() => setStats(DEFAULT_STATS));
-    return () => controller.abort();
-  }, [fetchStats]);
+
 
   const useModuleShell = navMain !== 'projects_data' || navSub !== 'portfolio' || !selectedProject;
 
@@ -382,10 +381,11 @@ function App() {
   );
 
   return (
-    <div className="app-container" data-loading={isLoading ? 'true' : 'false'}>
-      <a className="skip-link" href="#main-content">
-        Skip to workspace
-      </a>
+    <TaskpadProvider>
+      <div className="app-container" data-loading={isLoading ? 'true' : 'false'}>
+        <a className="skip-link" href="#main-content">
+          Skip to workspace
+        </a>
 
       <Sidebar
         navMain={navMain}
@@ -396,6 +396,7 @@ function App() {
         setTheme={setTheme}
         apiHealth={apiHealth}
         apiUrl={resolvedApiUrl}
+        onOpenSearch={() => setIsSearchOpen(true)}
       />
 
       <main
@@ -428,7 +429,14 @@ function App() {
           <ErrorBoundary>{activeScreen}</ErrorBoundary>
         </div>
       </main>
-    </div>
+
+        <GlobalSearchOverlay
+          isOpen={isSearchOpen}
+          onClose={() => setIsSearchOpen(false)}
+          API_URL={resolvedApiUrl}
+        />
+      </div>
+    </TaskpadProvider>
   );
 }
 

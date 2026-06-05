@@ -1,0 +1,24 @@
+INFO:     Started server process [3221864]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:35334 - "GET /projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35338 - "GET /stats?project_code=SPACE&project_code=EyeMT&project_code=KRAS HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35342 - "GET /team HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35352 - "GET /team HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35366 - "GET /auto_logs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35376 - "GET /projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35378 - "GET /folders?project_code=sciSet HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35390 - "GET /datasets?project_code=sciSet HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35392 - "GET /pipeline_runs?project_code=sciSet HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35408 - "GET /notebook HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35422 - "GET /notebook/50714d82-8af4-4ecc-b563-f74cbb5a50d5/revisions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35430 - "GET /wiki HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35446 - "GET /decisions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35452 - "GET /tasks HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35464 - "GET /projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35468 - "GET /checklists/sciSet HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35480 - "GET /ai-models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35494 - "GET /infrastructure HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35502 - "GET /gap-analysis HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43258 - "GET /health HTTP/1.1" 200 OK

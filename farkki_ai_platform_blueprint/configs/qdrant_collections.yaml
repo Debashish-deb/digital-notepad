@@ -1,0 +1,40 @@
+collections:
+  doc_chunks:
+    description: "Protocols, SOPs, project docs, meeting notes, READMEs, manuscript sections."
+    vectors:
+      text:
+        size: 384
+        distance: Cosine
+    payload_indexes: [source_type, project_code, modality, sensitivity_level, document_id, source_file_id, created_at, status]
+
+  script_chunks:
+    description: "Function/class/stage-level script chunks."
+    vectors:
+      text:
+        size: 384
+        distance: Cosine
+    payload_indexes: [repo, file_path, language, pipeline_stage, project_code, sensitivity_level]
+
+  literature_chunks:
+    description: "Public literature chunks."
+    vectors:
+      text:
+        size: 384
+        distance: Cosine
+    payload_indexes: [pmid, doi, year, journal, disease, marker, cell_type, topic]
+
+  sample_summaries:
+    description: "Approved de-identified sample summaries."
+    vectors:
+      text:
+        size: 384
+        distance: Cosine
+    payload_indexes: [project_code, cohort_code, sample_code, modality, has_clinical, has_tcycif, has_geomx, sensitivity_level, qc_status]
+
+  spatial_feature_profiles:
+    description: "Numeric spatial feature vectors, not language embeddings."
+    vectors:
+      feature:
+        size: 128
+        distance: Cosine
+    payload_indexes: [project_code, cohort_code, entity_type, entity_code, feature_matrix_id, feature_set_version, qc_status, sensitivity_level]

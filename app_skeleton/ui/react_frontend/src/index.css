@@ -3719,3 +3719,13 @@ html[data-theme='academic'] .pfb-folder-count {
     color: #444;
   }
 }
+
+/* MAXGRADE appended: semantic density and layout tokens */
+:root {
+  --density-compact: 0.86;
+  --density-comfortable: 1;
+  --density-spacious: 1.14;
+  --motion-fast: 160ms;
+  --motion-normal: 220ms;
+  --motion-slow: 360ms;
+}

@@ -1,6 +1,8 @@
 import './MacPlusVisualStyles.css';
 import React, { useState, useEffect } from 'react';
 import { BookOpen, FileText } from 'lucide-react';
+import { technicalNotebook } from '../data/technicalNotebook.js';
+import { technicalWiki } from '../data/technicalWiki.js';
 
 export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = false, defaultSubTab = 'notebook' }) {
   const [notebookEntries, setNotebookEntries] = useState([]);
@@ -9,6 +11,8 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
   const [selectedNotebook, setSelectedNotebook] = useState(null);
   const [selectedWiki, setSelectedWiki] = useState(null);
   const [wikiSearch, setWikiSearch] = useState('');
+  const [revisions, setRevisions] = useState([]);
+  const [showHistory, setShowHistory] = useState(false);
 
   // New notebook entry form states
   const [nProj, setNProj] = useState(dbProjects[0]?.project_code || 'SPACE');
@@ -31,62 +35,38 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
     }
   }, [dbProjects, nProj]);
 
-  const fetchNotebook = async () => {
-    try {
-      const res = await fetch(`${API_URL}/notebook`);
-      if (res.ok) {
-        const data = await res.json();
-        setNotebookEntries(data);
-        if (data.length > 0) setSelectedNotebook(data[0]);
-      }
-    } catch (e) {
-      console.error(e);
-    }
+  const fetchNotebook = () => {
+    const data = Array.isArray(technicalNotebook) ? technicalNotebook : [];
+    setNotebookEntries(data);
+    if (data.length > 0) setSelectedNotebook(data[0]);
   };
 
-  const fetchWiki = async () => {
-    try {
-      const res = await fetch(`${API_URL}/wiki`);
-      if (res.ok) {
-        const data = await res.json();
-        setWikiDocs(data);
-        if (data.length > 0) setSelectedWiki(data[0]);
-      }
-    } catch (e) {
-      console.error(e);
-    }
+  const fetchWiki = () => {
+    const data = Array.isArray(technicalWiki) ? technicalWiki : [];
+    setWikiDocs(data);
+    if (data.length > 0) setSelectedWiki(data[0]);
+  };
+
+  const handleDeleteNotebook = async (entryId) => {
+    alert("Notebook logs are now static and read-only.");
+  };
+
+  const handleDeleteWiki = async (wikiId) => {
+    alert("Wiki articles are now static and read-only.");
+  };
+
+  const fetchRevisions = async (wikiId) => {
+    // Revisions disabled in static mode
+    setRevisions([]);
+  };
+
+  const handleRollback = async (wikiId, revNum) => {
+    alert("Rollback is disabled in static mode.");
   };
 
   const handleCreateNotebook = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch(`${API_URL}/notebook`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          project_code: nProj,
-          title: nTitle,
-          content: nContent,
-          conclusions: nConclusions,
-          issues_found: nIssues,
-          next_steps: nNext,
-          tags: nTags.split(',').map(t => t.trim()),
-          entry_type: nType,
-          author_username: "debdeba"
-        })
-      });
-      if (res.ok) {
-        alert("Notebook entry successfully logged in system of record!");
-        setNTitle('');
-        setNContent('');
-        setNConclusions('');
-        setNIssues('');
-        setNNext('');
-        fetchNotebook();
-      }
-    } catch (e) {
-      console.error(e);
-    }
+    alert("Creating new logs is disabled in static mode.");
   };
 
   return (
@@ -176,7 +156,12 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
             <h3 className="panel-title"><FileText size={18} /> Log Details</h3>
             {selectedNotebook ? (
               <div>
-                <h2 style={{color: '#ffffff', marginBottom: '0.5rem'}}>{selectedNotebook.title}</h2>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                  <h2 style={{color: '#ffffff', margin: 0}}>{selectedNotebook.title}</h2>
+                  <button type="button" className="btn btn-secondary btn-sm" style={{ borderColor: 'var(--color-danger)', color: 'var(--color-danger)', background: 'transparent' }} onClick={() => handleDeleteNotebook(selectedNotebook.entry_id)}>
+                    Delete Log
+                  </button>
+                </div>
                 <div style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.5rem'}}>
                   Project: <b>{selectedNotebook.project_code}</b> | Version: <b>{selectedNotebook.version}</b> | Date: <i>{selectedNotebook.created_at.replace('T', ' ').slice(0, 16)}</i>
                 </div>
@@ -232,7 +217,10 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
                 <div 
                   key={w.wiki_id} 
                   className={`sidebar-item ${selectedWiki?.wiki_id === w.wiki_id ? 'active' : ''}`}
-                  onClick={() => setSelectedWiki(w)}
+                  onClick={() => {
+                    setSelectedWiki(w);
+                    setShowHistory(false);
+                  }}
                 >
                   <div style={{display: 'flex', flexDirection: 'column'}}>
                     <span style={{fontWeight: 600, fontSize: '0.9rem'}}>{w.title}</span>
@@ -247,10 +235,46 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
             <h3 className="panel-title"><FileText size={18} /> Wiki Content</h3>
             {selectedWiki ? (
               <div>
-                <h2 style={{color: '#ffffff', marginBottom: '0.5rem'}}>{selectedWiki.title}</h2>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                  <h2 style={{color: '#ffffff', margin: 0}}>{selectedWiki.title}</h2>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <button type="button" className="btn btn-secondary btn-sm" onClick={() => {
+                      setShowHistory(!showHistory);
+                      if (!showHistory) fetchRevisions(selectedWiki.wiki_id);
+                    }}>
+                      {showHistory ? 'Hide History' : 'History'}
+                    </button>
+                    <button type="button" className="btn btn-secondary btn-sm" style={{ borderColor: 'var(--color-danger)', color: 'var(--color-danger)', background: 'transparent' }} onClick={() => handleDeleteWiki(selectedWiki.wiki_id)}>
+                      Delete
+                    </button>
+                  </div>
+                </div>
                 <div style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.5rem'}}>
                   Category: <b>{selectedWiki.wiki_type || 'SOP'}</b> | Revision: <b>{selectedWiki.revision || 1}</b> | Editor: <i>{selectedWiki.author_name || 'debdeba'}</i>
                 </div>
+                {showHistory && (
+                  <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '1rem' }}>
+                    <h4 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
+                      <span>Version History</span>
+                      <span className="text-muted" style={{ fontSize: '0.75rem' }}>Select a revision to rollback</span>
+                    </h4>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxHeight: '180px', overflowY: 'auto' }}>
+                      {revisions.map((rev) => (
+                        <div key={rev.revision_id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem', background: 'rgba(0,0,0,0.2)', borderRadius: '4px', fontSize: '0.85rem' }}>
+                          <div>
+                            <strong>Rev {rev.revision_number}</strong> · <span>{rev.title}</span>
+                            <div className="text-muted" style={{ fontSize: '0.7rem' }}>By {rev.author_name} on {rev.created_at?.slice(0, 16).replace('T', ' ')}</div>
+                          </div>
+                          {rev.revision_number !== selectedWiki.revision && (
+                            <button type="button" className="btn btn-secondary btn-sm" onClick={() => handleRollback(selectedWiki.wiki_id, rev.revision_number)}>
+                              Rollback
+                            </button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <div style={{background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', minHeight: '300px', whiteSpace: 'pre-wrap', color: 'var(--text-secondary)'}}>
                   {selectedWiki.content}
                 </div>

@@ -1567,3 +1567,27 @@
     }
   }
 }
+
+/* MAXGRADE appended: premium reading rhythm and density controls */
+@layer academic-notepad-typography {
+  .page-title-gradient,
+  .text-title-1,
+  .text-title-2,
+  .text-title-3 {
+    text-wrap: balance;
+  }
+
+  .markdown-body,
+  .prose,
+  .prose-block,
+  .notepad-prose,
+  .manuscript-prose {
+    text-wrap: pretty;
+  }
+
+  .text-caption,
+  .text-footnote,
+  .citation-footnote {
+    text-wrap: pretty;
+  }
+}

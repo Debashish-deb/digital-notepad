@@ -1,3 +1,4 @@
+import './MacPlusVisualStyles.css';
 import { useState } from 'react';
 import { BookOpen, Search } from 'lucide-react';
 import { apiGet } from '../api/client.js';

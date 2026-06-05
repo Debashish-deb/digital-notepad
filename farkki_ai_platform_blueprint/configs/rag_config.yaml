@@ -1,0 +1,31 @@
+chunking:
+  default_chunk_size_tokens: 700
+  default_chunk_overlap_tokens: 120
+  script_chunk_strategy: function_or_class
+  project_note_chunk_strategy: heading_and_date
+  table_strategy: convert_to_markdown_keep_rows_together
+
+retrieval:
+  default_top_k: 12
+  max_top_k: 50
+  hybrid_search: true
+  rerank: true
+  rerank_rules:
+    exact_entity_match_weight: 2.0
+    project_match_weight: 1.5
+    recency_weight: 0.5
+    source_trust_weight: 1.0
+    permission_penalty: block
+
+security:
+  require_project_filter: true
+  block_direct_identifiers: true
+  allowed_sensitivity_documentation_mode: [public, internal]
+  allowed_sensitivity_research_mode: [public, internal, restricted]
+
+answer_contract:
+  require_citations: true
+  require_source_summary: true
+  require_limitations: true
+  require_analysis_run_id_for_statistics: true
+  forbid_invented_statistics: true

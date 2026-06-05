@@ -1,0 +1,334 @@
+2026-06-02 22:00:25.939 Uvicorn server started on 0.0.0.0:8501
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://128.214.49.84:8501
+
+2026-06-02 22:00:27.455 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-06-02 22:00:27.785 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-06-02 22:00:27.886 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.890 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.893 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.897 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.900 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.903 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.907 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.910 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.912 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.915 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.917 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:27.919 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 419, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 814, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
+    result = func()
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 789, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/ui/streamlit_app.py", line 1171, in <module>
+    is_checked = st.checkbox("", value=checked, key=chk_key)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 698, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 201, in checkbox
+    return self._checkbox(
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/widgets/checkbox.py", line 395, in _checkbox
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/.venv/lib/python3.12/site-packages/streamlit/elements/lib/policies.py", line 194, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2026-06-02 22:00:28.079 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.

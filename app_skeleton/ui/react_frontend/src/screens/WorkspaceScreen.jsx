@@ -22,8 +22,10 @@ import DigitalTwinPanel from '../components/DigitalTwinPanel';
 import ProjectIntroHeader from '../components/ProjectIntroHeader';
 import ProjectTwinStats from '../components/ProjectTwinStats';
 import ProjectFolderBrowser from '../components/ProjectFolderBrowser';
+import TasksScreen from './TasksScreen';
 import { useDigitalTwin } from '../hooks/useDigitalTwin.js';
 import { resolveProject, fetchWithTimeout } from '../utils/projectUtils.js';
+import { useTaskpad } from '../contexts/TaskpadContext.jsx';
 
 export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjects = [] }) {
   const [projectData, setProjectData] = useState(() => resolveProject(projectCode, dbProjects));
@@ -33,7 +35,8 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
   const [checklists, setChecklists] = useState([]);
   const [milestoneScore, setMilestoneScore] = useState(0);
   const [loadError, setLoadError] = useState(null);
-  const [isTaskpadOpen, setIsTaskpadOpen] = useState(false);
+  
+  const { isOpen: isTaskpadOpen, taskContent, setTaskContent, openTaskpad, closeTaskpad } = useTaskpad();
   const { twin, loading: twinLoading, saving: twinSaving, error: twinError, refresh: refreshTwin, save: saveTwin } = useDigitalTwin(projectCode, API_URL);
 
   useEffect(() => {
@@ -112,89 +115,21 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
   }
 
   const menuItems = [
-    {
-      id: 'overview', label: 'Overview', icon: LayoutDashboard,
-      subs: [
-        { id: 'intro', label: 'Introduction' },
-        { id: 'objectives', label: 'Objectives & outcomes' },
-        { id: 'status', label: 'Status snapshot' },
-        { id: 'people', label: 'People & roles' },
-        { id: 'links', label: 'References & links' }
-      ]
-    },
-    {
-      id: 'plan', label: 'Plan', icon: Calendar,
-      subs: [
-        { id: 'timeline', label: 'Timeline & milestones' },
-        { id: 'work_breakdown', label: 'Work breakdown' },
-        { id: 'resources', label: 'Resources' },
-        { id: 'meetings', label: 'Meetings & decisions' },
-        { id: 'risks', label: 'Risks & contingencies' },
-        { id: 'compliance', label: 'Compliance' }
-      ]
-    },
-    {
-      id: 'data', label: 'Data', icon: Database,
-      subs: [
-        { id: 'datasets', label: 'Datasets' },
-        { id: 'figures', label: 'Figures & tables' },
-        { id: 'analysis', label: 'Analysis' },
-        { id: 'metadata', label: 'Metadata & dictionaries' },
-        { id: 'quality', label: 'Quality checks' }
-      ]
-    },
-    {
-      id: 'methods', label: 'Methods', icon: FileText,
-      subs: [
-        { id: 'protocols', label: 'Protocols & SOPs' },
-        { id: 'materials', label: 'Materials & reagents' },
-        { id: 'runs', label: 'Experiment runs' },
-        { id: 'instruments', label: 'Instruments & settings' },
-        { id: 'deviations', label: 'Deviations & notes' }
-      ]
-    },
-    {
-      id: 'writing', label: 'Writing', icon: Edit,
-      subs: [
-        { id: 'manuscript', label: 'Manuscript' },
-        { id: 'supplementary', label: 'Supplementary' },
-        { id: 'presentations', label: 'Presentations' },
-        { id: 'submissions', label: 'Submissions' },
-        { id: 'outreach', label: 'Outreach' }
-      ]
-    },
-    {
-      id: 'archive', label: 'Archive', icon: BookMarked,
-      subs: [
-        { id: 'drafts', label: 'Superseded drafts' },
-        { id: 'closed', label: 'Closed experiments' },
-        { id: 'old_plans', label: 'Old plans & milestones' },
-        { id: 'snapshots', label: 'Frozen snapshots' }
-      ]
-    },
-    {
-      id: 'log', label: 'Log', icon: BookOpen,
-      subs: [
-        { id: 'activity', label: 'Activity' },
-        { id: 'comments', label: 'Comments & mentions' },
-        { id: 'system', label: 'System events' },
-        { id: 'taskpad_log', label: 'Taskpad entries' }
-      ]
-    }
+    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
+    { id: 'plan', label: 'Plan', icon: Calendar },
+    { id: 'data', label: 'Data', icon: Database },
+    { id: 'methods', label: 'Methods', icon: FileText },
+    { id: 'writing', label: 'Writing', icon: Edit },
+    { id: 'archive', label: 'Archive', icon: BookMarked },
+    { id: 'log', label: 'Log', icon: BookOpen }
   ];
 
   const currentMenu = menuItems.find(m => m.id === workspaceMenu) || menuItems[0];
-  const currentSub = activeSub[workspaceMenu] || currentMenu.subs[0].id;
-
-  const handleSubChange = (subId) => {
-    setActiveSub(prev => ({ ...prev, [workspaceMenu]: subId }));
-  };
 
   const renderSubcategory = () => {
-    // 1. Overview Tab
     if (workspaceMenu === 'overview') {
-      if (currentSub === 'intro') {
-        return (
+      return (
+        <div className="stack-lg">
           <div>
             <div className="page-header-row">
               <div className="page-header">
@@ -207,44 +142,70 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
             </div>
             {twinLoading && !twin && <div className="panel"><p className="text-loading">Loading scanned project record…</p></div>}
             {twin && <ProjectIntroHeader twin={twin} />}
-            <ProjectFolderBrowser twin={twin} projectCode={projectCode} API_URL={API_URL} projectName={twin?.identity?.project_name || projectData?.project_name} />
           </div>
-        );
-      }
-      if (currentSub === 'objectives') return twin ? <ProjectTwinStats twin={twin} /> : <div className="panel"><p>No twin loaded.</p></div>;
-      if (currentSub === 'status') return <EditMetadataTab projectData={projectData} fetchProjectDetails={fetchProjectDetails} API_URL={API_URL} />;
-      if (currentSub === 'people') return <ProjectMembersTab projectData={projectData} twin={twin} />;
+
+          {twin ? (
+            <DigitalTwinPanel
+              twin={twin}
+              onSave={saveTwin}
+              saving={twinSaving}
+              section="overview"
+              projectCode={projectCode}
+              API_URL={API_URL}
+            />
+          ) : null}
+
+          <ProjectFolderBrowser twin={twin} projectCode={projectCode} API_URL={API_URL} projectName={twin?.identity?.project_name || projectData?.project_name} />
+          {twin ? <ProjectTwinStats twin={twin} /> : null}
+          <EditMetadataTab projectData={projectData} fetchProjectDetails={fetchProjectDetails} API_URL={API_URL} />
+          
+          <hr className="divider" />
+          <h3 className="text-title-2">Project Team & References</h3>
+          <ProjectMembersTab projectData={projectData} twin={twin} />
+        </div>
+      );
     } 
-    // 2. Plan Tab
     else if (workspaceMenu === 'plan') {
-      if (currentSub === 'timeline') return <LogbookTimelineTab twin={twin} twinLoading={twinLoading} twinSaving={twinSaving} saveTwin={saveTwin} projectCode={projectCode} API_URL={API_URL} />;
-      if (currentSub === 'work_breakdown') return <ChecklistTab projectCode={projectCode} checklists={checklists} fetchChecklists={fetchChecklists} API_URL={API_URL} />;
-      if (currentSub === 'meetings') return <DecisionsTab projectCode={projectCode} API_URL={API_URL} />;
+      return (
+        <div className="stack-lg">
+          <TasksScreen projectCode={projectCode} dbProjects={dbProjects} API_URL={API_URL} hideProjectSelect />
+          <ChecklistTab projectCode={projectCode} checklists={checklists} fetchChecklists={fetchChecklists} API_URL={API_URL} />
+          <hr className="divider" />
+          <DecisionsTab projectCode={projectCode} API_URL={API_URL} />
+        </div>
+      );
     }
-    // 3. Data Tab
     else if (workspaceMenu === 'data') {
-      if (currentSub === 'datasets') return <DataCatalogTab projectCode={projectCode} API_URL={API_URL} twin={twin} twinLoading={twinLoading} twinSaving={twinSaving} saveTwin={saveTwin} />;
-      if (currentSub === 'analysis') return <NotebookLogsTab projectCode={projectCode} API_URL={API_URL} />;
-      if (currentSub === 'figures') return <ProjectDocumentsTab projectCode={projectCode} API_URL={API_URL} />;
+      return (
+        <div className="stack-lg">
+          <DataCatalogTab projectCode={projectCode} API_URL={API_URL} twin={twin} twinLoading={twinLoading} twinSaving={twinSaving} saveTwin={saveTwin} />
+          <hr className="divider" />
+          <ProjectDocumentsTab projectCode={projectCode} API_URL={API_URL} />
+        </div>
+      );
     }
-    // 4. Methods Tab
     else if (workspaceMenu === 'methods') {
-      if (currentSub === 'protocols') return <CombinedReportTab projectCode={projectCode} API_URL={API_URL} twin={twin} twinLoading={twinLoading} twinSaving={twinSaving} refreshTwin={refreshTwin} saveTwin={saveTwin} />;
-      if (currentSub === 'deviations') return <NotepadTab projectCode={projectCode} API_URL={API_URL} />;
+      return (
+        <div className="stack-lg">
+          <CombinedReportTab projectCode={projectCode} API_URL={API_URL} twin={twin} twinLoading={twinLoading} twinSaving={twinSaving} refreshTwin={refreshTwin} saveTwin={saveTwin} />
+          <hr className="divider" />
+          <NotepadTab projectCode={projectCode} API_URL={API_URL} />
+        </div>
+      );
     }
-    // 5. Writing Tab
     else if (workspaceMenu === 'writing') {
-      if (currentSub === 'submissions' || currentSub === 'manuscript') return <AbstractsTab twin={twin} twinLoading={twinLoading} twinSaving={twinSaving} saveTwin={saveTwin} projectCode={projectCode} API_URL={API_URL} />;
+      return <AbstractsTab twin={twin} twinLoading={twinLoading} twinSaving={twinSaving} saveTwin={saveTwin} projectCode={projectCode} API_URL={API_URL} />;
     }
-    // 7. Log Tab
+    else if (workspaceMenu === 'archive') {
+      return <div className="panel text-empty"><p>Archive modules are in development.</p></div>;
+    }
     else if (workspaceMenu === 'log') {
-      if (currentSub === 'activity') return <NotebookLogsTab projectCode={projectCode} API_URL={API_URL} />;
+      return <NotebookLogsTab projectCode={projectCode} API_URL={API_URL} />;
     }
 
-    // Default placeholder for unmapped stubs
     return (
       <div className="panel text-empty" style={{ padding: '2rem' }}>
-        <p>No backend integration yet for: {currentMenu.label} &rarr; {currentMenu.subs.find(s => s.id === currentSub)?.label}</p>
+        <p>No backend integration yet for: {currentMenu.label}</p>
       </div>
     );
   };
@@ -282,20 +243,8 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
       </div>
 
       {/* Main Workspace Content Pane */}
+      {/* Main Workspace Content Pane */}
       <div className="workspace-main" style={{ position: 'relative' }}>
-        <div className="tab-bar" style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.2)', padding: '0.5rem', borderRadius: '8px' }}>
-          {currentMenu.subs.map(sub => (
-            <button
-              key={sub.id}
-              className={`btn btn-sm ${currentSub === sub.id ? 'btn-primary' : 'btn-secondary'}`}
-              onClick={() => handleSubChange(sub.id)}
-              style={{ marginRight: '0.5rem' }}
-            >
-              {sub.label}
-            </button>
-          ))}
-        </div>
-
         {renderSubcategory()}
       </div>
 
@@ -308,7 +257,7 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
           boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
           zIndex: 1000, display: 'flex', alignItems: 'center', gap: '0.5rem'
         }}
-        onClick={() => setIsTaskpadOpen(true)}
+        onClick={() => openTaskpad()}
       >
         <Plus size={20} />
         <span style={{ fontWeight: 600 }}>Taskpad</span>
@@ -324,23 +273,29 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
             <h3 style={{ margin: 0, color: 'var(--color-primary)' }}>Quick Capture</h3>
-            <button className="btn btn-sm btn-secondary" onClick={() => setIsTaskpadOpen(false)}>Close</button>
+            <button className="btn btn-sm btn-secondary" onClick={closeTaskpad}>Close</button>
           </div>
           <div className="form-group">
             <label className="form-label">Target Area</label>
             <select className="form-select">
-              {menuItems.map(m => m.subs.map(s => (
-                <option key={`${m.id}-${s.id}`} value={`${m.id}-${s.id}`}>
-                  {m.label} &rarr; {s.label}
+              {menuItems.map(m => (
+                <option key={m.id} value={m.id}>
+                  {m.label}
                 </option>
-              )))}
+              ))}
             </select>
           </div>
           <div className="form-group" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
             <label className="form-label">Note / Task / Status Update</label>
-            <textarea className="form-textarea" style={{ flexGrow: 1, resize: 'none' }} placeholder="Type here..."></textarea>
+            <textarea 
+              className="form-textarea" 
+              style={{ flexGrow: 1, resize: 'none' }} 
+              placeholder="Type here..."
+              value={taskContent}
+              onChange={(e) => setTaskContent(e.target.value)}
+            ></textarea>
           </div>
-          <button className="btn btn-primary" onClick={() => { alert('Saved to Taskpad!'); setIsTaskpadOpen(false); }}>
+          <button className="btn btn-primary" onClick={() => { alert('Saved to Taskpad!'); closeTaskpad(); }}>
             Save Entry
           </button>
         </div>
@@ -355,7 +310,7 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
 
 // --- COMBINED REPORT MODULE ---
 function CombinedReportTab({ projectCode, API_URL, twin, twinLoading, twinSaving, refreshTwin, saveTwin }) {
-  const [reportChapter, setReportChapter] = useState('overview');
+  const [reportChapter, setReportChapter] = useState('protocols');
   const [rawReport, setRawReport] = useState(null);
   const [showRaw, setShowRaw] = useState(false);
 
@@ -367,7 +322,7 @@ function CombinedReportTab({ projectCode, API_URL, twin, twinLoading, twinSaving
       .catch(() => setRawReport(null));
   }, [projectCode, API_URL, showRaw]);
 
-  const sectionMap = { overview: 'overview', protocols: 'protocols', pipelines: 'content', analytics: 'timeline' };
+  const sectionMap = { protocols: 'protocols', pipelines: 'content', analytics: 'timeline' };
 
   if (twinLoading && !twin) {
     return <div className="text-loading">Building structured digital record from project files…</div>;
@@ -384,13 +339,13 @@ function CombinedReportTab({ projectCode, API_URL, twin, twinLoading, twinSaving
       </div>
 
       <div className="tab-bar">
-        {['overview', 'protocols', 'pipelines', 'analytics'].map(chap => (
+        {['protocols', 'pipelines', 'analytics'].map(chap => (
           <button
             key={chap}
             className={`btn btn-sm ${reportChapter === chap ? 'btn-primary' : 'btn-secondary'}`}
             onClick={() => setReportChapter(chap)}
           >
-            {chap === 'overview' ? '📖 Overview' : chap === 'protocols' ? '🧪 Protocols' : chap === 'pipelines' ? '🖼️ Files & Figures' : '📊 Activity'}
+            {chap === 'protocols' ? '🧪 Protocols' : chap === 'pipelines' ? '🖼️ Files & Figures' : '📊 Activity'}
           </button>
         ))}
         <button type="button" className={`btn ${showRaw ? 'btn-primary' : 'btn-secondary'}`} onClick={() => setShowRaw((v) => !v)}>
@@ -403,7 +358,7 @@ function CombinedReportTab({ projectCode, API_URL, twin, twinLoading, twinSaving
           twin={twin}
           onSave={saveTwin}
           saving={twinSaving}
-          section={sectionMap[reportChapter] || 'overview'}
+          section={sectionMap[reportChapter] || 'protocols'}
           projectCode={projectCode}
           API_URL={API_URL}
         />
@@ -641,6 +596,22 @@ function NotebookLogsTab({ projectCode, API_URL }) {
     }
   };
 
+  const handleDelete = async (entryId) => {
+    if (!window.confirm("Are you sure you want to permanently delete this notebook entry? This action cannot be undone.")) return;
+    try {
+      const res = await fetch(`${API_URL}/notebook/${entryId}`, { method: 'DELETE' });
+      if (res.ok) {
+        alert("Notebook entry permanently deleted.");
+        fetchLogs();
+      } else {
+        alert("Failed to delete notebook entry.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Failed to delete notebook entry.");
+    }
+  };
+
   return (
     <div>
       <div className="module-page-header">
@@ -659,7 +630,12 @@ function NotebookLogsTab({ projectCode, API_URL }) {
               <div key={e.entry_id} style={{border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1rem', background: 'rgba(255,255,255,0.01)'}}>
                 <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem'}}>
                   <span style={{fontWeight: 600, color: 'var(--color-primary)'}}>{e.title} (v{e.version})</span>
-                  <span style={{fontSize: '0.8rem', color: 'var(--text-muted)'}}>{e.created_at.replace('T', ' ').slice(0, 16)}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <span style={{fontSize: '0.8rem', color: 'var(--text-muted)'}}>{e.created_at.replace('T', ' ').slice(0, 16)}</span>
+                    <button type="button" className="btn btn-secondary btn-sm" style={{ borderColor: 'var(--color-danger)', color: 'var(--color-danger)', background: 'transparent', padding: '1px 6px', fontSize: '0.75rem' }} onClick={() => handleDelete(e.entry_id)}>
+                      Delete
+                    </button>
+                  </div>
                 </div>
                 <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', whiteSpace: 'pre-wrap', marginBottom: '0.75rem'}}>{e.content}</p>
                 
@@ -711,6 +687,22 @@ function DecisionsTab({ projectCode, API_URL }) {
     }
   };
 
+  const handleDelete = async (decisionId) => {
+    if (!window.confirm("Are you sure you want to permanently delete this decision registry entry? This action cannot be undone.")) return;
+    try {
+      const res = await fetch(`${API_URL}/decisions/${decisionId}`, { method: 'DELETE' });
+      if (res.ok) {
+        alert("Decision registry entry deleted.");
+        fetchDecisions();
+      } else {
+        alert("Failed to delete decision registry entry.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Failed to delete decision registry entry.");
+    }
+  };
+
   return (
     <div>
       <div className="module-page-header">
@@ -727,8 +719,13 @@ function DecisionsTab({ projectCode, API_URL }) {
           <div style={{display: 'flex', flexDirection: 'column', gap: '0.75rem'}}>
             {decisions.map(d => (
               <div key={d.decision_id} style={{borderLeft: '4px solid var(--color-success)', background: 'rgba(52,211,153,0.03)', padding: '1rem', borderRadius: '0 8px 8px 0'}}>
-                <h5 style={{fontSize: '0.95rem', fontWeight: 700, color: 'var(--color-primary)'}}>🎯 {d.title}</h5>
-                <div style={{fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.4rem'}}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <h5 style={{fontSize: '0.95rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0}}>🎯 {d.title}</h5>
+                  <button type="button" className="btn btn-secondary btn-sm" style={{ borderColor: 'var(--color-danger)', color: 'var(--color-danger)', background: 'transparent', padding: '1px 6px', fontSize: '0.75rem' }} onClick={() => handleDelete(d.decision_id)}>
+                    Delete
+                  </button>
+                </div>
+                <div style={{fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.4rem', marginTop: '0.25rem'}}>
                   Decided By: <b>{d.decider_name}</b> | Date: <i>{d.decision_date}</i>
                 </div>
                 <p style={{fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: '0.25rem'}}>{d.decision_details}</p>

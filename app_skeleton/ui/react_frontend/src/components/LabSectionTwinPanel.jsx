@@ -1,15 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
-import { FileText, FolderTree, Loader2, Search } from 'lucide-react';
-import { apiGet } from '../api/client.js';
-import {
-  documentPreviewRow,
-  fetchLabSectionProcessed,
-  hydrateSectionDocuments,
-  sectionDetailFromTwin,
-} from '../utils/labDatabaseUtils.js';
+import { FileText, FolderTree, Loader2, Search, ChevronDown, ChevronUp } from 'lucide-react';
+import DocumentViewer from './DocumentViewer.jsx';
 
 /**
- * Shows extracted digital-twin data from GET /api/lab/section/{id} (local processed JSON).
+ * Shows extracted digital-twin data from the local static database catalog.
  */
 export default function LabSectionTwinPanel({
   sectionId,
@@ -17,115 +11,112 @@ export default function LabSectionTwinPanel({
   description,
   knowledgeSearchHref = '/#data_storage:knowledge',
   compact = false,
+  filterFolder = null,
+  excludeFolder = null,
 }) {
-  const [detail, setDetail] = useState(null);
+  const [catalog, setCatalog] = useState(null);
   const [docQuery, setDocQuery] = useState('');
-  const [documents, setDocuments] = useState([]);
-  const [docTotal, setDocTotal] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [docLoading, setDocLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const loadDetail = useCallback(async () => {
-    if (!sectionId) {
-      setDetail(null);
-      return;
-    }
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await apiGet(`/api/lab/section/${encodeURIComponent(sectionId)}`);
-      const hydrated = await hydrateSectionDocuments(data, sectionId);
-      setDetail(hydrated.detail);
-      setDocuments(hydrated.documents);
-      setDocTotal(hydrated.docTotal);
-    } catch (e) {
-      const twin = await fetchLabSectionProcessed(sectionId);
-      const fallback = sectionDetailFromTwin(twin, sectionId);
-      if (fallback) {
-        setDetail(fallback);
-        setDocuments(fallback.document_index_preview || []);
-        setDocTotal(fallback.document_index_count ?? 0);
-        setError(
-          'API offline — showing cached processed twin. Start the backend on port 8000 for live data.',
-        );
-      } else {
-        setDetail(null);
-        setDocuments([]);
-        setDocTotal(0);
-        const msg = String(e.message || e);
-        setError(
-          msg === 'Failed to fetch' || msg.includes('fetch')
-            ? 'Could not reach the API (is uvicorn running on port 8000?). Run database_processor --section overview_onboarding --refresh if no processed twin exists.'
-            : msg,
-        );
-      }
-    } finally {
-      setLoading(false);
-    }
-  }, [sectionId]);
+  const [selectedDocId, setSelectedDocId] = useState(null);
 
   useEffect(() => {
-    loadDetail();
-  }, [loadDetail]);
-
-  const searchDocuments = async () => {
-    if (!sectionId) return;
-    setDocLoading(true);
-    setError(null);
-    try {
-      const params = new URLSearchParams({ offset: '0', limit: '50' });
-      const q = docQuery.trim();
-      if (q.length >= 2) params.set('q', q);
-      const data = await apiGet(
-        `/api/lab/section/${encodeURIComponent(sectionId)}/documents`,
-        { params },
-      );
-      setDocuments(data.documents || []);
-      setDocTotal(data.total ?? 0);
-    } catch (e) {
-      const twin = await fetchLabSectionProcessed(sectionId);
-      if (twin?.document_index?.length) {
-        const tokens = docQuery.trim().toLowerCase().split(/\s+/).filter((t) => t.length >= 2);
-        const relRoot = twin.relative_root || detail?.relative_root;
-        let docs = (twin.document_index || []).map((doc) => documentPreviewRow(doc, relRoot));
-        if (tokens.length) {
-          docs = docs.filter((doc) => {
-            const blob = `${doc.path} ${doc.title} ${doc.excerpt || ''}`.toLowerCase();
-            return tokens.some((tok) => blob.includes(tok));
-          });
+    let mounted = true;
+    setLoading(true);
+    fetch('/database/catalog.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load static database catalog.');
+        return res.json();
+      })
+      .then(data => {
+        if (mounted) {
+          setCatalog(data);
+          setLoading(false);
         }
-        setDocuments(docs.slice(0, 50));
-        setDocTotal(docs.length);
-      } else {
-        setError(String(e.message || e));
+      })
+      .catch(err => {
+        if (mounted) {
+          setError(err.message);
+          setLoading(false);
+        }
+      });
+      
+    return () => mounted = false;
+  }, []);
+
+  const getFilteredDocs = () => {
+    if (!catalog || !catalog.sections) return [];
+    
+    // Map legacy sectionId to new sections
+    let searchSections = [];
+    if (sectionId?.includes('orders')) searchSections = ['02_Orders'];
+    else if (sectionId?.includes('wet_lab')) searchSections = ['04_Wet_Lab'];
+    else if (sectionId?.includes('social')) searchSections = ['03_Social'];
+    else searchSections = ['01_Overview', '00_General_Knowledge'];
+    
+    let allDocs = [];
+    for (const sec of searchSections) {
+      if (catalog.sections[sec]) {
+        allDocs = allDocs.concat(catalog.sections[sec]);
       }
-    } finally {
-      setDocLoading(false);
     }
+    
+    if (docQuery.trim()) {
+      const q = docQuery.toLowerCase();
+      allDocs = allDocs.filter(d => d.title.toLowerCase().includes(q) || d.path.toLowerCase().includes(q));
+    }
+    
+    if (filterFolder) {
+      const qf = filterFolder.toLowerCase();
+      allDocs = allDocs.filter(d => {
+        const folder = d.path && d.path.includes('/') ? d.path.split('/')[0] : 'Root Documents';
+        return folder.toLowerCase().includes(qf);
+      });
+    }
+
+    if (excludeFolder) {
+      const qf = excludeFolder.toLowerCase();
+      allDocs = allDocs.filter(d => {
+        const folder = d.path && d.path.includes('/') ? d.path.split('/')[0] : 'Root Documents';
+        return !folder.toLowerCase().includes(qf);
+      });
+    }
+    
+    return allDocs;
   };
+
+  const documents = getFilteredDocs();
 
   if (!sectionId) {
     return (
       <div className="panel">
         <p className="muted text-footnote">
-          Select a subsection to view extracted documents from the lab database twin.
+          Select a subsection to view extracted documents from the lab database.
         </p>
       </div>
     );
   }
 
-  const metrics = detail?.metrics || {};
-  const extracted = metrics.extracted_document_count ?? detail?.extraction?.status_counts?.extracted;
+  const groupedDocuments = {};
+  documents.forEach(d => {
+    let folder = 'Root Documents';
+    if (d.path && d.path.includes('/')) {
+      folder = d.path.split('/')[0];
+    }
+    if (!groupedDocuments[folder]) groupedDocuments[folder] = [];
+    groupedDocuments[folder].push(d);
+  });
+
+  const sortedFolders = Object.keys(groupedDocuments).sort();
 
   return (
     <div className={`stack-md lab-section-twin ${compact ? 'lab-section-twin--compact' : ''}`}>
       <div className="panel">
         <h3 className="panel-title">
-          <FileText size={18} /> {title || detail?.section_label || sectionId}
+          <FileText size={18} /> {title || sectionId}
         </h3>
         <p className="panel-lead prose-block">
-          {description || detail?.description || 'Extracted documents from the on-disk lab database folder.'}
+          {description || 'Extracted documents from the static lab database.'}
         </p>
         {loading && (
           <p className="text-footnote muted">
@@ -133,107 +124,89 @@ export default function LabSectionTwinPanel({
           </p>
         )}
         {error && (
-          <p className="text-footnote" style={{ color: 'var(--color-danger)' }}>
+          <p className="text-footnote" style={{ color: 'var(--mac-destructive)' }}>
             {error}
           </p>
         )}
-        {detail && !loading && (
+        {catalog && !loading && (
           <>
             <p className="text-footnote">
-              <strong>{metrics.total_assets ?? docTotal}</strong> assets on disk ·{' '}
-              <strong>{extracted ?? '—'}</strong> extracted ·{' '}
-              <strong>{metrics.knowledge_chunk_count ?? '—'}</strong> chunks · Vault:{' '}
-              {detail.vault_asset_count ?? '—'}
-              {detail.processed_at ? (
-                <>
-                  {' '}
-                  · processed {detail.processed_at.slice(0, 16).replace('T', ' ')}
-                </>
-              ) : null}
+              <strong>{documents.length}</strong> static assets matched in this section.
             </p>
             <p className="text-footnote citation-footnote">
-              Source: local processed twin ({detail.twin_file || detail.storage_key}) · root:{' '}
-              {detail.relative_root}
+              Source: local static database (`/public/database/`)
             </p>
-            <a className="btn btn-secondary btn-sm" href={knowledgeSearchHref} style={{ marginTop: '0.5rem' }}>
-              Search in Knowledge index
-            </a>
           </>
         )}
       </div>
 
-      {detail && (detail.folder_tree || []).length > 0 && !compact && (
-        <div className="panel">
-          <h4 className="text-title-3">
-            <FolderTree size={16} /> Top folders
-          </h4>
-          <ul className="stack-sm text-footnote" style={{ listStyle: 'none', padding: 0 }}>
-            {(detail.folder_tree || []).slice(0, 12).map((f) => (
-              <li key={f.path}>
-                {f.path} ({f.file_count} files)
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {detail && (
+      {catalog && (
         <div className="panel">
           <div className="disk-pad-toolbar">
             <h4 className="text-title-3" style={{ margin: 0 }}>
-              Documents ({docTotal})
+              Documents by Folder
             </h4>
             <input
               type="search"
               className="input"
-              placeholder="Filter by filename or excerpt…"
+              placeholder="Filter by filename…"
               value={docQuery}
               onChange={(e) => setDocQuery(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && searchDocuments()}
               aria-label="Filter section documents"
             />
-            <button
-              type="button"
-              className="btn btn-secondary btn-sm"
-              onClick={searchDocuments}
-              disabled={docLoading}
-            >
-              {docLoading ? <Loader2 size={14} className="spin" /> : <Search size={14} />}
-              Filter
-            </button>
           </div>
-          {!documents.length && !docLoading && (
-            <p className="muted text-footnote">No documents in preview. Run lab database processing if empty.</p>
+          {!documents.length && (
+            <p className="muted text-footnote" style={{ marginTop: '1rem' }}>No documents in preview.</p>
           )}
-          <ul className="stack-sm" style={{ listStyle: 'none', padding: 0, marginTop: '0.75rem' }}>
-            {documents.map((d) => (
-              <li key={d.path} className="overview-news-row" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'baseline' }}>
-                  <strong className="text-footnote">{d.title || d.path}</strong>
-                  {d.open_url && (
-                    <a
-                      className="btn btn-secondary btn-sm"
-                      href={d.open_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Open original
-                    </a>
-                  )}
+
+          <div style={{ marginTop: '1.5rem' }}>
+            {sortedFolders.map(folder => {
+              const docs = groupedDocuments[folder];
+              return (
+                <div key={folder} style={{ marginBottom: '2rem' }}>
+                  <h4 style={{ 
+                    borderBottom: '1px solid var(--mac-border)', 
+                    paddingBottom: '0.5rem', 
+                    marginBottom: '1rem',
+                    color: 'var(--mac-ink)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem'
+                  }}>
+                    <FolderTree size={16} className="muted" /> {folder} <span className="muted" style={{ fontSize: '0.8rem' }}>({docs.length})</span>
+                  </h4>
+                  <ul className="stack-sm" style={{ listStyle: 'none', padding: 0 }}>
+                    {docs.slice(0, 50).map((d) => (
+                      <li key={d.id} className="overview-news-row" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center', width: '100%', justifyContent: 'space-between' }}>
+                          <strong className="text-footnote">{d.title}</strong>
+                          <button
+                            type="button"
+                            className="btn btn-secondary btn-sm"
+                            onClick={() => setSelectedDocId(selectedDocId === d.id ? null : d.id)}
+                          >
+                            {selectedDocId === d.id ? <><ChevronUp size={14}/> Hide Content</> : <><ChevronDown size={14}/> Read Content</>}
+                          </button>
+                        </div>
+                        <span className="text-caption muted">{d.path}</span>
+                        
+                        {selectedDocId === d.id && (
+                          <div style={{ width: '100%', marginTop: '1rem', borderTop: '1px solid var(--mac-border)', paddingTop: '1rem' }}>
+                            <DocumentViewer documentId={d.id} />
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                    {docs.length > 50 && (
+                      <li className="text-caption muted" style={{ marginTop: '0.5rem' }}>
+                        Showing 50 of {docs.length} matches in this folder. Use the search bar to refine.
+                      </li>
+                    )}
+                  </ul>
                 </div>
-                <span className="text-caption muted">{d.path}</span>
-                {d.extraction_status && (
-                  <span className="text-caption">{d.extraction_status}</span>
-                )}
-                {d.excerpt && (
-                  <p className="text-caption" style={{ marginTop: '0.25rem' }}>
-                    {d.excerpt.slice(0, 280)}
-                    {d.excerpt.length > 280 ? '…' : ''}
-                  </p>
-                )}
-              </li>
-            ))}
-          </ul>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>

@@ -30,7 +30,8 @@ def _default_database_root() -> Path:
 
 
 def _default_projects_root() -> Path:
-    database_projects = REPO_ROOT / "database" / "projects"
+    database_root = _default_database_root()
+    database_projects = database_root / "projects"
     if database_projects.is_dir():
         return database_projects
     legacy = REPO_ROOT / "projects"

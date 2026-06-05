@@ -51,14 +51,18 @@ function AssetImage({ src, alt, className, onClick }) {
 }
 
 function AssetRow({ item, projectCode, API_URL, contentRoot, onPreview }) {
-  const isImage = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg'].includes(item.extension);
+  const ext = (item.extension || '').toLowerCase();
+  const isImage = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg'].includes(ext);
+  const isPdf = ext === '.pdf';
   const url = projectAssetUrl(projectCode, item.path, API_URL, contentRoot);
+  const thumbUrl = (isImage || isPdf) ? `${url}&preview=true` : url;
+  
   return (
     <div className="pcl-asset-row">
       <div className="pcl-asset-main">
-        {isImage && (
+        {(isImage || isPdf) && (
           <button type="button" className="pcl-thumb-btn" onClick={() => onPreview(item)}>
-            <AssetImage src={url} alt={item.name} className="pcl-thumb" />
+            <AssetImage src={thumbUrl} alt={item.name} className="pcl-thumb" />
           </button>
         )}
         <div>
@@ -186,11 +190,23 @@ export default function ProjectContentLibrary({ twin, projectCode, API_URL }) {
         <div className="pcl-lightbox" onClick={() => setPreview(null)}>
           <div className="pcl-lightbox-inner" onClick={(e) => e.stopPropagation()}>
             <button type="button" className="pcl-lightbox-close" onClick={() => setPreview(null)}><X size={20} /></button>
-            <AssetImage
-              src={projectAssetUrl(projectCode, preview.path, API_URL, contentRoot)}
-              alt={preview.name}
-              className="pcl-lightbox-img"
-            />
+            {(preview.extension || '').toLowerCase() === '.pdf' ? (
+               <object
+                 data={projectAssetUrl(projectCode, preview.path, API_URL, contentRoot)}
+                 type="application/pdf"
+                 width="100%"
+                 style={{ minHeight: '80vh', borderRadius: '8px', border: 'none' }}
+                 className="pcl-lightbox-pdf"
+               >
+                 <p>It appears you don't have a PDF plugin for this browser. <a href={projectAssetUrl(projectCode, preview.path, API_URL, contentRoot)}>Click here to download the PDF file.</a></p>
+               </object>
+            ) : (
+              <AssetImage
+                src={projectAssetUrl(projectCode, preview.path, API_URL, contentRoot)}
+                alt={preview.name}
+                className="pcl-lightbox-img"
+              />
+            )}
             <div className="pcl-lightbox-caption">
               <b>{preview.name}</b>
               <SmartLink href={preview.path} showCopy />

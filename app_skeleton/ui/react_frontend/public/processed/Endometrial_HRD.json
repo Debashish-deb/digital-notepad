@@ -1,0 +1,89 @@
+{
+  "project_code": "Endometrial_HRD",
+  "processed_at": "2026-06-05T07:16:08.804751+00:00",
+  "folder_path": null,
+  "content_root": null,
+  "source_files_count": 0,
+  "total_assets_count": 0,
+  "content_library": {
+    "sections": [],
+    "figures_gallery": [],
+    "totals": {},
+    "figure_count": 0
+  },
+  "identity": {
+    "project_code": "Endometrial_HRD",
+    "project_name": "Endometrial-HRD",
+    "project_index": 26,
+    "project_lead": "Fernando Perez",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Endometrial Cancer",
+    "status": "active",
+    "category": "genomics",
+    "category_label": "Genomics & Sequencing",
+    "priority": "medium",
+    "research_question": "",
+    "project_summary": "Analysis of HRD scars in a endometrial cancer cohort from the Helsinki by using SNP-arrays.",
+    "timeline": "",
+    "responsible": "Fernando Perez (Ulla-Maija Haltia)"
+  },
+  "personnel": [
+    {
+      "name": "Ulla-Maija Haltia",
+      "role": "Collaborator",
+      "focus": "Collaborator"
+    },
+    {
+      "name": "Fernando Perez",
+      "role": "Project lead",
+      "focus": "Project lead"
+    }
+  ],
+  "modalities": [],
+  "cohorts": [],
+  "data_assets": {
+    "storage_paths": [],
+    "repositories": [],
+    "folder_tree": []
+  },
+  "timeline": [],
+  "meetings": [],
+  "protocols": [],
+  "dissemination": [],
+  "publications": [],
+  "derived_knowledge": {
+    "methods": [],
+    "findings": [],
+    "risks_or_open_items": []
+  },
+  "document_index": [],
+  "vector_chunks": [],
+  "extraction": {
+    "total_scannable_assets": 0,
+    "extracted_records": 0,
+    "chunk_count": 0,
+    "status_counts": {},
+    "extractor_counts": {},
+    "extension_counts": {},
+    "errors": []
+  },
+  "metrics": {
+    "document_count": 0,
+    "total_assets": 0,
+    "figure_count": 0,
+    "timeline_entries": 0,
+    "meeting_count": 0,
+    "protocol_count": 0,
+    "cohort_count": 0,
+    "estimated_sample_count": null,
+    "repository_count": 0,
+    "storage_path_count": 0,
+    "presentation_count": 0,
+    "data_file_count": 0,
+    "extracted_document_count": 0,
+    "knowledge_chunk_count": 0,
+    "extraction_error_count": 0,
+    "output_count": 0
+  },
+  "outputs": []
+}

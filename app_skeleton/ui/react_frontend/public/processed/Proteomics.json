@@ -1,0 +1,1247 @@
+{
+  "project_code": "Proteomics",
+  "processed_at": "2026-06-05T07:16:08.928308+00:00",
+  "folder_path": null,
+  "content_root": null,
+  "source_files_count": 0,
+  "total_assets_count": 0,
+  "content_library": {
+    "sections": [
+      {
+        "id": "32_Proteomics_Varjosalo_collab_2024",
+        "label": "32_Proteomics_Varjosalo_collab_2024",
+        "total_files": 10,
+        "documents": [
+          {
+            "path": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+            "name": "32_ascites_samples_sent_summer_2025.xlsx",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "R1: Previously sent to proteomics analysis | Ascites in AFlab freezer | Ascites usable? (Not bloody) | ovaHRDscar | tumor purity (%)\nR2: S002_pOme | 0.0\nR3: S003_pOme | 0.0\nR4: S004_pOme | 0.0\nR5: S007_pOva | 0.0\nR6: S008_pOme1 | 0.0\nR7: S010_pOvaR | 0.0\nR8: S014_pOme | 0.0\nR9: S015_pPer | 0.0\nR10: S016_pOme | 0.0\nR11: S018_pOvaL | 0.0\nR12: S019_pOva | 0.0\nR13: S021_pOme | 0.0\nR14: S024_pOme | 0.0"
+          },
+          {
+            "path": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+            "name": "32_Project_log.docx",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Project log"
+          },
+          {
+            "path": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+            "name": "CTRL samples for massspec, 0_ tumor.xlsx",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "R1: | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor % | Box at -80 | Slot in the box | Written on the tube\nR2: 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR3: 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR4: 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022"
+          },
+          {
+            "path": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+            "name": "Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "R1: | Sample ID | Project_32 | Tumor % | Location Box | Location, slot | Written on our FF tube | Comment | Notes | Submission Box | Slot | NOTE\nR2: 1.0 | S002_pOme | 32_S002_pOme | 5.0 | Box1 | A2 | OME-2 16.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A1 | might be less than 20mg, all given, no tissue left\nR3: 2.0 | S003_pOme | 32_S003_pOme | 70.0 | Box1 | A3 | OME-3 17.10.19 snap-freez | SPACE"
+          },
+          {
+            "path": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+            "name": "Samples_Table_forVarjosalo_lab.xlsx",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "R1: | Sample ID | Tumor % | Submission Box | Slot\nR2: 1.0 | S002_pOme | 5.0 | 1.0 | A1\nR3: 2.0 | S003_pOme | 70.0 | 1.0 | A2\nR4: 3.0 | S004_pOme | 10-15 | 1.0 | A3\nR5: 4.0 | S007_pOva | 80.0 | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 15-20 | 1.0 | A5\nR7: 6.0 | S010_pOvaR | 80.0 | 1.0 | A6\nR8: 7.0 | S014_pOme | 70.0 | 1.0 | A7\nR9: 8.0 | S015_pPer | 10.0 | 1.0 | A8\nR10: 9.0 | S016_pOme | 80.0 | 1.0 | A9\nR11:"
+          },
+          {
+            "path": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+            "name": "32_ascites_samples_sent_summer_2025.xlsx",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "R1: Previously sent to proteomics analysis | Ascites in AFlab freezer | Ascites usable? (Not bloody) | ovaHRDscar | tumor purity (%)\nR2: S002_pOme | 0.0\nR3: S003_pOme | 0.0\nR4: S004_pOme | 0.0\nR5: S007_pOva | 0.0\nR6: S008_pOme1 | 0.0\nR7: S010_pOvaR | 0.0\nR8: S014_pOme | 0.0\nR9: S015_pPer | 0.0\nR10: S016_pOme | 0.0\nR11: S018_pOvaL | 0.0\nR12: S019_pOva | 0.0\nR13: S021_pOme | 0.0\nR14: S024_pOme | 0.0"
+          },
+          {
+            "path": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+            "name": "32_Project_log.docx",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Project log"
+          },
+          {
+            "path": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+            "name": "CTRL samples for massspec, 0_ tumor.xlsx",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "R1: | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor % | Box at -80 | Slot in the box | Written on the tube\nR2: 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR3: 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR4: 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022"
+          },
+          {
+            "path": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+            "name": "Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "R1: | Sample ID | Project_32 | Tumor % | Location Box | Location, slot | Written on our FF tube | Comment | Notes | Submission Box | Slot | NOTE\nR2: 1.0 | S002_pOme | 32_S002_pOme | 5.0 | Box1 | A2 | OME-2 16.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A1 | might be less than 20mg, all given, no tissue left\nR3: 2.0 | S003_pOme | 32_S003_pOme | 70.0 | Box1 | A3 | OME-3 17.10.19 snap-freez | SPACE"
+          },
+          {
+            "path": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+            "name": "Samples_Table_forVarjosalo_lab.xlsx",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "R1: | Sample ID | Tumor % | Submission Box | Slot\nR2: 1.0 | S002_pOme | 5.0 | 1.0 | A1\nR3: 2.0 | S003_pOme | 70.0 | 1.0 | A2\nR4: 3.0 | S004_pOme | 10-15 | 1.0 | A3\nR5: 4.0 | S007_pOva | 80.0 | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 15-20 | 1.0 | A5\nR7: 6.0 | S010_pOvaR | 80.0 | 1.0 | A6\nR8: 7.0 | S014_pOme | 70.0 | 1.0 | A7\nR9: 8.0 | S015_pPer | 10.0 | 1.0 | A8\nR10: 9.0 | S016_pOme | 80.0 | 1.0 | A9\nR11:"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      }
+    ],
+    "figures_gallery": [],
+    "totals": {},
+    "figure_count": 0
+  },
+  "identity": {
+    "project_code": "Proteomics",
+    "project_name": "Proteomics_Varjosalo_collab_2024",
+    "project_index": 32,
+    "project_lead": "Anastasia Lundgren",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "external_collaboration",
+    "category_label": "External Lab Collaborations",
+    "priority": "medium",
+    "research_question": "",
+    "project_summary": "96 ONCOSYS-Ova FF samples, 20mg, submitted to Markku Varjosalo lab for proteomics analysis.",
+    "timeline": "",
+    "responsible": "Anastasia Lundgren"
+  },
+  "personnel": [
+    {
+      "name": "Anastasia Lundgren",
+      "role": "Project lead",
+      "focus": "Project lead"
+    }
+  ],
+  "modalities": [],
+  "cohorts": [],
+  "data_assets": {
+    "storage_paths": [],
+    "repositories": [],
+    "folder_tree": [
+      {
+        "path": "32_Proteomics_Varjosalo_collab_2024",
+        "file_count": 10,
+        "categories": [
+          "document"
+        ]
+      }
+    ]
+  },
+  "timeline": [],
+  "meetings": [],
+  "protocols": [],
+  "dissemination": [],
+  "publications": [],
+  "derived_knowledge": {
+    "methods": [],
+    "findings": [],
+    "risks_or_open_items": []
+  },
+  "document_index": [
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "path": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "title": "32_ascites_samples_sent_summer_2025.xlsx",
+      "has_text": true,
+      "excerpt": "R1: Previously sent to proteomics analysis | Ascites in AFlab freezer | Ascites usable? (Not bloody) | ovaHRDscar | tumor purity (%)\nR2: S002_pOme | 0.0\nR3: S003_pOme | 0.0\nR4: S004_pOme | 0.0\nR5: S007_pOva | 0.0\nR6: S008_pOme1 | 0.0\nR7: S010_pOvaR | 0.0\nR8: S014_pOme | 0.0\nR9: S015_pPer | 0.0\nR10: S016_pOme | 0.0\nR11: S018_pOvaL | 0.0\nR12: S019_pOva | 0.0\nR13: S021_pOme | 0.0\nR14: S024_pOme | 0.0",
+      "metadata": {
+        "source": {
+          "filename": "32_ascites_samples_sent_summer_2025.xlsx",
+          "stem": "32_ascites_samples_sent_summer_2025",
+          "extension": ".xlsx",
+          "relative_path": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001/32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+          "size_bytes": 15037,
+          "size_human": "14.68 KB",
+          "modified": "2026-05-26T03:58:04",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "hashes": {
+            "md5": "310b3b636133b84b0f8edcd9984e3094"
+          }
+        },
+        "classification": {
+          "family": "spreadsheet",
+          "extension": ".xlsx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "extractor": "openpyxl",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "sheet_names": [
+            "Sample selection",
+            "Physical samples",
+            "Info for Varjosalo lab"
+          ],
+          "sheet_count": 3
+        },
+        "converted_at": "2026-06-05T15:28:26"
+      }
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "path": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "title": "32_Project_log.docx",
+      "has_text": true,
+      "excerpt": "Project log",
+      "metadata": {
+        "source": {
+          "filename": "32_Project_log.docx",
+          "stem": "32_Project_log",
+          "extension": ".docx",
+          "relative_path": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001/32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+          "size_bytes": 7275,
+          "size_human": "7.10 KB",
+          "modified": "2025-08-22T04:14:22",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "hashes": {
+            "md5": "f6e9f0ff445f7f2f9f36a4c42936d3fe"
+          }
+        },
+        "classification": {
+          "family": "word",
+          "extension": ".docx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "extractor": "python-docx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "paragraph_count": 6,
+          "table_count": 0,
+          "core_properties": {
+            "title": "Word Document",
+            "subject": "",
+            "author": "",
+            "keywords": "",
+            "created": null,
+            "modified": "2026-06-05T12:28:26+00:00",
+            "last_modified_by": "python-docx"
+          }
+        },
+        "converted_at": "2026-06-05T15:28:26"
+      }
+    },
+    {
+      "document_id": "db59244a94945f2a5ae09036d819518e",
+      "path": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+      "title": "CTRL samples for massspec, 0_ tumor.xlsx",
+      "has_text": true,
+      "excerpt": "R1: | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor % | Box at -80 | Slot in the box | Written on the tube\nR2: 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR3: 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR4: 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022",
+      "metadata": {
+        "source": {
+          "filename": "CTRL samples for massspec, 0_ tumor.xlsx",
+          "stem": "CTRL samples for massspec, 0_ tumor",
+          "extension": ".xlsx",
+          "relative_path": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001/32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+          "size_bytes": 7551,
+          "size_human": "7.37 KB",
+          "modified": "2025-09-02T03:57:58",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "hashes": {
+            "md5": "0a5724ad9db0299a75dee348633d7e39"
+          }
+        },
+        "classification": {
+          "family": "spreadsheet",
+          "extension": ".xlsx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "extractor": "openpyxl",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "sheet_names": [
+            "Sheet1"
+          ],
+          "sheet_count": 1
+        },
+        "converted_at": "2026-06-05T15:28:26"
+      }
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "path": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "title": "Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "has_text": true,
+      "excerpt": "R1: | Sample ID | Project_32 | Tumor % | Location Box | Location, slot | Written on our FF tube | Comment | Notes | Submission Box | Slot | NOTE\nR2: 1.0 | S002_pOme | 32_S002_pOme | 5.0 | Box1 | A2 | OME-2 16.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A1 | might be less than 20mg, all given, no tissue left\nR3: 2.0 | S003_pOme | 32_S003_pOme | 70.0 | Box1 | A3 | OME-3 17.10.19 snap-freez | SPACE",
+      "metadata": {
+        "source": {
+          "filename": "Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+          "stem": "Samples_submitted_to_Varjosalo_lab_2024_20mg",
+          "extension": ".xlsx",
+          "relative_path": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001/32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+          "size_bytes": 31119,
+          "size_human": "30.39 KB",
+          "modified": "2026-02-20T00:21:16",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "hashes": {
+            "md5": "c98711cd57ff89ec4376408d0da0fb78"
+          }
+        },
+        "classification": {
+          "family": "spreadsheet",
+          "extension": ".xlsx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "extractor": "openpyxl",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "sheet_names": [
+            "Sheet1",
+            "Sheet2"
+          ],
+          "sheet_count": 2
+        },
+        "converted_at": "2026-06-05T15:28:26"
+      }
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "path": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "title": "Samples_Table_forVarjosalo_lab.xlsx",
+      "has_text": true,
+      "excerpt": "R1: | Sample ID | Tumor % | Submission Box | Slot\nR2: 1.0 | S002_pOme | 5.0 | 1.0 | A1\nR3: 2.0 | S003_pOme | 70.0 | 1.0 | A2\nR4: 3.0 | S004_pOme | 10-15 | 1.0 | A3\nR5: 4.0 | S007_pOva | 80.0 | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 15-20 | 1.0 | A5\nR7: 6.0 | S010_pOvaR | 80.0 | 1.0 | A6\nR8: 7.0 | S014_pOme | 70.0 | 1.0 | A7\nR9: 8.0 | S015_pPer | 10.0 | 1.0 | A8\nR10: 9.0 | S016_pOme | 80.0 | 1.0 | A9\nR11:",
+      "metadata": {
+        "source": {
+          "filename": "Samples_Table_forVarjosalo_lab.xlsx",
+          "stem": "Samples_Table_forVarjosalo_lab",
+          "extension": ".xlsx",
+          "relative_path": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001/32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+          "size_bytes": 8736,
+          "size_human": "8.53 KB",
+          "modified": "2025-03-27T05:43:32",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "hashes": {
+            "md5": "ade9088b467dbc312453d748e1e3dba1"
+          }
+        },
+        "classification": {
+          "family": "spreadsheet",
+          "extension": ".xlsx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "extractor": "openpyxl",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "sheet_names": [
+            "Sheet1"
+          ],
+          "sheet_count": 1
+        },
+        "converted_at": "2026-06-05T15:28:26"
+      }
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "path": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "title": "32_ascites_samples_sent_summer_2025.xlsx",
+      "has_text": true,
+      "excerpt": "R1: Previously sent to proteomics analysis | Ascites in AFlab freezer | Ascites usable? (Not bloody) | ovaHRDscar | tumor purity (%)\nR2: S002_pOme | 0.0\nR3: S003_pOme | 0.0\nR4: S004_pOme | 0.0\nR5: S007_pOva | 0.0\nR6: S008_pOme1 | 0.0\nR7: S010_pOvaR | 0.0\nR8: S014_pOme | 0.0\nR9: S015_pPer | 0.0\nR10: S016_pOme | 0.0\nR11: S018_pOvaL | 0.0\nR12: S019_pOva | 0.0\nR13: S021_pOme | 0.0\nR14: S024_pOme | 0.0",
+      "metadata": {
+        "source": {
+          "filename": "32_ascites_samples_sent_summer_2025.xlsx",
+          "stem": "32_ascites_samples_sent_summer_2025",
+          "extension": ".xlsx",
+          "relative_path": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001/32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+          "size_bytes": 15037,
+          "size_human": "14.68 KB",
+          "modified": "2026-05-26T03:58:04",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "hashes": {
+            "md5": "310b3b636133b84b0f8edcd9984e3094"
+          }
+        },
+        "classification": {
+          "family": "spreadsheet",
+          "extension": ".xlsx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "extractor": "openpyxl",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "sheet_names": [
+            "Sample selection",
+            "Physical samples",
+            "Info for Varjosalo lab"
+          ],
+          "sheet_count": 3
+        },
+        "converted_at": "2026-06-05T15:28:26"
+      }
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "path": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "title": "32_Project_log.docx",
+      "has_text": true,
+      "excerpt": "Project log",
+      "metadata": {
+        "source": {
+          "filename": "32_Project_log.docx",
+          "stem": "32_Project_log",
+          "extension": ".docx",
+          "relative_path": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001/32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+          "size_bytes": 7275,
+          "size_human": "7.10 KB",
+          "modified": "2025-08-22T04:14:22",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "hashes": {
+            "md5": "f6e9f0ff445f7f2f9f36a4c42936d3fe"
+          }
+        },
+        "classification": {
+          "family": "word",
+          "extension": ".docx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "extractor": "python-docx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "paragraph_count": 6,
+          "table_count": 0,
+          "core_properties": {
+            "title": "Word Document",
+            "subject": "",
+            "author": "",
+            "keywords": "",
+            "created": null,
+            "modified": "2026-06-05T12:28:26+00:00",
+            "last_modified_by": "python-docx"
+          }
+        },
+        "converted_at": "2026-06-05T15:28:26"
+      }
+    },
+    {
+      "document_id": "db59244a94945f2a5ae09036d819518e",
+      "path": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+      "title": "CTRL samples for massspec, 0_ tumor.xlsx",
+      "has_text": true,
+      "excerpt": "R1: | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor % | Box at -80 | Slot in the box | Written on the tube\nR2: 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR3: 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR4: 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022",
+      "metadata": {
+        "source": {
+          "filename": "CTRL samples for massspec, 0_ tumor.xlsx",
+          "stem": "CTRL samples for massspec, 0_ tumor",
+          "extension": ".xlsx",
+          "relative_path": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001/32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+          "size_bytes": 7551,
+          "size_human": "7.37 KB",
+          "modified": "2025-09-02T03:57:58",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "hashes": {
+            "md5": "0a5724ad9db0299a75dee348633d7e39"
+          }
+        },
+        "classification": {
+          "family": "spreadsheet",
+          "extension": ".xlsx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "extractor": "openpyxl",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "sheet_names": [
+            "Sheet1"
+          ],
+          "sheet_count": 1
+        },
+        "converted_at": "2026-06-05T15:28:26"
+      }
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "path": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "title": "Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "has_text": true,
+      "excerpt": "R1: | Sample ID | Project_32 | Tumor % | Location Box | Location, slot | Written on our FF tube | Comment | Notes | Submission Box | Slot | NOTE\nR2: 1.0 | S002_pOme | 32_S002_pOme | 5.0 | Box1 | A2 | OME-2 16.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A1 | might be less than 20mg, all given, no tissue left\nR3: 2.0 | S003_pOme | 32_S003_pOme | 70.0 | Box1 | A3 | OME-3 17.10.19 snap-freez | SPACE",
+      "metadata": {
+        "source": {
+          "filename": "Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+          "stem": "Samples_submitted_to_Varjosalo_lab_2024_20mg",
+          "extension": ".xlsx",
+          "relative_path": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001/32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+          "size_bytes": 31119,
+          "size_human": "30.39 KB",
+          "modified": "2026-02-20T00:21:16",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "hashes": {
+            "md5": "c98711cd57ff89ec4376408d0da0fb78"
+          }
+        },
+        "classification": {
+          "family": "spreadsheet",
+          "extension": ".xlsx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "extractor": "openpyxl",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "sheet_names": [
+            "Sheet1",
+            "Sheet2"
+          ],
+          "sheet_count": 2
+        },
+        "converted_at": "2026-06-05T15:28:26"
+      }
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "path": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "title": "Samples_Table_forVarjosalo_lab.xlsx",
+      "has_text": true,
+      "excerpt": "R1: | Sample ID | Tumor % | Submission Box | Slot\nR2: 1.0 | S002_pOme | 5.0 | 1.0 | A1\nR3: 2.0 | S003_pOme | 70.0 | 1.0 | A2\nR4: 3.0 | S004_pOme | 10-15 | 1.0 | A3\nR5: 4.0 | S007_pOva | 80.0 | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 15-20 | 1.0 | A5\nR7: 6.0 | S010_pOvaR | 80.0 | 1.0 | A6\nR8: 7.0 | S014_pOme | 70.0 | 1.0 | A7\nR9: 8.0 | S015_pPer | 10.0 | 1.0 | A8\nR10: 9.0 | S016_pOme | 80.0 | 1.0 | A9\nR11:",
+      "metadata": {
+        "source": {
+          "filename": "Samples_Table_forVarjosalo_lab.xlsx",
+          "stem": "Samples_Table_forVarjosalo_lab",
+          "extension": ".xlsx",
+          "relative_path": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/32_Proteomics_Varjosalo_collab_2024-20260602T172052Z-3-001/32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+          "size_bytes": 8736,
+          "size_human": "8.53 KB",
+          "modified": "2025-03-27T05:43:32",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "hashes": {
+            "md5": "ade9088b467dbc312453d748e1e3dba1"
+          }
+        },
+        "classification": {
+          "family": "spreadsheet",
+          "extension": ".xlsx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "extractor": "openpyxl",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "sheet_names": [
+            "Sheet1"
+          ],
+          "sheet_count": 1
+        },
+        "converted_at": "2026-06-05T15:28:26"
+      }
+    }
+  ],
+  "vector_chunks": [
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 0,
+      "text": "R1: Previously sent to proteomics analysis | Ascites in AFlab freezer | Ascites usable? (Not bloody) | ovaHRDscar | tumor purity (%)\nR2: S002_pOme | 0.0\nR3: S003_pOme | 0.0\nR4: S004_pOme | 0.0\nR5: S007_pOva | 0.0\nR6: S008_pOme1 | 0.0\nR7: S010_pOvaR | 0.0\nR8: S014_pOme | 0.0\nR9: S015_pPer | 0.0\nR10: S016_pOme | 0.0\nR11: S018_pOvaL | 0.0\nR12: S019_pOva | 0.0\nR13: S021_pOme | 0.0\nR14: S024_pOme | 0.0\nR15: S027_pOme | 0.0\nR16: S028_pAdn | 0.0\nR17: S032_pOme | 0.0\nR18: S033_pOme | 0.0\nR19: S034_pAdn | 0.0\nR20: S036_pOme | 0.0\nR21: S039_pOme | 0.0\nR22: S040_pOva | 0.0\nR23: S044_pOme | 0.0\nR24: S047_pOme | 0.0\nR25: S051_pOme | 1.0 | 0.0\nR26: S060_pOme | 1.0 | 0.0\nR27: S061_pOme | 1.0 | 0.0\nR28: S071_pOme | 1.0 | 0.0\nR29: S078_pOme | 1.0 | 0.0\nR30: S142_pOvaL | 1.0 | 1.0 | HRP (HRD at HUSlab) | 90.0\nR31: S215_pAdnR | 1.0 | 1.0 | HRD | 90.0\nR32: S086_pOme | 1.0 | 0.0\nR33: S201_pOva1 | 1.0 | 1.0 | HRP | 80.0\nR34: S241_pOvaR | 1.0 | 1.0 | HRP | 80.0\nR35: S096_pOme | 0.0\nR36: S097_pAdnL | 0.0\nR37: S102_pOme2 | 1.0 | 0.0\nR38: S228_pOme1 | 1.0 | 1.0 | HRD | 75.0\nR39: S134_pOvaR | 1.0 | 1.0 | HRP | 70.0\nR40: S117_pOme | 1.0 | 0.0\nR41: S090_pOme | 1.0 | 1.0 | HRD | 50.0\nR42: S147_pOvaR | 1.0 | 1.0 | HRD | 50.0\nR43: S135_pAdnL | 1.0 | 0.0\nR44: S137_pAdnL | 1.0 | 0.0\nR45: S138_pAdn | 1.0 | -\nR46: S139_pPer | 0.0\nR47: S141_pOva | 1.0 | 0.0\nR48: S153_pOme | 1.0 | 1.0 | HRP | 50.0"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 1,
+      "text": "R1: Previously sent to proteomics analysis | Ascites in AFlab freezer | Ascites usable? (Not bloody) | ovaHRDscar | tumor purity (%)\nR2: S002_pOme | 0.0\nR3: S003_pOme | 0.0\nR4: S004_pOme | 0.0\nR5: S007_pOva | 0.0\nR6: S008_pOme1 | 0.0\nR7: S010_pOvaR | 0.0\nR8: S014_pOme | 0.0\nR9: S015_pPer | 0.0\nR10: S016_pOme | 0.0\nR11: S018_pOvaL | 0.0\nR12: S019_pOva | 0.0\nR13: S021_pOme | 0.0\nR14: S024_pOme | 0.0\nR15: S027_pOme | 0.0\nR16: S028_pAdn | 0.0\nR17: S032_pOme | 0.0\nR18: S033_pOme | 0.0\nR19: S034_pAdn | 0.0\nR20: S036_pOme | 0.0\nR21: S039_pOme | 0.0\nR22: S040_pOva | 0.0\nR23: S044_pOme | 0.0\nR24: S047_pOme | 0.0\nR25: S051_pOme | 1.0 | 0.0\nR26: S060_pOme | 1.0 | 0.0\nR27: S061_pOme | 1.0 | 0.0\nR28: S071_pOme | 1.0 | 0.0\nR29: S078_pOme | 1.0 | 0.0\nR30: S142_pOvaL | 1.0 | 1.0 | HRP (HRD at HUSlab) | 90.0\nR31: S215_pAdnR | 1.0 | 1.0 | HRD | 90.0\nR32: S086_pOme | 1.0 | 0.0\nR33: S201_pOva1 | 1.0 | 1.0 | HRP | 80.0\nR34: S241_pOvaR | 1.0 | 1.0 | HRP | 80.0\nR35: S096_pOme | 0.0\nR36: S097_pAdnL | 0.0\nR37: S102_pOme2 | 1.0 | 0.0\nR38: S228_pOme1 | 1.0 | 1.0 | HRD | 75.0\nR39: S134_pOvaR | 1.0 | 1.0 | HRP | 70.0\nR40: S117_pOme | 1.0 | 0.0\nR41: S090_pOme | 1.0 | 1.0 | HRD | 50.0\nR42: S147_pOvaR | 1.0 | 1.0 | HRD | 50.0\nR43: S135_pAdnL | 1.0 | 0.0\nR44: S137_pAdnL | 1.0 | 0.0\nR45: S138_pAdn | 1.0 | -\nR46: S139_pPer | 0.0\nR47: S141_pOva | 1.0 | 0.0\nR48: S153_pOme | 1.0 | 1.0 | HRP | 50.0"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 2,
+      "text": "HRD | 50.0\nR43: S135_pAdnL | 1.0 | 0.0\nR44: S137_pAdnL | 1.0 | 0.0\nR45: S138_pAdn | 1.0 | -\nR46: S139_pPer | 0.0\nR47: S141_pOva | 1.0 | 0.0\nR48: S153_pOme | 1.0 | 1.0 | HRP | 50.0\nR49: S145_pOme_BM | 1.0 | -\nR50: S318_pPer | 1.0 | 1.0 | HRD | 50.0\nR51: S329_pOvaR | 1.0 | 1.0 | HRD | 50.0\nR52: S186_pOme | 1.0 | 1.0 | HRD | 45.0\nR53: S152_pOme | 1.0 | 0.0\nR54: S092_pOme | 1.0 | 1.0 | HRD | 40.0\nR55: S156_pAdnR | 1.0 | 0.0\nR56: S149_pOme | 1.0 | 1.0 | HRD | 40.0\nR57: S190_pOme | 0.0\nR58: S203_pOme | 1.0 | 1.0 | HRP | 40.0\nR59: S340_pOvaL | 1.0 | 1.0 | HRP | 40.0\nR60: S333_pOme2 | 1.0 | 1.0 | HRP | 30.0\nR61: S119_pOme | 1.0 | 1.0 | HRP | 25.0\nR62: S230_pOme | 0.0\nR63: S239_pOme | 1.0 | 0.0\nR64: S242_pOme | 1.0 | 1.0 | HRD | 25.0\nR65: S114_pOme | 1.0 | 1.0 | HRD | 15.0\nR66: S245_pAdn | 0.0\nR67: S248_pOme | 0.0\nR68: S255_pOme | 1.0 | 0.0\nR69: S269_pAdnL | 0.0\nR70: S270_pAdn | 0.0\nR71: S285_pOme2 | 1.0 | 0.0\nR72: S287_pMes | 1.0 | 0.0\nR73: S289_pPer | 1.0 | 0.0\nR74: S290_pOme | 1.0 | -\nR75: S310_pOme | 1.0 | 0.0\nR76: S085_pOme | 1.0 | 1.0 | HRD | 10.0\nR77: S321_pOme | 1.0 | 0.0\nR78: S327_pOvaL | 1.0 | 0.0\nR79: S109_pOme | 1.0 | 1.0 | HRP | 10.0\nR80: S148_pOme | 1.0 | 1.0 | HRP | 10.0\nR81: S079_pOme | 1.0 | 1.0 | HRD | 5.0\nR82: S341_pOme | 1.0 | -\nR83: S345_pOme | 1.0 | 0.0\nR84: S357_pAdnR | 1.0 | 0.0\nR85: S360_pOvaL | 1.0 | 0.0\nR86: S363_pAdnL | 1.0 | 0.0\nR88: | | | HRD to be sent"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 3,
+      "text": "HRD | 50.0\nR43: S135_pAdnL | 1.0 | 0.0\nR44: S137_pAdnL | 1.0 | 0.0\nR45: S138_pAdn | 1.0 | -\nR46: S139_pPer | 0.0\nR47: S141_pOva | 1.0 | 0.0\nR48: S153_pOme | 1.0 | 1.0 | HRP | 50.0\nR49: S145_pOme_BM | 1.0 | -\nR50: S318_pPer | 1.0 | 1.0 | HRD | 50.0\nR51: S329_pOvaR | 1.0 | 1.0 | HRD | 50.0\nR52: S186_pOme | 1.0 | 1.0 | HRD | 45.0\nR53: S152_pOme | 1.0 | 0.0\nR54: S092_pOme | 1.0 | 1.0 | HRD | 40.0\nR55: S156_pAdnR | 1.0 | 0.0\nR56: S149_pOme | 1.0 | 1.0 | HRD | 40.0\nR57: S190_pOme | 0.0\nR58: S203_pOme | 1.0 | 1.0 | HRP | 40.0\nR59: S340_pOvaL | 1.0 | 1.0 | HRP | 40.0\nR60: S333_pOme2 | 1.0 | 1.0 | HRP | 30.0\nR61: S119_pOme | 1.0 | 1.0 | HRP | 25.0\nR62: S230_pOme | 0.0\nR63: S239_pOme | 1.0 | 0.0\nR64: S242_pOme | 1.0 | 1.0 | HRD | 25.0\nR65: S114_pOme | 1.0 | 1.0 | HRD | 15.0\nR66: S245_pAdn | 0.0\nR67: S248_pOme | 0.0\nR68: S255_pOme | 1.0 | 0.0\nR69: S269_pAdnL | 0.0\nR70: S270_pAdn | 0.0\nR71: S285_pOme2 | 1.0 | 0.0\nR72: S287_pMes | 1.0 | 0.0\nR73: S289_pPer | 1.0 | 0.0\nR74: S290_pOme | 1.0 | -\nR75: S310_pOme | 1.0 | 0.0\nR76: S085_pOme | 1.0 | 1.0 | HRD | 10.0\nR77: S321_pOme | 1.0 | 0.0\nR78: S327_pOvaL | 1.0 | 0.0\nR79: S109_pOme | 1.0 | 1.0 | HRP | 10.0\nR80: S148_pOme | 1.0 | 1.0 | HRP | 10.0\nR81: S079_pOme | 1.0 | 1.0 | HRD | 5.0\nR82: S341_pOme | 1.0 | -\nR83: S345_pOme | 1.0 | 0.0\nR84: S357_pAdnR | 1.0 | 0.0\nR85: S360_pOvaL | 1.0 | 0.0\nR86: S363_pAdnL | 1.0 | 0.0\nR88: | | | HRD to be sent"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 4,
+      "text": "| 1.0 | HRD | 5.0\nR82: S341_pOme | 1.0 | -\nR83: S345_pOme | 1.0 | 0.0\nR84: S357_pAdnR | 1.0 | 0.0\nR85: S360_pOvaL | 1.0 | 0.0\nR86: S363_pAdnL | 1.0 | 0.0\nR88: | | | HRD to be sent\nR89: | | | HRP to be sent"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 5,
+      "text": "| 1.0 | HRD | 5.0\nR82: S341_pOme | 1.0 | -\nR83: S345_pOme | 1.0 | 0.0\nR84: S357_pAdnR | 1.0 | 0.0\nR85: S360_pOvaL | 1.0 | 0.0\nR86: S363_pAdnL | 1.0 | 0.0\nR88: | | | HRD to be sent\nR89: | | | HRP to be sent"
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 0,
+      "text": "Project log"
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 1,
+      "text": "Project log"
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 2,
+      "text": "Project is done in collaboration with Markku Varjosalo lab, Ada and Ziqi selected the samples - from SPACE and Ada’a CellCycle-IDS projects."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 3,
+      "text": "Project is done in collaboration with Markku Varjosalo lab, Ada and Ziqi selected the samples - from SPACE and Ada’a CellCycle-IDS projects."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 4,
+      "text": "27.6."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 5,
+      "text": "27.6."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 6,
+      "text": "Joonas selected and collected 10 PDS ascites supernatant samples for Varjosalo lab - 32_ascites_samples_sent_summer_2025"
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 7,
+      "text": "Joonas selected and collected 10 PDS ascites supernatant samples for Varjosalo lab - 32_ascites_samples_sent_summer_2025"
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 8,
+      "text": "5 HRD and 5 HRP samples, highest tumor purities possible, low/no blood in ascites. Samples thawed, 100 µl aliquot taken to 2 ml Protein LoBind Tubes, Eppendorf, Cat.022431102 in CC hood, and refrozen in -80 in preparation for delivery on 30.6."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 9,
+      "text": "5 HRD and 5 HRP samples, highest tumor purities possible, low/no blood in ascites. Samples thawed, 100 µl aliquot taken to 2 ml Protein LoBind Tubes, Eppendorf, Cat.022431102 in CC hood, and refrozen in -80 in preparation for delivery on 30.6."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 10,
+      "text": "Started: March 2025 - Anastasia submitted 20mg of 96xFF tissues for proteomics analysis, in 2 ml Protein LoBind Tubes, Eppendorf, Cat.022431102, provided by Markku."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 11,
+      "text": "Started: March 2025 - Anastasia submitted 20mg of 96xFF tissues for proteomics analysis, in 2 ml Protein LoBind Tubes, Eppendorf, Cat.022431102, provided by Markku."
+    },
+    {
+      "document_id": "db59244a94945f2a5ae09036d819518e",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+      "chunk_index": 0,
+      "text": "R1: | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor % | Box at -80 | Slot in the box | Written on the tube\nR2: 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR3: 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR4: 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022 AN\nR5: 3.0 | PDS | S191 | S191_pAdnR | Adnexa Right | ca clarocellulare, high grade | 0.0 | Box 13 | C8 | S191_pAdnR_RNA1, 23.11.2022 EAP\nR6: 4.0 | PDS | S246 | S246_pOme | Omentum | HGSC | 0 % | Box 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR7: 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS\nR8: 6.0 | PDS | S353 | S353_pOme | Omentum | mucinous borderline | 0 % | Box 18 | H7 | S353_pOme_RNA1, 30.11.2023 AN\nR9: 7.0 | PDS | S359 | S359_pOme | Omentum | HGSC | 0 % | Box 19 | B2 | S359_pOme_RNA1, 18.12.2023 SS\nR10: 8.0 | PDS | S457 | S457_pTub | Normal Tube | fibroma/cystadenoma mucinosum | 0 % (normal tube, looks good) | Box 21 | F6 | S457_pTub (normal tube), 29.05.2024 ME\nR11: 9.0 | PDS | S476 | S476_pTub | Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL"
+    },
+    {
+      "document_id": "db59244a94945f2a5ae09036d819518e",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+      "chunk_index": 1,
+      "text": "R1: | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor % | Box at -80 | Slot in the box | Written on the tube\nR2: 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR3: 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR4: 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022 AN\nR5: 3.0 | PDS | S191 | S191_pAdnR | Adnexa Right | ca clarocellulare, high grade | 0.0 | Box 13 | C8 | S191_pAdnR_RNA1, 23.11.2022 EAP\nR6: 4.0 | PDS | S246 | S246_pOme | Omentum | HGSC | 0 % | Box 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR7: 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS\nR8: 6.0 | PDS | S353 | S353_pOme | Omentum | mucinous borderline | 0 % | Box 18 | H7 | S353_pOme_RNA1, 30.11.2023 AN\nR9: 7.0 | PDS | S359 | S359_pOme | Omentum | HGSC | 0 % | Box 19 | B2 | S359_pOme_RNA1, 18.12.2023 SS\nR10: 8.0 | PDS | S457 | S457_pTub | Normal Tube | fibroma/cystadenoma mucinosum | 0 % (normal tube, looks good) | Box 21 | F6 | S457_pTub (normal tube), 29.05.2024 ME\nR11: 9.0 | PDS | S476 | S476_pTub | Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL"
+    },
+    {
+      "document_id": "db59244a94945f2a5ae09036d819518e",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+      "chunk_index": 2,
+      "text": "Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL\nR12: 10.0 | PDS | S511 | S511_pOme | Omentum | LGSC | 0.0 | Box 25 | B5 | S511_pOme_RNA1, 31.12.2024 AL\nR13: 11.0 | PDS | S512 | S512_pAdnL | Adnexa Left | borderline serous cystadenoma | 0 % (benign tube) | Box 25 | C4 | S512_pAdnL_RNA1, 7.01.2025 AL\nR14: 12.0 | PDS | S544 | S544_pOme | Omentum | dedifferentiated carcinoma of adnexal origin | 0.0 | Box 27 | E1 | S544_pOme_RNA1, 9.04.2025 AL\nR15: | Set of 12 samples given to Markku on dry ice 2.9.2025AL\nR19: | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done\nR20: | PDS | S334 | S334_pAdnR | Adnexa Right | serous borderline tumor | 10 %\nR21: | PDS | S334 | S334_pOme | Omentum | serous borderline tumor | ?\nR22: | PDS | S381 | S381_pAdnR | Adnexa | mucinous borderline | 0.01\nR23: | PDS | S462 | S462_pAdnR | Ovary Right | mucinous borderline | 0.8\nR24: | PDS | S558 | S558_pOvaR | Ovary Right | serous borderline tumor | H&E in process"
+    },
+    {
+      "document_id": "db59244a94945f2a5ae09036d819518e",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+      "chunk_index": 3,
+      "text": "Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL\nR12: 10.0 | PDS | S511 | S511_pOme | Omentum | LGSC | 0.0 | Box 25 | B5 | S511_pOme_RNA1, 31.12.2024 AL\nR13: 11.0 | PDS | S512 | S512_pAdnL | Adnexa Left | borderline serous cystadenoma | 0 % (benign tube) | Box 25 | C4 | S512_pAdnL_RNA1, 7.01.2025 AL\nR14: 12.0 | PDS | S544 | S544_pOme | Omentum | dedifferentiated carcinoma of adnexal origin | 0.0 | Box 27 | E1 | S544_pOme_RNA1, 9.04.2025 AL\nR15: | Set of 12 samples given to Markku on dry ice 2.9.2025AL\nR19: | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done\nR20: | PDS | S334 | S334_pAdnR | Adnexa Right | serous borderline tumor | 10 %\nR21: | PDS | S334 | S334_pOme | Omentum | serous borderline tumor | ?\nR22: | PDS | S381 | S381_pAdnR | Adnexa | mucinous borderline | 0.01\nR23: | PDS | S462 | S462_pAdnR | Ovary Right | mucinous borderline | 0.8\nR24: | PDS | S558 | S558_pOvaR | Ovary Right | serous borderline tumor | H&E in process"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 0,
+      "text": "R1: | Sample ID | Project_32 | Tumor % | Location Box | Location, slot | Written on our FF tube | Comment | Notes | Submission Box | Slot | NOTE\nR2: 1.0 | S002_pOme | 32_S002_pOme | 5.0 | Box1 | A2 | OME-2 16.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A1 | might be less than 20mg, all given, no tissue left\nR3: 2.0 | S003_pOme | 32_S003_pOme | 70.0 | Box1 | A3 | OME-3 17.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A2\nR4: 3.0 | S004_pOme | 32_S004_pOme | 10-15 | Box1 | A4 | OME-4 17.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A3\nR5: 4.0 | S007_pOva | 32_S007_pOva | 80.0 | Box1 | A7 | S007_pOva 1 18.11.19 | SPACE | Ziqi added | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 32_S008_pOme1 | 15-20 | Box1 | A9 | S008_pOme DNA 1 2.12.19 | SPACE | Ziqi added | 1.0 | A5 | tiny piece left\nR7: 6.0 | S010_pOvaR | 32_S010_pOvaR | 80.0 | Box1 | B3 | S010_pOvaR 10.12.2019 EPE | SPACE | Ziqi added | 1.0 | A6 | all given, nothing left\nR8: 7.0 | S014_pOme | 32_S014_pOme | 70.0 | Box1 | C4 | S014_pOme DNA-1 13.01.2020 | SPACE | Ziqi added | 1.0 | A7\nR9: 8.0 | S015_pPer | 32_S015_pPer | 10.0 | Box1 | C7 | S015_Perit DNA 14.01.20 | SPACE | Ziqi added | 1.0 | A8\nR10: 9.0 | S016_pOme | 32_S016_pOme | 80.0 | Box1 | D4 | RNA S016_pOme 22.1.2020 | SPACE | Ziqi added | 1.0 | A9"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 1,
+      "text": "R1: | Sample ID | Project_32 | Tumor % | Location Box | Location, slot | Written on our FF tube | Comment | Notes | Submission Box | Slot | NOTE\nR2: 1.0 | S002_pOme | 32_S002_pOme | 5.0 | Box1 | A2 | OME-2 16.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A1 | might be less than 20mg, all given, no tissue left\nR3: 2.0 | S003_pOme | 32_S003_pOme | 70.0 | Box1 | A3 | OME-3 17.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A2\nR4: 3.0 | S004_pOme | 32_S004_pOme | 10-15 | Box1 | A4 | OME-4 17.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A3\nR5: 4.0 | S007_pOva | 32_S007_pOva | 80.0 | Box1 | A7 | S007_pOva 1 18.11.19 | SPACE | Ziqi added | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 32_S008_pOme1 | 15-20 | Box1 | A9 | S008_pOme DNA 1 2.12.19 | SPACE | Ziqi added | 1.0 | A5 | tiny piece left\nR7: 6.0 | S010_pOvaR | 32_S010_pOvaR | 80.0 | Box1 | B3 | S010_pOvaR 10.12.2019 EPE | SPACE | Ziqi added | 1.0 | A6 | all given, nothing left\nR8: 7.0 | S014_pOme | 32_S014_pOme | 70.0 | Box1 | C4 | S014_pOme DNA-1 13.01.2020 | SPACE | Ziqi added | 1.0 | A7\nR9: 8.0 | S015_pPer | 32_S015_pPer | 10.0 | Box1 | C7 | S015_Perit DNA 14.01.20 | SPACE | Ziqi added | 1.0 | A8\nR10: 9.0 | S016_pOme | 32_S016_pOme | 80.0 | Box1 | D4 | RNA S016_pOme 22.1.2020 | SPACE | Ziqi added | 1.0 | A9"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 2,
+      "text": "ox1 | C7 | S015_Perit DNA 14.01.20 | SPACE | Ziqi added | 1.0 | A8\nR10: 9.0 | S016_pOme | 32_S016_pOme | 80.0 | Box1 | D4 | RNA S016_pOme 22.1.2020 | SPACE | Ziqi added | 1.0 | A9\nR11: 10.0 | S018_pOvaL | 32_S018_pOvaL | 30.0 | Box1 | D8 | DNA1 S018_pOva 27.1.2020 | SPACE | Ziqi added | 1.0 | B1 | no L written on the tube, but block is S018_pOvaL\nR12: 11.0 | S019_pOva | 32_S019_pOva | 20.0 | Box1 | E1 | S019_pOva DNA1 04.02.20 | SPACE | Ziqi added | 1.0 | B2\nR13: 12.0 | S021_pOme | 32_S021_pOme | 30.0 | Box1 | E6 | S021_pOme_DNA1 25.2.20 | SPACE | Ziqi added | 1.0 | B3\nR14: 13.0 | S024_pOme | 32_S024_pOme | 50.0 | Box1 | F4 | S024_pOme_RNA 09.3.20 | SPACE | Ziqi added | 1.0 | B4\nR15: 14.0 | S027_pOme | 32_S027_pOme | 20? | Box1 | G5 | S027_pOme_RNA 20.4.20 | SPACE | Ziqi added | 1.0 | B5\nR16: 15.0 | S028_pAdn | 32_S028_pAdn | 50-60 | Box1 | G8 | S028_pAdn_RNA 23.4.20 | SPACE | Ziqi added | 1.0 | B6\nR17: 16.0 | S032_pOme | 32_S032_pOme | 40-50 | Box1 | I1 | S032_pOme_RNA 06.06.20 | SPACE | Ziqi added | 1.0 | B7\nR18: 17.0 | S033_pOme | 32_S033_pOme | 80-85 | Box2 | A6 | S033_pOme_RNA 08.06.20 | SPACE | Ziqi added | 1.0 | B8\nR19: 18.0 | S034_pAdn | 32_S034_pAdn | 60.0 | Box2 | A9 | S034_pAdn_rNA 15.6.20 | SPACE | Ziqi added | 1.0 | B9\nR20: 19.0 | S036_pOme | 32_S036_pOme | max 10 | Box2 | C1 | S036_pOme_RNA1 28.7.20 MS | SPACE | Ziqi added | 1.0 | C1"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 3,
+      "text": "ox1 | C7 | S015_Perit DNA 14.01.20 | SPACE | Ziqi added | 1.0 | A8\nR10: 9.0 | S016_pOme | 32_S016_pOme | 80.0 | Box1 | D4 | RNA S016_pOme 22.1.2020 | SPACE | Ziqi added | 1.0 | A9\nR11: 10.0 | S018_pOvaL | 32_S018_pOvaL | 30.0 | Box1 | D8 | DNA1 S018_pOva 27.1.2020 | SPACE | Ziqi added | 1.0 | B1 | no L written on the tube, but block is S018_pOvaL\nR12: 11.0 | S019_pOva | 32_S019_pOva | 20.0 | Box1 | E1 | S019_pOva DNA1 04.02.20 | SPACE | Ziqi added | 1.0 | B2\nR13: 12.0 | S021_pOme | 32_S021_pOme | 30.0 | Box1 | E6 | S021_pOme_DNA1 25.2.20 | SPACE | Ziqi added | 1.0 | B3\nR14: 13.0 | S024_pOme | 32_S024_pOme | 50.0 | Box1 | F4 | S024_pOme_RNA 09.3.20 | SPACE | Ziqi added | 1.0 | B4\nR15: 14.0 | S027_pOme | 32_S027_pOme | 20? | Box1 | G5 | S027_pOme_RNA 20.4.20 | SPACE | Ziqi added | 1.0 | B5\nR16: 15.0 | S028_pAdn | 32_S028_pAdn | 50-60 | Box1 | G8 | S028_pAdn_RNA 23.4.20 | SPACE | Ziqi added | 1.0 | B6\nR17: 16.0 | S032_pOme | 32_S032_pOme | 40-50 | Box1 | I1 | S032_pOme_RNA 06.06.20 | SPACE | Ziqi added | 1.0 | B7\nR18: 17.0 | S033_pOme | 32_S033_pOme | 80-85 | Box2 | A6 | S033_pOme_RNA 08.06.20 | SPACE | Ziqi added | 1.0 | B8\nR19: 18.0 | S034_pAdn | 32_S034_pAdn | 60.0 | Box2 | A9 | S034_pAdn_rNA 15.6.20 | SPACE | Ziqi added | 1.0 | B9\nR20: 19.0 | S036_pOme | 32_S036_pOme | max 10 | Box2 | C1 | S036_pOme_RNA1 28.7.20 MS | SPACE | Ziqi added | 1.0 | C1"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 4,
+      "text": "| A9 | S034_pAdn_rNA 15.6.20 | SPACE | Ziqi added | 1.0 | B9\nR20: 19.0 | S036_pOme | 32_S036_pOme | max 10 | Box2 | C1 | S036_pOme_RNA1 28.7.20 MS | SPACE | Ziqi added | 1.0 | C1\nR21: 20.0 | S039_pOme | 32_S039_pOme | 20-25 | Box2 | E2 | S039_pOme_RNA1 18.8.20 | SPACE | Ziqi added | 1.0 | C2\nR22: 21.0 | S040_pOva | 32_S040_pOva | 60.0 | Box2 | E8 | S040_pOva_RNA1 20.8.20 | SPACE | Ziqi added | 1.0 | C3\nR23: 22.0 | S044_pOme | 32_S044_pOme | 70.0 | Box2 | H4 | S044_pOme_RNA1 5.10.20 | SPACE | Ziqi added | 1.0 | C4\nR24: 23.0 | S047_pOme | 32_S047_pOme | 50.0 | Box3 | C6 | S047_pOme_RNa1 21.10.20 | SPACE | Ziqi added | 1.0 | C5\nR25: 24.0 | S051_pOme | 32_S051_pOme | 25.0 | Box3 | F2 | S051_pOme_RNA1 30.10.20 | SPACE | Ziqi added | 1.0 | C6\nR26: 25.0 | S060_pOme | 32_S060_pOme | 10-15 | Box4 | C6 | S060_pOme_RNA1 28.12.20 | SPACE | Ziqi added | 1.0 | C7\nR27: 26.0 | S061_pOme | 32_S061_pOme | 90.0 | Box4 | D3 | S061_pOme_RNA1 04.01.21 | SPACE | Ziqi added | 1.0 | C8\nR28: 27.0 | S071_pOme | 32_S071_pOme | 15.0 | Box5 | C1 | S071_pOme_RNA1 08.02.21 | SPACE | Ziqi added | 1.0 | C9\nR29: 28.0 | S078_pOme | 32_S078_pOme | 30.0 | Box5 | G3 | S078_pOme_DNA1 16.3.21 NC | SPACE | Ziqi added | 1.0 | D1\nR30: 29.0 | S079_pOme | 32_S079_pOme | 5.0 | Box5 | G9 | S079_pOme_RNA1 23.3.21 NC | SPACE | Ziqi added | 1.0 | D2"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 5,
+      "text": "| A9 | S034_pAdn_rNA 15.6.20 | SPACE | Ziqi added | 1.0 | B9\nR20: 19.0 | S036_pOme | 32_S036_pOme | max 10 | Box2 | C1 | S036_pOme_RNA1 28.7.20 MS | SPACE | Ziqi added | 1.0 | C1\nR21: 20.0 | S039_pOme | 32_S039_pOme | 20-25 | Box2 | E2 | S039_pOme_RNA1 18.8.20 | SPACE | Ziqi added | 1.0 | C2\nR22: 21.0 | S040_pOva | 32_S040_pOva | 60.0 | Box2 | E8 | S040_pOva_RNA1 20.8.20 | SPACE | Ziqi added | 1.0 | C3\nR23: 22.0 | S044_pOme | 32_S044_pOme | 70.0 | Box2 | H4 | S044_pOme_RNA1 5.10.20 | SPACE | Ziqi added | 1.0 | C4\nR24: 23.0 | S047_pOme | 32_S047_pOme | 50.0 | Box3 | C6 | S047_pOme_RNa1 21.10.20 | SPACE | Ziqi added | 1.0 | C5\nR25: 24.0 | S051_pOme | 32_S051_pOme | 25.0 | Box3 | F2 | S051_pOme_RNA1 30.10.20 | SPACE | Ziqi added | 1.0 | C6\nR26: 25.0 | S060_pOme | 32_S060_pOme | 10-15 | Box4 | C6 | S060_pOme_RNA1 28.12.20 | SPACE | Ziqi added | 1.0 | C7\nR27: 26.0 | S061_pOme | 32_S061_pOme | 90.0 | Box4 | D3 | S061_pOme_RNA1 04.01.21 | SPACE | Ziqi added | 1.0 | C8\nR28: 27.0 | S071_pOme | 32_S071_pOme | 15.0 | Box5 | C1 | S071_pOme_RNA1 08.02.21 | SPACE | Ziqi added | 1.0 | C9\nR29: 28.0 | S078_pOme | 32_S078_pOme | 30.0 | Box5 | G3 | S078_pOme_DNA1 16.3.21 NC | SPACE | Ziqi added | 1.0 | D1\nR30: 29.0 | S079_pOme | 32_S079_pOme | 5.0 | Box5 | G9 | S079_pOme_RNA1 23.3.21 NC | SPACE | Ziqi added | 1.0 | D2"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 6,
+      "text": "| G3 | S078_pOme_DNA1 16.3.21 NC | SPACE | Ziqi added | 1.0 | D1\nR30: 29.0 | S079_pOme | 32_S079_pOme | 5.0 | Box5 | G9 | S079_pOme_RNA1 23.3.21 NC | SPACE | Ziqi added | 1.0 | D2\nR31: 30.0 | S085_pOme | 32_S085_pOme | 10-15 | Box6 | E1 | S085_pOme_RNA1 14.4.21 SS | SPACE | Ziqi added | 1.0 | D3\nR32: 31.0 | S086_pOme | 32_S086_pOme | 25-30 | Box6 | E7 | S086_pOme_RNA1 26.4.21 eap | SPACE | Ziqi added | 1.0 | D4\nR33: 32.0 | S090_pOme | 32_S090_pOme | 70.0 | Box6 | H7 | S090_pOme_RNA1 12.5.21 eap | SPACE | Ziqi added | 1.0 | D5\nR34: 33.0 | S092_pOme | 32_S092_pOme | 40-50 | Box7 | A9 | S092_pOme_RNA1 18.5.21 eap | SPACE | Ziqi added | 1.0 | D6\nR35: 34.0 | S096_pOme | 32_S096_pOme | 20.0 | Box7 | E3 | S096_pOme_RNA1 21.6.21 SS | SPACE | Ziqi added | 1.0 | D7\nR36: 35.0 | S097_pAdnL | 32_S097_pAdnL | 40.0 | Box7 | E9 | S097_pAdnL_RNA1 22.6.21 SS | SPACE | Ziqi added | 1.0 | D8\nR37: 36.0 | S102_pOme2 | 32_S102_pOme2 | 60.0 | Box7 | I9 | S102_pOme2_RNA1 18.8.21 eap | SPACE | Ziqi added | 1.0 | D9\nR38: 37.0 | S109_pOme | 32_S109_pOme | max 10 | Box8 | C8 | S109_pOme_RNA1 04.10.21 EAP | SPACE | Ziqi added | 1.0 | E1\nR39: 38.0 | S114_pOme | 32_S114_pOme | 40.0 | Box8 | H9 | S114_pOme_RNA1 04.11.21 eap SD | SPACE | Ziqi added | 1.0 | E2\nR40: 39.0 | S117_pOme | 32_S117_pOme | 25.0 | Box9 | C3 | S117_pOme_RNA1 21.11.21 eap, SD | SPACE | Ziqi added | 1.0 | E3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 7,
+      "text": "| G3 | S078_pOme_DNA1 16.3.21 NC | SPACE | Ziqi added | 1.0 | D1\nR30: 29.0 | S079_pOme | 32_S079_pOme | 5.0 | Box5 | G9 | S079_pOme_RNA1 23.3.21 NC | SPACE | Ziqi added | 1.0 | D2\nR31: 30.0 | S085_pOme | 32_S085_pOme | 10-15 | Box6 | E1 | S085_pOme_RNA1 14.4.21 SS | SPACE | Ziqi added | 1.0 | D3\nR32: 31.0 | S086_pOme | 32_S086_pOme | 25-30 | Box6 | E7 | S086_pOme_RNA1 26.4.21 eap | SPACE | Ziqi added | 1.0 | D4\nR33: 32.0 | S090_pOme | 32_S090_pOme | 70.0 | Box6 | H7 | S090_pOme_RNA1 12.5.21 eap | SPACE | Ziqi added | 1.0 | D5\nR34: 33.0 | S092_pOme | 32_S092_pOme | 40-50 | Box7 | A9 | S092_pOme_RNA1 18.5.21 eap | SPACE | Ziqi added | 1.0 | D6\nR35: 34.0 | S096_pOme | 32_S096_pOme | 20.0 | Box7 | E3 | S096_pOme_RNA1 21.6.21 SS | SPACE | Ziqi added | 1.0 | D7\nR36: 35.0 | S097_pAdnL | 32_S097_pAdnL | 40.0 | Box7 | E9 | S097_pAdnL_RNA1 22.6.21 SS | SPACE | Ziqi added | 1.0 | D8\nR37: 36.0 | S102_pOme2 | 32_S102_pOme2 | 60.0 | Box7 | I9 | S102_pOme2_RNA1 18.8.21 eap | SPACE | Ziqi added | 1.0 | D9\nR38: 37.0 | S109_pOme | 32_S109_pOme | max 10 | Box8 | C8 | S109_pOme_RNA1 04.10.21 EAP | SPACE | Ziqi added | 1.0 | E1\nR39: 38.0 | S114_pOme | 32_S114_pOme | 40.0 | Box8 | H9 | S114_pOme_RNA1 04.11.21 eap SD | SPACE | Ziqi added | 1.0 | E2\nR40: 39.0 | S117_pOme | 32_S117_pOme | 25.0 | Box9 | C3 | S117_pOme_RNA1 21.11.21 eap, SD | SPACE | Ziqi added | 1.0 | E3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 8,
+      "text": "pOme_RNA1 04.11.21 eap SD | SPACE | Ziqi added | 1.0 | E2\nR40: 39.0 | S117_pOme | 32_S117_pOme | 25.0 | Box9 | C3 | S117_pOme_RNA1 21.11.21 eap, SD | SPACE | Ziqi added | 1.0 | E3\nR41: 40.0 | S119_pOme | 32_S119_pOme | 25.0 | Box9 | D4 | S119_pOme_RNA1 07.12.2021 eap, SD | SPACE | Ziqi added | 1.0 | E4\nR42: 41.0 | S134_pOvaR | 32_S134_pOvaR | 70.0 | Box10 | F5 | S134_pOvaR_RNA1 29.3.22 AN | SPACE | Ziqi added | 1.0 | E5\nR43: 42.0 | S135_pAdnL | 32_S135_pAdnL | 25.0 | Box10 | G8 | S135_padnL_RNA1 06.04.22AN | SPACE | Ziqi added | 1.0 | E6\nR44: 43.0 | S137_pAdnL | 32_S137_pAdnL | 80.0 | Box10 | I2 | S137_pAdn_RNA1 26.4.22 AN | SPACE | Ziqi added | 1.0 | E7 | S137_pAdn, no L on the tube or in Benchling/FFPE block, but says AdnL on patient sticker\nR45: 44.0 | S138_pAdn | 32_S138_pAdn | 50.0 | Box11 | A5 | S138_pAdn_RNA1 02.05.22 aN | SPACE | Ziqi added | 1.0 | E8\nR46: 45.0 | S139_pPer | 32_S139_pPer | 10.0 | Box11 | B2 | S139_pPer_DNA1 2.5.22 MS | SPACE | Ziqi added | 1.0 | E9\nR47: 46.0 | S141_pOva | 32_S141_pOva | 90.0 | Box11 | C8 | S141_pOva_RNA1 16.5.22 eap | SPACE | Ziqi added | 1.0 | F1\nR48: 47.0 | S142_pOvaL | 32_S142_pOvaL | 90.0 | Box11 | D5 | S142_pOvaL_RNA1 23.5.22 eap | SPACE | Ziqi added | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 32_S145_pOme_BM | 50.0 | Box11 | F7 | S145_pOme_RNA1 15.6.22 VV | SPACE | Ziqi added | 1.0 | F3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 9,
+      "text": "pOme_RNA1 04.11.21 eap SD | SPACE | Ziqi added | 1.0 | E2\nR40: 39.0 | S117_pOme | 32_S117_pOme | 25.0 | Box9 | C3 | S117_pOme_RNA1 21.11.21 eap, SD | SPACE | Ziqi added | 1.0 | E3\nR41: 40.0 | S119_pOme | 32_S119_pOme | 25.0 | Box9 | D4 | S119_pOme_RNA1 07.12.2021 eap, SD | SPACE | Ziqi added | 1.0 | E4\nR42: 41.0 | S134_pOvaR | 32_S134_pOvaR | 70.0 | Box10 | F5 | S134_pOvaR_RNA1 29.3.22 AN | SPACE | Ziqi added | 1.0 | E5\nR43: 42.0 | S135_pAdnL | 32_S135_pAdnL | 25.0 | Box10 | G8 | S135_padnL_RNA1 06.04.22AN | SPACE | Ziqi added | 1.0 | E6\nR44: 43.0 | S137_pAdnL | 32_S137_pAdnL | 80.0 | Box10 | I2 | S137_pAdn_RNA1 26.4.22 AN | SPACE | Ziqi added | 1.0 | E7 | S137_pAdn, no L on the tube or in Benchling/FFPE block, but says AdnL on patient sticker\nR45: 44.0 | S138_pAdn | 32_S138_pAdn | 50.0 | Box11 | A5 | S138_pAdn_RNA1 02.05.22 aN | SPACE | Ziqi added | 1.0 | E8\nR46: 45.0 | S139_pPer | 32_S139_pPer | 10.0 | Box11 | B2 | S139_pPer_DNA1 2.5.22 MS | SPACE | Ziqi added | 1.0 | E9\nR47: 46.0 | S141_pOva | 32_S141_pOva | 90.0 | Box11 | C8 | S141_pOva_RNA1 16.5.22 eap | SPACE | Ziqi added | 1.0 | F1\nR48: 47.0 | S142_pOvaL | 32_S142_pOvaL | 90.0 | Box11 | D5 | S142_pOvaL_RNA1 23.5.22 eap | SPACE | Ziqi added | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 32_S145_pOme_BM | 50.0 | Box11 | F7 | S145_pOme_RNA1 15.6.22 VV | SPACE | Ziqi added | 1.0 | F3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 10,
+      "text": "2_pOvaL_RNA1 23.5.22 eap | SPACE | Ziqi added | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 32_S145_pOme_BM | 50.0 | Box11 | F7 | S145_pOme_RNA1 15.6.22 VV | SPACE | Ziqi added | 1.0 | F3\nR50: 49.0 | S147_pOvaR | 32_S147_pOvaR | 50.0 | Box11 | G4 | S147_pOvaR_RNA1 22.6.22 VV | SPACE | Ziqi added | 1.0 | F4\nR51: 50.0 | S148_pOme | 32_S148_pOme | max 10 | Box11 | H1 | S148_pOme_RNA1 27.6.22 VV | SPACE | Ziqi added | 1.0 | F5\nR52: 51.0 | S149_pOme | 32_S149_pOme | 40.0 | Box11 | H7 | S149_pOme_RNA1 29.6.2022 sL | SPACE | Ziqi added | 1.0 | F6\nR53: 52.0 | S152_pOme | 32_S152_pOme | 25.0 | Box12 | A7 | S152_pOme_RNA1 27.7.2022 NC | SPACE | Ziqi added | 1.0 | F7\nR54: 53.0 | S153_pOme | 32_S153_pOme | 50.0 | Box12 | B4 | S153_pOme_RNA1 01.08.22AN | SPACE | Ziqi added | 1.0 | F8\nR55: 54.0 | S156_pAdnR | 32_S156_pAdnR | 70.0 | Box12 | D4 | S156_pAdnR_RNA1 22.8.22 eap | SPACE | Ziqi added | 1.0 | F9\nR56: 55.0 | S186_pOme | 32_S186_pOme | 65.0 | Box13 | A4 | S186_pOme_RNA1 8.11.22 eap | SPACE | Ziqi added | 1.0 | G1\nR57: 56.0 | S190_pOme | 32_S190_pOme | 95.0 | Box13 | C2 | S190_pOme_RNA1 22.11.22 AN | SPACE | Ziqi added | 1.0 | G2\nR58: 57.0 | S201_pOva1 | 32_S201_pOva1 | 80.0 | Box13 | E8 | S201_pOva1_RNA1 5.12.22 eap | SPACE | Ziqi added | 1.0 | G3\nR59: 58.0 | S203_pOme | 32_S203_pOme | 40.0 | Box13 | G8 | S203_pOme_RNA1 12.12.22 SP | SPACE | Ziqi added | 1.0 | G4"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 11,
+      "text": "2_pOvaL_RNA1 23.5.22 eap | SPACE | Ziqi added | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 32_S145_pOme_BM | 50.0 | Box11 | F7 | S145_pOme_RNA1 15.6.22 VV | SPACE | Ziqi added | 1.0 | F3\nR50: 49.0 | S147_pOvaR | 32_S147_pOvaR | 50.0 | Box11 | G4 | S147_pOvaR_RNA1 22.6.22 VV | SPACE | Ziqi added | 1.0 | F4\nR51: 50.0 | S148_pOme | 32_S148_pOme | max 10 | Box11 | H1 | S148_pOme_RNA1 27.6.22 VV | SPACE | Ziqi added | 1.0 | F5\nR52: 51.0 | S149_pOme | 32_S149_pOme | 40.0 | Box11 | H7 | S149_pOme_RNA1 29.6.2022 sL | SPACE | Ziqi added | 1.0 | F6\nR53: 52.0 | S152_pOme | 32_S152_pOme | 25.0 | Box12 | A7 | S152_pOme_RNA1 27.7.2022 NC | SPACE | Ziqi added | 1.0 | F7\nR54: 53.0 | S153_pOme | 32_S153_pOme | 50.0 | Box12 | B4 | S153_pOme_RNA1 01.08.22AN | SPACE | Ziqi added | 1.0 | F8\nR55: 54.0 | S156_pAdnR | 32_S156_pAdnR | 70.0 | Box12 | D4 | S156_pAdnR_RNA1 22.8.22 eap | SPACE | Ziqi added | 1.0 | F9\nR56: 55.0 | S186_pOme | 32_S186_pOme | 65.0 | Box13 | A4 | S186_pOme_RNA1 8.11.22 eap | SPACE | Ziqi added | 1.0 | G1\nR57: 56.0 | S190_pOme | 32_S190_pOme | 95.0 | Box13 | C2 | S190_pOme_RNA1 22.11.22 AN | SPACE | Ziqi added | 1.0 | G2\nR58: 57.0 | S201_pOva1 | 32_S201_pOva1 | 80.0 | Box13 | E8 | S201_pOva1_RNA1 5.12.22 eap | SPACE | Ziqi added | 1.0 | G3\nR59: 58.0 | S203_pOme | 32_S203_pOme | 40.0 | Box13 | G8 | S203_pOme_RNA1 12.12.22 SP | SPACE | Ziqi added | 1.0 | G4"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 12,
+      "text": "| S201_pOva1_RNA1 5.12.22 eap | SPACE | Ziqi added | 1.0 | G3\nR59: 58.0 | S203_pOme | 32_S203_pOme | 40.0 | Box13 | G8 | S203_pOme_RNA1 12.12.22 SP | SPACE | Ziqi added | 1.0 | G4\nR60: 59.0 | S215_pAdnR | 32_S215_pAdnR | 90.0 | Box14 | A7 | S215_pAdnR_RNA1 21.12.22AN | SPACE | Ziqi added | 1.0 | G5 | S215_pAdnR\nR61: 60.0 | S228_pOme1 | 32_S228_pOme1 | 75.0 | Box14 | D1 | S228_pOme1_RNA1 7.2.23 | SPACE | Ziqi added | 1.0 | G6\nR62: 61.0 | S230_pOme | 32_S230_pOme | 20.0 | Box14 | E4 | S230_pOme_RNA1 13.2.23 | SPACE | Ziqi added | 1.0 | G7\nR63: 62.0 | S239_pOme | 32_S239_pOme | 80.0 | Box14 | I1 | S239_pOme_RNA1 1.3.23 | SPACE | Ziqi added | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 32_S241_pOvaR | 80.0 | Box15 | A4 | S241_pOvaR_RNA1 8.3.23 | SPACE | Ziqi added | 1.0 | G9\nR65: 64.0 | S242_pOme | 32_S242_pOme | 25.0 | Box15 | B1 | S242_pOme_RNA1 13.3.23 | SPACE | Ziqi added | 1.0 | H1\nR66: 65.0 | S245_pAdn | 32_S245_pAdn | 10.0 | Box15 | B7 | S245_pAdn_RNA1 20.3.23 | SPACE | Ziqi added | 1.0 | H2 | S245_pAdn, FF pieces were only for Adn1\nR67: 66.0 | S248_pOme | 32_S248_pOme | 10-15 (?) | Box15 | D2 | S248_pOme_RNA1 30.3.23 | SPACE | Ziqi added | 1.0 | H3\nR68: 67.0 | S255_pOme | 32_S255_pOme | 35.0 | Box15 | F5 | S255_pOme_RNA1 18.4.23 | SPACE | Ziqi added | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 32_S269_pAdnL | 35(?) | Box15 | I6 | S269_pAdnL_RNA1 8.5.23 | SPACE | Ziqi added | 1.0 | H5"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 13,
+      "text": "| S201_pOva1_RNA1 5.12.22 eap | SPACE | Ziqi added | 1.0 | G3\nR59: 58.0 | S203_pOme | 32_S203_pOme | 40.0 | Box13 | G8 | S203_pOme_RNA1 12.12.22 SP | SPACE | Ziqi added | 1.0 | G4\nR60: 59.0 | S215_pAdnR | 32_S215_pAdnR | 90.0 | Box14 | A7 | S215_pAdnR_RNA1 21.12.22AN | SPACE | Ziqi added | 1.0 | G5 | S215_pAdnR\nR61: 60.0 | S228_pOme1 | 32_S228_pOme1 | 75.0 | Box14 | D1 | S228_pOme1_RNA1 7.2.23 | SPACE | Ziqi added | 1.0 | G6\nR62: 61.0 | S230_pOme | 32_S230_pOme | 20.0 | Box14 | E4 | S230_pOme_RNA1 13.2.23 | SPACE | Ziqi added | 1.0 | G7\nR63: 62.0 | S239_pOme | 32_S239_pOme | 80.0 | Box14 | I1 | S239_pOme_RNA1 1.3.23 | SPACE | Ziqi added | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 32_S241_pOvaR | 80.0 | Box15 | A4 | S241_pOvaR_RNA1 8.3.23 | SPACE | Ziqi added | 1.0 | G9\nR65: 64.0 | S242_pOme | 32_S242_pOme | 25.0 | Box15 | B1 | S242_pOme_RNA1 13.3.23 | SPACE | Ziqi added | 1.0 | H1\nR66: 65.0 | S245_pAdn | 32_S245_pAdn | 10.0 | Box15 | B7 | S245_pAdn_RNA1 20.3.23 | SPACE | Ziqi added | 1.0 | H2 | S245_pAdn, FF pieces were only for Adn1\nR67: 66.0 | S248_pOme | 32_S248_pOme | 10-15 (?) | Box15 | D2 | S248_pOme_RNA1 30.3.23 | SPACE | Ziqi added | 1.0 | H3\nR68: 67.0 | S255_pOme | 32_S255_pOme | 35.0 | Box15 | F5 | S255_pOme_RNA1 18.4.23 | SPACE | Ziqi added | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 32_S269_pAdnL | 35(?) | Box15 | I6 | S269_pAdnL_RNA1 8.5.23 | SPACE | Ziqi added | 1.0 | H5"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 14,
+      "text": "| F5 | S255_pOme_RNA1 18.4.23 | SPACE | Ziqi added | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 32_S269_pAdnL | 35(?) | Box15 | I6 | S269_pAdnL_RNA1 8.5.23 | SPACE | Ziqi added | 1.0 | H5\nR70: 69.0 | S270_pAdn | 32_S270_pAdn | 90.0 | Box16 | A3 | S270_pAdn_RNA1 10.5.23 | SPACE | Ziqi added | 1.0 | H6\nR71: 70.0 | S285_pOme2 | 32_S285_pOme2 | 60.0 | Box16 | B6 | S285_pOme2_RNA1 15.5.23 | SPACE | Ziqi added | 1.0 | H7\nR72: 71.0 | S287_pMes | 32_S287_pMes | 30 (?) | Box16 | B9 | S287_pMes_RNA1 17.5.23 | SPACE | Ziqi added | 1.0 | H8\nR73: 72.0 | S289_pPer | 32_S289_pPer | 50.0 | Box16 | C7 | S289_pPer_RNA1 22.5.23 | SPACE | Ziqi added | 1.0 | H9\nR74: 73.0 | S290_pOme | 32_S290_pOme | 20% (?) | Box16 | E3 | S290_pOme_RNA1 24.5.23 | SPACE | Ziqi added | 1.0 | I1\nR75: 74.0 | S310_pOme | 32_S310_pOme | 50.0 | Box16 | I5 | S310_pOme_RNA1 20.6.23 | SPACE | Ziqi added | 1.0 | I2\nR76: 75.0 | S318_pPer | 32_S318_pPer | 50.0 | Box17 | D9 | S318_pPer_RNA1 7.8.23 | SPACE | Ziqi added | 1.0 | I3\nR77: 76.0 | S321_pOme | 32_S321_pOme | 15.0 | Box17 | E2 | S321_pOme_RNA1 28.8.23 SS | SPACE | Ziqi added | 1.0 | I4\nR78: 77.0 | S327_pOvaL | 32_S327_pOvaL | 70.0 | Box17 | F6 | S327_pOvaL_RNA1 18.9.23 SS | SPACE | Ziqi added | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 32_S329_pOvaR | 50.0 | Box17 | G3 | S329_pOvaR_RNA1 20.9.23 SS | SPACE | Ziqi added | 1.0 | I6"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 15,
+      "text": "| F5 | S255_pOme_RNA1 18.4.23 | SPACE | Ziqi added | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 32_S269_pAdnL | 35(?) | Box15 | I6 | S269_pAdnL_RNA1 8.5.23 | SPACE | Ziqi added | 1.0 | H5\nR70: 69.0 | S270_pAdn | 32_S270_pAdn | 90.0 | Box16 | A3 | S270_pAdn_RNA1 10.5.23 | SPACE | Ziqi added | 1.0 | H6\nR71: 70.0 | S285_pOme2 | 32_S285_pOme2 | 60.0 | Box16 | B6 | S285_pOme2_RNA1 15.5.23 | SPACE | Ziqi added | 1.0 | H7\nR72: 71.0 | S287_pMes | 32_S287_pMes | 30 (?) | Box16 | B9 | S287_pMes_RNA1 17.5.23 | SPACE | Ziqi added | 1.0 | H8\nR73: 72.0 | S289_pPer | 32_S289_pPer | 50.0 | Box16 | C7 | S289_pPer_RNA1 22.5.23 | SPACE | Ziqi added | 1.0 | H9\nR74: 73.0 | S290_pOme | 32_S290_pOme | 20% (?) | Box16 | E3 | S290_pOme_RNA1 24.5.23 | SPACE | Ziqi added | 1.0 | I1\nR75: 74.0 | S310_pOme | 32_S310_pOme | 50.0 | Box16 | I5 | S310_pOme_RNA1 20.6.23 | SPACE | Ziqi added | 1.0 | I2\nR76: 75.0 | S318_pPer | 32_S318_pPer | 50.0 | Box17 | D9 | S318_pPer_RNA1 7.8.23 | SPACE | Ziqi added | 1.0 | I3\nR77: 76.0 | S321_pOme | 32_S321_pOme | 15.0 | Box17 | E2 | S321_pOme_RNA1 28.8.23 SS | SPACE | Ziqi added | 1.0 | I4\nR78: 77.0 | S327_pOvaL | 32_S327_pOvaL | 70.0 | Box17 | F6 | S327_pOvaL_RNA1 18.9.23 SS | SPACE | Ziqi added | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 32_S329_pOvaR | 50.0 | Box17 | G3 | S329_pOvaR_RNA1 20.9.23 SS | SPACE | Ziqi added | 1.0 | I6"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 16,
+      "text": "S327_pOvaL_RNA1 18.9.23 SS | SPACE | Ziqi added | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 32_S329_pOvaR | 50.0 | Box17 | G3 | S329_pOvaR_RNA1 20.9.23 SS | SPACE | Ziqi added | 1.0 | I6\nR80: 79.0 | S333_pOme2 | 32_S333_pOme2 | 40.0 | Box18 | A3 | S333_pOme2_RNA1 17.10.23 SS | SPACE | Ziqi added | 1.0 | I7\nR81: 80.0 | S340_pOvaL | 32_S340_pOvaL | 40.0 | Box18 | C9 | S340_pOva_RNA1 7.11.23 SS | SPACE | Ziqi added | 1.0 | I8\nR82: 81.0 | S341_pOme | 32_S341_pOme | 40.0 | Box18 | D4 | S341_pOme_RNA1 8.11.23 SS | SPACE | Ziqi added | 1.0 | I9 | S341_pOme, there is no sample pOme2!\nR83: 82.0 | S345_pOme | 32_S345_pOme | 30.0 | Box18 | E9 | S345_pOme_RNA1 15.11.23 SS | SPACE | Ziqi added | 2.0 | A1\nR84: 83.0 | S357_pAdnR | 32_S357_pAdnR | 80.0 | Box19 | A1 | S357_pAdnR_RNA1 12.12.23 MH | SPACE | Ziqi added | 2.0 | A2\nR85: 84.0 | S360_pOvaL | 32_S360_pOvaL | 40.0 | Box19 | B3 | S360_pOvaL_RNA1 19.12.23 | SPACE | Ziqi added | 2.0 | A3\nR86: 85.0 | S363_pAdnL | 32_S363_pAdnL | 80.0 | Box19 | B7 | S363_pAdnL_RNA1 28.12.23 | SPACE | Ziqi added | 2.0 | A4\nR87: 86.0 | S015_iOme | 32_S015_iOme | 5.0 | Box1 | C8 | S015_iOme_RNA 12.5.20 | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A9\nR88: 87.0 | S065_iOme | 32_S065_iOme | max 10 | Box4 | G4 | S065_iOme_RNA1 20.1.21 NC | CellCycle | Ada added | 2.0 | B5"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 17,
+      "text": "S327_pOvaL_RNA1 18.9.23 SS | SPACE | Ziqi added | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 32_S329_pOvaR | 50.0 | Box17 | G3 | S329_pOvaR_RNA1 20.9.23 SS | SPACE | Ziqi added | 1.0 | I6\nR80: 79.0 | S333_pOme2 | 32_S333_pOme2 | 40.0 | Box18 | A3 | S333_pOme2_RNA1 17.10.23 SS | SPACE | Ziqi added | 1.0 | I7\nR81: 80.0 | S340_pOvaL | 32_S340_pOvaL | 40.0 | Box18 | C9 | S340_pOva_RNA1 7.11.23 SS | SPACE | Ziqi added | 1.0 | I8\nR82: 81.0 | S341_pOme | 32_S341_pOme | 40.0 | Box18 | D4 | S341_pOme_RNA1 8.11.23 SS | SPACE | Ziqi added | 1.0 | I9 | S341_pOme, there is no sample pOme2!\nR83: 82.0 | S345_pOme | 32_S345_pOme | 30.0 | Box18 | E9 | S345_pOme_RNA1 15.11.23 SS | SPACE | Ziqi added | 2.0 | A1\nR84: 83.0 | S357_pAdnR | 32_S357_pAdnR | 80.0 | Box19 | A1 | S357_pAdnR_RNA1 12.12.23 MH | SPACE | Ziqi added | 2.0 | A2\nR85: 84.0 | S360_pOvaL | 32_S360_pOvaL | 40.0 | Box19 | B3 | S360_pOvaL_RNA1 19.12.23 | SPACE | Ziqi added | 2.0 | A3\nR86: 85.0 | S363_pAdnL | 32_S363_pAdnL | 80.0 | Box19 | B7 | S363_pAdnL_RNA1 28.12.23 | SPACE | Ziqi added | 2.0 | A4\nR87: 86.0 | S015_iOme | 32_S015_iOme | 5.0 | Box1 | C8 | S015_iOme_RNA 12.5.20 | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A9\nR88: 87.0 | S065_iOme | 32_S065_iOme | max 10 | Box4 | G4 | S065_iOme_RNA1 20.1.21 NC | CellCycle | Ada added | 2.0 | B5"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 18,
+      "text": "lCycle (processed also in MS-Turku) | Ada added | 2.0 | A9\nR88: 87.0 | S065_iOme | 32_S065_iOme | max 10 | Box4 | G4 | S065_iOme_RNA1 20.1.21 NC | CellCycle | Ada added | 2.0 | B5\nR89: 88.0 | S083_iOme | 32_S083_iOme1 | 80.0 | Box6 | C4 | S083_iOme_RNA1 12.4.21 | CellCycle | Ada added | 2.0 | B4 | S083_iOme1\nR90: 89.0 | S084_iOme2 | 32_S084_iOme | 5.0 | Box6 | D7 | S084_iOme_RNA1 12.4.21 NC | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B2 | S084_iOme2 no such block or sample, there is only one block S084_iOme\nR91: 90.0 | S100_iOme | 32_S100_iOme | 15.0 | Box7 | G9 | S100_iOme_RNA1 27.7.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A5\nR92: 91.0 | S107_iOme | 32_S107_iOme | 15.0 | Box8 | C4 | S107_iOme_RNA1 20.9.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A6\nR93: 92.0 | S113_iOme | 32_S113_iOme | 5.0 | Box8 | H3 | S113_iOme_RNA1 20.10.21 SD | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A10\nR94: 93.0 | S118_iOme | 32_S118_iOme | max 10 | Box9 | C7 | S118_iOme_RNA1 29.11.21 eap and SD | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B1\nR95: 94.0 | S120_iOme | 32_S120_iOme | max 30 | Box9 | E1 | S120_iOme_RNA1 13.12.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 19,
+      "text": "lCycle (processed also in MS-Turku) | Ada added | 2.0 | A9\nR88: 87.0 | S065_iOme | 32_S065_iOme | max 10 | Box4 | G4 | S065_iOme_RNA1 20.1.21 NC | CellCycle | Ada added | 2.0 | B5\nR89: 88.0 | S083_iOme | 32_S083_iOme1 | 80.0 | Box6 | C4 | S083_iOme_RNA1 12.4.21 | CellCycle | Ada added | 2.0 | B4 | S083_iOme1\nR90: 89.0 | S084_iOme2 | 32_S084_iOme | 5.0 | Box6 | D7 | S084_iOme_RNA1 12.4.21 NC | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B2 | S084_iOme2 no such block or sample, there is only one block S084_iOme\nR91: 90.0 | S100_iOme | 32_S100_iOme | 15.0 | Box7 | G9 | S100_iOme_RNA1 27.7.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A5\nR92: 91.0 | S107_iOme | 32_S107_iOme | 15.0 | Box8 | C4 | S107_iOme_RNA1 20.9.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A6\nR93: 92.0 | S113_iOme | 32_S113_iOme | 5.0 | Box8 | H3 | S113_iOme_RNA1 20.10.21 SD | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A10\nR94: 93.0 | S118_iOme | 32_S118_iOme | max 10 | Box9 | C7 | S118_iOme_RNA1 29.11.21 eap and SD | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B1\nR95: 94.0 | S120_iOme | 32_S120_iOme | max 30 | Box9 | E1 | S120_iOme_RNA1 13.12.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 20,
+      "text": "rku) | Ada added | 2.0 | B1\nR95: 94.0 | S120_iOme | 32_S120_iOme | max 30 | Box9 | E1 | S120_iOme_RNA1 13.12.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B3\nR96: 95.0 | S130_iOme | 32_S130_iOme | 50.0 | Box10 | B7 | S130_iOme_RNA1 7.3.22 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A7\nR97: 96.0 | S131_iOme | 32_S131_iOme | 50.0 | Box10 | C4 | S131_iOme_RNA1 8.3.22 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A8\nR102: | Normal samples, CTRL | sent to Varjosalo lab in Aug 2025, AL | 12 CTRL samples, 20mg\nR104: | | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor %, pathologist's note | Box at -80 | Slot in the box | Written on the tube\nR105: | 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR106: | 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR107: | 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022 AN\nR108: | 3.0 | PDS | S191 | S191_pAdnR | Adnexa Right | ca clarocellulare, high grade | 0.0 | Box 13 | C8 | S191_pAdnR_RNA1, 23.11.2022 EAP\nR109: | 4.0 | PDS | S246 | S246_pOme | Omentum | HGSC | 0 % | Box 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR110: | 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 21,
+      "text": "rku) | Ada added | 2.0 | B1\nR95: 94.0 | S120_iOme | 32_S120_iOme | max 30 | Box9 | E1 | S120_iOme_RNA1 13.12.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B3\nR96: 95.0 | S130_iOme | 32_S130_iOme | 50.0 | Box10 | B7 | S130_iOme_RNA1 7.3.22 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A7\nR97: 96.0 | S131_iOme | 32_S131_iOme | 50.0 | Box10 | C4 | S131_iOme_RNA1 8.3.22 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A8\nR102: | Normal samples, CTRL | sent to Varjosalo lab in Aug 2025, AL | 12 CTRL samples, 20mg\nR104: | | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor %, pathologist's note | Box at -80 | Slot in the box | Written on the tube\nR105: | 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR106: | 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR107: | 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022 AN\nR108: | 3.0 | PDS | S191 | S191_pAdnR | Adnexa Right | ca clarocellulare, high grade | 0.0 | Box 13 | C8 | S191_pAdnR_RNA1, 23.11.2022 EAP\nR109: | 4.0 | PDS | S246 | S246_pOme | Omentum | HGSC | 0 % | Box 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR110: | 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 22,
+      "text": "x 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR110: | 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS\nR111: | 6.0 | PDS | S353 | S353_pOme | Omentum | mucinous borderline | 0 % | Box 18 | H7 | S353_pOme_RNA1, 30.11.2023 AN\nR112: | 7.0 | PDS | S359 | S359_pOme | Omentum | HGSC | 0 % | Box 19 | B2 | S359_pOme_RNA1, 18.12.2023 SS\nR113: | 8.0 | PDS | S457 | S457_pTub | Normal Tube | fibroma/cystadenoma mucinosum | 0 % (normal tube, looks good) | Box 21 | F6 | S457_pTub (normal tube), 29.05.2024 ME\nR114: | 9.0 | PDS | S476 | S476_pTub | Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL\nR115: | 10.0 | PDS | S511 | S511_pOme | Omentum | LGSC | 0.0 | Box 25 | B5 | S511_pOme_RNA1, 31.12.2024 AL\nR116: | 11.0 | PDS | S512 | S512_pAdnL | Adnexa Left | borderline serous cystadenoma | 0 % (benign tube) | Box 25 | C4 | S512_pAdnL_RNA1, 7.01.2025 AL\nR117: | 12.0 | PDS | S544 | S544_pOme | Omentum | dedifferentiated carcinoma of adnexal origin | 0.0 | Box 27 | E1 | S544_pOme_RNA1, 9.04.2025 AL\nR121: | | Borderline tumors were not taken - either H&E not done or they contain transformed cells:\nR123: | | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 23,
+      "text": "x 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR110: | 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS\nR111: | 6.0 | PDS | S353 | S353_pOme | Omentum | mucinous borderline | 0 % | Box 18 | H7 | S353_pOme_RNA1, 30.11.2023 AN\nR112: | 7.0 | PDS | S359 | S359_pOme | Omentum | HGSC | 0 % | Box 19 | B2 | S359_pOme_RNA1, 18.12.2023 SS\nR113: | 8.0 | PDS | S457 | S457_pTub | Normal Tube | fibroma/cystadenoma mucinosum | 0 % (normal tube, looks good) | Box 21 | F6 | S457_pTub (normal tube), 29.05.2024 ME\nR114: | 9.0 | PDS | S476 | S476_pTub | Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL\nR115: | 10.0 | PDS | S511 | S511_pOme | Omentum | LGSC | 0.0 | Box 25 | B5 | S511_pOme_RNA1, 31.12.2024 AL\nR116: | 11.0 | PDS | S512 | S512_pAdnL | Adnexa Left | borderline serous cystadenoma | 0 % (benign tube) | Box 25 | C4 | S512_pAdnL_RNA1, 7.01.2025 AL\nR117: | 12.0 | PDS | S544 | S544_pOme | Omentum | dedifferentiated carcinoma of adnexal origin | 0.0 | Box 27 | E1 | S544_pOme_RNA1, 9.04.2025 AL\nR121: | | Borderline tumors were not taken - either H&E not done or they contain transformed cells:\nR123: | | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 24,
+      "text": "1: | | Borderline tumors were not taken - either H&E not done or they contain transformed cells:\nR123: | | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done\nR124: | | PDS | S334 | S334_pAdnR | Adnexa Right | serous borderline tumor | 10 %\nR125: | | PDS | S334 | S334_pOme | Omentum | serous borderline tumor | ?\nR126: | | PDS | S381 | S381_pAdnR | Adnexa | mucinous borderline | 0.01\nR127: | | PDS | S462 | S462_pAdnR | Ovary Right | mucinous borderline | 0.8\nR128: | | PDS | S558 | S558_pOvaR | Ovary Right | serous borderline tumor | H&E in process"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 25,
+      "text": "1: | | Borderline tumors were not taken - either H&E not done or they contain transformed cells:\nR123: | | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done\nR124: | | PDS | S334 | S334_pAdnR | Adnexa Right | serous borderline tumor | 10 %\nR125: | | PDS | S334 | S334_pOme | Omentum | serous borderline tumor | ?\nR126: | | PDS | S381 | S381_pAdnR | Adnexa | mucinous borderline | 0.01\nR127: | | PDS | S462 | S462_pAdnR | Ovary Right | mucinous borderline | 0.8\nR128: | | PDS | S558 | S558_pOvaR | Ovary Right | serous borderline tumor | H&E in process"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 0,
+      "text": "R1: | Sample ID | Tumor % | Submission Box | Slot\nR2: 1.0 | S002_pOme | 5.0 | 1.0 | A1\nR3: 2.0 | S003_pOme | 70.0 | 1.0 | A2\nR4: 3.0 | S004_pOme | 10-15 | 1.0 | A3\nR5: 4.0 | S007_pOva | 80.0 | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 15-20 | 1.0 | A5\nR7: 6.0 | S010_pOvaR | 80.0 | 1.0 | A6\nR8: 7.0 | S014_pOme | 70.0 | 1.0 | A7\nR9: 8.0 | S015_pPer | 10.0 | 1.0 | A8\nR10: 9.0 | S016_pOme | 80.0 | 1.0 | A9\nR11: 10.0 | S018_pOvaL | 30.0 | 1.0 | B1\nR12: 11.0 | S019_pOva | 20.0 | 1.0 | B2\nR13: 12.0 | S021_pOme | 30.0 | 1.0 | B3\nR14: 13.0 | S024_pOme | 50.0 | 1.0 | B4\nR15: 14.0 | S027_pOme | 20? | 1.0 | B5\nR16: 15.0 | S028_pAdn | 50-60 | 1.0 | B6\nR17: 16.0 | S032_pOme | 40-50 | 1.0 | B7\nR18: 17.0 | S033_pOme | 80-85 | 1.0 | B8\nR19: 18.0 | S034_pAdn | 60.0 | 1.0 | B9\nR20: 19.0 | S036_pOme | max 10 | 1.0 | C1\nR21: 20.0 | S039_pOme | 20-25 | 1.0 | C2\nR22: 21.0 | S040_pOva | 60.0 | 1.0 | C3\nR23: 22.0 | S044_pOme | 70.0 | 1.0 | C4\nR24: 23.0 | S047_pOme | 50.0 | 1.0 | C5\nR25: 24.0 | S051_pOme | 25.0 | 1.0 | C6\nR26: 25.0 | S060_pOme | 10-15 | 1.0 | C7\nR27: 26.0 | S061_pOme | 90.0 | 1.0 | C8\nR28: 27.0 | S071_pOme | 15.0 | 1.0 | C9\nR29: 28.0 | S078_pOme | 30.0 | 1.0 | D1\nR30: 29.0 | S079_pOme | 5.0 | 1.0 | D2\nR31: 30.0 | S085_pOme | 10-15 | 1.0 | D3\nR32: 31.0 | S086_pOme | 25-30 | 1.0 | D4\nR33: 32.0 | S090_pOme | 70.0 | 1.0 | D5\nR34: 33.0 | S092_pOme | 40-50 | 1.0 | D6"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 1,
+      "text": "R1: | Sample ID | Tumor % | Submission Box | Slot\nR2: 1.0 | S002_pOme | 5.0 | 1.0 | A1\nR3: 2.0 | S003_pOme | 70.0 | 1.0 | A2\nR4: 3.0 | S004_pOme | 10-15 | 1.0 | A3\nR5: 4.0 | S007_pOva | 80.0 | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 15-20 | 1.0 | A5\nR7: 6.0 | S010_pOvaR | 80.0 | 1.0 | A6\nR8: 7.0 | S014_pOme | 70.0 | 1.0 | A7\nR9: 8.0 | S015_pPer | 10.0 | 1.0 | A8\nR10: 9.0 | S016_pOme | 80.0 | 1.0 | A9\nR11: 10.0 | S018_pOvaL | 30.0 | 1.0 | B1\nR12: 11.0 | S019_pOva | 20.0 | 1.0 | B2\nR13: 12.0 | S021_pOme | 30.0 | 1.0 | B3\nR14: 13.0 | S024_pOme | 50.0 | 1.0 | B4\nR15: 14.0 | S027_pOme | 20? | 1.0 | B5\nR16: 15.0 | S028_pAdn | 50-60 | 1.0 | B6\nR17: 16.0 | S032_pOme | 40-50 | 1.0 | B7\nR18: 17.0 | S033_pOme | 80-85 | 1.0 | B8\nR19: 18.0 | S034_pAdn | 60.0 | 1.0 | B9\nR20: 19.0 | S036_pOme | max 10 | 1.0 | C1\nR21: 20.0 | S039_pOme | 20-25 | 1.0 | C2\nR22: 21.0 | S040_pOva | 60.0 | 1.0 | C3\nR23: 22.0 | S044_pOme | 70.0 | 1.0 | C4\nR24: 23.0 | S047_pOme | 50.0 | 1.0 | C5\nR25: 24.0 | S051_pOme | 25.0 | 1.0 | C6\nR26: 25.0 | S060_pOme | 10-15 | 1.0 | C7\nR27: 26.0 | S061_pOme | 90.0 | 1.0 | C8\nR28: 27.0 | S071_pOme | 15.0 | 1.0 | C9\nR29: 28.0 | S078_pOme | 30.0 | 1.0 | D1\nR30: 29.0 | S079_pOme | 5.0 | 1.0 | D2\nR31: 30.0 | S085_pOme | 10-15 | 1.0 | D3\nR32: 31.0 | S086_pOme | 25-30 | 1.0 | D4\nR33: 32.0 | S090_pOme | 70.0 | 1.0 | D5\nR34: 33.0 | S092_pOme | 40-50 | 1.0 | D6"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 2,
+      "text": "| 5.0 | 1.0 | D2\nR31: 30.0 | S085_pOme | 10-15 | 1.0 | D3\nR32: 31.0 | S086_pOme | 25-30 | 1.0 | D4\nR33: 32.0 | S090_pOme | 70.0 | 1.0 | D5\nR34: 33.0 | S092_pOme | 40-50 | 1.0 | D6\nR35: 34.0 | S096_pOme | 20.0 | 1.0 | D7\nR36: 35.0 | S097_pAdnL | 40.0 | 1.0 | D8\nR37: 36.0 | S102_pOme2 | 60.0 | 1.0 | D9\nR38: 37.0 | S109_pOme | max 10 | 1.0 | E1\nR39: 38.0 | S114_pOme | 40.0 | 1.0 | E2\nR40: 39.0 | S117_pOme | 25.0 | 1.0 | E3\nR41: 40.0 | S119_pOme | 25.0 | 1.0 | E4\nR42: 41.0 | S134_pOvaR | 70.0 | 1.0 | E5\nR43: 42.0 | S135_pAdnL | 25.0 | 1.0 | E6\nR44: 43.0 | S137_pAdnL | 80.0 | 1.0 | E7\nR45: 44.0 | S138_pAdn | 50.0 | 1.0 | E8\nR46: 45.0 | S139_pPer | 10.0 | 1.0 | E9\nR47: 46.0 | S141_pOva | 90.0 | 1.0 | F1\nR48: 47.0 | S142_pOvaL | 90.0 | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 50.0 | 1.0 | F3\nR50: 49.0 | S147_pOvaR | 50.0 | 1.0 | F4\nR51: 50.0 | S148_pOme | max 10 | 1.0 | F5\nR52: 51.0 | S149_pOme | 40.0 | 1.0 | F6\nR53: 52.0 | S152_pOme | 25.0 | 1.0 | F7\nR54: 53.0 | S153_pOme | 50.0 | 1.0 | F8\nR55: 54.0 | S156_pAdnR | 70.0 | 1.0 | F9\nR56: 55.0 | S186_pOme | 65.0 | 1.0 | G1\nR57: 56.0 | S190_pOme | 95.0 | 1.0 | G2\nR58: 57.0 | S201_pOva1 | 80.0 | 1.0 | G3\nR59: 58.0 | S203_pOme | 40.0 | 1.0 | G4\nR60: 59.0 | S215_pAdnR | 90.0 | 1.0 | G5\nR61: 60.0 | S228_pOme1 | 75.0 | 1.0 | G6\nR62: 61.0 | S230_pOme | 20.0 | 1.0 | G7\nR63: 62.0 | S239_pOme | 80.0 | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 80.0 | 1.0 | G9"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 3,
+      "text": "| 5.0 | 1.0 | D2\nR31: 30.0 | S085_pOme | 10-15 | 1.0 | D3\nR32: 31.0 | S086_pOme | 25-30 | 1.0 | D4\nR33: 32.0 | S090_pOme | 70.0 | 1.0 | D5\nR34: 33.0 | S092_pOme | 40-50 | 1.0 | D6\nR35: 34.0 | S096_pOme | 20.0 | 1.0 | D7\nR36: 35.0 | S097_pAdnL | 40.0 | 1.0 | D8\nR37: 36.0 | S102_pOme2 | 60.0 | 1.0 | D9\nR38: 37.0 | S109_pOme | max 10 | 1.0 | E1\nR39: 38.0 | S114_pOme | 40.0 | 1.0 | E2\nR40: 39.0 | S117_pOme | 25.0 | 1.0 | E3\nR41: 40.0 | S119_pOme | 25.0 | 1.0 | E4\nR42: 41.0 | S134_pOvaR | 70.0 | 1.0 | E5\nR43: 42.0 | S135_pAdnL | 25.0 | 1.0 | E6\nR44: 43.0 | S137_pAdnL | 80.0 | 1.0 | E7\nR45: 44.0 | S138_pAdn | 50.0 | 1.0 | E8\nR46: 45.0 | S139_pPer | 10.0 | 1.0 | E9\nR47: 46.0 | S141_pOva | 90.0 | 1.0 | F1\nR48: 47.0 | S142_pOvaL | 90.0 | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 50.0 | 1.0 | F3\nR50: 49.0 | S147_pOvaR | 50.0 | 1.0 | F4\nR51: 50.0 | S148_pOme | max 10 | 1.0 | F5\nR52: 51.0 | S149_pOme | 40.0 | 1.0 | F6\nR53: 52.0 | S152_pOme | 25.0 | 1.0 | F7\nR54: 53.0 | S153_pOme | 50.0 | 1.0 | F8\nR55: 54.0 | S156_pAdnR | 70.0 | 1.0 | F9\nR56: 55.0 | S186_pOme | 65.0 | 1.0 | G1\nR57: 56.0 | S190_pOme | 95.0 | 1.0 | G2\nR58: 57.0 | S201_pOva1 | 80.0 | 1.0 | G3\nR59: 58.0 | S203_pOme | 40.0 | 1.0 | G4\nR60: 59.0 | S215_pAdnR | 90.0 | 1.0 | G5\nR61: 60.0 | S228_pOme1 | 75.0 | 1.0 | G6\nR62: 61.0 | S230_pOme | 20.0 | 1.0 | G7\nR63: 62.0 | S239_pOme | 80.0 | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 80.0 | 1.0 | G9"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 4,
+      "text": "| 90.0 | 1.0 | G5\nR61: 60.0 | S228_pOme1 | 75.0 | 1.0 | G6\nR62: 61.0 | S230_pOme | 20.0 | 1.0 | G7\nR63: 62.0 | S239_pOme | 80.0 | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 80.0 | 1.0 | G9\nR65: 64.0 | S242_pOme | 25.0 | 1.0 | H1\nR66: 65.0 | S245_pAdn | 10.0 | 1.0 | H2\nR67: 66.0 | S248_pOme | 10-15 (?) | 1.0 | H3\nR68: 67.0 | S255_pOme | 35.0 | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 35(?) | 1.0 | H5\nR70: 69.0 | S270_pAdn | 90.0 | 1.0 | H6\nR71: 70.0 | S285_pOme2 | 60.0 | 1.0 | H7\nR72: 71.0 | S287_pMes | 30 (?) | 1.0 | H8\nR73: 72.0 | S289_pPer | 50.0 | 1.0 | H9\nR74: 73.0 | S290_pOme | 20% (?) | 1.0 | I1\nR75: 74.0 | S310_pOme | 50.0 | 1.0 | I2\nR76: 75.0 | S318_pPer | 50.0 | 1.0 | I3\nR77: 76.0 | S321_pOme | 15.0 | 1.0 | I4\nR78: 77.0 | S327_pOvaL | 70.0 | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 50.0 | 1.0 | I6\nR80: 79.0 | S333_pOme2 | 40.0 | 1.0 | I7\nR81: 80.0 | S340_pOvaL | 40.0 | 1.0 | I8\nR82: 81.0 | S341_pOme | 40.0 | 1.0 | I9\nR83: 82.0 | S345_pOme | 30.0 | 2.0 | A1\nR84: 83.0 | S357_pAdnR | 80.0 | 2.0 | A2\nR85: 84.0 | S360_pOvaL | 40.0 | 2.0 | A3\nR86: 85.0 | S363_pAdnL | 80.0 | 2.0 | A4\nR87: 86.0 | S015_iOme | 5.0 | 2.0 | A9\nR88: 87.0 | S065_iOme | max 10 | 2.0 | B5\nR89: 88.0 | S083_iOme | 80.0 | 2.0 | B4\nR90: 89.0 | S084_iOme2 | 5.0 | 2.0 | B2\nR91: 90.0 | S100_iOme | 15.0 | 2.0 | A5\nR92: 91.0 | S107_iOme | 15.0 | 2.0 | A6\nR93: 92.0 | S113_iOme | 5.0 | 2.0 | A10"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 5,
+      "text": "| 90.0 | 1.0 | G5\nR61: 60.0 | S228_pOme1 | 75.0 | 1.0 | G6\nR62: 61.0 | S230_pOme | 20.0 | 1.0 | G7\nR63: 62.0 | S239_pOme | 80.0 | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 80.0 | 1.0 | G9\nR65: 64.0 | S242_pOme | 25.0 | 1.0 | H1\nR66: 65.0 | S245_pAdn | 10.0 | 1.0 | H2\nR67: 66.0 | S248_pOme | 10-15 (?) | 1.0 | H3\nR68: 67.0 | S255_pOme | 35.0 | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 35(?) | 1.0 | H5\nR70: 69.0 | S270_pAdn | 90.0 | 1.0 | H6\nR71: 70.0 | S285_pOme2 | 60.0 | 1.0 | H7\nR72: 71.0 | S287_pMes | 30 (?) | 1.0 | H8\nR73: 72.0 | S289_pPer | 50.0 | 1.0 | H9\nR74: 73.0 | S290_pOme | 20% (?) | 1.0 | I1\nR75: 74.0 | S310_pOme | 50.0 | 1.0 | I2\nR76: 75.0 | S318_pPer | 50.0 | 1.0 | I3\nR77: 76.0 | S321_pOme | 15.0 | 1.0 | I4\nR78: 77.0 | S327_pOvaL | 70.0 | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 50.0 | 1.0 | I6\nR80: 79.0 | S333_pOme2 | 40.0 | 1.0 | I7\nR81: 80.0 | S340_pOvaL | 40.0 | 1.0 | I8\nR82: 81.0 | S341_pOme | 40.0 | 1.0 | I9\nR83: 82.0 | S345_pOme | 30.0 | 2.0 | A1\nR84: 83.0 | S357_pAdnR | 80.0 | 2.0 | A2\nR85: 84.0 | S360_pOvaL | 40.0 | 2.0 | A3\nR86: 85.0 | S363_pAdnL | 80.0 | 2.0 | A4\nR87: 86.0 | S015_iOme | 5.0 | 2.0 | A9\nR88: 87.0 | S065_iOme | max 10 | 2.0 | B5\nR89: 88.0 | S083_iOme | 80.0 | 2.0 | B4\nR90: 89.0 | S084_iOme2 | 5.0 | 2.0 | B2\nR91: 90.0 | S100_iOme | 15.0 | 2.0 | A5\nR92: 91.0 | S107_iOme | 15.0 | 2.0 | A6\nR93: 92.0 | S113_iOme | 5.0 | 2.0 | A10"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 6,
+      "text": "e | 80.0 | 2.0 | B4\nR90: 89.0 | S084_iOme2 | 5.0 | 2.0 | B2\nR91: 90.0 | S100_iOme | 15.0 | 2.0 | A5\nR92: 91.0 | S107_iOme | 15.0 | 2.0 | A6\nR93: 92.0 | S113_iOme | 5.0 | 2.0 | A10\nR94: 93.0 | S118_iOme | max 10 | 2.0 | B1\nR95: 94.0 | S120_iOme | max 30 | 2.0 | B3\nR96: 95.0 | S130_iOme | 50.0 | 2.0 | A7\nR97: 96.0 | S131_iOme | 50.0 | 2.0 | A8"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 7,
+      "text": "e | 80.0 | 2.0 | B4\nR90: 89.0 | S084_iOme2 | 5.0 | 2.0 | B2\nR91: 90.0 | S100_iOme | 15.0 | 2.0 | A5\nR92: 91.0 | S107_iOme | 15.0 | 2.0 | A6\nR93: 92.0 | S113_iOme | 5.0 | 2.0 | A10\nR94: 93.0 | S118_iOme | max 10 | 2.0 | B1\nR95: 94.0 | S120_iOme | max 30 | 2.0 | B3\nR96: 95.0 | S130_iOme | 50.0 | 2.0 | A7\nR97: 96.0 | S131_iOme | 50.0 | 2.0 | A8"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 0,
+      "text": "R1: Previously sent to proteomics analysis | Ascites in AFlab freezer | Ascites usable? (Not bloody) | ovaHRDscar | tumor purity (%)\nR2: S002_pOme | 0.0\nR3: S003_pOme | 0.0\nR4: S004_pOme | 0.0\nR5: S007_pOva | 0.0\nR6: S008_pOme1 | 0.0\nR7: S010_pOvaR | 0.0\nR8: S014_pOme | 0.0\nR9: S015_pPer | 0.0\nR10: S016_pOme | 0.0\nR11: S018_pOvaL | 0.0\nR12: S019_pOva | 0.0\nR13: S021_pOme | 0.0\nR14: S024_pOme | 0.0\nR15: S027_pOme | 0.0\nR16: S028_pAdn | 0.0\nR17: S032_pOme | 0.0\nR18: S033_pOme | 0.0\nR19: S034_pAdn | 0.0\nR20: S036_pOme | 0.0\nR21: S039_pOme | 0.0\nR22: S040_pOva | 0.0\nR23: S044_pOme | 0.0\nR24: S047_pOme | 0.0\nR25: S051_pOme | 1.0 | 0.0\nR26: S060_pOme | 1.0 | 0.0\nR27: S061_pOme | 1.0 | 0.0\nR28: S071_pOme | 1.0 | 0.0\nR29: S078_pOme | 1.0 | 0.0\nR30: S142_pOvaL | 1.0 | 1.0 | HRP (HRD at HUSlab) | 90.0\nR31: S215_pAdnR | 1.0 | 1.0 | HRD | 90.0\nR32: S086_pOme | 1.0 | 0.0\nR33: S201_pOva1 | 1.0 | 1.0 | HRP | 80.0\nR34: S241_pOvaR | 1.0 | 1.0 | HRP | 80.0\nR35: S096_pOme | 0.0\nR36: S097_pAdnL | 0.0\nR37: S102_pOme2 | 1.0 | 0.0\nR38: S228_pOme1 | 1.0 | 1.0 | HRD | 75.0\nR39: S134_pOvaR | 1.0 | 1.0 | HRP | 70.0\nR40: S117_pOme | 1.0 | 0.0\nR41: S090_pOme | 1.0 | 1.0 | HRD | 50.0\nR42: S147_pOvaR | 1.0 | 1.0 | HRD | 50.0\nR43: S135_pAdnL | 1.0 | 0.0\nR44: S137_pAdnL | 1.0 | 0.0\nR45: S138_pAdn | 1.0 | -\nR46: S139_pPer | 0.0\nR47: S141_pOva | 1.0 | 0.0\nR48: S153_pOme | 1.0 | 1.0 | HRP | 50.0"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 1,
+      "text": "R1: Previously sent to proteomics analysis | Ascites in AFlab freezer | Ascites usable? (Not bloody) | ovaHRDscar | tumor purity (%)\nR2: S002_pOme | 0.0\nR3: S003_pOme | 0.0\nR4: S004_pOme | 0.0\nR5: S007_pOva | 0.0\nR6: S008_pOme1 | 0.0\nR7: S010_pOvaR | 0.0\nR8: S014_pOme | 0.0\nR9: S015_pPer | 0.0\nR10: S016_pOme | 0.0\nR11: S018_pOvaL | 0.0\nR12: S019_pOva | 0.0\nR13: S021_pOme | 0.0\nR14: S024_pOme | 0.0\nR15: S027_pOme | 0.0\nR16: S028_pAdn | 0.0\nR17: S032_pOme | 0.0\nR18: S033_pOme | 0.0\nR19: S034_pAdn | 0.0\nR20: S036_pOme | 0.0\nR21: S039_pOme | 0.0\nR22: S040_pOva | 0.0\nR23: S044_pOme | 0.0\nR24: S047_pOme | 0.0\nR25: S051_pOme | 1.0 | 0.0\nR26: S060_pOme | 1.0 | 0.0\nR27: S061_pOme | 1.0 | 0.0\nR28: S071_pOme | 1.0 | 0.0\nR29: S078_pOme | 1.0 | 0.0\nR30: S142_pOvaL | 1.0 | 1.0 | HRP (HRD at HUSlab) | 90.0\nR31: S215_pAdnR | 1.0 | 1.0 | HRD | 90.0\nR32: S086_pOme | 1.0 | 0.0\nR33: S201_pOva1 | 1.0 | 1.0 | HRP | 80.0\nR34: S241_pOvaR | 1.0 | 1.0 | HRP | 80.0\nR35: S096_pOme | 0.0\nR36: S097_pAdnL | 0.0\nR37: S102_pOme2 | 1.0 | 0.0\nR38: S228_pOme1 | 1.0 | 1.0 | HRD | 75.0\nR39: S134_pOvaR | 1.0 | 1.0 | HRP | 70.0\nR40: S117_pOme | 1.0 | 0.0\nR41: S090_pOme | 1.0 | 1.0 | HRD | 50.0\nR42: S147_pOvaR | 1.0 | 1.0 | HRD | 50.0\nR43: S135_pAdnL | 1.0 | 0.0\nR44: S137_pAdnL | 1.0 | 0.0\nR45: S138_pAdn | 1.0 | -\nR46: S139_pPer | 0.0\nR47: S141_pOva | 1.0 | 0.0\nR48: S153_pOme | 1.0 | 1.0 | HRP | 50.0"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 2,
+      "text": "HRD | 50.0\nR43: S135_pAdnL | 1.0 | 0.0\nR44: S137_pAdnL | 1.0 | 0.0\nR45: S138_pAdn | 1.0 | -\nR46: S139_pPer | 0.0\nR47: S141_pOva | 1.0 | 0.0\nR48: S153_pOme | 1.0 | 1.0 | HRP | 50.0\nR49: S145_pOme_BM | 1.0 | -\nR50: S318_pPer | 1.0 | 1.0 | HRD | 50.0\nR51: S329_pOvaR | 1.0 | 1.0 | HRD | 50.0\nR52: S186_pOme | 1.0 | 1.0 | HRD | 45.0\nR53: S152_pOme | 1.0 | 0.0\nR54: S092_pOme | 1.0 | 1.0 | HRD | 40.0\nR55: S156_pAdnR | 1.0 | 0.0\nR56: S149_pOme | 1.0 | 1.0 | HRD | 40.0\nR57: S190_pOme | 0.0\nR58: S203_pOme | 1.0 | 1.0 | HRP | 40.0\nR59: S340_pOvaL | 1.0 | 1.0 | HRP | 40.0\nR60: S333_pOme2 | 1.0 | 1.0 | HRP | 30.0\nR61: S119_pOme | 1.0 | 1.0 | HRP | 25.0\nR62: S230_pOme | 0.0\nR63: S239_pOme | 1.0 | 0.0\nR64: S242_pOme | 1.0 | 1.0 | HRD | 25.0\nR65: S114_pOme | 1.0 | 1.0 | HRD | 15.0\nR66: S245_pAdn | 0.0\nR67: S248_pOme | 0.0\nR68: S255_pOme | 1.0 | 0.0\nR69: S269_pAdnL | 0.0\nR70: S270_pAdn | 0.0\nR71: S285_pOme2 | 1.0 | 0.0\nR72: S287_pMes | 1.0 | 0.0\nR73: S289_pPer | 1.0 | 0.0\nR74: S290_pOme | 1.0 | -\nR75: S310_pOme | 1.0 | 0.0\nR76: S085_pOme | 1.0 | 1.0 | HRD | 10.0\nR77: S321_pOme | 1.0 | 0.0\nR78: S327_pOvaL | 1.0 | 0.0\nR79: S109_pOme | 1.0 | 1.0 | HRP | 10.0\nR80: S148_pOme | 1.0 | 1.0 | HRP | 10.0\nR81: S079_pOme | 1.0 | 1.0 | HRD | 5.0\nR82: S341_pOme | 1.0 | -\nR83: S345_pOme | 1.0 | 0.0\nR84: S357_pAdnR | 1.0 | 0.0\nR85: S360_pOvaL | 1.0 | 0.0\nR86: S363_pAdnL | 1.0 | 0.0\nR88: | | | HRD to be sent"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 3,
+      "text": "HRD | 50.0\nR43: S135_pAdnL | 1.0 | 0.0\nR44: S137_pAdnL | 1.0 | 0.0\nR45: S138_pAdn | 1.0 | -\nR46: S139_pPer | 0.0\nR47: S141_pOva | 1.0 | 0.0\nR48: S153_pOme | 1.0 | 1.0 | HRP | 50.0\nR49: S145_pOme_BM | 1.0 | -\nR50: S318_pPer | 1.0 | 1.0 | HRD | 50.0\nR51: S329_pOvaR | 1.0 | 1.0 | HRD | 50.0\nR52: S186_pOme | 1.0 | 1.0 | HRD | 45.0\nR53: S152_pOme | 1.0 | 0.0\nR54: S092_pOme | 1.0 | 1.0 | HRD | 40.0\nR55: S156_pAdnR | 1.0 | 0.0\nR56: S149_pOme | 1.0 | 1.0 | HRD | 40.0\nR57: S190_pOme | 0.0\nR58: S203_pOme | 1.0 | 1.0 | HRP | 40.0\nR59: S340_pOvaL | 1.0 | 1.0 | HRP | 40.0\nR60: S333_pOme2 | 1.0 | 1.0 | HRP | 30.0\nR61: S119_pOme | 1.0 | 1.0 | HRP | 25.0\nR62: S230_pOme | 0.0\nR63: S239_pOme | 1.0 | 0.0\nR64: S242_pOme | 1.0 | 1.0 | HRD | 25.0\nR65: S114_pOme | 1.0 | 1.0 | HRD | 15.0\nR66: S245_pAdn | 0.0\nR67: S248_pOme | 0.0\nR68: S255_pOme | 1.0 | 0.0\nR69: S269_pAdnL | 0.0\nR70: S270_pAdn | 0.0\nR71: S285_pOme2 | 1.0 | 0.0\nR72: S287_pMes | 1.0 | 0.0\nR73: S289_pPer | 1.0 | 0.0\nR74: S290_pOme | 1.0 | -\nR75: S310_pOme | 1.0 | 0.0\nR76: S085_pOme | 1.0 | 1.0 | HRD | 10.0\nR77: S321_pOme | 1.0 | 0.0\nR78: S327_pOvaL | 1.0 | 0.0\nR79: S109_pOme | 1.0 | 1.0 | HRP | 10.0\nR80: S148_pOme | 1.0 | 1.0 | HRP | 10.0\nR81: S079_pOme | 1.0 | 1.0 | HRD | 5.0\nR82: S341_pOme | 1.0 | -\nR83: S345_pOme | 1.0 | 0.0\nR84: S357_pAdnR | 1.0 | 0.0\nR85: S360_pOvaL | 1.0 | 0.0\nR86: S363_pAdnL | 1.0 | 0.0\nR88: | | | HRD to be sent"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 4,
+      "text": "| 1.0 | HRD | 5.0\nR82: S341_pOme | 1.0 | -\nR83: S345_pOme | 1.0 | 0.0\nR84: S357_pAdnR | 1.0 | 0.0\nR85: S360_pOvaL | 1.0 | 0.0\nR86: S363_pAdnL | 1.0 | 0.0\nR88: | | | HRD to be sent\nR89: | | | HRP to be sent"
+    },
+    {
+      "document_id": "2524960651c2727429a5db8bdb64fbfe",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_ascites_samples_sent_summer_2025.xlsx",
+      "chunk_index": 5,
+      "text": "| 1.0 | HRD | 5.0\nR82: S341_pOme | 1.0 | -\nR83: S345_pOme | 1.0 | 0.0\nR84: S357_pAdnR | 1.0 | 0.0\nR85: S360_pOvaL | 1.0 | 0.0\nR86: S363_pAdnL | 1.0 | 0.0\nR88: | | | HRD to be sent\nR89: | | | HRP to be sent"
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 0,
+      "text": "Project log"
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 1,
+      "text": "Project log"
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 2,
+      "text": "Project is done in collaboration with Markku Varjosalo lab, Ada and Ziqi selected the samples - from SPACE and Ada’a CellCycle-IDS projects."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 3,
+      "text": "Project is done in collaboration with Markku Varjosalo lab, Ada and Ziqi selected the samples - from SPACE and Ada’a CellCycle-IDS projects."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 4,
+      "text": "27.6."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 5,
+      "text": "27.6."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 6,
+      "text": "Joonas selected and collected 10 PDS ascites supernatant samples for Varjosalo lab - 32_ascites_samples_sent_summer_2025"
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 7,
+      "text": "Joonas selected and collected 10 PDS ascites supernatant samples for Varjosalo lab - 32_ascites_samples_sent_summer_2025"
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 8,
+      "text": "5 HRD and 5 HRP samples, highest tumor purities possible, low/no blood in ascites. Samples thawed, 100 µl aliquot taken to 2 ml Protein LoBind Tubes, Eppendorf, Cat.022431102 in CC hood, and refrozen in -80 in preparation for delivery on 30.6."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 9,
+      "text": "5 HRD and 5 HRP samples, highest tumor purities possible, low/no blood in ascites. Samples thawed, 100 µl aliquot taken to 2 ml Protein LoBind Tubes, Eppendorf, Cat.022431102 in CC hood, and refrozen in -80 in preparation for delivery on 30.6."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 10,
+      "text": "Started: March 2025 - Anastasia submitted 20mg of 96xFF tissues for proteomics analysis, in 2 ml Protein LoBind Tubes, Eppendorf, Cat.022431102, provided by Markku."
+    },
+    {
+      "document_id": "0737038e8cf9119d9f2ebd35e5c49d70",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/32_Project_log.docx",
+      "chunk_index": 11,
+      "text": "Started: March 2025 - Anastasia submitted 20mg of 96xFF tissues for proteomics analysis, in 2 ml Protein LoBind Tubes, Eppendorf, Cat.022431102, provided by Markku."
+    },
+    {
+      "document_id": "db59244a94945f2a5ae09036d819518e",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+      "chunk_index": 0,
+      "text": "R1: | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor % | Box at -80 | Slot in the box | Written on the tube\nR2: 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR3: 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR4: 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022 AN\nR5: 3.0 | PDS | S191 | S191_pAdnR | Adnexa Right | ca clarocellulare, high grade | 0.0 | Box 13 | C8 | S191_pAdnR_RNA1, 23.11.2022 EAP\nR6: 4.0 | PDS | S246 | S246_pOme | Omentum | HGSC | 0 % | Box 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR7: 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS\nR8: 6.0 | PDS | S353 | S353_pOme | Omentum | mucinous borderline | 0 % | Box 18 | H7 | S353_pOme_RNA1, 30.11.2023 AN\nR9: 7.0 | PDS | S359 | S359_pOme | Omentum | HGSC | 0 % | Box 19 | B2 | S359_pOme_RNA1, 18.12.2023 SS\nR10: 8.0 | PDS | S457 | S457_pTub | Normal Tube | fibroma/cystadenoma mucinosum | 0 % (normal tube, looks good) | Box 21 | F6 | S457_pTub (normal tube), 29.05.2024 ME\nR11: 9.0 | PDS | S476 | S476_pTub | Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL"
+    },
+    {
+      "document_id": "db59244a94945f2a5ae09036d819518e",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+      "chunk_index": 1,
+      "text": "R1: | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor % | Box at -80 | Slot in the box | Written on the tube\nR2: 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR3: 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR4: 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022 AN\nR5: 3.0 | PDS | S191 | S191_pAdnR | Adnexa Right | ca clarocellulare, high grade | 0.0 | Box 13 | C8 | S191_pAdnR_RNA1, 23.11.2022 EAP\nR6: 4.0 | PDS | S246 | S246_pOme | Omentum | HGSC | 0 % | Box 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR7: 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS\nR8: 6.0 | PDS | S353 | S353_pOme | Omentum | mucinous borderline | 0 % | Box 18 | H7 | S353_pOme_RNA1, 30.11.2023 AN\nR9: 7.0 | PDS | S359 | S359_pOme | Omentum | HGSC | 0 % | Box 19 | B2 | S359_pOme_RNA1, 18.12.2023 SS\nR10: 8.0 | PDS | S457 | S457_pTub | Normal Tube | fibroma/cystadenoma mucinosum | 0 % (normal tube, looks good) | Box 21 | F6 | S457_pTub (normal tube), 29.05.2024 ME\nR11: 9.0 | PDS | S476 | S476_pTub | Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL"
+    },
+    {
+      "document_id": "db59244a94945f2a5ae09036d819518e",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+      "chunk_index": 2,
+      "text": "Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL\nR12: 10.0 | PDS | S511 | S511_pOme | Omentum | LGSC | 0.0 | Box 25 | B5 | S511_pOme_RNA1, 31.12.2024 AL\nR13: 11.0 | PDS | S512 | S512_pAdnL | Adnexa Left | borderline serous cystadenoma | 0 % (benign tube) | Box 25 | C4 | S512_pAdnL_RNA1, 7.01.2025 AL\nR14: 12.0 | PDS | S544 | S544_pOme | Omentum | dedifferentiated carcinoma of adnexal origin | 0.0 | Box 27 | E1 | S544_pOme_RNA1, 9.04.2025 AL\nR15: | Set of 12 samples given to Markku on dry ice 2.9.2025AL\nR19: | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done\nR20: | PDS | S334 | S334_pAdnR | Adnexa Right | serous borderline tumor | 10 %\nR21: | PDS | S334 | S334_pOme | Omentum | serous borderline tumor | ?\nR22: | PDS | S381 | S381_pAdnR | Adnexa | mucinous borderline | 0.01\nR23: | PDS | S462 | S462_pAdnR | Ovary Right | mucinous borderline | 0.8\nR24: | PDS | S558 | S558_pOvaR | Ovary Right | serous borderline tumor | H&E in process"
+    },
+    {
+      "document_id": "db59244a94945f2a5ae09036d819518e",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/CTRL samples for massspec, 0_ tumor.xlsx",
+      "chunk_index": 3,
+      "text": "Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL\nR12: 10.0 | PDS | S511 | S511_pOme | Omentum | LGSC | 0.0 | Box 25 | B5 | S511_pOme_RNA1, 31.12.2024 AL\nR13: 11.0 | PDS | S512 | S512_pAdnL | Adnexa Left | borderline serous cystadenoma | 0 % (benign tube) | Box 25 | C4 | S512_pAdnL_RNA1, 7.01.2025 AL\nR14: 12.0 | PDS | S544 | S544_pOme | Omentum | dedifferentiated carcinoma of adnexal origin | 0.0 | Box 27 | E1 | S544_pOme_RNA1, 9.04.2025 AL\nR15: | Set of 12 samples given to Markku on dry ice 2.9.2025AL\nR19: | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done\nR20: | PDS | S334 | S334_pAdnR | Adnexa Right | serous borderline tumor | 10 %\nR21: | PDS | S334 | S334_pOme | Omentum | serous borderline tumor | ?\nR22: | PDS | S381 | S381_pAdnR | Adnexa | mucinous borderline | 0.01\nR23: | PDS | S462 | S462_pAdnR | Ovary Right | mucinous borderline | 0.8\nR24: | PDS | S558 | S558_pOvaR | Ovary Right | serous borderline tumor | H&E in process"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 0,
+      "text": "R1: | Sample ID | Project_32 | Tumor % | Location Box | Location, slot | Written on our FF tube | Comment | Notes | Submission Box | Slot | NOTE\nR2: 1.0 | S002_pOme | 32_S002_pOme | 5.0 | Box1 | A2 | OME-2 16.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A1 | might be less than 20mg, all given, no tissue left\nR3: 2.0 | S003_pOme | 32_S003_pOme | 70.0 | Box1 | A3 | OME-3 17.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A2\nR4: 3.0 | S004_pOme | 32_S004_pOme | 10-15 | Box1 | A4 | OME-4 17.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A3\nR5: 4.0 | S007_pOva | 32_S007_pOva | 80.0 | Box1 | A7 | S007_pOva 1 18.11.19 | SPACE | Ziqi added | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 32_S008_pOme1 | 15-20 | Box1 | A9 | S008_pOme DNA 1 2.12.19 | SPACE | Ziqi added | 1.0 | A5 | tiny piece left\nR7: 6.0 | S010_pOvaR | 32_S010_pOvaR | 80.0 | Box1 | B3 | S010_pOvaR 10.12.2019 EPE | SPACE | Ziqi added | 1.0 | A6 | all given, nothing left\nR8: 7.0 | S014_pOme | 32_S014_pOme | 70.0 | Box1 | C4 | S014_pOme DNA-1 13.01.2020 | SPACE | Ziqi added | 1.0 | A7\nR9: 8.0 | S015_pPer | 32_S015_pPer | 10.0 | Box1 | C7 | S015_Perit DNA 14.01.20 | SPACE | Ziqi added | 1.0 | A8\nR10: 9.0 | S016_pOme | 32_S016_pOme | 80.0 | Box1 | D4 | RNA S016_pOme 22.1.2020 | SPACE | Ziqi added | 1.0 | A9"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 1,
+      "text": "R1: | Sample ID | Project_32 | Tumor % | Location Box | Location, slot | Written on our FF tube | Comment | Notes | Submission Box | Slot | NOTE\nR2: 1.0 | S002_pOme | 32_S002_pOme | 5.0 | Box1 | A2 | OME-2 16.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A1 | might be less than 20mg, all given, no tissue left\nR3: 2.0 | S003_pOme | 32_S003_pOme | 70.0 | Box1 | A3 | OME-3 17.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A2\nR4: 3.0 | S004_pOme | 32_S004_pOme | 10-15 | Box1 | A4 | OME-4 17.10.19 snap-freez | SPACE | Ziqi added | 1.0 | A3\nR5: 4.0 | S007_pOva | 32_S007_pOva | 80.0 | Box1 | A7 | S007_pOva 1 18.11.19 | SPACE | Ziqi added | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 32_S008_pOme1 | 15-20 | Box1 | A9 | S008_pOme DNA 1 2.12.19 | SPACE | Ziqi added | 1.0 | A5 | tiny piece left\nR7: 6.0 | S010_pOvaR | 32_S010_pOvaR | 80.0 | Box1 | B3 | S010_pOvaR 10.12.2019 EPE | SPACE | Ziqi added | 1.0 | A6 | all given, nothing left\nR8: 7.0 | S014_pOme | 32_S014_pOme | 70.0 | Box1 | C4 | S014_pOme DNA-1 13.01.2020 | SPACE | Ziqi added | 1.0 | A7\nR9: 8.0 | S015_pPer | 32_S015_pPer | 10.0 | Box1 | C7 | S015_Perit DNA 14.01.20 | SPACE | Ziqi added | 1.0 | A8\nR10: 9.0 | S016_pOme | 32_S016_pOme | 80.0 | Box1 | D4 | RNA S016_pOme 22.1.2020 | SPACE | Ziqi added | 1.0 | A9"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 2,
+      "text": "ox1 | C7 | S015_Perit DNA 14.01.20 | SPACE | Ziqi added | 1.0 | A8\nR10: 9.0 | S016_pOme | 32_S016_pOme | 80.0 | Box1 | D4 | RNA S016_pOme 22.1.2020 | SPACE | Ziqi added | 1.0 | A9\nR11: 10.0 | S018_pOvaL | 32_S018_pOvaL | 30.0 | Box1 | D8 | DNA1 S018_pOva 27.1.2020 | SPACE | Ziqi added | 1.0 | B1 | no L written on the tube, but block is S018_pOvaL\nR12: 11.0 | S019_pOva | 32_S019_pOva | 20.0 | Box1 | E1 | S019_pOva DNA1 04.02.20 | SPACE | Ziqi added | 1.0 | B2\nR13: 12.0 | S021_pOme | 32_S021_pOme | 30.0 | Box1 | E6 | S021_pOme_DNA1 25.2.20 | SPACE | Ziqi added | 1.0 | B3\nR14: 13.0 | S024_pOme | 32_S024_pOme | 50.0 | Box1 | F4 | S024_pOme_RNA 09.3.20 | SPACE | Ziqi added | 1.0 | B4\nR15: 14.0 | S027_pOme | 32_S027_pOme | 20? | Box1 | G5 | S027_pOme_RNA 20.4.20 | SPACE | Ziqi added | 1.0 | B5\nR16: 15.0 | S028_pAdn | 32_S028_pAdn | 50-60 | Box1 | G8 | S028_pAdn_RNA 23.4.20 | SPACE | Ziqi added | 1.0 | B6\nR17: 16.0 | S032_pOme | 32_S032_pOme | 40-50 | Box1 | I1 | S032_pOme_RNA 06.06.20 | SPACE | Ziqi added | 1.0 | B7\nR18: 17.0 | S033_pOme | 32_S033_pOme | 80-85 | Box2 | A6 | S033_pOme_RNA 08.06.20 | SPACE | Ziqi added | 1.0 | B8\nR19: 18.0 | S034_pAdn | 32_S034_pAdn | 60.0 | Box2 | A9 | S034_pAdn_rNA 15.6.20 | SPACE | Ziqi added | 1.0 | B9\nR20: 19.0 | S036_pOme | 32_S036_pOme | max 10 | Box2 | C1 | S036_pOme_RNA1 28.7.20 MS | SPACE | Ziqi added | 1.0 | C1"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 3,
+      "text": "ox1 | C7 | S015_Perit DNA 14.01.20 | SPACE | Ziqi added | 1.0 | A8\nR10: 9.0 | S016_pOme | 32_S016_pOme | 80.0 | Box1 | D4 | RNA S016_pOme 22.1.2020 | SPACE | Ziqi added | 1.0 | A9\nR11: 10.0 | S018_pOvaL | 32_S018_pOvaL | 30.0 | Box1 | D8 | DNA1 S018_pOva 27.1.2020 | SPACE | Ziqi added | 1.0 | B1 | no L written on the tube, but block is S018_pOvaL\nR12: 11.0 | S019_pOva | 32_S019_pOva | 20.0 | Box1 | E1 | S019_pOva DNA1 04.02.20 | SPACE | Ziqi added | 1.0 | B2\nR13: 12.0 | S021_pOme | 32_S021_pOme | 30.0 | Box1 | E6 | S021_pOme_DNA1 25.2.20 | SPACE | Ziqi added | 1.0 | B3\nR14: 13.0 | S024_pOme | 32_S024_pOme | 50.0 | Box1 | F4 | S024_pOme_RNA 09.3.20 | SPACE | Ziqi added | 1.0 | B4\nR15: 14.0 | S027_pOme | 32_S027_pOme | 20? | Box1 | G5 | S027_pOme_RNA 20.4.20 | SPACE | Ziqi added | 1.0 | B5\nR16: 15.0 | S028_pAdn | 32_S028_pAdn | 50-60 | Box1 | G8 | S028_pAdn_RNA 23.4.20 | SPACE | Ziqi added | 1.0 | B6\nR17: 16.0 | S032_pOme | 32_S032_pOme | 40-50 | Box1 | I1 | S032_pOme_RNA 06.06.20 | SPACE | Ziqi added | 1.0 | B7\nR18: 17.0 | S033_pOme | 32_S033_pOme | 80-85 | Box2 | A6 | S033_pOme_RNA 08.06.20 | SPACE | Ziqi added | 1.0 | B8\nR19: 18.0 | S034_pAdn | 32_S034_pAdn | 60.0 | Box2 | A9 | S034_pAdn_rNA 15.6.20 | SPACE | Ziqi added | 1.0 | B9\nR20: 19.0 | S036_pOme | 32_S036_pOme | max 10 | Box2 | C1 | S036_pOme_RNA1 28.7.20 MS | SPACE | Ziqi added | 1.0 | C1"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 4,
+      "text": "| A9 | S034_pAdn_rNA 15.6.20 | SPACE | Ziqi added | 1.0 | B9\nR20: 19.0 | S036_pOme | 32_S036_pOme | max 10 | Box2 | C1 | S036_pOme_RNA1 28.7.20 MS | SPACE | Ziqi added | 1.0 | C1\nR21: 20.0 | S039_pOme | 32_S039_pOme | 20-25 | Box2 | E2 | S039_pOme_RNA1 18.8.20 | SPACE | Ziqi added | 1.0 | C2\nR22: 21.0 | S040_pOva | 32_S040_pOva | 60.0 | Box2 | E8 | S040_pOva_RNA1 20.8.20 | SPACE | Ziqi added | 1.0 | C3\nR23: 22.0 | S044_pOme | 32_S044_pOme | 70.0 | Box2 | H4 | S044_pOme_RNA1 5.10.20 | SPACE | Ziqi added | 1.0 | C4\nR24: 23.0 | S047_pOme | 32_S047_pOme | 50.0 | Box3 | C6 | S047_pOme_RNa1 21.10.20 | SPACE | Ziqi added | 1.0 | C5\nR25: 24.0 | S051_pOme | 32_S051_pOme | 25.0 | Box3 | F2 | S051_pOme_RNA1 30.10.20 | SPACE | Ziqi added | 1.0 | C6\nR26: 25.0 | S060_pOme | 32_S060_pOme | 10-15 | Box4 | C6 | S060_pOme_RNA1 28.12.20 | SPACE | Ziqi added | 1.0 | C7\nR27: 26.0 | S061_pOme | 32_S061_pOme | 90.0 | Box4 | D3 | S061_pOme_RNA1 04.01.21 | SPACE | Ziqi added | 1.0 | C8\nR28: 27.0 | S071_pOme | 32_S071_pOme | 15.0 | Box5 | C1 | S071_pOme_RNA1 08.02.21 | SPACE | Ziqi added | 1.0 | C9\nR29: 28.0 | S078_pOme | 32_S078_pOme | 30.0 | Box5 | G3 | S078_pOme_DNA1 16.3.21 NC | SPACE | Ziqi added | 1.0 | D1\nR30: 29.0 | S079_pOme | 32_S079_pOme | 5.0 | Box5 | G9 | S079_pOme_RNA1 23.3.21 NC | SPACE | Ziqi added | 1.0 | D2"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 5,
+      "text": "| A9 | S034_pAdn_rNA 15.6.20 | SPACE | Ziqi added | 1.0 | B9\nR20: 19.0 | S036_pOme | 32_S036_pOme | max 10 | Box2 | C1 | S036_pOme_RNA1 28.7.20 MS | SPACE | Ziqi added | 1.0 | C1\nR21: 20.0 | S039_pOme | 32_S039_pOme | 20-25 | Box2 | E2 | S039_pOme_RNA1 18.8.20 | SPACE | Ziqi added | 1.0 | C2\nR22: 21.0 | S040_pOva | 32_S040_pOva | 60.0 | Box2 | E8 | S040_pOva_RNA1 20.8.20 | SPACE | Ziqi added | 1.0 | C3\nR23: 22.0 | S044_pOme | 32_S044_pOme | 70.0 | Box2 | H4 | S044_pOme_RNA1 5.10.20 | SPACE | Ziqi added | 1.0 | C4\nR24: 23.0 | S047_pOme | 32_S047_pOme | 50.0 | Box3 | C6 | S047_pOme_RNa1 21.10.20 | SPACE | Ziqi added | 1.0 | C5\nR25: 24.0 | S051_pOme | 32_S051_pOme | 25.0 | Box3 | F2 | S051_pOme_RNA1 30.10.20 | SPACE | Ziqi added | 1.0 | C6\nR26: 25.0 | S060_pOme | 32_S060_pOme | 10-15 | Box4 | C6 | S060_pOme_RNA1 28.12.20 | SPACE | Ziqi added | 1.0 | C7\nR27: 26.0 | S061_pOme | 32_S061_pOme | 90.0 | Box4 | D3 | S061_pOme_RNA1 04.01.21 | SPACE | Ziqi added | 1.0 | C8\nR28: 27.0 | S071_pOme | 32_S071_pOme | 15.0 | Box5 | C1 | S071_pOme_RNA1 08.02.21 | SPACE | Ziqi added | 1.0 | C9\nR29: 28.0 | S078_pOme | 32_S078_pOme | 30.0 | Box5 | G3 | S078_pOme_DNA1 16.3.21 NC | SPACE | Ziqi added | 1.0 | D1\nR30: 29.0 | S079_pOme | 32_S079_pOme | 5.0 | Box5 | G9 | S079_pOme_RNA1 23.3.21 NC | SPACE | Ziqi added | 1.0 | D2"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 6,
+      "text": "| G3 | S078_pOme_DNA1 16.3.21 NC | SPACE | Ziqi added | 1.0 | D1\nR30: 29.0 | S079_pOme | 32_S079_pOme | 5.0 | Box5 | G9 | S079_pOme_RNA1 23.3.21 NC | SPACE | Ziqi added | 1.0 | D2\nR31: 30.0 | S085_pOme | 32_S085_pOme | 10-15 | Box6 | E1 | S085_pOme_RNA1 14.4.21 SS | SPACE | Ziqi added | 1.0 | D3\nR32: 31.0 | S086_pOme | 32_S086_pOme | 25-30 | Box6 | E7 | S086_pOme_RNA1 26.4.21 eap | SPACE | Ziqi added | 1.0 | D4\nR33: 32.0 | S090_pOme | 32_S090_pOme | 70.0 | Box6 | H7 | S090_pOme_RNA1 12.5.21 eap | SPACE | Ziqi added | 1.0 | D5\nR34: 33.0 | S092_pOme | 32_S092_pOme | 40-50 | Box7 | A9 | S092_pOme_RNA1 18.5.21 eap | SPACE | Ziqi added | 1.0 | D6\nR35: 34.0 | S096_pOme | 32_S096_pOme | 20.0 | Box7 | E3 | S096_pOme_RNA1 21.6.21 SS | SPACE | Ziqi added | 1.0 | D7\nR36: 35.0 | S097_pAdnL | 32_S097_pAdnL | 40.0 | Box7 | E9 | S097_pAdnL_RNA1 22.6.21 SS | SPACE | Ziqi added | 1.0 | D8\nR37: 36.0 | S102_pOme2 | 32_S102_pOme2 | 60.0 | Box7 | I9 | S102_pOme2_RNA1 18.8.21 eap | SPACE | Ziqi added | 1.0 | D9\nR38: 37.0 | S109_pOme | 32_S109_pOme | max 10 | Box8 | C8 | S109_pOme_RNA1 04.10.21 EAP | SPACE | Ziqi added | 1.0 | E1\nR39: 38.0 | S114_pOme | 32_S114_pOme | 40.0 | Box8 | H9 | S114_pOme_RNA1 04.11.21 eap SD | SPACE | Ziqi added | 1.0 | E2\nR40: 39.0 | S117_pOme | 32_S117_pOme | 25.0 | Box9 | C3 | S117_pOme_RNA1 21.11.21 eap, SD | SPACE | Ziqi added | 1.0 | E3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 7,
+      "text": "| G3 | S078_pOme_DNA1 16.3.21 NC | SPACE | Ziqi added | 1.0 | D1\nR30: 29.0 | S079_pOme | 32_S079_pOme | 5.0 | Box5 | G9 | S079_pOme_RNA1 23.3.21 NC | SPACE | Ziqi added | 1.0 | D2\nR31: 30.0 | S085_pOme | 32_S085_pOme | 10-15 | Box6 | E1 | S085_pOme_RNA1 14.4.21 SS | SPACE | Ziqi added | 1.0 | D3\nR32: 31.0 | S086_pOme | 32_S086_pOme | 25-30 | Box6 | E7 | S086_pOme_RNA1 26.4.21 eap | SPACE | Ziqi added | 1.0 | D4\nR33: 32.0 | S090_pOme | 32_S090_pOme | 70.0 | Box6 | H7 | S090_pOme_RNA1 12.5.21 eap | SPACE | Ziqi added | 1.0 | D5\nR34: 33.0 | S092_pOme | 32_S092_pOme | 40-50 | Box7 | A9 | S092_pOme_RNA1 18.5.21 eap | SPACE | Ziqi added | 1.0 | D6\nR35: 34.0 | S096_pOme | 32_S096_pOme | 20.0 | Box7 | E3 | S096_pOme_RNA1 21.6.21 SS | SPACE | Ziqi added | 1.0 | D7\nR36: 35.0 | S097_pAdnL | 32_S097_pAdnL | 40.0 | Box7 | E9 | S097_pAdnL_RNA1 22.6.21 SS | SPACE | Ziqi added | 1.0 | D8\nR37: 36.0 | S102_pOme2 | 32_S102_pOme2 | 60.0 | Box7 | I9 | S102_pOme2_RNA1 18.8.21 eap | SPACE | Ziqi added | 1.0 | D9\nR38: 37.0 | S109_pOme | 32_S109_pOme | max 10 | Box8 | C8 | S109_pOme_RNA1 04.10.21 EAP | SPACE | Ziqi added | 1.0 | E1\nR39: 38.0 | S114_pOme | 32_S114_pOme | 40.0 | Box8 | H9 | S114_pOme_RNA1 04.11.21 eap SD | SPACE | Ziqi added | 1.0 | E2\nR40: 39.0 | S117_pOme | 32_S117_pOme | 25.0 | Box9 | C3 | S117_pOme_RNA1 21.11.21 eap, SD | SPACE | Ziqi added | 1.0 | E3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 8,
+      "text": "pOme_RNA1 04.11.21 eap SD | SPACE | Ziqi added | 1.0 | E2\nR40: 39.0 | S117_pOme | 32_S117_pOme | 25.0 | Box9 | C3 | S117_pOme_RNA1 21.11.21 eap, SD | SPACE | Ziqi added | 1.0 | E3\nR41: 40.0 | S119_pOme | 32_S119_pOme | 25.0 | Box9 | D4 | S119_pOme_RNA1 07.12.2021 eap, SD | SPACE | Ziqi added | 1.0 | E4\nR42: 41.0 | S134_pOvaR | 32_S134_pOvaR | 70.0 | Box10 | F5 | S134_pOvaR_RNA1 29.3.22 AN | SPACE | Ziqi added | 1.0 | E5\nR43: 42.0 | S135_pAdnL | 32_S135_pAdnL | 25.0 | Box10 | G8 | S135_padnL_RNA1 06.04.22AN | SPACE | Ziqi added | 1.0 | E6\nR44: 43.0 | S137_pAdnL | 32_S137_pAdnL | 80.0 | Box10 | I2 | S137_pAdn_RNA1 26.4.22 AN | SPACE | Ziqi added | 1.0 | E7 | S137_pAdn, no L on the tube or in Benchling/FFPE block, but says AdnL on patient sticker\nR45: 44.0 | S138_pAdn | 32_S138_pAdn | 50.0 | Box11 | A5 | S138_pAdn_RNA1 02.05.22 aN | SPACE | Ziqi added | 1.0 | E8\nR46: 45.0 | S139_pPer | 32_S139_pPer | 10.0 | Box11 | B2 | S139_pPer_DNA1 2.5.22 MS | SPACE | Ziqi added | 1.0 | E9\nR47: 46.0 | S141_pOva | 32_S141_pOva | 90.0 | Box11 | C8 | S141_pOva_RNA1 16.5.22 eap | SPACE | Ziqi added | 1.0 | F1\nR48: 47.0 | S142_pOvaL | 32_S142_pOvaL | 90.0 | Box11 | D5 | S142_pOvaL_RNA1 23.5.22 eap | SPACE | Ziqi added | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 32_S145_pOme_BM | 50.0 | Box11 | F7 | S145_pOme_RNA1 15.6.22 VV | SPACE | Ziqi added | 1.0 | F3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 9,
+      "text": "pOme_RNA1 04.11.21 eap SD | SPACE | Ziqi added | 1.0 | E2\nR40: 39.0 | S117_pOme | 32_S117_pOme | 25.0 | Box9 | C3 | S117_pOme_RNA1 21.11.21 eap, SD | SPACE | Ziqi added | 1.0 | E3\nR41: 40.0 | S119_pOme | 32_S119_pOme | 25.0 | Box9 | D4 | S119_pOme_RNA1 07.12.2021 eap, SD | SPACE | Ziqi added | 1.0 | E4\nR42: 41.0 | S134_pOvaR | 32_S134_pOvaR | 70.0 | Box10 | F5 | S134_pOvaR_RNA1 29.3.22 AN | SPACE | Ziqi added | 1.0 | E5\nR43: 42.0 | S135_pAdnL | 32_S135_pAdnL | 25.0 | Box10 | G8 | S135_padnL_RNA1 06.04.22AN | SPACE | Ziqi added | 1.0 | E6\nR44: 43.0 | S137_pAdnL | 32_S137_pAdnL | 80.0 | Box10 | I2 | S137_pAdn_RNA1 26.4.22 AN | SPACE | Ziqi added | 1.0 | E7 | S137_pAdn, no L on the tube or in Benchling/FFPE block, but says AdnL on patient sticker\nR45: 44.0 | S138_pAdn | 32_S138_pAdn | 50.0 | Box11 | A5 | S138_pAdn_RNA1 02.05.22 aN | SPACE | Ziqi added | 1.0 | E8\nR46: 45.0 | S139_pPer | 32_S139_pPer | 10.0 | Box11 | B2 | S139_pPer_DNA1 2.5.22 MS | SPACE | Ziqi added | 1.0 | E9\nR47: 46.0 | S141_pOva | 32_S141_pOva | 90.0 | Box11 | C8 | S141_pOva_RNA1 16.5.22 eap | SPACE | Ziqi added | 1.0 | F1\nR48: 47.0 | S142_pOvaL | 32_S142_pOvaL | 90.0 | Box11 | D5 | S142_pOvaL_RNA1 23.5.22 eap | SPACE | Ziqi added | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 32_S145_pOme_BM | 50.0 | Box11 | F7 | S145_pOme_RNA1 15.6.22 VV | SPACE | Ziqi added | 1.0 | F3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 10,
+      "text": "2_pOvaL_RNA1 23.5.22 eap | SPACE | Ziqi added | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 32_S145_pOme_BM | 50.0 | Box11 | F7 | S145_pOme_RNA1 15.6.22 VV | SPACE | Ziqi added | 1.0 | F3\nR50: 49.0 | S147_pOvaR | 32_S147_pOvaR | 50.0 | Box11 | G4 | S147_pOvaR_RNA1 22.6.22 VV | SPACE | Ziqi added | 1.0 | F4\nR51: 50.0 | S148_pOme | 32_S148_pOme | max 10 | Box11 | H1 | S148_pOme_RNA1 27.6.22 VV | SPACE | Ziqi added | 1.0 | F5\nR52: 51.0 | S149_pOme | 32_S149_pOme | 40.0 | Box11 | H7 | S149_pOme_RNA1 29.6.2022 sL | SPACE | Ziqi added | 1.0 | F6\nR53: 52.0 | S152_pOme | 32_S152_pOme | 25.0 | Box12 | A7 | S152_pOme_RNA1 27.7.2022 NC | SPACE | Ziqi added | 1.0 | F7\nR54: 53.0 | S153_pOme | 32_S153_pOme | 50.0 | Box12 | B4 | S153_pOme_RNA1 01.08.22AN | SPACE | Ziqi added | 1.0 | F8\nR55: 54.0 | S156_pAdnR | 32_S156_pAdnR | 70.0 | Box12 | D4 | S156_pAdnR_RNA1 22.8.22 eap | SPACE | Ziqi added | 1.0 | F9\nR56: 55.0 | S186_pOme | 32_S186_pOme | 65.0 | Box13 | A4 | S186_pOme_RNA1 8.11.22 eap | SPACE | Ziqi added | 1.0 | G1\nR57: 56.0 | S190_pOme | 32_S190_pOme | 95.0 | Box13 | C2 | S190_pOme_RNA1 22.11.22 AN | SPACE | Ziqi added | 1.0 | G2\nR58: 57.0 | S201_pOva1 | 32_S201_pOva1 | 80.0 | Box13 | E8 | S201_pOva1_RNA1 5.12.22 eap | SPACE | Ziqi added | 1.0 | G3\nR59: 58.0 | S203_pOme | 32_S203_pOme | 40.0 | Box13 | G8 | S203_pOme_RNA1 12.12.22 SP | SPACE | Ziqi added | 1.0 | G4"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 11,
+      "text": "2_pOvaL_RNA1 23.5.22 eap | SPACE | Ziqi added | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 32_S145_pOme_BM | 50.0 | Box11 | F7 | S145_pOme_RNA1 15.6.22 VV | SPACE | Ziqi added | 1.0 | F3\nR50: 49.0 | S147_pOvaR | 32_S147_pOvaR | 50.0 | Box11 | G4 | S147_pOvaR_RNA1 22.6.22 VV | SPACE | Ziqi added | 1.0 | F4\nR51: 50.0 | S148_pOme | 32_S148_pOme | max 10 | Box11 | H1 | S148_pOme_RNA1 27.6.22 VV | SPACE | Ziqi added | 1.0 | F5\nR52: 51.0 | S149_pOme | 32_S149_pOme | 40.0 | Box11 | H7 | S149_pOme_RNA1 29.6.2022 sL | SPACE | Ziqi added | 1.0 | F6\nR53: 52.0 | S152_pOme | 32_S152_pOme | 25.0 | Box12 | A7 | S152_pOme_RNA1 27.7.2022 NC | SPACE | Ziqi added | 1.0 | F7\nR54: 53.0 | S153_pOme | 32_S153_pOme | 50.0 | Box12 | B4 | S153_pOme_RNA1 01.08.22AN | SPACE | Ziqi added | 1.0 | F8\nR55: 54.0 | S156_pAdnR | 32_S156_pAdnR | 70.0 | Box12 | D4 | S156_pAdnR_RNA1 22.8.22 eap | SPACE | Ziqi added | 1.0 | F9\nR56: 55.0 | S186_pOme | 32_S186_pOme | 65.0 | Box13 | A4 | S186_pOme_RNA1 8.11.22 eap | SPACE | Ziqi added | 1.0 | G1\nR57: 56.0 | S190_pOme | 32_S190_pOme | 95.0 | Box13 | C2 | S190_pOme_RNA1 22.11.22 AN | SPACE | Ziqi added | 1.0 | G2\nR58: 57.0 | S201_pOva1 | 32_S201_pOva1 | 80.0 | Box13 | E8 | S201_pOva1_RNA1 5.12.22 eap | SPACE | Ziqi added | 1.0 | G3\nR59: 58.0 | S203_pOme | 32_S203_pOme | 40.0 | Box13 | G8 | S203_pOme_RNA1 12.12.22 SP | SPACE | Ziqi added | 1.0 | G4"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 12,
+      "text": "| S201_pOva1_RNA1 5.12.22 eap | SPACE | Ziqi added | 1.0 | G3\nR59: 58.0 | S203_pOme | 32_S203_pOme | 40.0 | Box13 | G8 | S203_pOme_RNA1 12.12.22 SP | SPACE | Ziqi added | 1.0 | G4\nR60: 59.0 | S215_pAdnR | 32_S215_pAdnR | 90.0 | Box14 | A7 | S215_pAdnR_RNA1 21.12.22AN | SPACE | Ziqi added | 1.0 | G5 | S215_pAdnR\nR61: 60.0 | S228_pOme1 | 32_S228_pOme1 | 75.0 | Box14 | D1 | S228_pOme1_RNA1 7.2.23 | SPACE | Ziqi added | 1.0 | G6\nR62: 61.0 | S230_pOme | 32_S230_pOme | 20.0 | Box14 | E4 | S230_pOme_RNA1 13.2.23 | SPACE | Ziqi added | 1.0 | G7\nR63: 62.0 | S239_pOme | 32_S239_pOme | 80.0 | Box14 | I1 | S239_pOme_RNA1 1.3.23 | SPACE | Ziqi added | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 32_S241_pOvaR | 80.0 | Box15 | A4 | S241_pOvaR_RNA1 8.3.23 | SPACE | Ziqi added | 1.0 | G9\nR65: 64.0 | S242_pOme | 32_S242_pOme | 25.0 | Box15 | B1 | S242_pOme_RNA1 13.3.23 | SPACE | Ziqi added | 1.0 | H1\nR66: 65.0 | S245_pAdn | 32_S245_pAdn | 10.0 | Box15 | B7 | S245_pAdn_RNA1 20.3.23 | SPACE | Ziqi added | 1.0 | H2 | S245_pAdn, FF pieces were only for Adn1\nR67: 66.0 | S248_pOme | 32_S248_pOme | 10-15 (?) | Box15 | D2 | S248_pOme_RNA1 30.3.23 | SPACE | Ziqi added | 1.0 | H3\nR68: 67.0 | S255_pOme | 32_S255_pOme | 35.0 | Box15 | F5 | S255_pOme_RNA1 18.4.23 | SPACE | Ziqi added | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 32_S269_pAdnL | 35(?) | Box15 | I6 | S269_pAdnL_RNA1 8.5.23 | SPACE | Ziqi added | 1.0 | H5"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 13,
+      "text": "| S201_pOva1_RNA1 5.12.22 eap | SPACE | Ziqi added | 1.0 | G3\nR59: 58.0 | S203_pOme | 32_S203_pOme | 40.0 | Box13 | G8 | S203_pOme_RNA1 12.12.22 SP | SPACE | Ziqi added | 1.0 | G4\nR60: 59.0 | S215_pAdnR | 32_S215_pAdnR | 90.0 | Box14 | A7 | S215_pAdnR_RNA1 21.12.22AN | SPACE | Ziqi added | 1.0 | G5 | S215_pAdnR\nR61: 60.0 | S228_pOme1 | 32_S228_pOme1 | 75.0 | Box14 | D1 | S228_pOme1_RNA1 7.2.23 | SPACE | Ziqi added | 1.0 | G6\nR62: 61.0 | S230_pOme | 32_S230_pOme | 20.0 | Box14 | E4 | S230_pOme_RNA1 13.2.23 | SPACE | Ziqi added | 1.0 | G7\nR63: 62.0 | S239_pOme | 32_S239_pOme | 80.0 | Box14 | I1 | S239_pOme_RNA1 1.3.23 | SPACE | Ziqi added | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 32_S241_pOvaR | 80.0 | Box15 | A4 | S241_pOvaR_RNA1 8.3.23 | SPACE | Ziqi added | 1.0 | G9\nR65: 64.0 | S242_pOme | 32_S242_pOme | 25.0 | Box15 | B1 | S242_pOme_RNA1 13.3.23 | SPACE | Ziqi added | 1.0 | H1\nR66: 65.0 | S245_pAdn | 32_S245_pAdn | 10.0 | Box15 | B7 | S245_pAdn_RNA1 20.3.23 | SPACE | Ziqi added | 1.0 | H2 | S245_pAdn, FF pieces were only for Adn1\nR67: 66.0 | S248_pOme | 32_S248_pOme | 10-15 (?) | Box15 | D2 | S248_pOme_RNA1 30.3.23 | SPACE | Ziqi added | 1.0 | H3\nR68: 67.0 | S255_pOme | 32_S255_pOme | 35.0 | Box15 | F5 | S255_pOme_RNA1 18.4.23 | SPACE | Ziqi added | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 32_S269_pAdnL | 35(?) | Box15 | I6 | S269_pAdnL_RNA1 8.5.23 | SPACE | Ziqi added | 1.0 | H5"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 14,
+      "text": "| F5 | S255_pOme_RNA1 18.4.23 | SPACE | Ziqi added | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 32_S269_pAdnL | 35(?) | Box15 | I6 | S269_pAdnL_RNA1 8.5.23 | SPACE | Ziqi added | 1.0 | H5\nR70: 69.0 | S270_pAdn | 32_S270_pAdn | 90.0 | Box16 | A3 | S270_pAdn_RNA1 10.5.23 | SPACE | Ziqi added | 1.0 | H6\nR71: 70.0 | S285_pOme2 | 32_S285_pOme2 | 60.0 | Box16 | B6 | S285_pOme2_RNA1 15.5.23 | SPACE | Ziqi added | 1.0 | H7\nR72: 71.0 | S287_pMes | 32_S287_pMes | 30 (?) | Box16 | B9 | S287_pMes_RNA1 17.5.23 | SPACE | Ziqi added | 1.0 | H8\nR73: 72.0 | S289_pPer | 32_S289_pPer | 50.0 | Box16 | C7 | S289_pPer_RNA1 22.5.23 | SPACE | Ziqi added | 1.0 | H9\nR74: 73.0 | S290_pOme | 32_S290_pOme | 20% (?) | Box16 | E3 | S290_pOme_RNA1 24.5.23 | SPACE | Ziqi added | 1.0 | I1\nR75: 74.0 | S310_pOme | 32_S310_pOme | 50.0 | Box16 | I5 | S310_pOme_RNA1 20.6.23 | SPACE | Ziqi added | 1.0 | I2\nR76: 75.0 | S318_pPer | 32_S318_pPer | 50.0 | Box17 | D9 | S318_pPer_RNA1 7.8.23 | SPACE | Ziqi added | 1.0 | I3\nR77: 76.0 | S321_pOme | 32_S321_pOme | 15.0 | Box17 | E2 | S321_pOme_RNA1 28.8.23 SS | SPACE | Ziqi added | 1.0 | I4\nR78: 77.0 | S327_pOvaL | 32_S327_pOvaL | 70.0 | Box17 | F6 | S327_pOvaL_RNA1 18.9.23 SS | SPACE | Ziqi added | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 32_S329_pOvaR | 50.0 | Box17 | G3 | S329_pOvaR_RNA1 20.9.23 SS | SPACE | Ziqi added | 1.0 | I6"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 15,
+      "text": "| F5 | S255_pOme_RNA1 18.4.23 | SPACE | Ziqi added | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 32_S269_pAdnL | 35(?) | Box15 | I6 | S269_pAdnL_RNA1 8.5.23 | SPACE | Ziqi added | 1.0 | H5\nR70: 69.0 | S270_pAdn | 32_S270_pAdn | 90.0 | Box16 | A3 | S270_pAdn_RNA1 10.5.23 | SPACE | Ziqi added | 1.0 | H6\nR71: 70.0 | S285_pOme2 | 32_S285_pOme2 | 60.0 | Box16 | B6 | S285_pOme2_RNA1 15.5.23 | SPACE | Ziqi added | 1.0 | H7\nR72: 71.0 | S287_pMes | 32_S287_pMes | 30 (?) | Box16 | B9 | S287_pMes_RNA1 17.5.23 | SPACE | Ziqi added | 1.0 | H8\nR73: 72.0 | S289_pPer | 32_S289_pPer | 50.0 | Box16 | C7 | S289_pPer_RNA1 22.5.23 | SPACE | Ziqi added | 1.0 | H9\nR74: 73.0 | S290_pOme | 32_S290_pOme | 20% (?) | Box16 | E3 | S290_pOme_RNA1 24.5.23 | SPACE | Ziqi added | 1.0 | I1\nR75: 74.0 | S310_pOme | 32_S310_pOme | 50.0 | Box16 | I5 | S310_pOme_RNA1 20.6.23 | SPACE | Ziqi added | 1.0 | I2\nR76: 75.0 | S318_pPer | 32_S318_pPer | 50.0 | Box17 | D9 | S318_pPer_RNA1 7.8.23 | SPACE | Ziqi added | 1.0 | I3\nR77: 76.0 | S321_pOme | 32_S321_pOme | 15.0 | Box17 | E2 | S321_pOme_RNA1 28.8.23 SS | SPACE | Ziqi added | 1.0 | I4\nR78: 77.0 | S327_pOvaL | 32_S327_pOvaL | 70.0 | Box17 | F6 | S327_pOvaL_RNA1 18.9.23 SS | SPACE | Ziqi added | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 32_S329_pOvaR | 50.0 | Box17 | G3 | S329_pOvaR_RNA1 20.9.23 SS | SPACE | Ziqi added | 1.0 | I6"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 16,
+      "text": "S327_pOvaL_RNA1 18.9.23 SS | SPACE | Ziqi added | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 32_S329_pOvaR | 50.0 | Box17 | G3 | S329_pOvaR_RNA1 20.9.23 SS | SPACE | Ziqi added | 1.0 | I6\nR80: 79.0 | S333_pOme2 | 32_S333_pOme2 | 40.0 | Box18 | A3 | S333_pOme2_RNA1 17.10.23 SS | SPACE | Ziqi added | 1.0 | I7\nR81: 80.0 | S340_pOvaL | 32_S340_pOvaL | 40.0 | Box18 | C9 | S340_pOva_RNA1 7.11.23 SS | SPACE | Ziqi added | 1.0 | I8\nR82: 81.0 | S341_pOme | 32_S341_pOme | 40.0 | Box18 | D4 | S341_pOme_RNA1 8.11.23 SS | SPACE | Ziqi added | 1.0 | I9 | S341_pOme, there is no sample pOme2!\nR83: 82.0 | S345_pOme | 32_S345_pOme | 30.0 | Box18 | E9 | S345_pOme_RNA1 15.11.23 SS | SPACE | Ziqi added | 2.0 | A1\nR84: 83.0 | S357_pAdnR | 32_S357_pAdnR | 80.0 | Box19 | A1 | S357_pAdnR_RNA1 12.12.23 MH | SPACE | Ziqi added | 2.0 | A2\nR85: 84.0 | S360_pOvaL | 32_S360_pOvaL | 40.0 | Box19 | B3 | S360_pOvaL_RNA1 19.12.23 | SPACE | Ziqi added | 2.0 | A3\nR86: 85.0 | S363_pAdnL | 32_S363_pAdnL | 80.0 | Box19 | B7 | S363_pAdnL_RNA1 28.12.23 | SPACE | Ziqi added | 2.0 | A4\nR87: 86.0 | S015_iOme | 32_S015_iOme | 5.0 | Box1 | C8 | S015_iOme_RNA 12.5.20 | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A9\nR88: 87.0 | S065_iOme | 32_S065_iOme | max 10 | Box4 | G4 | S065_iOme_RNA1 20.1.21 NC | CellCycle | Ada added | 2.0 | B5"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 17,
+      "text": "S327_pOvaL_RNA1 18.9.23 SS | SPACE | Ziqi added | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 32_S329_pOvaR | 50.0 | Box17 | G3 | S329_pOvaR_RNA1 20.9.23 SS | SPACE | Ziqi added | 1.0 | I6\nR80: 79.0 | S333_pOme2 | 32_S333_pOme2 | 40.0 | Box18 | A3 | S333_pOme2_RNA1 17.10.23 SS | SPACE | Ziqi added | 1.0 | I7\nR81: 80.0 | S340_pOvaL | 32_S340_pOvaL | 40.0 | Box18 | C9 | S340_pOva_RNA1 7.11.23 SS | SPACE | Ziqi added | 1.0 | I8\nR82: 81.0 | S341_pOme | 32_S341_pOme | 40.0 | Box18 | D4 | S341_pOme_RNA1 8.11.23 SS | SPACE | Ziqi added | 1.0 | I9 | S341_pOme, there is no sample pOme2!\nR83: 82.0 | S345_pOme | 32_S345_pOme | 30.0 | Box18 | E9 | S345_pOme_RNA1 15.11.23 SS | SPACE | Ziqi added | 2.0 | A1\nR84: 83.0 | S357_pAdnR | 32_S357_pAdnR | 80.0 | Box19 | A1 | S357_pAdnR_RNA1 12.12.23 MH | SPACE | Ziqi added | 2.0 | A2\nR85: 84.0 | S360_pOvaL | 32_S360_pOvaL | 40.0 | Box19 | B3 | S360_pOvaL_RNA1 19.12.23 | SPACE | Ziqi added | 2.0 | A3\nR86: 85.0 | S363_pAdnL | 32_S363_pAdnL | 80.0 | Box19 | B7 | S363_pAdnL_RNA1 28.12.23 | SPACE | Ziqi added | 2.0 | A4\nR87: 86.0 | S015_iOme | 32_S015_iOme | 5.0 | Box1 | C8 | S015_iOme_RNA 12.5.20 | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A9\nR88: 87.0 | S065_iOme | 32_S065_iOme | max 10 | Box4 | G4 | S065_iOme_RNA1 20.1.21 NC | CellCycle | Ada added | 2.0 | B5"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 18,
+      "text": "lCycle (processed also in MS-Turku) | Ada added | 2.0 | A9\nR88: 87.0 | S065_iOme | 32_S065_iOme | max 10 | Box4 | G4 | S065_iOme_RNA1 20.1.21 NC | CellCycle | Ada added | 2.0 | B5\nR89: 88.0 | S083_iOme | 32_S083_iOme1 | 80.0 | Box6 | C4 | S083_iOme_RNA1 12.4.21 | CellCycle | Ada added | 2.0 | B4 | S083_iOme1\nR90: 89.0 | S084_iOme2 | 32_S084_iOme | 5.0 | Box6 | D7 | S084_iOme_RNA1 12.4.21 NC | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B2 | S084_iOme2 no such block or sample, there is only one block S084_iOme\nR91: 90.0 | S100_iOme | 32_S100_iOme | 15.0 | Box7 | G9 | S100_iOme_RNA1 27.7.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A5\nR92: 91.0 | S107_iOme | 32_S107_iOme | 15.0 | Box8 | C4 | S107_iOme_RNA1 20.9.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A6\nR93: 92.0 | S113_iOme | 32_S113_iOme | 5.0 | Box8 | H3 | S113_iOme_RNA1 20.10.21 SD | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A10\nR94: 93.0 | S118_iOme | 32_S118_iOme | max 10 | Box9 | C7 | S118_iOme_RNA1 29.11.21 eap and SD | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B1\nR95: 94.0 | S120_iOme | 32_S120_iOme | max 30 | Box9 | E1 | S120_iOme_RNA1 13.12.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 19,
+      "text": "lCycle (processed also in MS-Turku) | Ada added | 2.0 | A9\nR88: 87.0 | S065_iOme | 32_S065_iOme | max 10 | Box4 | G4 | S065_iOme_RNA1 20.1.21 NC | CellCycle | Ada added | 2.0 | B5\nR89: 88.0 | S083_iOme | 32_S083_iOme1 | 80.0 | Box6 | C4 | S083_iOme_RNA1 12.4.21 | CellCycle | Ada added | 2.0 | B4 | S083_iOme1\nR90: 89.0 | S084_iOme2 | 32_S084_iOme | 5.0 | Box6 | D7 | S084_iOme_RNA1 12.4.21 NC | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B2 | S084_iOme2 no such block or sample, there is only one block S084_iOme\nR91: 90.0 | S100_iOme | 32_S100_iOme | 15.0 | Box7 | G9 | S100_iOme_RNA1 27.7.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A5\nR92: 91.0 | S107_iOme | 32_S107_iOme | 15.0 | Box8 | C4 | S107_iOme_RNA1 20.9.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A6\nR93: 92.0 | S113_iOme | 32_S113_iOme | 5.0 | Box8 | H3 | S113_iOme_RNA1 20.10.21 SD | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A10\nR94: 93.0 | S118_iOme | 32_S118_iOme | max 10 | Box9 | C7 | S118_iOme_RNA1 29.11.21 eap and SD | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B1\nR95: 94.0 | S120_iOme | 32_S120_iOme | max 30 | Box9 | E1 | S120_iOme_RNA1 13.12.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B3"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 20,
+      "text": "rku) | Ada added | 2.0 | B1\nR95: 94.0 | S120_iOme | 32_S120_iOme | max 30 | Box9 | E1 | S120_iOme_RNA1 13.12.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B3\nR96: 95.0 | S130_iOme | 32_S130_iOme | 50.0 | Box10 | B7 | S130_iOme_RNA1 7.3.22 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A7\nR97: 96.0 | S131_iOme | 32_S131_iOme | 50.0 | Box10 | C4 | S131_iOme_RNA1 8.3.22 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A8\nR102: | Normal samples, CTRL | sent to Varjosalo lab in Aug 2025, AL | 12 CTRL samples, 20mg\nR104: | | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor %, pathologist's note | Box at -80 | Slot in the box | Written on the tube\nR105: | 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR106: | 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR107: | 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022 AN\nR108: | 3.0 | PDS | S191 | S191_pAdnR | Adnexa Right | ca clarocellulare, high grade | 0.0 | Box 13 | C8 | S191_pAdnR_RNA1, 23.11.2022 EAP\nR109: | 4.0 | PDS | S246 | S246_pOme | Omentum | HGSC | 0 % | Box 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR110: | 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 21,
+      "text": "rku) | Ada added | 2.0 | B1\nR95: 94.0 | S120_iOme | 32_S120_iOme | max 30 | Box9 | E1 | S120_iOme_RNA1 13.12.21 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | B3\nR96: 95.0 | S130_iOme | 32_S130_iOme | 50.0 | Box10 | B7 | S130_iOme_RNA1 7.3.22 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A7\nR97: 96.0 | S131_iOme | 32_S131_iOme | 50.0 | Box10 | C4 | S131_iOme_RNA1 8.3.22 eap | CellCycle (processed also in MS-Turku) | Ada added | 2.0 | A8\nR102: | Normal samples, CTRL | sent to Varjosalo lab in Aug 2025, AL | 12 CTRL samples, 20mg\nR104: | | Surgery type | S-code | Sample ID | Organ | Diagnosis | Tumor %, pathologist's note | Box at -80 | Slot in the box | Written on the tube\nR105: | 1.0 | PDS | S052 | S052_pUt | Uterus | metaplastic metastasis of HGSC | 0.0\nR106: | 1.0 | PDS | S089 | S089_pOme | Omentum | HGSC | 0.0 | Box 6 | G4 | S089_iOme_RNA1, 5.5.2021 EAP\nR107: | 2.0 | PDS | S135 | S135_pOme | Omentum | HGSC | 0.0 | Box 10 | G2 | S135_pOme_RNA1, 6.04.2022 AN\nR108: | 3.0 | PDS | S191 | S191_pAdnR | Adnexa Right | ca clarocellulare, high grade | 0.0 | Box 13 | C8 | S191_pAdnR_RNA1, 23.11.2022 EAP\nR109: | 4.0 | PDS | S246 | S246_pOme | Omentum | HGSC | 0 % | Box 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR110: | 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 22,
+      "text": "x 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR110: | 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS\nR111: | 6.0 | PDS | S353 | S353_pOme | Omentum | mucinous borderline | 0 % | Box 18 | H7 | S353_pOme_RNA1, 30.11.2023 AN\nR112: | 7.0 | PDS | S359 | S359_pOme | Omentum | HGSC | 0 % | Box 19 | B2 | S359_pOme_RNA1, 18.12.2023 SS\nR113: | 8.0 | PDS | S457 | S457_pTub | Normal Tube | fibroma/cystadenoma mucinosum | 0 % (normal tube, looks good) | Box 21 | F6 | S457_pTub (normal tube), 29.05.2024 ME\nR114: | 9.0 | PDS | S476 | S476_pTub | Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL\nR115: | 10.0 | PDS | S511 | S511_pOme | Omentum | LGSC | 0.0 | Box 25 | B5 | S511_pOme_RNA1, 31.12.2024 AL\nR116: | 11.0 | PDS | S512 | S512_pAdnL | Adnexa Left | borderline serous cystadenoma | 0 % (benign tube) | Box 25 | C4 | S512_pAdnL_RNA1, 7.01.2025 AL\nR117: | 12.0 | PDS | S544 | S544_pOme | Omentum | dedifferentiated carcinoma of adnexal origin | 0.0 | Box 27 | E1 | S544_pOme_RNA1, 9.04.2025 AL\nR121: | | Borderline tumors were not taken - either H&E not done or they contain transformed cells:\nR123: | | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 23,
+      "text": "x 15 | C4 | S246_pOme_RNA1, 27.03.2023 SS\nR110: | 5.0 | PDS | S325 | S325_pAdnL | Adnexa Left | endometrioid ovarian cancer G3 | 0.0 | Box 17 | F5 | S325_pAdnL_RNA1, 11.09.2023 SS\nR111: | 6.0 | PDS | S353 | S353_pOme | Omentum | mucinous borderline | 0 % | Box 18 | H7 | S353_pOme_RNA1, 30.11.2023 AN\nR112: | 7.0 | PDS | S359 | S359_pOme | Omentum | HGSC | 0 % | Box 19 | B2 | S359_pOme_RNA1, 18.12.2023 SS\nR113: | 8.0 | PDS | S457 | S457_pTub | Normal Tube | fibroma/cystadenoma mucinosum | 0 % (normal tube, looks good) | Box 21 | F6 | S457_pTub (normal tube), 29.05.2024 ME\nR114: | 9.0 | PDS | S476 | S476_pTub | Normal Tube | HGSC | 0%, NORMAL TUBE. These sections are a part of the outer wall of tube, mucosa is not visible/present | Box 22 | G8 | S476_pTub (Normal tube)_RNA1, 12.8.2024 AL\nR115: | 10.0 | PDS | S511 | S511_pOme | Omentum | LGSC | 0.0 | Box 25 | B5 | S511_pOme_RNA1, 31.12.2024 AL\nR116: | 11.0 | PDS | S512 | S512_pAdnL | Adnexa Left | borderline serous cystadenoma | 0 % (benign tube) | Box 25 | C4 | S512_pAdnL_RNA1, 7.01.2025 AL\nR117: | 12.0 | PDS | S544 | S544_pOme | Omentum | dedifferentiated carcinoma of adnexal origin | 0.0 | Box 27 | E1 | S544_pOme_RNA1, 9.04.2025 AL\nR121: | | Borderline tumors were not taken - either H&E not done or they contain transformed cells:\nR123: | | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 24,
+      "text": "1: | | Borderline tumors were not taken - either H&E not done or they contain transformed cells:\nR123: | | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done\nR124: | | PDS | S334 | S334_pAdnR | Adnexa Right | serous borderline tumor | 10 %\nR125: | | PDS | S334 | S334_pOme | Omentum | serous borderline tumor | ?\nR126: | | PDS | S381 | S381_pAdnR | Adnexa | mucinous borderline | 0.01\nR127: | | PDS | S462 | S462_pAdnR | Ovary Right | mucinous borderline | 0.8\nR128: | | PDS | S558 | S558_pOvaR | Ovary Right | serous borderline tumor | H&E in process"
+    },
+    {
+      "document_id": "0936e23bb9e94ae7d4f96660499fb8ed",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_submitted_to_Varjosalo_lab_2024_20mg.xlsx",
+      "chunk_index": 25,
+      "text": "1: | | Borderline tumors were not taken - either H&E not done or they contain transformed cells:\nR123: | | PDS | S202 | S202_pOvaR | Ovary Right | Borderline cancer | H&E not done\nR124: | | PDS | S334 | S334_pAdnR | Adnexa Right | serous borderline tumor | 10 %\nR125: | | PDS | S334 | S334_pOme | Omentum | serous borderline tumor | ?\nR126: | | PDS | S381 | S381_pAdnR | Adnexa | mucinous borderline | 0.01\nR127: | | PDS | S462 | S462_pAdnR | Ovary Right | mucinous borderline | 0.8\nR128: | | PDS | S558 | S558_pOvaR | Ovary Right | serous borderline tumor | H&E in process"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 0,
+      "text": "R1: | Sample ID | Tumor % | Submission Box | Slot\nR2: 1.0 | S002_pOme | 5.0 | 1.0 | A1\nR3: 2.0 | S003_pOme | 70.0 | 1.0 | A2\nR4: 3.0 | S004_pOme | 10-15 | 1.0 | A3\nR5: 4.0 | S007_pOva | 80.0 | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 15-20 | 1.0 | A5\nR7: 6.0 | S010_pOvaR | 80.0 | 1.0 | A6\nR8: 7.0 | S014_pOme | 70.0 | 1.0 | A7\nR9: 8.0 | S015_pPer | 10.0 | 1.0 | A8\nR10: 9.0 | S016_pOme | 80.0 | 1.0 | A9\nR11: 10.0 | S018_pOvaL | 30.0 | 1.0 | B1\nR12: 11.0 | S019_pOva | 20.0 | 1.0 | B2\nR13: 12.0 | S021_pOme | 30.0 | 1.0 | B3\nR14: 13.0 | S024_pOme | 50.0 | 1.0 | B4\nR15: 14.0 | S027_pOme | 20? | 1.0 | B5\nR16: 15.0 | S028_pAdn | 50-60 | 1.0 | B6\nR17: 16.0 | S032_pOme | 40-50 | 1.0 | B7\nR18: 17.0 | S033_pOme | 80-85 | 1.0 | B8\nR19: 18.0 | S034_pAdn | 60.0 | 1.0 | B9\nR20: 19.0 | S036_pOme | max 10 | 1.0 | C1\nR21: 20.0 | S039_pOme | 20-25 | 1.0 | C2\nR22: 21.0 | S040_pOva | 60.0 | 1.0 | C3\nR23: 22.0 | S044_pOme | 70.0 | 1.0 | C4\nR24: 23.0 | S047_pOme | 50.0 | 1.0 | C5\nR25: 24.0 | S051_pOme | 25.0 | 1.0 | C6\nR26: 25.0 | S060_pOme | 10-15 | 1.0 | C7\nR27: 26.0 | S061_pOme | 90.0 | 1.0 | C8\nR28: 27.0 | S071_pOme | 15.0 | 1.0 | C9\nR29: 28.0 | S078_pOme | 30.0 | 1.0 | D1\nR30: 29.0 | S079_pOme | 5.0 | 1.0 | D2\nR31: 30.0 | S085_pOme | 10-15 | 1.0 | D3\nR32: 31.0 | S086_pOme | 25-30 | 1.0 | D4\nR33: 32.0 | S090_pOme | 70.0 | 1.0 | D5\nR34: 33.0 | S092_pOme | 40-50 | 1.0 | D6"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 1,
+      "text": "R1: | Sample ID | Tumor % | Submission Box | Slot\nR2: 1.0 | S002_pOme | 5.0 | 1.0 | A1\nR3: 2.0 | S003_pOme | 70.0 | 1.0 | A2\nR4: 3.0 | S004_pOme | 10-15 | 1.0 | A3\nR5: 4.0 | S007_pOva | 80.0 | 1.0 | A4\nR6: 5.0 | S008_pOme1 | 15-20 | 1.0 | A5\nR7: 6.0 | S010_pOvaR | 80.0 | 1.0 | A6\nR8: 7.0 | S014_pOme | 70.0 | 1.0 | A7\nR9: 8.0 | S015_pPer | 10.0 | 1.0 | A8\nR10: 9.0 | S016_pOme | 80.0 | 1.0 | A9\nR11: 10.0 | S018_pOvaL | 30.0 | 1.0 | B1\nR12: 11.0 | S019_pOva | 20.0 | 1.0 | B2\nR13: 12.0 | S021_pOme | 30.0 | 1.0 | B3\nR14: 13.0 | S024_pOme | 50.0 | 1.0 | B4\nR15: 14.0 | S027_pOme | 20? | 1.0 | B5\nR16: 15.0 | S028_pAdn | 50-60 | 1.0 | B6\nR17: 16.0 | S032_pOme | 40-50 | 1.0 | B7\nR18: 17.0 | S033_pOme | 80-85 | 1.0 | B8\nR19: 18.0 | S034_pAdn | 60.0 | 1.0 | B9\nR20: 19.0 | S036_pOme | max 10 | 1.0 | C1\nR21: 20.0 | S039_pOme | 20-25 | 1.0 | C2\nR22: 21.0 | S040_pOva | 60.0 | 1.0 | C3\nR23: 22.0 | S044_pOme | 70.0 | 1.0 | C4\nR24: 23.0 | S047_pOme | 50.0 | 1.0 | C5\nR25: 24.0 | S051_pOme | 25.0 | 1.0 | C6\nR26: 25.0 | S060_pOme | 10-15 | 1.0 | C7\nR27: 26.0 | S061_pOme | 90.0 | 1.0 | C8\nR28: 27.0 | S071_pOme | 15.0 | 1.0 | C9\nR29: 28.0 | S078_pOme | 30.0 | 1.0 | D1\nR30: 29.0 | S079_pOme | 5.0 | 1.0 | D2\nR31: 30.0 | S085_pOme | 10-15 | 1.0 | D3\nR32: 31.0 | S086_pOme | 25-30 | 1.0 | D4\nR33: 32.0 | S090_pOme | 70.0 | 1.0 | D5\nR34: 33.0 | S092_pOme | 40-50 | 1.0 | D6"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 2,
+      "text": "| 5.0 | 1.0 | D2\nR31: 30.0 | S085_pOme | 10-15 | 1.0 | D3\nR32: 31.0 | S086_pOme | 25-30 | 1.0 | D4\nR33: 32.0 | S090_pOme | 70.0 | 1.0 | D5\nR34: 33.0 | S092_pOme | 40-50 | 1.0 | D6\nR35: 34.0 | S096_pOme | 20.0 | 1.0 | D7\nR36: 35.0 | S097_pAdnL | 40.0 | 1.0 | D8\nR37: 36.0 | S102_pOme2 | 60.0 | 1.0 | D9\nR38: 37.0 | S109_pOme | max 10 | 1.0 | E1\nR39: 38.0 | S114_pOme | 40.0 | 1.0 | E2\nR40: 39.0 | S117_pOme | 25.0 | 1.0 | E3\nR41: 40.0 | S119_pOme | 25.0 | 1.0 | E4\nR42: 41.0 | S134_pOvaR | 70.0 | 1.0 | E5\nR43: 42.0 | S135_pAdnL | 25.0 | 1.0 | E6\nR44: 43.0 | S137_pAdnL | 80.0 | 1.0 | E7\nR45: 44.0 | S138_pAdn | 50.0 | 1.0 | E8\nR46: 45.0 | S139_pPer | 10.0 | 1.0 | E9\nR47: 46.0 | S141_pOva | 90.0 | 1.0 | F1\nR48: 47.0 | S142_pOvaL | 90.0 | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 50.0 | 1.0 | F3\nR50: 49.0 | S147_pOvaR | 50.0 | 1.0 | F4\nR51: 50.0 | S148_pOme | max 10 | 1.0 | F5\nR52: 51.0 | S149_pOme | 40.0 | 1.0 | F6\nR53: 52.0 | S152_pOme | 25.0 | 1.0 | F7\nR54: 53.0 | S153_pOme | 50.0 | 1.0 | F8\nR55: 54.0 | S156_pAdnR | 70.0 | 1.0 | F9\nR56: 55.0 | S186_pOme | 65.0 | 1.0 | G1\nR57: 56.0 | S190_pOme | 95.0 | 1.0 | G2\nR58: 57.0 | S201_pOva1 | 80.0 | 1.0 | G3\nR59: 58.0 | S203_pOme | 40.0 | 1.0 | G4\nR60: 59.0 | S215_pAdnR | 90.0 | 1.0 | G5\nR61: 60.0 | S228_pOme1 | 75.0 | 1.0 | G6\nR62: 61.0 | S230_pOme | 20.0 | 1.0 | G7\nR63: 62.0 | S239_pOme | 80.0 | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 80.0 | 1.0 | G9"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 3,
+      "text": "| 5.0 | 1.0 | D2\nR31: 30.0 | S085_pOme | 10-15 | 1.0 | D3\nR32: 31.0 | S086_pOme | 25-30 | 1.0 | D4\nR33: 32.0 | S090_pOme | 70.0 | 1.0 | D5\nR34: 33.0 | S092_pOme | 40-50 | 1.0 | D6\nR35: 34.0 | S096_pOme | 20.0 | 1.0 | D7\nR36: 35.0 | S097_pAdnL | 40.0 | 1.0 | D8\nR37: 36.0 | S102_pOme2 | 60.0 | 1.0 | D9\nR38: 37.0 | S109_pOme | max 10 | 1.0 | E1\nR39: 38.0 | S114_pOme | 40.0 | 1.0 | E2\nR40: 39.0 | S117_pOme | 25.0 | 1.0 | E3\nR41: 40.0 | S119_pOme | 25.0 | 1.0 | E4\nR42: 41.0 | S134_pOvaR | 70.0 | 1.0 | E5\nR43: 42.0 | S135_pAdnL | 25.0 | 1.0 | E6\nR44: 43.0 | S137_pAdnL | 80.0 | 1.0 | E7\nR45: 44.0 | S138_pAdn | 50.0 | 1.0 | E8\nR46: 45.0 | S139_pPer | 10.0 | 1.0 | E9\nR47: 46.0 | S141_pOva | 90.0 | 1.0 | F1\nR48: 47.0 | S142_pOvaL | 90.0 | 1.0 | F2\nR49: 48.0 | S145_pOme_BM | 50.0 | 1.0 | F3\nR50: 49.0 | S147_pOvaR | 50.0 | 1.0 | F4\nR51: 50.0 | S148_pOme | max 10 | 1.0 | F5\nR52: 51.0 | S149_pOme | 40.0 | 1.0 | F6\nR53: 52.0 | S152_pOme | 25.0 | 1.0 | F7\nR54: 53.0 | S153_pOme | 50.0 | 1.0 | F8\nR55: 54.0 | S156_pAdnR | 70.0 | 1.0 | F9\nR56: 55.0 | S186_pOme | 65.0 | 1.0 | G1\nR57: 56.0 | S190_pOme | 95.0 | 1.0 | G2\nR58: 57.0 | S201_pOva1 | 80.0 | 1.0 | G3\nR59: 58.0 | S203_pOme | 40.0 | 1.0 | G4\nR60: 59.0 | S215_pAdnR | 90.0 | 1.0 | G5\nR61: 60.0 | S228_pOme1 | 75.0 | 1.0 | G6\nR62: 61.0 | S230_pOme | 20.0 | 1.0 | G7\nR63: 62.0 | S239_pOme | 80.0 | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 80.0 | 1.0 | G9"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 4,
+      "text": "| 90.0 | 1.0 | G5\nR61: 60.0 | S228_pOme1 | 75.0 | 1.0 | G6\nR62: 61.0 | S230_pOme | 20.0 | 1.0 | G7\nR63: 62.0 | S239_pOme | 80.0 | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 80.0 | 1.0 | G9\nR65: 64.0 | S242_pOme | 25.0 | 1.0 | H1\nR66: 65.0 | S245_pAdn | 10.0 | 1.0 | H2\nR67: 66.0 | S248_pOme | 10-15 (?) | 1.0 | H3\nR68: 67.0 | S255_pOme | 35.0 | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 35(?) | 1.0 | H5\nR70: 69.0 | S270_pAdn | 90.0 | 1.0 | H6\nR71: 70.0 | S285_pOme2 | 60.0 | 1.0 | H7\nR72: 71.0 | S287_pMes | 30 (?) | 1.0 | H8\nR73: 72.0 | S289_pPer | 50.0 | 1.0 | H9\nR74: 73.0 | S290_pOme | 20% (?) | 1.0 | I1\nR75: 74.0 | S310_pOme | 50.0 | 1.0 | I2\nR76: 75.0 | S318_pPer | 50.0 | 1.0 | I3\nR77: 76.0 | S321_pOme | 15.0 | 1.0 | I4\nR78: 77.0 | S327_pOvaL | 70.0 | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 50.0 | 1.0 | I6\nR80: 79.0 | S333_pOme2 | 40.0 | 1.0 | I7\nR81: 80.0 | S340_pOvaL | 40.0 | 1.0 | I8\nR82: 81.0 | S341_pOme | 40.0 | 1.0 | I9\nR83: 82.0 | S345_pOme | 30.0 | 2.0 | A1\nR84: 83.0 | S357_pAdnR | 80.0 | 2.0 | A2\nR85: 84.0 | S360_pOvaL | 40.0 | 2.0 | A3\nR86: 85.0 | S363_pAdnL | 80.0 | 2.0 | A4\nR87: 86.0 | S015_iOme | 5.0 | 2.0 | A9\nR88: 87.0 | S065_iOme | max 10 | 2.0 | B5\nR89: 88.0 | S083_iOme | 80.0 | 2.0 | B4\nR90: 89.0 | S084_iOme2 | 5.0 | 2.0 | B2\nR91: 90.0 | S100_iOme | 15.0 | 2.0 | A5\nR92: 91.0 | S107_iOme | 15.0 | 2.0 | A6\nR93: 92.0 | S113_iOme | 5.0 | 2.0 | A10"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 5,
+      "text": "| 90.0 | 1.0 | G5\nR61: 60.0 | S228_pOme1 | 75.0 | 1.0 | G6\nR62: 61.0 | S230_pOme | 20.0 | 1.0 | G7\nR63: 62.0 | S239_pOme | 80.0 | 1.0 | G8\nR64: 63.0 | S241_pOvaR | 80.0 | 1.0 | G9\nR65: 64.0 | S242_pOme | 25.0 | 1.0 | H1\nR66: 65.0 | S245_pAdn | 10.0 | 1.0 | H2\nR67: 66.0 | S248_pOme | 10-15 (?) | 1.0 | H3\nR68: 67.0 | S255_pOme | 35.0 | 1.0 | H4\nR69: 68.0 | S269_pAdnL | 35(?) | 1.0 | H5\nR70: 69.0 | S270_pAdn | 90.0 | 1.0 | H6\nR71: 70.0 | S285_pOme2 | 60.0 | 1.0 | H7\nR72: 71.0 | S287_pMes | 30 (?) | 1.0 | H8\nR73: 72.0 | S289_pPer | 50.0 | 1.0 | H9\nR74: 73.0 | S290_pOme | 20% (?) | 1.0 | I1\nR75: 74.0 | S310_pOme | 50.0 | 1.0 | I2\nR76: 75.0 | S318_pPer | 50.0 | 1.0 | I3\nR77: 76.0 | S321_pOme | 15.0 | 1.0 | I4\nR78: 77.0 | S327_pOvaL | 70.0 | 1.0 | I5\nR79: 78.0 | S329_pOvaR | 50.0 | 1.0 | I6\nR80: 79.0 | S333_pOme2 | 40.0 | 1.0 | I7\nR81: 80.0 | S340_pOvaL | 40.0 | 1.0 | I8\nR82: 81.0 | S341_pOme | 40.0 | 1.0 | I9\nR83: 82.0 | S345_pOme | 30.0 | 2.0 | A1\nR84: 83.0 | S357_pAdnR | 80.0 | 2.0 | A2\nR85: 84.0 | S360_pOvaL | 40.0 | 2.0 | A3\nR86: 85.0 | S363_pAdnL | 80.0 | 2.0 | A4\nR87: 86.0 | S015_iOme | 5.0 | 2.0 | A9\nR88: 87.0 | S065_iOme | max 10 | 2.0 | B5\nR89: 88.0 | S083_iOme | 80.0 | 2.0 | B4\nR90: 89.0 | S084_iOme2 | 5.0 | 2.0 | B2\nR91: 90.0 | S100_iOme | 15.0 | 2.0 | A5\nR92: 91.0 | S107_iOme | 15.0 | 2.0 | A6\nR93: 92.0 | S113_iOme | 5.0 | 2.0 | A10"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 6,
+      "text": "e | 80.0 | 2.0 | B4\nR90: 89.0 | S084_iOme2 | 5.0 | 2.0 | B2\nR91: 90.0 | S100_iOme | 15.0 | 2.0 | A5\nR92: 91.0 | S107_iOme | 15.0 | 2.0 | A6\nR93: 92.0 | S113_iOme | 5.0 | 2.0 | A10\nR94: 93.0 | S118_iOme | max 10 | 2.0 | B1\nR95: 94.0 | S120_iOme | max 30 | 2.0 | B3\nR96: 95.0 | S130_iOme | 50.0 | 2.0 | A7\nR97: 96.0 | S131_iOme | 50.0 | 2.0 | A8"
+    },
+    {
+      "document_id": "ed0b693b3d34483eba561481d34a29f6",
+      "source_file": "32_Proteomics_Varjosalo_collab_2024/Samples_Table_forVarjosalo_lab.xlsx",
+      "chunk_index": 7,
+      "text": "e | 80.0 | 2.0 | B4\nR90: 89.0 | S084_iOme2 | 5.0 | 2.0 | B2\nR91: 90.0 | S100_iOme | 15.0 | 2.0 | A5\nR92: 91.0 | S107_iOme | 15.0 | 2.0 | A6\nR93: 92.0 | S113_iOme | 5.0 | 2.0 | A10\nR94: 93.0 | S118_iOme | max 10 | 2.0 | B1\nR95: 94.0 | S120_iOme | max 30 | 2.0 | B3\nR96: 95.0 | S130_iOme | 50.0 | 2.0 | A7\nR97: 96.0 | S131_iOme | 50.0 | 2.0 | A8"
+    }
+  ],
+  "extraction": {
+    "total_scannable_assets": 0,
+    "extracted_records": 0,
+    "chunk_count": 0,
+    "status_counts": {},
+    "extractor_counts": {},
+    "extension_counts": {},
+    "errors": []
+  },
+  "metrics": {
+    "document_count": 0,
+    "total_assets": 0,
+    "figure_count": 0,
+    "timeline_entries": 0,
+    "meeting_count": 0,
+    "protocol_count": 0,
+    "cohort_count": 0,
+    "estimated_sample_count": null,
+    "repository_count": 0,
+    "storage_path_count": 0,
+    "presentation_count": 0,
+    "data_file_count": 0,
+    "extracted_document_count": 10,
+    "knowledge_chunk_count": 112,
+    "extraction_error_count": 0,
+    "output_count": 0
+  },
+  "outputs": []
+}

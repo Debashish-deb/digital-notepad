@@ -1,0 +1,1505 @@
+{
+  "section_id": "overview_guidelines",
+  "storage_key": "lab__overview_guidelines",
+  "scope": "lab",
+  "section_label": "Guidelines",
+  "description": "Research and work-related lab guidelines.",
+  "relative_root": "Overview/Guidelines",
+  "database_root": "/home/debdeba/data4TB/OMEIA-database",
+  "content_root": "/home/debdeba/data4TB/OMEIA-database/Overview/Guidelines",
+  "processed_at": "2026-06-05T07:13:25.372808+00:00",
+  "source_files_count": 18,
+  "total_assets_count": 18,
+  "content_library": {
+    "sections": [
+      {
+        "id": "Research-related/Abstracts and presentations",
+        "label": "Research-related/Abstracts and presentations",
+        "total_files": 4,
+        "documents": [
+          {
+            "path": "Research-related/Abstracts and presentations/Conference abstracts and reporting guideline.docx",
+            "name": "Guidelines for Conference Abstracts and reporting",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Guidelines for Conference Abstracts and reporting You are encouraged to go and present your work in at least one conference per year It is encouraged to submit intermediate and not complete final results. The basic idea is that you submit a project and then present whatever is ready at the time of the meeting. The lab can pay for your attendance to You submit an abstract for a poster/talk You have applied for a travel grant and been declined the grant, OR you were ineligible to apply for travel grants suitable for the particular conference. Guidelines for the abstract Select conference and submission deadlines Let everyone in the project know your plans as soon as you know eg. send a message to the project channel. This is to avoid potential overlap if others also want to submit to the sam"
+          },
+          {
+            "path": "Research-related/Abstracts and presentations/How to give a great presentation.docx",
+            "name": "When planning a presentation there are some general things to consider",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "When planning a presentation there are some general things to consider 1. How long is your talk? - It is of 1st priority to stick to the allocated time. The shorter the presentation - the better it has to be and and more effort you need to put in preparing it! 2. What is your audience? - Think of who will be in the audience, and what is their background? For ovarian cancer researchers you dont need to explain ovarian cancer. 3. Add the correct Acknowledgements! This is of utmost importance - acknowledge everyone who have contributed and enabled your work, including the funding agencies. 4. Practice, practice, practice - ask friends, family members to listen to you present. Organise at least 1-2 rehearsal talks! When you are making the presentation Every slide should have one main message ="
+          },
+          {
+            "path": "Research-related/Abstracts and presentations/How to make a great poster.docx",
+            "name": "Here are some tips about how to make a nice poster according to my experience",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Here are some tips about how to make a nice poster according to my experience \"Conference attendees will look at your poster only briefly, so a clear presentation is crucial\" [2] Firstly, planning is critica l! Leave enough time to prepare your poster. The first time - it will take longer than you expected. 1) Check where and when you will send it for printing 2) Leave at least 1 week for feedback and edits. Check with Anniina and potentially your other project members and collaborators when they can give comments to the poster. This is also critical to make sure to present the correct affiliations, external collaborators and funding. 3) When you are done - A good tip - ask your friend, colleague to do a final grammarly/overall check for mistakes before printing. After you have finished th"
+          },
+          {
+            "path": "Research-related/Abstracts and presentations/Lab meeting presentation guidelines.docx",
+            "name": "Lab meeting / presentation guidelines",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Lab meeting / presentation guidelines integral part for your training in the lab , and the goal of these guidelines is to help improve your presentation skills. It is encouraged to ask for feedback after (actively ask or use a google form) your presentation and be prepared to receive feedback from e.g. Anniina after your presentation. For PhD students with several supervisors and collaborative projects: make sure you invite the other supervisors and critical collaborators to your lab meeting presentation. For presenting your own project, it is important to acknowledge and assume that the audience about your project, the datasets or technologies that you work with. When presenting - please stand while you are presenting . This is practice for you to be more relaxed, natural for effective us"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      },
+      {
+        "id": "Research-related",
+        "label": "Research-related",
+        "total_files": 4,
+        "documents": [
+          {
+            "path": "Research-related/Anniina_s affiliation.docx",
+            "name": "Anniinas current title and affiliations 1.5.2025",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Anniinas current title and affiliations 1.5.2025 MD PhD, Assistant Professor (tenure track) in Translational Gynecologic Oncology Specialist in Obstetrics and Gynecology Research Program in Systems Oncology, Faculty of Medicine, University of Helsinki Institute for Molecular Medicine Finland, Helsinki Institute of Life Sciences, University of Helsinki, Finland Department of Obstetrics and Gynecology, and Clinical Trials Unit, Comprehensive Cancer Centre, Helsinki University Hospital Funding is specified for each project/publication In general the following should at least be acknowledged: This study was co-funded by the European Union (ERC, SPACE ). Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the Europea"
+          },
+          {
+            "path": "Research-related/Grants for PhD students and postdocs.docx",
+            "name": "´Travel grants and other grant opportunities for PhD students and postdocs",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "´Travel grants and other grant opportunities for PhD students and postdocs TOC \\h \\u \\z \\t \"Heading 1,1,Heading 2,2,Heading 3,3,Heading 4,4,Heading 5,5,Heading 6,6,\" How to effectively apply for travel grants - guidelines versus reality Tips for applying to encouragement grants List of encouragement grants List of grants for salary There are a variety of grants that PhD students can apply for. Travel grant calls are often advertised via email lists and organized by the doctoral schools. Personal and salary grants are funded by private foundations, and thus are advertised on their own web pages.There are grants that you can apply for salary, for example over six months up to two years. In addition there are personal encouragement grants, especially for intermediate to late-stage PhD student"
+          },
+          {
+            "path": "Research-related/Guidelines how to host a Third Reviewer Club or TRC.docx",
+            "name": "Guidelines how to host a Third Reviewer Club or TRC",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Guidelines how to host a Third Reviewer Club or TRC As the TRC host, your role is to the discussion on the selected publication. The TRC slots are divided as follows starting from spring term 2026, and slots ideally distributed latest during the last general meeting of the prior season Responsibilities of the person hosting is to Choose the paper to be discussed within the theme of the slot Focus on the specific parts that are relevant to you - the host chooses the focus and learning objectives Ensure that the audience can complete their read-through of the paper and your questions in a maximum of - plan the scope and questions accordingly Create e.g. a Google Sheets file to the TRC folder ( One-slide summary of the paper Learning objectives for the TRC maximum of 5 questions, including th"
+          },
+          {
+            "path": "Research-related/Lab funding logos for presentations.pptx",
+            "name": "Funding logos",
+            "asset_type": "document",
+            "extension": ".pptx",
+            "previewable": true,
+            "excerpt": "Use these logos for presentations and posters"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      },
+      {
+        "id": "Research-related/Meeting guidelines",
+        "label": "Research-related/Meeting guidelines",
+        "total_files": 2,
+        "documents": [
+          {
+            "path": "Research-related/Meeting guidelines/How to set up and prepare for PhD Thesis committee meeting.docx",
+            "name": "Booking the meeting",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Check our internal calendars Lab common and Anniina’s own for tentative slots Anniina’s typical working hours are from 9-17 - if needed you can ask for exceptions - if urgent you can ask for exceptions Confirm the slots with Anniina using Slack private message No more than 1x1h tentative slots per day Spread the the slots over min 3 days and 2 weeks - this allows more flexibility for busy PIs After the doodle is finalised, remove the tentative slots After setting the date -send an Outlook calendar invitation (with zoom/teams link) to the TC members Preparation for the meeting https://thessa.helsinki.fi/ \"my PhD project\" 1 week before the thesis committee meeting. Prepare a presentation with the following updates since the previous year 1-2 slides per topic, presentation max 20 minutes. Pre"
+          },
+          {
+            "path": "Research-related/Meeting guidelines/Meeting SOP.docx",
+            "name": "SOP for meetings",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "For thesis committees and meetings with external collaborations, Remember to send Outlook calendar invitations Every project (and thus the project meetings too) needs a clear project lead. The project lead chairs meetings and . It is also the duty of every attendee to read the agenda in advance to use the meeting time effectively. The agenda should include clear information on the aim and contents of the meeting, so everyone can understand the progression of the meeting The agenda can be posted to the slack channel of the project, or the calendar booking in Google Calendar, as long as everyone attending the meeting knows where to find the agenda Mark in Google calendar what the topic is and who is joining. Please use complete words/sentences that describe the goal of the meeting - this mak"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      },
+      {
+        "id": "Research-related/Theses guidelines",
+        "label": "Research-related/Theses guidelines",
+        "total_files": 3,
+        "documents": [
+          {
+            "path": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx",
+            "name": "Congratulations you have reached the point of writing your thesis on your PhD journey!",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Congratulations you have reached the point of writing your thesis on your PhD journey! PhD Thesis considerations The thesis is a synthesis of your PhD work, not just a plain summary. The goal is to merge your projects/publications into one synthesis. The thesis should clearly present your scientific contributions, and your maturity as a scientist. Here is a link to some of the criteria that the pre-examiners will use to https://www.utu.fi/sites/default/files/media/med_pre-examiner_instructions.pdf The thesis is your own production, and I will generally give you only “big picture feedback” to make sure it will pass the faculty requirements and pre-examination. In general, you should use the minimum required time for writing the thesis. Except for your supervisor(s), the thesis examiners and"
+          },
+          {
+            "path": "Research-related/Theses guidelines/How to master your Masters thesis.docx",
+            "name": "1. Choose your topic wisely and plan in advance",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "1. Choose your topic wisely and plan in advance Browse for the possible dates online and ask your programme's coordinator about the last date to graduate on time in the current academic year (for TRANSMEDs in 2023 this was May) Have a meeting with Anniina as soon as you end your initial training/internship/advanced research methods. Try to look together for a detailed research question or objective that you can accomplish in the agreed time frame, typically 4-6 months. The best Master's thesis tend to be focusing in a very narrow problem that they can frame nicely in the introduction and study with various methods Keep in mind that your thesis can also be methodological (developing a pipeline, optimizing tCycIF experiments...) and it is also a valid approach, even though the writing is a b"
+          },
+          {
+            "path": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx",
+            "name": "PhD Defense protocol in short form for the PhD candidate",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "PhD Defense protocol in short form for the PhD candidate Ensure that that all the systems (mic, stream, etc.) are functional as much in advance of the defense as possible. In the Haartman institute, the stewards are very helpful, at Biomedicum less so. Note: Bolded underlined are lines that the PhD candidate says during the public examination, learn by heart, for the situation where your heart desires to exist outside your chest.. Faculty guidelines: https://www.helsinki.fi/en/research/doctoral-school/doctoral-studies-university-helsinki/welcome-public-examination At the actual start of the defense, a quarter past the hour (to ensure the entire attendance is seated before the show begins): Candidate walks in first, custos second, opponent last. Custos and opponent hold the doctor’s hats in"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      },
+      {
+        "id": "Work-related guidelines",
+        "label": "Work-related guidelines",
+        "total_files": 5,
+        "documents": [
+          {
+            "path": "Work-related guidelines/Holidays and APM.docx",
+            "name": "Taking time off is important for family, rest, maintaining resilience and motivation.",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Taking time off is important for family, rest, maintaining resilience and motivation. Please see below some general information and instructions: What is the amount of holidays? As a general rule the amount of paid holidays for university research personnel is approximately 5-7 weeks per year (Sept-Sept), depending on your contract. This can be distributed across the year as you see best and agree with your supervisor(s). For part-time students, the paid holiday days are proportional to your working % For short-term internships, you can calculate that 2 days of paid holiday are accumulated per month and use these before the end of your internship. Marking the holidays to SAP (Only for UH salaried personnel) Expert and support personnel Check your leave entitlement in SAP Fiori. The final h"
+          },
+          {
+            "path": "Work-related guidelines/How to mark your sick leave.docx",
+            "name": "General considerations for sick days",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "General considerations for sick days If you are sick, it is best to stay at home and recover, especially if you are down with a virus. General rule is that if you are not able to work at 80% efficiency, it is better to take a sick day. It is important to send a message to Anniina if you are on sick leave - regardless of your funding/grant/salary. This is to ensure resource allocation and smooth running of the projects. Marking of sick leave: Short leaves of 5 days or less: (only applicable to those on UH salary) HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Mark%20a%20sick%20leave/WebHome?section=2&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" Change the hour allocation in https://msap.sap.helsinki.fi/ Working hours, work plan, multi-location work and telecommuting n each"
+          },
+          {
+            "path": "Work-related guidelines/How to use the lab credit card.docx",
+            "name": "Usage guidelines for the lab credit card",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Usage guidelines for the lab credit card The lab’s credit card is a personal card given to Anniina by UH that can be used to pay for goods and services without an invoice. The card is to be used for non-invoiceable work-related costs only (e.g. conference registrations, conference accommodation booking). The card functions as a standard credit card, but allows for the direction of the costs to UH-administered grants after the invoice arrives. Saun handles the invoices from the credit card, please always send your receipts of credit card purchases to Saun for processing. Whenever using the card, follow these guidelines to avoid locking the card, since the unlocking process is laborious, and only Anniina can unlock the card. If you run into issues at any point during the use of the lab card,"
+          },
+          {
+            "path": "Work-related guidelines/Tips for international members.docx",
+            "name": "This page aims to give new lab members suggestions on how to settle down in Helsinki. - especially when you are moving from abroad.",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "This page aims to give new lab members suggestions on how to settle down in Helsinki. - especially when you are moving from abroad. In Finland you will need e-Identification for : from getting your electronic public transport tickets, to hiring a home insurance or booking a doctor's appointment. The way to get this identification is to get a Kela number and open a Finnish bank account. Book your appointments at DVV and Migri to register your permanent address and get your Kela number (ASAP) Tip: when you fill the application form you can write your current address abroad if you do not have one in Finland yet Book your bank appointment already, try to get a date a few days after your Migri appointment, do not wait to get your kela number to do so Go to your appointments and patiently wait G"
+          },
+          {
+            "path": "Work-related guidelines/Working remotely.docx",
+            "name": "For the lab community and to foster collaborations, on-site work is the default/preferred.",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "For the lab community and to foster collaborations, on-site work is the default/preferred. However, if you have a task requiring uninterrupted focusing, or have other compelling reasons you can occasionally work remotely 1-2 days at a time. 1) Inform the Lab for optimal collaboration Mark your remote day to the lab calendar - so that others can adjust their work and meetings accordingly. that you will be attending remotely and generate and send the zoom link If you are working remotely for longer periods e.g. a full week - book at least one update meeting per week with the team/supervisor. 2) Maintain your working ergonomics Make sure you have the necessary (screens, keyboards) and also present at your remote working site. These are tax deductible. (cannot be purchased via the Lab). Rememb"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      }
+    ],
+    "figures_gallery": [],
+    "totals": {
+      "document": 17,
+      "all": 18,
+      "presentation": 1
+    },
+    "figure_count": 0
+  },
+  "document_index": [
+    {
+      "path": "Research-related/Abstracts and presentations/Conference abstracts and reporting guideline.docx",
+      "name": "Conference abstracts and reporting guideline.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 10352,
+      "modified_at": "2026-05-20T10:39:54+00:00",
+      "sha256": "502a8ee2d6491e6a2734c7d21e377abe4b670af4aa76f708de1bc59e0ad1e19f",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Guidelines for Conference Abstracts and reporting",
+      "excerpt": "Guidelines for Conference Abstracts and reporting You are encouraged to go and present your work in at least one conference per year It is encouraged to submit intermediate and not complete final results. The basic idea is that you submit a project and then present whatever is ready at the time of the meeting. The lab can pay for your attendance to You submit an abstract for a poster/talk You have applied for a travel grant and been declined the grant, OR you were ineligible to apply for travel grants suitable for the particular conference. Guidelines for the abstract Select conference and submission deadlines Let everyone in the project know your plans as soon as you know eg. send a message to the project channel. This is to avoid potential overlap if others also want to submit to the sam",
+      "char_count": 4385,
+      "word_count": 701,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Abstracts and presentations/How to give a great presentation.docx",
+      "name": "How to give a great presentation.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 7901,
+      "modified_at": "2026-04-14T08:49:06+00:00",
+      "sha256": "96d7b5fd46f4d61d27cc93d35616ebd93b322266f5e7669483ddc01082783c7f",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "When planning a presentation there are some general things to consider",
+      "excerpt": "When planning a presentation there are some general things to consider 1. How long is your talk? - It is of 1st priority to stick to the allocated time. The shorter the presentation - the better it has to be and and more effort you need to put in preparing it! 2. What is your audience? - Think of who will be in the audience, and what is their background? For ovarian cancer researchers you dont need to explain ovarian cancer. 3. Add the correct Acknowledgements! This is of utmost importance - acknowledge everyone who have contributed and enabled your work, including the funding agencies. 4. Practice, practice, practice - ask friends, family members to listen to you present. Organise at least 1-2 rehearsal talks! When you are making the presentation Every slide should have one main message =",
+      "char_count": 1964,
+      "word_count": 343,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Abstracts and presentations/How to make a great poster.docx",
+      "name": "How to make a great poster.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 12648,
+      "modified_at": "2025-06-05T16:37:52+00:00",
+      "sha256": "9cac232124f8527ef53bff1dcf8c89b4b89fab9a4af1bdf302e209b987d507bb",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Here are some tips about how to make a nice poster according to my experience",
+      "excerpt": "Here are some tips about how to make a nice poster according to my experience \"Conference attendees will look at your poster only briefly, so a clear presentation is crucial\" [2] Firstly, planning is critica l! Leave enough time to prepare your poster. The first time - it will take longer than you expected. 1) Check where and when you will send it for printing 2) Leave at least 1 week for feedback and edits. Check with Anniina and potentially your other project members and collaborators when they can give comments to the poster. This is also critical to make sure to present the correct affiliations, external collaborators and funding. 3) When you are done - A good tip - ask your friend, colleague to do a final grammarly/overall check for mistakes before printing. After you have finished th",
+      "char_count": 7205,
+      "word_count": 1186,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Abstracts and presentations/Lab meeting presentation guidelines.docx",
+      "name": "Lab meeting presentation guidelines.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 10035,
+      "modified_at": "2026-05-20T10:45:44+00:00",
+      "sha256": "4180ed833772ec2f842e8baea940d8d5443290af57e4095d42e4d3514d76d667",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Lab meeting / presentation guidelines",
+      "excerpt": "Lab meeting / presentation guidelines integral part for your training in the lab , and the goal of these guidelines is to help improve your presentation skills. It is encouraged to ask for feedback after (actively ask or use a google form) your presentation and be prepared to receive feedback from e.g. Anniina after your presentation. For PhD students with several supervisors and collaborative projects: make sure you invite the other supervisors and critical collaborators to your lab meeting presentation. For presenting your own project, it is important to acknowledge and assume that the audience about your project, the datasets or technologies that you work with. When presenting - please stand while you are presenting . This is practice for you to be more relaxed, natural for effective us",
+      "char_count": 3477,
+      "word_count": 586,
+      "metadata": {
+        "zip_members_read": 2
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Anniina_s affiliation.docx",
+      "name": "Anniina_s affiliation.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 7741,
+      "modified_at": "2025-04-30T23:52:12+00:00",
+      "sha256": "a7ec899e0efa87cf06dc28e880b49e7790bf5b48a3e435c2305473476b2fe210",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Anniinas current title and affiliations 1.5.2025",
+      "excerpt": "Anniinas current title and affiliations 1.5.2025 MD PhD, Assistant Professor (tenure track) in Translational Gynecologic Oncology Specialist in Obstetrics and Gynecology Research Program in Systems Oncology, Faculty of Medicine, University of Helsinki Institute for Molecular Medicine Finland, Helsinki Institute of Life Sciences, University of Helsinki, Finland Department of Obstetrics and Gynecology, and Clinical Trials Unit, Comprehensive Cancer Centre, Helsinki University Hospital Funding is specified for each project/publication In general the following should at least be acknowledged: This study was co-funded by the European Union (ERC, SPACE ). Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the Europea",
+      "char_count": 1053,
+      "word_count": 150,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Grants for PhD students and postdocs.docx",
+      "name": "Grants for PhD students and postdocs.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 13502,
+      "modified_at": "2026-03-13T03:44:38+00:00",
+      "sha256": "9bf48ad3645b00d077a4e377107a970d2ad027f1060cf003e961abde686dc7d1",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "´Travel grants and other grant opportunities for PhD students and postdocs",
+      "excerpt": "´Travel grants and other grant opportunities for PhD students and postdocs TOC \\h \\u \\z \\t \"Heading 1,1,Heading 2,2,Heading 3,3,Heading 4,4,Heading 5,5,Heading 6,6,\" How to effectively apply for travel grants - guidelines versus reality Tips for applying to encouragement grants List of encouragement grants List of grants for salary There are a variety of grants that PhD students can apply for. Travel grant calls are often advertised via email lists and organized by the doctoral schools. Personal and salary grants are funded by private foundations, and thus are advertised on their own web pages.There are grants that you can apply for salary, for example over six months up to two years. In addition there are personal encouragement grants, especially for intermediate to late-stage PhD student",
+      "char_count": 8191,
+      "word_count": 1314,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Guidelines how to host a Third Reviewer Club or TRC.docx",
+      "name": "Guidelines how to host a Third Reviewer Club or TRC.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 9096,
+      "modified_at": "2026-01-27T19:27:08+00:00",
+      "sha256": "1651f006ea5e71aad875102f1fdffa148f2a53145663ed80352497b879798d83",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Guidelines how to host a Third Reviewer Club or TRC",
+      "excerpt": "Guidelines how to host a Third Reviewer Club or TRC As the TRC host, your role is to the discussion on the selected publication. The TRC slots are divided as follows starting from spring term 2026, and slots ideally distributed latest during the last general meeting of the prior season Responsibilities of the person hosting is to Choose the paper to be discussed within the theme of the slot Focus on the specific parts that are relevant to you - the host chooses the focus and learning objectives Ensure that the audience can complete their read-through of the paper and your questions in a maximum of - plan the scope and questions accordingly Create e.g. a Google Sheets file to the TRC folder ( One-slide summary of the paper Learning objectives for the TRC maximum of 5 questions, including th",
+      "char_count": 1662,
+      "word_count": 288,
+      "metadata": {
+        "zip_members_read": 2
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Lab funding logos for presentations.pptx",
+      "name": "Lab funding logos for presentations.pptx",
+      "extension": ".pptx",
+      "document_kind": "presentation",
+      "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "size_bytes": 135898,
+      "modified_at": "2026-04-10T11:02:54+00:00",
+      "sha256": "559b5466c836dac9a689751e7187cf8838f43a1066acbe722ab0a87845049265",
+      "status": "extracted",
+      "extractor": "pptx-slide-xml",
+      "title": "Funding logos",
+      "excerpt": "Use these logos for presentations and posters",
+      "char_count": 70,
+      "word_count": 11,
+      "metadata": {
+        "slide_count": 2
+      },
+      "warnings": [
+        "python-pptx unavailable/failed: No module named 'pptx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Meeting guidelines/How to set up and prepare for PhD Thesis committee meeting.docx",
+      "name": "How to set up and prepare for PhD Thesis committee meeting.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 8956,
+      "modified_at": "2026-05-03T17:51:16+00:00",
+      "sha256": "c87382fde183eb8e5fccac3f4a1eafd331259ea7d37876940e63524fac89ee57",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Booking the meeting",
+      "excerpt": "Check our internal calendars Lab common and Anniina’s own for tentative slots Anniina’s typical working hours are from 9-17 - if needed you can ask for exceptions - if urgent you can ask for exceptions Confirm the slots with Anniina using Slack private message No more than 1x1h tentative slots per day Spread the the slots over min 3 days and 2 weeks - this allows more flexibility for busy PIs After the doodle is finalised, remove the tentative slots After setting the date -send an Outlook calendar invitation (with zoom/teams link) to the TC members Preparation for the meeting https://thessa.helsinki.fi/ \"my PhD project\" 1 week before the thesis committee meeting. Prepare a presentation with the following updates since the previous year 1-2 slides per topic, presentation max 20 minutes. Pre",
+      "char_count": 2102,
+      "word_count": 326,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Meeting guidelines/Meeting SOP.docx",
+      "name": "Meeting SOP.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 8742,
+      "modified_at": "2025-10-22T13:50:42+00:00",
+      "sha256": "640f915de99663723fa8e43d97b000e476c0e90b9bc9cec2043d0d3d08afd701",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "SOP for meetings",
+      "excerpt": "For thesis committees and meetings with external collaborations, Remember to send Outlook calendar invitations Every project (and thus the project meetings too) needs a clear project lead. The project lead chairs meetings and . It is also the duty of every attendee to read the agenda in advance to use the meeting time effectively. The agenda should include clear information on the aim and contents of the meeting, so everyone can understand the progression of the meeting The agenda can be posted to the slack channel of the project, or the calendar booking in Google Calendar, as long as everyone attending the meeting knows where to find the agenda Mark in Google calendar what the topic is and who is joining. Please use complete words/sentences that describe the goal of the meeting - this mak",
+      "char_count": 2348,
+      "word_count": 400,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx",
+      "name": "Guidelines for PhD Thesis writing by Anniina.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 11658,
+      "modified_at": "2026-02-15T16:22:00+00:00",
+      "sha256": "5f761fae135cad7c091eba326f479489c536447deb5089ba8dd459972d5c0b17",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Congratulations you have reached the point of writing your thesis on your PhD journey!",
+      "excerpt": "Congratulations you have reached the point of writing your thesis on your PhD journey! PhD Thesis considerations The thesis is a synthesis of your PhD work, not just a plain summary. The goal is to merge your projects/publications into one synthesis. The thesis should clearly present your scientific contributions, and your maturity as a scientist. Here is a link to some of the criteria that the pre-examiners will use to https://www.utu.fi/sites/default/files/media/med_pre-examiner_instructions.pdf The thesis is your own production, and I will generally give you only “big picture feedback” to make sure it will pass the faculty requirements and pre-examination. In general, you should use the minimum required time for writing the thesis. Except for your supervisor(s), the thesis examiners and",
+      "char_count": 6792,
+      "word_count": 1052,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Theses guidelines/How to master your Masters thesis.docx",
+      "name": "How to master your Masters thesis.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 13985,
+      "modified_at": "2025-06-24T15:35:22+00:00",
+      "sha256": "b6489e863f61348c4dc7cefa95cafa136235e7139c40d8648657c7c8afee72aa",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "1. Choose your topic wisely and plan in advance",
+      "excerpt": "1. Choose your topic wisely and plan in advance Browse for the possible dates online and ask your programme's coordinator about the last date to graduate on time in the current academic year (for TRANSMEDs in 2023 this was May) Have a meeting with Anniina as soon as you end your initial training/internship/advanced research methods. Try to look together for a detailed research question or objective that you can accomplish in the agreed time frame, typically 4-6 months. The best Master's thesis tend to be focusing in a very narrow problem that they can frame nicely in the introduction and study with various methods Keep in mind that your thesis can also be methodological (developing a pipeline, optimizing tCycIF experiments...) and it is also a valid approach, even though the writing is a b",
+      "char_count": 11430,
+      "word_count": 1970,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx",
+      "name": "PhD Defense + karonkka protocol.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 10581,
+      "modified_at": "2026-02-02T23:20:42+00:00",
+      "sha256": "f0301fba5c2df1a75965c94c150c3ae09a74182707d65eeef2766785d99d8e2c",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "PhD Defense protocol in short form for the PhD candidate",
+      "excerpt": "PhD Defense protocol in short form for the PhD candidate Ensure that that all the systems (mic, stream, etc.) are functional as much in advance of the defense as possible. In the Haartman institute, the stewards are very helpful, at Biomedicum less so. Note: Bolded underlined are lines that the PhD candidate says during the public examination, learn by heart, for the situation where your heart desires to exist outside your chest.. Faculty guidelines: https://www.helsinki.fi/en/research/doctoral-school/doctoral-studies-university-helsinki/welcome-public-examination At the actual start of the defense, a quarter past the hour (to ensure the entire attendance is seated before the show begins): Candidate walks in first, custos second, opponent last. Custos and opponent hold the doctor’s hats in",
+      "char_count": 7260,
+      "word_count": 1234,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Work-related guidelines/Holidays and APM.docx",
+      "name": "Holidays and APM.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 8976,
+      "modified_at": "2026-02-17T16:07:48+00:00",
+      "sha256": "f32eaa863e274a8c701c53573b0b8837bc3dc877c613f2e098dacddb0372649f",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Taking time off is important for family, rest, maintaining resilience and motivation.",
+      "excerpt": "Taking time off is important for family, rest, maintaining resilience and motivation. Please see below some general information and instructions: What is the amount of holidays? As a general rule the amount of paid holidays for university research personnel is approximately 5-7 weeks per year (Sept-Sept), depending on your contract. This can be distributed across the year as you see best and agree with your supervisor(s). For part-time students, the paid holiday days are proportional to your working % For short-term internships, you can calculate that 2 days of paid holiday are accumulated per month and use these before the end of your internship. Marking the holidays to SAP (Only for UH salaried personnel) Expert and support personnel Check your leave entitlement in SAP Fiori. The final h",
+      "char_count": 2364,
+      "word_count": 375,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Work-related guidelines/How to mark your sick leave.docx",
+      "name": "How to mark your sick leave.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 8175,
+      "modified_at": "2025-06-25T15:01:16+00:00",
+      "sha256": "aa02e4f75d404f649e33a29b77a65bbaa88f996c36d1550f62d0e1642e7f87b4",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "General considerations for sick days",
+      "excerpt": "General considerations for sick days If you are sick, it is best to stay at home and recover, especially if you are down with a virus. General rule is that if you are not able to work at 80% efficiency, it is better to take a sick day. It is important to send a message to Anniina if you are on sick leave - regardless of your funding/grant/salary. This is to ensure resource allocation and smooth running of the projects. Marking of sick leave: Short leaves of 5 days or less: (only applicable to those on UH salary) HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Mark%20a%20sick%20leave/WebHome?section=2&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" Change the hour allocation in https://msap.sap.helsinki.fi/ Working hours, work plan, multi-location work and telecommuting n each",
+      "char_count": 1346,
+      "word_count": 220,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Work-related guidelines/How to use the lab credit card.docx",
+      "name": "How to use the lab credit card.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 8864,
+      "modified_at": "2026-04-19T15:50:24+00:00",
+      "sha256": "985a9a6988dd9c506684ddc6a98682fce9885ec19849e9b136990b351abf353b",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Usage guidelines for the lab credit card",
+      "excerpt": "Usage guidelines for the lab credit card The lab’s credit card is a personal card given to Anniina by UH that can be used to pay for goods and services without an invoice. The card is to be used for non-invoiceable work-related costs only (e.g. conference registrations, conference accommodation booking). The card functions as a standard credit card, but allows for the direction of the costs to UH-administered grants after the invoice arrives. Saun handles the invoices from the credit card, please always send your receipts of credit card purchases to Saun for processing. Whenever using the card, follow these guidelines to avoid locking the card, since the unlocking process is laborious, and only Anniina can unlock the card. If you run into issues at any point during the use of the lab card,",
+      "char_count": 2182,
+      "word_count": 369,
+      "metadata": {
+        "zip_members_read": 2
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Work-related guidelines/Tips for international members.docx",
+      "name": "Tips for international members.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 10607,
+      "modified_at": "2025-07-03T12:37:22+00:00",
+      "sha256": "bbe0c873463b3c6bb982e255a81d3edef074d95cc03a6a64a6b3be1feac8ecf6",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "This page aims to give new lab members suggestions on how to settle down in Helsinki. - especially when you are moving from abroad.",
+      "excerpt": "This page aims to give new lab members suggestions on how to settle down in Helsinki. - especially when you are moving from abroad. In Finland you will need e-Identification for : from getting your electronic public transport tickets, to hiring a home insurance or booking a doctor's appointment. The way to get this identification is to get a Kela number and open a Finnish bank account. Book your appointments at DVV and Migri to register your permanent address and get your Kela number (ASAP) Tip: when you fill the application form you can write your current address abroad if you do not have one in Finland yet Book your bank appointment already, try to get a date a few days after your Migri appointment, do not wait to get your kela number to do so Go to your appointments and patiently wait G",
+      "char_count": 4319,
+      "word_count": 743,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Work-related guidelines/Working remotely.docx",
+      "name": "Working remotely.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 7928,
+      "modified_at": "2026-02-02T15:27:42+00:00",
+      "sha256": "45cf0252ed9580b3b6d8c0485346bd431e2f1b9251ee491c95e4ecf66b11c406",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "For the lab community and to foster collaborations, on-site work is the default/preferred.",
+      "excerpt": "For the lab community and to foster collaborations, on-site work is the default/preferred. However, if you have a task requiring uninterrupted focusing, or have other compelling reasons you can occasionally work remotely 1-2 days at a time. 1) Inform the Lab for optimal collaboration Mark your remote day to the lab calendar - so that others can adjust their work and meetings accordingly. that you will be attending remotely and generate and send the zoom link If you are working remotely for longer periods e.g. a full week - book at least one update meeting per week with the team/supervisor. 2) Maintain your working ergonomics Make sure you have the necessary (screens, keyboards) and also present at your remote working site. These are tax deductible. (cannot be purchased via the Lab). Rememb",
+      "char_count": 1081,
+      "word_count": 178,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    }
+  ],
+  "vector_chunks": [
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/Conference abstracts and reporting guideline.docx::chunk_0000",
+      "source_file": "Research-related/Abstracts and presentations/Conference abstracts and reporting guideline.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1790,
+      "char_count": 1789,
+      "word_count": 287,
+      "text": "### word/document.xml\nGuidelines for Conference Abstracts and reporting\nGeneral considerations\nYou are encouraged to go and present your work in \nat least one conference per year\n. \nIt is encouraged to submit intermediate\n results or plans\n and not complete final results. The basic idea is that you submit a project and then present whatever is ready at the time of the meeting.\nThe lab can pay for your attendance to \none conference per year \non the conditions that \nYou submit an abstract for a poster/talk\nYou have applied for a travel grant and been declined the grant, OR you were ineligible to apply for travel grants suitable for the particular conference.\n-> Check also the \ntravel grant \ninstructions. \nGuidelines for the abstract\nPlan your submission\nSelect conference and submission deadlines\nCommunicate your plans\n to your project team \nLet everyone in the project know your plans as soon as you know eg. send a message to the project channel. This is to avoid potential overlap if others also want to submit to the same conference.\nCoordinate your timeframe with the project - e.g. when do you anticipate to have\nCommunicate with team members (including PIs/Anniina) \nwhen you plan to send it to them for comments\nWrite the Abstract \nCheck the technical instructions for the abstract (length, structure, requirements)\nAlign your title and writing to the scope of the meeting. Eg. if more technical/methodological or biological discovery\nInclude co-authors based on who have contributed to the project. \nCheck and add author affiliations from previous abstracts and \nhttps://docs.google.com/document/d/1xb9KZoMqUHc3L5TDfdA92wPMh_I7pE3sL6ZAUWurMMc/edit?usp=sharing\nEven if abstract is not structured, use a structured way to write it: \nBackground and motivation: 2-3 sentences",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/Conference abstracts and reporting guideline.docx::chunk_0001",
+      "source_file": "Research-related/Abstracts and presentations/Conference abstracts and reporting guideline.docx",
+      "chunk_index": 1,
+      "start_char": 1540,
+      "end_char": 3290,
+      "char_count": 1749,
+      "word_count": 281,
+      "text": "ffiliations from previous abstracts and \nhttps://docs.google.com/document/d/1xb9KZoMqUHc3L5TDfdA92wPMh_I7pE3sL6ZAUWurMMc/edit?usp=sharing\nEven if abstract is not structured, use a structured way to write it: \nBackground and motivation: 2-3 sentences\nMethods (1/4 of the length) \nResults ½ of length - so most of text should be dedicated to Results. If you dont have enough - describe the cohort, samples, methodology. You can also what you plan to do by the time of the conference\nConclusions 2-3 sentences\nTip! It is difficult to write abstracts if you are in the beginning or in the middle of your data analysis. However, to go to a conference the abstract reviewers need to see that you have results - otherwise the abstract is too preliminary. \nThe tip how to do this is to use descriptive results! \nDescribe the data\n you have, describe e.g. cell phenotypes, cell numbers etc. Did you observe heterogeneity? Did you see something interesting in the data? How were the data distributed in your cohort? What was the most common cell type/neighbourhood/feature that you observed? All results dont need to be statistically significant, robust validated scientific findings. \nShare abstract for comments\nStore your abstract in the \nConference abstracts and materials folder\n - make a sub-folder for the Conference if not already existing. \nhttps://drive.google.com/drive/folders/1ayp0s-3Q6CUC6lMVUm4N6JgDudg2k8Ok?usp=drive_link\nFirst share to the project PIs (Anniina)\nConfirm availability to check before, then give 1-2 days to comment and suggest a date as the deadline for comments. \nUse editable online platform eg. google or sharepoint - remember to \nshare edit/comment permissions\nGive a deadline when you need the comments \nAfter PI comments,",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/Conference abstracts and reporting guideline.docx::chunk_0002",
+      "source_file": "Research-related/Abstracts and presentations/Conference abstracts and reporting guideline.docx",
+      "chunk_index": 2,
+      "start_char": 3040,
+      "end_char": 4385,
+      "char_count": 1345,
+      "word_count": 210,
+      "text": "efore, then give 1-2 days to comment and suggest a date as the deadline for comments. \nUse editable online platform eg. google or sharepoint - remember to \nshare edit/comment permissions\nGive a deadline when you need the comments \nAfter PI comments,\nshare to all co-authors via email and #abstracts channel\n minimum 3 days before submission\nRequest to confirm affiliations and if they have any comments \nAfter conference material submission and reporting\nTo ensure transparency and impact of attending conferences \nAfter your conference, \nsave your abstract and poster/presentation\n in \nConference abstracts and materials\nMake \none subfolder per conference \n(i.e. “EACR 2025 Lisbon”), and store your abstract + poster/presentation in the relevant folder. Please name the files with your name and the conference name + year for easier backtracking of conference attendances/presentations\nAt the conference make notes of key points to prepare a \nsummary of the key presentations/findings \nin the conference and upload those to the same folder with your conference materials\nPresent your conference summary\n (max 10 min) in a suitable slot during a lab meeting - contact Joonas about booking the slot. Potential slots (with only 1 TRC/project presentation slotted to the lab meeting) can be found from the lab meeting schedule (\nLab Meetings 2026\n)",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/How to give a great presentation.docx::chunk_0000",
+      "source_file": "Research-related/Abstracts and presentations/How to give a great presentation.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1800,
+      "char_count": 1798,
+      "word_count": 310,
+      "text": "### word/document.xml\nWhen planning a presentation there are some general things to consider\n1. How long is your talk? - It is of 1st priority to stick to the allocated time. \nThe shorter the presentation - the better it has to be and and more effort you need to put in preparing it!\n2. What is your audience? - Think of who will be in the audience, and what is their background? For ovarian cancer researchers you dont need to explain ovarian cancer. \n3. Add the correct Acknowledgements! This is of utmost importance - acknowledge everyone who have contributed and enabled your work, including the funding agencies. \n4. Practice, practice, practice - ask friends, family members to listen to you present. Organise at least 1-2 rehearsal talks! \nWhen you are making the presentation\n1. Focus on LOGIC\nEvery slide should have one main message = title in a short sentence. Titles for \"results\" slides are either the main RESULT or CONCLUSION of data presented on your slide. \nIn general: 1-2 introductory slides, \n80% of your slides should be on results\n, and 1-2 conclusion slides. \n2. Focus on CLEARNESS\nUse minimum amount of text/words - words instead of sentences\nAvoid too busy slides - max 2 images per slide - > split slides, use animations\nEvery image and animation on your slides should have a reason to exist\n3. Get feedback!\nSend your slides to your project members, peers, and supervisor for comments.\nPlan what to say and write down the script of your talk\n1. Focus on LOGIC and CLEARNESS\n• Think of 1-3 main messages you wish to convey for each slide\n• Formulate these to 2-6 complete sentences – write them to the notes\n• Sentences should be short and logical –avoid complicated words\n2. Focus on MEANING\n• What does this mean? Interpret your results and graphs - use whole sentences.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/How to give a great presentation.docx::chunk_0001",
+      "source_file": "Research-related/Abstracts and presentations/How to give a great presentation.docx",
+      "chunk_index": 1,
+      "start_char": 1550,
+      "end_char": 1964,
+      "char_count": 414,
+      "word_count": 77,
+      "text": "or each slide\n• Formulate these to 2-6 complete sentences – write them to the notes\n• Sentences should be short and logical –avoid complicated words\n2. Focus on MEANING\n• What does this mean? Interpret your results and graphs - use whole sentences. \n• Add 1-2 explanatory sentences to your main result slides\n3. Focus on TRANSITIONS\n• Think how and why each topic leads to the next step, and say this in your talk.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/How to make a great poster.docx::chunk_0000",
+      "source_file": "Research-related/Abstracts and presentations/How to make a great poster.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1770,
+      "char_count": 1768,
+      "word_count": 291,
+      "text": "### word/document.xml\nHere are some tips about how to make a nice poster according to my experience\n\"Conference attendees will look at your poster only briefly, so a clear presentation is crucial\" [2]\nFirstly, planning is critica\nl! Leave enough time to prepare your poster. The first time - it will take longer than you expected.\nPlan the schedule:\n1) Check where and when you will send it for printing\n2) Leave at least 1 week for feedback and edits. \nCheck with Anniina and potentially your other project members and collaborators when they can give comments to the poster.\nThis is also critical to make sure to present the \ncorrect affiliations, external collaborators and funding. \n3) When you are done - A good tip - ask your friend, colleague to do a final grammarly/overall check for mistakes before printing.\nAfter you have finished the poster - save and share the abstract and poster in datacloud: \nhttps://datacloud.helsinki.fi/index.php/f/1018895\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Present%20a%20poster%20at%20a%20conference/WebHome?section=1&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nName your poster and abstract files: Project_Yourlastname_Conference_Date in the format of NKI_Perez_AACROvarian2023_20231002\n1. Choose a nice software to make the poster\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Present%20a%20poster%20at%20a%20conference/WebHome?section=2&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nI recommend inkscape: \nhttps://inkscape.org/\nPros:\nIt allows you to make SVG files.\nAll the objects never change/move, are just the way you add them.\nIt has hundreds of options available, like how to adjust colors, align all text.\nOnce you know how to use it, it saves you so much time.\nCons:",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/How to make a great poster.docx::chunk_0001",
+      "source_file": "Research-related/Abstracts and presentations/How to make a great poster.docx",
+      "chunk_index": 1,
+      "start_char": 1520,
+      "end_char": 3314,
+      "char_count": 1792,
+      "word_count": 302,
+      "text": "Pros:\nIt allows you to make SVG files.\nAll the objects never change/move, are just the way you add them.\nIt has hundreds of options available, like how to adjust colors, align all text.\nOnce you know how to use it, it saves you so much time.\nCons: \nIt takes so much time to learn how to use it\nIt is a bit complex to use, and not intuitive as power-point.\nThe second I recommend is Microsoft Publisher.\nI have done all my posters in Microsof PowerPoint (\n@aemoksan@helsinki_fi\n )\nIt has all the necessary features and is easy to use\nBe careful when you import images from other software- they may loose resolution especially if you copy-paste. Paste special as either tiff or pdf usually overcomes this issue.\nI do not recommend: Microsoft Word, Biorender, because all the text and figures are always moving whenever you are editing any section. \n2. Identify a nice template or poster structure\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Present%20a%20poster%20at%20a%20conference/WebHome?section=3&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nCheck other posters made by the Lab-Members you can find those in the G-Drive: \nhttps://drive.google.com/drive/folders/1CJ_cpKOdLEwb4cv0lDGr1yLKBEkq5eMN?usp=share_link\nand in the Datacloud: \nhttps://datacloud.helsinki.fi/index.php/apps/files/?dir=/farkkila/Presentations_posters_abstracts&fileid=1018895\nCheck the further reading materials to get to know nice poster structures.\n3. Text and font\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Present%20a%20poster%20at%20a%20conference/WebHome?section=4&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nMake sure to not add so much text, only the indispensable one.\nFor your figures, make sure the legends and axis-names are large enough to be seen far away.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/How to make a great poster.docx::chunk_0002",
+      "source_file": "Research-related/Abstracts and presentations/How to make a great poster.docx",
+      "chunk_index": 2,
+      "start_char": 3064,
+      "end_char": 4769,
+      "char_count": 1704,
+      "word_count": 281,
+      "text": "sent%20a%20poster%20at%20a%20conference/WebHome?section=4&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nMake sure to not add so much text, only the indispensable one.\nFor your figures, make sure the legends and axis-names are large enough to be seen far away.\nFor the methods, if possible create a figure or couple of figures describing the methods instead of adding text.\n4. Your Figures\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Present%20a%20poster%20at%20a%20conference/WebHome?section=5&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nYour poster must contain mostly figures.\n Add the figures more relevant related to your project. A good number could be around 10 figures.\nMake sure your figures are clear, with axis fonts large enough. \nYou can check the next tutorials about how to make nice scientific figures:\n\"How to Make Good Graphs and Figures for Scientific Papers\": \nhttps://www.simplifiedsciencepublishing.com/resources/how-to-make-good-graphs-and-figures-for-scientific-papers\n\"Ten simple rules for better figures\":\nhttps://doi.org/10.1136/sbmj.f297\nAsk your colleagues if your figures are informative. Every figure should be really clear and people need to understand the main point in around a minute.\nTry to include one big eye-catching Figure that attracts people to your poster. For example, a colorful tCycif image, or a colorful graphical abstract (like those in the cell journal's articles).\nAdd always figure numbers (or letters) to each one of your figures.\nEach figure should have a note/legend of the result you are showing in the figure. Example: \"A) Higher immune infiltration after treatment X\". Add this always on the top of each figure.\n5. Avoid empty spaces",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/How to make a great poster.docx::chunk_0003",
+      "source_file": "Research-related/Abstracts and presentations/How to make a great poster.docx",
+      "chunk_index": 3,
+      "start_char": 4519,
+      "end_char": 6284,
+      "char_count": 1765,
+      "word_count": 292,
+      "text": "(or letters) to each one of your figures.\nEach figure should have a note/legend of the result you are showing in the figure. Example: \"A) Higher immune infiltration after treatment X\". Add this always on the top of each figure.\n5. Avoid empty spaces\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Present%20a%20poster%20at%20a%20conference/WebHome?section=6&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nFill all possible space with your figures, do not leave any empty space in your poster\n.\n6. Make sure to check the correct affiliations, and funding references\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Present%20a%20poster%20at%20a%20conference/WebHome?section=7&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nInclude logos of the funding agencies - Check these with Anniina and all co-authors.\nADD YOUR CONTACT INFORMATION TO THE POSTER (email, X-account)\nSome Important information on image quality for the poster\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Present%20a%20poster%20at%20a%20conference/WebHome?section=8&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nIf an image has low DPI (e.g., 72 DPI from screenshots or other), it will look blurry when printed large (A0 poster). So increasing the DPI will give us sharper and detailed images.\nHow to check DPI of an image? (Mac) \n1. Open the image in Preview.\n2. Click \nTools\n in the menu bar.\n3. Select \nShow Inspector\n (Command + I).\n4. In the Inspector window, click on the \n\"i\" (Info) tab\n.\n5. Look for \nResolution\n—it will say something like 72 DPI, 300 DPI, or 600 DPI.\nIf the DPI is below 300, you need to increase it manually for better print quality.\nNote\n that, only increasing DPI doesn’t improve quality—it only changes metadata.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/How to make a great poster.docx::chunk_0004",
+      "source_file": "Research-related/Abstracts and presentations/How to make a great poster.docx",
+      "chunk_index": 4,
+      "start_char": 6034,
+      "end_char": 7205,
+      "char_count": 1171,
+      "word_count": 200,
+      "text": "b\n.\n5. Look for \nResolution\n—it will say something like 72 DPI, 300 DPI, or 600 DPI.\nIf the DPI is below 300, you need to increase it manually for better print quality.\nNote\n that, only increasing DPI doesn’t improve quality—it only changes metadata. So the best fix is to increase both image size and DPI.\nStep 1: Upscale Your Images Using BigJPG\nGo to \nBigJPG.com\n.\nUpload your image → \nClick \n‘Start’ \nChoose \n‘Photo’ mode\n → Set \n4x\n upscale → Click \nOK\n.\nWait for processing → \nDownload the upscaled image\n.\nDespite this, if your image has not changed the DPI, you can manually do this. \nStep 2: Adjust DPI in Preview\nOpen the image in Preview.\nClick \nTools → Adjust Size\n.\nUncheck “Resample Image”\n (Important!).\nChange DPI to 600\n.\nClick \nOK\n → \nSave\n the file.\n- Further reading\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Present%20a%20poster%20at%20a%20conference/WebHome?section=9&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nHere are some nice tutorials about how to make a nice poster.\n\"Making a better research poster\": \nhttps://www.youtube.com/watch?v=AwMFhyH7_5g\n\"How to make a scientific poster\": \nhttps://doi.org/10.1136/sbmj.f297",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/Lab meeting presentation guidelines.docx::chunk_0000",
+      "source_file": "Research-related/Abstracts and presentations/Lab meeting presentation guidelines.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1721,
+      "char_count": 1720,
+      "word_count": 277,
+      "text": "### word/document.xml\nLab meeting / presentation guidelines\nLab meetings are an\n integral part for your training in the lab\n, and the goal of these guidelines is to help improve your presentation skills. It is encouraged to \nask for feedback after (actively ask or use a google form)\n your presentation and be \nprepared to receive feedback\n from e.g. Anniina after your presentation. \nFor PhD students with several supervisors and collaborative projects: \nmake sure you invite the other supervisors and critical collaborators to your lab meeting presentation. \nFor presenting your own project, it is important to acknowledge and assume that the audience \ndoesn’t know anything\n about your project, the datasets or technologies that you work with.\nWhen presenting - please \nstand while you are presenting\n. This is practice for you to be more relaxed, natural for effective use of your voice and body while presenting. \nBackground \nIt is important to give background and context on your project. What is the \nimportant unmet need\n it addresses? \nIntroduction to High-grade serous ovarian cancer can be very short\nWhat are the\n main objectives\n of your project?\nMaterials and methods\nIntroduce all datasets as methods in sufficient detail\nInclude numbers of samples, patients etc and how the samples were acquired\nShow principles of technologies - especially new ones - also remembering that there are always new people in the lab who have never heard of tCycIF - you can keep this short, avoid going too deep into details if they are not the main part of your presentation. A good practice is also to ask from the audience who is already familiar with this technology - and if all are - you can skip the details. \nResults",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/Lab meeting presentation guidelines.docx::chunk_0001",
+      "source_file": "Research-related/Abstracts and presentations/Lab meeting presentation guidelines.docx",
+      "chunk_index": 1,
+      "start_char": 1471,
+      "end_char": 3260,
+      "char_count": 1788,
+      "word_count": 316,
+      "text": "eep this short, avoid going too deep into details if they are not the main part of your presentation. A good practice is also to ask from the audience who is already familiar with this technology - and if all are - you can skip the details. \nResults\nIf you have several main types of results or data in your presentation, use section headers to structure your presentation. It also helps you with transitions between data/result types/sections. \nFor each analysis result/plot that you show\nMake sure that the plots are visible to the end row of the presentation room - use \nBIG graphs and fonts - \ntypically \none or two plots per slide\nUse big fonts and very short sentences for text \nInclude information about the \ntype of data\n you are using\nInclude the rationale \nof what you investigate, and why you do the graph/analysis. What is your aim or hypothesis in that particular analysis E.g. Correlation of x and Y to reveal zzz. This can be a sentence or few words as text which you explain.\nFor each plot - go through the axis legends and explain in detail what is in the graph. \nFor each slide - clearly state the conclusion/interpretation (what does this mean) - can also be presented as text (in the title or as a separate text/sentence).\nFor slides with several plots, animate the slides to introduce the data one by one, or use arrows or pointer to show the audience which part of the slide they should look at. \nFor each slide - the title should be \na short sentence stating the main conclusion of each slide\n - e.g. Immune infiltration is associated with patient outcomes. It will help the audience to see what is your main point in each slide. In results -section avoid using titles that describe only the analysis/method/material used\n4) Conclusions\nSummarize your main findings",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Abstracts and presentations/Lab meeting presentation guidelines.docx::chunk_0002",
+      "source_file": "Research-related/Abstracts and presentations/Lab meeting presentation guidelines.docx",
+      "chunk_index": 2,
+      "start_char": 3010,
+      "end_char": 3477,
+      "char_count": 467,
+      "word_count": 80,
+      "text": "tion is associated with patient outcomes. It will help the audience to see what is your main point in each slide. In results -section avoid using titles that describe only the analysis/method/material used\n4) Conclusions\nSummarize your main findings\nLink your findings to the “bigger picture” - main aims and how they help to answer the unmet need \nInclude future perspectives - what are you going to do or should be done next \n\n### word/header1.xml\nAnniina 14.4.2026",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Anniina_s affiliation.docx::chunk_0000",
+      "source_file": "Research-related/Anniina_s affiliation.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1053,
+      "char_count": 1053,
+      "word_count": 150,
+      "text": "### word/document.xml\nAnniinas current title and affiliations 1.5.2025\nMD PhD, Assistant Professor (tenure track) in Translational Gynecologic Oncology\nSpecialist in Obstetrics and Gynecology\nResearch Program in Systems Oncology, Faculty of Medicine, University of Helsinki\nInstitute for Molecular Medicine Finland, Helsinki Institute of Life Sciences, University of Helsinki, Finland\nDepartment of Obstetrics and Gynecology, and Clinical Trials Unit, Comprehensive Cancer Centre, Helsinki University Hospital\nFunding is specified for each project/publication\nIn general the following should at least be acknowledged:\nThis study was co-funded by the European Union (ERC, SPACE \n101076096\n). Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Research Council. Neither the European Union nor the granting authority can be held responsible for them.\nSigrid Jusélius Foundation\nCancer Society of Finland\nResearch Council of Finland (grant numbers 1339805, 350396)",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Grants for PhD students and postdocs.docx::chunk_0000",
+      "source_file": "Research-related/Grants for PhD students and postdocs.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1771,
+      "char_count": 1769,
+      "word_count": 303,
+      "text": "### word/document.xml\n´Travel grants and other grant opportunities for PhD students and postdocs\n TOC \\h \\u \\z \\t \"Heading 1,1,Heading 2,2,Heading 3,3,Heading 4,4,Heading 5,5,Heading 6,6,\"\nIntroduction\n1\nHow to effectively apply for travel grants - guidelines versus reality\n2\nList of travel grants\n2\nTips for applying to encouragement grants\n3\nList of encouragement grants\n4\nList of grants for salary\n5\nIntroduction\nThere are a variety of grants that PhD students can apply for. Travel grant calls are often advertised via email lists and organized by the doctoral schools. Personal and salary grants are funded by private foundations, and thus are advertised on their own web pages.There are grants that you can apply for salary, for example over six months up to two years. In addition there are personal encouragement grants, especially for intermediate to late-stage PhD students, intended to be a bonus on top of your salary, or to cover costs such as the Karonkka after your defence. Some encouragement grants are awarded to earlier-stage PhD students as well, and certain grants can be given to the same person more than once (see BMH foundation), so it is a good idea to begin applying for them as soon as you fit the requirements.\nHow to effectively apply for travel grants \nYou should aim for at least one conference visit per year, and always apply for the travel grants. \nPlease see the instructions for \nabstract submission\n. \nOften the travel grants’ listed requirements include you to have a travel itinerary, an accepted poster/talk abstract etc. However, in reality the travel grant call deadlines never line up perfectly with the conference of your choice, and basically \nall abstracts are accepted at least as posters\n. \n-> Thus it is important that",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Grants for PhD students and postdocs.docx::chunk_0001",
+      "source_file": "Research-related/Grants for PhD students and postdocs.docx",
+      "chunk_index": 1,
+      "start_char": 1521,
+      "end_char": 3254,
+      "char_count": 1732,
+      "word_count": 278,
+      "text": "ary, an accepted poster/talk abstract etc. However, in reality the travel grant call deadlines never line up perfectly with the conference of your choice, and basically \nall abstracts are accepted at least as posters\n. \n-> Thus it is important that \nyou apply for all potential travel grants even prior to abstract submissions/acceptances. \nYou need to also strategise - and apply the UH travel grant (where destination cannot be changed) to the conference which you at least plan to attend. \nIf you don't have all information the travel grant asks for, you can submit \nestimates of travel costs\n.\n The secretaries handling the costs associated with the travel grants are accustomed to adjusting the costs closer to the date of the conference, when the actual costs are known. \nTypically the travel grants should be used within 12 months (or within the calendar year if the call deadline is in Jan-Feb)\nTip#0\n: Write why that conference is crucial for the development of your project.\nList of travel grants\nCancer Foundation of Finland - travel grant (Deadline in May)\nhttps://syopasaatio.fi/en/homepage/for-researchers/travel-grants/\nFaculty of Medicine Travel grants twice a year (UH e-form can only be awarded max once per calendar year. Deadlines typically in January-February, and late August-September) - \nnote that you cannot change the destination/congress\nFaculty of Medicine and HiLIFE travel grants for postdocs once a year (Feb-March)\nThe Medicine Fund Travel Support Grants (UH e-form, Deadline typically in February)\nThe Magnus Ehrnrooth Foundation (for long research visits)\nhttps://magnusehrnroothinsaatio.fi/\nTips for applying to encouragement grants\nYou are allowed and encouraged to apply for personal grants, but",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Grants for PhD students and postdocs.docx::chunk_0002",
+      "source_file": "Research-related/Grants for PhD students and postdocs.docx",
+      "chunk_index": 2,
+      "start_char": 3004,
+      "end_char": 4726,
+      "char_count": 1722,
+      "word_count": 294,
+      "text": "nts (UH e-form, Deadline typically in February)\nThe Magnus Ehrnrooth Foundation (for long research visits)\nhttps://magnusehrnroothinsaatio.fi/\nTips for applying to encouragement grants\nYou are allowed and encouraged to apply for personal grants, but\n as these are extra money (in addition to your salary) the applications should not take time away from your work on projects. \nThus the applications should always \nbe done outside your work hours\n on your own time. Anniina is happy to provide a letter of recommendation (you provide a draft), but will not have time to comment, and Joonas can do a quick round of comments for your application. \nTip #0:\n Write in a project-admin-tool like Trello, or and in your calendar when are the deadlines for applying to each grant. \nTip #1:\n It is highly recommended that you take courses for grant writing such as those given at the University of Helsinki. In the Nature Masterclasses, which we have access till June 9th 2025 (extended longer), there is also a course about grant writing: \nhttps://masterclasses.nature.com/grant-writing/18994906\nTip#2:\n Prepare a super application well in advance of the deadline. Start preparing it several weeks before. Then, give it to somebody that does not know anything about your project asking for feedback. After that, improve your grant. Then store your grant for a couple of days, or weeks if possible, and then read it one last time for final improvements. Give it so much time to your application, then you can use a similar document and send it to other fundations during the year.\nTip #3: In the application, never say you are going to use the grant for karonkka costs\n. That will automatically ruin your chances to get any of them.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Grants for PhD students and postdocs.docx::chunk_0003",
+      "source_file": "Research-related/Grants for PhD students and postdocs.docx",
+      "chunk_index": 3,
+      "start_char": 4476,
+      "end_char": 6233,
+      "char_count": 1755,
+      "word_count": 292,
+      "text": "application, then you can use a similar document and send it to other fundations during the year.\nTip #3: In the application, never say you are going to use the grant for karonkka costs\n. That will automatically ruin your chances to get any of them. After being awarded the grant, no one will know what you really use it for, so in reality you can do whatever you want with it. \nThe foundations awarding the encouragement grants are typically focused on one niche topic/field or another. Read the descriptions of the grants, and format your application accordingly. You should also be mindful that even though you might be doing your doctoral research leading to a PhD, the topic can still be clinically significant to warrant sending your application to e.g. the more medicine-focused foundations.\nYou might need to highlight a specific angle on your project for some of the applications, whereas a different aspect might be more suitable for another grant. E.g. highlighting the potential avenues for targeted therapies, or the basic biology/immunology. If the foundation asks for justification as to why you should be awarded the grant, assess what the foundation wants to support, and try to mirror that in your justification.\nTip #4:\n Prepare a grant with only the scopes of your first project and some perspectives. The next year you could also apply with a new project or collaboration you are performing. Usually foundations do not give grants twice to the same project\nList of \nencouragement\n grants\nYou could maybe find more foundations in Research.fi (\nhttps://research.fi/en/\n)\nGeneral:\nThe Maud Kuistila Memorial Foundation (deadline in January)\nhttps://mkmsaatio.fi/en/research-grants/\nIdan Montinin Säätiö (\ndeadline at the start of March\n)",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Grants for PhD students and postdocs.docx::chunk_0004",
+      "source_file": "Research-related/Grants for PhD students and postdocs.docx",
+      "chunk_index": 4,
+      "start_char": 5983,
+      "end_char": 7758,
+      "char_count": 1774,
+      "word_count": 255,
+      "text": "ts\nYou could maybe find more foundations in Research.fi (\nhttps://research.fi/en/\n)\nGeneral:\nThe Maud Kuistila Memorial Foundation (deadline in January)\nhttps://mkmsaatio.fi/en/research-grants/\nIdan Montinin Säätiö (\ndeadline at the start of March\n)\nhttp://www.idamontininsaatio.fi/pages/suomi/etusivu.php\nBiomedicum Helsinki Foundation (deadline in the Spring, like in April)\nhttps://biomedicum.com/participate/biomedicum-helsinki-foundation-grants/\nCancer Foundation of Finland (Deadline in the end of August)\nhttps://syopasaatio.fi/en/homepage/\nInstrumentarium (deadline early September)\nhttps://instrufoundation.fi/foundation\nOrion (Deadline early September)\nhttps://www.orion.fi/en/rd/orion-research-foundation/\nPäivikki ja Sakari Sohlbergin säätiö (Deadline in September)\nhttps://pss-saatio.fi/\nK. Albin Johansson (deadline in mid-October)\nhttp://www.foundationweb.net/johansson/blankett.htm\nThe Magnus Ehrnrooth foundation (Deadline in November)\nhttps://magnusehrnroothinsaatio.fi/en/frontpage/\nMainly for Medical students:\nThe Finnish Medical Foundation (Deadline in May)\nhttps://laaketieteensaatio.fi/\nMainly for Finnish speakers or researchers working speaking in Finnish in daily basis:\nEmil Aaltonen Foundation (deadline in February)\nhttps://emilaaltonen.fi/apurahat/hae-apurahaa/\nList of grants for salary \nBefore applying for any of these, ask Joonas/Anniina whether you should even apply for salary grants.\n As long as the funding situation of the lab allows for it, \nbeing salaried should always be preferred over grants \n(being funded by grants means many changes, including no UH benefits, MELA payments etc.). \nPaulo Foundation (\ndeadline mid-September\n)\nhttps://www.paulo.fi/in-english\nYrjö Jahnsson Foundation (check the deadline)\nhttps://www.yjs.fi/en/",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Grants for PhD students and postdocs.docx::chunk_0005",
+      "source_file": "Research-related/Grants for PhD students and postdocs.docx",
+      "chunk_index": 5,
+      "start_char": 7508,
+      "end_char": 8191,
+      "char_count": 683,
+      "word_count": 89,
+      "text": "over grants \n(being funded by grants means many changes, including no UH benefits, MELA payments etc.). \nPaulo Foundation (\ndeadline mid-September\n)\nhttps://www.paulo.fi/in-english\nYrjö Jahnsson Foundation (check the deadline)\nhttps://www.yjs.fi/en/\nAlfred Kordelin Foundation (check the deadline)\nhttps://kordelin.fi/en/grants/for-grant-applicant/\nInstrumentarium (deadline early September)\nhttps://instrufoundation.fi/foundation\nAlli Paasikivi Foundation\nhttps://allinsaatio.fi/apurahat/tutkimusapurahat/\nThe Magnus Ehrnrooth Foundation\nhttps://magnusehrnroothinsaatio.fi/\nMainly for Medical students:\nThe Finnish Medical Foundation (Deadline in May)\nhttps://laaketieteensaatio.fi/",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Guidelines how to host a Third Reviewer Club or TRC.docx::chunk_0000",
+      "source_file": "Research-related/Guidelines how to host a Third Reviewer Club or TRC.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1662,
+      "char_count": 1662,
+      "word_count": 288,
+      "text": "### word/document.xml\nGuidelines how to host a Third Reviewer Club or TRC\nAs the TRC host, your role is to\n facilitate and lead \nthe discussion on the selected publication. \nThe TRC slots are divided as follows starting from spring term 2026, and slots ideally distributed latest during the last general meeting of the prior season\nTRC slot themes:\nClinical\nBioinformatics\nWet lab/functional\nResponsibilities of the person hosting is to\nChoose the paper to be discussed within the theme of the slot \nFocus on the specific parts that are relevant to you - the \nhost chooses the focus and learning objectives\n of the TRC\nEnsure that the audience can complete their read-through of the paper and your questions in a maximum of \ntwo hours\n - plan the scope and questions accordingly\nCreate e.g. a Google Sheets file to the TRC folder (\nThird reviewer clubs\n) that contains: \nOne-slide summary of the paper\nLearning objectives for the TRC\nA \nmaximum of 5 questions, including the question\n “\nWhich of the methods/approaches in this article do you think might be worth implementing in our own research?” i.e. come up with a maximum 4 questions from the article\nShare the \npaper along with the completed TRC presentation \none week before the TRC \nin Slack, in the #third-reviewer-journal-club channel\nChair the TRC in a way that ensures that\n everyone has to say what they thought about the paper and answer at least one question.\nIf you have any questions about choosing the scope of the paper/discussion, or the questions, please contact Joonas\nNote that for hosting TRC:s\n you can get study credits\n towards your PhD! Mark down the hours for preparation and hosting!",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Lab funding logos for presentations.pptx::chunk_0000",
+      "source_file": "Research-related/Lab funding logos for presentations.pptx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 70,
+      "char_count": 70,
+      "word_count": 11,
+      "text": "## Slide 1\nFunding logos\nUse these logos for presentations and posters",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Meeting guidelines/How to set up and prepare for PhD Thesis committee meeting.docx::chunk_0000",
+      "source_file": "Research-related/Meeting guidelines/How to set up and prepare for PhD Thesis committee meeting.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1684,
+      "char_count": 1682,
+      "word_count": 263,
+      "text": "### word/document.xml\nBooking the meeting\nBook 1 month in advance \nCheck our internal calendars \nLab common and Anniina’s own for tentative slots\nAnniina’s typical working hours are from 9-17 - if needed you can ask for exceptions\nNo more than \n6 meetings per day \n - if urgent you can ask for exceptions\nConfirm the slots with Anniina using Slack private message\n.\nG\nenerate the doodle\nNo more than 1x1h tentative slots per day\nSpread the the slots over min 3 days and 2 weeks - this allows more flexibility for busy PIs \nAfter the doodle is finalised, remove the tentative slots\nAfter setting the date -send an Outlook calendar invitation (with zoom/teams link) to the TC members\nPreparation for the meeting\nFill your thessa report \nhttps://thessa.helsinki.fi/\n \"my PhD project\" 1 week before the thesis committee meeting.\nPrepare a presentation with the\n following updates since the previous year\n1-2 slides per topic, presentation max 20 minutes. \nPreliminary title of the PhD\nBrief background and overall aims \nPublications plan (published, submitted, in preparation, planned)\nConferences (national, international, posters, talks)\nFunding (salary, grants)\nCompleted and planned PhD courses\nOther courses and workshops\nRisks and mitigation strategies \nTimetable of the PhD - GANTT chart\nIn the end of TC - there should be 15mins reserved for three different discussions\n5 mins - without PhD candidate (supervisors + TC)\n5-8 mins - without supervisors (PhD Candidate + TC)\n2-5 min - final conclusion\nNote that typically scientific results are not presented. \nHowever, it is encouraged to ask for the committee members' expert opinion on one project / scientific/methods question.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Meeting guidelines/How to set up and prepare for PhD Thesis committee meeting.docx::chunk_0001",
+      "source_file": "Research-related/Meeting guidelines/How to set up and prepare for PhD Thesis committee meeting.docx",
+      "chunk_index": 1,
+      "start_char": 1434,
+      "end_char": 2102,
+      "char_count": 667,
+      "word_count": 99,
+      "text": "without supervisors (PhD Candidate + TC)\n2-5 min - final conclusion\nNote that typically scientific results are not presented. \nHowever, it is encouraged to ask for the committee members' expert opinion on one project / scientific/methods question. \nIdeally, this question will help you in experimental design, methodological approaches, or interpretation of the results, depending on the expertise of the committee members and research topic.\nA conclusion of the report should be written at the end/after the thesis committee meeting to \nhttps://thessa.helsinki.fi/\n (a few paragraphs). The conclusion should include the comments made by the thesis committee members.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Meeting guidelines/Meeting SOP.docx::chunk_0000",
+      "source_file": "Research-related/Meeting guidelines/Meeting SOP.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1735,
+      "char_count": 1734,
+      "word_count": 294,
+      "text": "### word/document.xml\nSOP for meetings \nGeneral guidelines\nFor thesis committees and meetings with external collaborations, Remember to send\n Outlook calendar invitations \n(with zoom/teams link).\nEvery project (and thus the project meetings too) needs a clear project lead. The project lead chairs meetings and \nprepares\nand shares the agenda\n for every meeting \nin advance\n. It is also the duty of every attendee to read the agenda in advance to use the meeting time effectively.\nThe agenda should include clear information on the aim and contents of the meeting, so everyone can understand the progression of the meeting\nThe agenda can be posted to the slack channel of the project, or the calendar booking in Google Calendar, as long as everyone attending the meeting knows where to find the agenda\nMark in Google calendar what the topic is and who is joining. Please use \ncomplete words/sentences that describe the goal of the meeting\n - this makes it possible for everyone to prepare\n For example - NNN project meeting to check results of XXX and decide YYYY- Anniina, Ada, Joonas \nWhen chairing a meeting:\nLead the discussion through the agenda prepared and shared in advance - make sure you track the time\nFirst 5-10 minutes are used to summarise the big picture, overall goals of the meeting and to present the agenda\nLast 5-10 minutes are used to\nrecap the conclusions\nmake sure everyone is aligned with the action items and understand their own tasks\nbook the next meeting if needed\nBooking a meeting with Anniina \nBook in advance \nIt is easiest to find free slots within 1-2 weeks\nIt is encouraged to book the next meeting in the end of the previous meeting\nCheck calendars \nLab common and Anniina’s own for tentative slots",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Meeting guidelines/Meeting SOP.docx::chunk_0001",
+      "source_file": "Research-related/Meeting guidelines/Meeting SOP.docx",
+      "chunk_index": 1,
+      "start_char": 1485,
+      "end_char": 2348,
+      "char_count": 862,
+      "word_count": 151,
+      "text": "needed\nBooking a meeting with Anniina \nBook in advance \nIt is easiest to find free slots within 1-2 weeks\nIt is encouraged to book the next meeting in the end of the previous meeting\nCheck calendars \nLab common and Anniina’s own for tentative slots\nAnniina’s typical working hours are from 9-17 - if needed you can ask for exceptions\nNo more than \n6 meetings per day \n - if urgent you can ask for exceptions\nThe max duration of effective meetings is 55min (1h slot) - ask personally for exceptions. \nConfirm the slot with Anniina using Slack private message\n.\nTo set up doodles for e.g. Thesis committee book tentative slots from Anniina’s and then generate the doodle\nNo more than 1x1h tentative slots per day\nSpread the the slots over min 3 days and 2 weeks - this allows more flexibility for busy PIs \nAfter the doodle is finalised, remove the tentative slots",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx::chunk_0000",
+      "source_file": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1800,
+      "char_count": 1799,
+      "word_count": 297,
+      "text": "### word/document.xml\nCongratulations you have reached the point of writing your thesis on your PhD journey!\nPhD Thesis considerations\nThe thesis is a synthesis of your PhD work, not just a plain summary. The goal is to merge your projects/publications into one synthesis.\nThe thesis should clearly present your scientific contributions, and your maturity as a scientist. \nHere is a link to some of the criteria that the pre-examiners will use to \nevaluate\n the doctoral \nthesis\n: \nhttps://www.utu.fi/sites/default/files/media/med_pre-examiner_instructions.pdf\nThe thesis is your own production, and I will generally give you only “big picture feedback” to make sure it will pass the faculty requirements and pre-examination. \nIn general, you should use the minimum required time for writing the thesis. Except for your supervisor(s), the thesis examiners and your opponent, it is likely that no-one else will ever read your whole thesis. 🙂\nIn general, for the first submission to faculty, the thesis needs to “look like a thesis”, and you can keep editing it during the pre-examination.\nHow should I get started?\nWell planned is half done!\nFirstly, check the desired time of defence and then count back the timelines according to the faculty instructions. Your most important deadline is when to leave the thesis for pre-examination. \nStart by making a table of contents, and think carefully about what to focus on - these are \nthe main findings/conclusions of your PhD\n, and things you will be ideally discussing at the defence. The suggested page number is between \n40-60 - from beginning of introduction, including figures and excluding references\n. \nThe overall structure should follow the faculty template. Here are some insights: \nFor Objectives:\n enlist at least one Aim for each publication",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx::chunk_0001",
+      "source_file": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx",
+      "chunk_index": 1,
+      "start_char": 1550,
+      "end_char": 3212,
+      "char_count": 1660,
+      "word_count": 284,
+      "text": "number is between \n40-60 - from beginning of introduction, including figures and excluding references\n. \nThe overall structure should follow the faculty template. Here are some insights: \nFor Objectives:\n enlist at least one Aim for each publication\nFor Background/Introduction (15-20 pages): \nPlan and enlist the topics you need to cover focusing on the main scientific findings of your publications. Write out how many pages you plan to write for each section of the background so that it will be balanced. Include 1, max 2 illustrations of the main concepts. \nFor Materials and Methods (5-10 pages)\n, aim to combine the methods from the publications. Tables are ideal for this purpose. Note that you need to briefly explain methods which you did not perform (bioinformatics/wetlab) if they are parts of the publication. \nFor the Results and Discussion (20-30 pages)\n: I suggest combining results and discussion. P\nlan to include 2-3 main findings from each publication. You can copy-paste images from the publications, but select subpanels, do not use whole figures. Then add one chapter for describing the results and one chapter for discussing the relevance of the result in the context of current knowledge. Feel free to copy-paste text from original publications, but then edit the text to not be the same. \nHow much time should I allocate for writing? \nOverall, the thesis should be written in a time equaling \n1 month full time work\n. \nAfter making the table of contents, you should make a writing plan - plan to write e.g. 2-3 pages every day or distribute this across the week together with your project work, so that you write e.g. 1-2 days a week.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx::chunk_0002",
+      "source_file": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx",
+      "chunk_index": 2,
+      "start_char": 2962,
+      "end_char": 4753,
+      "char_count": 1791,
+      "word_count": 311,
+      "text": "aling \n1 month full time work\n. \nAfter making the table of contents, you should make a writing plan - plan to write e.g. 2-3 pages every day or distribute this across the week together with your project work, so that you write e.g. 1-2 days a week. \nMake clear deadlines for yourself, and inform me when you will be sending each section for my review, and keep me updated about potential delays. \nI strongly encourage you to\n start with the Results and Discussion\n - this will make it easier for you to focus the introduction on the same topics. Then put together the Methods and Introduction accordingly. \nPlanning together and getting\n feedback from me?\nFirst, we will go through the table of contents together, and plan the defence date, pre-examiners and opponent. \nI will email the opponent and pre-examiners - for this I need your tentative title.\nPlease share your writing plan and timeline for sending each section to me. \nFor feedback on the thesis, I prefer to review each full section at a time. \nFinally, I will read once more the whole thesis before you send it to the faculty. \nAt any point- if you get stuck, don't know what to focus on, don't hesitate to ask me!\nA common struggle is that when starting to write the introduction, you get overwhelmed and think that you should cover\n everything.\n That is where the structure and plan should help you to focus. Me and the pre-examiners will then also give feedback if we feel that something is missing. \nEnlisting your contributions to each publication:\nIt is important to clearly enlist all your contributions to each publication. You can follow the below list for contributions: \nBelow is an outline of the \nmain components\n in scientific publishing, which can help in assigning and acknowledging contributions accurately.\n1.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx::chunk_0003",
+      "source_file": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx",
+      "chunk_index": 3,
+      "start_char": 4503,
+      "end_char": 6268,
+      "char_count": 1765,
+      "word_count": 221,
+      "text": "rly enlist all your contributions to each publication. You can follow the below list for contributions: \nBelow is an outline of the \nmain components\n in scientific publishing, which can help in assigning and acknowledging contributions accurately.\n1. Conceptualization & Study Design\nFormulating the research question and hypothesis\nDesigning the study methodology and objectives\nEstablishing the experimental or analytical approach\n2. Data Acquisition & Investigation\nConducting experiments, collecting samples, or gathering data\nPerforming computational analyses, simulations, or fieldwork\nRunning laboratory assays, imaging, sequencing, or data extraction\n3. Data Analysis & Interpretation\nProcessing and analyzing raw data\nPerforming statistical modeling, bioinformatics, or AI-driven analysis\nInterpreting results and drawing conclusions\n4. Software & Code Development\n(if applicable)\nWriting or modifying software tools, scripts, or pipelines\nDeveloping models, algorithms, or databases used in the study\n5. Writing – Original Draft\nPreparing the initial manuscript draft\nWriting the introduction, methods, results, and discussion\n6. Writing – Review & Editing\nRevising manuscript content for clarity, coherence, and scientific accuracy\nEditing figures, tables, and references\nAddressing reviewer comments and journal revisions\n7. Visualization & Figures\nDesigning figures, graphs, illustrations, and schematics\nPreparing data visualizations and supplementary materials\n8. Supervision & Project Administration\nOverseeing research execution and ensuring quality control\nManaging the research team and facilitating collaboration\n9. Funding Acquisition\nSecuring grants and financial support for the study\nManaging research budgets and institutional approvals\n10.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx::chunk_0004",
+      "source_file": "Research-related/Theses guidelines/Guidelines for PhD Thesis writing by Anniina.docx",
+      "chunk_index": 4,
+      "start_char": 6018,
+      "end_char": 6792,
+      "char_count": 773,
+      "word_count": 94,
+      "text": "Overseeing research execution and ensuring quality control\nManaging the research team and facilitating collaboration\n9. Funding Acquisition\nSecuring grants and financial support for the study\nManaging research budgets and institutional approvals\n10. Ethical Approvals & Regulatory Compliance\n(if applicable)\nSecuring IRB (Institutional Review Board) or ethical committee approvals\nEnsuring compliance with data protection, patient confidentiality, and ethical guidelines\n11. Resources & Material Provision\nProviding critical reagents, datasets, tools, or equipment\nAccessing and curating publicly available datasets\n12. Correspondence & Submission\nPreparing and submitting the manuscript to the journal\nManaging communications with the journal, handling peer review process",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/How to master your Masters thesis.docx::chunk_0000",
+      "source_file": "Research-related/Theses guidelines/How to master your Masters thesis.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1767,
+      "char_count": 1767,
+      "word_count": 316,
+      "text": "### word/document.xml\n1. Choose your topic wisely and plan in advance\nBrowse for the possible dates online and ask your programme's coordinator about the last date to graduate on time in the current academic year (for TRANSMEDs in 2023 this was May)\nHave a meeting with Anniina as soon as you end your initial training/internship/advanced research methods. Try to look together for a detailed research question or \nobjective that you can accomplish in the agreed time frame, typically 4-6 months. \nThe best Master's thesis tend to be focusing in a very narrow problem that they can frame nicely in the introduction and study with various methods\nKeep in mind that your thesis can also be methodological (developing a pipeline, optimizing tCycIF experiments...) and it is also a valid approach, even though the writing is a bit different.\nYou can check in e-Thesis for other thesis similar to your project to get an idea of which is the expected extent \nWrite your thesis plan accordingly\nIn TRANSMED studies, this is not really evaluated. Plans vary a lot from what you design in the beginning as well. Keep it as broad as possible to avoid future problems and do not waste a lot of time on writing this.\nIf the experiments have a wet-lab component plan at least 2 months to order the reagents and select and order the samples. In this time I suggest, if you are a TRANSMED student, that you work on your Research Prpposal Examination to save time (yes, this does not necessarily need to be the last thing you do).\nAdd one more month to your timeline just to review the content and get feedback\nIn general, for TRANSMED students, I suggest scheduling the presentation of the thesis plan and results for the time when you are done with the project and you are writing.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/How to master your Masters thesis.docx::chunk_0001",
+      "source_file": "Research-related/Theses guidelines/How to master your Masters thesis.docx",
+      "chunk_index": 1,
+      "start_char": 1517,
+      "end_char": 3225,
+      "char_count": 1708,
+      "word_count": 293,
+      "text": "d one more month to your timeline just to review the content and get feedback\nIn general, for TRANSMED students, I suggest scheduling the presentation of the thesis plan and results for the time when you are done with the project and you are writing. This way you can just summarize your introduction in the thesis plan presentation, and then summarize the results section in the thesis result session. It will also help you modify some things, reexplain or add more information according to the public's feedback.\n2. Document EVERYTHING\nSeems quite evident, but being organized and keeping track of how you did your experiments / analysis will help you a lot. Document all of your steps (antibody validations, experiments, analysis ...) even though you think that something should not be in your thesis initially, it might. And after two weeks you will probably not remember the parameter you used for an analysis and you will have to waste your time trying to find it. Name your files correctly, and keep a backup of everything you do. \n3. Think of the structure before you write\nI used to try to write everything perfectly from the beginning, with a very vague structure of contents in my mind. Fortunately, I got very good tips at the beginning of the thesis writing process from both \n@casado@helsinki_fi\n and \n@nagaraj@helsinki_fi\n that were incredibly useful. These are the ones that helped me the most:\nBefore writing you need to \ndraft a clear structure\n with the points that you need to cover in each of the parts of the thesis. For example, I was dividing my introduction in A) ovarian cancer background B) TME and C) Spatially-resolved methodologies. However, there are subtopics in each of them.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/How to master your Masters thesis.docx::chunk_0002",
+      "source_file": "Research-related/Theses guidelines/How to master your Masters thesis.docx",
+      "chunk_index": 2,
+      "start_char": 2975,
+      "end_char": 4680,
+      "char_count": 1703,
+      "word_count": 293,
+      "text": "ture\n with the points that you need to cover in each of the parts of the thesis. For example, I was dividing my introduction in A) ovarian cancer background B) TME and C) Spatially-resolved methodologies. However, there are subtopics in each of them. In ovarian cancer, I had to introduce some epidemiologic data, information about the subtypes, tumor's genetics, standard treatments... in B) TME, I had to explain what it was, its components, the relevance of the immune compartment and the main cells that I was going to study (and for each of them its subtypes...). Writing this draft made it easier to get feedback and , even before writing. I had too many irrelevant points in mind (like diagnostic procedures, which were not very related to my project, or deep information about cell types that I was not exploring), and it was great to get these reduced before beginning to write. It also helped me to browse articles in a more specific way to find interesting discoveries related to my research question.\nAfter you get the draft of the structure reviewed, you need to\n write one paragraph for each point \nwith the information that you are interested in. There are two points that I found great to speed up the process.\nFirst, I wrote without worrying about the grammar, vocabulary, connectors etc, and I just explain the content.\nSecond, I wrote an \nintroductory sentence\n that anticipates what I was going to explain. I added a \nfinal sentence\n in the end of the paragraph, either summarizing or linking the explained ideas with the broad topic again. Later on time, I came back to the English and improved my writing style. Once the contents and the order were clear this process was smoother.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/How to master your Masters thesis.docx::chunk_0003",
+      "source_file": "Research-related/Theses guidelines/How to master your Masters thesis.docx",
+      "chunk_index": 3,
+      "start_char": 4430,
+      "end_char": 6170,
+      "char_count": 1740,
+      "word_count": 299,
+      "text": "n the end of the paragraph, either summarizing or linking the explained ideas with the broad topic again. Later on time, I came back to the English and improved my writing style. Once the contents and the order were clear this process was smoother. \nAdditional tips: consider using ChatGPT or Grammarly to correct your English or rephrase some of your paragraphs, it is fast and it will significantly improve the final result\nSome interesting feedback that I got after my first draft was focused on my results section. For example, one of my headings was \"Antibody validation\", this ended up as \"tCycIF antibody validation and image processing allows the coherent characterization of the target cell-types\".\n4. Remember that you don't need the results to be ready in order to write the introduction\nI wrote most of my introduction/literature review in November, while my thesis was handed in May! And I believe this was a great choice. In the introduction/literature review (TRANSMED MSc) you comment on the state of the art in the field you are doing your thesis in, and explain why your work is needed. Writing the review part in the initial stages of the project will save you time later on. Also, reading and writing will give you a nice background and will help you throughout the project. Even if your experimental plans change, some topics , like HGSC or TME should be reviewed, so it will be useful material no matter what. \nIn April, when the rest of the sections were complete, I read again my literature review and wrote an introduction in a similar style to that in any scientific paper. Additionally, I added a parragraph titled \"significance and challenges\" that had a good feedback from both my supervisors and the reviewers.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/How to master your Masters thesis.docx::chunk_0004",
+      "source_file": "Research-related/Theses guidelines/How to master your Masters thesis.docx",
+      "chunk_index": 4,
+      "start_char": 5920,
+      "end_char": 7635,
+      "char_count": 1714,
+      "word_count": 282,
+      "text": "read again my literature review and wrote an introduction in a similar style to that in any scientific paper. Additionally, I added a parragraph titled \"significance and challenges\" that had a good feedback from both my supervisors and the reviewers. Therefore, I suggest paying attention to this part and adapting it to your own thesis.\n5. Define your aims clearly and concretely \nThesis Aim and Objectives are really critical - the aims should be clarified early on while planning the thesis, and in the end they should be answered in the results. \nFirst a short paragraph defining the Overall Aim: State the broad goal of the research. What is the overarching aim of your thesis?\nExample: \"The main aim of this thesis is to explore the molecular mechanisms of immune evasion in HGSC.\"\nBreak Down the Main Aim into Specific Objectives: List the key specific aims that contribute to achieving your main research objective. These should outline the steps or components of your research.\nExample:\n\"To identify the immune cell populations present in HGSC tumor samples using spatial transcriptomics.\"\n\"To analyze the interaction between tumor cells and immune cells in the tumor microenvironment (TME).\"\n\"To investigate how chemotherapy influences the immune responses in HGSC patients.\"\n6. Design the figures\nAs well as the draft for the content I would suggest to think of the figures that you will add in your thesis for the Introduction, Methods or Results sections. Some tools I found useful were:\nBiorender for diagrams and figures that require the use of bio-related icons\nInkScape for the figure panels in the results section (plots etc): I was shocked when I learned that, if you export your figures in\n PDF",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/How to master your Masters thesis.docx::chunk_0005",
+      "source_file": "Research-related/Theses guidelines/How to master your Masters thesis.docx",
+      "chunk_index": 5,
+      "start_char": 7385,
+      "end_char": 9173,
+      "char_count": 1787,
+      "word_count": 320,
+      "text": "ns. Some tools I found useful were:\nBiorender for diagrams and figures that require the use of bio-related icons\nInkScape for the figure panels in the results section (plots etc): I was shocked when I learned that, if you export your figures in\n PDF\n and then put them in Inkscape you can change the labels, colors etc with no need to re-run your code again!\nPowerPoint is also useful for any kind of figures, but I used it especially in the results section\nIf you need to take many image crops for a t-CycIF related thesis, consider utilizing QuPath paired with ImageJ (\nSee sending regions to ImageJ \n) and saving the files afterwards. \nAlways keep in mind these things when creating the figures:\nThe legends and labeling are clear, and the message can be easily understood\nThe text and the image are big enough to appreciate, and the quality is good\nThe image caption is explanatory\nMost likely you will need to make various versions, so make code where you can easily replace the values, and save the images independently, together with the contrast limits when you work with images\nHere is one possible way to export figures with relatively high-resolution from PPT to your thesis in Word/PDF.\nSelect all elements on one page in the PowerPoint.\nCombine them as a group so there is only one big figure for one page.\nRight-click this big figure and select Save as Image (S).\nIn the pop-up save window, change the saved image type from the default .png to enhanced metafile format (*.emf).\nInsert this .emf figure to your thesis in Word/PDF, and you will see this figure has better resolution compared to png or jpeg, especially if there are some big t-cycif images in this figure.\n6. Use a reference manager \nSuch as Zotero, Mendeley, PaperPal since the very beginning. I like \nZotero",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/How to master your Masters thesis.docx::chunk_0006",
+      "source_file": "Research-related/Theses guidelines/How to master your Masters thesis.docx",
+      "chunk_index": 6,
+      "start_char": 8923,
+      "end_char": 10643,
+      "char_count": 1720,
+      "word_count": 298,
+      "text": "/PDF, and you will see this figure has better resolution compared to png or jpeg, especially if there are some big t-cycif images in this figure.\n6. Use a reference manager \nSuch as Zotero, Mendeley, PaperPal since the very beginning. I like \nZotero\n a lot, so I used it while reading to save the articles in my library with the Google Chrome extension, and then I added the citations while writing (in google docs/word)\n7. Choose your reviewers\nOnce you are near submission, but with enough time in advance, you should begin contacting the reviewers (at least this is the procedure in the TRANSMED programme). Check your programme's rules and chat with Anniina so that she suggests adequate reviewers for your work.\n8. Which feedback did reviewers provide? You can now avoid these mistakes\nI have also attached my grading and comments, so that you can see which things they found positive and which they found were lacking. Some of them are more related to their personal taste. I would recommend these to future MSc thesis students based on my result:\nPut all your energy in making a very good scientific framing of the problem, highlighting the significance of the thesis and outlining why this research or new method is needed\nIn TRANSMED, people that initiate their thesis with a brief literature review (15-20pp) usually do better than those with a brief introduction.\nThink of your figures wisely (I was told for example, I could have added some more figures in the introduction)\nThey expect very detailed methods section. Add every detail, even if you think it is irrelevant. For example, I said I used Ashlar for stitching, but I did not explain the maximum shift value or the other arguments I was introducing.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/How to master your Masters thesis.docx::chunk_0007",
+      "source_file": "Research-related/Theses guidelines/How to master your Masters thesis.docx",
+      "chunk_index": 7,
+      "start_char": 10393,
+      "end_char": 11430,
+      "char_count": 1037,
+      "word_count": 174,
+      "text": "he introduction)\nThey expect very detailed methods section. Add every detail, even if you think it is irrelevant. For example, I said I used Ashlar for stitching, but I did not explain the maximum shift value or the other arguments I was introducing. This kind of information, even though it is not included in the methods section of a paper, should be introduced in the thesis.\nThe most important: \nIn my case the results section was the Achilles tendon of the thesis, the reviewers wanted more analysis of the results I obtained with my test data in my new tool. However, I was solely presenting that the tool had worked. This was their specific claim\n \"The thesis was quite descriptive in nature. No clear analysis or comparison aspect was brought up\". \nAnalyzing in some way the output images (they mentioned some options) could have been a good addition to my thesis. I recommend very much considering this in methodological thesis.\n@junqmada@helsinki_fi\n TRANSMED Master's thesis: \nJunqueraMencia_Ada_thesis_2023.pdf\nevaluation.pdf",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx::chunk_0000",
+      "source_file": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1793,
+      "char_count": 1793,
+      "word_count": 282,
+      "text": "### word/document.xml\nPhD Defense protocol in short form for the PhD candidate\nEnsure that that all the systems (mic, stream, etc.) are functional as much in advance of the defense as possible. In the Haartman institute, the stewards are very helpful, at Biomedicum less so.\nNote: Bolded underlined are lines that the PhD candidate says during the public examination, learn by heart, for the situation where your heart desires to exist outside your chest..\nFaculty guidelines: https://www.helsinki.fi/en/research/doctoral-school/doctoral-studies-university-helsinki/welcome-public-examination\nEntrance\nAt the actual start of the defense, a quarter past the hour (to ensure the entire attendance is seated before the show begins):\nCandidate walks in first, custos second, opponent last. Custos and opponent hold the doctor’s hats in their hands, all three place the dissertation binders to the assigned table positions, along with the hats. Candidate takes the far side place from the door, custos sits middle next to the meeting controls, opponent at the near position to the door.\nCustos: Introduces him/herself, the defendant and the opponent\n \"As the Custos appointed by the Faculty of Medicine, I declare this public examination open.\"\nCustos and opponent sit down before the candidate begins the lectio\nOpening words of the lectio - the candidate says the following words: \n\"Honored Custos, honored Opponent, members of the audience\" \nLectio praecursoria\nAfter the lectio, the candidate says the following words:\n\"Honored Opponent, I now call upon you to present your critical comments on my dissertation.\"\nOpponents opening statement - \ncandidate stays standing for the statement, then both the opponent and the candidate sit down for the start of the examination\nPublic examination i.e.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx::chunk_0001",
+      "source_file": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx",
+      "chunk_index": 1,
+      "start_char": 1543,
+      "end_char": 3298,
+      "char_count": 1754,
+      "word_count": 286,
+      "text": "call upon you to present your critical comments on my dissertation.\"\nOpponents opening statement - \ncandidate stays standing for the statement, then both the opponent and the candidate sit down for the start of the examination\nPublic examination i.e. The Grilling\nThe opponent dictates the whole thing, the candidate abides.\nOpponent’s closing statement\nAfter the public examination, the opponent should ask the candidate to stand up, and stand up himself as well. The opponent will then make a final statement and will announce that he or she will propose to the Faculty that the dissertation be accepted. \nAfter the candidate thanks the opponent for the examination, the audience to make comments and pose questions: \n\"If anyone present wishes to make any comments concerning my dissertation, please ask the Custos for the floor.\"\nAfter the (potential) questions:\nClosing\nThe custos will stand up to announce that the examination is completed. The candidate can inform the audience of sparkling wine + cake being served, if such are organized to follow the defense.\nThe custos and the opponent will carry their Doctor's hats and dissertation binders when leaving the auditorium in the same order in which they entered: the doctoral candidate will leave first, followed by the custos and the opponent. The candidate, custos, and opponent should go directly to the spot where the sparkling + cake is to be had to avoid a logistical nightmare in which 20 people are trying to congratulate the candidate while the candidate attempts to move the mass of people to the site of the cake.\nThe audience must not applaud or cheer during the public examination\n. (Do tell this to your friends/family in audience not familiar with the concept \nor don’t…\n)\nKaronkka",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx::chunk_0002",
+      "source_file": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx",
+      "chunk_index": 2,
+      "start_char": 3048,
+      "end_char": 4844,
+      "char_count": 1796,
+      "word_count": 312,
+      "text": "le the candidate attempts to move the mass of people to the site of the cake.\nThe audience must not applaud or cheer during the public examination\n. (Do tell this to your friends/family in audience not familiar with the concept \nor don’t…\n)\nKaronkka\nEven though this is your (read: the PhD candidate’s) hour, officially the karonkka is held in the honor of the opponent. \nThe program of the formal dinner, and the seating arrangement is up to you, however certain traditions are still normally honored. \nThe opponent traditionally sits at the seat of honor on the right of the candidate. Custos is seated either across, or to the left of the candidate depending on the venue and tables available. After that, you can pick your order, typically the people with the most academic achievements sit the closest to the candidate (however, place your supervisor(s) as close to you as possible \nif you do not hate them\n), then move down the “merit list” from there. \nIn reality when progressing further down the merit list, you should consider how to make people enjoy their time at the dinner and seat people accordingly. Family and friends are typically further away, as this is an academic event in the end. Remember to make sure your spouse/family/friends do not feel isolated - remember that they are totally lost on everything happening during this day if they are not working in the field - try to place familiar people/labrats with social skills close to them. Do remember to let your significant other know of this quirk of the seating in advance to avoid a \nfun\n night.\nThe candidate welcomes everyone at the start, then the starters are served, followed by the main course. \nIt is customary for the candidate to give a small gift to the opponent, which is usually something very Finnish (e.g.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx::chunk_0003",
+      "source_file": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx",
+      "chunk_index": 3,
+      "start_char": 4594,
+      "end_char": 6342,
+      "char_count": 1748,
+      "word_count": 311,
+      "text": "ce to avoid a \nfun\n night.\nThe candidate welcomes everyone at the start, then the starters are served, followed by the main course. \nIt is customary for the candidate to give a small gift to the opponent, which is usually something very Finnish (e.g. a kuksa or something of the sort).\nSpeeches\nAfter the main is typically the time for the speeches. It would be wise to let less experienced people discreetly know to go to the restroom before the mains are done and the speeches begin, as the speeches can take a while. If you have a venue with servers around, make sure they know of the agenda, and that they should offer to fill the cups before the speeches, as traditionally after every speech, there is a toast. This means that after thanking the opponent, there is a toast, then another toast after thanking the custos and so on. The candidate can also have all the speeches in a row without toasts, but the toasts form the rhythm especially for the responses and let people know what is going on. For the candidate, raising a toast after each part of the speech also gives a tiny moment of respite during what can easily be ~20 minutes of non-stop talking.\nFirst, the candidate does his/her speeches, in the order of 1) opponent 2) custos 3) supervisor(s) 4) anything goes - typically in the approximate order of seating/importance. Thanks to family and friends are typically left for last.\nAfter the candidate has finished their round of speeches, the responses commence, in the order of the candidates speeches. After the last speech is done, the dessert is served.\nA tradition during the speeches is that if the candidate names a person during their speech, this named person traditionally answers with a speech of their own on their turn.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx::chunk_0004",
+      "source_file": "Research-related/Theses guidelines/PhD Defense + karonkka protocol.docx",
+      "chunk_index": 4,
+      "start_char": 6092,
+      "end_char": 7260,
+      "char_count": 1167,
+      "word_count": 213,
+      "text": "candidates speeches. After the last speech is done, the dessert is served.\nA tradition during the speeches is that if the candidate names a person during their speech, this named person traditionally answers with a speech of their own on their turn. However the candidate is encouraged to let people know in advance how the speeches are going to play out, i.e. who are the people expected to speak. Especially in the case of referring to the lab of the candidate, if no names are dropped during the speech, letting the people from the lab in attendance know of this allows them to prepare their own response speeches as a group, i.e. which members of the lab want to speak and so forth.\nNOTE: do let less experienced people know that they can expect approx. 12 - 20 toasts, so slamming down half a glass of wine per toast is probably a bad idea - or a good one, i leave that to everyone’s own judgement\nProgram\nTypically, the lab of the candidate organizes some kind of a number if the candidate wants there to be something. Is usually a lighthearted trip down the memory lane. Can be during the dessert, or at the start of the afterparty, depending on the venue etc.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Work-related guidelines/Holidays and APM.docx::chunk_0000",
+      "source_file": "Work-related guidelines/Holidays and APM.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1731,
+      "char_count": 1730,
+      "word_count": 277,
+      "text": "### word/document.xml\nTaking time off is important for family, rest, maintaining resilience and motivation. \nPlease see below some general information and instructions: \nWhat is the amount of holidays?\nAs a general rule the amount of paid holidays for university research personnel is approximately 5-7 weeks per year (Sept-Sept), depending on your contract.\nThis can be distributed across the year as you see best and agree with your supervisor(s).\nFor part-time students, the paid holiday days are proportional to your working %\nFor short-term internships, you can calculate that 2 days of paid holiday are accumulated per month and use these before the end of your internship.\nMarking the holidays to SAP (Only for UH salaried personnel)\nExpert and support personnel\nCheck your leave entitlement in SAP Fiori. The final holiday entitlement for the holiday year 1.4-31.3 can be seen after 31.3.\nPropose the dates of your leave to your supervisor.\nOnce your supervisor has accepted your leave plan, submit an application for annual leave in SAP Fiori \nhttps://msap.sap.helsinki.fi/\n.\nResearch and teaching personnel\nChange the hour allocation in \nSAP Fiori \nhttps://msap.sap.helsinki.fi/\n:\nEmployee\n >> \nWorking hours, work plan, multi-location work and telecommuting\n >> \nWorking time allocation\n >> Click \non each vacation day, open the “Type” dropdown menu, and select “Holiday Equivalent”, and select “Confirm allocations” from the bottom right of the screen.\nFlamma instructions on annual leave: \nhttps://flamma.helsinki.fi/en/group/henkilostoasiat/annual-leave\nHow to plan and go on holidays?\nAgree your holiday days with your supervisor(s) and with everyone working on the same collaborative projects as early as possible.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Work-related guidelines/Holidays and APM.docx::chunk_0001",
+      "source_file": "Work-related guidelines/Holidays and APM.docx",
+      "chunk_index": 1,
+      "start_char": 1481,
+      "end_char": 2364,
+      "char_count": 883,
+      "word_count": 139,
+      "text": "ons on annual leave: \nhttps://flamma.helsinki.fi/en/group/henkilostoasiat/annual-leave\nHow to plan and go on holidays?\nAgree your holiday days with your supervisor(s) and with everyone working on the same collaborative projects as early as possible.\nPrioritise taking your holidays during summer (July) and other general holiday periods if possible. \nMark your holidays into the \nlab google calendar \nas whole day events with your name and - Holidays. \nThink of your projects/responsibilities -\n do you need a substitute,\n and \nwho you will assign the project/data/responsibilities during your leave\n. \nGenerate and activate an out-of-office message\n with an alternative point of contact (your substitute/lab phone etc) - it is critical that ppl outside of the lab know that you are absent. \nDuring your Holiday\ndisconnect from work email & Slack\n via notification settings\n. \nEnjoy!",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Work-related guidelines/How to mark your sick leave.docx::chunk_0000",
+      "source_file": "Work-related guidelines/How to mark your sick leave.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1346,
+      "char_count": 1346,
+      "word_count": 220,
+      "text": "### word/document.xml\nGeneral considerations for sick days\nIf you are sick, it is best to stay at home and recover, especially if you are down with a virus. General rule is that if you are not able to work at >80% efficiency, it is better to take a sick day. \nIt is important to send a message to Anniina if you are on sick leave - regardless of your funding/grant/salary. \nThis is to ensure resource allocation and smooth running of the projects.\nMarking of sick leave: Short leaves of 5 days or less: (only applicable to those on UH salary)\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/HowTo/Mark%20a%20sick%20leave/WebHome?section=2&form_token=yNHeRXjtGcvAfoRAbnWZMQ\" \nChange the hour allocation in \nSAP Fiori \nhttps://msap.sap.helsinki.fi/\n:\nEmployee\n >> \nWorking hours, work plan, multi-location work and telecommuting\n >> \nWorking time allocation\n >> Click \no\nn each sick day, open the “Type” dropdown menu, and select “Sick leave”, and select “Confirm allocations” from the bottom right of the screen.\nAbsence notification in \nSAP Fiori \nhttps://msap.sap.helsinki.fi/\n:\nEmployee\n >> Leaves and absences >> My Leave Requests >> Create Request (bottom right) >> Fill the form, select “Illness” in the top dropdown menu\nOther instructions at \nhttps://flamma.helsinki.fi/en/group/henkilostoasiat/absence-due-to-illness",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Work-related guidelines/How to use the lab credit card.docx::chunk_0000",
+      "source_file": "Work-related guidelines/How to use the lab credit card.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1781,
+      "char_count": 1779,
+      "word_count": 298,
+      "text": "### word/document.xml\nUsage guidelines for the lab credit card\nWhat\nThe lab’s credit card is a personal card given to Anniina by UH that can be used to pay for goods and services without an invoice. The card is to be used for non-invoiceable work-related costs only (e.g. conference registrations, conference accommodation booking).\nThe card functions as a standard credit card, but allows for the direction of the costs to UH-administered grants after the invoice arrives. Saun handles the invoices from the credit card, please always send your receipts of credit card purchases to Saun for processing.\nWhenever using the card, follow these guidelines to avoid locking the card, since the unlocking process is laborious, and only Anniina can unlock the card. If you run into issues at any point during the use of the lab card, contact Joonas right away instead of trying to e.g. repeat payment steps.\nNote: Several \nsafety triggers WILL lock \nthe card: \nSeveral (near-)simultaneous payment requests\n from different IP addresses - only one person uses the card to pay at once,\n never spam payment requests \nif you get errors during the process, always contact Joonas if there are any issues.\nForeign IP addresses\n will block the use of the card - only use the card when you are physically in Finland (VPN won’t work). \nFailed (2-factor timeouted or rejected) payment requests\n will lock the card - coordinate payment requests with Joonas in advance. \nHow\nGet approval for credit card use from Anniina\n. \nTo get Anniina’s approval, send Anniina a message in Slack containing the justification of the credit card usage, sum of the cost, and source of funding. \nGet the card details from Joonas after Anniina’s approval and agree for a \n2-factor authentication time slot with Joonas",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Work-related guidelines/How to use the lab credit card.docx::chunk_0001",
+      "source_file": "Work-related guidelines/How to use the lab credit card.docx",
+      "chunk_index": 1,
+      "start_char": 1531,
+      "end_char": 2182,
+      "char_count": 651,
+      "word_count": 113,
+      "text": "send Anniina a message in Slack containing the justification of the credit card usage, sum of the cost, and source of funding. \nGet the card details from Joonas after Anniina’s approval and agree for a \n2-factor authentication time slot with Joonas \nJoonas needs to be aware and available of the incoming payment request for the 2FA approval\nThe request has a 5-minute timeout, so make sure Joonas knows the time the request will go out\nIf there are several people making requests at once (e.g. to register to the same conference), take coordinated payment turns to avoid simultaneous payment requests locking the card\n\n### word/header1.xml\n10.4.26 JJ",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Work-related guidelines/Tips for international members.docx::chunk_0000",
+      "source_file": "Work-related guidelines/Tips for international members.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1739,
+      "char_count": 1737,
+      "word_count": 307,
+      "text": "### word/document.xml\nThis page aims to give new lab members suggestions on how to settle down in Helsinki. - especially when you are moving from abroad. \nPaperwork\nIn Finland you will need e-Identification for \neverything\n: from getting your electronic public transport tickets, to hiring a home insurance or booking a doctor's appointment. \nThe way to get this identification is to get a Kela number and open a Finnish bank account. \nEU resident\nBefore arrive\nBook your appointments at DVV and Migri to register your permanent address and get your Kela number (ASAP)\nTip: when you fill the application form you can write your current address abroad if you do not have one in Finland yet\nBook your bank appointment already, try to get a date a few days after your Migri appointment, do not wait to get your kela number to do so\nWhen you arrive\nGo to your appointments and patiently wait\nGo to the bank and get the account, they will give you the instructions on the e-Identification directly at the bank's office\nNon-EU resident\nBefore arrive\nApply for the residence permit\nFind housing\nIf you have the student identity: HOAS\nIf you are not a student: \nSign the working contract (if possible)\nBook an appointment at DVV\nWhen you arrive\nGo to INTERNATIONAL HOUSE HELSINKI\nDVV is on the 2nd floor: register your permanent address (takes 2 weeks for workers)\nYou can apply for your Kela card at the same time. \nLeave INTERNATIONAL HOUSE HELSINKI, walk around 3 mins to Helsinki Area Tax Office\nGet your tax card\n**This is very important otherwise your salary will be taxed at 60%. \nOnce DVV noticed your address was registered\nYou can buy the monthly ticket on the HSL card\nYou can visit Helsinki Police Department to apply for an ID card.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Work-related guidelines/Tips for international members.docx::chunk_0001",
+      "source_file": "Work-related guidelines/Tips for international members.docx",
+      "chunk_index": 1,
+      "start_char": 1489,
+      "end_char": 3141,
+      "char_count": 1651,
+      "word_count": 284,
+      "text": "ce\nGet your tax card\n**This is very important otherwise your salary will be taxed at 60%. \nOnce DVV noticed your address was registered\nYou can buy the monthly ticket on the HSL card\nYou can visit Helsinki Police Department to apply for an ID card. \nRemember to have a Finnish phone number when you apply for the ID card. They do not provide email notifications. \nOnce your ID card is ready\nApply for your bank account and your e-identification. \nBanks\nOP-Pankki has free services until 26 y.o. , as well as a free opening fee, and it is the recommended bank for students. To open an account you must wait for some weeks, so make sure you book an appointment beforehand.\nS-Pankki has free lifetime services, but you need to pay ~100 euros to get your account. However, they will return this money to you after closing the account. No need to book an appointment for this bank\nNo English services are provided \n@junqmada@helsinki_fi\n 's experience in 2021 was good at S-Pankki sokos. She went to the bank with no appointment and received the online keys within one week of the appointment\nNordea\nHousing\nHousing options:\nHome insurance recommendations: Pohjola, IF, \nWell-connected areas to our campus in \nHelsinki\n: Meilahti, Taka-Töölö, Ruskeasuo, Pikku Huopalahti, Pasila, Alppila, Pitäjänmäki, Konala, Kannelmäki\nWell-connected areas to our campus in \nVantaa\n: Kaivoksela\nWell-connected areas to our campus in \nEspoo: \nClimate conditions and clothing\nExcept for the summer months, the weather in Finland is quite cold, and Helsinki being next to the Baltic sea means that wind/rainproof clothes are a factor that increases quality of life by \na lot",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Work-related guidelines/Tips for international members.docx::chunk_0002",
+      "source_file": "Work-related guidelines/Tips for international members.docx",
+      "chunk_index": 2,
+      "start_char": 2891,
+      "end_char": 4319,
+      "char_count": 1427,
+      "word_count": 241,
+      "text": "campus in \nEspoo: \nClimate conditions and clothing\nExcept for the summer months, the weather in Finland is quite cold, and Helsinki being next to the Baltic sea means that wind/rainproof clothes are a factor that increases quality of life by \na lot\n, also proper padded winter clothes should be acquired for the winter months, even day temperatures can drop to ~-25 °C in the winter months for extended periods of time.\nHealthcare in Finland\nPhone companies\nYou will probably need a pre-paid card before you can hire the services (since e-Identification is needed to establish a contract). Pre-paid services usually range between 25-30 euros/month and include unlimited data and, sometimes, unlimited calls.\nThey can be bought in any of the company stores or sometimes even at other stores such as TOKMANNI.\n@junqmada@helsinki_fi\n has tried DNA pre-paid services in the past and has had a good experience.\nOnce you get your phone number and Bank account you can create a MobilePay account, which is a widely-used online payment platform\nPublic transport options to Meilahti campus\nHSL route planner (available as a mobile app too) can be used to navigate the public transport system in addition to google maps - \nHSL.fi\nMeals: supermarkets & student-priced restaurants\nOn the campus, there are student priced restaurants in both Biomedicum 1, and Haartman institute. Members of the lab will often(/daily) go to these for lunch.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Work-related guidelines/Working remotely.docx::chunk_0000",
+      "source_file": "Work-related guidelines/Working remotely.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1081,
+      "char_count": 1081,
+      "word_count": 178,
+      "text": "### word/document.xml\nFor the lab community and to foster collaborations, on-site work is the default/preferred.\nHowever, if you have a task requiring uninterrupted focusing, or have other compelling reasons you can occasionally work remotely 1-2 days at a time. \nFor remote working\n1) Inform the Lab for optimal collaboration\nMark your remote day to the lab calendar \non the previous day\n - so that others can adjust their work and meetings accordingly.\nFor meetings - please\n notify others in Slack\n that you will be attending remotely and \ngenerate and send the zoom link\n on the previous day.\nIf you are working remotely for longer periods e.g. a full week - \nbook at least one update meeting\n per week with the team/supervisor. \n2) Maintain your working ergonomics\nMake sure you have the necessary \nequipment\n (screens, keyboards) and \nworking environment\n also present at your remote working site. These are tax deductible. (cannot be purchased via the Lab). \nRemember to eat and keep regular rhythm and breaks; take a walk outside, socialise, talk to somebody even via zoom.",
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "scope": "lab",
+      "project_code": null
+    }
+  ],
+  "extraction": {
+    "total_scannable_assets": 18,
+    "extracted_records": 18,
+    "chunk_count": 53,
+    "status_counts": {
+      "extracted": 18
+    },
+    "extractor_counts": {
+      "docx-zip-xml": 17,
+      "pptx-slide-xml": 1
+    },
+    "extension_counts": {
+      ".docx": 17,
+      ".pptx": 1
+    },
+    "errors": [],
+    "limits": {
+      "max_text_chars_per_file": 250000,
+      "chunk_chars": 1800,
+      "chunk_overlap": 250,
+      "max_pdf_pages": 120,
+      "max_pptx_slides": 180,
+      "max_xlsx_sheets": 20,
+      "max_xlsx_rows": 200,
+      "max_file_bytes": 536870912
+    },
+    "optional_extractors_detected": {
+      "pypdf": false,
+      "PyPDF2": false,
+      "python_docx": false,
+      "python_pptx": false,
+      "openpyxl": false,
+      "beautifulsoup4": false,
+      "Pillow": true,
+      "tifffile": false,
+      "pdftotext_cli": true,
+      "libreoffice_cli": true,
+      "textutil_cli": false
+    }
+  },
+  "folder_tree": [
+    {
+      "path": "Research-related",
+      "file_count": 4,
+      "categories": [
+        ".docx",
+        ".pptx"
+      ]
+    },
+    {
+      "path": "Research-related/Abstracts and presentations",
+      "file_count": 4,
+      "categories": [
+        ".docx"
+      ]
+    },
+    {
+      "path": "Research-related/Meeting guidelines",
+      "file_count": 2,
+      "categories": [
+        ".docx"
+      ]
+    },
+    {
+      "path": "Research-related/Theses guidelines",
+      "file_count": 3,
+      "categories": [
+        ".docx"
+      ]
+    },
+    {
+      "path": "Work-related guidelines",
+      "file_count": 5,
+      "categories": [
+        ".docx"
+      ]
+    }
+  ],
+  "combined_text_chars": 70693,
+  "metrics": {
+    "document_count": 18,
+    "total_assets": 18,
+    "scannable_assets": 18,
+    "extracted_document_count": 18,
+    "knowledge_chunk_count": 53,
+    "extraction_error_count": 0,
+    "figure_count": 0
+  },
+  "data_assets": {
+    "folder_tree": [
+      {
+        "path": "Research-related",
+        "file_count": 4,
+        "categories": [
+          "document"
+        ]
+      },
+      {
+        "path": "Research-related/Abstracts and presentations",
+        "file_count": 4,
+        "categories": [
+          "document"
+        ]
+      },
+      {
+        "path": "Research-related/Meeting guidelines",
+        "file_count": 2,
+        "categories": [
+          "document"
+        ]
+      },
+      {
+        "path": "Research-related/Theses guidelines",
+        "file_count": 3,
+        "categories": [
+          "document"
+        ]
+      },
+      {
+        "path": "Work-related guidelines",
+        "file_count": 5,
+        "categories": [
+          "document"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,2090 @@
+{
+  "project_code": "ovaHRDscar",
+  "processed_at": "2026-06-05T07:16:08.793433+00:00",
+  "folder_path": null,
+  "content_root": null,
+  "source_files_count": 0,
+  "total_assets_count": 0,
+  "content_library": {
+    "sections": [
+      {
+        "id": "23_ovaHRDscar_OncosysOVA",
+        "label": "23_ovaHRDscar_OncosysOVA",
+        "total_files": 2,
+        "documents": [
+          {
+            "path": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+            "name": "23_Project Log.docx",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "23_HRDConsensusProject"
+          },
+          {
+            "path": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+            "name": "SNP-array analysis instructions.docx",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "SNP-array analysis instructions"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      },
+      {
+        "id": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences",
+        "label": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences",
+        "total_files": 2,
+        "documents": [
+          {
+            "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+            "name": "ESGO 2026 abstract AH.docx",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Real-world data from the Oncosys-OVA clinical trial (NCT06117384) - experiences on genomic and functional HRD testing and molecular determinants of progression during PARP inhibitor treatment"
+          },
+          {
+            "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+            "name": "ESMO abstract MS 2025-05-13.docx",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Improved clinical HRD testing practices in ovarian cancer based on real-world data from the Oncosys-OVA clinical trial (NCT06117384)"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      },
+      {
+        "id": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors",
+        "label": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors",
+        "total_files": 2,
+        "documents": [
+          {
+            "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/FF_DNA_extraction_Maxwell_ElinaNiemelä.docx",
+            "name": "FF_DNA_extraction_Maxwell_ElinaNiemelä.docx",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "DNA from fresh-frozen tissue samples was extracted using Maxwell CSC Genomic DNA automated bead-based extraction kit. Briefly, up to 50 mg of tissue was shredded using a scalpel, transferred to a clean Eppendorf tube, and lysed according to the manufacturer’s instructions for 2 hours on a thermal mixer set to 56°C and 1400 rpm. Automated extraction was performed according to instructions and DNA w"
+          },
+          {
+            "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/Functional HR testing_2025-10-23_SP.docx",
+            "name": "Functional HR testing_2025-10-23_SP.docx",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Functional HR testing"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      },
+      {
+        "id": "23_ovaHRDscar_OncosysOVA/Manuscript",
+        "label": "23_ovaHRDscar_OncosysOVA/Manuscript",
+        "total_files": 1,
+        "documents": [
+          {
+            "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+            "name": "Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Improved clinical HRD testing practices in ovarian cancer based on real-world data from the Oncosys-OVA clinical trial (NCT06117384)"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      },
+      {
+        "id": "23_ovaHRDscar_OncosysOVA/Presentations",
+        "label": "23_ovaHRDscar_OncosysOVA/Presentations",
+        "total_files": 2,
+        "documents": [
+          {
+            "path": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+            "name": "HRD consensus project- PARPi cohort 19.5.2025.pptx",
+            "asset_type": "document",
+            "extension": ".pptx",
+            "previewable": true,
+            "excerpt": "HRD consensus project: PARPi cohort results Project meeting 21.5.2025 Matilda Salko"
+          },
+          {
+            "path": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+            "name": "Purity and QCs inspection 2024.pptx",
+            "asset_type": "document",
+            "extension": ".pptx",
+            "previewable": true,
+            "excerpt": "Pathologist and ASCAT purity concordance\n\nN=192 | 9 - Failed\n\nN=163\n\nNo QCs\n\nMADP < 0.5; Call.rate > 0.75"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      }
+    ],
+    "figures_gallery": [],
+    "totals": {},
+    "figure_count": 0
+  },
+  "identity": {
+    "project_code": "ovaHRDscar",
+    "project_name": "ovaHRDscar_oncosysOVA",
+    "project_index": 23,
+    "project_lead": "Matilda Salko",
+    "principal_investigator": "Anniina Färkkilä, MD, PhD",
+    "disease_focus": "Ovarian / Gynecologic Cancer",
+    "status": "active",
+    "category": "genomics",
+    "category_label": "Genomics & Sequencing",
+    "priority": "medium",
+    "research_question": "",
+    "project_summary": ": Analysis of SNP-array data to calculate ovaHRDscar values from Oncosys OVA tumors.",
+    "timeline": "",
+    "responsible": "Matilda Salko (Fernando Perez)"
+  },
+  "personnel": [
+    {
+      "name": "Fernando Perez",
+      "role": "Collaborator",
+      "focus": "Collaborator"
+    },
+    {
+      "name": "Matilda Salko",
+      "role": "Project lead",
+      "focus": "Project lead"
+    }
+  ],
+  "modalities": [],
+  "cohorts": [],
+  "data_assets": {
+    "storage_paths": [],
+    "repositories": [],
+    "folder_tree": [
+      {
+        "path": "23_ovaHRDscar_OncosysOVA",
+        "file_count": 2,
+        "categories": [
+          "document"
+        ]
+      },
+      {
+        "path": "23_ovaHRDscar_OncosysOVA/Manuscript",
+        "file_count": 1,
+        "categories": [
+          "document"
+        ]
+      },
+      {
+        "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences",
+        "file_count": 2,
+        "categories": [
+          "document"
+        ]
+      },
+      {
+        "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors",
+        "file_count": 2,
+        "categories": [
+          "document"
+        ]
+      },
+      {
+        "path": "23_ovaHRDscar_OncosysOVA/Presentations",
+        "file_count": 2,
+        "categories": [
+          "document"
+        ]
+      }
+    ]
+  },
+  "timeline": [],
+  "meetings": [],
+  "protocols": [],
+  "dissemination": [],
+  "publications": [],
+  "derived_knowledge": {
+    "methods": [],
+    "findings": [],
+    "risks_or_open_items": []
+  },
+  "document_index": [
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "path": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "title": "23_Project Log.docx",
+      "has_text": true,
+      "excerpt": "23_HRDConsensusProject",
+      "metadata": {
+        "source": {
+          "filename": "23_Project Log.docx",
+          "stem": "23_Project Log",
+          "extension": ".docx",
+          "relative_path": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/23_ovaHRDscar_OncosysOVA-20260602T172010Z-3-001/23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+          "size_bytes": 13474,
+          "size_human": "13.16 KB",
+          "modified": "2025-06-02T01:21:50",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "hashes": {
+            "md5": "121ac6ef136e390a8ac7741479e13afb"
+          }
+        },
+        "classification": {
+          "family": "word",
+          "extension": ".docx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "extractor": "python-docx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "paragraph_count": 62,
+          "table_count": 0,
+          "core_properties": {
+            "title": "Word Document",
+            "subject": "",
+            "author": "",
+            "keywords": "",
+            "created": null,
+            "modified": "2026-06-05T12:28:13+00:00",
+            "last_modified_by": "python-docx"
+          }
+        },
+        "converted_at": "2026-06-05T15:28:13"
+      }
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "title": "ESGO 2026 abstract AH.docx",
+      "has_text": true,
+      "excerpt": "Real-world data from the Oncosys-OVA clinical trial (NCT06117384) - experiences on genomic and functional HRD testing and molecular determinants of progression during PARP inhibitor treatment",
+      "metadata": {
+        "source": {
+          "filename": "ESGO 2026 abstract AH.docx",
+          "stem": "ESGO 2026 abstract AH",
+          "extension": ".docx",
+          "relative_path": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/23_ovaHRDscar_OncosysOVA-20260602T172010Z-3-001/23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+          "size_bytes": 18345,
+          "size_human": "17.92 KB",
+          "modified": "2025-11-16T23:57:02",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "hashes": {
+            "md5": "47537cb60c7c4304017178e416eee561"
+          }
+        },
+        "classification": {
+          "family": "word",
+          "extension": ".docx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "extractor": "python-docx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "paragraph_count": 13,
+          "table_count": 0,
+          "core_properties": {
+            "title": "",
+            "subject": "",
+            "author": "Salko Matilda",
+            "keywords": "",
+            "created": "2025-11-17T07:54:00+00:00",
+            "modified": "2025-11-17T07:55:00+00:00",
+            "last_modified_by": "Salko Matilda"
+          }
+        },
+        "converted_at": "2026-06-05T15:28:13"
+      }
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "title": "ESMO abstract MS 2025-05-13.docx",
+      "has_text": true,
+      "excerpt": "Improved clinical HRD testing practices in ovarian cancer based on real-world data from the Oncosys-OVA clinical trial (NCT06117384)",
+      "metadata": {
+        "source": {
+          "filename": "ESMO abstract MS 2025-05-13.docx",
+          "stem": "ESMO abstract MS 2025-05-13",
+          "extension": ".docx",
+          "relative_path": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/23_ovaHRDscar_OncosysOVA-20260602T172010Z-3-001/23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+          "size_bytes": 16884,
+          "size_human": "16.49 KB",
+          "modified": "2025-08-03T22:50:04",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "hashes": {
+            "md5": "1f629234e135d06cd24991d423c1fb1e"
+          }
+        },
+        "classification": {
+          "family": "word",
+          "extension": ".docx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "extractor": "python-docx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "paragraph_count": 10,
+          "table_count": 0,
+          "core_properties": {
+            "title": "",
+            "subject": "",
+            "author": "",
+            "keywords": "",
+            "created": "2025-05-13T06:13:00+00:00",
+            "modified": "2025-05-22T13:07:00+00:00",
+            "last_modified_by": "Salko, Matilda K"
+          }
+        },
+        "converted_at": "2026-06-05T15:28:13"
+      }
+    },
+    {
+      "document_id": "24efc0bb5cceffcc4be0912583b13831",
+      "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/FF_DNA_extraction_Maxwell_ElinaNiemelä.docx",
+      "title": "FF_DNA_extraction_Maxwell_ElinaNiemelä.docx",
+      "has_text": true,
+      "excerpt": "DNA from fresh-frozen tissue samples was extracted using Maxwell CSC Genomic DNA automated bead-based extraction kit. Briefly, up to 50 mg of tissue was shredded using a scalpel, transferred to a clean Eppendorf tube, and lysed according to the manufacturer’s instructions for 2 hours on a thermal mixer set to 56°C and 1400 rpm. Automated extraction was performed according to instructions and DNA w",
+      "metadata": {
+        "source": {
+          "filename": "FF_DNA_extraction_Maxwell_ElinaNiemelä.docx",
+          "stem": "FF_DNA_extraction_Maxwell_ElinaNiemelä",
+          "extension": ".docx",
+          "relative_path": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/FF_DNA_extraction_Maxwell_ElinaNiemelä.docx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/23_ovaHRDscar_OncosysOVA-20260602T172010Z-3-001/23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/FF_DNA_extraction_Maxwell_ElinaNiemelä.docx",
+          "size_bytes": 14295,
+          "size_human": "13.96 KB",
+          "modified": "2026-02-11T04:18:22",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "hashes": {
+            "md5": "693f9e2d4d17da15f750df3b10c957a3"
+          }
+        },
+        "classification": {
+          "family": "word",
+          "extension": ".docx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "extractor": "python-docx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "paragraph_count": 1,
+          "table_count": 0,
+          "core_properties": {
+            "title": "",
+            "subject": "",
+            "author": "Niemelä Elina",
+            "keywords": "",
+            "created": "2026-01-27T13:24:00+00:00",
+            "modified": "2026-01-27T13:37:00+00:00",
+            "last_modified_by": "Niemelä Elina"
+          }
+        },
+        "converted_at": "2026-06-05T15:28:13"
+      }
+    },
+    {
+      "document_id": "be7254ae4b776de77caeea6d4b1b8cac",
+      "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/Functional HR testing_2025-10-23_SP.docx",
+      "title": "Functional HR testing_2025-10-23_SP.docx",
+      "has_text": true,
+      "excerpt": "Functional HR testing",
+      "metadata": {
+        "source": {
+          "filename": "Functional HR testing_2025-10-23_SP.docx",
+          "stem": "Functional HR testing_2025-10-23_SP",
+          "extension": ".docx",
+          "relative_path": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/Functional HR testing_2025-10-23_SP.docx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/23_ovaHRDscar_OncosysOVA-20260602T172010Z-3-001/23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/Functional HR testing_2025-10-23_SP.docx",
+          "size_bytes": 15492,
+          "size_human": "15.13 KB",
+          "modified": "2025-10-24T01:06:16",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "hashes": {
+            "md5": "d3b2794efa20e1265200804a3bf103ea"
+          }
+        },
+        "classification": {
+          "family": "word",
+          "extension": ".docx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "extractor": "python-docx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "paragraph_count": 5,
+          "table_count": 0,
+          "core_properties": {
+            "title": "",
+            "subject": "",
+            "author": "Pikkusaari, Sanna K",
+            "keywords": "",
+            "created": "2025-10-23T07:21:00+00:00",
+            "modified": "2025-10-23T07:51:00+00:00",
+            "last_modified_by": "Pikkusaari, Sanna K"
+          }
+        },
+        "converted_at": "2026-06-05T15:28:13"
+      }
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "path": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "title": "Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "has_text": true,
+      "excerpt": "Improved clinical HRD testing practices in ovarian cancer based on real-world data from the Oncosys-OVA clinical trial (NCT06117384)",
+      "metadata": {
+        "source": {
+          "filename": "Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+          "stem": "Improved clinical HRD testing practices in ovarian cancer manuscript",
+          "extension": ".docx",
+          "relative_path": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/23_ovaHRDscar_OncosysOVA-20260602T172010Z-3-001/23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+          "size_bytes": 168044,
+          "size_human": "164.11 KB",
+          "modified": "2026-03-05T05:07:46",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "hashes": {
+            "md5": "3a2f042e8066791ac37c211f2620084f"
+          }
+        },
+        "classification": {
+          "family": "word",
+          "extension": ".docx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "extractor": "python-docx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "paragraph_count": 71,
+          "table_count": 0,
+          "core_properties": {
+            "title": "",
+            "subject": "",
+            "author": "Salko, Matilda K",
+            "keywords": "",
+            "created": "2025-10-14T13:25:00+00:00",
+            "modified": null,
+            "last_modified_by": ""
+          }
+        },
+        "converted_at": "2026-06-05T15:28:13"
+      }
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "path": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "title": "HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "has_text": true,
+      "excerpt": "HRD consensus project: PARPi cohort results Project meeting 21.5.2025 Matilda Salko",
+      "metadata": {
+        "source": {
+          "filename": "HRD consensus project- PARPi cohort 19.5.2025.pptx",
+          "stem": "HRD consensus project- PARPi cohort 19.5.2025",
+          "extension": ".pptx",
+          "relative_path": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/23_ovaHRDscar_OncosysOVA-20260602T172010Z-3-001/23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+          "size_bytes": 1783746,
+          "size_human": "1.70 MB",
+          "modified": "2025-05-22T04:22:44",
+          "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          "hashes": {
+            "md5": "cf3a4235b7c2d9b71160bdf9aba614c5"
+          }
+        },
+        "classification": {
+          "family": "presentation",
+          "extension": ".pptx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          "extractor": "python-pptx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "slide_count": 12
+        },
+        "converted_at": "2026-06-05T15:28:13"
+      }
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "path": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "title": "SNP-array analysis instructions.docx",
+      "has_text": true,
+      "excerpt": "SNP-array analysis instructions",
+      "metadata": {
+        "source": {
+          "filename": "SNP-array analysis instructions.docx",
+          "stem": "SNP-array analysis instructions",
+          "extension": ".docx",
+          "relative_path": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/23_ovaHRDscar_OncosysOVA-20260602T172010Z-3-001/23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+          "size_bytes": 456092,
+          "size_human": "445.40 KB",
+          "modified": "2026-01-26T05:21:10",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "hashes": {
+            "md5": "e30122b37a0db42958549979a2f4a04d"
+          }
+        },
+        "classification": {
+          "family": "word",
+          "extension": ".docx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "extractor": "python-docx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "paragraph_count": 60,
+          "table_count": 0,
+          "core_properties": {
+            "title": "",
+            "subject": "",
+            "author": "Härkönen, Anni I J",
+            "keywords": "",
+            "created": "2025-05-16T07:14:00+00:00",
+            "modified": null,
+            "last_modified_by": ""
+          }
+        },
+        "converted_at": "2026-06-05T15:28:13"
+      }
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "path": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "title": "Purity and QCs inspection 2024.pptx",
+      "has_text": true,
+      "excerpt": "Pathologist and ASCAT purity concordance\n\nN=192 | 9 - Failed\n\nN=163\n\nNo QCs\n\nMADP < 0.5; Call.rate > 0.75",
+      "metadata": {
+        "source": {
+          "filename": "Purity and QCs inspection 2024.pptx",
+          "stem": "Purity and QCs inspection 2024",
+          "extension": ".pptx",
+          "relative_path": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/23_ovaHRDscar_OncosysOVA-20260602T172010Z-3-001/23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+          "size_bytes": 1686668,
+          "size_human": "1.61 MB",
+          "modified": "2025-06-30T01:47:04",
+          "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          "hashes": {
+            "md5": "2990cca7fb926a733040a138ae79c91f"
+          }
+        },
+        "classification": {
+          "family": "presentation",
+          "extension": ".pptx",
+          "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          "extractor": "python-pptx",
+          "status": "ok"
+        },
+        "extraction_metadata": {
+          "slide_count": 10
+        },
+        "converted_at": "2026-06-05T15:28:13"
+      }
+    }
+  ],
+  "vector_chunks": [
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 0,
+      "text": "23_HRDConsensusProject"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 1,
+      "text": "Members of the project:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 2,
+      "text": "Matilda Salko (2022-currently)"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 3,
+      "text": "Anni Härkönen (2024-currently)"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 4,
+      "text": "Fernando Perez (2022-June 2025)"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 5,
+      "text": "This project implements different HRD testing modalities with the aim of improving clinical HRD testing practices."
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 6,
+      "text": "The main project components are:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 7,
+      "text": "Comparison of FF and FFPE sample based ovaHRDscar results"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 8,
+      "text": "To enable the use of FFPE samples for research purposes"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 9,
+      "text": "Relevant data is in folder: L:\\ltdk_farkkila\\Projects\\23_HRDConsensusProject\\01_FFPE_samples"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 10,
+      "text": "Paired biopsy and tumor samples from IDS patients"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 11,
+      "text": "To investigate whether performing ovaHRDscar analysis from pre-chemotherapy samples will improve the quality of HRD test results for IDS patients"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 12,
+      "text": "Relevant data is in folder L:\\ltdk_farkkila\\Projects\\23_HRDConsensusProject\\02_IDS_biopsies"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 13,
+      "text": "An Oncosys-OVA sub-cohort of PARPi treated patients from before the implementation of clinical HRD testing with ovaHRDscar (09/2022)"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 14,
+      "text": "To investigate ovaHRDscar results from patients who were treated with PARPi before the availability of clinical HRD testing"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 15,
+      "text": "Relevant data is in folder L:\\ltdk_farkkila\\Projects\\23_HRDConsensusProject\\03_PARPi_retrospective_cohort"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 16,
+      "text": "Analysis of prospective Oncosys-OVA patients who have been HRD tested in the clinic with the FF-based, clinical ovaHRDscar test (diagnosed between 09/22-12/24)"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 17,
+      "text": "Aim is to find out the real-world outcomes of patients treated with PARPi in the first line, and to see how ovaHRDscar performs in the real-world setting"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 18,
+      "text": "Relevant data is in folder L:\\ltdk_farkkila\\Projects\\23_HRDConsensusProject\\04_Prospective_cohort"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 19,
+      "text": "ovaHRDcalculation for must of the Oncosys-OVA samples:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 20,
+      "text": "To get HRD status in Oncosys-OVA samples"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 21,
+      "text": "Developed code or analysis utils:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 22,
+      "text": "For the ovaHRDscar calculation of samples was used the script `ASCAT3_QCs_ovaHRDscars_onlyTumor.R` that is in this repository:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 23,
+      "text": "https://github.com/farkkilab/SNParray_ovaHRDscar_QC"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 24,
+      "text": "For the analysis and compiling of results have been used scripts deposited in the next Github repository:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 25,
+      "text": "https://github.com/farkkilab/oncosys_ova_snp_array"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 26,
+      "text": "The results and raw data for all SNP array analysis are in this folder:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 27,
+      "text": "L:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\Raw_and_intermediante_files_fernando\\Oncosys_and_others\\"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 28,
+      "text": "Other files for analysis of SNP arrays and calculation of ovaHRDscar are in this folder."
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 29,
+      "text": "Replication timing file for ASCAT: L:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\Utils\\GCcontent_GSAv3.txt"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 30,
+      "text": "Cluster file for GenomeStudio: \nL:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\Utils\\Cluster_file\\"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 31,
+      "text": "Manifest file for GenomeStudio generated in Tartu unit: \nL:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\Utils\\Manifest_Tartu\\"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 32,
+      "text": "Presentations with results:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 33,
+      "text": "The presentations are in this GDrive folder in the Presentations folder."
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 34,
+      "text": "Also there are presentations in the next folder in L-drive:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 35,
+      "text": "L-drive/Projects/23_HRDConsensusProject/00_Project presentations/"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 36,
+      "text": "Project log"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 37,
+      "text": "Notes about previous analysis from 2022-2024"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 38,
+      "text": "All results, raw SNP-array data and intermediate data have been stored in the folder:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 39,
+      "text": "L:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\Raw_and_intermediante_files_fernando\\Oncosys_and_others\\"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 40,
+      "text": "There is a folder for each batch of samples analyzed, each folder has as name the date when the SNP-array raw data was generated per sample. Each folder has the same general structure inside. Take a look at the README.txt file in the Oncosys_and_others folder to get to know more about this."
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 41,
+      "text": "All the results have been compiled by Anastasia and Matilda in to the table:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 42,
+      "text": "L:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\SNP-Arrays_ONCOSYS-OVA_JointTable_Anastasiya-Fernando_UPD_2023-02-19_MS.xlsx"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 43,
+      "text": "In early 2024, we updated the ASCAT version from version 2 to version 3.1.2. ASCAT is the software for allele imbalance detection (also known as allele specific copy number detection). For this, all intermediate files, BAF and LogR ratio files per run in previous folders, were merged in an unique folder:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 44,
+      "text": "L:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\Raw_and_intermediante_files_fernando\\Oncosys_and_others\\All_samples_merged_2024\\ The files in this folder were then used to regenerate ovaHRDscar of previous runs. Now in future analysis all the runs have been done using the ASCAT version 3.1.2."
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 45,
+      "text": "Comparison of FF and FFPE samples"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 46,
+      "text": "Some of the resultant files are here:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 47,
+      "text": "L:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\For_analysis\\"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 48,
+      "text": "The script developed by Fernando for this comparisons is this: https://github.com/farkkilab/oncosys_ova_snp_array/blob/main/003_Purity_pathologist_ASCAT_concordance_and_QCs.Rmd"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 49,
+      "text": "And also this:\nhttps://github.com/farkkilab/oncosys_ova_snp_array/blob/main/002_FFPE-FF_concordance_and_QC_analysis.Rmd"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 50,
+      "text": "To increase the concodance of FFPE and FF samples in ovaHRDscar values, we also tried to change the parameters of ASCAT to give a range of possible purity based on pathologist observations. This was done by adjusting the next function ascat.runAscat and adding the parameter max_purity in the script:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 51,
+      "text": "https://github.com/farkkilab/SNParray_ovaHRDscar_QC/blob/main/ASCAT3_QCs_ovaHRDscars_onlyTumor.R"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 52,
+      "text": "The results did not increased the concordance notoriously, just in five samples these results are reported in this slide: https://docs.google.com/presentation/d/1YsVOgr98WPU98DCpBGCXitwKk31NduwnslIHIEEnsBk/edit?slide=id.g2b4fc70e782_0_18#slide=id.g2b4fc70e782_0_18"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 53,
+      "text": "Analysis of PARPi samples in Tartu - May 2025"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 54,
+      "text": "A batch of 94 samples were sent to Tartu for SNP-array analysis using the Illumina GSA v3. The results from the genotyping unit in Tartu were deposited in a server by them. The access to the server was shared in an email to Matilda. The Tartu’s genomic unit included a new cluster file and a new manifest file, because this SNP array version had a bit less SNPs than the ones used before in FIMM-Helsinki."
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 55,
+      "text": "The SNP-array data and cluster and manifest files were downloaded and organized in folders by Fernando. The data was analysed using the same GenomeStudio protocol, with the new cluster and manifest files proportioned by Tartu. The new pipeline for SNP-array analysis was then executed (https://github.com/farkkilab/SNParray_ovaHRDscar_QC). The same metrics file and replication timing was used for ASCAT as the one used before with the SNP-array from FIMM-Helsinki, which is the same version but with a bit more SNPs. No errors were reported in ASCAT using these files."
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 56,
+      "text": "The results were deposited in the folder:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 57,
+      "text": "L:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\Raw_and_intermediante_files_fernando\\Oncosys_and_others\\20250515_Tartu_PARP\\"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 58,
+      "text": "The location of cluster and manifest files shared by Tartu are listed in the above section (Developed code or analysis utils)."
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 59,
+      "text": "The inspection of results by Matilda were summarised in a presentation that is here:"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 60,
+      "text": "L:/ltdk_farkkila/Projects/23_HRDConsensusProject/00_Project_presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx"
+    },
+    {
+      "document_id": "2eb75b03dbb3797d53818e4f3551a5f5",
+      "source_file": "23_ovaHRDscar_OncosysOVA/23_Project Log.docx",
+      "chunk_index": 61,
+      "text": "The code used for making the plots and figures that are shown in the presentation is stored here: ___"
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 0,
+      "text": "Real-world data from the Oncosys-OVA clinical trial (NCT06117384) - experiences on genomic and functional HRD testing and molecular determinants of progression during PARP inhibitor treatment"
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 1,
+      "text": "Anni Härkönen1, Matilda Salko1, Fernando Perez1, Sanna Pikkusaari1, Anni Virtanen1,3, Heini  \nLassus1,2, Liisa Kauppi1, Ulla-Maija Haltia1,2, Anniina Färkkilä1,2,4"
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 2,
+      "text": "Research Program in Systems Oncology, University of Helsinki, Faculty of Medicine, Finland"
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 3,
+      "text": "Department of Oncology and Obstetrics and Gynecology, Helsinki University Hospital, Helsinki,  \nFinland"
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 4,
+      "text": "Department of Pathology, University of Helsinki and HUS Diagnostic Center,  \nHelsinki University Hospital, Finland"
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 5,
+      "text": "Institute for Molecular Medicine Finland, Helsinki Institute of Life Sciences, University of Helsinki, Finland"
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 6,
+      "text": "Background"
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 7,
+      "text": "Identifying high-grade serous ovarian carcinoma (HGSC) patients who derive the greatest benefit from poly (ADP-ribose) polymerase inhibitor (PARPi) therapy is crucial. This study aims to establish optimal homologous recombination deficiency (HRD) testing strategies and to characterise the molecular features underlying disease progression in HRD patients receiving first-line PARPi maintenance treatment."
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 8,
+      "text": "Methods"
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 9,
+      "text": "We analysed a cohort of 323 HGSC patients who underwent various HRD testing modalities at different treatment stages, with clinical outcomes monitored through a comprehensive database. Genomic HRD status was assessed in 251 patients using the ovaHRDscar algorithm with a tumour purity threshold of ≥30%. Two PARPi-treated sub-cohorts were also examined. The first comprised 28 second-line PARPi-treated patients, evaluated using RAD51-based functional HRD (fHRD) testing. The second included 44 patients treated with first-line PARPi who underwent whole-exome sequencing (WES) and RNA sequencing (RNA-seq) for mutational and transcriptomic profiling."
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 10,
+      "text": "Results"
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 11,
+      "text": "Real-world data from 154 evaluable patients demonstrated significantly longer first-line progression-free survival (PFS) among HRD patients. Genomic HRD testing of neoadjuvant chemotherapy (NACT)-treated samples failed in 36% of cases due to low tumour purity (<30%), with failure rates increasing from 28% in patients who received three NACT cycles to 38% in those who received four. Analysis of 33 pre-NACT biopsy samples confirmed that core-needle biopsies are sufficient and safe for HRD testing. Moreover, fHRD testing was feasible for small biopsy samples and those with low tumour purity. Importantly, fHRD was associated with prolonged PFS in patients treated with second-line PARPi maintenance therapy. Ongoing RNA-seq and WES analyses for 44 HRD patients will reveal molecular underpinnings of progression during first-line PARPi treatment."
+    },
+    {
+      "document_id": "43332b80d3cbae49d4ec32882d1d190f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESGO 2026 abstract AH.docx",
+      "chunk_index": 12,
+      "text": "Our study provides new insights into HRD testing strategies and establishes molecular determinants of response and resistance to PARPi in real-world clinical samples."
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "chunk_index": 0,
+      "text": "Improved clinical HRD testing practices in ovarian cancer based on real-world data from the Oncosys-OVA clinical trial (NCT06117384)"
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "chunk_index": 1,
+      "text": "Matilda Salko1, Anni Härkönen1, Fernando Perez1, Sanna Pikkusaari1, Anni Virtanen1,3, Heini Lassus1,2, Liisa Kauppi1, Ulla-Maija Haltia1,2, Anniina Färkkilä1,3,4"
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "chunk_index": 2,
+      "text": "Research Program in Systems Oncology, University of Helsinki, Faculty of Medicine, Finland"
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "chunk_index": 3,
+      "text": "Department of Obstetrics and Gynecology, Helsinki University Hospital, Helsinki, Finland"
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "chunk_index": 4,
+      "text": "Department of Pathology, University of Helsinki and HUS Diagnostic Center, Helsinki University Hospital, Finland"
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "chunk_index": 5,
+      "text": "Institute for Molecular Medicine Finland, Helsinki Institute of Life Sciences, University of Helsinki, Finland"
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "chunk_index": 6,
+      "text": "Recent advances in high-grade serous ovarian carcinoma (HGSC) treatment have been driven by the availability of clinical testing for homologous recombination deficiency (HRD), determining patients who most benefit from maintenance therapy with poly (ADP-ribose) polymerase inhibitors (PARPi). However, questions regarding the optimal approach to HRD testing in clinical practice remain, including the selection of optimal material and timing for tumor tissue. We have previously observed that HRD testing from interval debulking surgery samples after neo-adjuvant chemotherapy is frequently unsuccesful, usually due to insufficient tumor purity (<30%). These patients, however, typically show an excellent response to DNA-damaging chemotherapy, suggesting HRD."
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "chunk_index": 7,
+      "text": "We assembled a cohort of 400 HGSC patients subjected to different HRD testing modalities at different time points and monitored for clinical outcomes. Clinical HRD testing in Finland currently utilizes fresh-frozen tumor material. We analyzed 92 FFPE samples to optimize FFPE-sample based ovaHRDscar testing. Importantly, we also analyzed 94 tumor samples from patients who were treated with PARPi based on a platinum sensitive relapse or BRCA mutation before the implementation of HRD testing."
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "chunk_index": 8,
+      "text": "From 14 paired biopsy and surgical samples, we demonstrate that HRD testing from a small, minimally invasive pre-chemotherapy biopsy is both safe and effective, with a 67% success rate. Additionally, we complement the genomic HRD results with a RAD51-based functional HRD (fHRD) assay and outline when fHRD is preferred over genomic testing. Our retrospective sub-cohort of PARPi treated patients will provide insights into long-term PARPi responses after recurrence and potentially identify other factors influencing PARPi response beyond HRD. In addition to these novel insights, we also present full follow-up data from 201 patients subjected to HRD testing from surgical samples upon diagnosis."
+    },
+    {
+      "document_id": "e2baa0621075a9bbc9597d1239b8610f",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Abstracts for conferences/ESMO abstract MS 2025-05-13.docx",
+      "chunk_index": 9,
+      "text": "In conclusion, our study offers new insights into optimal HRD testing strategies. Additionally, we report how HRD testing predicts real-world PARPi responses, and whether there are other factors affecting these responses beyond HRD."
+    },
+    {
+      "document_id": "24efc0bb5cceffcc4be0912583b13831",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/FF_DNA_extraction_Maxwell_ElinaNiemelä.docx",
+      "chunk_index": 0,
+      "text": "DNA from fresh-frozen tissue samples was extracted using Maxwell CSC Genomic DNA automated bead-based extraction kit. Briefly, up to 50 mg of tissue was shredded using a scalpel, transferred to a clean Eppendorf tube, and lysed according to the manufacturer’s instructions for 2 hours on a thermal mixer set to 56°C and 1400 rpm. Automated extraction was performed according to instructions and DNA was eluted to 100 µl low-EDTA TE. DNA quality was monitored using spectrophotometric and fluorometric assays."
+    },
+    {
+      "document_id": "be7254ae4b776de77caeea6d4b1b8cac",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/Functional HR testing_2025-10-23_SP.docx",
+      "chunk_index": 0,
+      "text": "Functional HR testing"
+    },
+    {
+      "document_id": "be7254ae4b776de77caeea6d4b1b8cac",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/Functional HR testing_2025-10-23_SP.docx",
+      "chunk_index": 1,
+      "text": "Three serial FFPE sections of each tumor specimen were deparaffinized in xylene and rehydrated in decreasing concentrations of ethanol. Sections were boiled in 10 mM citrate buffer, pH 6, for antigen retrieval, and immunostained according to standard procedures with primary antibodies against cytokeratin (panCK, C2931, Sigma Aldrich), γH2Ax (CST9718S, Cell Signaling Technology®), geminin (ab104306, Abcam), and RAD51 (ab133534, Abcam) in three combinations: panCK & γH2Ax, geminin & γH2Ax, and geminin & RAD51. Sections were then incubated with fluorescently labeled secondary antibodies (donkey anti-mouse IgG-Alexa-Fluor 488TM, A-21202, InvitrogenTM; and donkey anti-rabbit IgG-Alexa-Fluor 647TM, A-31573, InvitrogenTM) and nuclei were counterstained with Hoechst 33342 (InvitrogenTM). Slides were digitized using Pannoramic 250 FLASH III slide scanner (3DHISTECH) at 20x magnification."
+    },
+    {
+      "document_id": "be7254ae4b776de77caeea6d4b1b8cac",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/Functional HR testing_2025-10-23_SP.docx",
+      "chunk_index": 2,
+      "text": "Functional HR (fHR) scoring was performed as described previously (Pikkusaari et al. 2023). Briefly, regions of interest (ROIs) from each of the three staining combinations were analyzed in FIJI/ImageJ using custom macros. ROIs with high tumor cell content, marked by panCK, and with visible DNA damage, marked by γH2Ax, were chosen for analysis based on the panCK-γH2Ax–stained serial section. From the geminin-γH2Ax–stained section, the percentage of S-G2 phase nuclei (geminin positive) with DNA damage (γH2Ax positive) was quantified. The fHR score was obtained from geminin-RAD51–stained sections as the percentage of S-G2 phase nuclei undergoing HR-mediated repair, i.e., RAD51-positive nuclei, out of all S-G2 phase nuclei. As per previously established cut-off values, chemo-naïve samples with fHR score of <10 were classified as functionally HR-deficient, whereas samples with fHR score of >10 were classified as functionally HR-proficient. For chemo-treated samples, a cut-off of <30 was used for HR deficiency."
+    },
+    {
+      "document_id": "be7254ae4b776de77caeea6d4b1b8cac",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/Functional HR testing_2025-10-23_SP.docx",
+      "chunk_index": 3,
+      "text": "To the acknowledgements section:"
+    },
+    {
+      "document_id": "be7254ae4b776de77caeea6d4b1b8cac",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Manuscript sections from co-authors/Functional HR testing_2025-10-23_SP.docx",
+      "chunk_index": 4,
+      "text": "Images were generated using 3DHISTECH Pannoramic 250 FLASH III digital slide scanner at Finnish Genome Editing Center supported by HiLIFE and the Faculty of Medicine, University of Helsinki, and Biocenter Finland."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 0,
+      "text": "Improved clinical HRD testing practices in ovarian cancer based on real-world data from the Oncosys-OVA clinical trial (NCT06117384)"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 1,
+      "text": "Matilda Salko1, Anni Härkönen1, Fernando Perez1, Sanna Pikkusaari1, Elina NiemeläX, Anni Virtanen1,3, Heini Lassus1,2, Liisa Kauppi1, Ulla-Maija Haltia1,2, Anniina Färkkilä1,3,4"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 2,
+      "text": "To be added: Sara Palomino-Echeverria, Andreas Hainari, iCAN"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 3,
+      "text": "Research Program in Systems Oncology, University of Helsinki, Faculty of Medicine, Finland"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 4,
+      "text": "Department of Obstetrics and Gynecology, Helsinki University Hospital, Helsinki, Finland"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 5,
+      "text": "Department of Pathology, University of Helsinki and HUS Diagnostic Center, Helsinki University Hospital, Finland"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 6,
+      "text": "Institute for Molecular Medicine Finland, Helsinki Institute of Life Sciences, University of Helsinki, Finland"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 7,
+      "text": "Introduction"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 8,
+      "text": "Poly (ADP-ribose) polymerase inhibitors (PARPi) have revolutionized the treatment of high-grade serous carcinomas (HGSC), of which 50% harbor homologous recombination deficiency (HRD), making them susceptible to PARPi treatment [ref Konstantinopoulos, ref TCGA]. The availability of PARPi as first-line maintenance treatment makes the early and accurrate determination of patients’ HRD status a clinically important feat [ref Ray-Coquard, ref González-Martín; PAOLA-1/PRIMA]. Both commercially available tests (e.g. Myriad MyChoice CDx) and several open-source laboratory-developed tests (LDTs) have become available to meet this need [ref Quesada et al]."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 9,
+      "text": "In Finland, clinical HRD testing has been standard practice for all patients with newly diagnosed HGSC or high-grade endometrioid ovarian cancer since 2022. The test is conducted from fresh-frozen tissue samples collected in either primary debulking surgery (PDS), or interval debulking surgery (IDS) after neoadjuvant chemotherapy (NACT). The results are obtained by using an ovarian cancer optimized algorithm for HRD detection, ovaHRDscar, which evaluates the genomic instability of the tumor by assessing loss of heterozygosity (LOH), large-scale state transitions (LSTs) and telomeric allelic imbalances (TAIs) [ref Perez-Villatoro]."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 10,
+      "text": "The ESMO-ESGO-ESP consensus recommends that HRD testing should be performed from either a surgical sample or image-guided biopsy of treatment-naive tumor [ref Ledermann, ESMO-ESGO-ESP consensus]. However, until now there have been no publications on the effect NACT treatment has on HRD testing and whether IDS samples can be used for HRD testing, or if indeed biopsy samples are feasible and reliable for this purpose. Besides genomic HRD tests, RAD51-staining based assays to evaluate the functional HR status have emerged, and especially show potential for determining the HR status of tumor samples with low tumor purity [ref Pikkusaari, ref Quesada]. However, no current recommendations for using functional testing in the clinical setting exist."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 11,
+      "text": "Although PARPi treatment has significantly improved the treatment of HGSC patients with HRD tumors, it is no silver bullet. A large subset of patients with confirmed HRD tumors still experience cancer progression during PARPi maintenance treatment. It is still unclear why this happens, and we set out to elucidate this phenomenon with the help of whole-exome sequencing (WES) and RNA sequencing (RNA-seq) from first-line PARPi treated patients, with the aim of uncovering molecular features underlying disease progression."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 12,
+      "text": "Materials and methods"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 13,
+      "text": "Patients"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 14,
+      "text": "Our cohort consisted of XXX ovarian cancer patients enrolled in the observational, prospective clinical trial Oncosys-OVA (NCT06117384) at the Helsinki University Hospital (HUS) Women’s Clinic between 2019-2024. The study was performed in accordance with the ethical standards from the 1975 Declaration of Helsinki. A written informed consent was obtained from all study participants and the use of samples and clinical data was approved by the local Ethics Committee (HUS334/2021)."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 15,
+      "text": "The full cohort composition is illustrated in Figure 1A. Patients with either a high-grade serous carcinoma (HGSC) or endometrioid ovarian cancer G3 histology were included in the study. Patients were clinically tested for HRD with the ovaHRDscar algorithm from fresh-frozen tumor tissue samples collected in PDS or IDS surgery, and 34 of the NACT+IDS treated patients were also HRD tested from pre-treatment tissue biopsies."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 16,
+      "text": "There were 27 patients in the cohort who received PARPi in the 2nd treatment line before the implementation of clinical HRD testing. These patients were diagnosed between 20XX-20YY, when the eligibility for PARPi treatment was based on either a somatic or genomic BRCA mutation, or a platinum sensitive (platinum-free interval [PFI] > 6 months) disease relapse. These patients were subjected to functional HRD testing from tissue FFPE blocks to determine (a) the feasibility of fHRD testing in the clinical setting and (b) real-world responses to PARPi in the 2nd line. Due to the unavailability of fresh-frozen tissue samples from these patients, they were not HRD tested with the ovaHRDscar algorithm."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 17,
+      "text": "Additionally, we identified 50 patients who had received PARPi as first line maintenance treatment, of which n=XX had completed the full two years of maintenance treatment, and n=YY had progressed during PARPi treatment. These patients were then subjected to WES and RNAseq for mutational and transcriptomic profiling, with the aim of characterising the molecular features underlying disease progression in HRD patients receiving first-line PARPi maintenance treatment."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 18,
+      "text": "Surgical samples"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 19,
+      "text": "Fresh-frozen tissue samples were collected during PDS or IDS surgery for research, diagnostic and genomic analysis purposes. Samples collected for clinical purposes were processed for ovaHRDscar testing at the Helsinki University Hospital central laboratory HUSLAB. DNA from fresh-frozen tissue samples was extracted using Maxwell CSC Genomic DNA automated bead-based extraction kit. Briefly, up to 50 mg of tissue was shredded using a scalpel, transferred to a clean Eppendorf tube, and lysed according to the manufacturer’s instructions for 2 hours on a thermal mixer set to 56°C and 1400 rpm. Automated extraction was performed according to instructions and DNA was eluted to 100 µl low-EDTA TE. DNA quality was monitored using spectrophotometric and fluorometric assays. Samples collected for research purposes were processed in our research laboratory for genomic HRD testing with ovaHRDscar according to the same protocol used by HUSLAB."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 20,
+      "text": "Although fresh-frozen samples are used for the clinical HRD testing purposes in Finland, Korsholm et al. have also demonstrated the feasibility of using ovaHRDscar in evaluating the HRD status from FFPE samples using the OncoScan CNV assay [ref Korsholm]. We show in Supplementary Figure X that quality controlled FFPE samples analyzed with Illumina SNParray also have a good concordance with paired results from the commercial Myriad MyChoice CDx assay. Thus, if no fresh-frozen sample result was available, we have also used results from quality controlled FFPE samples (n=XX) in our analyses."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 21,
+      "text": "Surgical samples from 50 patients were also processed for WES and RNA-seq. Additionally, samples were processed into formalin-fixed paraffin-embedded (FFPE) tissue blocks, which were used for fHRD testing in the 2nd line PARPi treated patient cohort. \n\nUltrasound-guided pre-chemotherapy biopsies Anni H"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 22,
+      "text": "Pre-NACT HRD testing was performed on 34 core needle biopsy samples (Table X). The aim was to obtain pre-treatment biopsies from all patients for whom NACT+IDS was planned between October 2022 and December 2024. If the biopsy yielded a HRD positive result, it was accepted as such, but if the result was HRD negative, a corresponding sample was collected from IDS. However, sample acquisition from surgery was not possible for all patients, mainly due to excellent NACT responses. The pre-NACT biopsies were collected either with US-guided (91%, n=31) or CT-guided (3%, n=1) biopsy, or in the case of 2 patients (6%) in a diagnostic laparoscopy. The biopsies were obtained by an experienced radiologist, and the laparoscopies were performed by an experienced surgeon specialised in gynecologic oncology."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 23,
+      "text": "17.6% (n=6) of the patients had received one cycle of NACT before the biopsy sample was taken. The time between the first NACT cycle and the biopsy procedure varied from 1 day to 8 days. From 82.4% (n=28) of the patients, the sample was collected before the first NACT cycle."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 24,
+      "text": "Sample tumor purity analysis\nThe required sample tumor purity for obtaining a reliable HRD test result is > 30% [ref Romey]. The tumor purities of the surgical samples in this study were assessed from the same tissue block from which the HRD test was conducted by an experienced pathologist. However, regarding the thick needle biopsies the tumor purity could not routinely be assessed from the same core that was used for HRD testing. Because the tumor cell content from an adjacent core is not representative of the tested samples’ tumor content, we refrained from using tumor purity as a quality metric for biopsy samples."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 25,
+      "text": "Genomic HRD testing with ovaHRDscar Anni H"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 26,
+      "text": "Genomic HRD testing using ovaHRDscar was performed on a DNA isolated from the collected tissue samples and profiled using Illumina global screening array. First, B allele frequency (BAF), log R ratio (LRR) and call rates were calculated for each sample from the SNP array using Illumina-GenomeStudio version 2.0. Quality control was assessed for each array using call rates and the median of the absolute values of all pairwise differences (MAPD) of LRRs. ASCAT estimates tumor purity and ploidy for each sample to identify cases with abnormal tumor cell content or genome in the data. By integrating this information with the BAF and LRR signals, ASCAT detects samples with unreliable or low-quality data, which are subsequently excluded from further analysis. Samples with Call rate values below 0.90 and MAPD greater than 0.30 [ref, Affymetrix] were considered low quality and excluded from further analysis. Allele-spesific copy number profiles were inferred using ASCAT software version 3.2.0. HRDscars were then calculated for each sample using the ovaHRDscar algorithm."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 27,
+      "text": "If the ovaHRDscar score was 0, the result was considered unreliable and was excluded from further analyses. HGSC is characterized by a significant amount of genomic instability, and if indeed the evaluated sum of LOH, LSTs and nTAIs is 0, this is suspicious of a false negative result."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 28,
+      "text": "Functional HRD testing Sanna P"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 29,
+      "text": "Three serial FFPE sections of each tumor specimen were deparaffinized in xylene and rehydrated in decreasing concentrations of ethanol. Sections were boiled in 10 mM citrate buffer, pH 6, for antigen retrieval, and immunostained according to standard procedures with primary antibodies against cytokeratin (panCK, C2931, Sigma Aldrich), γH2Ax (CST9718S, Cell Signaling Technology®), geminin (ab104306, Abcam), and RAD51 (ab133534, Abcam) in three combinations: panCK & γH2Ax, geminin & γH2Ax, and geminin & RAD51. Sections were then incubated with fluorescently labeled secondary antibodies (donkey anti-mouse IgG-Alexa-Fluor 488TM, A-21202, InvitrogenTM; and donkey anti-rabbit IgG-Alexa-Fluor 647TM, A-31573, InvitrogenTM) and nuclei were counterstained with Hoechst 33342 (InvitrogenTM). Slides were digitized using Pannoramic 250 FLASH III slide scanner (3DHISTECH) at 20x magnification."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 30,
+      "text": "Functional HR (fHR) scoring was performed as described previously by Pikkusaari et al. [ref Pikkusaari]. Briefly, regions of interest (ROIs) from each of the three staining combinations were analyzed in FIJI/ImageJ using custom macros. ROIs with high tumor cell content, marked by panCK, and with visible DNA damage, marked by γH2Ax, were chosen for analysis based on the panCK-γH2Ax–stained serial section. From the geminin-γH2Ax–stained section, the percentage of S-G2 phase nuclei (geminin positive) with DNA damage (γH2Ax positive) was quantified. The fHR score was obtained from geminin-RAD51–stained sections as the percentage of S-G2 phase nuclei undergoing HR-mediated repair, i.e., RAD51-positive nuclei, out of all S-G2 phase nuclei. As per previously established cut-off values, chemo-naïve samples with fHR score of <10 were classified as functionally HR-deficient, whereas samples with fHR score of >10 were classified as functionally HR-proficient. For chemo-treated samples, a cut-off of <30 was used for HR deficiency."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 31,
+      "text": "Whole Exome Sequencing"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 32,
+      "text": "RNA sequencing"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 33,
+      "text": "Statistics"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 34,
+      "text": "Progression-free survival was defined as the time between cancer diagnosis and the first incidence of disease progression or death from any cause. Progression was evaluated from a computed tomography (CT) scan according to the RECIST 1.1 criteria for solid tumors, or clinically e.g. as the appearance of malignant pleural fluid. For patients treated with PARPi in the second treatment line after the first disease progression, the duration of PARPi treatment, determined as the time between the PARPi treatment initiation and the next subsequent disease progression, was used to evaluate the responsiveness to PARPi instead of PFS."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 35,
+      "text": "Results"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 36,
+      "text": "36% of IDS samples have insufficient tumor purity for HRD testing"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 37,
+      "text": "First, we set out to analyze the differences between samples collected from PDS and IDS, and the possible effects of surgery type on the success of genomic HRD testing. In samples collected from PDS (n=184) the tumor purity was sufficient for HRD testing (> 30%) in 96.7% (n=178) of the samples (Figure 1B). In samples collected from IDS after NACT exposure (n=92), the tumor purity was > 30% in only 64.1% (n=59) of the samples, resulting in 35.9% (n=33) of the samples having insufficient tumor purity for genomic HRD testing (Figure 1C). Obtaining an adequate sample with sufficient tumor purity from IDS was further affected by the number of NACT cycles the patient received before surgery. In patients who received 4 (n=70) or 5 (n=4) cycles of NACT, the tumor purity in the IDS surgery samples further diminished, with only 62.2% (n=46) having a tumor purity of >30%. In patients treated with 3 (n=17) or 2 (n=1) cycles of NACT, the IDS sample tumor purity was improved compared to the NACT+IDS subgroup as a whole, with 72.2% (n=13) having a tumor purity of > 30% (Figure 1D-E)."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 38,
+      "text": "Pre-NACT biopsies are feasible and reliable for genomic HRD testing"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 39,
+      "text": "Due to the frequency of low tumor purity samples from IDS surgery that were unfit for HRD testing, we set out to assess the feasibility of using pre-treatment biopsies for HRD testing in this patient group. 34 biopsies were collected, of which 32 were image-guided and 2 laparoscopic (Table X). 85% (n=29) of all biopsies yielded an ovaHRDscar score > 0, which was considered a successful result. If the biopsy was unsuccessful or the test result HRD negative, the aim was to collect a corresponding sample from IDS surgery for a repeated HRD test from the same patient. 15 sample pairs with both a pre-NACT biopsy and corresponding IDS surgery sample were collected (Table X). Out of these sample pairs, 87% (n=13) of the biopsy samples yielded a successful HRD test result, compared to only 73% (n=11) of the corresponding IDS surgery samples (Figure 1E)."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 40,
+      "text": "In addition to the paired samples, 19 biopsy-only samples were collected. Out of these, 44% (n=8) were HRD positive and 56% (n=10) HRD negative. For the HRD positive samples, the tissue sample extracted in surgery was sent to the pathology unit for assessment of tumor purity. Only 50% (n=4) of the corresponding IDS surgery samples would have had a sufficient tumor purity (>30%) for HRD testing from the surgical sample. Regarding the 10 biopsy-only but HRD negative samples, a surgical sample was not collected in 60% (n=6) of the cases, since there was no vital tumor left in IDS. For all these six patients, chemotherapy response score (CRS) was 3, as assessed by an experienced pathologist from the surgical samples. To obtain a HRD result, a functional HRD test was performed for three of these patients. For the rest of the patients, Table X depicts why further HRD testing was not performed."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 41,
+      "text": "91% of the patients got no adverse events from the obtaining of the biopsy. In 9% (n=3) of the cases, a small post-biopsy hematoma was reported in association with the procedure. No severe adverse events were reported."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 42,
+      "text": "Functional HRD testing can be utilized on real-world samples where genomic testing has been unsuccessful"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 43,
+      "text": "As described earlier, in situations where tumor samples had insufficient purity for genomic HRD testing, a fHR test was performed. We collected 13 such samples, and followed for clinical treatment responses. 61.5% (n=8) of the samples were functionally HRD (fHRD) and 38.5% (n=5) functionally HRP (fHRP). fHRD patients were eligible for PARPi treatment in the first line. ll patients had FIGO stage III-VI disease.92.3% (n=12) of the patients while 7.7% (n=1) had HGSC combined with high grade adenocarcinoma. 69.2% (n=9) patients received NACT followed by IDS, 7.7% (n=1) of the patients underwent PDS and 23.1% (n=3) received chemotherapy alone. ."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 44,
+      "text": "PFS was evaluated as an exploratory manner excluding those who were not treated with debulking surgery and platinum-based chemotherapy. Two fHRD patients did not receive PARPi, and when evaluating PFS for PARPi-treated fHRD patients and fHRP patients, the median PFS were 16.0 and 15.4 months, respectively. The median OS of the PARPi-treated fHRD patients 16.9 months, compared with 15.4 months in fHRP patients suggest modest survival benefit in fHRD patients. However, it should be noted that the sample amount is very low."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 45,
+      "text": "Among 66.7% (n=6) of the patients treated with NACT and IDS, the genomic testing from the biopsy sample was attempted, however, the results were either unreliable (score 0) or inconclusive. HRD testing could not be performed for 2 patients due to insufficient biopsy samples, and for one patient, testing from the biopsy sample was not possible as there was no FF tissue sample available. Regarding the surgical samples, all of the patients had excellent responses for NACTCRS 3. Therefore, no genetic testing could be performed, or if it was performed (for n=3), it yielded unreliable results with score 0. 77.8% (n=7) of the IDS treated patients were classified as fHRD, and without fHR testing, their HRD status would have remained undetermined leaving them without opportunity to receive PARPi. Additionally, among the patients treated with chemotherapy (n=3), genomic testing was not performed as one had no FF sample available, and two yielded insufficient tumor purities in the biopsy samples. One patient demonstrated a good response to platinum-based chemotherapy, and therefore, debulking surgery was not performed. his patient was fHRD and was eligible for PARPi. he patient treated with PDS had no visible tumor surgery and no material available for genomic testing, fHR testing yielded a result."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 46,
+      "text": "In conclusion, functional HRD testing was feasible and offered an important completion to genomic testing, especially for patients whose genomic testing from biopsy samples resulted unsuccessful and they either did not proceed to surgery or they responded well to platinum based chemotherapy, resulting in no available tissue sample from the surgery."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 47,
+      "text": "Functional HRD testing identifies a trend for prolonged response to PARPi maintenance in the 2nd treatment line"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 48,
+      "text": "In addition to the previously described prospective fHR samples, we identified 27 retrospective patients treated with PARPi in the 2nd line and subjected them to fHR testing from primary tumor samples, with the aim of evaluating how fHR predicts PARPi responses in the 2nd line."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 49,
+      "text": "In this subset of patients, the median age at the time of diagnosis was 65 years (range 50-85), and all patients were of HGSC histology. 96.3% (n=26) presented with advanced (FIGO stage III-IV) disease, and 3.7% with FIGO stage IIA disease. Functional HRD testing was performed from FFPE samples collected from the patients at the time of the initial diagnosis in either PDS (85.2%, n=23), IDS (11.1%, n=3), or diagnostic laparoscopy (3.7%, n=1). Out of the 28 samples tested for functional HRD, XX% (n=YY) were fHRD, and XX% (n=YY) were fHRP."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 50,
+      "text": "Real-world data shows prolonged PFS in HRD+ patients receiving PARPi treatment"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 51,
+      "text": "We analyzed the real-world outcomes of clinically HRD tested patients receiving first-line PARPi maintenance between September 2022 and December 2024. The cohort consisted of XXX patients, and the cohort characteristics are described in Table X. 60% (n=93) of the patients were treated with upfront PDS followed by adjuvant chemotherapy, and 40% (n=61) with NACT followed by IDS and adjuvant chemotherapy."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 52,
+      "text": "The patients underwent genomic BRCA and HRD testing from fresh-frozen tissue samples collected either from PDS or IDS surgery. Eligibility for first-line maintenance treatment with PARPi was based off a positive HRD test result, or a detected somatic or germline BRCA mutation. 82% (n=126) of the patients were BRCA wild-type, 7.8% (n=12) had a somatic BRCA mutation, and 9.7% (n=15) had a germline BRCA mutation. One patient had a germline BRCA mutation of unknown clinical significance. 43% (n=66) of all patients were HRD positive and 53% (n=81) HRD negative. 4.5% (n=7) of the HRD result was not available. Out of these 7, one patient did not have a HRD test done, one had discrepant results from two HRD tests (one HRD and the other HRP), 2 had insufficient tumor purity, and in 3 cases, the test could not be completed due to a technical issue [ASCAT fail?]. In cases (n=XX) where the HRD test result was negative but the patient had a detected BRCA mutation, the case was resolved in favor of the BRCA mutation and the patient was eligible for PARPi."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 53,
+      "text": "PARPi maintenance was administered either as single treatment or, if applicable, in combination with 20 cycles of maintenance bevacizumab treatment. 41% (n=63) received PARPi treatment. 79% (n=50) of the PARPi treated patients received olaparib and 21% (n=13) niraparib."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 54,
+      "text": "WES and RNA-seq reveals molecular features underlying disease progression in first-line PARPi treated patients with HRD"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 55,
+      "text": "To elucidate why some HRD patients, even including patients with BRCA mutations, experience disease progression during PARPi treatment, we analyzed XX patients treated with PARPi in the 1st treatment line. All patients were of HGSC histology and presented with advanced (FIGO stage III-IV) disease. XX% (n=YY) harbored a somatic BRCA1/2 mutation, and XX% (n=YY) were carriers of a germline BRCA1/2 mutation."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 56,
+      "text": "Discussion"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 57,
+      "text": "References"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 58,
+      "text": "Konstantinopoulos PA, Ceccaldi R, Shapiro GI, D’Andrea AD. Homologous Recombination Deficiency: Exploiting the Fundamental Vulnerability of Ovarian Cancer. Cancer Discov. 2015 Nov;5(11):1137–54."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 59,
+      "text": "Cancer Genome Atlas Research Network. Integrated genomic analyses of ovarian carcinoma. Nature. 2011 Jun 29;474(7353):609–15."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 60,
+      "text": "Ray-Coquard I et al; PAOLA-1 Investigators. Olaparib plus Bevacizumab as First-Line Maintenance in Ovarian Cancer. N Engl J Med. 2019 Dec 19;381(25):2416-2428. doi: 10.1056/NEJMoa1911361. PMID: 31851799."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 61,
+      "text": "González-Martín A et al; PRIMA/ENGOT-OV26/GOG-3012 Investigators. Niraparib in Patients with Newly Diagnosed Advanced Ovarian Cancer. N Engl J Med. 2019 Dec 19;381(25):2391-2402. doi: 10.1056/NEJMoa1910962. Epub 2019 Sep 28. PMID: 31562799."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 62,
+      "text": "Quesada et al. Homologous recombination deficiency in ovarian cancer: Global expert consensus on testing and a comparison of companion diagnostics DOI 10.1016/j.ejca.2024.115169"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 63,
+      "text": "Perez-Villatoro et al. Optimized detection of homologous recombination deficiency improves the prediction of clinical outcomes in cancer"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 64,
+      "text": "Korsholm et al. Combining Homologous Recombination-Deficient Testing and Functional RAD51 Analysis Enhances the Prediction of Poly(ADP-Ribose) Polymerase Inhibitor Sensitivity"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 65,
+      "text": "Romey et al. Systematic Analysis of Homologous Recombination Deficiency Testing in Ovarian Cancer—Development of Recommendations for Optimal Assay Performance"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 66,
+      "text": "Ledermann et al. ESGO-ESMO-ESP consensus conference recommendations on ovarian cancer: pathology and molecular biology and early, advanced and recurrent disease"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 67,
+      "text": "Tumiati et al. A Functional Homologous Recombination Assay Predicts Primary Chemotherapy Response and Long-Term Survival in Ovarian Cancer Patients https://doi.org/10.1158/1078-0432.CCR-17-3770"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 68,
+      "text": "Pikkusaari et al. Functional Homologous Recombination Assay on FFPE Specimens of Advanced High-Grade Serous Ovarian Cancer Predicts Clinical Outcomes"
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 69,
+      "text": "Okitsu, C.Y., Van Den Berg, D.J., Lieber, M.R. et al. Reproducibility and reliability of SNP analysis using human cellular DNA at or near nanogram levels. BMC Res Notes 6, 515 (2013)."
+    },
+    {
+      "document_id": "05391e142caefcd8c3b33ca060252ba9",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Manuscript/Improved clinical HRD testing practices in ovarian cancer manuscript.docx",
+      "chunk_index": 70,
+      "text": "Affymetrix® White Paper: Median of the Absolute Values of all Pairwise Differences and Quality Control on the Affymetrix Genome-Wide Human SNP Array 6.0: https://documents.thermofisher.com/TFS-Assets/LSG/brochures/mapd_snp6_whitepaper.pdf"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 0,
+      "text": "HRD consensus project: PARPi cohort results Project meeting 21.5.2025 Matilda Salko"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 1,
+      "text": "109 patients in total\nAll PARPi treated\n\nClinical characteristics of the PARPi subcohort\n\nPARPi cohort: clinical details\n\nBaseline characteristics of the retrospective PARPi cohort | n=109\nMedian age at diagnosis | 63 (range 40-85)\nStage | \nI | 3 (2.8%)\nII | 2 (1.8%)\nIII | 71 (65.1%)\nIV | 32 (29.4%)\nunknown | 1 (0.9%)\nHistology | \nHGSC | 104 (95%)\nHGSC & ca endometrioides endometrii | 1 (0.9%)\nLGSC | 1 (0.9%)\nca endometrioides ovarii G3 | 2 (1.8%)\nca seromucinosum | 1 (0.9%)"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 2,
+      "text": "8.3% (n=9) discontinued the treatment due to adverse effects\n1.8% (n=2) were diagnosed with MDS after PARPi treatment\n1 patient was also diagnosed with acute leukemia after PARPi\n\nMedian PARPi treatment duration\nWhole cohort 9.17 months\n\nBRCAwt patients (n=64) 5.31 months\nBRCAmut patients (n=45) 24.0 months\nPARPi duration BRCAwt vs. BRCAmut p<0.0001 (Mann-Whitney U test)\n\nPARPi cohort: clinical details\n\nPARPi treatment"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 3,
+      "text": "Median PFS after PARPi treatment was initiated\nWhole cohort 10.6 months\n\nBRCAwt patients (n=64) 5.82 months\nBRCAmut patients (n=45) 34.1 months\n\nPARPi cohort: survival\n\nSurvival\n\nMedian OS\nWhole cohort 65.0 months\n\nBRCAwt patients (n=64) 63.8 months\nBRCAmut patients (n=45) 72.6 months"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 4,
+      "text": "94 samples from 93 patients were sent for SNParray in Tartu\nAll samples had sufficient amount of DNA for SNParray (>30 ng/ul)\nTumor purity\nTumor purity of <30%, n=8\nUnknown tumor purity, n=4\nSamples were collected between 2011-2021\n\nPARPi cohort: samples\n\nSNParray samples\n\nTumor purity did not explain failures\n\n…and neither did the sample age\n\nASCAT failed to call results in 35% of the samples (n=33)\nWhy?\n\nSample DNA quality?"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 5,
+      "text": "PARPi cohort: samples\n\nOf the 61 samples that we got a result from\n3.3% (n=2) returned 0s for all 3 parameters, making ovaHRDscar 0\nTumor purity 10% and 35%, respectively\n29.5% (n=18) returned 0s for either LOH, LST or TAI\n\nSimilar to ASCAT failures, tumor purity did not explain 0-values\n\n0s"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 6,
+      "text": "QCs: MAPD\n\nIn general, this sample set had poorer MAPD values compared to previously acquired FFPE samples\nSample tumor purity and DNA concentration were not generally worse compared to previous sample sets\nDNA quality?\n\nPARPi cohort: samples"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 7,
+      "text": "QCs: CallRate\n\n37.2% of samples meet the CallRate criteria used for FF samples (CallRate> 0.8)\nGenerally better results than for MAPD\n\nWe have focused on MAPD for FFPE samples and have not (yet) explored CallRate thresholds\n\nPARPi cohort: samples"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 8,
+      "text": "We have previously observed that LOH is always the first parameter to become 0\nIn this sample set however, LST or TAI could be 0 even when LOH > 0\n\nPARPi cohort: samples\n\nI will further explore this next, and calculate the absolute nLOH values"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 9,
+      "text": "PARPi cohort: clinical data\n\nApplying the HRD results from Tartu to the cohort"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 10,
+      "text": "Median PARPi treatment duration\nHRD patients (n=16) 22.9 months\nHRP patients (n=51) 6.67 months\nPARPi duration HRP vs. HRD p=0.08 (Mann-Whitney U test)\n\nPARPi cohort: survival\n\nApplying the HRD results from Tartu to the cohort\n\nMedian PFS after PARPi\nHRD patients (n=16) 26.4 months\nHRP patients (n=51) 7.53 months\nPFS HRP vs. HRD p=0.01 (Mann-Whitney U test)\n\nMedian OS\nHRD patients (n=16) 60.5 months\nHRP patients (n=51) 65.0 months\nOS HRP vs. HRD p=0.48 (Mann-Whitney U test)"
+    },
+    {
+      "document_id": "bfea9184ea45acb7e1b32bb07e030665",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/HRD consensus project- PARPi cohort 19.5.2025.pptx",
+      "chunk_index": 11,
+      "text": "Questions to address and next steps"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 0,
+      "text": "SNP-array analysis instructions"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 1,
+      "text": "Before starting your analysis, check that the language of your computer is English."
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 2,
+      "text": "Then change decimal separator to ‘’.’’ instead of ‘’,’’."
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 3,
+      "text": "Before starting the analysis, create a folder and name it by the date and the project (see example in L-drive: L:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\Raw_and_intermediante_files_fernando\\Oncosys_and_others )\nInside the forder, create a Raw_data folder and put the raw data inside. \nCreate a manifest file in R-friendly version by"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 4,
+      "text": "Create a new project in GenomeStudio"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 5,
+      "text": "Install GenomeStudio 2.0 and open the app"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 6,
+      "text": "Press “Genotyping” to create a new project"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 7,
+      "text": "A new window called “GenomeStudio Project Wizard” pops out and press “Next”"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 8,
+      "text": "Fill projects Repository space by selecting the file you have saved / want to save your documents regarding this project"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 9,
+      "text": "Name your project and press “Next”"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 10,
+      "text": "Choose “Use sample sheet to load sample intensities” and press “Next”"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 11,
+      "text": "See screenshot below. Select Sample sheet you received from Tartu"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 12,
+      "text": "Fill Data repository by selecting the Raw_data folder you created"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 13,
+      "text": "Fill Manifest repository by selecting the folder where your manifest file (.bpm) is. This file is specific for each kind of SNP-array (Currently there is one available for our project here: L:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\Utils\\Manifest_Tartu"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 14,
+      "text": "Press “Next”"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 15,
+      "text": "Put a tab to “Import cluster positions from a cluster file”. The cluster file is also specific for each kind of SNP-array. Currently there is one available for our project here: L:\\ltdk_farkkila\\Projects\\SNP-arrays_results\\Utils\\Cluster_file\\Clusters_GenomeStudio_project.egt"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 16,
+      "text": "Choose your cluster file (.egt)"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 17,
+      "text": "Press “Finish”"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 18,
+      "text": "Do you wish to do the SNP statistics to all the SNPs? Select yes"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 19,
+      "text": "Now your project is being created to GenomeStudio"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 20,
+      "text": "From Genome studio, we get the next results:"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 21,
+      "text": "1. Per sample the call rate."
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 22,
+      "text": "2. LogR and BAF values per probe (or SNP), per each sample."
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 23,
+      "text": "Export data from GenomeStudio"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 24,
+      "text": "Here an example that shows how to manipulate the “Full data table”: link"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 25,
+      "text": "Calculate Call rates on the Sample table by pressing the calculator icon"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 26,
+      "text": "Then press ‘’select all’’ and export the \"Sample Table\" to a file, name the file: ““Samples_QC.txt””"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 27,
+      "text": "Select columns with column chooser from Full Data Table in this order:"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 28,
+      "text": "Name"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 29,
+      "text": "Chr"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 30,
+      "text": "Positon"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 31,
+      "text": "LogR ratio"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 32,
+      "text": "In order to export the Full Data Table, do not press anything on the table and then press “Select all” icon on the left side of the tool bar"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 33,
+      "text": "Name the file as LogRratio_samples.txt"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 34,
+      "text": "It will ask you if you want to export all the columns say ‘’no\\\\"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 35,
+      "text": "Exporting might take time"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 36,
+      "text": "Export BAF sample file by selecting columns Name, Chr, Position and Ballele Freq in this order"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 37,
+      "text": "Do the same to B allele file and name it as BAF_samples.txt"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 38,
+      "text": "Further info:"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 39,
+      "text": "This is a nice tutorial about how to perform quality check in GenomeStudio and how-to identify the allelic imbalances: link. In particular these are the most useful tutorials: \"GenomeStudio Genotyping: Evaluating Infinium Assay Controls\" & \"CNV Analysis Basics\"."
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 40,
+      "text": "Running the ASCAT3_QC_ovaHRDscar script"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 41,
+      "text": "OLD NOTES:"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 42,
+      "text": "Install Ubuntu version 24.04. LST software form Windows Store"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 43,
+      "text": "In Ubuntu:"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 44,
+      "text": "Inside the terminal, type the next to move to the folder with the files. It is important to have a space after the command"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 45,
+      "text": "cd /mnt/c/Users/anharkon/Documents/"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 46,
+      "text": "ls – list files in the current working directory"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 47,
+      "text": "pwd – print working directory (in which path you are)"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 48,
+      "text": "cd – change directory (to move to another directory), example:"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 49,
+      "text": "cd /mnt/c/"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 50,
+      "text": "Also in the terminal we can see in which path we are (labeled with red in the next screenshot)"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 51,
+      "text": "/mnt/c/Users/anharkon/Documents/ ls 🡪 this command shows in which file you are"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 52,
+      "text": "./Scripts/select-Autosomes.sh SNP-array_practice/LogRratio_samples.txt SNP-arrays_practice/LogRratio_samples_autosomes.txt"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 53,
+      "text": "this will create a new folder called LogRratio_samples_autosomes to the folder you have selected (here SNP-arrays_practice)"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 54,
+      "text": "Do the same to BAF_samples.txt file:"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 55,
+      "text": "/mnt/c/Users/anharkon/Documents/ ./Scripts/select-Autosomes.sh SNP-array_practice/BAF_samples.txt SNP-arrays_practice/BAF_samples_autosomes.txt"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 56,
+      "text": "How to get access to the data:"
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 57,
+      "text": "Download WinSCP from Software center (if you don’t have it on your computer already) and open it."
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 58,
+      "text": "You have received an email from Tartu after the SNP-array is done. You will get access to the data by using the log in information in the email. For the address part use a number code in brackets."
+    },
+    {
+      "document_id": "c693625b95ddfe9a0e00a35a5137fc94",
+      "source_file": "23_ovaHRDscar_OncosysOVA/SNP-array analysis instructions.docx",
+      "chunk_index": 59,
+      "text": "The WinSCP window you just opened is divided into two: on the left side can be seen your computer’s documents and on the right side is server to Tartu documents. Open the file from the left side, where you want to download the documents. And then open the files on the right side and choose the project folder and press download. This will download the files from Tartu to the folder you selected. This might take some time."
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "chunk_index": 0,
+      "text": "Pathologist and ASCAT purity concordance\n\nN=192 | 9 - Failed\n\nN=163\n\nNo QCs\n\nMADP < 0.5; Call.rate > 0.75"
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "chunk_index": 1,
+      "text": "Pathologist and ASCAT purity concordance\n\nMADP < 0.5; Call.rate > 0.75 | No 0s\n\nN = 119"
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "chunk_index": 2,
+      "text": "No 0s\n\nPathologist and ASCAT purity concordance\n\nN = 141"
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "chunk_index": 3,
+      "text": "p-value = 0.06701"
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "chunk_index": 4,
+      "text": "Pathologist and ASCAT purity difference in y-axis\n\nN=192 | 9 - Failed\n\nNo QCs"
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "chunk_index": 5,
+      "text": "MADP < 0.5; Call.rate > 0.75\n\nN=163\n\nPathologist and ASCAT purity difference in y-axis"
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "chunk_index": 6,
+      "text": "Pathologist and ASCAT purity difference in y-axis\n\nDiff.purity < 50\n\nN=149\n\nStill many samples that are 0’s only for LOH"
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "chunk_index": 7,
+      "text": "Adjusting the max_purity threshold for ASCAT improves the purity calculation of 5 samples\n\n*Purity from 0 to 1\n\nSample_Name | nLOH | LSTs | nTAIs | ovaHRDscar | New. purity | Max.purity.pathologist | Prev. purity\nS046_IOME_HUS_FFPE | 1 | 5 | 10 | 16 | 0.25 | 10 | 1\nS049_IOME_DNA1_FF | 0 | 0 | 0 | 0 | 0.52 | 30 | 1\nS057_IOME_PROTEIN4_FF | 0 | 10 | 19 | 29 | 0.4 | 40 | 1\nS072_IOME_DNA1_FF | 0 | 6 | 19 | 25 | 0.3 | 10 | 1\nS094_PPER_DNA1_FF | 0 | 4 | 22 | 26 | 0.2 | 10 | 1"
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "chunk_index": 8,
+      "text": "Adjusting the max_purity threshold for ASCAT improves the purity calculation of sample S046\n\nSample’s S046 scar content, after purity threshold is concordant with the replicate.\n\nInterestingly the MAPD values are high and the samples are concordant\n\n*Purity from 0 to 1\n\nSample_Name | nLOH | LSTs | nTAIs | ovaHRDscar | Purity | Pathologist\nPurity | MAPD | Call.rate | \nS046_IOME_HUS_FFPE | 1 | 5 | 10 | 16 | 0.25 | 10 | 0.608 | 0.88 | NEW threshold\nS046_IOME_HUS_FFPE | 0 | 2 | 1 | 3 | 1 | 10 | 0.608 | 0.88 | PREVIOUS result\nS046_iOme_HUS_FFPE.DUP.1 | 2 | 5 | 8 | 15 | 0.38 | 10 | 0.575 | 0.86 | REPLICATE"
+    },
+    {
+      "document_id": "d84f56fe0f1a6165e48ad23232a73ddf",
+      "source_file": "23_ovaHRDscar_OncosysOVA/Presentations/Purity and QCs inspection 2024.pptx",
+      "chunk_index": 9,
+      "text": "N=22 (pairs)\n\nFilter used: !(ovaHRDscar == 0 & Isolated.from==\"FF\"), Purity.ASCAT != 100\n\n*Some pairs missed. Missed when there are several FF or FFPE"
+    }
+  ],
+  "extraction": {
+    "total_scannable_assets": 0,
+    "extracted_records": 0,
+    "chunk_count": 0,
+    "status_counts": {},
+    "extractor_counts": {},
+    "extension_counts": {},
+    "errors": []
+  },
+  "metrics": {
+    "document_count": 0,
+    "total_assets": 0,
+    "figure_count": 0,
+    "timeline_entries": 0,
+    "meeting_count": 0,
+    "protocol_count": 0,
+    "cohort_count": 0,
+    "estimated_sample_count": null,
+    "repository_count": 0,
+    "storage_path_count": 0,
+    "presentation_count": 0,
+    "data_file_count": 0,
+    "extracted_document_count": 9,
+    "knowledge_chunk_count": 244,
+    "extraction_error_count": 0,
+    "output_count": 0
+  },
+  "outputs": []
+}

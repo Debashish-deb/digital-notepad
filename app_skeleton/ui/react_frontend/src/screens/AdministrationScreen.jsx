@@ -1,3 +1,4 @@
+import './MacPlusVisualStyles.css';
 import { useCallback, useEffect, useState } from 'react';
 import { Activity, Shield } from 'lucide-react';
 import AuthLoginPanel from '../components/AuthLoginPanel.jsx';

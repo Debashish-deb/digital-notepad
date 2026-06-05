@@ -1,6 +1,7 @@
 import './MacPlusVisualStyles.css';
 import React, { useState, useEffect } from 'react';
-import { Scale } from 'lucide-react';
+import { Scale, Trash2 } from 'lucide-react';
+import { apiDelete } from '../api/client.js';
 
 export default function DecisionsScreen({ dbProjects, API_URL, hideHeader = false }) {
   const [decisions, setDecisions] = useState([]);
@@ -12,6 +13,18 @@ export default function DecisionsScreen({ dbProjects, API_URL, hideHeader = fals
   useEffect(() => {
     fetchDecisions();
   }, []);
+
+  const handleDelete = async (decisionId) => {
+    if (!window.confirm("Are you sure you want to permanently delete this decision registry entry? This action cannot be undone.")) return;
+    try {
+      await apiDelete(`/decisions/${decisionId}`);
+      alert("Decision registry entry deleted.");
+      fetchDecisions();
+    } catch (e) {
+      console.error(e);
+      alert("Failed to delete decision registry entry.");
+    }
+  };
 
   useEffect(() => {
     if (dbProjects.length > 0 && !dbProjects.some((p) => p.project_code === proj)) {
@@ -97,9 +110,30 @@ export default function DecisionsScreen({ dbProjects, API_URL, hideHeader = fals
           <h3 className="panel-title"><Scale size={18} /> Active Decisions</h3>
           <div className="feed-scroll">
             {decisions.map((d, idx) => (
-              <div key={idx} className="feed-item-accent">
-                <h5 className="feed-item-title">{d.title}</h5>
-                <div className="feed-item-meta">
+              <div key={d.decision_id || idx} className="feed-item-accent">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <h5 className="feed-item-title" style={{ margin: 0 }}>{d.title}</h5>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(d.decision_id)}
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      color: 'var(--color-danger)',
+                      cursor: 'pointer',
+                      padding: 0,
+                      display: 'flex',
+                      alignItems: 'center',
+                      opacity: 0.7,
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
+                    onMouseLeave={(e) => e.currentTarget.style.opacity = 0.7}
+                    title="Delete Decision"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+                <div className="feed-item-meta" style={{ marginTop: '0.25rem' }}>
                   {d.project_code} · {d.decider_name} · {d.decision_date}
                 </div>
                 <p className="feed-item-body">{d.decision_details}</p>

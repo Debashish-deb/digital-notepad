@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-06-05T07:13:34.311550+00:00",
+  "sections": [
+    {
+      "section_id": "overview_research_materials",
+      "section_label": "Research materials",
+      "relative_root": "projects/RESEARCH MATERIALS",
+      "folder_exists": false,
+      "processed": false,
+      "processed_at": null,
+      "metrics": null
+    },
+    {
+      "section_id": "overview_onboarding",
+      "section_label": "Onboarding & Outboarding",
+      "relative_root": "Overview/Onboarding and Outboarding",
+      "folder_exists": true,
+      "processed": true,
+      "processed_at": "2026-06-05T07:13:25.260571+00:00",
+      "metrics": {
+        "document_count": 6,
+        "total_assets": 6,
+        "scannable_assets": 6,
+        "extracted_document_count": 6,
+        "knowledge_chunk_count": 62,
+        "extraction_error_count": 0,
+        "figure_count": 0
+      }
+    },
+    {
+      "section_id": "overview_guidelines",
+      "section_label": "Guidelines",
+      "relative_root": "Overview/Guidelines",
+      "folder_exists": true,
+      "processed": true,
+      "processed_at": "2026-06-05T07:13:25.372808+00:00",
+      "metrics": {
+        "document_count": 18,
+        "total_assets": 18,
+        "scannable_assets": 18,
+        "extracted_document_count": 18,
+        "knowledge_chunk_count": 53,
+        "extraction_error_count": 0,
+        "figure_count": 0
+      }
+    },
+    {
+      "section_id": "overview_documents",
+      "section_label": "Documents & Permits",
+      "relative_root": "Overview/Documents - permits, forms, datasheets, handbooks etc.",
+      "folder_exists": true,
+      "processed": true,
+      "processed_at": "2026-06-05T07:13:31.019603+00:00",
+      "metrics": {
+        "document_count": 54,
+        "total_assets": 54,
+        "scannable_assets": 54,
+        "extracted_document_count": 48,
+        "knowledge_chunk_count": 677,
+        "extraction_error_count": 0,
+        "figure_count": 5
+      }
+    },
+    {
+      "section_id": "overview_personnel",
+      "section_label": "Personnel",
+      "relative_root": "Overview/PERSONNEL",
+      "folder_exists": false,
+      "processed": false,
+      "processed_at": null,
+      "metrics": null
+    },
+    {
+      "section_id": "orders_billing",
+      "section_label": "Billing & ordering instructions",
+      "relative_root": "ORDERS & RELATED INFORMATION/Billing and ordering instructions",
+      "folder_exists": true,
+      "processed": true,
+      "processed_at": "2026-06-05T07:13:32.294791+00:00",
+      "metrics": {
+        "document_count": 29,
+        "total_assets": 29,
+        "scannable_assets": 29,
+        "extracted_document_count": 25,
+        "knowledge_chunk_count": 88,
+        "extraction_error_count": 0,
+        "figure_count": 4
+      }
+    },
+    {
+      "section_id": "orders_archive",
+      "section_label": "Archive",
+      "relative_root": "ORDERS & RELATED INFORMATION/Archive",
+      "folder_exists": true,
+      "processed": true,
+      "processed_at": "2026-06-05T07:13:32.527612+00:00",
+      "metrics": {
+        "document_count": 7,
+        "total_assets": 7,
+        "scannable_assets": 7,
+        "extracted_document_count": 7,
+        "knowledge_chunk_count": 31,
+        "extraction_error_count": 0,
+        "figure_count": 0
+      }
+    },
+    {
+      "section_id": "meetings",
+      "section_label": "Meetings",
+      "relative_root": "MEETINGS",
+      "folder_exists": true,
+      "processed": true,
+      "processed_at": "2026-06-05T07:13:34.087022+00:00",
+      "metrics": {
+        "document_count": 35,
+        "total_assets": 35,
+        "scannable_assets": 35,
+        "extracted_document_count": 35,
+        "knowledge_chunk_count": 123,
+        "extraction_error_count": 0,
+        "figure_count": 0
+      }
+    },
+    {
+      "section_id": "social_misc",
+      "section_label": "Social & miscellaneous",
+      "relative_root": "SOCIAL & MISCELLANEOUS",
+      "folder_exists": false,
+      "processed": false,
+      "processed_at": null,
+      "metrics": null
+    },
+    {
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "relative_root": "Overview/LAB CLEANING",
+      "folder_exists": true,
+      "processed": true,
+      "processed_at": "2026-06-05T07:13:34.243386+00:00",
+      "metrics": {
+        "document_count": 8,
+        "total_assets": 8,
+        "scannable_assets": 8,
+        "extracted_document_count": 8,
+        "knowledge_chunk_count": 12,
+        "extraction_error_count": 0,
+        "figure_count": 0
+      }
+    },
+    {
+      "section_id": "wet_lab_files",
+      "section_label": "Wet-lab files",
+      "relative_root": "WET_LAB",
+      "folder_exists": false,
+      "processed": false,
+      "processed_at": null,
+      "metrics": null
+    }
+  ]
+}

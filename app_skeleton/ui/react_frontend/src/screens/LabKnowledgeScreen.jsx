@@ -1,218 +1,228 @@
 import './MacPlusVisualStyles.css';
 import { useCallback, useEffect, useState } from 'react';
-import { BookOpen, Loader2, MapPin, Search } from 'lucide-react';
+import { BookOpen, Loader2, FileText, ChevronRight, Search, Folder, AlertCircle } from 'lucide-react';
+import DocumentViewer from '../components/DocumentViewer.jsx';
 import { databaseSectionIdForSub } from '../config/databaseSections.js';
-import LabSectionTwinPanel from '../components/LabSectionTwinPanel.jsx';
-import { apiGet, apiFetch } from '../api/client.js';
+import { teamDirectory } from '../data/teamDirectory.js';
+import { activityLogs } from '../data/activityLogs.js';
+import { Users, Activity } from 'lucide-react';
 
 export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, description }) {
   const sectionId = databaseSectionIdForSub(subId, navSub);
+  
+  const [catalog, setCatalog] = useState(null);
+  const [loadingCatalog, setLoadingCatalog] = useState(true);
+  const [catalogError, setCatalogError] = useState(null);
+  
+  const [selectedDocId, setSelectedDocId] = useState(null);
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [stats, setStats] = useState(null);
-  const [selected, setSelected] = useState(null);
-  const [ingestLoading, setIngestLoading] = useState(false);
-  const [allSections, setAllSections] = useState([]);
-
-  const loadStats = useCallback(async () => {
-    try {
-      const data = await apiGet('/api/knowledge/lab/stats').catch(() => null);
-      if (data) setStats(data);
-    } catch {
-      setStats(null);
-    }
-  }, [API_URL]);
+  const [expandedSections, setExpandedSections] = useState({});
 
   useEffect(() => {
-    loadStats();
-  }, [loadStats]);
-
-  useEffect(() => {
-    if (sectionId) {
-      setAllSections([]);
-      return;
-    }
-    apiGet('/api/lab/sections')
-      .then((data) => setAllSections((data?.sections || []).filter((s) => s.processed)))
-      .catch(() => setAllSections([]));
-  }, [sectionId]);
-
-  const runSearch = async () => {
-    const q = query.trim();
-    if (q.length < 2) return;
-    setLoading(true);
-    setError(null);
-    setSelected(null);
-    try {
-      const params = new URLSearchParams({ q });
-      if (sectionId) params.set('section_id', sectionId);
-      const data = await apiGet('/api/knowledge/lab/search', { params });
-      setResults(data.results || []);
-      if (!data.results?.length) {
-        setError('No indexed matches. Run “Index into app database” if this section was never ingested.');
-      }
-    } catch (e) {
-      setError(String(e.message || e));
-      setResults([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const runIngest = async () => {
-    setIngestLoading(true);
-    setError(null);
-    try {
-      const path = sectionId
-        ? `/api/knowledge/lab/ingest/${encodeURIComponent(sectionId)}`
-        : '/api/knowledge/lab/ingest-all';
-      const data = await apiFetch(path, {
-        method: 'POST',
-        body: { refresh_extract: false },
+    let mounted = true;
+    setLoadingCatalog(true);
+    fetch('/database/catalog.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load static database catalog.');
+        return res.json();
+      })
+      .then(data => {
+        if (mounted) {
+          setCatalog(data);
+          // Auto-expand all sections initially
+          const initialExpand = {};
+          Object.keys(data.sections || {}).forEach(sec => {
+            initialExpand[sec] = true;
+          });
+          setExpandedSections(initialExpand);
+          setLoadingCatalog(false);
+        }
+      })
+      .catch(err => {
+        if (mounted) {
+          console.error(err);
+          setCatalogError(err.message);
+          setLoadingCatalog(false);
+        }
       });
-      await loadStats();
-    } catch (e) {
-      setError(String(e.message || e));
-    } finally {
-      setIngestLoading(false);
-    }
+      
+    return () => mounted = false;
+  }, []);
+
+  const toggleSection = (sec) => {
+    setExpandedSections(prev => ({ ...prev, [sec]: !prev[sec] }));
   };
+
+  const getFilteredSections = () => {
+    if (!catalog || !catalog.sections) return {};
+    const q = query.trim().toLowerCase();
+    
+    // Map legacy sectionId to new sections.
+    // We want to hardcode the scoping so that searches don't bleed across tabs.
+    let allowedSections = [];
+    
+    if (!sectionId || sectionId?.startsWith('overview_') || sectionId === 'get_started') {
+      allowedSections = ['01_Overview', '00_General_Knowledge'];
+    } else if (sectionId?.startsWith('orders_')) {
+      allowedSections = ['02_Orders'];
+    } else if (sectionId?.startsWith('social_')) {
+      allowedSections = ['03_Social'];
+    } else if (sectionId === 'wet_lab_files') {
+      allowedSections = ['04_Wet_Lab'];
+    } else {
+      allowedSections = Object.keys(catalog.sections);
+    }
+
+    const filtered = {};
+    for (const sec of allowedSections) {
+      const docs = catalog.sections[sec] || [];
+      const matchedDocs = docs.filter(doc => 
+        doc.title.toLowerCase().includes(q) || 
+        doc.path.toLowerCase().includes(q)
+      );
+      if (matchedDocs.length > 0) {
+        filtered[sec] = matchedDocs;
+      }
+    }
+    return filtered;
+  };
+
+  const filteredSections = getFilteredSections();
 
   return (
-    <div className="stack-md lab-knowledge-screen">
-      {sectionId && (
-        <LabSectionTwinPanel
-          sectionId={sectionId}
-          title={title}
-          description={description}
-          compact
-        />
-      )}
-
-      {!sectionId && allSections.length > 0 && (
-        <div className="panel">
-          <h4 className="text-title-3">Processed lab sections</h4>
-          <ul className="stack-sm text-footnote" style={{ listStyle: 'none', padding: 0 }}>
-            {allSections.map((s) => (
-              <li key={s.section_id}>
-                <strong>{s.section_label}</strong> — {s.extracted_document_count ?? 0} extracted /{' '}
-                {s.disk_asset_count ?? s.document_index_count ?? '—'} assets
-              </li>
-            ))}
-          </ul>
-          <p className="text-footnote muted">Open a subsection in the sidebar to browse documents.</p>
-        </div>
-      )}
-
-      <div className="panel">
-        <h3 className="panel-title">
-          <BookOpen size={18} /> {sectionId ? 'Indexed search' : title || 'Lab knowledge'}
-        </h3>
-        <p className="panel-lead prose-block">
-          {sectionId
-            ? 'Search the PostgreSQL/Qdrant knowledge index for this section (after “Index into app database”).'
-            : description || 'Search the canonical lab knowledge index (PostgreSQL + vectors).'}
-          {' '}Extracted files above come from the local processed twin; indexing copies them into{' '}
-          <code>rag.document_source</code> / <code>rag.document_chunk</code>.
-        </p>
-        {stats && !stats.error && (
-          <p className="text-footnote muted">
-            Indexed corpus: {stats.documents ?? 0} documents, {stats.chunks ?? 0} chunks
-            {sectionId && stats.by_section
-              ? ` · this section: ${
-                  stats.by_section.find((s) => s.section_id === sectionId)?.chunks ?? 0
-                } chunks`
-              : ''}
+    <div className="stack-md lab-knowledge-screen" style={{ height: 'calc(100vh - 60px)', display: 'flex', flexDirection: 'column' }}>
+      {/* Top Special Legacy Panels */}
+      {sectionId === 'overview_personnel' && (
+        <div className="panel" style={{ flexShrink: 0 }}>
+          <h3 className="panel-title">
+            <Users size={18} /> Team Directory
+          </h3>
+          <p className="panel-lead prose-block">
+            {description || 'Personnel records and support documents.'}
           </p>
-        )}
-        {stats?.error && (
-          <p className="text-footnote" style={{ color: 'var(--danger)' }}>
-            Database unavailable: {stats.error}. Start Postgres and run indexing.
-          </p>
-        )}
-      </div>
-
-      <div className="panel">
-        <div className="disk-pad-toolbar">
-          <input
-            type="search"
-            className="input"
-            placeholder='Search e.g. "lab coats", "onboarding", "FedEx shipping"...'
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && runSearch()}
-            aria-label="Search lab knowledge"
-          />
-          <button type="button" className="btn btn-primary btn-sm" onClick={runSearch} disabled={loading}>
-            {loading ? <Loader2 size={14} className="spin" /> : <Search size={14} />}
-            Search
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary btn-sm"
-            onClick={runIngest}
-            disabled={ingestLoading}
-            title="Assimilate extracted text into app database"
-          >
-            {ingestLoading ? <Loader2 size={14} className="spin" /> : 'Index into app database'}
-          </button>
-        </div>
-        {error && <p className="text-footnote" style={{ color: 'var(--danger)', marginTop: '0.5rem' }}>{error}</p>}
-      </div>
-
-      <div className="lab-knowledge-layout">
-        <div className="lab-knowledge-results panel">
-          <h4 className="text-title-3">Results ({results.length})</h4>
-          {!results.length && !loading && (
-            <p className="muted text-footnote">Enter a query to search indexed lab documents.</p>
-          )}
-          <ul className="stack-sm" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {results.map((hit) => (
-              <li key={hit.chunk_uid}>
-                <button
-                  type="button"
-                  className={`disk-pad-folder-item lab-knowledge-hit ${selected?.chunk_uid === hit.chunk_uid ? 'active' : ''}`}
-                  style={{ width: '100%' }}
-                  onClick={() => setSelected(hit)}
-                >
-                  <div style={{ flex: 1, minWidth: 0, textAlign: 'left' }}>
-                    <strong>{hit.title}</strong>
-                    <div className="text-caption" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '0.2rem' }}>
-                      <MapPin size={12} />
-                      {hit.where_to_find || hit.citation}
-                    </div>
-                    <p className="text-caption" style={{ marginTop: '0.35rem' }}>
-                      {hit.excerpt?.slice(0, 200)}
-                      {hit.excerpt?.length > 200 ? '…' : ''}
-                    </p>
-                  </div>
-                  <span className="text-caption">{(hit.score * 100).toFixed(0)}%</span>
-                </button>
+          <ul className="stack-sm text-footnote" style={{ listStyle: 'none', padding: 0, marginTop: '1rem' }}>
+            {teamDirectory.map((member) => (
+              <li key={member.username} className="overview-news-row" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+                <strong className="text-body">{member.full_name}</strong>
+                <span className="text-caption muted">{member.role}</span>
+                <p className="text-caption" style={{ marginTop: '0.25rem' }}>
+                  Allowed projects: {member.allowed_projects?.join(', ') || 'None'}
+                </p>
               </li>
             ))}
           </ul>
         </div>
+      )}
 
-        <div className="lab-knowledge-detail panel">
-          {!selected && <p className="muted text-footnote">Select a result to read indexed content and source location.</p>}
-          {selected && (
-            <>
-              <header className="disk-pad-preview-header">
-                <div>
-                  <h4 className="text-title-3">{selected.title}</h4>
-                  <p className="text-caption">
-                    <MapPin size={14} style={{ verticalAlign: 'middle' }} /> {selected.where_to_find}
-                  </p>
-                  <p className="text-footnote muted">
-                    Document code: <code>{selected.document_code}</code>
-                  </p>
+      {sectionId === 'social_misc' && (
+        <div className="panel" style={{ flexShrink: 0 }}>
+          <h3 className="panel-title">
+            <Activity size={18} /> Platform Activity & Social
+          </h3>
+          <p className="panel-lead prose-block">
+            {description || 'Recent events and platform logs.'}
+          </p>
+          <ul className="stack-sm text-footnote" style={{ listStyle: 'none', padding: 0, marginTop: '1rem' }}>
+            {activityLogs.map((log) => (
+              <li key={log.log_id} className="overview-news-row" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <strong className="text-body">{log.actor}</strong>
+                  <span className="text-caption muted">{new Date(log.created_at).toLocaleString()}</span>
                 </div>
-              </header>
-              <pre className="disk-pad-preview-body">{selected.full_text || selected.excerpt}</pre>
-            </>
+                <span className="text-caption" style={{ marginTop: '0.25rem' }}>{log.event_type}</span>
+                <p className="text-caption" style={{ marginTop: '0.25rem' }}>{log.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Main Master-Detail UI */}
+      {sectionId !== 'overview_personnel' && sectionId !== 'social_misc' && (
+        <div className="panel" style={{ flexShrink: 0 }}>
+          <h3 className="panel-title">
+            <BookOpen size={18} /> {title || 'Static Knowledge Database'}
+          </h3>
+          <p className="panel-lead prose-block">
+            {description || 'Explore digitized files securely extracted from the internal file systems. Content is loaded statically without API calls.'}
+          </p>
+          <div className="disk-pad-toolbar" style={{ marginTop: '1rem' }}>
+            <input
+              type="search"
+              className="input"
+              placeholder='Search file names or paths...'
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              aria-label="Search catalog"
+            />
+          </div>
+        </div>
+      )}
+
+      <div className="lab-knowledge-layout" style={{ flex: 1, minHeight: 0, display: 'flex', gap: '1rem', marginTop: sectionId === 'overview_personnel' ? '1rem' : 0 }}>
+        {/* Master Sidebar */}
+        <div className="lab-knowledge-sidebar panel" style={{ flex: '0 0 320px', overflowY: 'auto', padding: '1rem' }}>
+          {loadingCatalog && (
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: 'var(--mac-ink-muted)' }}>
+              <Loader2 size={16} className="spin" /> Loading catalog...
+            </div>
           )}
+          {catalogError && (
+            <div style={{ color: 'var(--mac-destructive)' }}>
+              <AlertCircle size={16} /> {catalogError}
+            </div>
+          )}
+          
+          {!loadingCatalog && !catalogError && Object.keys(filteredSections).length === 0 && (
+            <p className="text-caption muted">No matching files found.</p>
+          )}
+
+          {!loadingCatalog && !catalogError && Object.keys(filteredSections).map(sec => (
+            <div key={sec} style={{ marginBottom: '1rem' }}>
+              <button 
+                className="section-header-btn" 
+                onClick={() => toggleSection(sec)}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '0.5rem', width: '100%', 
+                  background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left',
+                  padding: '0.25rem 0', color: 'var(--mac-ink)', fontWeight: 600, fontSize: '0.9rem'
+                }}
+              >
+                {expandedSections[sec] ? <ChevronRight size={14} style={{ transform: 'rotate(90deg)' }}/> : <ChevronRight size={14} />}
+                <Folder size={16} style={{ color: 'var(--mac-blue)' }} />
+                {sec.replace(/^[0-9]+_/, '').replace(/_/g, ' ')} ({filteredSections[sec].length})
+              </button>
+              
+              {expandedSections[sec] && (
+                <ul style={{ listStyle: 'none', padding: 0, margin: '0.25rem 0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                  {filteredSections[sec].map(doc => (
+                    <li key={doc.id}>
+                      <button
+                        className={`doc-list-btn ${selectedDocId === doc.id ? 'active' : ''}`}
+                        onClick={() => setSelectedDocId(doc.id)}
+                        style={{
+                          display: 'flex', alignItems: 'flex-start', gap: '0.5rem', width: '100%', 
+                          background: selectedDocId === doc.id ? 'var(--mac-blue-alpha)' : 'none', 
+                          border: 'none', cursor: 'pointer', textAlign: 'left',
+                          padding: '0.35rem 0.5rem', borderRadius: '4px',
+                          color: selectedDocId === doc.id ? 'var(--mac-blue)' : 'var(--mac-ink)',
+                          fontSize: '0.85rem'
+                        }}
+                      >
+                        <FileText size={14} style={{ flexShrink: 0, marginTop: '2px' }} />
+                        <span style={{ wordBreak: 'break-word', lineHeight: 1.3 }}>{doc.title}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Detail View */}
+        <div className="lab-knowledge-detail" style={{ flex: 1, minWidth: 0 }}>
+          <DocumentViewer documentId={selectedDocId} />
         </div>
       </div>
     </div>

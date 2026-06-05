@@ -7,6 +7,8 @@ import { categoryColor, cloneTwin, formatSampleCount } from '../utils/digitalTwi
 import ProjectContentLibrary from './ProjectContentLibrary.jsx';
 import SmartLink from './SmartLink.jsx';
 import ExpandableText from './ExpandableText.jsx';
+import DocumentFormatter from './DocumentFormatter.jsx';
+import { useTaskpad } from '../contexts/TaskpadContext.jsx';
 
 const GROUPS = [
   { id: 'research', label: 'Research Profile', icon: FileText },
@@ -68,6 +70,7 @@ export default function DigitalTwinPanel({
 }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(null);
+  const { openTaskpad } = useTaskpad();
   const [openGroups, setOpenGroups] = useState(() => new Set(['content', 'research', 'team', 'methods', 'outputs', 'activity']));
   const [saveMsg, setSaveMsg] = useState(null);
   const [filePreview, setFilePreview] = useState(null);
@@ -410,9 +413,14 @@ export default function DigitalTwinPanel({
           {filePreviewLoading && <p className="text-loading">Loading…</p>}
           {filePreview.error && <p className="text-callout">{filePreview.error}</p>}
           {filePreview.content && (
-            <pre className="pfb-preview-content markdown-body">{filePreview.content.slice(0, 8000)}{filePreview.content.length > 8000 ? '…' : ''}</pre>
+            <div style={{ marginTop: '1rem', padding: '1.5rem', background: 'var(--mac-bg-primary)', border: '1px solid var(--mac-border)', borderRadius: '6px' }}>
+              <DocumentFormatter 
+                text={filePreview.content.slice(0, 8000) + (filePreview.content.length > 8000 ? '…' : '')} 
+                onCreateTask={(text) => openTaskpad(text)}
+              />
+            </div>
           )}
-          <button type="button" className="btn btn-secondary btn-sm" onClick={() => setFilePreview(null)}>Close preview</button>
+          <button type="button" className="btn btn-secondary btn-sm" style={{ marginTop: '1rem' }} onClick={() => setFilePreview(null)}>Close preview</button>
         </div>
       )}
     </div>

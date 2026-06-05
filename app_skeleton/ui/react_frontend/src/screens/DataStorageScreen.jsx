@@ -1,3 +1,4 @@
+import './MacPlusVisualStyles.css';
 import { useCallback, useEffect, useState } from 'react';
 import { CloudUpload, Database, HardDrive, Search } from 'lucide-react';
 import { apiGet, apiPatch, apiPost } from '../api/client.js';

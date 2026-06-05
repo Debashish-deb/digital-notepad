@@ -1,0 +1,550 @@
+{
+  "section_id": "overview_cleaning",
+  "storage_key": "lab__overview_cleaning",
+  "scope": "lab",
+  "section_label": "Lab cleaning",
+  "description": "Cleaning schedules and lab upkeep documents.",
+  "relative_root": "Overview/LAB CLEANING",
+  "database_root": "/home/debdeba/data4TB/OMEIA-database",
+  "content_root": "/home/debdeba/data4TB/OMEIA-database/Overview/LAB CLEANING",
+  "processed_at": "2026-06-05T07:13:34.243386+00:00",
+  "source_files_count": 8,
+  "total_assets_count": 8,
+  "content_library": {
+    "sections": [
+      {
+        "id": "Cleaning day 20250528",
+        "label": "Cleaning day 20250528",
+        "total_files": 3,
+        "documents": [
+          {
+            "path": "Cleaning day 20250528/General tasks for data cleaning day 28052025.xlsx",
+            "name": "General tasks for data cleaning day 28052025",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "### xl/worksheets/sheet1.xml 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 26 28 26 29 26 30 31 32"
+          },
+          {
+            "path": "Cleaning day 20250528/Lab data cleaning day.docx",
+            "name": "Special activities for 28052025",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Special activities for 28052025 Some external hard drives are missing - we don’t know where they are. Let’s find them all and put the information here: Storage units taks and comments in the subtable “Hard disks”. In the instruction document below we provided a file structure example, try to organise your project in this way. Remove as much unnecessary data as possible from your computer, hard drive, P-drive, L-drive, cpu1-data/ (see the next guidelines). Update in the Wiki inventory if you are using currently a new hard drive or computer: https://wiki.helsinki.fi/xwiki/bin/view/FL/Farkkila%20Lab/IT%20Infrastructure/Inventory/ Re-organize your data in a more efficient way if possible. Compress all raw and intermediate data from the Cold storage disks, even if it's not yours. Detect unused "
+          },
+          {
+            "path": "Cleaning day 20250528/Storage units tasks and comments.xlsx",
+            "name": "Storage units tasks and comments",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "### xl/worksheets/sheet1.xml 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 8 16 17 11 18 19 20 21 22 23 24 21 18 25 26 21 18 27 28 15 29 30 31 21 18 32 33 15 22 34 35 36 18 37 38 39 40 41 42 43 44 45 ### xl/worksheets/sheet2.xml 46 1 2 47 4 48 49 50 51 52 53 54 55 56 57 58 59 60 56 61 62 63 56 64 65 66 67 64 68 69 70 71 72 73 74 75 76 77 70 78 79 80 64 81 82 83 84 74 85 86 73 74 87 88 73 64 89 90 91 56 64 92 93 94 56 64 95 96 97 98 64 99 100 101 102 100 103 104 105 106 100 107 108 109 100 61 ### xl/worksheets/sheet3.xml 1 2 3 4 110 111 112 110 113 114 115 111 112 116 117 116 117 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 126 127 136 137 138 139 140 141 130 142 143 144 ### xl/worksheets/sheet4.xml 145 146 2 147 148 149 150 151 152 153 154 155 156 157 158 159 160"
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      },
+      {
+        "id": "Cleaning day 251205",
+        "label": "Cleaning day 251205",
+        "total_files": 5,
+        "documents": [
+          {
+            "path": "Cleaning day 251205/Allas and Databank data upload inventory.xlsx",
+            "name": "IF(E5 = \"Active\", \"Allas\", IF(OR(E5 = \"Inactive\", E5 = \"Published\"), \"Databank\", \"\"))",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "IF(E5 = \"Active\", \"Allas\", IF(OR(E5 = \"Inactive\", E5 = \"Published\"), \"Databank\", \"\")) \"L-drive,P-drive,Databank,External disk,Other\" \"Active,Inactive,Published\""
+          },
+          {
+            "path": "Cleaning day 251205/Cleaning day 251205 external drive listing.xlsx",
+            "name": "Cleaning day 251205 external drive listing",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "### xl/worksheets/sheet1.xml 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 14 20 21 17 18 22 23 24 17 25 26 27 28 29 17 25 19 14 30 31 32 33 34 14 22 35 17 25 36 27 37 38 17 25 39 27 40 17 25 41 27 42 43 44 45 27 46 47 25 48 49 50 33 34 14 51 52 53 39 27 54 55 52 53 39 27 54 56 52 53 57 14 58 59 60 61 14 62 63 52 33 64 27 65 66 59 60 67 14 68 69 59 70 67 71 14 72 73 74 75 19 14 76 77 59 70 78 79 27 80 81 59 70 82 19 14 83 84 85 25 86 87 74 75 14 88 89 25 14 90 91 92 93 52 44 44 94 14 95 89 13 39 27 96 97 \"Active,Inactive,Published\" \"Allas,Databank,No\" \"Yes,NO\""
+          },
+          {
+            "path": "Cleaning day 251205/Dry lab cleaning day 251205.docx",
+            "name": "Dry lab cleaning day tasks",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "Dry lab cleaning day tasks The main aim for the dry lab cleaning should be to map and prepare data for transfer to Databank/Allas - if you have large files stored on physical hard drives, or the P-drives (or the L-drive), please see task 3 Databank can store pseudonymized data in large quantities, i.e. tCycIF data. If your project has raw tCycIF data that needs to be stored, prioritize preparing that data for transfer in the cleaning day Dry lab cleaning day personal to do list 1 Physically clean your physical domain i.e. desk 2 Inventory data cables and USB hubs Return ALL DATA CABLES and USB hubs not in active use- return to Deb. S end info about cables and hubs in your possession to Deb, emphasis on cables and multiport USB hubs 3 Google Drive: Revise your project status - archive inact"
+          },
+          {
+            "path": "Cleaning day 251205/Dry lab cleaning day personal to do list.xlsx",
+            "name": "Dry lab cleaning day personal to do list",
+            "asset_type": "document",
+            "extension": ".xlsx",
+            "previewable": true,
+            "excerpt": "### xl/worksheets/sheet1.xml 0 1 1.0 2.0 3.0 4.0 5.0 6.0 7.0 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 19 19 19 19 19 19 20 21 19 19 22 22 22 23 24 19 19 19 22 19 19 22 25 19 19 22 22 22 22 22 26 19 19 19 22 19 22 22 27 19 19 19 22 19 22 22 28 19 19 19 19 19 22 19 29 19 19 19 22 19 19 30 19 19 19 19 19 19 22 31 19 19 19 22 19 32 19 22 19 22 19 22 22 33 19 34 19 19 19 19 19 19 19 35 19 19 19 19 22 22 22 36 19 19 19 19 19 37 19 19 19 19 38 39 22 22 19 22 22 22 22 40 19 19 22 22 41 19 19 19 19 19 19 19 42 19 19 19 19 19 19 19 43 44 19 19 19 19 19 19 19 45 19 19 19 19 19 19 22 46 47 48 19 19 19 19 22 19 22 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 \"Yes,Not applicable\" ### xl/worksheets/sheet2.xml 83 2 84 85 86 87 1.0 88 89 90 0"
+          },
+          {
+            "path": "Cleaning day 251205/Wet lab cleaning day 251205.docx",
+            "name": "Wet lab cleaning day",
+            "asset_type": "document",
+            "extension": ".docx",
+            "previewable": true,
+            "excerpt": "8:00–12:00 am - Aino & Saun People expected to join the wet lab cleaning: María, Sarah, eople can join around 9:00 am. If possible, help with point 1, but we especially need assistance with points 2 and 3: 2. Discuss and agree on the most convenient way to organize cold spaces 3. Help with transferring cells int o LN boxes and then into the LN tank General wet lab cleaning Ensure overall cleanliness of the wet lab space - tidying, not major reorganization unless needed Discard expired items (chemical cupboard, shelves). Ensure all chemicals have an ID code written by Saun. Check shelf organization and reorganize if necessary. Label shelves and drawers for improved visibility. Fridge & freezer organization Organize the following fridges and freezers: -80 freezer: especially omentum gel box "
+          }
+        ],
+        "figures": [],
+        "data_files": [],
+        "code_scripts": []
+      }
+    ],
+    "figures_gallery": [],
+    "totals": {
+      "data": 5,
+      "all": 8,
+      "document": 3
+    },
+    "figure_count": 0
+  },
+  "document_index": [
+    {
+      "path": "Cleaning day 20250528/General tasks for data cleaning day 28052025.xlsx",
+      "name": "General tasks for data cleaning day 28052025.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 6235,
+      "modified_at": "2025-06-29T22:49:16+00:00",
+      "sha256": "ffbabf2611b34c7c01efcc522ca182d778f5732b965fbfaed451badd4e5b211a",
+      "status": "extracted",
+      "extractor": "xlsx-zip-xml",
+      "title": "General tasks for data cleaning day 28052025",
+      "excerpt": "### xl/worksheets/sheet1.xml 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 26 28 26 29 26 30 31 32",
+      "char_count": 126,
+      "word_count": 40,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "openpyxl unavailable/failed: No module named 'openpyxl'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Cleaning day 20250528/Lab data cleaning day.docx",
+      "name": "Lab data cleaning day.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 10345,
+      "modified_at": "2025-06-29T22:46:52+00:00",
+      "sha256": "0bc0237247c82a0c6515973a6ec31fc2bd9271e4a41d842ec24ee5b422ccf4f7",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Special activities for 28052025",
+      "excerpt": "Special activities for 28052025 Some external hard drives are missing - we don’t know where they are. Let’s find them all and put the information here: Storage units taks and comments in the subtable “Hard disks”. In the instruction document below we provided a file structure example, try to organise your project in this way. Remove as much unnecessary data as possible from your computer, hard drive, P-drive, L-drive, cpu1-data/ (see the next guidelines). Update in the Wiki inventory if you are using currently a new hard drive or computer: https://wiki.helsinki.fi/xwiki/bin/view/FL/Farkkila%20Lab/IT%20Infrastructure/Inventory/ Re-organize your data in a more efficient way if possible. Compress all raw and intermediate data from the Cold storage disks, even if it's not yours. Detect unused ",
+      "char_count": 4354,
+      "word_count": 688,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Cleaning day 20250528/Storage units tasks and comments.xlsx",
+      "name": "Storage units tasks and comments.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 19815,
+      "modified_at": "2026-06-01T00:46:12+00:00",
+      "sha256": "70fde2f2c9a43fdeb3bf8f272b8e7e2c774d7b35f11e69efcf406dd0a8369f00",
+      "status": "extracted",
+      "extractor": "xlsx-zip-xml",
+      "title": "Storage units tasks and comments",
+      "excerpt": "### xl/worksheets/sheet1.xml 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 8 16 17 11 18 19 20 21 22 23 24 21 18 25 26 21 18 27 28 15 29 30 31 21 18 32 33 15 22 34 35 36 18 37 38 39 40 41 42 43 44 45 ### xl/worksheets/sheet2.xml 46 1 2 47 4 48 49 50 51 52 53 54 55 56 57 58 59 60 56 61 62 63 56 64 65 66 67 64 68 69 70 71 72 73 74 75 76 77 70 78 79 80 64 81 82 83 84 74 85 86 73 74 87 88 73 64 89 90 91 56 64 92 93 94 56 64 95 96 97 98 64 99 100 101 102 100 103 104 105 106 100 107 108 109 100 61 ### xl/worksheets/sheet3.xml 1 2 3 4 110 111 112 110 113 114 115 111 112 116 117 116 117 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 126 127 136 137 138 139 140 141 130 142 143 144 ### xl/worksheets/sheet4.xml 145 146 2 147 148 149 150 151 152 153 154 155 156 157 158 159 160",
+      "char_count": 1652,
+      "word_count": 437,
+      "metadata": {
+        "zip_members_read": 5
+      },
+      "warnings": [
+        "openpyxl unavailable/failed: No module named 'openpyxl'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Cleaning day 251205/Allas and Databank data upload inventory.xlsx",
+      "name": "Allas and Databank data upload inventory.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 14364,
+      "modified_at": "2026-05-26T23:26:30+00:00",
+      "sha256": "5bc78f20b67bc4aa2e141d11c8f16f1f793a232214cc554376868ab3b6965a83",
+      "status": "extracted",
+      "extractor": "xlsx-zip-xml",
+      "title": "IF(E5 = \"Active\", \"Allas\", IF(OR(E5 = \"Inactive\", E5 = \"Published\"), \"Databank\", \"\"))",
+      "excerpt": "IF(E5 = \"Active\", \"Allas\", IF(OR(E5 = \"Inactive\", E5 = \"Published\"), \"Databank\", \"\")) \"L-drive,P-drive,Databank,External disk,Other\" \"Active,Inactive,Published\"",
+      "char_count": 1592,
+      "word_count": 397,
+      "metadata": {
+        "zip_members_read": 4
+      },
+      "warnings": [
+        "openpyxl unavailable/failed: No module named 'openpyxl'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Cleaning day 251205/Cleaning day 251205 external drive listing.xlsx",
+      "name": "Cleaning day 251205 external drive listing.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 65665,
+      "modified_at": "2026-05-26T23:23:52+00:00",
+      "sha256": "f5b14b81f99f1fafa514b2641b4f8643779c04a9877c7af03104ebdf9a2eda1a",
+      "status": "extracted",
+      "extractor": "xlsx-zip-xml",
+      "title": "Cleaning day 251205 external drive listing",
+      "excerpt": "### xl/worksheets/sheet1.xml 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 14 20 21 17 18 22 23 24 17 25 26 27 28 29 17 25 19 14 30 31 32 33 34 14 22 35 17 25 36 27 37 38 17 25 39 27 40 17 25 41 27 42 43 44 45 27 46 47 25 48 49 50 33 34 14 51 52 53 39 27 54 55 52 53 39 27 54 56 52 53 57 14 58 59 60 61 14 62 63 52 33 64 27 65 66 59 60 67 14 68 69 59 70 67 71 14 72 73 74 75 19 14 76 77 59 70 78 79 27 80 81 59 70 82 19 14 83 84 85 25 86 87 74 75 14 88 89 25 14 90 91 92 93 52 44 44 94 14 95 89 13 39 27 96 97 \"Active,Inactive,Published\" \"Allas,Databank,No\" \"Yes,NO\"",
+      "char_count": 570,
+      "word_count": 177,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "openpyxl unavailable/failed: No module named 'openpyxl'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Cleaning day 251205/Dry lab cleaning day 251205.docx",
+      "name": "Dry lab cleaning day 251205.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 1047617,
+      "modified_at": "2026-05-26T23:23:52+00:00",
+      "sha256": "4e4fc75fe989b6d848b752a6d0c5efd36d293f998ab0fe74449114733876a146",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Dry lab cleaning day tasks",
+      "excerpt": "Dry lab cleaning day tasks The main aim for the dry lab cleaning should be to map and prepare data for transfer to Databank/Allas - if you have large files stored on physical hard drives, or the P-drives (or the L-drive), please see task 3 Databank can store pseudonymized data in large quantities, i.e. tCycIF data. If your project has raw tCycIF data that needs to be stored, prioritize preparing that data for transfer in the cleaning day Dry lab cleaning day personal to do list 1 Physically clean your physical domain i.e. desk 2 Inventory data cables and USB hubs Return ALL DATA CABLES and USB hubs not in active use- return to Deb. S end info about cables and hubs in your possession to Deb, emphasis on cables and multiport USB hubs 3 Google Drive: Revise your project status - archive inact",
+      "char_count": 3813,
+      "word_count": 636,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Cleaning day 251205/Dry lab cleaning day personal to do list.xlsx",
+      "name": "Dry lab cleaning day personal to do list.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 24895,
+      "modified_at": "2026-05-26T23:25:22+00:00",
+      "sha256": "3f4ced03d8ebae5f5533ce4b0714224def14c504757bd4718d84001551a16c0e",
+      "status": "extracted",
+      "extractor": "xlsx-zip-xml",
+      "title": "Dry lab cleaning day personal to do list",
+      "excerpt": "### xl/worksheets/sheet1.xml 0 1 1.0 2.0 3.0 4.0 5.0 6.0 7.0 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 19 19 19 19 19 19 20 21 19 19 22 22 22 23 24 19 19 19 22 19 19 22 25 19 19 22 22 22 22 22 26 19 19 19 22 19 22 22 27 19 19 19 22 19 22 22 28 19 19 19 19 19 22 19 29 19 19 19 22 19 19 30 19 19 19 19 19 19 22 31 19 19 19 22 19 32 19 22 19 22 19 22 22 33 19 34 19 19 19 19 19 19 19 35 19 19 19 19 22 22 22 36 19 19 19 19 19 37 19 19 19 19 38 39 22 22 19 22 22 22 22 40 19 19 22 22 41 19 19 19 19 19 19 19 42 19 19 19 19 19 19 19 43 44 19 19 19 19 19 19 19 45 19 19 19 19 19 19 22 46 47 48 19 19 19 19 22 19 22 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 \"Yes,Not applicable\" ### xl/worksheets/sheet2.xml 83 2 84 85 86 87 1.0 88 89 90 0",
+      "char_count": 1050,
+      "word_count": 337,
+      "metadata": {
+        "zip_members_read": 3
+      },
+      "warnings": [
+        "openpyxl unavailable/failed: No module named 'openpyxl'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Cleaning day 251205/Wet lab cleaning day 251205.docx",
+      "name": "Wet lab cleaning day 251205.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 8002,
+      "modified_at": "2026-05-25T22:21:54+00:00",
+      "sha256": "e837b34edab3e0cb20cd77168038a7161b9ff6452fe1b57a7107dcf0bceddb99",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Wet lab cleaning day",
+      "excerpt": "8:00–12:00 am - Aino & Saun People expected to join the wet lab cleaning: María, Sarah, eople can join around 9:00 am. If possible, help with point 1, but we especially need assistance with points 2 and 3: 2. Discuss and agree on the most convenient way to organize cold spaces 3. Help with transferring cells int o LN boxes and then into the LN tank General wet lab cleaning Ensure overall cleanliness of the wet lab space - tidying, not major reorganization unless needed Discard expired items (chemical cupboard, shelves). Ensure all chemicals have an ID code written by Saun. Check shelf organization and reorganize if necessary. Label shelves and drawers for improved visibility. Fridge & freezer organization Organize the following fridges and freezers: -80 freezer: especially omentum gel box ",
+      "char_count": 1405,
+      "word_count": 230,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    }
+  ],
+  "vector_chunks": [
+    {
+      "chunk_id": "Cleaning day 20250528/General tasks for data cleaning day 28052025.xlsx::chunk_0000",
+      "source_file": "Cleaning day 20250528/General tasks for data cleaning day 28052025.xlsx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 126,
+      "char_count": 126,
+      "word_count": 40,
+      "text": "### xl/worksheets/sheet1.xml\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n26\n28\n26\n29\n26\n30\n31\n32",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 20250528/Lab data cleaning day.docx::chunk_0000",
+      "source_file": "Cleaning day 20250528/Lab data cleaning day.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1784,
+      "char_count": 1783,
+      "word_count": 286,
+      "text": "### word/document.xml\nSpecial activities for 28052025\nSome external hard drives are missing - we don’t know where they are. Let’s find them all and put the information here: \nStorage units taks and comments\n in the subtable “Hard disks”. \nIn the instruction document below we provided a file structure example, try to organise your project in this way. \nGeneral activities\nRemove as much unnecessary data as possible from your computer, hard drive, P-drive, L-drive, cpu1-data/ (see the next guidelines).\nUpdate in the Wiki inventory if you are using currently a new hard drive or computer: \nhttps://wiki.helsinki.fi/xwiki/bin/view/FL/Farkkila%20Lab/IT%20Infrastructure/Inventory/\nRe-organize your data in a more efficient way if possible.\nCompress all raw and intermediate data from the Cold storage disks, even if it's not yours.\nDetect unused files owned by others in your workstation or laptop, CSC. Backup those files or delete them, consult this with the project managers.\nWrite README files for each folder where you have stored your data.\nGuidelines about data organization\nIdentify in your project which files are raw data, intermediate files, and result files. Then make a folder to store each type of files. Example of type of files:\nRaw Files\n: Files generated by dedicated technologies, example: RCPNL, FASTQ, FLOW. These files are not needed anymore after generating relevant intermediate files. \nThese files after a point can be removed\n, especially if your project is about to conclude and you have generated relevant intermediate files.\nFirst milestone intermediate files\n: Files directly generated after processing Raw files. Those are used for subsequent analysis. Example: OME.tif, BAM, CSV tables. Particularly those files will replace the need to use Raw files.",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 20250528/Lab data cleaning day.docx::chunk_0001",
+      "source_file": "Cleaning day 20250528/Lab data cleaning day.docx",
+      "chunk_index": 1,
+      "start_char": 1534,
+      "end_char": 3280,
+      "char_count": 1746,
+      "word_count": 273,
+      "text": "intermediate files.\nFirst milestone intermediate files\n: Files directly generated after processing Raw files. Those are used for subsequent analysis. Example: OME.tif, BAM, CSV tables. Particularly those files will replace the need to use Raw files.\nMilestone intermediate files\n: Files that after heavy computation (several days), or a super-long manual data curation are used for relevant subsequent analysis. These files are mainly produced using the first milestone intermediate file. \nRemove other intermediate files that are not milestones.\nResult Files\n: Published results, key visualizations for presentations, data summaries to share with collaborators.\nproject_name/\n├── README.txt\n├── notebooks/ # Jupyter or R notebooks\n│ └── analysis.ipynb\n├── raw_data/ # Raw files (temporary, can be deleted later)\n│ ├── sample1.fastq\n│ ├── sample2.fastq\n│ ├── experiment1.rcpnl\n│ └── flowdata.fcs\n├── intermediate_data/\n│ ├── first_milestone/ # direct output from raw files\n│ │ ├── sample1_ome.tif\n│ │ ├── sample2_ome.tif\n│ │ ├── alignments.bam\n│ │ └── expression_matrix.csv\n│ └── milestone/ # Heavy computation or manual curation\n│ ├── curated_annotations.csv\n│ ├── dimensionality_reduction_results.h5ad\n│ └── spatial_features.parquet\n├── results/ # Final results, visualizations, summary tables\n│ ├── figures/\n│ │ ├── fig1_UMAP.png\n│ │ └── fig2_survival_curve.pdf\n│ ├── tables/\n│ │ └── final_summary_table.xlsx\n│ └── presentations/\n│ └── group_meeting_results.pptx\n└── scripts/ # Scripts for preprocessing, analysis, visualization\n ├── preprocess_raw.py\n ├── analysis_pipeline.R\n └── plot_results.py\nIdentify redundant files:\nTypical redundant files: \nResult1\n, \nResult_final\n, \nResult_the_one\n. Keep the most updated, remove all other versions.",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 20250528/Lab data cleaning day.docx::chunk_0002",
+      "source_file": "Cleaning day 20250528/Lab data cleaning day.docx",
+      "chunk_index": 2,
+      "start_char": 3030,
+      "end_char": 4354,
+      "char_count": 1324,
+      "word_count": 200,
+      "text": "processing, analysis, visualization\n ├── preprocess_raw.py\n ├── analysis_pipeline.R\n └── plot_results.py\nIdentify redundant files:\nTypical redundant files: \nResult1\n, \nResult_final\n, \nResult_the_one\n. Keep the most updated, remove all other versions. Use dates to differentiate which version is the most updated, example: \nResults_2811204\n. Save your scripts in \nhttps://github.com/farkkilab\n to re-generate any of the other results versions if needed. \nRemove all intermediate files which can be easily re-generated using your scripts.\nRemove data from experiments that did not work and are probably will never be missed, specially if you already have result files.\nAdd a README in each folder to describe what each file is, if even you can not remember what that file is, then maybe it is not needed anymore, delete it!\nOrganize and Standardize File Naming\nImplement a consistent naming convention including:\nProject name, experiment ID, and file type (e.g., raw, intermediate/Spatial_analysis, intermediate/Quantification, intermediate/Cell_visualization, others, Results/Microscopy_screenshots).\nDate format (e.g., YYYY-MM-DD) and versioning for easy identification.\nGive a meaningful long name to your files. Cell_quantification_2pixels_myleoid_cells_28112024.csv\nCell_quantification_2pixels_lymphoid_cells_28112024.csv",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 20250528/Storage units tasks and comments.xlsx::chunk_0000",
+      "source_file": "Cleaning day 20250528/Storage units tasks and comments.xlsx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1652,
+      "char_count": 1652,
+      "word_count": 437,
+      "text": "### xl/worksheets/sheet1.xml\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n8\n16\n17\n11\n18\n19\n20\n21\n22\n23\n24\n21\n18\n25\n26\n21\n18\n27\n28\n15\n29\n30\n31\n21\n18\n32\n33\n15\n22\n34\n35\n36\n18\n37\n38\n39\n40\n41\n42\n43\n44\n45\n\n### xl/worksheets/sheet2.xml\n46\n1\n2\n47\n4\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n56\n61\n62\n63\n56\n64\n65\n66\n67\n64\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n70\n78\n79\n80\n64\n81\n82\n83\n84\n74\n85\n86\n73\n74\n87\n88\n73\n64\n89\n90\n91\n56\n64\n92\n93\n94\n56\n64\n95\n96\n97\n98\n64\n99\n100\n101\n102\n100\n103\n104\n105\n106\n100\n107\n108\n109\n100\n61\n\n### xl/worksheets/sheet3.xml\n1\n2\n3\n4\n110\n111\n112\n110\n113\n114\n115\n111\n112\n116\n117\n116\n117\n116\n117\n118\n119\n120\n121\n122\n123\n124\n125\n126\n127\n128\n129\n130\n131\n132\n133\n134\n135\n126\n127\n136\n137\n138\n139\n140\n141\n130\n142\n143\n144\n\n### xl/worksheets/sheet4.xml\n145\n146\n2\n147\n148\n149\n150\n151\n152\n153\n154\n155\n156\n157\n158\n159\n160\n161\n156\n162\n163\n159\n160\n164\n165\n166\n167\n159\n168\n169\n170\n171\n172\n159\n168\n161\n156\n173\n174\n175\n176\n177\n156\n164\n178\n159\n168\n179\n170\n180\n181\n159\n168\n182\n170\n183\n159\n168\n184\n170\n185\n186\n187\n188\n170\n189\n190\n168\n191\n192\n193\n176\n177\n156\n194\n195\n196\n182\n170\n197\n198\n195\n196\n182\n170\n197\n199\n195\n196\n200\n156\n201\n202\n203\n204\n156\n205\n206\n195\n176\n207\n170\n208\n209\n202\n203\n210\n156\n211\n212\n202\n111\n213\n214\n156\n215\n113\n216\n217\n161\n156\n218\n219\n202\n111\n220\n221\n170\n222\n223\n202\n111\n224\n161\n156\n225\n226\n227\n168\n228\n114\n216\n217\n156\n229\n230\n168\n61\n231\n232\n233\n234\n235\n195\n187\n187\n236\n156\n237\n230\n155\n182\n170\n238\n\n### xl/worksheets/sheet5.xml\n1\n2\n3\n4\n239\n240\n241\n242\n243\n244\n245\n246\n247\n248\n249\n250\n251\n252\n253\n254\n182\n255\n256\n257\n161\n258\n259\n260\n261\n262\n263\n264\n265\n266\n267\n268\n161\n269\n267\n270\n271\n272\n267\n273\n274\n275\n276\n277\n274\n278\n267\n267\n279\n280\n281\n282\n279\n283\n281\n274",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 251205/Allas and Databank data upload inventory.xlsx::chunk_0000",
+      "source_file": "Cleaning day 251205/Allas and Databank data upload inventory.xlsx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1592,
+      "char_count": 1592,
+      "word_count": 397,
+      "text": "### xl/worksheets/sheet1.xml\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\nIF(E5 = \"Active\", \"Allas\", IF(OR(E5 = \"Inactive\", E5 = \"Published\"), \"Databank\", \"\"))\nDatabank\n6\n7\n10\n9\nDatabank\n6\n7\n11\n12\nAllas\n6\n7\n13\n12\nAllas\n14\n7\n15\n5.2\n9\nDatabank\n14\n7\n15\n3.9\n9\nDatabank\n16\n17\n18\n1.61\n9\nDatabank\n19\n17\n20\n21\n12\nAllas\n22\n7\n23\n0.175\n12\nAllas\n22\n7\n24\n0.096\n9\nDatabank\n25\n7\n26\n0.0866\n12\nAllas\n\"L-drive,P-drive,Databank,External disk,Other\"\n\"Active,Inactive,Published\"\n\n### xl/worksheets/sheet2.xml\n27\n1.0\n28\n29\n2.0\n30\n31\n32\n33\n34\n35\n36\n37\n38\n29\n39\n11\n7\n6\n29\n13\n7\n29\n21\n40\n20\n7\n29\n41\n42\n43\n29\n44\n45\n46\n47\n48\n29\n49\n47\n48\n29\n50\n51\n47\n48\n29\n52\n53\n54\n29\n55\n23\n7\n22\n29\n0.175\n26\n7\n25\n29\n0.0866\n3.0\n56\n4.0\n57\n5.0\n58\n\n### xl/worksheets/sheet3.xml\n59\n60\n61\n59\n0\n1\n2\n3\n4\n5\n60\n6\n62\n8\n1.8\n9\nIF(F9 = \"Active\", \"Allas\", IF(OR(F9 = \"Inactive\", F9 = \"Published\"), \"Databank\", \"\"))\nDatabank\n60\n6\n62\n10\n1.4\n9\nDatabank\n14\n63\n15\n5.2\n9\nDatabank\n14\n63\n64\n3.9\n9\nDatabank\n16\n65\n18\n1.61\n9\nDatabank\n66\n22\n7\n24\n0.096\n9\nDatabank\n67\n68\n43\n9\n61\n69\n68\n43\n9\n61\n70\n42\n71\n9\n61\n72\n73\n72\n74\n73\n72\n75\n76\n77\n78\n72\n79\n80\n81\n82\n72\n83\n84\n72\n85\n22\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n\"Active,Inactive,Published\"\n\n### xl/worksheets/sheet4.xml\n28\n14\n7\n15\n5.2\n9\nIF(G9 = \"Active\", \"Allas\", IF(OR(G9 = \"Inactive\", G9 = \"Published\"), \"Databank\", \"\"))\nDatabank\n14\n7\n15\n3.9\n9\nDatabank\n30\n14\n96\n39\n31\n32\n97\n98\n99\n100\n101\n102\n12\n103\n104\n105\n40\n67\n68\n106\n107\n103\n108\n69\n68\n12\n103\n103\n109\n45\n70\n42\n9\n107\n103\n44\n41\n42\n12\n29\n103\n44\n50\n110\n111\n112\n55\n56\n57\n58\n\"L-drive,P-drive,Databank,External disk,Other\"\n\"Active,Inactive,Published\"\n\"Allas,Databank,No\"\n\"Active,Inactive,Published\"\n\"Yes,No\"",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 251205/Cleaning day 251205 external drive listing.xlsx::chunk_0000",
+      "source_file": "Cleaning day 251205/Cleaning day 251205 external drive listing.xlsx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 570,
+      "char_count": 570,
+      "word_count": 177,
+      "text": "### xl/worksheets/sheet1.xml\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n14\n20\n21\n17\n18\n22\n23\n24\n17\n25\n26\n27\n28\n29\n17\n25\n19\n14\n30\n31\n32\n33\n34\n14\n22\n35\n17\n25\n36\n27\n37\n38\n17\n25\n39\n27\n40\n17\n25\n41\n27\n42\n43\n44\n45\n27\n46\n47\n25\n48\n49\n50\n33\n34\n14\n51\n52\n53\n39\n27\n54\n55\n52\n53\n39\n27\n54\n56\n52\n53\n57\n14\n58\n59\n60\n61\n14\n62\n63\n52\n33\n64\n27\n65\n66\n59\n60\n67\n14\n68\n69\n59\n70\n67\n71\n14\n72\n73\n74\n75\n19\n14\n76\n77\n59\n70\n78\n79\n27\n80\n81\n59\n70\n82\n19\n14\n83\n84\n85\n25\n86\n87\n74\n75\n14\n88\n89\n25\n14\n90\n91\n92\n93\n52\n44\n44\n94\n14\n95\n89\n13\n39\n27\n96\n97\n\"Active,Inactive,Published\"\n\"Allas,Databank,No\"\n\"Yes,NO\"",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 251205/Dry lab cleaning day 251205.docx::chunk_0000",
+      "source_file": "Cleaning day 251205/Dry lab cleaning day 251205.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1788,
+      "char_count": 1786,
+      "word_count": 317,
+      "text": "### word/document.xml\nDry lab cleaning day tasks\nThe main aim for the dry lab cleaning should be to map and prepare data for transfer to Databank/Allas \n- if you have large files stored on physical hard drives, or the P-drives (or the L-drive), please see task 3\nDatabank can store pseudonymized data in large quantities, i.e. tCycIF data. If your project has raw tCycIF data that needs to be stored, prioritize preparing that data for transfer in the cleaning day\nTo do list to follow:\nDry lab cleaning day personal to do list\nTasks\n1 Physically clean your physical domain i.e. desk\n2 Inventory data cables and USB hubs Return ALL DATA CABLES and USB hubs not in active use- return to Deb. S\nend info about cables and hubs in your possession to Deb, emphasis on \nUSB-A/USB-C\n cables and multiport USB hubs\n3 Google Drive: Revise your project status - archive inactive projects into the Projects > ARCHIVE subfolder\nProject log updates!\n4 Update the list of external hard drives, their owners, contents, and space \n- To facilitate transfer of data to Allas/Databank ch\n4.1 Specific Guidelines for external Hard-disks: \nIn the above document, go through all of your external disks \nUnder the “\nData\n” column, add a general description of data. For the “\nType\n” column, mark either active, inactive, or published. Fill in whether you have data on the disk to be uploaded in the “\nData to be uploaded to Allas or Databank?\n” column. Document the backup status of your drive to the “\nData backed up\n” column\nOrganise your data according to the folder structure guideline below (Section 5.1). \nUpdate the project and README log files\nOwnerless external disks will be emptied and the data will be moved immediately.\n5 Folder structure reorganization - prioritize files going to Allas/Databank",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 251205/Dry lab cleaning day 251205.docx::chunk_0001",
+      "source_file": "Cleaning day 251205/Dry lab cleaning day 251205.docx",
+      "chunk_index": 1,
+      "start_char": 1538,
+      "end_char": 3322,
+      "char_count": 1782,
+      "word_count": 274,
+      "text": "e folder structure guideline below (Section 5.1). \nUpdate the project and README log files\nOwnerless external disks will be emptied and the data will be moved immediately.\n5 Folder structure reorganization - prioritize files going to Allas/Databank \n- update folder structure to match guidelines below:\nReport to Deb\n the data you have that must be uploaded to Allas (active projects) or Databank (published or inactive).\n5.1 \nGUIDELINE (\nfolders name might vary depending on the project, still try to maintain similar structure)\nProject_name (project number +_name)\n│ \n│\n├── README.txt (responsible person+date)\n│ \n│ \n├── notebooks (if needed) \n│ \n│ \n├── raw_data \n│ \n│ \n├── intermediate_data\n│ \n│ \n├── results \n│ \n│ \n└── scripts\n7 Upload all of your conference materials to Google Drive -\n Including abstracts, poster files, prepared slides for speeches, photos etc. + make a meeting memo highlighting the main points presented in the conference \nInstructions:\nGuidelines for conference abstracts and reporting\nFolder for materials: \nConference materials\n7 Network drive data mapping to standardize data structures - prioritize active projects\n:\nL-drive - \nP-drive H304 (Cell cycle data only) - Ada, Nika\nP-drive H345 - Joonas (iPDC), Inga-Maria, Maria, Aleksandra, Iga, Hanna, Zhihan, Wenqing, Sara, Ada\n19051\n114300\n1882775\n114300\nP-drive H30492 - Ziqi, Ada, Nika, Hanna, Zhihan, Iga, Aleksandra\n2333625\n295275\n3743325\n158162\n38101\n167687\n➡️\n↘️\n3743325\n222838\nSpecific Guidelines for network drives: \nFor \npersonal projects/data\n - first list all your data in your personal disk. Categorize them properly - active/inactive(archived)/published. Data that are still in use should be keppt moved Make a document listing everything, add notes if necessary, and share with \nDeb\n.\nFor",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 251205/Dry lab cleaning day 251205.docx::chunk_0002",
+      "source_file": "Cleaning day 251205/Dry lab cleaning day 251205.docx",
+      "chunk_index": 2,
+      "start_char": 3072,
+      "end_char": 3813,
+      "char_count": 741,
+      "word_count": 123,
+      "text": "- first list all your data in your personal disk. Categorize them properly - active/inactive(archived)/published. Data that are still in use should be keppt moved Make a document listing everything, add notes if necessary, and share with \nDeb\n.\nFor \nshared (project) data folders \n- make a group of 2-3 members with enough experience in lab research projects.\nIdentify active, inactive, and published data.\nList all the projects/data as active, and/or inactive/archived in a document and share the document with \nDeb.\n Make sure the data path given is correct. \nDelete all files and folders that are no longer necessary (Please make sure the data is no longer needed).\nList also the files that have been deleted (for cross-check) (optional).",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 251205/Dry lab cleaning day personal to do list.xlsx::chunk_0000",
+      "source_file": "Cleaning day 251205/Dry lab cleaning day personal to do list.xlsx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1050,
+      "char_count": 1050,
+      "word_count": 337,
+      "text": "### xl/worksheets/sheet1.xml\n0\n1\n1.0\n2.0\n3.0\n4.0\n5.0\n6.0\n7.0\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n19\n19\n19\n19\n19\n19\n20\n21\n19\n19\n22\n22\n22\n23\n24\n19\n19\n19\n22\n19\n19\n22\n25\n19\n19\n22\n22\n22\n22\n22\n26\n19\n19\n19\n22\n19\n22\n22\n27\n19\n19\n19\n22\n19\n22\n22\n28\n19\n19\n19\n19\n19\n22\n19\n29\n19\n19\n19\n22\n19\n19\n30\n19\n19\n19\n19\n19\n19\n22\n31\n19\n19\n19\n22\n19\n32\n19\n22\n19\n22\n19\n22\n22\n33\n19\n34\n19\n19\n19\n19\n19\n19\n19\n35\n19\n19\n19\n19\n22\n22\n22\n36\n19\n19\n19\n19\n19\n37\n19\n19\n19\n19\n38\n39\n22\n22\n19\n22\n22\n22\n22\n40\n19\n19\n22\n22\n41\n19\n19\n19\n19\n19\n19\n19\n42\n19\n19\n19\n19\n19\n19\n19\n43\n44\n19\n19\n19\n19\n19\n19\n19\n45\n19\n19\n19\n19\n19\n19\n22\n46\n47\n48\n19\n19\n19\n19\n22\n19\n22\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n\"Yes,Not applicable\"\n\n### xl/worksheets/sheet2.xml\n83\n2\n84\n85\n86\n87\n1.0\n88\n89\n90\n0.81\n91\n2.0\n92\n93\n94\n0.81\n3.0\n95\n96\n97\n0.81\n4.0\n98\n99\n100\n0.81\n5.0\n101\n102\n103\n0.81\n6.0\n104\n105\n7.0\n106\n107\n0.1\n8.0\n108\n109\n110\n9.0\n111\n109\n110\n10.0\n112\n\n### xl/worksheets/sheet3.xml\n113\n114\n115\n24\n116\n24\n117\n24\n118\n24\n119\n24\n120\n24\n121\n44\n122\n42\n123",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    },
+    {
+      "chunk_id": "Cleaning day 251205/Wet lab cleaning day 251205.docx::chunk_0000",
+      "source_file": "Cleaning day 251205/Wet lab cleaning day 251205.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1405,
+      "char_count": 1405,
+      "word_count": 230,
+      "text": "### word/document.xml\nWet lab cleaning day\n8:00–12:00 am - Aino & Saun\n12:00–15:00 am - Aino\nPeople expected to join the wet lab cleaning: María, Sarah, \nKürşat\nWe hope p\neople can join around 9:00 am. If possible, help with point 1, but we especially need assistance with points 2 and 3:\n2. Discuss and agree on the most convenient way to organize cold spaces\n3. Help with transferring cells int\no LN boxes and then into the LN tank\nAction points:\nGeneral wet lab cleaning\nEnsure overall cleanliness of the wet lab space - tidying, not major reorganization unless needed\nDiscard expired items (chemical cupboard, shelves).\nEnsure all chemicals have an ID code written by Saun.\nWipe down all surfaces.\nCheck shelf organization and reorganize if necessary.\nLabel shelves and drawers for improved visibility.\nFridge & freezer organization \nOrganize the following fridges and freezers: \nMain lab fridge/freezer\nCell culture fridge\nLola’s room freezer\n-80 freezer: especially omentum gel box\nDiscard expired items.\nAssign shelves for specific purposes where possible (e.g., new arrivals stored in the same location).\nCell to liquid nitrogen (LN)\nTransfer cells to LN.\nHelp with transferring cells to LN boxes and then to the LN tank.\nChemical registry\nUpdate the chemical registry.\nComplete waste forms and discard empty containers.\nLab Coats\nReturn unused lab coats.\nSend coats not in active use for washing.",
+      "section_id": "overview_cleaning",
+      "section_label": "Lab cleaning",
+      "scope": "lab",
+      "project_code": null
+    }
+  ],
+  "extraction": {
+    "total_scannable_assets": 8,
+    "extracted_records": 8,
+    "chunk_count": 12,
+    "status_counts": {
+      "extracted": 8
+    },
+    "extractor_counts": {
+      "xlsx-zip-xml": 5,
+      "docx-zip-xml": 3
+    },
+    "extension_counts": {
+      ".xlsx": 5,
+      ".docx": 3
+    },
+    "errors": [],
+    "limits": {
+      "max_text_chars_per_file": 250000,
+      "chunk_chars": 1800,
+      "chunk_overlap": 250,
+      "max_pdf_pages": 120,
+      "max_pptx_slides": 180,
+      "max_xlsx_sheets": 20,
+      "max_xlsx_rows": 200,
+      "max_file_bytes": 536870912
+    },
+    "optional_extractors_detected": {
+      "pypdf": false,
+      "PyPDF2": false,
+      "python_docx": false,
+      "python_pptx": false,
+      "openpyxl": false,
+      "beautifulsoup4": false,
+      "Pillow": true,
+      "tifffile": false,
+      "pdftotext_cli": true,
+      "libreoffice_cli": true,
+      "textutil_cli": false
+    }
+  },
+  "folder_tree": [
+    {
+      "path": "Cleaning day 20250528",
+      "file_count": 3,
+      "categories": [
+        ".docx",
+        ".xlsx"
+      ]
+    },
+    {
+      "path": "Cleaning day 251205",
+      "file_count": 5,
+      "categories": [
+        ".docx",
+        ".xlsx"
+      ]
+    }
+  ],
+  "combined_text_chars": 15152,
+  "metrics": {
+    "document_count": 8,
+    "total_assets": 8,
+    "scannable_assets": 8,
+    "extracted_document_count": 8,
+    "knowledge_chunk_count": 12,
+    "extraction_error_count": 0,
+    "figure_count": 0
+  },
+  "data_assets": {
+    "folder_tree": [
+      {
+        "path": "Cleaning day 20250528",
+        "file_count": 3,
+        "categories": [
+          "document"
+        ]
+      },
+      {
+        "path": "Cleaning day 251205",
+        "file_count": 5,
+        "categories": [
+          "document"
+        ]
+      }
+    ]
+  }
+}

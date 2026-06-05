@@ -1,0 +1,26 @@
+# Tasks - Farkki-AI Research Platform Blueprint Development
+
+- [x] Spin up local development services (Postgres, Qdrant, Neo4j, MinIO)
+- [x] Create and verify Qdrant vector collections
+- [x] Ingest PostgreSQL schema migrations (`sql/*.sql`)
+- [x] Generate synthetic patient/sample datasets
+- [x] Ingest synthetic CSV datasets into PostgreSQL tables
+- [x] Ingest project documentation & scripts as vector embeddings in Qdrant
+- [x] Upgrade FastAPI backend to connect to Postgres and Qdrant
+- [x] Implement semantic RAG search & SQL metadata tool retrieval in API
+- [x] Incorporate strict AI safety guardrails in RAG answering
+- [x] Upgrade Streamlit UI with a chat interface, dashboard metrics, and document catalog
+- [x] Verify setup end-to-end with the five target research questions
+- [x] Extend PostgreSQL Schema with platform configurations
+- [x] Implement LLM Provider client abstraction with routing fallbacks
+- [x] Build specialist agents modules (PII audit, Slurm job compiler, installation helper, log troubleshooter)
+- [x] Write and bundle local environment checker scripts
+- [x] Upgrade Streamlit dashboard tabs layout (chat, exploration, installation recipe generator, Slurm compiler, env checker tests, error log diagnostics)
+- [x] Implement dynamic context synthesis mock mode to prevent robotic outputs
+- [x] Allow runtime LLM credential override configurators in dashboard sidebar
+- [x] Run automated test suite verifying all 14 researcher test questions
+- [x] Parse Projects_Master_File.md and seed 37 real research projects
+- [x] Add AI model registry, compute resources, publications, and checklists databases
+- [x] Create FastAPI endpoints for checklists, registries, document ingestion, and readiness score
+- [x] Extend Streamlit UI with Onboarding Wizard, Model Registry, Infrastructure, and Gap Analysis tabs
+- [x] Formulate production Hostinger deployment plans and hybrid storage blueprints

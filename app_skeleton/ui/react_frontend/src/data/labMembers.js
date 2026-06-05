@@ -7,8 +7,8 @@ export const labMembers = [
   },
   {
     name: "Debashish Deb, MSc",
-    role: "Lead Bioinformatician & IT Specialist",
-    focus: "Data integration, cloud infrastructure (LUMI/CSC), multi-pass imaging pipelines, and AI copilot development.",
+    role: "IT Specialist",
+    focus: "Platform architecture, software engineering, and lab application development.",
     avatar: "💻"
   },
   {

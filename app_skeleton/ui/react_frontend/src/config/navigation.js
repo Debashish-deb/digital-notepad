@@ -49,7 +49,6 @@ export const MAIN_NAV = [
     children: [
       { id: 'billing', label: 'Billing & ordering instructions', screen: 'orders_billing', description: 'Billing, vendors, shipments, and HUS ordering.' },
       { id: 'archive', label: 'Archive', screen: 'lab_knowledge', description: 'Historical orders, quotes, and procurement archives.' },
-      { id: 'tasks', label: 'Task planner', screen: 'tasks', description: 'Cross-project tasks and assignments.' },
       { id: 'orders', label: 'Orders register', screen: 'orders_register', description: 'Reagents, sequencing, and service orders.' },
       { id: 'related', label: 'Related records', screen: 'orders_related', description: 'Linked samples, shipments, and metadata.' },
     ],
@@ -72,6 +71,7 @@ export const MAIN_NAV = [
       { id: 'vault', label: 'Raw knowledge vault', screen: 'data_storage', dataSection: 'vault', description: 'Asset registry, search, and review queue.' },
       { id: 'roots', label: 'Storage roots', screen: 'data_storage', dataSection: 'roots', description: 'DataCloud WebDAV, P-drive mount, Supabase metadata, and connector status.' },
       { id: 'ingest', label: 'Ingestion & sync', screen: 'data_storage', dataSection: 'ingest', description: 'Digitalization, vault ingest, Supabase sync (dry run), and review.' },
+      { id: 'digitalization', label: 'Data Digitalization', screen: 'digitalization', description: 'End-to-end data digitalization pipeline dashboard.' },
       { id: 'ingestion', label: 'Ingestion dashboard', screen: 'ingestion_dashboard', description: 'Vault summary metrics and digitalization run history.' },
       { id: 'knowledge', label: 'Knowledge search', screen: 'knowledge_search', description: 'Hybrid lab corpus and vault metadata search.' },
       { id: 'lab_corpus', label: 'Lab corpus browser', screen: 'lab_corpus', description: 'All database sections with processed twins and vault counts.' },
@@ -111,6 +111,7 @@ export const MAIN_NAV = [
       { id: 'pipeline', label: 'Imaging pipeline', screen: 'cycif_pipeline', description: 'Stitching, segmentation, and QC triggers.' },
       { id: 'install', label: 'Tool setup', screen: 'cycif_install', description: 'Napari, Cylinter, and viewer installs.' },
       { id: 'structure', label: 'Project structure', screen: 'cycif_structure', description: 't-CycIF folder layout validation.' },
+      { id: 'knowledge', label: 'Knowledge Base', screen: 'cycif_knowledge', description: 't-CycIF extracted documents and SOPs.' },
     ],
   },
   {

@@ -9,9 +9,10 @@ firebase-adminsdk*.json
 **/service-account*.json
 
 # Local lab evidence (never commit)
-database/
 ../OMEIA-database/
 OMEIA-database/
+DIGITIZED_OUTPUT_ULTRA/
+*.zip
 
 # Python
 __pycache__/
@@ -34,7 +35,6 @@ app_skeleton/data/ingestion_reports/
 app_skeleton/data/raw_asset_inventory.csv
 app_skeleton/data/raw_asset_inventory.json
 app_skeleton/data/processed_projects/
-app_skeleton/ui/react_frontend/public/processed/
 app_skeleton/data/processor.pid
 app_skeleton/data/processor_state.json
 
