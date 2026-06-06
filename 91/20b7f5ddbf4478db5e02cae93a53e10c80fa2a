@@ -1,0 +1,25 @@
+app_skeleton/api/publication_fetcher.py
+  s_7734c56e18b6fe::t_299189a572821d 3,6,8-9,18,23-62,71,75,101-102,107-142,146,149,167,175-183,208-251,253,255-267,269-301
+docs/33_AI_LAB_ASSISTANT_PRODUCTION_PLAN.md
+  s_7734c56e18b6fe::t_1870cde20bcd02 366
+scripts/setup_research_knowledge.sh
+  s_7734c56e18b6fe::t_528d2aa03e9b93 66
+app_skeleton/api/research_knowledge_store.py
+  s_7734c56e18b6fe::t_c4fac96bc15e8f 541-568,577
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "9120b7f5ddbf4478db5e02cae93a53e10c80fa2a",
+  "prompts": {},
+  "sessions": {
+    "s_7734c56e18b6fe": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "7663a32a-4248-423c-9cf8-7343c6c57ba2",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
