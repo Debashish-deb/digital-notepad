@@ -1,0 +1,11 @@
+app_skeleton/ui/react_frontend/src/i18n/guiStrings/index.js
+  ai_agent 12
+app_skeleton/ui/react_frontend/src/i18n/constants.js
+  ai_agent 1,6,8,10-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "0ae466d17713c86b3b31b19c47dc321d8ebeafb9",
+  "prompts": {}
+}
