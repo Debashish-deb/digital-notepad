@@ -16,6 +16,9 @@ def log_denied_access(email: str, resource: str, action: str, ip_address: str = 
 def log_file_download(email: str, logical_path: str) -> None:
     logger.info(f"SECURITY: File access - User {email} downloaded {logical_path}")
 
+def log_image_access(email: str, asset_id: str, action: str) -> None:
+    logger.info(f"SECURITY: Image access - User {email} {action} asset {asset_id}")
+
 def log_delete_operation(email: str, resource_type: str, resource_id: str) -> None:
     logger.info(f"SECURITY: Delete operation - User {email} deleted {resource_type} {resource_id}")
 

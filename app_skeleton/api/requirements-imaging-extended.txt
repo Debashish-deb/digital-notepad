@@ -1,0 +1,7 @@
+# Extended imaging — optional pip extras (OME-Zarr prep, batch tiling helpers).
+-r requirements-imaging-core.txt
+zarr>=2.16
+fsspec>=2024.1.0
+dask[array]>=2024.1.0
+scikit-image>=0.22
+deeptile>=2.0

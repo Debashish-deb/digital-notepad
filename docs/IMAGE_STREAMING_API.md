@@ -1,0 +1,78 @@
+# Image Streaming API
+
+All endpoints require platform authentication (`require_platform_user`). Admin endpoints require admin role.
+
+## Asset endpoints
+
+### `GET /api/assets/{asset_id}/image/metadata`
+
+Returns format and cached `image_metadata`. No filesystem paths.
+
+### `GET /api/assets/{asset_id}/image/manifest`
+
+Viewer-oriented manifest:
+
+```json
+{
+  "asset_id": "asset_abc",
+  "format": "tiff",
+  "streaming_status": "tile_ready",
+  "width": 2048,
+  "height": 2048,
+  "pyramid_levels": 3,
+  "tile_size": 256,
+  "tile_ready": true,
+  "thumbnail_url": "/api/assets/asset_abc/image/thumbnail",
+  "metadata_url": "/api/assets/asset_abc/image/metadata",
+  "stream_url": "/api/assets/asset_abc/image/stream",
+  "viewer_route": "#viewer/image/asset_abc"
+}
+```
+
+### `GET /api/assets/{asset_id}/image/thumbnail`
+
+Returns `image/jpeg`. Generates on first request via `tifffile` region read + Pillow resize. Cached per asset_id.
+
+### `GET /api/assets/{asset_id}/image/tile`
+
+Query parameters:
+
+| Param | Default | Max |
+|-------|---------|-----|
+| `level` | 0 | 32 |
+| `x`, `y` | 0 | — |
+| `width`, `height` | 256 | 512 |
+| `channel`, `z`, `t`, `series` | 0 | — |
+| `format` | `png` | `png` or `jpeg` |
+
+Returns 400 if tile exceeds 512×512 pixels.
+
+### `GET /api/assets/{asset_id}/image/stream`
+
+Full file stream. Supports `Range: bytes=start-end` (206 Partial Content).
+
+## Admin endpoints
+
+### `GET /api/admin/image-streaming/readiness`
+
+Counts TIFF assets, inspection coverage, job queue status, dependency availability.
+
+### `POST /api/admin/image-streaming/inspect`
+
+Body: `{ "asset_ids": ["asset_abc", ...] }` (max 100). Runs synchronous header inspect per asset.
+
+### `POST /api/admin/image-streaming/retry-failed`
+
+Resets failed jobs to `pending`.
+
+## Document library integration
+
+`GET /api/document-library/preview/{asset_id}` includes for `.tif`/`.tiff`/`.ome.tif`:
+
+- `is_streamable_image: true`
+- `image_metadata` from cache
+- `thumbnail_url`, `viewer_url`
+
+## Rate limiting
+
+Not enforced in code yet. Recommended: per-user counter on tile/stream endpoints in production (see `IMAGE_SECURITY_NOTES.md`).

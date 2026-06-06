@@ -1,0 +1,8 @@
+# CycIF / stitching tools — conda-forge linux-amd64 only (not on linux-aarch64).
+name: omeia-imaging
+channels:
+  - conda-forge
+dependencies:
+  - bioformats2raw
+  - raw2ometiff
+  - ashlar
