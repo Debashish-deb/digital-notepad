@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none" aria-hidden="true">
-  <ellipse cx="120" cy="52" rx="64" ry="18" stroke="#0d9488" stroke-width="2" opacity="0.45"/>
-  <path d="M56 52v36c0 9.94 28.65 18 64 18s64-8.06 64-18V52" stroke="#0d9488" stroke-width="2" opacity="0.4"/>
-  <ellipse cx="120" cy="88" rx="64" ry="18" stroke="#0d9488" stroke-width="2" opacity="0.45"/>
-  <path d="M56 88v36c0 9.94 28.65 18 64 18s64-8.06 64-18V88" stroke="#0d9488" stroke-width="2" opacity="0.4"/>
-  <ellipse cx="120" cy="124" rx="64" ry="18" stroke="#0d9488" stroke-width="2" opacity="0.45"/>
-  <path d="M56 124v28c0 9.94 28.65 18 64 18s64-8.06 64-18v-28" stroke="#0d9488" stroke-width="2" opacity="0.35"/>
-  <path d="M168 64c12 8 20 18 20 28M168 100c12 8 20 18 20 28" stroke="#0d9488" stroke-width="1.2" opacity="0.25" stroke-dasharray="4 4"/>
-  <circle cx="188" cy="48" r="6" fill="#0d9488" opacity="0.3"/>
-  <circle cx="200" cy="72" r="4" fill="#0d9488" opacity="0.22"/>
+  <ellipse cx="120" cy="52" rx="64" ry="18" stroke="#5eead4" stroke-width="2" opacity="0.57"/>
+  <path d="M56 52v36c0 9.94 28.65 18 64 18s64-8.06 64-18V52" stroke="#5eead4" stroke-width="2" opacity="0.52"/>
+  <ellipse cx="120" cy="88" rx="64" ry="18" stroke="#5eead4" stroke-width="2" opacity="0.57"/>
+  <path d="M56 88v36c0 9.94 28.65 18 64 18s64-8.06 64-18V88" stroke="#5eead4" stroke-width="2" opacity="0.52"/>
+  <ellipse cx="120" cy="124" rx="64" ry="18" stroke="#5eead4" stroke-width="2" opacity="0.57"/>
+  <path d="M56 124v28c0 9.94 28.65 18 64 18s64-8.06 64-18v-28" stroke="#5eead4" stroke-width="2" opacity="0.47"/>
+  <path d="M168 64c12 8 20 18 20 28M168 100c12 8 20 18 20 28" stroke="#5eead4" stroke-width="1.2" opacity="0.37" stroke-dasharray="4 4"/>
+  <circle cx="188" cy="48" r="6" fill="#5eead4" opacity="0.42"/>
+  <circle cx="200" cy="72" r="4" fill="#5eead4" opacity="0.34"/>
 </svg>

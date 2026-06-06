@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none" aria-hidden="true">
-  <rect x="40" y="48" width="72" height="56" rx="6" stroke="#2563eb" stroke-width="2" opacity="0.4"/>
-  <rect x="128" y="32" width="72" height="56" rx="6" stroke="#2563eb" stroke-width="2" opacity="0.35"/>
-  <rect x="84" y="112" width="72" height="56" rx="6" stroke="#2563eb" stroke-width="2" opacity="0.45"/>
-  <path d="M112 76l16 20M160 88l-8 24M112 112l-8-8" stroke="#2563eb" stroke-width="1.5" opacity="0.3"/>
-  <circle cx="76" cy="76" r="8" fill="#2563eb" opacity="0.25"/>
-  <circle cx="164" cy="60" r="8" fill="#2563eb" opacity="0.2"/>
-  <circle cx="120" cy="140" r="8" fill="#2563eb" opacity="0.28"/>
-  <path d="M48 168h144" stroke="#2563eb" stroke-width="1" opacity="0.2" stroke-dasharray="6 4"/>
+  <rect x="40" y="48" width="72" height="56" rx="6" stroke="#60a5fa" stroke-width="2" opacity="0.52"/>
+  <rect x="128" y="32" width="72" height="56" rx="6" stroke="#60a5fa" stroke-width="2" opacity="0.47"/>
+  <rect x="84" y="112" width="72" height="56" rx="6" stroke="#60a5fa" stroke-width="2" opacity="0.57"/>
+  <path d="M112 76l16 20M160 88l-8 24M112 112l-8-8" stroke="#60a5fa" stroke-width="1.5" opacity="0.42"/>
+  <circle cx="76" cy="76" r="8" fill="#60a5fa" opacity="0.37"/>
+  <circle cx="164" cy="60" r="8" fill="#60a5fa" opacity="0.32"/>
+  <circle cx="120" cy="140" r="8" fill="#60a5fa" opacity="0.4"/>
+  <path d="M48 168h144" stroke="#60a5fa" stroke-width="1" opacity="0.32" stroke-dasharray="6 4"/>
 </svg>

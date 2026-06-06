@@ -4106,28 +4106,34 @@ html[data-theme="dark"] .pcl-figure-img {
 .module-cover-hero__overlay {
   position: absolute;
   z-index: 0;
-  width: clamp(7rem, 34%, 13.5rem);
+  width: clamp(6.25rem, 30%, 11.5rem);
   height: auto;
-  max-height: 78%;
+  max-height: min(58%, calc(100% - 3.75rem));
   object-fit: contain;
-  opacity: 0.52;
+  object-position: center bottom;
+  opacity: 0.58;
+  filter: brightness(1.4) saturate(1.25);
   pointer-events: none;
   user-select: none;
 }
 
 .module-cover-hero__overlay--bottom-right {
-  right: clamp(-0.25rem, 1.5vw, 0.75rem);
-  bottom: clamp(-0.5rem, -1vw, 0);
+  right: clamp(0.75rem, 3vw, 2rem);
+  bottom: clamp(0.35rem, 1.5vw, 0.85rem);
+  transform: translateY(0.5rem);
 }
 
 .module-cover-hero__overlay--top-right {
-  right: clamp(0.25rem, 2vw, 1rem);
-  top: clamp(0.5rem, 2vw, 1.25rem);
+  right: clamp(0.75rem, 3vw, 2rem);
+  top: clamp(3.5rem, 8vw, 4.5rem);
+  max-height: min(52%, calc(100% - 4.5rem));
+  object-position: center top;
 }
 
 .module-cover-hero__overlay--bottom-left {
-  left: clamp(0.25rem, 2vw, 1rem);
-  bottom: clamp(-0.5rem, -1vw, 0);
+  left: clamp(0.75rem, 3vw, 2rem);
+  bottom: clamp(0.35rem, 1.5vw, 0.85rem);
+  transform: translateY(0.5rem);
 }
 
 .module-cover-hero__inner {
@@ -4296,6 +4302,25 @@ html[data-theme="dark"] .pcl-figure-img {
 .module-shell--compact .module-cover-hero__tab {
   padding: 0.38rem 0.65rem;
   font-size: 0.7rem;
+}
+
+@media (max-width: 640px) {
+  .module-cover-hero__overlay {
+    width: clamp(5.5rem, 36%, 9.5rem);
+    max-height: min(50%, calc(100% - 4.25rem));
+    opacity: 0.55;
+  }
+
+  .module-cover-hero__overlay--bottom-right,
+  .module-cover-hero__overlay--bottom-left {
+    bottom: 0.5rem;
+    transform: translateY(0.35rem);
+  }
+
+  .module-cover-hero__overlay--top-right {
+    top: clamp(3.75rem, 12vw, 4.75rem);
+    max-height: min(46%, calc(100% - 5rem));
+  }
 }
 
 .overview-intro-body {
