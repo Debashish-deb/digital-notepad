@@ -8,23 +8,32 @@ export async function getChatStatus() {
   return apiFetch('/api/chat/status', { method: 'GET', timeoutMs: 12_000 });
 }
 
+export async function getChatModels() {
+  return apiFetch('/api/chat/models', { method: 'GET', timeoutMs: 12_000 });
+}
+
 export async function sendChatMessage({
   message,
   project_codes = [],
+  provider = null,
+  model = null,
   timeoutMs = 120_000,
 } = {}) {
   const text = String(message || '').trim();
   if (!text) {
     throw new Error('Message is required');
   }
+  const body = {
+    message: text,
+    project_codes,
+    stream: false,
+  };
+  if (provider) body.provider = provider;
+  if (model) body.model = model;
   return apiFetch('/api/chat', {
     method: 'POST',
     timeoutMs,
-    body: {
-      message: text,
-      project_codes,
-      stream: false,
-    },
+    body,
   });
 }
 
@@ -34,6 +43,8 @@ export async function sendChatMessage({
 export async function streamChatMessage({
   message,
   project_codes = [],
+  provider = null,
+  model = null,
   onMetadata,
   onDelta,
   onDone,
@@ -50,10 +61,14 @@ export async function streamChatMessage({
   if (token) headers.Authorization = `Bearer ${token}`;
   else if (isAuthSkipActive()) headers['X-Platform-Auth-Skip'] = AUTH_SKIP_HEADER_VALUE;
 
+  const payload = { message: text, project_codes, stream: true };
+  if (provider) payload.provider = provider;
+  if (model) payload.model = model;
+
   const response = await fetch(`${getApiUrl()}/api/chat/stream`, {
     method: 'POST',
     headers,
-    body: JSON.stringify({ message: text, project_codes, stream: true }),
+    body: JSON.stringify(payload),
     signal,
   });
 

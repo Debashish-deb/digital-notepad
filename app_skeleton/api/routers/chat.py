@@ -9,9 +9,10 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
+from app_skeleton.api.chat_model_catalog import build_chat_model_catalog
 from app_skeleton.api.chat_service import answer_chat
 from app_skeleton.api.common import LOGGER, SourceInfo, llm_client, qdrant_client, rag_agent, DB_CONN
-from app_skeleton.api.llm_client import LLMClient
+from app_skeleton.api.llm_client import LLMClient, _env
 from app_skeleton.api.search_service import SearchService
 from app_skeleton.security.auth import require_platform_user
 from app_skeleton.security.permissions import require_role
@@ -25,6 +26,8 @@ class ChatRequest(BaseModel):
     message: str
     project_codes: List[str] = Field(default_factory=list)
     stream: bool = False
+    provider: Optional[str] = None
+    model: Optional[str] = None
 
 
 class ChatResponse(BaseModel):
@@ -48,14 +51,30 @@ class ChatResponse(BaseModel):
     reason: str = ""
 
 
-def _chat_llm() -> LLMClient:
-    """Resolve chat-specific provider without exposing secrets to callers."""
-    chat_provider = os.getenv("CHAT_LLM_PROVIDER", "").strip().lower()
-    if not chat_provider:
+def _chat_llm(provider: Optional[str] = None, model: Optional[str] = None) -> LLMClient:
+    """Resolve chat provider/model — UI overrides env defaults per request."""
+    chat_provider = (provider or os.getenv("CHAT_LLM_PROVIDER", "").strip().lower() or llm_client.provider).lower()
+    if chat_provider not in LLMClient._KNOWN_PROVIDERS:
+        chat_provider = llm_client.provider
+
+    if not provider and not model and not os.getenv("CHAT_LLM_PROVIDER", "").strip():
         return llm_client
 
     active = LLMClient()
     active.provider = chat_provider
+
+    if chat_provider == "gemini":
+        active.api_key = _env("GEMINI_API_KEY", "")
+        active.base_url = _env("GEMINI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
+        active.model = (model or _env("GEMINI_MODEL", "gemini-3.5-flash")).strip()
+    elif chat_provider == "ollama":
+        ollama_cfg = active._ollama_endpoint()
+        active.api_key = ollama_cfg["api_key"]
+        active.base_url = ollama_cfg["base_url"]
+        active.model = (model or _env("OLLAMA_MODEL", "qwen2.5:3b")).strip()
+    elif model:
+        active.model = model.strip()
+
     active._init_client()
     return active
 
@@ -71,19 +90,27 @@ def _public_chat_payload(result: dict[str, Any]) -> dict[str, Any]:
 @router.get("/status")
 def chat_status(user: dict = Depends(require_platform_user)) -> dict[str, Any]:
     active = _chat_llm()
+    catalog = build_chat_model_catalog()
     return {
         "chat_provider": active.provider,
         "chat_model": active.model,
+        "default_key": catalog.get("default_key"),
         "stream_enabled": os.getenv("CHAT_STREAM_ENABLED", "true").strip().lower() in {"1", "true", "yes", "on"},
         "max_sources": int(os.getenv("CHAT_MAX_SOURCES", "12") or "12"),
         "llm": active.public_status(),
+        "model_catalog": catalog,
     }
+
+
+@router.get("/models")
+def chat_models(user: dict = Depends(require_platform_user)) -> dict[str, Any]:
+    return build_chat_model_catalog()
 
 
 @router.post("", response_model=ChatResponse)
 def chat_message(req: ChatRequest, user: dict = Depends(require_platform_user)) -> ChatResponse:
     require_role(user, ["researcher", "viewer", "editor", "admin"])
-    active_llm = _chat_llm()
+    active_llm = _chat_llm(req.provider, req.model)
     search_svc = _search_service(active_llm)
 
     result = answer_chat(
@@ -104,7 +131,7 @@ def _sse_event(payload: dict[str, Any]) -> str:
 @router.post("/stream")
 def chat_stream(req: ChatRequest, user: dict = Depends(require_platform_user)) -> StreamingResponse:
     require_role(user, ["researcher", "viewer", "editor", "admin"])
-    active_llm = _chat_llm()
+    active_llm = _chat_llm(req.provider, req.model)
     search_svc = _search_service(active_llm)
 
     base = answer_chat(

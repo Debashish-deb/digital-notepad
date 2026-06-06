@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useStat
 import {
   AlertTriangle,
   Bot,
-  Layers,
+  ChevronDown,
   Loader2,
   RefreshCw,
   Send,
@@ -38,6 +38,31 @@ const SUGGESTED_PROMPTS = [
   'What CycIF gating workflow does the lab use?',
   'Summarize SPACEStat spatial statistics steps',
 ];
+
+const CHAT_MODEL_STORAGE_KEY = 'omeia.chat.modelKey';
+
+function parseModelKey(key) {
+  const raw = String(key || '').trim();
+  const idx = raw.indexOf(':');
+  if (idx <= 0) return { provider: null, model: null };
+  return { provider: raw.slice(0, idx), model: raw.slice(idx + 1) };
+}
+
+function readStoredModelKey() {
+  try {
+    return localStorage.getItem(CHAT_MODEL_STORAGE_KEY) || '';
+  } catch {
+    return '';
+  }
+}
+
+function writeStoredModelKey(key) {
+  try {
+    if (key) localStorage.setItem(CHAT_MODEL_STORAGE_KEY, key);
+  } catch {
+    /* ignore */
+  }
+}
 
 function makeMessage(role, content, extra = {}) {
   return {
@@ -158,50 +183,6 @@ function TypingIndicator() {
   );
 }
 
-function ProjectScopePicker({ projects, selected, onToggle }) {
-  const options = projects.length
-    ? projects
-    : [{ project_code: 'EyeMT' }, { project_code: 'SPACE' }, { project_code: 'KRAS' }];
-
-  return (
-    <section className="assistant-scope-panel" aria-label="RAG scope project selection">
-      <div className="assistant-scope-panel__header">
-        <div>
-          <span className="assistant-eyebrow">RAG scope</span>
-          <h3>Project memory</h3>
-        </div>
-        <div className="assistant-scope-count">
-          <Layers size={14} aria-hidden="true" />
-          {selected.length || 0} active
-        </div>
-      </div>
-
-      <div className="assistant-project-chip-grid">
-        {options.map((project) => {
-          const code = normalizeProjectCode(project);
-          if (!code) return null;
-
-          const checked = selected.includes(code);
-
-          return (
-            <label
-              key={code}
-              className={`assistant-project-chip${checked ? ' is-active' : ''}`}
-            >
-              <input
-                type="checkbox"
-                checked={checked}
-                onChange={() => onToggle(code)}
-              />
-              <span>{code}</span>
-            </label>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
 export default function ChatWidget({
   dbProjects = [],
   API_URL,
@@ -217,6 +198,8 @@ export default function ChatWidget({
   const [chatModel, setChatModel] = useState('');
   const [chatHealthy, setChatHealthy] = useState(null);
   const [streamEnabled, setStreamEnabled] = useState(false);
+  const [modelCatalog, setModelCatalog] = useState({ groups: [], options: [], default_key: '' });
+  const [selectedModelKey, setSelectedModelKey] = useState(() => readStoredModelKey());
 
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
@@ -278,6 +261,18 @@ export default function ChatWidget({
         setChatModel(status?.chat_model || status?.llm?.model || '');
         setChatHealthy(status?.llm?.healthy ?? null);
         setStreamEnabled(status?.stream_enabled !== false);
+        const catalog = status?.model_catalog || {};
+        setModelCatalog(catalog);
+        const stored = readStoredModelKey();
+        const defaultKey = catalog?.default_key || '';
+        const validKeys = new Set((catalog?.options || []).map((opt) => opt.key));
+        const nextKey = stored && validKeys.has(stored) ? stored : defaultKey;
+        if (nextKey) {
+          setSelectedModelKey(nextKey);
+          const picked = parseModelKey(nextKey);
+          if (picked.provider) setChatProvider(picked.provider);
+          if (picked.model) setChatModel(picked.model);
+        }
       })
       .catch(() => {
         if (!cancelled) {
@@ -304,15 +299,21 @@ export default function ChatWidget({
     });
   }, [dbProjects, projectCodes, selProjs.length]);
 
-  const toggleProject = useCallback((code) => {
-    setSelProjs((current) => {
-      if (current.includes(code)) {
-        const next = current.filter((item) => item !== code);
-        return next.length ? next : current;
-      }
+  const swimmingTopics = useMemo(() => {
+    const codes = dbProjects.map(normalizeProjectCode).filter(Boolean);
+    if (codes.length) return codes;
+    return ['EyeMT', 'SPACE', 'KRAS', 'iPDC_1.0', 'TLS', 'HGSC_scRNAseq', 'SPACEstat'];
+  }, [dbProjects]);
 
-      return [...current, code];
-    });
+  const selectedModel = useMemo(() => parseModelKey(selectedModelKey), [selectedModelKey]);
+
+  const handleModelChange = useCallback((event) => {
+    const key = event.target.value;
+    setSelectedModelKey(key);
+    writeStoredModelKey(key);
+    const picked = parseModelKey(key);
+    if (picked.provider) setChatProvider(picked.provider);
+    if (picked.model) setChatModel(picked.model);
   }, []);
 
   const sendQuestion = useCallback(
@@ -329,6 +330,8 @@ export default function ChatWidget({
 
       const assistantMessage = makeMessage('assistant', '', { streaming: true });
       let streamedAssistantId = null;
+      const llmProvider = selectedModel.provider || chatProvider;
+      const llmModel = selectedModel.model || chatModel || null;
 
       try {
         if (streamEnabled) {
@@ -341,6 +344,8 @@ export default function ChatWidget({
           await streamChatMessage({
             message: textToSend,
             project_codes: selProjs,
+            provider: llmProvider,
+            model: llmModel,
             onMetadata: (meta) => {
               streamMeta = meta;
               if (meta?.provider) setChatProvider(meta.provider);
@@ -388,6 +393,8 @@ export default function ChatWidget({
         const data = await sendChatMessage({
           message: textToSend,
           project_codes: selProjs,
+          provider: llmProvider,
+          model: llmModel,
         });
 
         const formatted = formatAssistantPayload(data);
@@ -466,7 +473,7 @@ export default function ChatWidget({
         setLoading(false);
       }
     },
-    [loading, selProjs, chatProvider, streamEnabled],
+    [loading, selProjs, chatProvider, chatModel, selectedModel, streamEnabled],
   );
 
   useEffect(() => {
@@ -572,16 +579,11 @@ export default function ChatWidget({
           title="OMEIA AI Lab Assistant"
           subtitle="RAG copilot and spatial-biology research interface — indexed protocols, lab knowledge, vector search, project docs, prompt templates, and model registry."
           stats={heroStats}
+          swimmingTopics={swimmingTopics}
           compact
           className="ai3d-hero--module-ai"
         />
       </Suspense>
-
-      <ProjectScopePicker
-        projects={dbProjects}
-        selected={selProjs}
-        onToggle={toggleProject}
-      />
 
       <div className="chat-container assistant-chat-container">
         <div
@@ -714,6 +716,39 @@ export default function ChatWidget({
         </div>
 
         <form onSubmit={handleSend} className="chat-input-area assistant-chat-input-area">
+          <div className="assistant-chat-composer">
+          <div className="assistant-chat-model-picker" title="Choose LLM for this message">
+            <label className="assistant-chat-model-picker__label" htmlFor="assistant-chat-model-select">
+              Model
+            </label>
+            <div className="assistant-chat-model-picker__control">
+              <select
+                id="assistant-chat-model-select"
+                className="assistant-chat-model-select"
+                value={selectedModelKey}
+                onChange={handleModelChange}
+                disabled={loading || !(modelCatalog?.options || []).length}
+                aria-label="Choose chat model"
+              >
+                {(modelCatalog?.groups || []).map((group) => (
+                  <optgroup
+                    key={group.provider}
+                    label={`${group.label}${group.healthy === false ? ' (offline)' : ''}`}
+                  >
+                    {(group.models || []).map((m) => {
+                      const key = `${group.provider}:${m.id}`;
+                      return (
+                        <option key={key} value={key} disabled={group.healthy === false}>
+                          {m.label}
+                        </option>
+                      );
+                    })}
+                  </optgroup>
+                ))}
+              </select>
+              <ChevronDown size={14} className="assistant-chat-model-picker__chevron" aria-hidden />
+            </div>
+          </div>
           <div className="assistant-chat-input-wrap">
             <textarea
               ref={textareaRef}
@@ -727,6 +762,7 @@ export default function ChatWidget({
               aria-label="Ask OMEIA Research Copilot"
             />
             <span className="assistant-chat-input-hint">Enter to send · Shift+Enter for newline</span>
+          </div>
           </div>
 
           <button

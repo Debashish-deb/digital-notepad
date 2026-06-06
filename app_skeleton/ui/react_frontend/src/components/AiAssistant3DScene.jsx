@@ -7,6 +7,7 @@ import {
   Network,
   Sparkles,
 } from 'lucide-react';
+import SwimmingProjectTopics from './SwimmingProjectTopics.jsx';
 import './AiAssistant3D.css';
 
 export default function AiAssistant3DScene({
@@ -14,6 +15,7 @@ export default function AiAssistant3DScene({
   title = 'OMEIA AI Lab Assistant',
   subtitle = 'A spatial-biology copilot for research memory, RAG retrieval, and protocol intelligence.',
   stats = [],
+  swimmingTopics = [],
   compact = false,
   merged = false,
   toolbar = null,
@@ -26,6 +28,7 @@ export default function AiAssistant3DScene({
       className={`ai3d-hero${compact ? ' ai3d-hero--compact' : ''}${merged ? ' ai3d-hero--merged' : ''}${className ? ` ${className}` : ''}`}
       aria-label={title}
     >
+      {swimmingTopics.length > 0 ? <SwimmingProjectTopics topics={swimmingTopics} /> : null}
       {toolbar ? <div className="ai3d-hero__toolbar">{toolbar}</div> : null}
 
       <div className="ai3d-hero__main">
