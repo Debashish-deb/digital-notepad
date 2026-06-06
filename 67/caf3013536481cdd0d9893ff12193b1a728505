@@ -1,0 +1,22 @@
+scripts/mac_test_tailscale_ollama.sh
+  s_d8ca0dcf385045::t_50266e8e16c582 26-42,45,48
+scripts/linux_fix_tailscale_inbound.sh
+  s_d8ca0dcf385045::t_f336f45dea5df4 51-54
+  s_d8ca0dcf385045::t_f0f65a003127ff 1-50,55-63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "67caf3013536481cdd0d9893ff12193b1a728505",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
