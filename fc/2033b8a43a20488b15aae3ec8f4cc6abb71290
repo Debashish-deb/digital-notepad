@@ -1,0 +1,67 @@
+docker/biomedical-models/embeddings/main.py
+  s_d8ca0dcf385045::t_70bab6cf959315 1-67
+docker/biomedical-models/requirements-gpu.txt
+  s_d8ca0dcf385045::t_99f5210cd36e99 1-9
+app_skeleton/api/routers/biomedical_models.py
+  s_d8ca0dcf385045::t_8e81b3ab66970a 1-57
+docker/biomedical-models/biogpt/main.py
+  s_d8ca0dcf385045::t_360679e693c1d4 1-38
+docker/biomedical-models/shared/fastapi_base.py
+  s_d8ca0dcf385045::t_2d121cce35420b 1-113
+docker/biomedical-models/Dockerfile.gpu
+  s_d8ca0dcf385045::t_eb9568ad4113bd 1-17
+docker/biomedical-models/gateway/main.py
+  s_d8ca0dcf385045::t_b1f16a7e324df1 1-55
+app_skeleton/api/biomedical_models_client.py
+  s_d8ca0dcf385045::t_e0b277bc4246eb 1-93
+docker/biomedical-models/txgemma/main.py
+  s_d8ca0dcf385045::t_5c6a2e8c46df41 1-38
+docker/biomedical-models/singlecell_base/main.py
+  s_d8ca0dcf385045::t_f63f9520a3fd38 1-68
+configs/.env.example
+  s_d8ca0dcf385045::t_91847a9232d913 260-275
+scripts/setup_biomodels_docker.sh
+  s_d8ca0dcf385045::t_0df0294d4001a8 1-38
+app_skeleton/api/docker_service_client.py
+  s_d8ca0dcf385045::t_09c6b4152a9331 168-183,185-204
+  s_d8ca0dcf385045::t_307af606a94b41 129-131
+docker/biomedical-models/requirements-cpu.txt
+  s_d8ca0dcf385045::t_2dc584e88465ac 5-6
+  s_d8ca0dcf385045::t_62dae96305062f 1-4,7-10
+app_skeleton/api/main.py
+  s_d8ca0dcf385045::t_590a33004972e5 15
+  s_d8ca0dcf385045::t_f54e3dec3d92c1 56
+docs/BIOMEDICAL_MODELS_DOCKER.md
+  s_d8ca0dcf385045::t_66858e325c2742 1-97
+docker/biomedical-models/Dockerfile.singlecell
+  s_d8ca0dcf385045::t_2ced31680fa828 1-15
+docker/biomedical-models/shared/model_registry.json
+  s_d8ca0dcf385045::t_1ec62e9e1c955d 1-79
+docker/biomedical-models/Dockerfile.cpu
+  s_d8ca0dcf385045::t_85f467eca0200e 1-21
+docker-compose.biomodels.yml
+  s_d8ca0dcf385045::t_4774cd57fd5cbb 17-18
+  s_d8ca0dcf385045::t_86bd3f39ab3e4a 1-16,19-43,45-186
+  s_d8ca0dcf385045::t_553207165cede6 44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "fc2033b8a43a20488b15aae3ec8f4cc6abb71290",
+  "prompts": {},
+  "humans": {
+    "h_0b448993649ed1": {
+      "author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  },
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
