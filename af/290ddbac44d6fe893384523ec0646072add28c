@@ -1,0 +1,31 @@
+app_skeleton/api/routers/chat.py
+  s_613e3eb8f4bf56::t_ac0868a1389737 69
+  s_613e3eb8f4bf56::t_8292f613fcdebb 90
+configs/.env.example
+  s_613e3eb8f4bf56::t_0e729f972f2a8a 179-180
+app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx
+  s_613e3eb8f4bf56::t_f77b47cdebfcb3 1,4,10,31,33,36-41,77-78,82-90,95-104,123-132,135,141-150,207-212,219-237,247,267-268,271-274,336,356,377,390,413-422,437-444,448,450,452,483-484,504-510,514-519,521-525,528-556,559-594,596,598-599,602,604-606,609-616,619-620,624-637,643,645-649
+app_skeleton/ui/react_frontend/src/components/AiAssistantChat.css
+  s_613e3eb8f4bf56::t_a7ed17ace52d5c 14,23,25-26,32-39,42-57,59-69,72-98,101-106,110-111,115-121,125-126,133-134,136-138,142-162,166-186,189,192,201-210,215,219-220,224-229,231,235-238,241-251,255-257,260-262,269,273,275,279-412,414-437,441-449,452,455-485,488-489
+app_skeleton/api/llm_client.py
+  s_613e3eb8f4bf56::t_00aca6285d3adb 255-279,285-314
+  s_613e3eb8f4bf56::t_0c5a5a990a5bf9 186
+  s_613e3eb8f4bf56::t_db43143a5c278a 353-389
+  s_613e3eb8f4bf56::t_b15c77734824c4 108
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "af290ddbac44d6fe893384523ec0646072add28c",
+  "prompts": {},
+  "sessions": {
+    "s_613e3eb8f4bf56": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "64073089-384e-4c0a-9aba-6af69f157a81",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
