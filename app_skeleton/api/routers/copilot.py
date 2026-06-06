@@ -60,7 +60,7 @@ def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> Qu
     mode = (req.mode or "documentation_only").strip().lower()
     if mode != "search_only":
         require_role(user, ["researcher", "viewer", "editor", "admin"])
-    # 1. Initialize temporary LLM client dynamically if configured from frontend
+
     active_llm = llm_client
     if req.llm_provider and req.llm_provider != "mock":
         active_llm = LLMClient()
@@ -70,37 +70,18 @@ def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> Qu
         active_llm.base_url = req.llm_base_url or active_llm.base_url
         active_llm._init_client()
 
-    from app_skeleton.api.privacy_guardrails import allow_external_llm, guard_for_llm, is_external_provider
-
-    configured_provider = active_llm.provider or "mock"
-    safe_question, audit, limitations = guard_for_llm(req.question, configured_provider)
-
-    if is_external_provider(configured_provider) and not allow_external_llm(audit, configured_provider):
-        return QuestionResponse(
-            answer="Error: User query blocked by local privacy guardrails because patient-identifiable data (PII) was detected and LLM is configured to utilize external cloud APIs. De-identify patient data and try again.",
-            limitations=limitations,
-            sources=[],
-            database_counts={},
-            is_safe=False,
-            provider=configured_provider,
-            effective_provider=configured_provider,
-            model=active_llm.model,
-            fallback_used=False,
-            synthesis_mode="mock",
-        )
-
     if mode == "search_only":
         from app_skeleton.api.search_service import SearchService
 
         search_svc = SearchService(db_conn=DB_CONN, qdrant=qdrant_client, llm=llm_client)
-        codes = ",".join(req.project_codes) if req.project_codes else None
-        unified = search_svc.unified_search(
-            safe_question,
-            project_codes=codes,
-            mode="hybrid",
-            limit=20,
-            user_role=user.get("role"),
-            user_email=user.get("email"),
+        from app_skeleton.api.chat_intent import classify_chat_intent
+
+        intent_decision = classify_chat_intent(req.question)
+        unified = search_svc.hits_for_copilot(
+            req.question,
+            intent=intent_decision.intent,
+            project_codes=req.project_codes,
+            limit=int(os.getenv("CHAT_MAX_SOURCES", "12") or "12"),
         )
         sources = [
             SourceInfo(
@@ -113,7 +94,7 @@ def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> Qu
                 nav=h.nav.model_dump() if h.nav else None,
                 bucket=h.bucket,
             )
-            for h in unified.hits
+            for h in unified
         ]
         return QuestionResponse(
             answer="",
@@ -121,191 +102,59 @@ def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> Qu
             sources=sources,
             database_counts={},
             is_safe=True,
-            search_hits=[h.model_dump() for h in unified.hits],
+            search_hits=[h.model_dump() for h in unified],
+            intent=intent_decision.intent,
+            use_rag=True,
+            show_sources=True,
+            require_citations=False,
+            answer_style=intent_decision.answer_style,
+            reason=intent_decision.reason,
         )
 
-    # 3. Fetch structured stats from Postgres
-    db_data = query_postgres_metadata(req.project_codes)
-
-    clinical_block = _clinical_context_for_question(safe_question, req.project_codes or [])
-    
-    # 4. Retrieve via shared SearchService + project-scoped RAGAgent
+    from app_skeleton.api.chat_service import answer_chat
     from app_skeleton.api.search_service import SearchService
 
     search_svc = SearchService(db_conn=DB_CONN, qdrant=qdrant_client, llm=active_llm)
-    unified_hits = search_svc.hits_for_copilot(
-        safe_question, project_codes=req.project_codes, limit=12
+    result = answer_chat(
+        req.question,
+        project_codes=req.project_codes,
+        user=user,
+        llm=active_llm,
+        search_svc=search_svc,
+        rag_agent=RAGAgent(qdrant_client, active_llm),
     )
 
-    temp_rag = RAGAgent(qdrant_client, active_llm)
-    rag_sources = temp_rag.retrieve(safe_question, req.project_codes)
+    sources = [SourceInfo(**s) for s in result.get("sources", [])]
 
-    seen_ids = {h.id for h in unified_hits}
-    retrieved_sources: list[dict] = []
-    for hit in unified_hits:
-        retrieved_sources.append({
-            "title": hit.title,
-            "source_type": hit.source_type or hit.bucket,
-            "source_uuid": hit.document_code or hit.relative_path or hit.id,
-            "chunk_id": hit.id,
-            "text_preview": hit.snippet,
-            "score": hit.score,
-            "nav": hit.nav.model_dump() if hit.nav else None,
-            "bucket": hit.bucket,
-        })
-
-    for src in rag_sources:
-        cid = src.get("chunk_id")
-        if cid and cid in seen_ids:
-            continue
-        if cid:
-            seen_ids.add(cid)
-        retrieved_sources.append({
-            "title": src["title"],
-            "source_type": src["source_type"],
-            "source_uuid": src["source_uuid"],
-            "chunk_id": cid,
-            "text_preview": src["text_preview"],
-            "score": src.get("score", 0.0),
-            "nav": None,
-            "bucket": "lab",
-        })
-    retrieved_sources = retrieved_sources[:12]
-
-    sources = [
-        SourceInfo(
-            title=src["title"],
-            source_type=src["source_type"],
-            source_uuid=src["source_uuid"],
-            chunk_id=src["chunk_id"],
-            text_preview=src["text_preview"],
-            score=src["score"],
-            nav=src.get("nav"),
-            bucket=src.get("bucket"),
-        ) for src in retrieved_sources
-    ]
-    search_hits_payload = [h.model_dump() for h in unified_hits[:12]]
-
-    has_research = any(h.bucket == "research" for h in unified_hits)
-
-    # 5. Build prompt and generate response using active_llm
-    if has_research:
-        from app_skeleton.api.answer_grounding_service import (
-            SYSTEM_PROMPT as RESEARCH_SYSTEM_PROMPT,
-            build_grounded_prompt,
-            validate_answer_sources,
-        )
-
-        grounding_hits = []
-        for hit in unified_hits:
-            meta = hit.metadata or {}
-            grounding_hits.append({
-                "title": hit.title,
-                "source_type": hit.source_type or hit.bucket,
-                "source_url": meta.get("source_url"),
-                "doi": meta.get("doi"),
-                "pmid": meta.get("pmid"),
-                "snippet": hit.snippet,
-            })
-        for src in rag_sources:
-            cid = src.get("chunk_id")
-            if cid and cid in seen_ids:
-                continue
-            grounding_hits.append({
-                "title": src["title"],
-                "source_type": src["source_type"],
-                "source_url": None,
-                "doi": None,
-                "pmid": None,
-                "snippet": src["text_preview"],
-            })
-        grounding_hits = grounding_hits[:12]
-
-        system_prompt = (
-            RESEARCH_SYSTEM_PROMPT
-            + "\n\nReport patient/sample statistics exactly as provided in database counts. Do NOT invent figures."
-        )
-        user_content = (
-            f"Database counts:\n"
-            f"- Patient total: {db_data.get('patient_count', 0)}\n"
-            f"- Sample total: {db_data.get('sample_count', 0)}\n"
-            f"- Projects: {db_data.get('project_samples', {})}\n"
-            f"- Modalities: {db_data.get('modality_samples', {})}\n\n"
-            f"{('Structured clinical/feature analysis:\\n' + clinical_block + '\\n\\n') if clinical_block else ''}"
-            + build_grounded_prompt(safe_question, grounding_hits)
-        )
-    else:
-        context_str = ""
-        for i, src in enumerate(sources):
-            context_str += f"[{i+1}] Source: {src.title} (Type: {src.source_type})\n{src.text_preview}\n\n"
-
-        system_prompt = (
-            "You are the OMEIA Clinical-Spatial Biology Copilot, an expert AI platform assistant.\n"
-            "Your task is to answer the researcher's query based on the database counts and documentation snippets.\n"
-            "Follow these rules:\n"
-            "1. Report patient/sample statistics exactly as provided in the database counts. Do NOT invent/hallucinate figures.\n"
-            "2. If code installation commands or scripts are requested, return structured code blocks detailing required parameters.\n"
-            "3. Cite references [1], [2], etc., corresponding to context blocks.\n"
-            "4. Remain precise, professional, and highlight limitations."
-        )
-
-        user_content = (
-            f"Database counts:\n"
-            f"- Patient total: {db_data.get('patient_count', 0)}\n"
-            f"- Sample total: {db_data.get('sample_count', 0)}\n"
-            f"- Projects: {db_data.get('project_samples', {})}\n"
-            f"- Modalities: {db_data.get('modality_samples', {})}\n\n"
-            f"{('Structured clinical/feature analysis:\\n' + clinical_block + '\\n\\n') if clinical_block else ''}"
-            f"Documentation Context:\n"
-            f"{context_str}\n"
-            f"Question: {safe_question}"
-        )
-
-    answer = active_llm.generate(user_content, system_prompt)
-
-    if has_research:
-        validation = validate_answer_sources(answer, grounding_hits)
-        if validation.get("warning"):
-            limitations.append(validation["warning"])
-
-    from app_skeleton.api.chat_service import _llm_provenance
-
-    provenance = _llm_provenance(active_llm, configured_provider=configured_provider)
-    if provenance["synthesis_mode"] == "mock":
-        limitations.append("Running in local mock-synthesis mode because no LLM_API_KEY is configured.")
-
-    # Audit conversations to DB
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
-                # Add default user conversation log
                 cur.execute(
                     "INSERT INTO platform.conversation (title, project_code) VALUES (%s, %s) RETURNING conversation_id;",
-                    ("Research Query Conversation", req.project_codes[0] if req.project_codes else "ALL")
+                    ("Research Query Conversation", req.project_codes[0] if req.project_codes else "ALL"),
                 )
                 conv_id = cur.fetchone()[0]
-                
-                # Insert messages
                 cur.execute(
                     "INSERT INTO platform.message (conversation_id, role, content) VALUES (%s, 'user', %s);",
-                    (conv_id, safe_question)
+                    (conv_id, req.question),
                 )
                 cur.execute(
                     "INSERT INTO platform.message (conversation_id, role, content, retrieved_chunks) VALUES (%s, 'assistant', %s, %s);",
-                    (conv_id, answer, psycopg.types.json.Jsonb([s.model_dump() for s in sources]))
+                    (conv_id, result.get("answer", ""), psycopg.types.json.Jsonb([s.model_dump() for s in sources])),
                 )
     except Exception as exc:
         LOGGER.warning("Failed to log message to Postgres database: %s", exc)
 
-    return QuestionResponse(
-        answer=answer,
-        limitations=limitations,
-        sources=sources,
-        database_counts=db_data,
-        is_safe=True,
-        search_hits=search_hits_payload,
-        **provenance,
+    public_keys = (
+        "answer", "limitations", "database_counts", "is_safe", "search_hits",
+        "provider", "effective_provider", "model", "fallback_used", "synthesis_mode",
+        "intent", "use_rag", "show_sources", "require_citations", "answer_style",
+        "reason", "blocked_by_guardrail",
     )
+    payload = {k: result.get(k) for k in public_keys if k in result}
+    payload["sources"] = sources
+    payload.setdefault("limitations", [])
+    return QuestionResponse(**payload)
 
 @router.post("/install_guide")
 def install_guide(req: InstallRequest, user: dict = Depends(require_platform_user)) -> dict:

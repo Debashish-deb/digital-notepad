@@ -1,11 +1,13 @@
 """Smoke tests for /api/chat status and guardrails (no live Gemini required)."""
 from __future__ import annotations
 
+import re
 import unittest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from fastapi.testclient import TestClient
 
+from app_skeleton.api.answer_grounding_service import enforce_citations, validate_answer_sources
 from app_skeleton.api.llm_client import LLMClient
 from app_skeleton.api.main import app
 from app_skeleton.api.privacy_guardrails import audit_message, guard_for_llm
@@ -104,6 +106,76 @@ class TestChatApi(unittest.TestCase):
         self.assertTrue(data.get("fallback_used"))
         self.assertEqual(data.get("effective_provider"), "mock")
         self.assertNotEqual(data.get("provider"), "gemini")
+
+    @patch("app_skeleton.api.routers.chat.require_role")
+    def test_off_topic_returns_labeled_refusal(self, _role_patch) -> None:
+        response = self.client.post(
+            "/api/chat",
+            json={
+                "message": "What is the quantum chromodynamics of quark-gluon plasma in 12 dimensions?",
+                "project_codes": ["SPACE"],
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        answer = (data.get("answer") or "").lower()
+        self.assertTrue(
+            "lab" in answer or "copilot" in answer or "general knowledge" in answer,
+            msg=data.get("answer"),
+        )
+        self.assertTrue(any("off-topic" in (n or "").lower() for n in data.get("limitations") or []))
+
+    @patch("app_skeleton.api.routers.chat.require_role")
+    @patch("app_skeleton.api.routers.chat.rag_agent")
+    @patch("app_skeleton.api.routers.chat._chat_llm")
+    def test_empty_corpus_honest_answer(self, chat_llm_patch, rag_patch, _role_patch) -> None:
+        mock_llm = LLMClient()
+        mock_llm.provider = "mock"
+        chat_llm_patch.return_value = mock_llm
+        rag_patch.retrieve.return_value = []
+
+        with patch("app_skeleton.api.routers.chat.SearchService") as search_cls:
+            search_instance = MagicMock()
+            search_instance.hits_for_copilot.return_value = []
+            search_cls.return_value = search_instance
+
+            response = self.client.post(
+                "/api/chat",
+                json={"message": "What is MHC class II in HGSC?", "project_codes": ["SPACE"]},
+            )
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertIn("indexed evidence", (data.get("answer") or "").lower())
+        self.assertEqual(data.get("sources"), [])
+
+
+class TestCitationEnforcement(unittest.TestCase):
+    def test_enforce_citations_reprompts_then_appends(self) -> None:
+        hits = [{"title": "Paper A", "snippet": "MHC class II"}]
+        calls: list[str] = []
+
+        def fake_gen(prompt: str, _system: str) -> str:
+            calls.append(prompt)
+            if len(calls) == 1:
+                return "MHC class II is important in HGSC."
+            if "IMPORTANT" in prompt:
+                return "MHC class II is important in HGSC [1]."
+            return "fallback"
+
+        answer, notes = enforce_citations(
+            "MHC class II is important in HGSC.",
+            hits,
+            generate_fn=fake_gen,
+            user_content="question",
+            system_prompt="sys",
+        )
+        self.assertTrue(re.search(r"\[1\]", answer))
+        self.assertLessEqual(len(calls), 2)
+
+    def test_validate_detects_missing_citations(self) -> None:
+        result = validate_answer_sources("No markers here.", [{"title": "A"}])
+        self.assertFalse(result["has_citations"])
+        self.assertIsNotNone(result["warning"])
 
 
 class TestAuthFixtures(unittest.TestCase):

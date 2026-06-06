@@ -361,6 +361,13 @@ class QuestionResponse(BaseModel):
     model: str = "mock-model"
     fallback_used: bool = False
     synthesis_mode: str = "mock"
+    intent: str = "general_chat"
+    use_rag: bool = False
+    show_sources: bool = False
+    require_citations: bool = False
+    answer_style: str = "natural"
+    reason: str = ""
+    blocked_by_guardrail: bool = False
 
 class InstallRequest(BaseModel):
     tool_name: str

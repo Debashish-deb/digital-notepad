@@ -41,6 +41,11 @@ class TestChatIntent(unittest.TestCase):
         self.assertFalse(decision.use_rag)
         self.assertFalse(decision.show_sources)
 
+    def test_ingest_rag_phrase_not_protocol(self) -> None:
+        decision = classify_chat_intent("How do I ingest documents into RAG?")
+        self.assertEqual(decision.intent, "document_ingestion_help")
+        self.assertNotEqual(decision.intent, "protocol_question")
+
     def test_find_gse_uses_rag(self) -> None:
         decision = classify_chat_intent("Find GSE211956")
         self.assertEqual(decision.intent, "search_request")
@@ -50,6 +55,41 @@ class TestChatIntent(unittest.TestCase):
         decision = classify_chat_intent("GSE211956")
         self.assertEqual(decision.intent, "search_request")
         self.assertTrue(decision.use_rag)
+
+    def test_farkkila_lab_overview_is_research(self) -> None:
+        decision = classify_chat_intent("What does Färkkilä Lab study?")
+        self.assertEqual(decision.intent, "research_question")
+        self.assertTrue(decision.use_rag)
+        self.assertTrue(decision.require_citations)
+
+    def test_spatial_transcriptomics_research(self) -> None:
+        decision = classify_chat_intent("What datasets exist for spatial transcriptomics?")
+        self.assertEqual(decision.intent, "research_question")
+        self.assertTrue(decision.use_rag)
+
+    def test_explicit_search_request(self) -> None:
+        decision = classify_chat_intent("Where is the GeoMx DSP manual?")
+        self.assertEqual(decision.intent, "search_request")
+        self.assertTrue(decision.use_rag)
+
+    def test_tls_research_not_protocol(self) -> None:
+        decision = classify_chat_intent("Explain tertiary lymphoid structures in ovarian cancer")
+        self.assertEqual(decision.intent, "research_question")
+        self.assertNotEqual(decision.intent, "protocol_question")
+
+    def test_visium_research(self) -> None:
+        decision = classify_chat_intent("How is Visium used in HGSC studies?")
+        self.assertEqual(decision.intent, "research_question")
+
+    def test_short_generic_skips_rag(self) -> None:
+        decision = classify_chat_intent("thanks")
+        self.assertEqual(decision.intent, "smalltalk")
+        self.assertFalse(decision.use_rag)
+
+    def test_patient_id_sensitive(self) -> None:
+        decision = classify_chat_intent("Patient #ABC123 needs review")
+        self.assertEqual(decision.intent, "sensitive_private")
+        self.assertFalse(decision.use_rag)
 
 
 if __name__ == "__main__":

@@ -7,11 +7,16 @@ from unittest.mock import patch
 from fastapi.testclient import TestClient
 
 from app_skeleton.api.main import app
+from tests.auth_fixtures import apply_auth_override, clear_auth_override
 
 
 class TestCopilotPlatform(unittest.TestCase):
     def setUp(self) -> None:
+        apply_auth_override("researcher")
         self.client = TestClient(app)
+
+    def tearDown(self) -> None:
+        clear_auth_override()
 
     def test_health(self) -> None:
         response = self.client.get("/health")
@@ -48,6 +53,25 @@ class TestCopilotPlatform(unittest.TestCase):
         res = response.json()
         self.assertTrue(res.get("is_safe"))
         self.assertIsInstance(res.get("sources"), list)
+        self.assertIn("intent", res)
+
+    @patch("app_skeleton.api.routers.copilot.require_role")
+    def test_chat_ask_intent_parity(self, _role_patch) -> None:
+        question = "What does Färkkilä Lab study?"
+        chat_r = self.client.post(
+            "/api/chat",
+            json={"message": question, "project_codes": ["SPACE"], "stream": False},
+        )
+        ask_r = self.client.post(
+            "/ask",
+            json={"question": question, "project_codes": ["SPACE"], "mode": "documentation_only"},
+        )
+        self.assertEqual(chat_r.status_code, 200)
+        self.assertEqual(ask_r.status_code, 200)
+        chat_j = chat_r.json()
+        ask_j = ask_r.json()
+        self.assertEqual(chat_j.get("intent"), ask_j.get("intent"))
+        self.assertEqual(chat_j.get("use_rag"), ask_j.get("use_rag"))
 
     @patch("app_skeleton.api.routers.copilot.require_role")
     def test_install_recipes(self, _role_patch) -> None:

@@ -49,7 +49,7 @@ The platform has **six partially overlapping search systems**, not one. Each use
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                    AI LAB ASSISTANT (parallel path)                         │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ ChatWidget → POST /ask                                                      │
+│ ChatWidget → POST /api/chat (canonical) · POST /ask delegates to same orchestration │
 │   ├─ RAGAgent.retrieve() → Qdrant doc_chunks (project-scoped vectors)       │
 │   ├─ search_lab_knowledge() → Qdrant corpus=lab_operations + PG fallback    │
 │   ├─ query_postgres_metadata() → patient/sample counts                      │

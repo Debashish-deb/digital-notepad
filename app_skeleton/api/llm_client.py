@@ -20,7 +20,9 @@ import hashlib
 import logging
 import math
 import os
+import random
 import re
+import time
 from dataclasses import dataclass
 from typing import Any, Iterator, List
 
@@ -313,26 +315,42 @@ class LLMClient:
         ]
         models = self._gemini_model_candidates(cfg.model) if cfg.provider == "gemini" else [cfg.model]
         last_exc: Exception | None = None
+        max_retries = _bounded_int(_env("LLM_RATE_LIMIT_RETRIES", "3"), 3, 1, 6)
+        base_delay = _bounded_float(_env("LLM_RATE_LIMIT_BASE_DELAY", "2.0"), 2.0, 0.5, 30.0)
 
         for model in models:
-            try:
-                response = client.chat.completions.create(
-                    model=model,
-                    messages=messages,
-                    temperature=self.temperature,
-                    max_tokens=self.max_tokens,
-                )
-                content = response.choices[0].message.content
-                if model != cfg.model:
-                    LOGGER.info("Gemini model fallback succeeded: %s -> %s", cfg.model, model)
-                self.model = model
-                return (content or "").strip()
-            except Exception as exc:
-                last_exc = exc
-                if cfg.provider == "gemini" and self._is_model_unavailable(exc):
-                    LOGGER.warning("Gemini model %s unavailable, trying fallback: %s", model, exc)
-                    continue
-                raise
+            for attempt in range(max_retries):
+                try:
+                    response = client.chat.completions.create(
+                        model=model,
+                        messages=messages,
+                        temperature=self.temperature,
+                        max_tokens=self.max_tokens,
+                    )
+                    content = response.choices[0].message.content
+                    if model != cfg.model:
+                        LOGGER.info("Gemini model fallback succeeded: %s -> %s", cfg.model, model)
+                    self.model = model
+                    return (content or "").strip()
+                except Exception as exc:
+                    last_exc = exc
+                    err_text = str(exc).lower()
+                    is_rate_limit = "429" in err_text or "rate" in err_text or "quota" in err_text
+                    if is_rate_limit and attempt < max_retries - 1:
+                        delay = base_delay * (2 ** attempt) + random.uniform(0, 0.5)
+                        LOGGER.warning(
+                            "LLM rate limit on %s (attempt %s/%s); sleeping %.1fs",
+                            cfg.provider,
+                            attempt + 1,
+                            max_retries,
+                            delay,
+                        )
+                        time.sleep(delay)
+                        continue
+                    if cfg.provider == "gemini" and self._is_model_unavailable(exc):
+                        LOGGER.warning("Gemini model %s unavailable, trying fallback: %s", model, exc)
+                        break
+                    raise
 
         if last_exc:
             raise last_exc

@@ -67,9 +67,11 @@ function formatAssistantPayload(data) {
   const intent = data?.intent || 'general_chat';
   const sources = showSources && Array.isArray(data?.sources) ? data.sources : [];
   const searchHits = showSources && Array.isArray(data?.search_hits) ? data.search_hits : [];
-  const limitations = showSources && Array.isArray(data?.limitations)
+  const limitations = Array.isArray(data?.limitations)
     ? data.limitations.filter(Boolean)
     : [];
+  const synthesisMode = data?.synthesis_mode || 'mock';
+  const effectiveProvider = data?.effective_provider || data?.provider || 'mock';
 
   return {
     content: answer,
@@ -80,8 +82,10 @@ function formatAssistantPayload(data) {
     showSources,
     databaseCounts: data?.database_counts || {},
     isSafe: data?.is_safe !== false,
-    provider: data?.provider,
-    model: data?.model,
+    provider: effectiveProvider,
+    synthesisMode,
+    model: data?.model || '',
+    fallbackUsed: Boolean(data?.fallback_used),
   };
 }
 
@@ -387,7 +391,10 @@ export default function ChatWidget({
         });
 
         const formatted = formatAssistantPayload(data);
-        if (data?.provider) setChatProvider(data.provider);
+        if (data?.effective_provider || data?.provider) {
+          setChatProvider(data.effective_provider || data.provider);
+        }
+        if (data?.model) setChatModel(data.model);
 
         setMessages((prev) => [
           ...prev,
@@ -401,6 +408,8 @@ export default function ChatWidget({
             databaseCounts: formatted.databaseCounts,
             isSafe: formatted.isSafe,
             provider: formatted.provider || chatProvider,
+            synthesisMode: formatted.synthesisMode,
+            model: formatted.model,
           }),
         ]);
       } catch (error) {
@@ -505,11 +514,13 @@ export default function ChatWidget({
   const providerLabel = useMemo(() => formatChatProviderLabel(chatProvider), [chatProvider]);
 
   const providerBadge = useMemo(() => {
+    const mode = chatProvider === 'mock' ? 'mock' : 'live';
+    const label = formatChatProviderLabel(chatProvider);
     if (chatModel && chatProvider !== 'mock') {
       const shortModel = chatModel.replace(/^gemini-/, '').replace(/-flash.*/, '');
-      return `${providerLabel} · ${shortModel}`;
+      return `${label} · ${shortModel} (${mode})`;
     }
-    return providerLabel;
+    return `${label} (${mode})`;
   }, [chatModel, chatProvider, providerLabel]);
 
   const heroStats = useMemo(
@@ -614,10 +625,16 @@ export default function ChatWidget({
                   <span className="chat-bubble__meta-end">
                     {message.role === 'assistant' && !message.isError ? (
                       <span
-                        className={`assistant-chat-provider-pill${(message.provider || chatProvider) === 'mock' ? ' is-mock' : ' is-live'}`}
-                        title="Server-side LLM provider"
+                        className={`assistant-chat-provider-pill${
+                          (message.synthesisMode || message.provider || chatProvider) === 'mock'
+                          || message.synthesisMode === 'mock'
+                            ? ' is-mock'
+                            : ' is-live'
+                        }`}
+                        title={`Synthesis: ${message.synthesisMode || 'unknown'} · Provider: ${formatChatProviderLabel(message.provider || chatProvider)}`}
                       >
                         {formatChatProviderLabel(message.provider || chatProvider)}
+                        {message.synthesisMode === 'mock' ? ' · mock' : message.synthesisMode === 'live' ? ' · live' : ''}
                       </span>
                     ) : null}
                     {message.createdAt && !message.isWelcome ? (
@@ -630,7 +647,7 @@ export default function ChatWidget({
 
                 <MarkdownLite text={message.content} />
 
-                {message.showSources !== false && message.limitations?.length ? (
+                {message.limitations?.length ? (
                   <div className="chat-limitations">
                     <AlertTriangle size={13} aria-hidden="true" />
                     <span>{message.limitations.join(' ')}</span>

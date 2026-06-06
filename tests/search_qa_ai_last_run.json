@@ -1,0 +1,2931 @@
+{
+  "run_at": "2026-06-06T12:48:57.194897+00:00",
+  "branch": "cursor/unified-search-ai-lab-assistant",
+  "mode": "in_process_testclient",
+  "gemini_key_configured": true,
+  "providers_seen": {
+    "mock": 57
+  },
+  "synthesis_modes_seen": {
+    "mock": 57
+  },
+  "http_errors": 0,
+  "gold_set_size": 57,
+  "release_gates": {
+    "intent_accuracy_pct": 86.0,
+    "intent_gate_pass": false,
+    "citation_compliance_pct": 100.0,
+    "citation_gate_pass": true,
+    "pii_gate_pass": true,
+    "research_bucket_gate_pass": false,
+    "provider_honesty_pct": 100.0,
+    "provider_honesty_gate_pass": true,
+    "overall_pass_pct": 29.8,
+    "overall_gate_pass": false
+  },
+  "env_info": {
+    "auth_role": "researcher",
+    "chat_status_code": 200,
+    "chat_status": {
+      "chat_provider": "mock",
+      "chat_model": "mock-model",
+      "stream_enabled": true,
+      "max_sources": 12,
+      "llm": {
+        "provider": "mock",
+        "model": "mock-model",
+        "base_url_configured": false,
+        "api_key_configured": false,
+        "fallback_providers": [
+          "gemini",
+          "groq",
+          "openai",
+          "openrouter",
+          "together",
+          "deepseek",
+          "ollama",
+          "mock"
+        ],
+        "healthy": true,
+        "last_provider_errors": [],
+        "last_synthesis": {
+          "effective_provider": "mock",
+          "model": "mock-model",
+          "fallback_used": false,
+          "synthesis_mode": "mock"
+        }
+      }
+    },
+    "total_elapsed_s": 80.8
+  },
+  "infra": {
+    "research_kb_status_code": 200,
+    "research_kb": {
+      "qdrant_connected": true,
+      "collection": "research_knowledge",
+      "vector_name": "text",
+      "schema_ok": true,
+      "points_count": 224,
+      "source_count": 217,
+      "document_count": 217,
+      "chunk_count": 221,
+      "dataset_count": 3,
+      "entity_count": 10,
+      "relation_count": 0,
+      "warnings": []
+    },
+    "unified_search_code": 200,
+    "unified_search_sample": {
+      "total_hits": 10,
+      "buckets": {
+        "lab": 1,
+        "vault": 9
+      },
+      "mode": "hybrid"
+    },
+    "unified_search_gse": {
+      "total_hits": 10,
+      "buckets": {
+        "research": 4,
+        "lab": 6
+      }
+    }
+  },
+  "chat_results": [
+    {
+      "id": "st01",
+      "category": "smalltalk",
+      "question": "hi",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "smalltalk",
+      "answer_style": "brief_conversational",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "st02",
+      "category": "smalltalk",
+      "question": "what can you do?",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "smalltalk",
+      "answer_style": "brief_conversational",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "st03",
+      "category": "smalltalk",
+      "question": "thanks",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "smalltalk",
+      "answer_style": "brief_conversational",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "rs01",
+      "category": "research",
+      "question": "What does Färkkilä Lab study?",
+      "status_code": 200,
+      "elapsed_s": 2.0,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] ESGO2026 ePoster Anni H.pptx\n[2] NatCancer_Song_2026.docx\n[3] Motivation_letter_190424_AdaJunquera.docx.pdf\n[4] 1_research_plan_template_Ziqi_v1.docx\n[5] Project 12SPACE exp2 CycIF 1.12.2025\n[6] Project 12SPACE exp2 CycIF 1.12.2025\n[7] Last updated 10.9.2020, Anastasiya Chernenko\n[8] AS:NRO 3377213 Oncosys/Group Färkkilä",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_spatial": false,
+        "term_ovarian": false,
+        "term_HGSC": false,
+        "term_immune": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'spatial' not in answer/sources preview",
+        "key term 'ovarian' not in answer/sources preview",
+        "key term 'HGSC' not in answer/sources preview",
+        "key term 'immune' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs02",
+      "category": "research",
+      "question": "What is MHC class II in HGSC?",
+      "status_code": 200,
+      "elapsed_s": 1.98,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 12,
+      "search_hits_count": 7,
+      "buckets": {
+        "research": 3,
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Single-Cell Spatial Atlas of High-Grade Serous Ovarian Cancer Uncovers MHC Class II as a Key Predictor of Spatial Tumor Ecosystems and Clinical Outcomes.\n[2] Single-cell spatial atlas of high-grade serous ovarian cancer unveils MHC class II as a key driver of spatial tumor ecosystems and clinical outcomes\n[3] Single-Cell Spatial Atlas of High-Grade Serous Ovarian Cancer Uncovers MHC Class II as a Key Predictor of Spatial Tumor Ecosystems and Clinical Outcomes.\n[4] NatCancer_Song_2026.docx\n[5] Poster_OC-Insights_2026_2026_MH.pdf\n[6] Oncosys-OVA Sample Collection Meeting 241119.pptx\n[7] Oncosys-OVA Sample Collection Meeting 241119.pptx\n[8] RESEARCH PLAN",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": true,
+        "term_MHC": true,
+        "term_class II": true,
+        "term_HGSC": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "key term 'HGSC' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs03",
+      "category": "research",
+      "question": "Explain tertiary lymphoid structures in ovarian cancer",
+      "status_code": 200,
+      "elapsed_s": 2.0,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 12,
+      "search_hits_count": 8,
+      "buckets": {
+        "research": 4,
+        "file": 4,
+        "lab": 4
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] An Introduction to Tertiary Lymphoid Structures in Cancer\n[2] Defining High Endothelial Venules and Tertiary Lymphoid Structures in Cancer\n[3] Multiplex Immunohistochemistry for Image Analysis of Tertiary Lymphoid Structures in Cancer\n[4] Tertiary Lymphoid Structures Are Activated by IL-33 in Pancreatic Cancer\n[5] Poster-Ovcasymposium-2026_HannaElomaa.pdf\n[6] Research_plan_190424_AdaJunquera.pdf\n[7] Research_plan_190424_AdaJunquera.docx\n[8] Research_plan_190424_AdaJunquera.docx",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": true,
+        "term_tertiary": true,
+        "term_lymphoid": true,
+        "term_TLS": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "key term 'TLS' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs04",
+      "category": "research",
+      "question": "What datasets does the lab use for spatial transcriptomics?",
+      "status_code": 200,
+      "elapsed_s": 2.03,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] European Society of Spatial Biology 2024.docx\n[2] European Society of Spatial Biology 2024.docx\n[3] Lab meeting presentation guidelines.docx\n[4] MAN-10154-06_GeoMx_DSP_Data_Analysis_User_Manual_for_software_3-1-2.pdf\n[5] Proj 4 10 Expansion CycIF autoCycIF template\n[6] Proj 4 10 Expansion CycIF autoCycIF template\n[7] Proj 4 10 Expansion CycIF autoCycIF template\n[8] European Society of Spatial Biology 2024",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_spatial": true,
+        "term_transcriptomics": false,
+        "term_dataset": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'transcriptomics' not in answer/sources preview",
+        "key term 'dataset' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs05",
+      "category": "research",
+      "question": "How is Visium used in HGSC studies?",
+      "status_code": 200,
+      "elapsed_s": 2.0,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Oncosys-OVA Sample Collection Meeting 241119.pptx\n[2] CancerImmunologyResearch_Chap_2026.docx\n[3] NatCancer_Song_2026.docx\n[4] NatCancer_Song_2026.docx\n[5] Lines 59-63 - add references to support the claims.\n[6] LN tank number 4 , Färkkilä lab, Haartman, 91 boxes\n[7] LN tank number 4 , Färkkilä lab, Haartman, 91 boxes\n[8] Enzymes",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_Visium": false,
+        "term_HGSC": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'Visium' not in answer/sources preview",
+        "key term 'HGSC' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs06",
+      "category": "research",
+      "question": "What is the role of GeoMx in spatial biology?",
+      "status_code": 200,
+      "elapsed_s": 1.96,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Postdoc Fellowship in Spatial Biology and Multiomics_ Interview with hiring committee.docx\n[2] QS_MK2550-10_MAN-10133-06-1_GeoMx-NGS_Readout_R3_BSB.pdf\n[3] Experimental postdoc ad to mailing lists.docx\n[4] ESGO_2026_EllaA.pdf\n[5] GeoMx® DSP\n[6] FOR RESEARCH USE ONLY. Not for use in diagnostic procedures. August 2023\n[7] Buffer and Reagent Transfer from FIMM\n[8] Bruker Spatial Biology, Inc.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_GeoMx": true,
+        "term_spatial": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs07",
+      "category": "research",
+      "question": "Describe tCyCIF in the Färkkilä lab context",
+      "status_code": 200,
+      "elapsed_s": 1.99,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Chen_application.pdf\n[2] AdaJunquera_poster-Cellcycle_AACROvarian2023.pptx\n[3] ESGO2026_AndreasH.pdf\n[4] Teaser slides_2022-05-11_AF_MS.pptx\n[5] UPD 6.5.2026 JJ\n[6] FarkkiLab management and leadership structure\n[7] ORDERS 2019 Färkkilä lab\n[8] Project 12SPACE exp2 CycIF 1.12.2025",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "bucket_lab": true,
+        "term_tCyCIF": false,
+        "term_CycIF": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'tCyCIF' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs08",
+      "category": "research",
+      "question": "What publications cover MHC class II in ovarian cancer?",
+      "status_code": 200,
+      "elapsed_s": 1.92,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] NatCancer_Song_2026.docx\n[2] NatCancer_Song_2026.docx\n[3] TENK-CV_180125_AdaJunquera.docx\n[4] research_plan_Liang.docx\n[5] 8766.1996\n[6] Oncosys-OVA\n[7] 8766.1996\n[8] ONCOSYS OVA cell culture supernatant minus80C",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_MHC": false,
+        "term_publication": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'MHC' not in answer/sources preview",
+        "key term 'publication' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs09",
+      "category": "research",
+      "question": "What is spatial biology in the context of HGSC?",
+      "status_code": 200,
+      "elapsed_s": 1.98,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Postdoc Fellowship in Spatial Biology and Multiomics_ Interview with hiring committee.docx\n[2] Abstract-Ovcasymposium-2026_SaraPalomino.docx\n[3] Abstract-Ovcasymposium-2026_SaraPalomino.docx\n[4] 010_A multi-omic atlas of human embryonic skeletal development – case studies.pdf\n[5] ORDERS 2019 Färkkilä lab\n[6] 3479.0124\n[7] 3479.0124\n[8] Clinical whole-genome sequencing from routine",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_spatial": true,
+        "term_HGSC": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'HGSC' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs10",
+      "category": "research",
+      "question": "Summarize the lab research on tumor microenvironment",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "app_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": false,
+        "rag_correct": false,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_microenvironment": false,
+        "term_tumor": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "intent expected research_question, got app_help",
+        "use_rag expected True, got False",
+        "missing expected bucket research"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "pr01",
+      "category": "protocol",
+      "question": "How do I run Ashlar stitching in tCyCIF?",
+      "status_code": 200,
+      "elapsed_s": 1.75,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *How do I run Ashlar stitching in tCyCIF?*\n\n- **[1] Reporting of tCycIF Image processing.docx (Type: file)** — \n- **[2] How to master your Masters thesis.docx (Type: file)** — \n- **[3] 03_CG000584_Xenium_Analyzer_UserGuide_RevJ.pdf (Type: file)** — \n- **[4] ESGO2026_AndreasH.pdf (Type: file)** — \n- **[5] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2) (Type: lab_policy_document)** — eets/sheet2.xml\n23\n\n### xl/worksheets/sheet3.xml\n0\n1\n2\n3\n4\n5\n6\n9.0\n24\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n- **[6] 2024 12 19 EyeMT 9 with TLS 7 GeoMxslides Sectioning Order (Type: lab_policy_document)** — 1.0\n48\n6.0\n86\n213\n9.0\n1.0\n49\n1.0\n93\n214\n9.0\n1.0\n49\n2.0\n93\n215\n9.0\n1.0\n49\n3.0\n93\n216\n9.0\n1.0\n49\n4.0\n93\n217\n9.0\n1.0\n49\n5.0\n93\n218\n9.0\n1.0\n49\n6.0\n93\n219\n9.0\n1.0\n27\n1.0\n86\n220\n9.0\n1.0\n27\n2.0\n86\n221\n9.0\n1.0\n27\n3.0\n86\n222\n9.0\n1.0\n27\n4.0\n86\n223\n9.0\n1.0\n27\n5.0\n86\n224\n9.0\n1.0\n27\n6.0\n86\n225\n9.0\n1.0\n28\n1.0\n93\n226\n9.0\n1.0\n28\n2.0\n93\n227\n9.0\n1.0\n28\n3.0\n93\n228\n9.0\n1.0\n28\n4.0\n93\n229\n9.0\n1.0\n28\n5.0\n93\n230\n9.0\n1.0\n28\n6.0\n93\n231\n9.0\n1.\n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *How do I run Ashlar stitching in tCyCIF?* - **[1] Reporting of tCycIF Image processing.docx (Type: file)** — - **[2] How to master your Maste…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "bucket_vault": false,
+        "term_Ashlar": true,
+        "term_stitching": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket vault"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "pr02",
+      "category": "protocol",
+      "question": "What is BaSiC illumination correction?",
+      "status_code": 200,
+      "elapsed_s": 1.52,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 8,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *What is BaSiC illumination correction?*\n\n- **[1] Oncosys-OVA Sample Collection Meeting 241119.pptx (Type: file)** — \n- **[2] Färkkilä_Lab_ ONBOARDING.docx (Type: file)** — \n- **[3] Conference abstracts and reporting guideline.docx (Type: file)** — \n- **[4] Grants for PhD students and postdocs.docx (Type: file)** — \n- **[5] Anastasia’s (Färkkilä/Vähärautio) lab phone: (Type: lab_policy_document)** — ortation \nMarko Vilen:\nHY Kiinteistöpalvelut Oy\nTekninen isännöitsijä\n0503188067\nmarko.vilen@helsinki.fi\nNatja Vuoristo\nKiinteistöpäällikkö\nnatja.vuoristo@helsinki.fi\n+358408470009\n040 6882508\n0294121555\nHUS Logistics\ntavarankuljetus.meilahti@hus.fi\n0947160730\nJukka Pelkonen\nPalveluesimies\nHUS Logistiikka, tavarankuljetus\nPL 440, 00029 HUS |Stenbäckinkatu 9 , Helsinki\njukka.pelkonen@hus.fi\n040 573 8217\nBiomedicum Int\n- **[6] GeoMx® DSP (Type: lab_policy_document)** — l Ingeneral,astheexpressioncontentincreasesinacertainsegment,therelativesequencing\nsaturationwilldecrease.Forexample,intwodifferentcancerdatasets,therelativesequencing\nsaturationwaslowerintumorsegmentsasopposedtotumormicroenvironmentsegments(average\nof60%versus70-75%,respectively).Sequencingsaturationwassufficientforbothsegments,but\nrelativesaturationsweredifferentsincethereweremorephotocleavedoligosreleasedfromthetu\n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *What is BaSiC illumination correction?* - **[1] Oncosys-OVA Sample Collection Meeting 241119.pptx (Type: file)** — - **[2] Färkkilä_Lab_ ON…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "bucket_vault": false,
+        "term_BaSiC": true,
+        "term_illumination": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket vault"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "pr03",
+      "category": "protocol",
+      "question": "StarDist segmentation workflow steps",
+      "status_code": 200,
+      "elapsed_s": 1.53,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *StarDist segmentation workflow steps*\n\n- **[1] 02_CG000749_XeniumInSitu_GeneExp_CellSegmentation_User_Guide_RevB.pdf (Type: file)** — \n- **[2] 02_CG000749_XeniumInSitu_GeneExp_CellSegmentation_User_Guide_RevB.pdf (Type: file)** — \n- **[3] MAN-10154-06_GeoMx_DSP_Data_Analysis_User_Manual_for_software_3-1-2.pdf (Type: file)** — \n- **[4] 01_10x_CG000580_Demonstrated_Protocol_Xenium_FFPE_Deparaffinization_Decrosslinking_RevE.pdf (Type: file)** — \n- **[5] GeoMx® DSP (Type: lab_policy_document)** — ble Email Notification (Figure\n76).\nIn Notification Email Address , enter the email address to receive\nnotifications. To notify a group of GeoMx DSP users, please work with\nyour IT department to configure an email alias or distribution list. Fill in\nthe SMTP fields with help from your IT department.\nIn From Email Display Name , enter the name to display in the From\nfield of the notifications. InFrom Email Address , e\n- **[6] GeoMx® DSP (Type: lab_policy_document)** — ges, or only support\nimages from the dropdown.\nl If logged into the instrument directly, insert a USB drive.Do not\nuse a drive greater than 10 TB.Log files will be exported as a set\nwith filenames that indicate which set they belong to. Logs will be\nexported in an unencrypted/non-password protected manner to\nthe root level of the attached USB drive.\nl If logged into the system remotely, log files will be exported to \n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *StarDist segmentation workflow steps* - **[1] 02_CG000749_XeniumInSitu_GeneExp_CellSegmentation_User_Guide_RevB.pdf (Type: file)** — - **[2] …",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "term_StarDist": true,
+        "term_segmentation": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "pr04",
+      "category": "protocol",
+      "question": "How do I run Mesmer cell segmentation?",
+      "status_code": 200,
+      "elapsed_s": 1.55,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *How do I run Mesmer cell segmentation?*\n\n- **[1] MAN-10152-04-EX_GeoMx_DSP_Best_Practices_and_Troubleshooting_Excerpt_BSB.pdf (Type: file)** — \n- **[2] MAN-10152-06_GeoMx_DSP_Instrument_User_Manual_for_software_3-1-2.pdf (Type: file)** — \n- **[3] MAN-10152-04-EX_GeoMx_DSP_Best_Practices_and_Troubleshooting_Excerpt_BSB.pdf (Type: file)** — \n- **[4] Reporting of tCycIF Image processing.docx (Type: file)** — \n- **[5] European Society of Spatial Biology 2024 (Type: lab_policy_document)** — itessce.io)\nSegger – cell segmetation tool for single-molecule spatial omics datasets. It uses Graph Neural Networks (https://search.app/tTXUCiZtoSKTuMqy9)\nInvestigating Glioblastoma Recurrence with Spatial Multi-Omics by Spencer Watson, Switzerland\nNicheNet - intercellular communication from spatial and single cell transcriptomics (https://doi.org/10.1038/s41592-019-0667-5)\nSpatial profiling of human tissues for discovery and diagnosis by Peter Sorger, USA \nWorking on thicker sections (tested 35um) allows to study neighbourhoods based on membrane-to-membrane interactions:\nProposed ways to tackle cells state identification issue:\nUse 3D data and membrane-to-membrane interactions in thicker sections as ground truth for 2D profiling\nDirect learning of cell morphologies, states, and neighbourhoods in 2D:\nLeverage H&E data and foundation models\n Challenges in Spatial Biology:\nPosters\nCell segmentation tool - DeepLabV3+ deep neural network \nFrameworks/workflows for Multiplexed image processing\nSPACEc - https://www.biorxiv.org/content/10.1101/2024.06.29.601349v1.full\nDISSCOvery \nCell phenotyping\nSegmentation free cell phenotyping\nBenchmarking of current methods\nAuthor suggested to think of creating and training models like Xgboost for the best results\nMulti-omic integration by Image registration (https://github.com/BIMSBbioinfo/VoltRon)\nGene and protein integration in Xenium\nGeospatial statistics package for spatial omics - https://pachterlab.github.io/voyager/ \n Interactions and domains identification\nTLS-related talks and posters\nCamilla Engblom: Spatially resolving B cell clonal dynamics\nTopics:\nSpatial VDJ \nExploration of \nB cell clonal dynamics\nB cell clonal evolution\nClone-cell type associations\n- **[6] 10xgenomics.com (Type: lab_policy_document)** — ~10 min\nRun \n2-6 days\nCleanup \n~5 min\nUnload \n~10 min\n \n\n## Page 63\n63\nCG000584 | Rev JUser Guide | Xenium Analyzer | System OperationLink to TOC | 10xgenomics.com\nDetailed instructions below are for Xenium Onboard Analysis Software \nversion 3.0 or higher. Click “Start New Run” button.\n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *How do I run Mesmer cell segmentation?* - **[1] MAN-10152-04-EX_GeoMx_DSP_Best_Practices_and_Troubleshooting_Excerpt_BSB.pdf (Type: file)** —…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "term_Mesmer": true,
+        "term_segmentation": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "pr05",
+      "category": "protocol",
+      "question": "Cylinter quantification pipeline overview",
+      "status_code": 200,
+      "elapsed_s": 1.53,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 6,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *Cylinter quantification pipeline overview*\n\n- **[1] Reporting of tCycIF Image processing.docx (Type: file)** — \n- **[2] SPACEStat (Type: file)** — Brief overview of pipeline Metrics that can be quantified based on networks Overview of SPACEstat workflow Network of immune cell clusters Clusters with cell count 15 Cluster network constructed with distance threshold 300 microns Community detection with Leiden algorithm Clustering of the communities Example of clique enrichment analysis results Comparing clustering between samples Validation of network method (collaboration with LUKE) Goal: make sure building redux network can still find global pattern and not generating false patterns Permutation tests (we been doing ourselves) Simulated data (help from LUKE)\n- **[3] Bruker Spatial Biology, Inc. (Type: lab_policy_document)** — • GeoMx NGS Pipeline overview and file inputs/outputs\n• Optio\nns for running the GeoMx NGS Pipeline\n• Strate\ngies for pooling before sequencing\n• Determ\nining sequencing read depth\n• Instr uctions to install GeoMx NGS Pipeline software\n• Instr\nuctions to connect GeoMx DSP to BaseSpace\nworkgroup\n• Troubl\neshooting NGS Readout\nAdditional resources in GeoMx DSP NGS Readout User Manual6\nGeoMx NGS Pipeline from NanoString GeoMx NGS Pipeline on DRAGEN from Illumina\nMiSeq, NextSeq 500/550, \nNextSeq 1000/2000, NovaSeq\nMiSeq, NextSeq/uni00A0500/550, \nNovaSeq NextSeq 1000/2000Choice of Illumina\nSequencer\nChoice of \nPipeline Method*\nStandard Standalone Pipeline\n1. If needed, transfer FASTQ ﬁles\nto a location for Pipeline\naccessibility \n5.\n- **[4] GeoMx® DSP (Type: lab_policy_document)** — l You will need the GeoMx NGS Pipeline installed and the GeoMx NGS  Pipeline file inputs saved to or\naccessible from your computer. 68\nGeoMx DSP NGS Readout User Manual\nAppendix V:\nInstalling Pipeline Software\nMAN-10153-05-1\n\n## Page 69\nGeoMx DSP NGS Readout User Manual\nAppendix V: Installing Pipeline Software\nInstalling the pipeline\nInstalling the Pipeline to Run Locally on Windows\nSuitable for studies of <96 segments or ROIs (with <~50 million reads per segment or ROI)\n1.\n- **[5] Oncosys-OVA Sample Collection Meeting 241119.pptx (Type: file)** — \n- **[6] Research_plan_190424_AdaJunquera.pdf (Type: file)** — \n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *Cylinter quantification pipeline overview* - **[1] Reporting of tCycIF Image processing.docx (Type: file)** — - **[2] SPACEStat (Type: file)*…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "term_Cylinter": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "pr06",
+      "category": "protocol",
+      "question": "What is the wet lab staining SOP for CycIF?",
+      "status_code": 200,
+      "elapsed_s": 1.57,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *What is the wet lab staining SOP for CycIF?*\n\n- **[1] CyCIF manual protocol_2.0_Färkkilä lab.docx (Type: file)** — \n- **[2] Research_plan_template_3_aims_MH.docx (Type: file)** — \n- **[3] How to master your Masters thesis.docx (Type: file)** — \n- **[4] Role description Spatial profiling manager.docx (Type: file)** — \n- **[5] GeoMx buffers and reagents 24.04.2025 (Type: lab_policy_document)** — ### xl/worksheets/sheet1.xml\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n10\n10\n10\n10\n10\n11\n12\n10\n13\n15.0\n10\n10\n14\n15\n10\n10\n10\n10\n10\n16\n17\n10\n10\n10\n10\n10\n18\n19\n10\n10\n10\n10\n10\n20\n21\n10\n22\n250.0\n10\n44774.0\n23\n24\n10\n25\n250.0\n10\n44774.0\n26\n21\n10\n27\n60.0\n10\n28\n29\n24\n10\n30\n60.0\n10\n28\n31\n32\n10\n33\n378.0\n10\n10\n34\n19\n10\n35\n138.0\n10\n45809.0\n36\n37\n10\n10\n10\n10\n10\n38\n39\n10\n10\n10\n10\n10\n40\n17\n10\n10\n10\n10\n10\n41\n42\n10\n43\n35.0\n10\n45597.0\n44\n45\n10\n46\n13.0\n10\n- **[6] Project 12SPACE exp2 CycIF 1.12.2025 (Type: lab_policy_document)** — 7\n547\n547\n547\n548\n453\n78\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n548\n453\n80\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n548\n453\n82\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n548\n453\n84\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n548\n453\n86\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n548\n453\n88\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n548\n453\n90\n547\n547\n547\n547\n547\n547\n547\n547\n547\n547\n5\n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *What is the wet lab staining SOP for CycIF?* - **[1] CyCIF manual protocol_2.0_Färkkilä lab.docx (Type: file)** — - **[2] Research_plan_tem…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "bucket_vault": false,
+        "term_staining": true,
+        "term_CycIF": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket vault"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "sr01",
+      "category": "search",
+      "question": "Find GSE211956",
+      "status_code": 200,
+      "elapsed_s": 2.0,
+      "intent": "search_request",
+      "answer_style": "search_summary",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 8,
+      "buckets": {
+        "lab": 5,
+        "file": 4
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[2] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[3] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[4] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[5] 010_A multi-omic atlas of human embryonic skeletal development – case studies.pdf\n[6] 01_Introduction to Network Propagation.pptx\n[7] 01_Introduction to Network Propagation.pptx\n[8] 03_Introductory lecture on stats methods.pdf",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "term_GSE211956": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "key term 'GSE211956' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "sr02",
+      "category": "search",
+      "question": "Where is the GeoMx DSP manual?",
+      "status_code": 200,
+      "elapsed_s": 1.97,
+      "intent": "search_request",
+      "answer_style": "search_summary",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] MAN-10150-06_GeoMx_DSP_Manual_Slide_Prep_User_Manual.pdf\n[2] MAN-10150-06_GeoMx_DSP_Manual_Slide_Prep_User_Manual.pdf\n[3] MAN-10150-06_GeoMx_DSP_Manual_Slide_Prep_User_Manual.pdf\n[4] MAN-10152-06_GeoMx_DSP_Instrument_User_Manual_for_software_3-1-2.pdf\n[5] GeoMx® DSP\n[6] GeoMx® DSP\n[7] GeoMx® DSP\n[8] GeoMx® DSP",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "bucket_file": true,
+        "term_GeoMx": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "sr03",
+      "category": "search",
+      "question": "GSE211956",
+      "status_code": 200,
+      "elapsed_s": 1.93,
+      "intent": "search_request",
+      "answer_style": "search_summary",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 7,
+      "search_hits_count": 6,
+      "buckets": {
+        "research": 2,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] HGSOC Visium spatial RNA-seq and 10x scRNA-seq experiments\n[2] olderdb\n[3] HGSOC Visium spatial RNA-seq and 10x scRNA-seq experiments\n[4] olderdb\n[5] olderdb\n[6] Curriculum vitae\n[7] olderdb\n[8] olderdb",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "term_GSE211956": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "key term 'GSE211956' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "sr04",
+      "category": "search",
+      "question": "Look up TCGA-OV samples",
+      "status_code": 200,
+      "elapsed_s": 1.93,
+      "intent": "search_request",
+      "answer_style": "search_summary",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 6,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### Registry metadata summary\n\n- Total patients: **0**\n- Total samples: **0**\n\nThese values come from the structured database-count block supplied to the model. No patient identifiers are required for this summary.\n\n**Sources used:**\n[1] Tissue_Fixation_and_Processing_FFPE_samples_troubleshooting.docx\n[2] Tissue_Fixation_and_Processing_FFPE_samples_troubleshooting.docx\n[3] Research_plan_042024_Aleksandra_Shabanova.docx\n[4] 2025_02_07_onboarding_ONCOSYS.pptx\n[5] ORIGINAL RESEARCH\n[6] GeoMx buffers and reagents 24.04.2025\n[7] GeoMx buffers and reagents 24.04.2025\n[8] ORIGINAL RESEARCH",
+      "answer_preview": "### Registry metadata summary - Total patients: **0** - Total samples: **0** These values come from the structured database-count block supplied to the model. No patient identifier…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "term_TCGA": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "key term 'TCGA' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "sr05",
+      "category": "search",
+      "question": "Show me PMID: 31178118",
+      "status_code": 200,
+      "elapsed_s": 1.96,
+      "intent": "search_request",
+      "answer_style": "search_summary",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 8,
+      "buckets": {
+        "lab": 5,
+        "file": 4
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Project 7 TLS CycIF 1\n[2] Proj 4 10 Expansion CycIF autoCycIF template\n[3] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[4] Drugs and Inhibitors\n[5] ESGO2026 ePoster Anni H.pptx\n[6] ESGO2026_AndreasH.pdf\n[7] ESGO_2026_EllaA.pdf\n[8] ESGO_2026_EllaA.pptx",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_31178118": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term '31178118' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "ah01",
+      "category": "app_help",
+      "question": "How do I ingest documents into RAG?",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "document_ingestion_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini",
+        "over-formal structure for conversational intent"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "term_ingest": false,
+        "term_RAG": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": false,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "ah02",
+      "category": "app_help",
+      "question": "How do I set up Gemini?",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "app_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini",
+        "over-formal structure for conversational intent"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "term_Gemini": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": false,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "ah03",
+      "category": "app_help",
+      "question": "How do I upload a protocol document?",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "document_ingestion_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini",
+        "over-formal structure for conversational intent"
+      ],
+      "gold_checks": {
+        "intent_correct": false,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "term_upload": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "intent expected app_help, got document_ingestion_help"
+      ],
+      "gold_passed": false,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "ah04",
+      "category": "app_help",
+      "question": "How do I configure the API environment?",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "app_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini",
+        "over-formal structure for conversational intent"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "term_API": false,
+        "term_environment": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": false,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "ah05",
+      "category": "app_help",
+      "question": "How do I ingest a document into Qdrant for RAG?",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "document_ingestion_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini",
+        "over-formal structure for conversational intent"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "term_Qdrant": false,
+        "term_RAG": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": false,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "pi01",
+      "category": "edge_pii",
+      "question": "Patient #ABC123 needs review for sample S12345",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "sensitive_private",
+      "answer_style": "safety",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [
+        "Privacy guardrail: potential identifiers were redacted before retrieval/LLM."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": false,
+      "has_citations": false,
+      "answer": "I can't help with messages that may contain patient identifiers, medical record numbers, or secrets. Please remove sensitive details and ask again.",
+      "answer_preview": "I can't help with messages that may contain patient identifiers, medical record numbers, or secrets. Please remove sensitive details and ask again.",
+      "quality_score": 5,
+      "gap_notes": [],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "pii_blocked": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": false,
+      "must_block": true
+    },
+    {
+      "id": "pi02",
+      "category": "edge_pii",
+      "question": "Review MRN: XYZ98765 imaging results",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "sensitive_private",
+      "answer_style": "safety",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [
+        "Privacy guardrail: potential identifiers were redacted before retrieval/LLM."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": false,
+      "has_citations": false,
+      "answer": "I can't help with messages that may contain patient identifiers, medical record numbers, or secrets. Please remove sensitive details and ask again.",
+      "answer_preview": "I can't help with messages that may contain patient identifiers, medical record numbers, or secrets. Please remove sensitive details and ask again.",
+      "quality_score": 5,
+      "gap_notes": [],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "pii_blocked": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": false,
+      "must_block": true
+    },
+    {
+      "id": "ot01",
+      "category": "edge_no_sources",
+      "question": "What is the quantum chromodynamics of quark-gluon plasma in 12 dimensions?",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "general_chat",
+      "answer_style": "natural",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [
+        "Off-topic query — answer is not lab-grounded."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": false,
+      "has_citations": false,
+      "answer": "I'm the OMEIA Färkkilä Lab research copilot — I focus on lab research, protocols, datasets, and platform help. Your question looks outside that scope. The following is general knowledge, not lab-grounded: I can't provide a reliable answer from our indexed sources. Please ask about spatial biology, HGSC immunology, lab protocols, or dataset lookup instead.",
+      "answer_preview": "I'm the OMEIA Färkkilä Lab research copilot — I focus on lab research, protocols, datasets, and platform help. Your question looks outside that scope. The following is general know…",
+      "quality_score": 2,
+      "gap_notes": [
+        "no sources for obscure query — answer may be ungrounded"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "off_topic_handled": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "ot02",
+      "category": "edge_no_sources",
+      "question": "Explain string theory black hole thermodynamics",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "general_chat",
+      "answer_style": "natural",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [
+        "Off-topic query — answer is not lab-grounded."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": false,
+      "has_citations": false,
+      "answer": "I'm the OMEIA Färkkilä Lab research copilot — I focus on lab research, protocols, datasets, and platform help. Your question looks outside that scope. The following is general knowledge, not lab-grounded: I can't provide a reliable answer from our indexed sources. Please ask about spatial biology, HGSC immunology, lab protocols, or dataset lookup instead.",
+      "answer_preview": "I'm the OMEIA Färkkilä Lab research copilot — I focus on lab research, protocols, datasets, and platform help. Your question looks outside that scope. The following is general know…",
+      "quality_score": 2,
+      "gap_notes": [
+        "no sources for obscure query — answer may be ungrounded"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "off_topic_handled": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "fi01",
+      "category": "edge_mixed_lang",
+      "question": "Miten teen Ashlar stitching tCyCIF-protokollassa?",
+      "status_code": 200,
+      "elapsed_s": 1.54,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 8,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *Miten teen Ashlar stitching tCyCIF-protokollassa?*\n\n- **[1] Reporting of tCycIF Image processing.docx (Type: file)** — \n- **[2] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2) (Type: lab_policy_document)** — eets/sheet2.xml\n23\n\n### xl/worksheets/sheet3.xml\n0\n1\n2\n3\n4\n5\n6\n9.0\n24\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n9.0\n- **[3] How to master your Masters thesis.docx (Type: file)** — \n- **[4] THL_Riskinarviointipohja_BSL-2.pdf (Type: file)** — \n- **[5] THL_Riskinarviointipohja_BSL-2.pdf (Type: file)** — \n- **[6] Sample to Insight__ (Type: lab_policy_document)** — lls, ensure complete removal of the cell-culture medium \nafter harvesting cells (see protocols). \nLow A260/A280 value \nWater used to dilute RNA \nfor A260/A280 measurement \nUse 10 mm Tris·Cl, pH 7.5, not RNAse-free water, to dilute the sample before \nmeasuring purity (see Appendix B, page 76). \nRNA degraded \na) Harvested animal tissue \nnot immediately stabilized \nSubmerge the tissue in the appropriate volume of RNApro\n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *Miten teen Ashlar stitching tCyCIF-protokollassa?* - **[1] Reporting of tCycIF Image processing.docx (Type: file)** — - **[2] CONCATENATE(A2,…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "term_Ashlar": true,
+        "provider_honest": true,
+        "finnish_response": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "fi02",
+      "category": "edge_mixed_lang",
+      "question": "Mitä Färkkilän lab tutkii?",
+      "status_code": 200,
+      "elapsed_s": 1.98,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 10,
+      "search_hits_count": 9,
+      "buckets": {
+        "research": 1,
+        "lab": 5,
+        "file": 4
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] FÃ¤rkkilÃ¤ Lab | Ovarian Cancer Research | University of Helsinki\n[2] Last updated 10.9.2020, Anastasiya Chernenko\n[3] SUPERVISION PLAN\n[4] THL_Riskinarviointipohja_BSL-2.pdf\n[5] THL_Riskinarviointipohja_BSL-2.pdf\n[6] Riskinarviointipohja_BSL-2.pdf\n[7] Riskinarviointipohja_BSL-2.pdf\n[8] Project 12SPACE exp2 CycIF 1.12.2025",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": true,
+        "provider_honest": true,
+        "finnish_response": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "fi03",
+      "category": "edge_mixed_lang",
+      "question": "Mikä on MHC class II HGSC:ssä?",
+      "status_code": 200,
+      "elapsed_s": 1.98,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Poster_OC-Insights_2026_2026_MH.pdf\n[2] NatCancer_Song_2026.docx\n[3] Farkkila_CV_DP.pdf\n[4] TENK-CV_180125_AdaJunquera.docx\n[5] RESEARCH PLAN\n[6] Project 66 Bleaching 05.06.2025\n[7] LN tank number 4 , Färkkilä lab, Haartman, 91 boxes\n[8] LN tank number 4 , Färkkilä lab, Haartman, 91 boxes",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_MHC": false,
+        "provider_honest": true,
+        "finnish_response": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'MHC' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "ac01",
+      "category": "accession",
+      "question": "Find EGAS00001004957",
+      "status_code": 200,
+      "elapsed_s": 1.96,
+      "intent": "search_request",
+      "answer_style": "search_summary",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 8,
+      "buckets": {
+        "lab": 5,
+        "file": 4
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[2] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[3] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[4] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[5] 010_A multi-omic atlas of human embryonic skeletal development – case studies.pdf\n[6] 01_Introduction to Network Propagation.pptx\n[7] 01_Introduction to Network Propagation.pptx\n[8] 03_Introductory lecture on stats methods.pdf",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "term_EGAS": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "key term 'EGAS' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "ac02",
+      "category": "accession",
+      "question": "10.1038/s41586-019-0999-9",
+      "status_code": 200,
+      "elapsed_s": 1.94,
+      "intent": "search_request",
+      "answer_style": "search_summary",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### Registry metadata summary\n\n- Total patients: **0**\n- Total samples: **0**\n\nThese values come from the structured database-count block supplied to the model. No patient identifiers are required for this summary.\n\n**Sources used:**\n[1] 01_Introduction to Network Propagation.pptx\n[2] 07_Multiple ways to integrate multi-omics data – case studies from studying human diseases.pdf\n[3] CytoData_2025_note.docx\n[4] European Society of Spatial Biology 2024.docx\n[5] ACKNOWLEDGEMENTS\n[6] Introduction to networks\n[7] Consolidated comments:\n[8] KÄYTTÖTURVALLISUUSTIEDOTE",
+      "answer_preview": "### Registry metadata summary - Total patients: **0** - Total samples: **0** These values come from the structured database-count block supplied to the model. No patient identifier…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_10.1038": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term '10.1038' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "gc01",
+      "category": "general",
+      "question": "hello there",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "general_chat",
+      "answer_style": "natural",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": false,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "intent expected smalltalk, got general_chat"
+      ],
+      "gold_passed": false,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "gc02",
+      "category": "general",
+      "question": "good morning",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "smalltalk",
+      "answer_style": "brief_conversational",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "rs11",
+      "category": "research",
+      "question": "What SPACE project datasets are indexed?",
+      "status_code": 200,
+      "elapsed_s": 1.98,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] MAN-10154-06_GeoMx_DSP_Data_Analysis_User_Manual_for_software_3-1-2.pdf\n[2] Research_plan_template_MH_15042024_2.docx\n[3] 1_research_plan_template_Ziqi_v1.docx\n[4] 1_research_plan_template_Ziqi_v1.docx\n[5] 31.7.2025 Antibody database check\n[6] Purchaseorder_Purchase number_Quotenumber_Date\n[7] ´Travel grants and other grant opportunities for PhD students and postdocs\n[8] ONCOSYS Orientation (updated on 20.8.2021)",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_SPACE": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'SPACE' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs12",
+      "category": "research",
+      "question": "EyeMT project research focus",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "app_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": false,
+        "rag_correct": false,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_EyeMT": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "intent expected research_question, got app_help",
+        "use_rag expected True, got False",
+        "missing expected bucket research"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs13",
+      "category": "research",
+      "question": "Immunotherapy biomarkers in HGSC",
+      "status_code": 200,
+      "elapsed_s": 1.99,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 12,
+      "search_hits_count": 9,
+      "buckets": {
+        "research": 4,
+        "lab": 4,
+        "file": 4
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Identification of Prognostic Biomarkers of Ovarian High-Grade Serous Carcinoma: A Preliminary Study Using Spatial Transcriptome Analysis and Multispectral Imaging.\n[2] GeoMx buffers and reagents 24.04.2025\n[3] Harnessing lipid-driven immunometabolic pathways in omental metastases to enhance immunotherapy in patients with ovarian cancer.\n[4] Establishment of a humanized patient-derived xenograft mouse model of high-grade serous ovarian cancer for preclinical evaluation of combination immunotherapy.\n[5] Integrative multi-omics and machine learning approach reveals tumor microenvironment-associated prognostic biomarkers in ovarian cancer.\n[6] Poster_OC-Insights_2026_2026_MH.pdf\n[7] Poster_OC-Insights_2026_2026_MH.pdf\n[8] Oncosys-OVA Sample Collection Meeting 241119.pptx",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": true,
+        "term_immunotherapy": true,
+        "term_HGSC": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "key term 'HGSC' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs14",
+      "category": "research",
+      "question": "Single-cell RNA-seq in ovarian cancer microenvironment",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "app_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": false,
+        "rag_correct": false,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_single-cell": false,
+        "term_ovarian": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "intent expected research_question, got app_help",
+        "use_rag expected True, got False",
+        "missing expected bucket research"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs15",
+      "category": "research",
+      "question": "What is HRD in HGSC context?",
+      "status_code": 200,
+      "elapsed_s": 1.95,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 8,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Oncosys-OVA Sample Collection Meeting 241119.pptx\n[2] Oncosys-OVA Sample Collection Meeting 241119.pptx\n[3] NatCancer_Song_2026.docx\n[4] ORDERS 2019 Färkkilä lab\n[5] 3479.0124\n[6] 3479.0124\n[7] Clinical whole-genome sequencing from routine\n[8] ESGO2026 ePoster Anni H.pptx",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_HRD": false,
+        "term_HGSC": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'HRD' not in answer/sources preview",
+        "key term 'HGSC' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "pr07",
+      "category": "protocol",
+      "question": "Gate normalization workflow for flow data",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "general_chat",
+      "answer_style": "natural",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": false,
+        "rag_correct": false,
+        "citation_compliant": true,
+        "bucket_lab": false,
+        "term_Gate": false,
+        "term_normalization": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "intent expected protocol_question, got general_chat",
+        "use_rag expected True, got False",
+        "missing expected bucket lab"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "pr08",
+      "category": "protocol",
+      "question": "OME-TIFF export best practices",
+      "status_code": 200,
+      "elapsed_s": 1.54,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *OME-TIFF export best practices*\n\n- **[1] MAN-10152-06_GeoMx_DSP_Instrument_User_Manual_for_software_3-1-2.pdf (Type: file)** — \n- **[2] IT Person Job Hiring.docx (Type: file)** — \n- **[3] MAN-10152-06_GeoMx_DSP_Instrument_User_Manual_for_software_3-1-2.pdf (Type: file)** — \n- **[4] MAN-10152-06_GeoMx_DSP_Instrument_User_Manual_for_software_3-1-2.pdf (Type: file)** — \n- **[5] Food and Drinks (Type: lab_policy_document)** — Food and Drinks \nAlcoholic Drinks\nActivities\n- **[6] SB 202190 (Type: lab_policy_document)** — to yellow (Solid)\nwww.medchemexpress.comPage 3 of 6\n\n## Page 8\nOdor No data available\nOdor threshold No data available\npH No data available\nMelting/freezing point No data available\nBoiling point/range No data available\nFlash point No data available\nEvaporation rate No data available\nFlammability (solid, gas) No data available\nUpper/lower flammability or explosive limits No data available\nVapor pressure No data availa\n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *OME-TIFF export best practices* - **[1] MAN-10152-06_GeoMx_DSP_Instrument_User_Manual_for_software_3-1-2.pdf (Type: file)** — - **[2] IT Pers…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "term_OME-TIFF": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "sr06",
+      "category": "search",
+      "question": "Search for Ashlar protocol document",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "app_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": false,
+        "rag_correct": false,
+        "citation_compliant": true,
+        "bucket_lab": false,
+        "term_Ashlar": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "intent expected search_request, got app_help",
+        "use_rag expected True, got False",
+        "missing expected bucket lab"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "sr07",
+      "category": "search",
+      "question": "Find vault ingestion status",
+      "status_code": 200,
+      "elapsed_s": 1.96,
+      "intent": "search_request",
+      "answer_style": "search_summary",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 8,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Research_plan_template_3_aims_MH.docx\n[2] MAN-10153-06_GeoMx_DSP_NGS_Readout_User_Manual.pdf\n[3] MAN-10153-06_GeoMx_DSP_NGS_Readout_User_Manual.pdf\n[4] MAN-10154-06_GeoMx_DSP_Data_Analysis_User_Manual_for_software_3-1-2.pdf\n[5] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[6] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[7] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)\n[8] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2)",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_vault": false,
+        "term_vault": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket vault",
+        "key term 'vault' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "cd01",
+      "category": "coding",
+      "question": "Fix React compile error in ChatWidget",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "coding_request",
+      "answer_style": "technical",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "cd02",
+      "category": "coding",
+      "question": "Python traceback in FastAPI router",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "app_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": false,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "intent expected coding_request, got app_help"
+      ],
+      "gold_passed": false,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "rs16",
+      "category": "research",
+      "question": "BRCA mutation spatial patterns in HGSC",
+      "status_code": 200,
+      "elapsed_s": 1.95,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Research_plan_042024_Aleksandra_Shabanova.docx\n[2] AdaJunquera_poster-Cellcycle_AACROvarian2023.pptx\n[3] ESGO2026_AndreasH.pdf\n[4] ESGO2026_AndreasH.pdf\n[5] RESEARCH PLAN\n[6] RESEARCH PLAN\n[7] RESEARCH PLAN\n[8] European Society of Spatial Biology 2024",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_BRCA": false,
+        "term_HGSC": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'BRCA' not in answer/sources preview",
+        "key term 'HGSC' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs17",
+      "category": "research",
+      "question": "Stromal markers in ovarian cancer IMC",
+      "status_code": 200,
+      "elapsed_s": 1.98,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Integrated spatial and multi-omic analysis of ovarian cancer to uncover immune evasion and therapeutic targets\n[2] Ziqi Kang\n[3] Precision oncology of SPAtial immune\n[4] Precision oncology of SPAtial immune\n[5] DNA and RNA isolated from ONCOSYS Ova samples FF FFPE ORG cells\n[6] 8766.1996\n[7] 8766.1996\n[8] 8766.1996",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_stromal": false,
+        "term_ovarian": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'stromal' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "rs18",
+      "category": "research",
+      "question": "CPTAC ovarian cancer proteomics datasets",
+      "status_code": 200,
+      "elapsed_s": 1.98,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] Precision oncology of SPAtial immune esCape mEchanisms in ovarian cancerSPACE bi-weekly meeting\n[2] Responsible: Ziqi Kang\n[3] IT Person Job Hiring.docx\n[4] Poster-Ovcasymposium-2026_HannaElomaa.pdf\n[5] 8766.1996\n[6] 8766.1996\n[7] 8766.1996\n[8] 8766.1996",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_research": false,
+        "term_CPTAC": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "missing expected bucket research",
+        "key term 'CPTAC' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "ah06",
+      "category": "app_help",
+      "question": "How do I login to OMEIA?",
+      "status_code": 200,
+      "elapsed_s": 0.0,
+      "intent": "app_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini",
+        "over-formal structure for conversational intent"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "term_login": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": false,
+      "must_cite": false,
+      "must_block": null
+    },
+    {
+      "id": "pr09",
+      "category": "protocol",
+      "question": "How to quantify masks after StarDist?",
+      "status_code": 200,
+      "elapsed_s": 1.57,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *How to quantify masks after StarDist?*\n\n- **[1] NatCancer_Song_2026.docx (Type: file)** — \n- **[2] DNeasy Qiagen_Handbook_Blood_Tissue.pdf (Type: file)** — \n- **[3] MAN-10154-06_GeoMx_DSP_Data_Analysis_User_Manual_for_software_3-1-2.pdf (Type: file)** — \n- **[4] 010_A multi-omic atlas of human embryonic skeletal development – case studies.pdf (Type: file)** — \n- **[5] LC-MS Protocol (Type: lab_policy_document)** — LC-MS Protocol\nDay 0\nPrepare reagents\n Xylene\nxylene in 3 boxes\n Ethanol solutions (100%, 90%, 70%, 50%, 30%)\n300 ml 100% Ethanol\n300 ml 90% Ethanol - 270 ml Ethanol + 30 ml MQ\n300 ml 70% Ethanol - 210 ml Ethanol + 90 ml MQ\n300 ml 50% Ethanol - 150 ml Ethanol + 150 ml MQ\n300 ml 30% Ethanol - 90 ml Ethanol + 210 ml MQ\n 1x Tris-buffered saline (TBS) buffer (50 mM Tris-HCl, pH 7.4; 150 mM NaCl) in MQ\nPrepare 3 L - 300 ml 10x TBS Add 2.7L MQ\n 10 mM citric acid buffer, pH 6.0 in MQ\nPrepare 300 ml - 30 ml 10x citric acid into 270 ml MQ\n Odyssey blocking buffer\n Urea buffer (50 mM Tris, 6 M Urea (360.36 g/1L), protease and phosphatase inhibitors (tablets in +4), pH 7.5-8) (Urea in grey bottle)\nFor 50 ml Urea buffer, add 18.02g Urea\nAdd 2.5 ml 1M Tris-HCl and 30 ml MQ\nAfter resolving, add around 2ml to 50ml\nAdd 5 tablets of protease inhibitor\nAdd 5 tablets of phosphatase inhibitors\n milliQ water\nRemove the first 250 ml, we need at least 4L\nDay 1\n Baking\n After sectioning, slides were baked at 56°C for 60 min to ensure the tissue was properly attached to the slide. Afterwards, the slides were taken out to cool down for 20 min at room temperature and then washed three times for 1 min each in 1x TBS buffer.\n- **[6] olderdb (Type: lab_policy_document)** — 1071\n81\n1072\n1073\n1068\n650\n555.0\n131\n1069\n1025\n131\n47\n78\n0.5\n44728.0\n112\n4.0\n1074\n300.0\n300.0\n1027\n1075\n81\n1076\n1077\n1078\n37\n488.0\n154\n1079\n1080\n824\n39\n78\n0.1\n45021.0\n33\n1.0\n816\n200.0\n1081\n5.0\n160\n1082\n1083\n1078\n37\n488.0\n154\n1079\n1080\n1084\n39\n78\n0.1\n45854.0\n33\n4.0\n150\n200.0\n1081\n6.0\n81\n1085\n1086\n1087\n1088\n107\n154\n1089\n1090\n356\n47\n78\n0.037\n45351.0\n112\n1.0\n315\n500.0\n1091\n18.0\n81\n1092\n1093\n1094\n27\n555.0\n131\n1095\n1096\n13\n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *How to quantify masks after StarDist?* - **[1] NatCancer_Song_2026.docx (Type: file)** — - **[2] DNeasy Qiagen_Handbook_Blood_Tissue.pdf (Typ…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "term_StarDist": true,
+        "term_quantif": true,
+        "provider_honest": true
+      },
+      "gold_gaps": [],
+      "gold_passed": true,
+      "must_cite": true,
+      "must_block": null
+    },
+    {
+      "id": "sr08",
+      "category": "search",
+      "question": "Locate SPACEStat workflow documentation",
+      "status_code": 200,
+      "elapsed_s": 1.98,
+      "intent": "search_request",
+      "answer_style": "search_summary",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 9,
+      "search_hits_count": 4,
+      "buckets": {
+        "file": 4,
+        "lab": 5
+      },
+      "limitations": [
+        "Citations were appended automatically because the model omitted inline [n] markers.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.\n\n**Sources used:**\n[1] MAN-10154-06_GeoMx_DSP_Data_Analysis_User_Manual_for_software_3-1-2.pdf\n[2] research_plan_Liang.docx\n[3] IT Person Job Hiring.docx\n[4] Role description of Färkkilä lab IT Specialist_.docx\n[5] LN tank number 4 , Färkkilä lab, Haartman, 91 boxes\n[6] LN tank number 4 , Färkkilä lab, Haartman, 91 boxes\n[7] LN tank number 4 , Färkkilä lab, Haartman, 91 boxes\n[8] Experimental Plan",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ],
+      "gold_checks": {
+        "intent_correct": true,
+        "rag_correct": true,
+        "citation_compliant": true,
+        "bucket_lab": true,
+        "term_SPACEStat": false,
+        "provider_honest": true
+      },
+      "gold_gaps": [
+        "key term 'SPACEStat' not in answer/sources preview"
+      ],
+      "gold_passed": false,
+      "must_cite": true,
+      "must_block": null
+    }
+  ],
+  "ask_comparisons": [
+    {
+      "question": "How do I run Ashlar stitching in tCyCIF?",
+      "ask_search_only": {
+        "sources_count": 4,
+        "buckets": {
+          "file": 4
+        },
+        "search_hits_count": 4
+      },
+      "ask_doc_mode": {
+        "sources_count": 9,
+        "buckets": {
+          "file": 4,
+          "lab": 5
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock",
+        "answer_preview": "### OMEIA copilot synthesis Question: *How do I run Ashlar stitching in tCyCIF?* - **[1] Reporting of tCycIF Image processing.docx (Type: file)** — - **[2] How to master your Maste…",
+        "has_citations": true
+      },
+      "chat": {
+        "intent": "protocol_question",
+        "sources_count": 9,
+        "buckets": {
+          "file": 4,
+          "lab": 5
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock"
+      },
+      "divergence": [
+        "chat sources != /ask search_only hits"
+      ]
+    },
+    {
+      "question": "What does Färkkilä Lab study?",
+      "ask_search_only": {
+        "sources_count": 4,
+        "buckets": {
+          "file": 4
+        },
+        "search_hits_count": 4
+      },
+      "ask_doc_mode": {
+        "sources_count": 9,
+        "buckets": {
+          "file": 4,
+          "lab": 5
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock",
+        "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+        "has_citations": true
+      },
+      "chat": {
+        "intent": "research_question",
+        "sources_count": 9,
+        "buckets": {
+          "file": 4,
+          "lab": 5
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock"
+      },
+      "divergence": [
+        "chat sources != /ask search_only hits"
+      ]
+    },
+    {
+      "question": "Find GSE211956",
+      "ask_search_only": {
+        "sources_count": 8,
+        "buckets": {
+          "lab": 4,
+          "file": 4
+        },
+        "search_hits_count": 8
+      },
+      "ask_doc_mode": {
+        "sources_count": 9,
+        "buckets": {
+          "lab": 5,
+          "file": 4
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock",
+        "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+        "has_citations": true
+      },
+      "chat": {
+        "intent": "search_request",
+        "sources_count": 9,
+        "buckets": {
+          "lab": 5,
+          "file": 4
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock"
+      },
+      "divergence": [
+        "chat sources != /ask search_only hits"
+      ]
+    }
+  ]
+}

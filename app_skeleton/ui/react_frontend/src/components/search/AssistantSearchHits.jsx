@@ -50,7 +50,9 @@ export default function AssistantSearchHits({
                   <span className="chat-source-score">score {Number(hit.score).toFixed(3)}</span>
                 ) : null}
                 {hit.bucket || hit.source_type ? (
-                  <span className="chat-source-bucket">{hit.bucket || hit.source_type}</span>
+                  <span className={`chat-source-bucket chat-source-bucket--${hit.bucket || hit.source_type}`}>
+                    {hit.bucket || hit.source_type}
+                  </span>
                 ) : null}
                 {hit.rank ? <span className="chat-source-bucket">#{hit.rank}</span> : null}
               </div>

@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 load_dotenv(ROOT / "configs" / ".env")
 
 QUESTIONS = [
-    # category, question
+    # Legacy quick battery — gold set in tests/ai_eval_gold_set.json is canonical for release gates.
     ("smalltalk", "hi"),
     ("smalltalk", "what can you do?"),
     ("research", "What does Färkkilä Lab study?"),
@@ -39,6 +39,119 @@ QUESTIONS = [
     ("edge_no_sources", "What is the quantum chromodynamics of quark-gluon plasma in 12 dimensions?"),
     ("edge_mixed_lang", "Miten teen Ashlar stitching tCyCIF-protokollassa?"),
 ]
+
+GOLD_SET_PATH = ROOT / "tests" / "ai_eval_gold_set.json"
+EVAL_DELAY_S = float(os.getenv("EVAL_REQUEST_DELAY_S", "0.15"))
+
+
+def _load_gold_set() -> list[dict[str, Any]]:
+    if not GOLD_SET_PATH.is_file():
+        return []
+    return json.loads(GOLD_SET_PATH.read_text(encoding="utf-8"))
+
+
+def _score_gold_item(spec: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
+    """Score one gold-set item against a chat response row."""
+    checks: dict[str, bool] = {}
+    gaps: list[str] = []
+
+    expected_intent = spec.get("expected_intent")
+    actual_intent = row.get("intent")
+    checks["intent_correct"] = expected_intent == actual_intent
+    if not checks["intent_correct"]:
+        gaps.append(f"intent expected {expected_intent}, got {actual_intent}")
+
+    expected_rag = bool(spec.get("use_rag"))
+    checks["rag_correct"] = row.get("use_rag") == expected_rag
+    if not checks["rag_correct"]:
+        gaps.append(f"use_rag expected {expected_rag}, got {row.get('use_rag')}")
+
+    if spec.get("must_block"):
+        blocked = row.get("blocked_by_guardrail") or row.get("intent") == "sensitive_private"
+        answer = (row.get("answer") or "").lower()
+        checks["pii_blocked"] = blocked or "can't help" in answer or "blocked" in answer
+        if not checks["pii_blocked"]:
+            gaps.append("PII not blocked")
+
+    if spec.get("off_topic"):
+        answer = (row.get("answer") or "").lower()
+        checks["off_topic_handled"] = (
+            "copilot" in answer or "lab" in answer or "general knowledge" in answer or "off-topic" in " ".join(row.get("limitations") or []).lower()
+        )
+        if not checks["off_topic_handled"]:
+            gaps.append("off-topic not labeled")
+
+    if spec.get("must_cite") and row.get("use_rag") and row.get("sources_count", 0) > 0:
+        has_cite = row.get("has_citations") or "Sources used" in (row.get("answer") or "")
+        checks["citation_compliant"] = bool(has_cite)
+        if not checks["citation_compliant"]:
+            gaps.append("must-cite but no [n] markers")
+    else:
+        checks["citation_compliant"] = True
+
+    buckets = row.get("buckets") or {}
+    for expected_bucket in spec.get("expected_buckets") or []:
+        key = f"bucket_{expected_bucket}"
+        checks[key] = buckets.get(expected_bucket, 0) > 0
+        if not checks[key]:
+            gaps.append(f"missing expected bucket {expected_bucket}")
+
+    answer_lower = (row.get("answer") or "").lower()
+    for term in spec.get("key_terms") or []:
+        key = f"term_{term[:20]}"
+        checks[key] = term.lower() in answer_lower or any(term.lower() in (s.get("title") or "").lower() for s in [])
+        if not checks[key] and row.get("sources_count", 0) > 0:
+            gaps.append(f"key term {term!r} not in answer/sources preview")
+
+    provider = row.get("effective_provider") or row.get("provider")
+    synthesis = row.get("synthesis_mode")
+    checks["provider_honest"] = not (provider == "gemini" and synthesis == "mock")
+    if not checks["provider_honest"]:
+        gaps.append("provider honesty violation")
+
+    if spec.get("response_lang") == "fi" and row.get("answer"):
+        checks["finnish_response"] = bool(re.search(r"[äöåÄÖÅ]|miten|mikä|lab", row.get("answer") or "", re.I))
+        if not checks["finnish_response"]:
+            gaps.append("expected Finnish response")
+
+    passed = all(checks.values()) and row.get("status_code") == 200
+    return {"checks": checks, "gaps": gaps, "passed": passed}
+
+
+def _release_gate_summary(scored: list[dict[str, Any]]) -> dict[str, Any]:
+    total = len(scored)
+    if total == 0:
+        return {}
+
+    def _checks(row: dict[str, Any]) -> dict[str, bool]:
+        return row.get("gold_checks") or row.get("checks") or {}
+
+    intent_ok = sum(1 for s in scored if _checks(s).get("intent_correct"))
+    cite_items = [s for s in scored if s.get("must_cite")]
+    cite_ok = sum(1 for s in cite_items if _checks(s).get("citation_compliant"))
+    pii_items = [s for s in scored if s.get("must_block")]
+    pii_ok = sum(1 for s in pii_items if _checks(s).get("pii_blocked"))
+    research_items = [s for s in scored if s.get("category") == "research" and s.get("use_rag")]
+    research_bucket_ok = sum(
+        1 for s in research_items
+        if (s.get("buckets") or {}).get("research", 0) > 0 or s.get("sources_count", 0) == 0
+    )
+    honesty_ok = sum(1 for s in scored if _checks(s).get("provider_honest"))
+    passed = sum(1 for s in scored if s.get("gold_passed"))
+
+    gates = {
+        "intent_accuracy_pct": round(100 * intent_ok / total, 1),
+        "intent_gate_pass": intent_ok / total >= 0.95,
+        "citation_compliance_pct": round(100 * cite_ok / max(len(cite_items), 1), 1),
+        "citation_gate_pass": cite_ok == len(cite_items) if cite_items else True,
+        "pii_gate_pass": pii_ok == len(pii_items) if pii_items else True,
+        "research_bucket_gate_pass": research_bucket_ok >= max(1, int(len(research_items) * 0.7)),
+        "provider_honesty_pct": round(100 * honesty_ok / total, 1),
+        "provider_honesty_gate_pass": honesty_ok == total,
+        "overall_pass_pct": round(100 * passed / total, 1),
+        "overall_gate_pass": passed / total >= 0.85,
+    }
+    return gates
 
 PROJECT_CODES = ["SPACE", "EyeMT"]
 
@@ -201,7 +314,18 @@ def run_eval(*, role: str = "researcher") -> dict[str, Any]:
                     "buckets": _bucket_counts(uj2.get("hits") or []),
                 }
 
-            for category, question in QUESTIONS:
+            gold_set = _load_gold_set()
+            eval_items: list[tuple[str, str, dict[str, Any] | None]] = []
+            if gold_set:
+                for spec in gold_set:
+                    eval_items.append((spec.get("category", "gold"), spec["question"], spec))
+            else:
+                for category, question in QUESTIONS:
+                    eval_items.append((category, question, None))
+
+            for category, question, spec in eval_items:
+                if EVAL_DELAY_S > 0:
+                    time.sleep(EVAL_DELAY_S)
                 start = time.time()
                 r = client.post(
                     "/api/chat",
@@ -210,6 +334,7 @@ def run_eval(*, role: str = "researcher") -> dict[str, Any]:
                 )
                 elapsed = round(time.time() - start, 2)
                 row: dict[str, Any] = {
+                    "id": spec.get("id") if spec else None,
                     "category": category,
                     "question": question,
                     "status_code": r.status_code,
@@ -242,10 +367,18 @@ def run_eval(*, role: str = "researcher") -> dict[str, Any]:
                         "quality_score": score,
                         "gap_notes": gap_notes,
                     })
+                    if spec:
+                        gold_score = _score_gold_item(spec, row)
+                        row["gold_checks"] = gold_score["checks"]
+                        row["gold_gaps"] = gold_score["gaps"]
+                        row["gold_passed"] = gold_score["passed"]
+                        row["must_cite"] = spec.get("must_cite")
+                        row["must_block"] = spec.get("must_block")
                 else:
                     row["error"] = r.text[:300]
                     row["quality_score"] = 1
                     row["gap_notes"] = ["HTTP error"]
+                    row["gold_passed"] = False
                 chat_results.append(row)
 
             compare_qs = [
@@ -310,6 +443,15 @@ def run_eval(*, role: str = "researcher") -> dict[str, Any]:
     providers = Counter(r.get("effective_provider") or r.get("provider") for r in chat_results if r.get("provider"))
     synthesis_modes = Counter(r.get("synthesis_mode") for r in chat_results if r.get("synthesis_mode"))
     http_errors = sum(1 for r in chat_results if r.get("status_code") != 200)
+    gold_rows = [r for r in chat_results if r.get("gold_checks") is not None]
+    gold_specs = _load_gold_set()
+    gold_scored: list[dict[str, Any]] = []
+    for i, row in enumerate(gold_rows):
+        merged = dict(row)
+        if i < len(gold_specs):
+            merged.update({k: gold_specs[i].get(k) for k in ("category", "must_cite", "must_block", "use_rag", "expected_intent")})
+        gold_scored.append(merged)
+    release_gates = _release_gate_summary(gold_scored)
 
     return {
         "run_at": datetime.now(timezone.utc).isoformat(),
@@ -319,6 +461,8 @@ def run_eval(*, role: str = "researcher") -> dict[str, Any]:
         "providers_seen": dict(providers),
         "synthesis_modes_seen": dict(synthesis_modes),
         "http_errors": http_errors,
+        "gold_set_size": len(_load_gold_set()),
+        "release_gates": release_gates,
         "env_info": env_info,
         "infra": infra,
         "chat_results": chat_results,
@@ -340,14 +484,27 @@ def main() -> None:
     out_name = "search_qa_ai_baseline.json" if args.baseline else "search_qa_ai_last_run.json"
     out = ROOT / "tests" / out_name
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(json.dumps({
+    summary = {
         "written": str(out),
         "questions": len(report["chat_results"]),
         "http_errors": report["http_errors"],
         "providers": report["providers_seen"],
         "synthesis_modes": report["synthesis_modes_seen"],
         "gemini_key": report["gemini_key_configured"],
-    }, indent=2))
+        "release_gates": report.get("release_gates"),
+    }
+    print(json.dumps(summary, indent=2))
+    gates = report.get("release_gates") or {}
+    if gates:
+        print("\n--- Release gate summary ---")
+        print(f"| Gate | Value | Pass |")
+        print(f"|------|-------|------|")
+        print(f"| Intent accuracy | {gates.get('intent_accuracy_pct')}% | {'✓' if gates.get('intent_gate_pass') else '✗'} |")
+        print(f"| Citation compliance | {gates.get('citation_compliance_pct')}% | {'✓' if gates.get('citation_gate_pass') else '✗'} |")
+        print(f"| PII blocking | — | {'✓' if gates.get('pii_gate_pass') else '✗'} |")
+        print(f"| Research buckets | — | {'✓' if gates.get('research_bucket_gate_pass') else '✗'} |")
+        print(f"| Provider honesty | {gates.get('provider_honesty_pct')}% | {'✓' if gates.get('provider_honesty_gate_pass') else '✗'} |")
+        print(f"| Overall | {gates.get('overall_pass_pct')}% | {'✓' if gates.get('overall_gate_pass') else '✗'} |")
 
 
 if __name__ == "__main__":

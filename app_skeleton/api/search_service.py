@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import re
 import time
 from typing import Any
@@ -35,6 +36,126 @@ BUCKET_WEIGHTS: dict[str, float] = {
     "project": 0.65,
     "research": 0.92,
 }
+
+COPILOT_MIN_SCORE = float(os.getenv("COPILOT_MIN_SIMILARITY", "0.06"))
+
+INTENT_SCOPES: dict[str, str] = {
+    "research_question": "lab,research,file,vault,notebook,wiki",
+    "protocol_question": "lab,vault,file,notebook,wiki",
+    "search_request": "lab,file,vault,research,notebook,wiki",
+    "app_help": "lab,file,wiki",
+    "document_ingestion_help": "lab,file,wiki",
+}
+
+INTENT_BUCKET_WEIGHTS: dict[str, dict[str, float]] = {
+    "research_question": {
+        **BUCKET_WEIGHTS,
+        "research": 1.28,
+        "lab": 1.08,
+        "file": 0.88,
+        "vault": 0.82,
+    },
+    "protocol_question": {
+        **BUCKET_WEIGHTS,
+        "lab": 1.22,
+        "vault": 1.12,
+        "file": 0.92,
+        "research": 0.75,
+    },
+    "search_request": {
+        **BUCKET_WEIGHTS,
+        "research": 1.15,
+        "lab": 1.05,
+        "file": 1.0,
+    },
+    "app_help": {
+        **BUCKET_WEIGHTS,
+        "lab": 1.1,
+        "wiki": 1.05,
+        "file": 0.9,
+    },
+}
+
+
+def _tokenize_for_rerank(text: str) -> set[str]:
+    return {
+        t for t in re.findall(r"[a-z0-9\u00c0-\uffff]{3,}", (text or "").lower())
+        if t not in {"the", "and", "for", "what", "how", "does", "with", "from"}
+    }
+
+
+def _rerank_hits(query: str, hits: list["SearchHit"], *, top_n: int = 20) -> list["SearchHit"]:
+    """Lightweight lexical reranker — boosts hits whose snippet overlaps query terms."""
+    if not hits:
+        return hits
+    q_tokens = _tokenize_for_rerank(query)
+    if not q_tokens:
+        return hits[:top_n]
+
+    scored: list[tuple[float, SearchHit]] = []
+    for hit in hits[:top_n]:
+        blob = f"{hit.title} {hit.snippet}".lower()
+        overlap = sum(1 for tok in q_tokens if tok in blob)
+        overlap_ratio = overlap / max(len(q_tokens), 1)
+        rerank_score = hit.score * (1.0 + 1.2 * overlap_ratio)
+        scored.append((rerank_score, hit))
+
+    scored.sort(key=lambda pair: pair[0], reverse=True)
+    reranked: list[SearchHit] = []
+    for new_score, hit in scored:
+        hit.score = new_score
+        reranked.append(hit)
+    return reranked
+
+
+def _dedup_and_diversify(hits: list["SearchHit"], limit: int, *, max_per_bucket: int = 4) -> list["SearchHit"]:
+    """Deduplicate near-identical snippets and cap per-bucket dominance."""
+    seen_snippets: set[str] = set()
+    bucket_counts: dict[str, int] = {}
+    diversified: list[SearchHit] = []
+
+    for hit in hits:
+        snippet_key = re.sub(r"\s+", " ", (hit.snippet or "")[:180].lower()).strip()
+        if snippet_key and snippet_key in seen_snippets:
+            continue
+        if snippet_key:
+            seen_snippets.add(snippet_key)
+
+        bucket = hit.bucket or "unknown"
+        if bucket_counts.get(bucket, 0) >= max_per_bucket:
+            continue
+        bucket_counts[bucket] = bucket_counts.get(bucket, 0) + 1
+        diversified.append(hit)
+        if len(diversified) >= limit:
+            break
+
+    if len(diversified) < limit:
+        for hit in hits:
+            if hit in diversified:
+                continue
+            snippet_key = re.sub(r"\s+", " ", (hit.snippet or "")[:180].lower()).strip()
+            if snippet_key and snippet_key in seen_snippets:
+                continue
+            bucket = hit.bucket or "unknown"
+            if bucket_counts.get(bucket, 0) >= max_per_bucket:
+                continue
+            if snippet_key:
+                seen_snippets.add(snippet_key)
+            bucket_counts[bucket] = bucket_counts.get(bucket, 0) + 1
+            diversified.append(hit)
+            if len(diversified) >= limit:
+                break
+    return diversified
+
+
+def _apply_intent_weights(hits: list["SearchHit"], intent: str | None) -> list["SearchHit"]:
+    weights = INTENT_BUCKET_WEIGHTS.get(intent or "", BUCKET_WEIGHTS)
+    for hit in hits:
+        bucket_weight = weights.get(hit.bucket or "", BUCKET_WEIGHTS.get(hit.bucket or "", 1.0))
+        base = BUCKET_WEIGHTS.get(hit.bucket or "", 1.0) or 1.0
+        hit.score = hit.score * (bucket_weight / base)
+    hits.sort(key=lambda h: h.score, reverse=True)
+    return hits
 
 RESTRICTED_LEVELS = frozenset({"restricted", "confidential"})
 
@@ -750,15 +871,28 @@ class SearchService:
         codes = [project_code] if project_code else []
         return self._search_project_workspace_files(query, codes, limit=limit)
 
-    def hits_for_copilot(self, query: str, *, project_codes: list[str] | None = None, limit: int = 12) -> list[SearchHit]:
-        """Shared retrieval path for /ask — same ranking as unified search."""
+    def hits_for_copilot(
+        self,
+        query: str,
+        *,
+        intent: str | None = None,
+        project_codes: list[str] | None = None,
+        limit: int = 12,
+    ) -> list[SearchHit]:
+        """Intent-aware retrieval for chat/ask — rerank, gate, dedup, diversify."""
         codes = ",".join(project_codes) if project_codes else None
+        scopes = INTENT_SCOPES.get(intent or "", "lab,file,vault,notebook,wiki,research")
+        fetch_limit = max(limit * 3, 24)
         resp = self.unified_search(
             query,
-            scopes="lab,file,vault,notebook,wiki,research",
+            scopes=scopes,
             project_codes=codes,
             mode="hybrid",
-            limit=limit,
+            limit=fetch_limit,
             include_restricted=False,
         )
-        return resp.hits
+        hits = list(resp.hits)
+        hits = _apply_intent_weights(hits, intent)
+        hits = _rerank_hits(query, hits, top_n=min(fetch_limit, 20))
+        hits = [h for h in hits if h.score >= COPILOT_MIN_SCORE]
+        return _dedup_and_diversify(hits, limit)
