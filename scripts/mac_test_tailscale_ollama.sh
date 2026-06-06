@@ -23,12 +23,27 @@ AUTH=()
 
 echo "=== Tailscale Ollama test ==="
 echo "Linux Tailscale IP: $TS_IP"
+
+if command -v tailscale >/dev/null 2>&1; then
+  if tailscale ping -c 1 -timeout 3s "$TS_IP" >/dev/null 2>&1; then
+    echo "Tailscale ping: OK"
+  else
+    echo "Tailscale ping: FAIL — run: sudo tailscale up (same account on both machines)"
+  fi
+else
+  echo "Tailscale ping: skipped (tailscale CLI not on PATH)"
+fi
+
+if nc -z -G 5 "$TS_IP" 11434 2>/dev/null; then
+  echo "TCP 11434: open"
+else
+  echo "TCP 11434: closed/timeout — on Linux run: scripts/linux_fix_tailscale_inbound.sh"
+fi
+
 if curl -sf -m 10 "${AUTH[@]}" "http://${TS_IP}:11434/"; then
   echo ""
-  echo "OK — update configs/.env:"
-  echo "  OLLAMA_BASE_URL=http://${TS_IP}:11434/v1"
-  echo "  QDRANT_URL=http://${TS_IP}:6333"
+  echo "OK — Ollama reachable via Tailscale"
   exit 0
 fi
-echo "FAIL — check tailscale status on both machines and docker compose on Linux"
+echo "FAIL — Linux local curl works but Mac cannot reach $TS_IP:11434"
 exit 1
