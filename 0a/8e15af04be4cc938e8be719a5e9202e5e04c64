@@ -1,0 +1,23 @@
+scripts/mac_test_tailscale_ollama.sh
+  s_d8ca0dcf385045::t_f80b6539a12970 1-34
+docs/TAILSCALE_SETUP.md
+  s_d8ca0dcf385045::t_8a70b00d7af602 1-100
+configs/.env.example
+  s_d8ca0dcf385045::t_0c04a544eec857 196-202
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "0a8e15af04be4cc938e8be719a5e9202e5e04c64",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
