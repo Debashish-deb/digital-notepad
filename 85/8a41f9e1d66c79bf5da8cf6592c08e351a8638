@@ -1,0 +1,73 @@
+app_skeleton/api/common.py
+  s_247bbadeae5736::t_14496cc1043ac9 364-370
+app_skeleton/api/chat_intent.py
+  s_247bbadeae5736::t_6e2f9a524bded2 36-44,47-53,56,106-111,113,127,139,150,161-162,184-204,215-216,223,227-236
+  s_247bbadeae5736::t_189c445ed9de1a 226,238-239,241,245-246
+  s_247bbadeae5736::t_cec191baf436d7 177-183
+tests/test_copilot.py
+  s_247bbadeae5736::t_b4629265a207e1 10,15,18-19
+  s_247bbadeae5736::t_c58b7da45030d2 56-74
+tests/test_chat_intent.py
+  s_247bbadeae5736::t_1c7eb0453e4605 44-48,59-92
+app_skeleton/api/llm_client.py
+  s_247bbadeae5736::t_8f156b842abdae 23,25
+  s_247bbadeae5736::t_47f89cab7d5b3a 318-319,322-353
+tests/test_search_service.py
+  s_247bbadeae5736::t_afd8f20667cccb 59
+  s_247bbadeae5736::t_d99f9e8bbd3694 1-47,49-58,60-86
+  s_247bbadeae5736::t_b2f00b31c19064 48
+app_skeleton/ui/react_frontend/src/components/search/AssistantSearchHits.jsx
+  s_247bbadeae5736::t_cf739bb7cf742b 53-55
+app_skeleton/api/chat_service.py
+  s_247bbadeae5736::t_d7aa95838f1812 6,12-15,17,26-30,54-68,105-124,126,138,147,155,163,171,178-180,184-207,218,221,224-228,230-233,235-238,248,250-252,304,341-354,368,375-393,403,409-416,418,420,423,446
+docs/33_AI_LAB_ASSISTANT_PRODUCTION_PLAN.md
+  s_247bbadeae5736::t_b90cf79f3d210c 367-373
+docs/30_SEARCH_FUNCTIONALITY_AUDIT.md
+  s_247bbadeae5736::t_6f1ff1a244080b 52
+app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx
+  s_247bbadeae5736::t_34c7b67cf21dbd 628-634,637
+  s_247bbadeae5736::t_870091b5ce8a43 517-518,521,523
+  s_247bbadeae5736::t_c4a07659c064c5 394-397,411-412
+  s_247bbadeae5736::t_ecf4925b667d43 650
+  s_247bbadeae5736::t_92cbf3aef7803e 70,73-74,85-88
+app_skeleton/api/routers/copilot.py
+  s_247bbadeae5736::t_47b81758d2d9ca 63,77-84,97,105-111,114,118-124,127,134,139,143,148-152,154-157
+tests/search_qa_ai_last_run.json
+  s_247bbadeae5736::t_270875c337dc70 1-2931
+app_skeleton/api/search_service.py
+  s_247bbadeae5736::t_c5ae92d73ee498 5
+  s_247bbadeae5736::t_d5bb7aefb96c71 40-99,101-135,145-159
+  s_247bbadeae5736::t_de618af47e1dad 874-882,884-885,888,891,894-898
+  s_247bbadeae5736::t_2ffc6e4cf2db99 100
+  s_247bbadeae5736::t_41850b5799bc24 136-144
+tests/test_chat_api.py
+  s_247bbadeae5736::t_dfb72147f0c4cd 4,6,10
+  s_247bbadeae5736::t_ca01835f3e2c36 110-179
+scripts/run_ai_lab_assistant_eval.py
+  s_247bbadeae5736::t_f11616e6da5f9d 487,494-507
+  s_247bbadeae5736::t_bbf6039de4a307 25,43-125,130,132,134-138,141-154
+  s_247bbadeae5736::t_1b2266cc3092f9 317-328,337,370-376,381
+  s_247bbadeae5736::t_ef05b91962457a 454,464-465
+  s_247bbadeae5736::t_3819821274c636 446-453
+  s_247bbadeae5736::t_c0ecd71f89dc0c 126-129,131,133,139-140
+tests/ai_eval_gold_set.json
+  s_247bbadeae5736::t_782bd65995a860 1-59
+app_skeleton/api/answer_grounding_service.py
+  s_247bbadeae5736::t_1151f69ec7ba35 3,15-37,74-134
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "858a41f9e1d66c79bf5da8cf6592c08e351a8638",
+  "prompts": {},
+  "sessions": {
+    "s_247bbadeae5736": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "f029a2d4-baa3-49b4-ae87-c246c6b9de5b",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
