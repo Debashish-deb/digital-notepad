@@ -38,13 +38,18 @@ fi
 ln -sf configs/.env .env 2>/dev/null || true
 grep -q '0.0.0.0:11434:11434' docker-compose.yml 2>/dev/null || \
   sed -i 's|127.0.0.1:11434:11434|0.0.0.0:11434:11434|' docker-compose.yml 2>/dev/null || true
+grep -q '0.0.0.0:6333:6333' docker-compose.yml 2>/dev/null || \
+  sed -i 's|127.0.0.1:6333:6333|0.0.0.0:6333:6333|' docker-compose.yml 2>/dev/null || true
 
-docker compose up -d ollama ollama-proxy qdrant 2>/dev/null || true
+docker compose up -d ollama ollama-proxy qdrant --force-recreate 2>/dev/null || \
+  docker compose up -d ollama ollama-proxy qdrant 2>/dev/null || true
 
-# Fallback: Tailscale TCP proxy (bypasses some host firewall paths)
+# Tailscale TCP proxy for Ollama + Qdrant (bypasses host firewall paths)
 sudo tailscale serve reset 2>/dev/null || true
-sudo tailscale serve --bg --tcp 11434 127.0.0.1:11434 2>/dev/null || \
-  sudo tailscale serve --bg --tcp=11434 tcp://127.0.0.1:11434 2>/dev/null || true
+sudo tailscale serve --bg --tcp=11434 tcp://127.0.0.1:11434 2>/dev/null || \
+  sudo tailscale serve --bg --tcp 11434 127.0.0.1:11434 2>/dev/null || true
+sudo tailscale serve --bg --tcp=6333 tcp://127.0.0.1:6333 2>/dev/null || \
+  sudo tailscale serve --bg --tcp 6333 127.0.0.1:6333 2>/dev/null || true
 
 echo ""
 echo "Local test (must print 'Ollama is running'):"
@@ -58,6 +63,15 @@ fi
 curl -sf -m 5 -H "Authorization: Bearer ${OLLAMA_INTERNAL_TOKEN:-}" http://127.0.0.1:11434/ || true
 
 echo ""
+echo "Qdrant local test (expect JSON with version):"
+curl -sf -m 5 http://127.0.0.1:6333/ | head -c 120 || echo "(qdrant local failed)"
+if [[ -n "$TS_IP" ]]; then
+  curl -sf -m 5 "http://${TS_IP}:6333/" | head -c 120 || echo "(qdrant via tailscale IP failed)"
+fi
+
+echo ""
 sudo tailscale serve status 2>/dev/null || true
 echo ""
-echo "Done. From Mac: ./scripts/mac_test_tailscale_ollama.sh"
+echo "Done. From Mac:"
+echo "  ./scripts/mac_test_tailscale_ollama.sh"
+echo "  curl -s --max-time 5 http://100.80.231.55:6333/"

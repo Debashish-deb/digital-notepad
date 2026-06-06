@@ -40,10 +40,31 @@ else
   echo "TCP 11434: closed/timeout — on Linux run: scripts/linux_fix_tailscale_inbound.sh"
 fi
 
+OLLAMA_OK=0
+QDRANT_OK=0
+
 if curl -sf -m 10 "${AUTH[@]}" "http://${TS_IP}:11434/"; then
   echo ""
   echo "OK — Ollama reachable via Tailscale"
-  exit 0
+  OLLAMA_OK=1
+else
+  echo "FAIL — Ollama unreachable at $TS_IP:11434"
 fi
-echo "FAIL — Linux local curl works but Mac cannot reach $TS_IP:11434"
+
+echo ""
+echo "=== Tailscale Qdrant test ==="
+if nc -z -G 5 "$TS_IP" 6333 2>/dev/null; then
+  echo "TCP 6333: open"
+else
+  echo "TCP 6333: closed/timeout — re-run linux_fix_tailscale_inbound.sh on Linux"
+fi
+if curl -sf -m 8 "http://${TS_IP}:6333/" | head -c 80; then
+  echo ""
+  echo "OK — Qdrant reachable via Tailscale (RAG will be fast)"
+  QDRANT_OK=1
+else
+  echo "FAIL — Qdrant unreachable at $TS_IP:6333 (RAG adds 5s+ timeouts)"
+fi
+
+[[ "$OLLAMA_OK" -eq 1 && "$QDRANT_OK" -eq 1 ]] && exit 0
 exit 1
