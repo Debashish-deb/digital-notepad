@@ -1,0 +1,79 @@
+app_skeleton/ui/react_frontend/src/App.css
+  s_dac3e236f51be2::t_5c6d70d0c0731c 1777-1789
+  s_dac3e236f51be2::t_3963431c03da89 153
+  s_dac3e236f51be2::t_fef067da378462 96-97
+  s_dac3e236f51be2::t_4cec124628f795 213
+app_skeleton/ui/react_frontend/src/api/searchApi.js
+  s_dac3e236f51be2::t_c0bc68d141e84a 1,4-7
+  s_dac3e236f51be2::t_38cc7b839fe320 31-36
+  s_dac3e236f51be2::t_43903f7b7222f5 46-51
+app_skeleton/ui/react_frontend/src/components/Sidebar.jsx
+  s_dac3e236f51be2::t_8af49a22592139 77,79
+  s_dac3e236f51be2::t_d7983b24f2c2d4 238-239
+  s_dac3e236f51be2::t_7613815d2a2551 25
+  s_dac3e236f51be2::t_343fe0047075cf 1
+app_skeleton/ui/react_frontend/vite.config.js
+  s_dac3e236f51be2::t_c527b6002c2e08 153-181
+app_skeleton/ui/react_frontend/src/components/ModuleShell.jsx
+  s_dac3e236f51be2::t_0a6ec6a29d0f6b 1
+  s_dac3e236f51be2::t_5b55adc107fc9d 15
+  s_dac3e236f51be2::t_8115e5a369c646 38
+  s_dac3e236f51be2::t_ecb3d989990407 117-118
+app_skeleton/ui/react_frontend/src/api/client.js
+  s_dac3e236f51be2::t_5fe8d6ff033236 124-173
+app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx
+  s_dac3e236f51be2::t_980b7325662e07 1
+  s_dac3e236f51be2::t_4e77387d98959e 495-505
+  s_dac3e236f51be2::t_0e76fcb06864e9 23
+app_skeleton/ui/react_frontend/src/components/GlobalSearchOverlay.jsx
+  s_dac3e236f51be2::t_7b969efda198c0 161
+  s_dac3e236f51be2::t_b4f4d0ff2aee79 97-100,102-114,116-119
+  s_dac3e236f51be2::t_d32e2d5742d903 3
+app_skeleton/ui/react_frontend/src/App.jsx
+  s_e5440c0955affa::t_cb82a00f3b3d19 261-271
+  s_dac3e236f51be2::t_9dfdf2a1bb7060 394-400
+  s_dac3e236f51be2::t_a60d56ea1ca230 566-569,571-591
+  s_e5440c0955affa::t_378991a072b19f 206
+  s_e5440c0955affa::t_0464a6d62ce636 134-140
+  s_dac3e236f51be2::t_4a8d61ed45c1ec 7
+  s_dac3e236f51be2::t_49b29561dc7608 222-225
+  s_dac3e236f51be2::t_32fc65710005b9 302-312
+  s_dac3e236f51be2::t_cd3eb779cb5669 31-82
+  s_dac3e236f51be2::t_9c640972e445c8 334-337
+  s_e5440c0955affa::t_a26e41acb7b808 24
+  s_e5440c0955affa::t_a1a7b9490e1496 367-368
+  s_dac3e236f51be2::t_716fb94943fe3b 648
+  s_dac3e236f51be2::t_e7b3cb3fb584c0 620,626,629
+  s_dac3e236f51be2::t_49a3257b724e00 682-697
+  s_e5440c0955affa::t_ed62ef417db51e 373
+app_skeleton/ui/react_frontend/src/screens/AiLabAssistantScreen.jsx
+  s_dac3e236f51be2::t_751a88d2f5d52d 17-22
+  s_dac3e236f51be2::t_00fe51c79f4453 253-276
+  s_dac3e236f51be2::t_f821ece96f7d5d 281-289
+  s_dac3e236f51be2::t_1baf826c824714 1
+  s_dac3e236f51be2::t_4c0aed07189fea 205-213
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "a5dba5c85619f9b21370225d4e738d8122828c2d",
+  "prompts": {},
+  "sessions": {
+    "s_dac3e236f51be2": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "fbf91a06-70b7-40b5-8d0d-539f4e1fae2f",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_e5440c0955affa": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "485cd353-4eb8-411c-acf6-3ea249066325",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
