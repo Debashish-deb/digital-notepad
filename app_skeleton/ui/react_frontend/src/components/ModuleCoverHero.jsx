@@ -66,14 +66,9 @@ export default function ModuleCoverHero({
                 ))}
               </ul>
             ) : null}
-            {mainId === 'overview' ? (
-              <LanguageSwitcher variant="pills" />
-            ) : null}
           </div>
           <div className="module-cover-hero__actions">
-            {mainId !== 'overview' ? (
-              <LanguageSwitcher variant="pills" showLabel={false} className="module-cover-hero__lang" />
-            ) : null}
+            <LanguageSwitcher variant="pills" showLabel={false} className="module-cover-hero__lang" />
             <div className="module-cover-hero__taskpad">
               <TaskpadSheet mainId={mainId} subId={subId} />
             </div>

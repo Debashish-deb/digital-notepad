@@ -13,6 +13,7 @@ import {
   PartyPopper,
 } from 'lucide-react';
 import { useGuiT } from '../../i18n/useGuiT.js';
+import { overviewIntroCopy } from '../../data/overviewIntroTranslations.js';
 import { labMembers } from '../../data/labMembers.js';
 import LabTeamRoster from '../LabTeamRoster.jsx';
 
@@ -49,6 +50,8 @@ const TOPIC_ICONS = {
   omics: Dna,
   precision: Target,
 };
+
+const FALLBACK_SECTIONS = overviewIntroCopy.en.sections;
 
 export default function OverviewIntroBody({ onSubChange, onNavigate }) {
   const { intro: t } = useGuiT();
@@ -131,7 +134,8 @@ export default function OverviewIntroBody({ onSubChange, onNavigate }) {
         </div>
         <div className="overview-intro-nav-grid">
           {SECTION_META.map(({ id, icon: Icon, highlight }) => {
-            const section = t.sections[id];
+            const section = t.sections?.[id] ?? FALLBACK_SECTIONS[id];
+            if (!section) return null;
             return (
               <button
                 key={id}

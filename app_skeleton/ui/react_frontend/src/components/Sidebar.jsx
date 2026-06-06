@@ -205,7 +205,7 @@ function Sidebar({
 
         <div className="sidebar-footer-toolbar" role="toolbar" aria-label={t('common.sidebarToolbarAria', 'Sidebar settings')}>
           <div className="sidebar-footer-toolbar-lang">
-            <LanguageSwitcher key={locale} variant="select" showLabel={false} />
+            <LanguageSwitcher variant="select" showLabel={false} />
           </div>
 
           <div className="sidebar-footer-toolbar-actions">

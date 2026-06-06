@@ -134,6 +134,10 @@ export const overviewIntroCopy = {
         label: 'Laboratorion siivous',
         description: 'Siivouspäivien aikataulut ja varastoluettelot.',
       },
+      social: {
+        label: 'Sosiaalinen ja muu',
+        description: 'Retriitit, tapahtumat, labrakuvat, vierailijoiden vastaanotto ja tiedotus.',
+      },
     },
     langLabel: 'Kieli',
   },
@@ -198,6 +202,10 @@ export const overviewIntroCopy = {
       cleaning: {
         label: 'Уборка лаборатории',
         description: 'Графики уборки и инвентаризация хранения.',
+      },
+      social: {
+        label: 'Социальное и прочее',
+        description: 'Выезды, мероприятия, фото лаборатории, приём гостей и outreach.',
       },
     },
     langLabel: 'Язык',
@@ -264,6 +272,10 @@ export const overviewIntroCopy = {
         label: 'Limpieza del laboratorio',
         description: 'Calendarios de limpieza e inventarios de almacenamiento.',
       },
+      social: {
+        label: 'Social y miscelánea',
+        description: 'Retiros, eventos, fotos del laboratorio, visitas y divulgación.',
+      },
     },
     langLabel: 'Idioma',
   },
@@ -326,6 +338,10 @@ export const overviewIntroCopy = {
       cleaning: {
         label: '实验室清洁',
         description: '清洁日安排与存储清单。',
+      },
+      social: {
+        label: '社交与杂项',
+        description: '团建、活动、实验室照片、访客接待与科普推广。',
       },
     },
     langLabel: '语言',
@@ -392,6 +408,10 @@ export const overviewIntroCopy = {
         label: 'ল্যাব পরিষ্কার',
         description: 'পরিষ্কার দিনের সময়সূচি ও স্টোরেজ ইনভেন্টরি।',
       },
+      social: {
+        label: 'সামাজিক ও বিবিধ',
+        description: 'রিট্রিট, ইভেন্ট, ল্যাব ফটো, অতিথি আপ্যায়ন ও আউটরিচ।',
+      },
     },
     langLabel: 'ভাষা',
   },
@@ -456,6 +476,10 @@ export const overviewIntroCopy = {
       cleaning: {
         label: 'ल्याब सफाइ',
         description: 'cleaning schedules र storage inventories।',
+      },
+      social: {
+        label: 'सामाजिक र विविध',
+        description: 'रिट्रीट, कार्यक्रम, ल्याब फोटो, आगन्तुक स्वागत र आउटरिच।',
       },
     },
     langLabel: 'भाषा',
@@ -522,6 +546,10 @@ export const overviewIntroCopy = {
         label: 'Καθαρισμός εργαστηρίου',
         description: 'προγράμματα καθαρισμού και απογραφές αποθήκευσης.',
       },
+      social: {
+        label: 'Κοινωνικά και διάφορα',
+        description: 'Retreats, εκδηλώσεις, φωτογραφίες εργαστηρίου, φιλοξενία επισκεπτών και outreach.',
+      },
     },
     langLabel: 'Γλώσσα',
   },
@@ -587,6 +615,10 @@ export const overviewIntroCopy = {
         label: 'ലാബ് ക്ലീനിംഗ്',
         description: 'cleaning day schedules, storage inventories.',
       },
+      social: {
+        label: 'സാമൂഹികവും മറ്റുള്ളവയും',
+        description: 'Retreats, events, lab photos, visitor hosting, outreach.',
+      },
     },
     langLabel: 'ഭാഷ',
   },
@@ -651,6 +683,10 @@ export const overviewIntroCopy = {
       cleaning: {
         label: 'Labbstädning',
         description: 'Städdagsscheman och lagringsinventeringar.',
+      },
+      social: {
+        label: 'Socialt och övrigt',
+        description: 'Retreater, evenemang, labbfoton, besöksmottagning och outreach.',
       },
     },
     langLabel: 'Språk',
