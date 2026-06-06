@@ -1,0 +1,19 @@
+app_skeleton/ui/react_frontend/src/screens/UserProfileScreen.jsx
+  s_e18b28be16d2eb::t_3d26d4b6dfd501 3-63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "a156d1cb05464a00d6951cf28cf21cff7b11420c",
+  "prompts": {},
+  "sessions": {
+    "s_e18b28be16d2eb": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "27ec743b-042a-426e-a089-e3f4755e006f",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
