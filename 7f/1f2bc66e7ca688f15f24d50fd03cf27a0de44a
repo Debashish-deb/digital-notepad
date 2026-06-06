@@ -1,0 +1,125 @@
+app_skeleton/ui/react_frontend/src/screens/AiLabAssistantScreen.jsx
+  s_c3acd5bd606781::t_762dff7f69d0ae 180-185
+  s_c3acd5bd606781::t_0e3629fcb80fea 221-227
+  s_c3acd5bd606781::t_e1df0684d4553e 15
+app_skeleton/ui/react_frontend/src/screens/ResearchKnowledgeAdminScreen.jsx
+  s_c3acd5bd606781::t_90afd4db25a5f5 1-124
+app_skeleton/api/research_crawler.py
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-4,6-13,17-44,54-55,64,66,71-74,80-83,111-118,125-163
+  s_09208bb2177306::t_b7033f0f4b108d 45-53,56-63,65,67-70,75-79,84-110
+  s_09208bb2177306::t_eb81295a732c21 5,14-16
+  s_09208bb2177306::t_0eac8957ce94c2 119-124
+app_skeleton/ui/react_frontend/src/config/navigation.js
+  s_c3acd5bd606781::t_90afd4db25a5f5 168
+app_skeleton/ui/react_frontend/src/App.jsx
+  s_c3acd5bd606781::t_a4e1177128282d 359-360
+  s_c3acd5bd606781::t_58d6668bc33a82 21
+app_skeleton/api/routers/research_knowledge.py
+  s_d8ca0dcf385045::t_eb2d75cfedc95d 1-7,11,13-15,17-21,23-24,28-29,31-36,38-42,45,47,50-54,57-58,60,62-64,66-70
+  s_c3acd5bd606781::t_d7c68b974d272e 8-10,12,16,22,25-27,30,37,43-44,46,48-49,55-56,59,61,65,71
+app_skeleton/ui/react_frontend/src/screens/ResearchKnowledge.css
+  s_c3acd5bd606781::t_90afd4db25a5f5 1-111
+configs/qdrant_collections.yaml
+  s_c3acd5bd606781::t_cb6f86f069bdf5 18-25
+app_skeleton/api/publication_fetcher.py
+  s_09208bb2177306::t_1dcb03f26c4f27 4-5,17-18,20-55,58,66,128-130,133-134
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-3,6-16,19,56-57,59-65,67-127,131-132,135-143
+scripts/setup_research_knowledge.sh
+  s_c3acd5bd606781::t_616d584762906d 1-7,13-28,30-45,47-55,57-67,69-79,81-92,94-100
+  s_c3acd5bd606781::t_e216177eb5cf9e 29
+  s_c3acd5bd606781::t_a2b565eefa1691 8-12
+  s_c3acd5bd606781::t_22a5a47414f6f0 46,56,68,80,93
+app_skeleton/api/search_nav.py
+  s_c3acd5bd606781::t_c3040d4b571233 100
+  s_d8ca0dcf385045::t_4109d41d4df80f 85-86
+app_skeleton/api/research_search_service.py
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-47,49,52-75
+app_skeleton/api/search_models.py
+  s_d8ca0dcf385045::t_320d3d4feca132 19
+app_skeleton/api/entity_relation_extractor.py
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-87
+configs/research_knowledge/domain_taxonomy.yml
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-57
+app_skeleton/api/research_knowledge_store.py
+  s_d8ca0dcf385045::t_6350bd484e4ae5 2-5,9-13,16-17,23,26,29,36-39,101-107,110-111,113,125,151-164,166-168,171-174,177,179-181,188-190,192,195-197,199-205,208-209,211-212,232,235-237,239-240,242-243,248-249,253,255,282-283,288-290,295-297,305-306,310,313,341,343-344,386-387,445-446,459,469,487,494,509-510,539-540,558,601-602,604,627,630-634,638,649-655,657-661,663-664,677,679-684,692,696,698,710,714,726-727,813-818,822,824,830,837-839
+  s_c3acd5bd606781::t_4e13b51c43113a 1,6-8,14-15,18-22,24-25,27-28,30-35,40-100,108-109,112,114-124,126-150,165,169-170,175-176,178,182-187,191,193-194,198,206-207,210,213-231,233-234,238,241,244-247,256-257,269-270,275,277-281,284-287,291-294,298-304,307-309,311-312,314-340,342,345-367,379-381,383-385,388-444,447-458,460-468,470-486,488-493,495-508,511-538,541-557,559-600,603,605-626,628-629,635-637,639-648,656,662,665-676,678,685-691,693-695,697,699-709,711-713,715-725,728-812,819-821,823,825-829,831-836,840-863
+  s_c3acd5bd606781::t_a75f61a5c38bc1 368-378,382
+  s_c3acd5bd606781::t_dc99eed1e24304 250-252,254,258-268,271-274,276
+app_skeleton/api/main.py
+  s_d8ca0dcf385045::t_0e8ad607a22a13 52
+  s_89f4f96054c426::t_388f23e536aee9 15
+app_skeleton/api/routers/copilot.py
+  s_89f4f96054c426::t_ab82b6a9f149c2 188-189,191-261,265-268
+app_skeleton/api/requirements.txt
+  s_d8ca0dcf385045::t_e965b6ace4702c 12
+app_skeleton/api/research_knowledge_models.py
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-127
+configs/research_knowledge/crawl_allowlist.yml
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-22
+app_skeleton/api/dataset_fetcher.py
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-53
+configs/.env.example
+  s_c3acd5bd606781::t_134675593e8c72 185-201
+app_skeleton/api/scientific_document_parser.py
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-67
+app_skeleton/api/answer_grounding_service.py
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-49
+app_skeleton/api/qdrant_research_indexer.py
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-96
+app_skeleton/ui/react_frontend/src/api/researchKnowledgeClient.js
+  s_c3acd5bd606781::t_90afd4db25a5f5 1-21
+app_skeleton/api/search_service.py
+  s_d8ca0dcf385045::t_e36c6e7e652f08 292-293,295-296,301-327
+  s_d8ca0dcf385045::t_f30c18d4603919 758
+  s_c3acd5bd606781::t_fa0c5347460fe0 294,297-300
+  s_d8ca0dcf385045::t_508047e2856391 20
+  s_d8ca0dcf385045::t_3d870170674dbc 25
+  s_d8ca0dcf385045::t_cc4dc4af6bdf4e 36
+sql/142_research_knowledge.sql
+  s_c3acd5bd606781::t_e5e702a43639b5 5
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-4,6-190
+app_skeleton/api/evaluation_service.py
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-35
+configs/research_knowledge/seed_sources.json
+  s_d8ca0dcf385045::t_7ee7f9d0b67164 1-154
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "7f1f2bc66e7ca688f15f24d50fd03cf27a0de44a",
+  "prompts": {},
+  "sessions": {
+    "s_09208bb2177306": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "26ec559a-bdea-4df9-b809-fc4c3f843f1c",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_89f4f96054c426": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0c5cc6df-0930-4b1b-b2e9-620f2d34c76b",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_c3acd5bd606781": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "02b04689-8e78-4f6e-9891-13f8340e3418",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
