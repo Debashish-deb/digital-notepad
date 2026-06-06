@@ -59,7 +59,7 @@ def get_billing_instructions() -> dict:
 def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> QuestionResponse:
     mode = (req.mode or "documentation_only").strip().lower()
     if mode != "search_only":
-        require_role(user, ["editor", "admin"])
+        require_role(user, ["researcher", "viewer", "editor", "admin"])
     # 1. Initialize temporary LLM client dynamically if configured from frontend
     active_llm = llm_client
     if req.llm_provider and req.llm_provider != "mock":

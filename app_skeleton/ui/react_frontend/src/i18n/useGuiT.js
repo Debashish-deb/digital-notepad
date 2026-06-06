@@ -27,7 +27,17 @@ export function useGuiT() {
     [locale]
   );
 
-  const intro = overviewIntroCopy[locale] || overviewIntroCopy.en;
+  const intro = useMemo(() => {
+    const base = overviewIntroCopy.en;
+    const localized = overviewIntroCopy[locale] || {};
+    return {
+      ...base,
+      ...localized,
+      topics: localized.topics || base.topics,
+      quickLinks: { ...base.quickLinks, ...(localized.quickLinks || {}) },
+      sections: { ...base.sections, ...(localized.sections || {}) },
+    };
+  }, [locale]);
 
   const nav = useMemo(
     () => ({

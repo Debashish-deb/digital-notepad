@@ -72,7 +72,7 @@ export default function OverviewIntroBody({ onSubChange, onNavigate }) {
           <h2 className="overview-intro-panel-title">{t.topicsTitle}</h2>
         </div>
         <div className="overview-intro-topic-grid">
-          {t.topics.map((topic) => {
+          {(Array.isArray(t.topics) ? t.topics : overviewIntroCopy.en.topics).map((topic) => {
             const Icon = TOPIC_ICONS[topic.id] || Sparkles;
             return (
               <article key={topic.id} className="overview-intro-topic-card">
@@ -115,10 +115,10 @@ export default function OverviewIntroBody({ onSubChange, onNavigate }) {
                 <span className="overview-intro-nav-icon" aria-hidden>
                   <Icon size={18} />
                 </span>
-                <span className="overview-intro-nav-label">{t.quickLinks[labelKey]}</span>
+                <span className="overview-intro-nav-label">{t.quickLinks?.[labelKey] || labelKey}</span>
                 <ArrowRight size={15} className="overview-intro-nav-arrow" aria-hidden />
               </div>
-              <p className="overview-intro-nav-desc">{t.quickLinks[descKey]}</p>
+              <p className="overview-intro-nav-desc">{t.quickLinks?.[descKey] || ''}</p>
             </button>
           ))}
         </div>

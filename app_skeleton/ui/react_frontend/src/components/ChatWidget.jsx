@@ -10,7 +10,7 @@ import {
   User,
 } from 'lucide-react';
 import { apiFetch } from '../api/client.js';
-import { getChatStatus, sendChatMessage } from '../api/chatClient.js';
+import { getChatStatus, sendChatMessage, streamChatMessage } from '../api/chatClient.js';
 import {
   navigateFromSearchHit,
   readStashedSearchQuery,
@@ -212,6 +212,7 @@ export default function ChatWidget({
   const [chatProvider, setChatProvider] = useState('mock');
   const [chatModel, setChatModel] = useState('');
   const [chatHealthy, setChatHealthy] = useState(null);
+  const [streamEnabled, setStreamEnabled] = useState(false);
 
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
@@ -272,6 +273,7 @@ export default function ChatWidget({
         setChatProvider(provider);
         setChatModel(status?.chat_model || status?.llm?.model || '');
         setChatHealthy(status?.llm?.healthy ?? null);
+        setStreamEnabled(status?.stream_enabled !== false);
       })
       .catch(() => {
         if (!cancelled) {
@@ -321,7 +323,64 @@ export default function ChatWidget({
 
       setLoading(true);
 
+      const assistantMessage = makeMessage('assistant', '', { streaming: true });
+      let streamedAssistantId = null;
+
       try {
+        if (streamEnabled) {
+          streamedAssistantId = assistantMessage.id;
+          setMessages((prev) => [...prev, assistantMessage]);
+
+          let streamedContent = '';
+          let streamMeta = {};
+
+          await streamChatMessage({
+            message: textToSend,
+            project_codes: selProjs,
+            onMetadata: (meta) => {
+              streamMeta = meta;
+              if (meta?.provider) setChatProvider(meta.provider);
+            },
+            onDelta: (delta) => {
+              streamedContent += delta || '';
+              setMessages((prev) =>
+                prev.map((msg) =>
+                  msg.id === streamedAssistantId
+                    ? { ...msg, content: streamedContent }
+                    : msg,
+                ),
+              );
+            },
+          });
+
+          const formatted = formatAssistantPayload({
+            answer: streamedContent,
+            ...streamMeta,
+          });
+
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === streamedAssistantId
+                ? {
+                    ...msg,
+                    content: formatted.content,
+                    sources: formatted.sources,
+                    searchHits: formatted.searchHits,
+                    queryContext: textToSend,
+                    limitations: formatted.limitations,
+                    intent: formatted.intent,
+                    showSources: formatted.showSources,
+                    databaseCounts: formatted.databaseCounts,
+                    isSafe: formatted.isSafe,
+                    provider: formatted.provider || streamMeta.provider || chatProvider,
+                    streaming: false,
+                  }
+                : msg,
+            ),
+          );
+          return;
+        }
+
         const data = await sendChatMessage({
           message: textToSend,
           project_codes: selProjs,
@@ -345,6 +404,9 @@ export default function ChatWidget({
           }),
         ]);
       } catch (error) {
+        if (streamedAssistantId) {
+          setMessages((prev) => prev.filter((msg) => msg.id !== streamedAssistantId));
+        }
         const isAuthError = error?.status === 401;
         const isRoleBlocked = error?.status === 403;
 
@@ -395,7 +457,7 @@ export default function ChatWidget({
         setLoading(false);
       }
     },
-    [loading, selProjs, chatProvider],
+    [loading, selProjs, chatProvider, streamEnabled],
   );
 
   useEffect(() => {
@@ -619,7 +681,7 @@ export default function ChatWidget({
             </div>
           ) : null}
 
-          {loading && (
+          {loading && !messages.some((message) => message.streaming) && (
             <article className="chat-message-row assistant assistant-thinking-row" aria-live="polite">
               <div className="chat-avatar chat-avatar--assistant" aria-hidden="true">
                 <Bot size={18} />

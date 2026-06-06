@@ -13,6 +13,10 @@ export async function ingestPublications() {
   return apiFetch('/api/research-knowledge/ingest-publications', { method: 'POST' });
 }
 
+export async function seedResearchDatasets() {
+  return apiFetch('/api/research-knowledge/seed-datasets', { method: 'POST' });
+}
+
 export async function searchResearchKnowledge({ q, limit = 20, signal } = {}) {
   const query = String(q || '').trim();
   if (!query) return { query: '', count: 0, hits: [] };

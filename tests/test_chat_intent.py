@@ -35,6 +35,12 @@ class TestChatIntent(unittest.TestCase):
         self.assertFalse(decision.show_sources)
         self.assertFalse(decision.require_citations)
 
+    def test_ingest_help_without_rag(self) -> None:
+        decision = classify_chat_intent("How do I ingest a document into Qdrant for RAG?")
+        self.assertEqual(decision.intent, "document_ingestion_help")
+        self.assertFalse(decision.use_rag)
+        self.assertFalse(decision.show_sources)
+
 
 if __name__ == "__main__":
     unittest.main()

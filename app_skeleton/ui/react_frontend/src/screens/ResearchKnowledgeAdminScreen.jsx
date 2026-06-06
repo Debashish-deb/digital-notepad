@@ -5,6 +5,7 @@ import {
   getResearchKnowledgeStatus,
   ingestPublications,
   searchResearchKnowledge,
+  seedResearchDatasets,
 } from '../api/researchKnowledgeClient.js';
 import './ResearchKnowledge.css';
 
@@ -49,10 +50,26 @@ export default function ResearchKnowledgeAdminScreen() {
     setMessage('Discovering publication metadata...');
     try {
       const result = await ingestPublications();
-      setMessage(`Publication discovery finished: ${result.count || 0} records.`);
+      const ingested = result.ingested ?? result.count ?? 0;
+      const total = result.count ?? ingested;
+      setMessage(`Publication ingest finished: ${ingested}/${total} records indexed.`);
       await refreshStatus();
     } catch (error) {
       setMessage(error?.message || 'Publication ingest failed.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function runSeedDatasets() {
+    setBusy(true);
+    setMessage('Seeding public dataset registry...');
+    try {
+      const result = await seedResearchDatasets();
+      setMessage(`Dataset seed finished: ${result.count ?? 0} records.`);
+      await refreshStatus();
+    } catch (error) {
+      setMessage(error?.message || 'Dataset seed failed.');
     } finally {
       setBusy(false);
     }
@@ -97,7 +114,13 @@ export default function ResearchKnowledgeAdminScreen() {
           <div className="research-kb-actions">
             <button className="btn btn-primary" onClick={runCrawl} disabled={busy}>Crawl Färkkilä Website</button>
             <button className="btn btn-secondary" onClick={runPublicationIngest} disabled={busy}>Discover Publications</button>
+            <button className="btn btn-secondary" onClick={runSeedDatasets} disabled={busy}>Seed Datasets</button>
           </div>
+          {status?.warnings?.length ? (
+            <p className="research-kb-message research-kb-message--warn">
+              {status.warnings.join(' ')}
+            </p>
+          ) : null}
           {message && <p className="research-kb-message">{message}</p>}
         </article>
       </div>

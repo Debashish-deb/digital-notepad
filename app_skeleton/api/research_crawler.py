@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import logging
 import os
+import re
 import time
 from dataclasses import dataclass
+from typing import Any
 from urllib.parse import urljoin, urlparse, urldefrag
 
 import requests
@@ -51,6 +54,47 @@ def _meta_content(soup: BeautifulSoup, *names: str) -> str:
     return ""
 
 
+def _walk_json_ld_strings(node: Any, out: list[str], *, depth: int = 0) -> None:
+    """Collect human-readable strings from JSON-LD blocks (common on JS SPAs)."""
+    if depth > 8:
+        return
+    if isinstance(node, str):
+        text = " ".join(node.split())
+        if len(text) >= 24:
+            out.append(text)
+        return
+    if isinstance(node, dict):
+        for key in ("name", "headline", "description", "abstract", "text", "articleBody"):
+            val = node.get(key)
+            if isinstance(val, str):
+                text = " ".join(val.split())
+                if len(text) >= 24:
+                    out.append(text)
+        for val in node.values():
+            _walk_json_ld_strings(val, out, depth=depth + 1)
+        return
+    if isinstance(node, list):
+        for item in node[:24]:
+            _walk_json_ld_strings(item, out, depth=depth + 1)
+
+
+def _extract_json_ld_text(soup: BeautifulSoup) -> list[str]:
+    chunks: list[str] = []
+    for script in soup.find_all("script", attrs={"type": re.compile(r"application/ld\+json", re.I)}):
+        raw = (script.string or script.get_text() or "").strip()
+        if not raw:
+            continue
+        try:
+            payload = json.loads(raw)
+        except Exception:
+            continue
+        before = len(chunks)
+        _walk_json_ld_strings(payload, chunks)
+        if len(chunks) == before and isinstance(payload, dict):
+            _walk_json_ld_strings([payload], chunks)
+    return chunks
+
+
 def clean_html_to_text(html: str) -> tuple[str, str, list[str]]:
     soup = BeautifulSoup(html or "", "html.parser")
 
@@ -77,13 +121,27 @@ def clean_html_to_text(html: str) -> tuple[str, str, list[str]]:
     meta_desc = _meta_content(soup, "description", "og:description", "twitter:description")
     if meta_desc:
         chunks.append(meta_desc)
-    for node in soup.find_all(["h1", "h2", "h3", "h4", "p", "li"]):
+    og_title = _meta_content(soup, "og:title", "twitter:title")
+    if og_title and og_title != title:
+        chunks.append(og_title)
+    for node in soup.find_all(["h1", "h2", "h3", "h4", "p", "li", "article", "main"]):
         text = " ".join(node.get_text(" ", strip=True).split())
         if text:
             chunks.append(text)
     chunks.extend(noscript_chunks)
+    chunks.extend(_extract_json_ld_text(soup))
 
-    body_text = "\n".join(chunks).strip()
+    # De-duplicate while preserving order.
+    seen: set[str] = set()
+    deduped: list[str] = []
+    for chunk in chunks:
+        key = chunk.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(chunk)
+
+    body_text = "\n".join(deduped).strip()
     if not body_text and title:
         body_text = title
     return title, body_text, links

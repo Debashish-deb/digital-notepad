@@ -115,6 +115,30 @@ def classify_chat_intent(message: str) -> IntentDecision:
             reason="short generic message",
         )
 
+    if any(
+        phrase in lower
+        for phrase in (
+            "ingest document",
+            "index document",
+            "upload document",
+            "chunk and embed",
+            "vector index",
+            "rag ingest",
+            "add to qdrant",
+        )
+    ) or (
+        _contains_any(lower, {"ingest", "upload", "indexing", "chunking", "embedding"})
+        and _contains_any(lower, {"document", "protocol", "sop", "rag", "qdrant", "vector"})
+    ):
+        return IntentDecision(
+            intent="document_ingestion_help",
+            use_rag=False,
+            show_sources=False,
+            require_citations=False,
+            answer_style="helpful_steps",
+            reason="document ingestion help",
+        )
+
     if _contains_any(lower, PROTOCOL_TERMS):
         return IntentDecision(
             intent="protocol_question",

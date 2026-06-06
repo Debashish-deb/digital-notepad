@@ -301,6 +301,11 @@ def answer_chat(
 
     answer = llm.generate(user_content, system_prompt)
 
+    if intent_decision.use_rag and not retrieved_sources:
+        limitations.append(
+            "No matching documents were retrieved. Vector search may be offline or the index may be empty — try platform search (⌘K) or ingest more sources."
+        )
+
     if intent_decision.require_citations and unified_hits:
         grounding_hits = []
         for hit in unified_hits:

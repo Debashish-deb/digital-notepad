@@ -838,7 +838,12 @@ def search_research(
             LOGGER.warning("Research Qdrant search failed: %s", exc)
 
     hits = sorted(merged.values(), key=lambda h: h.get("score", 0), reverse=True)[:limit]
-    return {"query": query, "count": len(hits), "hits": hits}
+    warnings: list[str] = []
+    if qdrant is None:
+        warnings.append("Qdrant client not configured — semantic research search is unavailable.")
+    elif not hits:
+        warnings.append("No research knowledge matches found. Run crawl/ingest in Research KB admin or check index status.")
+    return {"query": query, "count": len(hits), "hits": hits, "warnings": warnings, "warning": warnings[0] if warnings else None}
 
 
 def crawl_farkkila_seeds(
