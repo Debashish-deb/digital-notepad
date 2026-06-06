@@ -349,6 +349,21 @@ When the work is complete, produce a report containing:
 
 ---
 
+## Test auth (Phase 0/8)
+
+In-process tests and the eval harness authenticate via `tests/auth_fixtures.py`:
+
+```python
+from tests.auth_fixtures import apply_auth_override, clear_auth_override
+apply_auth_override("researcher")  # researcher | viewer | editor | admin
+# ... TestClient calls ...
+clear_auth_override()
+```
+
+Never import `auth_fixtures` from production code paths.
+
+---
+
 ## Strategic notes (read before starting)
 
 - **"99%+" is a grounding-discipline target, not an omniscience target.** It is achievable for: never fabricate, always cite, refuse when unsure. It is **not** achievable for "answers every scientific question correctly" unless Phase 2 (mass ingestion) makes the corpus dense. Phase 2 is therefore above all prompt tuning in priority.
