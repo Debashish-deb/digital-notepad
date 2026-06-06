@@ -14,14 +14,14 @@ export OMEIA_REPO_ROOT="$PROJECT_ROOT"
 export DATABASE_ROOT="${DATABASE_ROOT:-$PROJECT_ROOT/../OMEIA-database}"
 export PROJECTS_ROOT="${PROJECTS_ROOT:-$DATABASE_ROOT/projects}"
 
+# Load .env via python-dotenv (avoids shell executing bare URL/curl lines).
 if [ -f "$BACKEND_DIR/configs/.env" ]; then
-  set -a
-  # shellcheck source=/dev/null
-  source "$BACKEND_DIR/configs/.env"
-  set +a
+  # shellcheck disable=SC1091
+  eval "$("$BACKEND_DIR/scripts/load_env.sh" "$BACKEND_DIR/configs/.env")"
 fi
 
 echo "Starting OMEIA Research Platform..."
+# Note: Qdrant on :6333 is used when already running; Docker is optional for local dev.
 echo "  REPO:     $OMEIA_REPO_ROOT"
 echo "  DATABASE: $DATABASE_ROOT"
 
