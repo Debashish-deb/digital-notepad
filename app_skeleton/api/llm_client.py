@@ -271,7 +271,8 @@ class LLMClient:
         try:
             if self.provider == "ollama":
                 if docker_services is not None:
-                    return docker_services.ensure_healthy("ollama", allow_auto_start=True).healthy
+                    # Never auto-start compose on health probes (Mac thin client: DOCKER_LOCAL=false).
+                    return docker_services.ensure_healthy("ollama", allow_auto_start=False).healthy
                 if requests is None:
                     return False
                 ollama_cfg = self._ollama_endpoint()
