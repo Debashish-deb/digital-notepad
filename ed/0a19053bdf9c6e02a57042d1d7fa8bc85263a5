@@ -1,0 +1,32 @@
+app_skeleton/api/chat_service.py
+  s_949485073f15ee::t_aef53020f9128b 13,29-42,79-135,144-145,147-150,153,176,195,210-220,231,234-236,253,256-270,272-273,275-289,298-299,304,323-340,343-344,355-357
+app_skeleton/api/chat_intent.py
+  s_949485073f15ee::t_f088edf6cbdb7b 1-175
+app_skeleton/api/routers/chat.py
+  s_949485073f15ee::t_e6118f7e64462e 21-22,39-44,63-66,93,114-116,120-121,128-135,143
+tests/test_chat_api.py
+  s_949485073f15ee::t_b5dacc3a9b830e 51-69
+app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx
+  s_949485073f15ee::t_832ae7a18070b7 66-72,79-80
+  s_949485073f15ee::t_764e5a67ec40e8 569,576-587
+  s_949485073f15ee::t_8835cb08675061 340-341
+  s_949485073f15ee::t_17b92232f95038 627
+tests/test_chat_intent.py
+  s_949485073f15ee::t_2514812278c84d 1-40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "ed0a19053bdf9c6e02a57042d1d7fa8bc85263a5",
+  "prompts": {},
+  "sessions": {
+    "s_949485073f15ee": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "853bf1fb-0fe7-4159-9087-75c33677b407",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
