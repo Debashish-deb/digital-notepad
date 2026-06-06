@@ -1,0 +1,44 @@
+app_skeleton/ui/react_frontend/src/screens/OverviewDocumentsScreen.jsx
+  s_e5440c0955affa::t_d3984c2410c3ff 55-56,64-70
+  s_e5440c0955affa::t_0cbf49521068ff 10
+app_skeleton/ui/react_frontend/src/utils/labDocumentMap.js
+  s_e5440c0955affa::t_c6a97ad8b15dc7 67
+app_skeleton/ui/react_frontend/src/components/LabDocumentsHub.jsx
+  s_e5440c0955affa::t_38be8087b7df62 119
+app_skeleton/ui/react_frontend/src/components/overview/OverviewIntroBody.jsx
+  s_e5440c0955affa::t_acec3b717ee2c6 25
+  s_e5440c0955affa::t_d910a15091075d 13
+app_skeleton/ui/react_frontend/src/utils/sectionDocumentsConfig.js
+  s_e5440c0955affa::t_d8a3bbe68bc29e 18
+app_skeleton/api/page_registry.py
+  s_e5440c0955affa::t_858d2b856bd3e2 20
+app_skeleton/ui/react_frontend/src/data/overviewIntroTranslations.js
+  s_e5440c0955affa::t_9a17b2b5eb75f1 68-71
+app_skeleton/ui/react_frontend/src/i18n/guiStrings/en.js
+  s_e5440c0955affa::t_1d7f4103ab07bb 83-88
+app_skeleton/ui/react_frontend/src/components/overview/OverviewSocialPanel.jsx
+  s_e5440c0955affa::t_e64a0fc3afd099 2-71,78-141
+  s_e5440c0955affa::t_832784ecb06328 72-77
+  s_e5440c0955affa::t_218ba214c5f4ea 1
+app_skeleton/ui/react_frontend/src/config/navigation.js
+  s_e5440c0955affa::t_5f570e56071621 43-49
+  s_e5440c0955affa::t_20b021f9f58481 268-289,293-294
+app_skeleton/api/search_nav.py
+  s_e5440c0955affa::t_9debe56fc506e5 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "ca1fc7f051937aa473bd7a27bf12569d2115e798",
+  "prompts": {},
+  "sessions": {
+    "s_e5440c0955affa": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "485cd353-4eb8-411c-acf6-3ea249066325",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
