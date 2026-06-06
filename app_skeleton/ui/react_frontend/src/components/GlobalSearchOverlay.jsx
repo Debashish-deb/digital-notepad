@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Search, X, Sparkles, Loader2, AlertCircle, ExternalLink } from 'lucide-react';
-import { fetchSearchSuggestions, fetchUnifiedSearch } from '../api/searchApi.js';
+import { fetchSearchSuggestions, fetchUnifiedSearch, SEARCH_DEBOUNCE_MS } from '../api/searchApi.js';
 import {
   BUCKET_LABELS,
   groupHitsByBucket,
@@ -94,24 +94,29 @@ export default function GlobalSearchOverlay({
   useEffect(() => {
     if (!isOpen || query.trim().length >= 2) return undefined;
 
-    suggestAbortRef.current?.abort();
-    const controller = new AbortController();
-    suggestAbortRef.current = controller;
+    const timer = setTimeout(() => {
+      suggestAbortRef.current?.abort();
+      const controller = new AbortController();
+      suggestAbortRef.current = controller;
 
-    fetchSearchSuggestions({ query: query.trim(), signal: controller.signal })
-      .then((data) => {
-        if (controller.signal.aborted) return;
-        if (Array.isArray(data?.suggestions)) setSuggestions(data.suggestions);
-        if (Array.isArray(data?.synonym_hints)) setSynonymHints(data.synonym_hints);
-        if (Array.isArray(data?.recent_queries) && data.recent_queries.length) {
-          setRecentQueries(data.recent_queries);
-        }
-      })
-      .catch(() => {
-        /* optional endpoint — local recent still shown */
-      });
+      fetchSearchSuggestions({ query: query.trim(), signal: controller.signal })
+        .then((data) => {
+          if (controller.signal.aborted) return;
+          if (Array.isArray(data?.suggestions)) setSuggestions(data.suggestions);
+          if (Array.isArray(data?.synonym_hints)) setSynonymHints(data.synonym_hints);
+          if (Array.isArray(data?.recent_queries) && data.recent_queries.length) {
+            setRecentQueries(data.recent_queries);
+          }
+        })
+        .catch(() => {
+          /* optional endpoint — local recent still shown */
+        });
+    }, SEARCH_DEBOUNCE_MS);
 
-    return () => controller.abort();
+    return () => {
+      clearTimeout(timer);
+      suggestAbortRef.current?.abort();
+    };
   }, [isOpen, query]);
 
   useEffect(() => {
@@ -153,7 +158,7 @@ export default function GlobalSearchOverlay({
       } finally {
         if (!controller.signal.aborted) setLoading(false);
       }
-    }, 280);
+    }, SEARCH_DEBOUNCE_MS);
 
     return () => {
       clearTimeout(timer);

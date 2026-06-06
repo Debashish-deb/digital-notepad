@@ -150,6 +150,35 @@ function projectsStaticPlugin() {
 
 export default defineConfig({
   plugins: [react(), databaseStaticPlugin(), projectsStaticPlugin()],
+  build: {
+    target: 'es2020',
+    chunkSizeWarningLimit: 700,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return undefined
+          if (id.includes('three') || id.includes('@react-three')) return 'three-vendor'
+          if (id.includes('@monaco-editor')) return 'monaco-vendor'
+          if (id.includes('mermaid')) return 'mermaid-vendor'
+          if (id.includes('firebase')) return 'firebase-vendor'
+          if (id.includes('xlsx')) return 'xlsx-vendor'
+          if (id.includes('lucide-react')) return 'icons-vendor'
+          if (id.includes('react-dom') || id.includes('react/')) return 'react-vendor'
+          return 'vendor'
+        },
+      },
+    },
+  },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'lucide-react',
+      '@react-three/fiber',
+      '@react-three/drei',
+      'three',
+    ],
+  },
   server: {
     host: true,
     fs: {

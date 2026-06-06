@@ -93,8 +93,8 @@ body,
 
 .sidebar {
   z-index: 20;
-  backdrop-filter: blur(22px) saturate(1.12);
-  background: color-mix(in srgb, var(--bg-surface) 94%, transparent);
+  background: color-mix(in srgb, var(--bg-surface) 97%, transparent);
+  contain: layout style;
 }
 
 /* Sidebar header — override themeManager box on legacy .sidebar-logo */
@@ -150,6 +150,7 @@ button:disabled,
   flex: 1;
   padding: clamp(1rem, 2vw, 2rem) var(--shell-gutter) clamp(2rem, 4vw, 3.5rem);
   scroll-padding-top: 1rem;
+  contain: layout style;
 }
 
 .main-content:focus {
@@ -209,9 +210,8 @@ button:disabled,
   padding: 0.65rem 0.85rem;
   border: 1px solid color-mix(in srgb, var(--border-color) 78%, transparent);
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--bg-surface) 86%, transparent);
+  background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(24px) saturate(1.22);
 }
 
 .app-topline--minimal {
@@ -1763,18 +1763,6 @@ body {
   touch-action: manipulation;
 }
 
-.panel,
-.metric-card,
-.project-card,
-.roster-card,
-.timeline-card,
-.dt-timeline-card,
-.pcl-asset-row,
-.pfb-folder-item,
-.pfb-file-btn {
-  will-change: transform, border-color, box-shadow;
-}
-
 @media (hover: hover) and (pointer: fine) {
   .panel:hover,
   .metric-card:hover,
@@ -1784,6 +1772,21 @@ body {
   .dt-timeline-card:hover {
     transform: translateY(-1px);
   }
+}
+
+.module-loading-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 12rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.ai3d-hero-skeleton {
+  min-height: 7.5rem;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--bg-surface) 88%, var(--bg-inset));
 }
 
 .custom-table,

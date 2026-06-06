@@ -121,3 +121,53 @@ export async function apiPut(path, options = {}) {
 export async function apiDelete(path, options = {}) {
   return apiFetch(path, { ...options, method: 'DELETE' });
 }
+
+/** Default debounce window for typeahead / search requests. */
+export const SEARCH_DEBOUNCE_MS = 300;
+
+/**
+ * Returns a debounced function that cancels the previous timer on each call.
+ * The returned function exposes `.cancel()` for cleanup.
+ */
+export function createDebouncer(waitMs = SEARCH_DEBOUNCE_MS) {
+  let timer = null;
+  const debounced = (fn) => {
+    clearTimeout(timer);
+    timer = setTimeout(fn, waitMs);
+  };
+  debounced.cancel = () => {
+    clearTimeout(timer);
+    timer = null;
+  };
+  return debounced;
+}
+
+/**
+ * Tracks one in-flight abortable request; aborts the previous when a new one starts.
+ */
+export function createAbortCoordinator() {
+  let active = null;
+  return {
+    abort() {
+      active?.abort();
+      active = null;
+    },
+    next(parentSignal) {
+      active?.abort();
+      const controller = new AbortController();
+      active = controller;
+      const onParentAbort = () => controller.abort(parentSignal?.reason);
+      if (parentSignal) {
+        if (parentSignal.aborted) onParentAbort();
+        else parentSignal.addEventListener('abort', onParentAbort, { once: true });
+      }
+      return {
+        signal: controller.signal,
+        release() {
+          if (active === controller) active = null;
+          parentSignal?.removeEventListener?.('abort', onParentAbort);
+        },
+      };
+    },
+  };
+}

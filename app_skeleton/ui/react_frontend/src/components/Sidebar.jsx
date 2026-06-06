@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import {
   ChevronDown,
   Dna,
@@ -22,7 +22,7 @@ function getInitials(label = 'Guest') {
     .join('') || 'G';
 }
 
-export default function Sidebar({
+function Sidebar({
   navMain,
   navSub,
   sidebarExpandedMain = null,
@@ -74,9 +74,9 @@ export default function Sidebar({
     };
   }, [apiHealth]);
 
-  const handleThemeToggle = () => {
+  const handleThemeToggle = useCallback(() => {
     cycleTheme();
-  };
+  }, [cycleTheme]);
 
   return (
     <aside className="sidebar" aria-label={t('common.mainNavAria')}>
@@ -235,3 +235,5 @@ export default function Sidebar({
     </aside>
   );
 }
+
+export default memo(Sidebar);

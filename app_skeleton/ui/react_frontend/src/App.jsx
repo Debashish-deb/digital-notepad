@@ -4,44 +4,13 @@ import Sidebar from './components/Sidebar';
 import ModuleShell from './components/ModuleShell';
 import ErrorBoundary from './components/ErrorBoundary';
 import DashboardScreen from './screens/DashboardScreen';
-import GlobalSearchOverlay from './components/GlobalSearchOverlay';
-import ProjectsScreen from './screens/ProjectsScreen';
-import NotebookWikiScreen from './screens/NotebookWikiScreen';
-import DecisionsScreen from './screens/DecisionsScreen';
-import TasksScreen from './screens/TasksScreen';
-import BioinformaticsHubScreen from './screens/BioinformaticsHubScreen';
-import AiLabAssistantScreen from './screens/AiLabAssistantScreen';
-import FeatureClinicalScreen from './screens/FeatureClinicalScreen';
-import LabKnowledgeScreen from './screens/LabKnowledgeScreen';
-const DataStorageScreen = lazy(() => import('./screens/DataStorageScreen'));
-import AdministrationScreen from './screens/AdministrationScreen';
-import IngestionDashboard from './screens/IngestionDashboard';
-import DigitalizationDashboard from './screens/DigitalizationDashboard';
-import KnowledgeSearchScreen from './screens/KnowledgeSearchScreen';
-import ResearchKnowledgeAdminScreen from './screens/ResearchKnowledgeAdminScreen';
-import LabCorpusBrowser from './components/LabCorpusBrowser.jsx';
+import LoginScreen from './screens/LoginScreen.jsx';
 import { getApiUrl, apiFetch } from './api/client.js';
 import { useApiContext } from './api/ApiContext.jsx';
-import CycifScreen from './screens/CycifScreen';
 import { TaskpadProvider } from './contexts/TaskpadContext.jsx';
 import TaskpadSheet from './components/TaskpadSheet.jsx';
 import { CENTRAL_WORKER_ID, TASKPAD_SCOPES } from './utils/taskpadRegistry.js';
-
-import {
-  OrdersTasksPanel,
-  OrdersRegisterPanel,
-  OrdersRelatedPanel,
-  OrdersBillingPanel,
-  OrdersArchivePanel,
-} from './screens/OrdersHubScreen';
-import OverviewDocumentsScreen from './screens/OverviewDocumentsScreen.jsx';
-import SectionDocumentsScreen from './screens/SectionDocumentsScreen.jsx';
 import { getSectionDocumentsConfig } from './utils/sectionDocumentsConfig.js';
-import {
-  WetLabProtocolsPanel,
-  WetLabTasksPanel,
-  WetLabInventoryPanel,
-} from './screens/WetLabScreen';
 import { projectsCatalog } from './data/projectsCatalog.js';
 import { teamDirectory } from './data/teamDirectory.js';
 import { activityLogs } from './data/activityLogs.js';
@@ -52,12 +21,65 @@ import {
   findMainNav,
   findSubNav,
   parseNavFromStorage,
+  resolveSocialLegacyNav,
 } from './config/navigation';
 import { useGuiT } from './i18n/useGuiT.js';
 import { initFirebaseAnalytics } from './config/firebase.js';
-import LoginScreen from './screens/LoginScreen.jsx';
 import { stashOmniboxPrefill } from './utils/searchHits.js';
 import './App.css';
+
+const GlobalSearchOverlay = lazy(() => import('./components/GlobalSearchOverlay'));
+const ProjectsScreen = lazy(() => import('./screens/ProjectsScreen'));
+const NotebookWikiScreen = lazy(() => import('./screens/NotebookWikiScreen'));
+const DecisionsScreen = lazy(() => import('./screens/DecisionsScreen'));
+const BioinformaticsHubScreen = lazy(() => import('./screens/BioinformaticsHubScreen'));
+const AiLabAssistantScreen = lazy(() => import('./screens/AiLabAssistantScreen'));
+const FeatureClinicalScreen = lazy(() => import('./screens/FeatureClinicalScreen'));
+const LabKnowledgeScreen = lazy(() => import('./screens/LabKnowledgeScreen'));
+const DataStorageScreen = lazy(() => import('./screens/DataStorageScreen'));
+const AdministrationScreen = lazy(() => import('./screens/AdministrationScreen'));
+const UserProfileScreen = lazy(() => import('./screens/UserProfileScreen'));
+const MeetingScreen = lazy(() => import('./screens/MeetingScreen'));
+const IngestionDashboard = lazy(() => import('./screens/IngestionDashboard'));
+const DigitalizationDashboard = lazy(() => import('./screens/DigitalizationDashboard'));
+const KnowledgeSearchScreen = lazy(() => import('./screens/KnowledgeSearchScreen'));
+const ResearchKnowledgeAdminScreen = lazy(() => import('./screens/ResearchKnowledgeAdminScreen'));
+const LabCorpusBrowser = lazy(() => import('./components/LabCorpusBrowser.jsx'));
+const CycifScreen = lazy(() => import('./screens/CycifScreen'));
+const OverviewDocumentsScreen = lazy(() => import('./screens/OverviewDocumentsScreen.jsx'));
+const SectionDocumentsScreen = lazy(() => import('./screens/SectionDocumentsScreen.jsx'));
+const OrdersTasksPanel = lazy(() =>
+  import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersTasksPanel })),
+);
+const OrdersRegisterPanel = lazy(() =>
+  import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersRegisterPanel })),
+);
+const OrdersRelatedPanel = lazy(() =>
+  import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersRelatedPanel })),
+);
+const OrdersBillingPanel = lazy(() =>
+  import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersBillingPanel })),
+);
+const OrdersArchivePanel = lazy(() =>
+  import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersArchivePanel })),
+);
+const WetLabProtocolsPanel = lazy(() =>
+  import('./screens/WetLabScreen').then((m) => ({ default: m.WetLabProtocolsPanel })),
+);
+const WetLabTasksPanel = lazy(() =>
+  import('./screens/WetLabScreen').then((m) => ({ default: m.WetLabTasksPanel })),
+);
+const WetLabInventoryPanel = lazy(() =>
+  import('./screens/WetLabScreen').then((m) => ({ default: m.WetLabInventoryPanel })),
+);
+
+function ScreenFallback({ label = 'Loading workspace…' }) {
+  return (
+    <div className="panel module-loading-fallback" role="status" aria-live="polite">
+      {label}
+    </div>
+  );
+}
 
 const DEFAULT_PROJECT_CODES = Object.freeze(['SPACE', 'EyeMT', 'KRAS']);
 const DEFAULT_STATS = Object.freeze({
@@ -108,6 +130,13 @@ function migrateLegacyNav(stored) {
       (legacy.sub === 'dashboard' || legacy.sub === 'research')
     ) {
       return { main: 'overview', sub: 'get_started' };
+    }
+    if (legacy.socialSub) {
+      return {
+        main: legacy.main,
+        sub: legacy.sub,
+        socialSub: legacy.socialSub,
+      };
     }
     return legacy;
   }
@@ -174,6 +203,7 @@ function App() {
   const [navSub, setNavSub] = useState(initialResolved.sub);
   const [sidebarExpandedMain, setSidebarExpandedMain] = useState(null);
   const [hubNestedSection, setHubNestedSection] = useState(initialResolved.hubNested);
+  const [overviewSocialSub, setOverviewSocialSub] = useState(initialResolved.socialSub || 'lab_photos');
   const [selectedProject, setSelectedProject] = useState(null);
   const [dbProjects, setDbProjects] = useState(() => mergeProjectsWithCatalog(projectsCatalog));
   const [projectCodes, setProjectCodesState] = useState(DEFAULT_PROJECT_CODES);
@@ -188,6 +218,10 @@ function App() {
     if (query?.trim()) stashOmniboxPrefill(query);
     setIsSearchOpen(true);
   }, []);
+
+  const handleCloseSearch = useCallback(() => setIsSearchOpen(false), []);
+
+  const handleOpenSearchOverlay = useCallback(() => setIsSearchOpen(true), []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -224,6 +258,17 @@ function App() {
   const resetProject = useCallback(() => setSelectedProject(null), []);
 
   const handleNavChange = useCallback((main, sub) => {
+    const socialResolved = resolveSocialLegacyNav(main, sub);
+    if (socialResolved) {
+      setNavMain(socialResolved.main);
+      setNavSub(socialResolved.sub);
+      setOverviewSocialSub(socialResolved.socialSub);
+      setHubNestedSection(null);
+      setSidebarExpandedMain('overview');
+      setSelectedProject(null);
+      return;
+    }
+
     const mainItem = findMainNav(main);
     let subId = sub || mainItem.defaultSub;
     let nested = null;
@@ -254,6 +299,17 @@ function App() {
     handleNavChange(main, mainItem.defaultSub);
   }, [navMain, sidebarExpandedMain, handleNavChange]);
 
+  const handleAskAiFromSearch = useCallback((q) => {
+    handleNavChange('ai_assistant', 'copilot');
+    try {
+      sessionStorage.setItem('farkki_search_last_query', q);
+    } catch {
+      /* ignore */
+    }
+  }, [handleNavChange]);
+
+  const handleSelectProject = useCallback((code) => setSelectedProject(code), []);
+
   const commonProps = useMemo(() => ({ dbProjects, API_URL: resolvedApiUrl }), [dbProjects, resolvedApiUrl]);
 
   const fetchProjects = useCallback(async (signal) => {
@@ -274,6 +330,10 @@ function App() {
       setLoadState({ phase: 'warning' });
     }
   }, [fetchProjects]);
+
+  const handleManualRefresh = useCallback(() => {
+    refreshReferenceData(new AbortController().signal, 'refreshing');
+  }, [refreshReferenceData]);
 
   const renderScreenBody = () => {
     const screen = subNav.screen;
@@ -304,11 +364,13 @@ function App() {
               onNavigate={handleNavChange}
               onRefresh={handleManualRefresh}
               isRefreshing={isLoading}
+              socialSubId={overviewSocialSub}
+              onSocialSubChange={setOverviewSocialSub}
             />
           );
         }
         if (getSectionDocumentsConfig(navMain, navSub)) {
-          // overview, social, wet_lab, cycif document-backed tabs
+          // wet_lab, cycif document-backed tabs
           return (
             <SectionDocumentsScreen
               mainId={navMain}
@@ -329,15 +391,13 @@ function App() {
         );
       case 'data_storage':
         return (
-          <Suspense fallback={<div className="panel module-loading-fallback">Loading data &amp; storage…</div>}>
-            <DataStorageScreen
-              key={`data-storage-${navSub}`}
-              title={localizedSub.label}
-              description={localizedSub.description}
-              section={subNav.dataSection || navSub || 'landscape'}
-              onNavigate={handleNavChange}
-            />
-          </Suspense>
+          <DataStorageScreen
+            key={`data-storage-${navSub}`}
+            title={localizedSub.label}
+            description={localizedSub.description}
+            section={subNav.dataSection || navSub || 'landscape'}
+            onNavigate={handleNavChange}
+          />
         );
       case 'digitalization':
         return (
@@ -368,6 +428,20 @@ function App() {
             title={localizedSub.label}
             description={localizedSub.description}
             onNavigate={handleNavChange}
+          />
+        );
+      case 'user_profile':
+        return (
+          <UserProfileScreen
+            title={localizedSub.label}
+            description={localizedSub.description}
+          />
+        );
+      case 'meeting_booking':
+        return (
+          <MeetingScreen
+            title={localizedSub.label}
+            description={localizedSub.description}
           />
         );
       case 'tasks':
@@ -457,10 +531,6 @@ function App() {
     }
   };
 
-  const handleManualRefresh = useCallback(() => {
-    refreshReferenceData(new AbortController().signal, 'refreshing');
-  }, [refreshReferenceData]);
-
   useEffect(() => {
     initFirebaseAnalytics();
   }, []);
@@ -493,7 +563,32 @@ function App() {
     return () => controller.abort();
   }, [refreshReferenceData]);
 
+  const handleModuleSubChange = useCallback(
+    (sub) => handleNavChange(navMain, sub),
+    [handleNavChange, navMain],
+  );
 
+  const screenBody = useMemo(() => renderScreenBody(), [
+    navMain,
+    navSub,
+    hubNestedSection,
+    subNav,
+    localizedSub,
+    stats,
+    team,
+    auditLogs,
+    projectCodes,
+    setProjectCodes,
+    dbProjects,
+    resolvedApiUrl,
+    handleNavChange,
+    handleManualRefresh,
+    isLoading,
+    handleOpenSearch,
+    selectedProject,
+    commonProps,
+    refreshReferenceData,
+  ]);
 
   const requireLogin = firebaseAuthEnabled && !authDisabled;
 
@@ -522,16 +617,16 @@ function App() {
     <ModuleShell
       mainId={navMain}
       subId={navSub}
-      onSubChange={(sub) => handleNavChange(navMain, sub)}
+      onSubChange={handleModuleSubChange}
       onRefresh={handleManualRefresh}
       isRefreshing={isLoading}
       compact={navMain === 'computational'}
       landing
     >
-      {renderScreenBody()}
+      <Suspense fallback={<ScreenFallback />}>{screenBody}</Suspense>
     </ModuleShell>
   ) : (
-    renderScreenBody()
+    <Suspense fallback={<ScreenFallback />}>{screenBody}</Suspense>
   );
 
   return (
@@ -550,7 +645,7 @@ function App() {
         onResetProject={resetProject}
         apiHealth={apiHealth}
         apiUrl={resolvedApiUrl}
-        onOpenSearch={() => setIsSearchOpen(true)}
+        onOpenSearch={handleOpenSearchOverlay}
         userLabel={displayUser}
         userEmail={authUser?.email || userProfile?.email}
         onSignOut={requireLogin ? signOut : null}
@@ -584,25 +679,22 @@ function App() {
         </div>
       </main>
 
-        <GlobalSearchOverlay
-          isOpen={isSearchOpen}
-          onClose={() => setIsSearchOpen(false)}
-          onNavigate={handleNavChange}
-          onSelectProject={(code) => setSelectedProject(code)}
-          onAskAi={(q) => {
-            handleNavChange('ai_assistant', 'copilot');
-            try {
-              sessionStorage.setItem('farkki_search_last_query', q);
-            } catch {
-              /* ignore */
-            }
-          }}
-          projectCode={
-            typeof selectedProject === 'string'
-              ? selectedProject
-              : selectedProject?.project_code || selectedProject?.code
-          }
-        />
+        {isSearchOpen ? (
+          <Suspense fallback={null}>
+            <GlobalSearchOverlay
+              isOpen={isSearchOpen}
+              onClose={handleCloseSearch}
+              onNavigate={handleNavChange}
+              onSelectProject={handleSelectProject}
+              onAskAi={handleAskAiFromSearch}
+              projectCode={
+                typeof selectedProject === 'string'
+                  ? selectedProject
+                  : selectedProject?.project_code || selectedProject?.code
+              }
+            />
+          </Suspense>
+        ) : null}
 
         <div className="app-central-taskpad-host" aria-live="polite">
           <TaskpadSheet scope={TASKPAD_SCOPES.CENTRAL} workerId={CENTRAL_WORKER_ID} />

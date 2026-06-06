@@ -1,5 +1,10 @@
-import { apiGet } from './client.js';
+import { apiGet, createAbortCoordinator, SEARCH_DEBOUNCE_MS } from './client.js';
 import { buildUnifiedSearchParams } from '../utils/searchHits.js';
+
+const unifiedSearchCoordinator = createAbortCoordinator();
+const suggestionsCoordinator = createAbortCoordinator();
+
+export { SEARCH_DEBOUNCE_MS };
 
 /**
  * Canonical platform search — GET /api/platform/unified-search
@@ -23,7 +28,12 @@ export async function fetchUnifiedSearch({
     sectionId,
     limit,
   });
-  return apiGet('/api/platform/unified-search', { params, signal });
+  const { signal: mergedSignal, release } = unifiedSearchCoordinator.next(signal);
+  try {
+    return await apiGet('/api/platform/unified-search', { params, signal: mergedSignal });
+  } finally {
+    release();
+  }
 }
 
 /**
@@ -33,5 +43,10 @@ export async function fetchSearchSuggestions({ query = '', limit = 8, signal } =
   const params = new URLSearchParams();
   if (query?.trim()) params.set('q', query.trim());
   params.set('limit', String(limit));
-  return apiGet('/api/platform/search-suggestions', { params, signal });
+  const { signal: mergedSignal, release } = suggestionsCoordinator.next(signal);
+  try {
+    return await apiGet('/api/platform/search-suggestions', { params, signal: mergedSignal });
+  } finally {
+    release();
+  }
 }

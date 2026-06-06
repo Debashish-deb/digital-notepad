@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AlertTriangle,
   Bot,
@@ -20,7 +20,7 @@ import {
 import AssistantSearchHits from './search/AssistantSearchHits.jsx';
 import './search/UnifiedSearch.css';
 import './AiAssistantChat.css';
-import AiAssistant3DScene from './AiAssistant3DScene.jsx';
+const AiAssistant3DScene = lazy(() => import('./AiAssistant3DScene.jsx'));
 import TaskpadSheet from './TaskpadSheet.jsx';
 import { useModuleShellCover } from '../contexts/ModuleShellCoverContext.jsx';
 import { useGuiT } from '../i18n/useGuiT.js';
@@ -492,15 +492,17 @@ export default function ChatWidget({
 
   return (
     <section className="assistant-chat-shell" aria-label="OMEIA AI Lab Assistant">
-      <AiAssistant3DScene
-        merged
-        toolbar={coverToolbar}
-        title="OMEIA AI Lab Assistant"
-        subtitle="RAG copilot and spatial-biology research interface — indexed protocols, lab knowledge, vector search, project docs, prompt templates, and model registry."
-        stats={heroStats}
-        compact
-        className="ai3d-hero--module-ai"
-      />
+      <Suspense fallback={<div className="ai3d-hero-skeleton" aria-hidden />}>
+        <AiAssistant3DScene
+          merged
+          toolbar={coverToolbar}
+          title="OMEIA AI Lab Assistant"
+          subtitle="RAG copilot and spatial-biology research interface — indexed protocols, lab knowledge, vector search, project docs, prompt templates, and model registry."
+          stats={heroStats}
+          compact
+          className="ai3d-hero--module-ai"
+        />
+      </Suspense>
 
       <ProjectScopePicker
         projects={dbProjects}

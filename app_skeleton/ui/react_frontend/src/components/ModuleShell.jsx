@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import TaskpadSheet from './TaskpadSheet.jsx';
 import { useTaskpad } from '../contexts/TaskpadContext.jsx';
@@ -12,7 +12,7 @@ import { ModuleShellCoverContext } from '../contexts/ModuleShellCoverContext.jsx
  * Section layout: title row (section + page), full-width content.
  * Sub-tabs live in the sidebar under the active main nav item.
  */
-export default function ModuleShell({
+function ModuleShell({
   mainId,
   subId,
   onSubChange,
@@ -35,7 +35,7 @@ export default function ModuleShell({
   const showModuleCover = useCover && !isAiCopilot;
   const showSubnav = false;
   const [headerSlot, setHeaderSlot] = useState(null);
-  const setHeaderSlotStable = useMemo(() => setHeaderSlot, []);
+  const setHeaderSlotStable = useCallback((node) => setHeaderSlot(node), []);
   const coverContext = useMemo(
     () => ({ mainId, subId, onRefresh, isRefreshing }),
     [mainId, subId, onRefresh, isRefreshing],
@@ -114,3 +114,5 @@ export default function ModuleShell({
     </ModuleShellCoverContext.Provider>
   );
 }
+
+export default memo(ModuleShell);

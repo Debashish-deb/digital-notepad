@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   AlertTriangle,
   BookOpen,
@@ -14,8 +14,12 @@ import {
   UploadCloud,
   Microscope,
 } from 'lucide-react';
-import ChatWidget from '../components/ChatWidget.jsx';
-import AiAssistant3DScene from '../components/AiAssistant3DScene.jsx';
+const ChatWidget = lazy(() => import('../components/ChatWidget.jsx'));
+const AiAssistant3DScene = lazy(() => import('../components/AiAssistant3DScene.jsx'));
+
+function SceneFallback() {
+  return <div className="ai3d-hero-skeleton" role="presentation" aria-hidden />;
+}
 import { apiFetch } from '../api/client.js';
 
 const FALLBACK_PROJECTS = ['SPACE', 'EyeMT', 'KRAS'];
@@ -198,13 +202,15 @@ export default function AiLabAssistantScreen({
     <section className={`ai-lab-assistant${hideChrome ? ' ai-lab-assistant--embedded' : ''}`}>
       {!hideChrome && (
         <aside className="ai-lab-rail" aria-label="AI assistant services">
-          <AiAssistant3DScene
-            title="AI Lab Assistant"
-            subtitle="A 3D command center for RAG search, document indexing, prompt workflows, and model intelligence."
-            stats={heroStats}
-            compact
-            className="ai-lab-rail-hero"
-          />
+          <Suspense fallback={<SceneFallback />}>
+            <AiAssistant3DScene
+              title="AI Lab Assistant"
+              subtitle="A 3D command center for RAG search, document indexing, prompt workflows, and model intelligence."
+              stats={heroStats}
+              compact
+              className="ai-lab-rail-hero"
+            />
+          </Suspense>
 
           <div className="ai-lab-rail-label">Assistant services</div>
 
@@ -244,39 +250,43 @@ export default function AiLabAssistantScreen({
       <main className="ai-lab-main">
         {hideChrome && subTab === 'copilot' ? null : (
           <div className="ai-lab-top-hero">
-            <AiAssistant3DScene
-              title={
-                subTab === 'copilot'
-                  ? 'Research Copilot'
-                  : subTab === 'ingest'
-                    ? 'RAG Document Indexer'
-                    : subTab === 'models'
-                      ? 'Deep Learning Registry'
-                      : 'Prompt Engineering Library'
-              }
-              subtitle={
-                subTab === 'copilot'
-                  ? 'Ask questions across Qdrant vectors, database counts, and lab knowledge.'
-                  : subTab === 'ingest'
-                    ? 'Paste or prepare protocols, scripts, and SOP text for vector retrieval.'
-                    : subTab === 'models'
-                      ? 'Track model families, frameworks, tasks, and target compute environments.'
-                      : 'Reusable expert prompts for manuscript writing, logbooks, code review, and analysis.'
-              }
-              stats={heroStats}
-              compact
-            />
+            <Suspense fallback={<SceneFallback />}>
+              <AiAssistant3DScene
+                title={
+                  subTab === 'copilot'
+                    ? 'Research Copilot'
+                    : subTab === 'ingest'
+                      ? 'RAG Document Indexer'
+                      : subTab === 'models'
+                        ? 'Deep Learning Registry'
+                        : 'Prompt Engineering Library'
+                }
+                subtitle={
+                  subTab === 'copilot'
+                    ? 'Ask questions across Qdrant vectors, database counts, and lab knowledge.'
+                    : subTab === 'ingest'
+                      ? 'Paste or prepare protocols, scripts, and SOP text for vector retrieval.'
+                      : subTab === 'models'
+                        ? 'Track model families, frameworks, tasks, and target compute environments.'
+                        : 'Reusable expert prompts for manuscript writing, logbooks, code review, and analysis.'
+                }
+                stats={heroStats}
+                compact
+              />
+            </Suspense>
           </div>
         )}
 
         {subTab === 'copilot' && (
-          <ChatWidget
-            dbProjects={dbProjects}
-            API_URL={API_URL}
-            onNavigate={onNavigate}
-            onSelectProject={onSelectProject}
-            onOpenSearch={onOpenSearch}
-          />
+          <Suspense fallback={<div className="panel module-loading-fallback">Loading copilot…</div>}>
+            <ChatWidget
+              dbProjects={dbProjects}
+              API_URL={API_URL}
+              onNavigate={onNavigate}
+              onSelectProject={onSelectProject}
+              onOpenSearch={onOpenSearch}
+            />
+          </Suspense>
         )}
         {subTab === 'prompts' && <PromptsLibraryTab />}
 
