@@ -26,6 +26,8 @@ import {
 import { useGuiT } from './i18n/useGuiT.js';
 import { initFirebaseAnalytics } from './config/firebase.js';
 import { stashOmniboxPrefill } from './utils/searchHits.js';
+import { getModulePageMeta } from './data/moduleCoverContent.js';
+import { applyPageMeta } from './utils/pageMeta.js';
 import './App.css';
 
 const GlobalSearchOverlay = lazy(() => import('./components/GlobalSearchOverlay'));
@@ -550,8 +552,8 @@ function App() {
   }, [resolvedApiUrl]);
 
   useEffect(() => {
-    document.title = `${activeTitle} · ${t('common.documentTitleSuffix')}`;
-  }, [activeTitle, t]);
+    applyPageMeta(getModulePageMeta(activeTitle, navMain, navSub, t('common.documentTitleSuffix')));
+  }, [activeTitle, navMain, navSub, t]);
 
   useEffect(() => {
     safeStorageSet(NAV_STORAGE_KEY, `${navMain}:${navSub}`);

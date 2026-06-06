@@ -15,7 +15,7 @@ export default function ModuleCoverHero({
 }) {
   const { locale, intro, nav, t: guiT } = useGuiT();
   const main = nav.findMain(mainId);
-  const cover = getModuleCover(mainId);
+  const cover = getModuleCover(mainId, subId);
 
   if (!cover || !main) return null;
 
@@ -30,7 +30,26 @@ export default function ModuleCoverHero({
       className={`module-cover-hero module-cover-hero--${cover.tone || mainId}`}
       lang={mainId === 'overview' ? locale : undefined}
     >
+      {cover.coverImage ? (
+        <div
+          className="module-cover-hero__visual"
+          style={{ backgroundImage: `url(${cover.coverImage})` }}
+          aria-hidden
+        />
+      ) : null}
+      <div className="module-cover-hero__scrim" aria-hidden />
       <div className="module-cover-hero__glow" aria-hidden />
+      {cover.overlayArt?.src ? (
+        <img
+          className={`module-cover-hero__overlay module-cover-hero__overlay--${cover.overlayArt.position || 'bottom-right'}`}
+          src={cover.overlayArt.src}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+        />
+      ) : null}
       <div className="module-cover-hero__inner">
         <div className="module-cover-hero__toolbar">
           <div className="module-cover-hero__meta">

@@ -30,7 +30,7 @@ function ModuleShell({
   useEffect(() => {
     setSectionScope(mainId, subId);
   }, [mainId, subId, setSectionScope]);
-  const useCover = landing && moduleHasCover(mainId);
+  const useCover = landing && moduleHasCover(mainId, subId);
   const isAiCopilot = mainId === 'ai_assistant' && subId === 'copilot';
   const showModuleCover = useCover && !isAiCopilot;
   const showSubnav = false;

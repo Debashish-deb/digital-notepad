@@ -4072,6 +4072,7 @@ html[data-theme="dark"] .pcl-figure-img {
   --cover-accent: var(--color-primary);
   position: relative;
   overflow: hidden;
+  min-height: clamp(9.5rem, 18vw, 12.5rem);
   border-radius: 12px;
   border: 1px solid color-mix(in srgb, var(--cover-accent) 28%, var(--border-color));
   background:
@@ -4091,6 +4092,34 @@ html[data-theme="dark"] .pcl-figure-img {
 .module-cover-hero--compute { --cover-accent: #0891b2; }
 .module-cover-hero--ai { --cover-accent: #6366f1; }
 .module-cover-hero--admin { --cover-accent: #64748b; }
+.module-cover-hero--profile { --cover-accent: #475569; }
+.module-cover-hero--meeting { --cover-accent: #0284c7; }
+
+.module-cover-hero__visual {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  opacity: 0.48;
+  mask-image: linear-gradient(105deg, transparent 28%, rgba(0, 0, 0, 0.35) 48%, black 72%);
+  -webkit-mask-image: linear-gradient(105deg, transparent 28%, rgba(0, 0, 0, 0.35) 48%, black 72%);
+  pointer-events: none;
+}
+
+.module-cover-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      102deg,
+      color-mix(in srgb, var(--bg-surface) 96%, transparent) 0%,
+      color-mix(in srgb, var(--bg-surface) 82%, transparent) 42%,
+      color-mix(in srgb, var(--bg-surface) 38%, transparent) 68%,
+      transparent 100%
+    );
+  pointer-events: none;
+}
 
 .module-cover-hero__glow {
   position: absolute;
@@ -4100,9 +4129,38 @@ html[data-theme="dark"] .pcl-figure-img {
   pointer-events: none;
 }
 
+.module-cover-hero__overlay {
+  position: absolute;
+  z-index: 0;
+  width: clamp(7rem, 34%, 13.5rem);
+  height: auto;
+  max-height: 78%;
+  object-fit: contain;
+  opacity: 0.52;
+  pointer-events: none;
+  user-select: none;
+}
+
+.module-cover-hero__overlay--bottom-right {
+  right: clamp(-0.25rem, 1.5vw, 0.75rem);
+  bottom: clamp(-0.5rem, -1vw, 0);
+}
+
+.module-cover-hero__overlay--top-right {
+  right: clamp(0.25rem, 2vw, 1rem);
+  top: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+.module-cover-hero__overlay--bottom-left {
+  left: clamp(0.25rem, 2vw, 1rem);
+  bottom: clamp(-0.5rem, -1vw, 0);
+}
+
 .module-cover-hero__inner {
   position: relative;
-  padding: clamp(1.15rem, 2.2vw, 1.75rem) clamp(1rem, 2vw, 1.65rem) clamp(1.2rem, 2.2vw, 1.85rem);
+  z-index: 1;
+  z-index: 1;
+  padding: clamp(1.25rem, 2.4vw, 1.85rem) clamp(1.1rem, 2.2vw, 1.75rem) clamp(1.35rem, 2.4vw, 1.95rem);
 }
 
 .module-cover-hero__toolbar {
@@ -4127,11 +4185,11 @@ html[data-theme="dark"] .pcl-figure-img {
   align-items: center;
   gap: 0.4rem;
   margin: 0;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--cover-accent) 72%, var(--text-muted));
+  color: color-mix(in srgb, var(--cover-accent) 78%, var(--text-muted));
 }
 
 .module-cover-hero__actions {
@@ -4198,21 +4256,23 @@ html[data-theme="dark"] .pcl-figure-img {
 }
 
 .module-cover-hero__title {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.6rem;
   font-family: var(--font-display, var(--font-serif, 'Source Serif 4', Georgia, serif));
   font-size: clamp(1.65rem, 3.2vw, 2.35rem);
   font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
   color: var(--text-primary);
+  text-wrap: balance;
 }
 
 .module-cover-hero__lead {
   margin: 0;
-  max-width: 72ch;
-  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
-  line-height: 1.65;
-  color: var(--text-secondary);
+  max-width: 68ch;
+  font-size: clamp(0.9rem, 1.15vw, 1.02rem);
+  line-height: 1.68;
+  letter-spacing: 0.005em;
+  color: color-mix(in srgb, var(--text-secondary) 92%, var(--text-primary));
 }
 
 .module-cover-hero__tabs {
