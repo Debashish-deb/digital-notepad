@@ -10,6 +10,7 @@ import {
   Dna,
   Target,
   Users,
+  PartyPopper,
 } from 'lucide-react';
 import { useGuiT } from '../../i18n/useGuiT.js';
 import { labMembers } from '../../data/labMembers.js';
@@ -21,6 +22,7 @@ const SECTION_META = [
   { id: 'documents_permits', icon: FileText },
   { id: 'personnel', icon: Users },
   { id: 'cleaning', icon: Brush },
+  { id: 'social', icon: PartyPopper },
 ];
 
 const QUICK_LINKS = [

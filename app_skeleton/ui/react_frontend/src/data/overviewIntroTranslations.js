@@ -65,6 +65,10 @@ export const overviewIntroCopy = {
         label: 'Lab cleaning',
         description: 'Cleaning day schedules and storage inventories.',
       },
+      social: {
+        label: 'Social & miscellaneous',
+        description: 'Retreats, events, lab photos, visitor hosting, and outreach.',
+      },
     },
     langLabel: 'Language',
   },

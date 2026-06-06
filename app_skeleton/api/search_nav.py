@@ -15,7 +15,7 @@ SECTION_NAV: dict[str, dict[str, str]] = {
     "overview_research_materials": {"main": "overview", "sub": "research_materials"},
     "orders_billing": {"main": "orders", "sub": "billing"},
     "orders_archive": {"main": "orders", "sub": "archive"},
-    "social_misc": {"main": "social", "sub": "lab_photos"},
+    "social_misc": {"main": "overview", "sub": "social"},
     "meetings": {"main": "data_storage", "sub": "meetings"},
     "wet_lab_files": {"main": "wet_lab", "sub": "files"},
 }

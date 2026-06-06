@@ -80,6 +80,12 @@ export default {
         sidebarLabel: 'Cleaning',
         description: 'Cleaning schedules and lab upkeep documents.',
       },
+      social: {
+        label: 'Social & miscellaneous',
+        sidebarLabel: 'Social',
+        description:
+          'Retreats, seasonal events, lab photos, visitor hosting, and outreach materials.',
+      },
       dashboard: {
         label: 'Lab dashboard',
         description: 'Metrics, team, audit trail, platform readiness.',

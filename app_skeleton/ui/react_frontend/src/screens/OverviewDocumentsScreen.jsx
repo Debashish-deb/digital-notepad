@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import LabDocumentsBrowser from '../components/LabDocumentsBrowser.jsx';
 import OverviewIntroBody from '../components/overview/OverviewIntroBody.jsx';
+import OverviewSocialPanel from '../components/overview/OverviewSocialPanel.jsx';
 import { teamDirectory } from '../data/teamDirectory.js';
 import LabTeamRoster from '../components/LabTeamRoster.jsx';
 import { useGuiT } from '../i18n/useGuiT.js';
@@ -51,6 +52,8 @@ export default function OverviewDocumentsScreen({
   description,
   onSubChange,
   onNavigate,
+  socialSubId,
+  onSocialSubChange,
 }) {
   const showIntroBody = INTRO_SUB_IDS.has(subId);
 
@@ -58,6 +61,13 @@ export default function OverviewDocumentsScreen({
     <section className="overview-page">
       {showIntroBody ? (
         <OverviewIntroBody onSubChange={onSubChange} onNavigate={onNavigate} />
+      ) : subId === 'social' ? (
+        <OverviewSocialPanel
+          activeSub={socialSubId}
+          onSubChange={onSocialSubChange}
+          title={title}
+          description={description}
+        />
       ) : (
         <OverviewTabDocuments subId={subId} title={title} description={description} />
       )}

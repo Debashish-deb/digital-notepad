@@ -64,7 +64,7 @@ export const LAB_DOCUMENT_ZONES = [
     label: 'Social & outreach',
     emoji: '📸',
     blurb: 'Retreats, photos, visitor records',
-    nav: { main: 'social', sub: 'lab_photos' },
+    nav: { main: 'overview', sub: 'social' },
     sectionIds: ['social_misc'],
     filterCategoryPrefix: 'social_',
     color: '#8b5cf6',

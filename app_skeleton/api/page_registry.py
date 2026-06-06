@@ -17,7 +17,7 @@ _SECTION_HINT_TO_PAGE: dict[str, tuple[str, str | None]] = {
     "overview_research_materials": ("research_hub", "research.materials"),
     "orders_billing": ("orders", "orders.billing"),
     "orders_archive": ("orders", "orders.archive"),
-    "social_misc": ("social", "social.browse"),
+    "social_misc": ("overview", "overview.social"),
     "wet_lab_files": ("wet_lab", "wet.files"),
 }
 

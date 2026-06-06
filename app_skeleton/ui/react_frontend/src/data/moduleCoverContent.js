@@ -12,13 +12,6 @@ export const MODULE_COVER = {
     lead:
       'Vendor billing, HUS ordering instructions, shipment records, and archived procurement — everything needed to place and track lab orders.',
   },
-  social: {
-    tone: 'social',
-    eyebrow: 'Lab culture & outreach',
-    title: 'Social & miscellaneous',
-    lead:
-      'Retreats, seasonal events, lab photos, visitor hosting, and outreach materials — the human side of the Färkkilä Lab.',
-  },
   data_storage: {
     tone: 'storage',
     eyebrow: 'Infrastructure & FAIR data',

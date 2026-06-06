@@ -6,9 +6,10 @@ import {
   Microscope,
   Cpu,
   Bot,
-  Users,
   HardDrive,
   Shield,
+  User,
+  Calendar,
 } from 'lucide-react';
 
 /** Top-level lab areas and their sub-sections (screens map to App.jsx). */
@@ -38,6 +39,13 @@ export const MAIN_NAV = [
         screen: 'lab_knowledge',
         databaseSub: 'overview_cleaning',
         description: 'Cleaning schedules and lab upkeep documents.',
+      },
+      {
+        id: 'social',
+        label: 'Social & miscellaneous',
+        sidebarLabel: 'Social',
+        screen: 'lab_knowledge',
+        description: 'Retreats, seasonal events, lab photos, visitor hosting, and outreach materials.',
       },
     ],
   },
@@ -185,64 +193,22 @@ export const MAIN_NAV = [
     ],
   },
   {
-    id: 'social',
-    label: 'Social & miscellaneous',
-    sidebarLabel: 'Social',
-    icon: Users,
-    defaultSub: 'lab_photos',
+    id: 'profile',
+    label: 'Profile',
+    icon: User,
+    defaultSub: 'user_profile',
     children: [
-      {
-        id: 'lab_parties',
-        label: 'Lab Parties',
-        sidebarLabel: 'Parties',
-        screen: 'lab_knowledge',
-        description: 'Halloween, grilling parties, and event planning documents.',
-      },
-      {
-        id: 'winter_events',
-        label: 'Winter Day & Seasonal',
-        sidebarLabel: 'Winter events',
-        screen: 'lab_knowledge',
-        description: 'Lab winter day photos and seasonal gatherings.',
-      },
-      {
-        id: 'lab_retreats',
-        label: 'Lab Retreats',
-        sidebarLabel: 'Retreats',
-        screen: 'lab_knowledge',
-        description: 'Retreat planning and Nuuksio retreat materials.',
-      },
-      {
-        id: 'lab_photos',
-        label: 'Lab Photos',
-        sidebarLabel: 'Photos',
-        screen: 'lab_knowledge',
-        description: 'Group photos, retreat albums, and lab life pictures.',
-      },
-      {
-        id: 'researcher_visits',
-        label: 'Researcher Visits',
-        sidebarLabel: 'Visits',
-        screen: 'lab_knowledge',
-        description: 'Visitor records and hosting materials.',
-      },
-      {
-        id: 'outreach',
-        label: 'Outreach & Social Media',
-        sidebarLabel: 'Outreach',
-        screen: 'lab_knowledge',
-        description: 'Outreach campaigns and social media assets.',
-      },
+      { id: 'user_profile', label: 'User Profile', screen: 'user_profile', description: 'Manage your user profile and settings.' },
+      { id: 'admin', label: 'Administration', screen: 'administration', description: 'Health, connectors, allowlist, ingestion jobs, auth.' },
     ],
   },
   {
-    id: 'administration',
-    label: 'Administration',
-    icon: Shield,
-    defaultSub: 'admin',
+    id: 'meeting',
+    label: 'Meeting',
+    icon: Calendar,
+    defaultSub: 'booking',
     children: [
-      { id: 'admin', label: 'Users & jobs', screen: 'administration', description: 'Health, connectors, allowlist, ingestion jobs, auth.' },
-      { id: 'connectors', label: 'Connectors & health', screen: 'administration', description: 'GET /health and /api/platform/connectors readiness.' },
+      { id: 'booking', label: 'Booking calendar', screen: 'meeting_booking', description: 'Schedule and manage meetings.' },
     ],
   },
 ];
@@ -299,9 +265,33 @@ export function sectionTitle(mainId, subId) {
   return `${main.label} · ${sub.label}`;
 }
 
+/** Inner tabs inside Overview → Social (not sidebar children). */
+export const SOCIAL_INNER_TAB_IDS = [
+  'lab_parties',
+  'winter_events',
+  'lab_retreats',
+  'lab_photos',
+  'researcher_visits',
+  'outreach',
+];
+
+/** Legacy top-level Social nav → Overview → Social with inner tab. */
+export function resolveSocialLegacyNav(main, sub) {
+  if (main !== 'social') return null;
+  const resolvedSub =
+    sub && SOCIAL_INNER_TAB_IDS.includes(sub)
+      ? sub
+      : sub === 'social_browse'
+        ? 'lab_photos'
+        : 'lab_photos';
+  return { main: 'overview', sub: 'social', socialSub: resolvedSub };
+}
+
 export function parseNavFromStorage(raw) {
   if (!raw || typeof raw !== 'string') return null;
   const [main, sub] = raw.split(':');
+  const socialResolved = resolveSocialLegacyNav(main, sub);
+  if (socialResolved) return socialResolved;
   if (!findMainNav(main)) return null;
   return { main, sub: sub || findMainNav(main).defaultSub };
 }

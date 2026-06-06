@@ -15,8 +15,8 @@ const LAB_KNOWLEDGE_CONFIG = {
     personnel: () => getOverviewConfig('personnel'),
     cleaning: () => getOverviewConfig('cleaning'),
   },
+  /** @deprecated legacy top-level Social nav — use Overview → Social */
   social: {
-    /** @deprecated legacy stored nav */
     social_browse: () => getSocialConfig('lab_photos'),
     lab_parties: () => getSocialConfig('lab_parties'),
     winter_events: () => getSocialConfig('winter_events'),

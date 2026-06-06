@@ -116,7 +116,7 @@ export default function LabDocumentsHub({ onNavigate }) {
       return;
     }
     if (zone?.id === 'social' && onNavigate) {
-      onNavigate('social', 'lab_photos');
+      onNavigate('overview', 'social');
       return;
     }
     if (zone?.id === 'overview' && onNavigate) {
