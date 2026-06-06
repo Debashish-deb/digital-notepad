@@ -63,7 +63,7 @@ except Exception as e:
 "
 
 if [[ "${RESEARCH_KB_RUN_CRAWL:-true}" == "true" ]]; then
-  MAX_PAGES="${RESEARCH_KB_SEED_MAX_PAGES:-20}"
+  MAX_PAGES="${RESEARCH_KB_SEED_MAX_PAGES:-${RESEARCH_KB_MAX_PUBLIC_PAGES:-100}}"
   echo "==> Crawling farkkilab.org (max ${MAX_PAGES} pages, best effort)"
   "$PYTHON" -c "
 from app_skeleton.api.common import qdrant_client, llm_client

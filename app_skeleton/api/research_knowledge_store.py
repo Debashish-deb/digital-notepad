@@ -538,6 +538,34 @@ def ingest_crawled_pages(
     }
 
 
+def _publication_index_text(record: dict[str, Any], *, title: str, abstract: str) -> str:
+    parts: list[str] = [title]
+    authors = record.get("authors") or []
+    author_names: list[str] = []
+    for author in authors[:16]:
+        if isinstance(author, dict):
+            name = (author.get("name") or "").strip()
+            if not name:
+                given = (author.get("given") or author.get("Given") or "").strip()
+                family = (author.get("family") or author.get("Last") or "").strip()
+                name = f"{given} {family}".strip()
+            if name:
+                author_names.append(name)
+        elif author:
+            author_names.append(str(author).strip())
+    if author_names:
+        parts.append("Authors: " + "; ".join(author_names))
+    journal = (record.get("journal") or "").strip()
+    if journal:
+        parts.append(f"Journal: {journal}")
+    year = record.get("publication_year")
+    if year:
+        parts.append(f"Year: {year}")
+    if abstract:
+        parts.append(abstract)
+    return "\n\n".join(part for part in parts if part)
+
+
 def ingest_publication_record(
     record: dict[str, Any],
     *,
@@ -546,7 +574,7 @@ def ingest_publication_record(
 ) -> dict[str, Any]:
     title = (record.get("title") or "Untitled publication").strip()
     abstract = (record.get("abstract") or "").strip()
-    text = abstract or title
+    text = _publication_index_text(record, title=title, abstract=abstract)
     clean = clean_scientific_text(text)
     chunks = chunk_document(clean) if clean else []
     entities = extract_entities_rule_based(clean)
