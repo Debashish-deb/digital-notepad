@@ -160,6 +160,7 @@ export default function DocumentCategoryFileList({
   renderPreview = null,
   toolbarAfterTabs = null,
   sectionHeader = null,
+  onVisibleFilesChange = null,
 }) {
   const { t } = useGuiT();
 
@@ -250,6 +251,10 @@ export default function DocumentCategoryFileList({
   }, [tabbedMode, activeCategoryEntry, subfolderAlbums, subfolderSourceEntry, activeSubfolderId, flatCategories]);
 
   const totalFiles = blocks.reduce((sum, block) => sum + block.fileCount, 0);
+
+  useEffect(() => {
+    onVisibleFilesChange?.(visibleFiles);
+  }, [visibleFiles, onVisibleFilesChange]);
 
   if (!totalFiles) {
     return <p className="text-footnote muted lab-doc-grouped-empty">{t('docs.noFilesSearch')}</p>;
@@ -448,7 +453,7 @@ export default function DocumentCategoryFileList({
     return (
       <div className="lab-doc-grouped-list lab-doc-grouped-list--tabbed lab-doc-grouped-list--horizontal-top lab-doc-grouped-list--integrated-header">
         <DocumentSectionHeader {...sectionHeader}>{headerChrome}</DocumentSectionHeader>
-        {renderPreview ? renderPreview(fileBody) : fileBody}
+        {renderPreview ? renderPreview(fileBody, { visibleFiles }) : fileBody}
       </div>
     );
   }
@@ -457,7 +462,7 @@ export default function DocumentCategoryFileList({
     return (
       <div className="lab-doc-grouped-list lab-doc-grouped-list--tabbed lab-doc-grouped-list--horizontal-top">
         <div className="lab-doc-category-top-bar">{tabToolbar}</div>
-        {renderPreview(fileBody)}
+        {renderPreview(fileBody, { visibleFiles })}
       </div>
     );
   }

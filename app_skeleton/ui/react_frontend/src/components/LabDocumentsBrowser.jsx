@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
-import { FileText, Loader2, Lock } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { FileText, LayoutGrid, List, Loader2, Lock } from 'lucide-react';
 import DocumentPreviewPane from './DocumentPreviewPane.jsx';
 import DocumentFileSearch from './DocumentFileSearch.jsx';
 import SmartLink from './SmartLink.jsx';
@@ -28,6 +28,11 @@ import { normalizeDocPath } from '../utils/folderBrowserUtils.js';
 import DocumentCategoryFileList, {
   countGroupedFiles,
 } from './DocumentCategoryFileList.jsx';
+import DocumentMediaGallery from './DocumentMediaGallery.jsx';
+import {
+  deriveBrowserLayoutMode,
+  isGalleryLayoutMode,
+} from '../utils/documentBrowserLayoutMode.js';
 import { useGuiT } from '../i18n/useGuiT.js';
 import { useModuleShellHeaderSlot } from '../contexts/ModuleShellHeaderSlotContext.jsx';
 import { consumeSearchNavigation } from '../utils/searchHits.js';
@@ -58,6 +63,8 @@ export default function LabDocumentsBrowser({
   const [selectedPath, setSelectedPath] = useState(null);
   const [fileQuery, setFileQuery] = useState('');
   const [revealSensitive, setRevealSensitive] = useState(false);
+  const [visibleFiles, setVisibleFiles] = useState([]);
+  const [layoutModeOverride, setLayoutModeOverride] = useState(null);
   const { openTaskpad } = useTaskpad();
   const { t, localizeCategories } = useGuiT();
 
@@ -299,6 +306,119 @@ export default function LabDocumentsBrowser({
 
   const contentRoot = primaryTwin?.content_root;
 
+  const layoutInfo = useMemo(
+    () => deriveBrowserLayoutMode(visibleFiles, { userOverride: layoutModeOverride }),
+    [visibleFiles, layoutModeOverride]
+  );
+
+  useEffect(() => {
+    if (layoutInfo.mode !== 'mixed') {
+      setLayoutModeOverride(null);
+    }
+  }, [layoutInfo.mode]);
+
+  const effectiveLayoutMode = useMemo(() => {
+    if (layoutModeOverride === 'gallery' || layoutModeOverride === 'split') {
+      return layoutModeOverride;
+    }
+    if (layoutInfo.mode === 'mixed') {
+      return layoutInfo.dominantKind === 'image' || layoutInfo.dominantKind === 'video'
+        ? 'gallery'
+        : 'split';
+    }
+    if (layoutInfo.mode === 'media') return 'gallery';
+    return layoutInfo.mode;
+  }, [layoutInfo, layoutModeOverride]);
+
+  const useGalleryLayout = isGalleryLayoutMode(effectiveLayoutMode);
+
+  const resolveDocAssetUrl = useCallback(
+    (doc) => {
+      const twin = doc?.sourceSection ? twins[doc.sourceSection] : primaryTwin;
+      const root = twin?.relative_root || relativeRoot;
+      return root && doc?.path ? labDatabaseAssetUrl(root, doc.path) : null;
+    },
+    [twins, primaryTwin, relativeRoot]
+  );
+
+  const layoutToggle = layoutInfo.mode === 'mixed' ? (
+    <div className="lab-doc-layout-toggle" role="group" aria-label={t('docs.layoutToggleAria', 'Browse layout')}>
+      <button
+        type="button"
+        className={`lab-doc-layout-toggle-btn${effectiveLayoutMode === 'split' ? ' active' : ''}`}
+        onClick={() => setLayoutModeOverride('split')}
+        title={t('docs.layoutList', 'List and preview')}
+      >
+        <List size={13} aria-hidden />
+        <span>{t('docs.layoutList', 'List')}</span>
+      </button>
+      <button
+        type="button"
+        className={`lab-doc-layout-toggle-btn${effectiveLayoutMode === 'gallery' ? ' active' : ''}`}
+        onClick={() => setLayoutModeOverride('gallery')}
+        title={t('docs.layoutGallery', 'Gallery view')}
+      >
+        <LayoutGrid size={13} aria-hidden />
+        <span>{t('docs.layoutGallery', 'Gallery')}</span>
+      </button>
+    </div>
+  ) : null;
+
+  const galleryActions = selectedDoc && assetUrl ? (
+    <>
+      <a
+        href={assetUrl}
+        className="btn btn-secondary btn-sm"
+        target="_blank"
+        rel="noreferrer"
+      >
+        {t('docs.openOriginal')}
+      </a>
+      {isSensitive ? (
+        <button
+          type="button"
+          className="btn btn-secondary btn-sm"
+          onClick={() => setRevealSensitive((v) => !v)}
+        >
+          {revealSensitive ? t('docs.hideSensitive') : t('docs.revealSensitive')}
+        </button>
+      ) : null}
+    </>
+  ) : null;
+
+  const mediaGalleryPane = (
+    <DocumentMediaGallery
+      files={visibleFiles}
+      selectedPath={selectedPath}
+      onSelectFile={setSelectedPath}
+      resolveUrl={resolveDocAssetUrl}
+      documentTitle={documentTitle}
+      mediaScope={layoutInfo.mediaScope || 'image'}
+      labels={{
+        loading: t('docs.mediaLoading'),
+        failed: t('docs.mediaFailed'),
+        videoLoading: t('docs.videoLoading'),
+        videoFailed: t('docs.videoFailed'),
+        zoomIn: t('docs.mediaZoomIn'),
+        zoomOut: t('docs.mediaZoomOut'),
+        fit: t('docs.mediaFit'),
+        actualSize: t('docs.mediaActualSize'),
+        rotate: t('docs.mediaRotate'),
+        fullscreen: t('docs.mediaFullscreen'),
+        download: t('docs.openOriginal'),
+        previous: t('docs.mediaPrevious'),
+        next: t('docs.mediaNext'),
+        gridView: t('docs.galleryGrid', 'Grid'),
+        heroView: t('docs.galleryPreview', 'Preview'),
+        itemOne: t('docs.galleryItemOne', 'item'),
+        itemMany: t('docs.galleryItemMany', 'items'),
+        filmstrip: t('docs.galleryFilmstrip', 'Thumbnails'),
+      }}
+      actions={galleryActions}
+      emptyHint={t('docs.galleryEmpty', 'No images or videos in this category.')}
+    />
+  );
+
   if (loading) {
     return (
       <div className="panel" style={{ padding: '2rem', textAlign: 'center' }}>
@@ -332,6 +452,7 @@ export default function LabDocumentsBrowser({
     className,
     isSplitCatalogLayout ? 'catalog-space-browser lab-documents-browser--catalog' : '',
     isSplitCatalogLayout && sectionHeader ? 'lab-documents-browser--section-header' : '',
+    useGalleryLayout ? 'lab-documents-browser--gallery' : 'lab-documents-browser--split',
   ]
     .filter(Boolean)
     .join(' ');
@@ -454,6 +575,31 @@ export default function LabDocumentsBrowser({
     </p>
   ) : null;
 
+  const renderCatalogBody = (fileBody) => {
+    if (useGalleryLayout) {
+      return (
+        <div className="lab-docs-gallery-shell">
+          {sensitiveNote}
+          {mediaGalleryPane}
+        </div>
+      );
+    }
+
+    return (
+      <div
+        className={`lab-docs-catalog-split pfb-layout lab-docs-layout lab-docs-layout--compact lab-docs-layout--catalog${selectedDoc ? ' pfb-layout--editor-focus pfb-layout--doc-full' : ''}`}
+      >
+        <div className="pfb-column pfb-files-pane lab-doc-files-panel lab-doc-files-panel--catalog">
+          {sensitiveNote}
+          {fileBody}
+        </div>
+        {previewPane}
+      </div>
+    );
+  };
+
+  const useTopTabsLayout = isSplitCatalogLayout || useGalleryLayout;
+
   const fileList = (
     <DocumentCategoryFileList
       categoryGroups={localizedCategoryGroups}
@@ -464,23 +610,11 @@ export default function LabDocumentsBrowser({
       onSelectFile={setSelectedPath}
       categoryIcons={categoryIcons}
       sensitiveCategories={sensitiveCategories}
-      categoryLayout={isSplitCatalogLayout ? 'horizontal-top' : 'inline'}
+      categoryLayout={useTopTabsLayout ? 'horizontal-top' : 'inline'}
       sectionHeader={isSplitCatalogLayout ? sectionHeader : null}
-      renderPreview={
-        isSplitCatalogLayout
-          ? (fileBody) => (
-              <div
-                className={`lab-docs-catalog-split pfb-layout lab-docs-layout lab-docs-layout--compact lab-docs-layout--catalog${selectedDoc ? ' pfb-layout--editor-focus pfb-layout--doc-full' : ''}`}
-              >
-                <div className="pfb-column pfb-files-pane lab-doc-files-panel lab-doc-files-panel--catalog">
-                  {sensitiveNote}
-                  {fileBody}
-                </div>
-                {previewPane}
-              </div>
-            )
-          : null
-      }
+      toolbarAfterTabs={layoutToggle}
+      onVisibleFilesChange={setVisibleFiles}
+      renderPreview={useTopTabsLayout ? renderCatalogBody : null}
     />
   );
 
@@ -496,7 +630,7 @@ export default function LabDocumentsBrowser({
 
       <div className={`lab-docs-section-layout lab-docs-section-layout--grouped${isSplitCatalogLayout ? ' lab-docs-section-layout--catalog' : ''}`}>
         <div className="lab-docs-section-main">
-          {isSplitCatalogLayout ? (
+          {useTopTabsLayout ? (
             <div className="lab-docs-catalog-shell">
               {fileList}
             </div>
