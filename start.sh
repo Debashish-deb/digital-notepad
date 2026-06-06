@@ -24,6 +24,18 @@ if [ -f "$BACKEND_DIR/configs/.env" ]; then
   eval "$("$BACKEND_DIR/scripts/load_env.sh" "$BACKEND_DIR/configs/.env")"
 fi
 
+# Portable remote LLM (Tailscale Linux workstation) — overrides .env localhost URLs.
+if [ -n "${TAILSCALE_LINUX_IP:-}" ]; then
+  export OLLAMA_BASE_URL="http://${TAILSCALE_LINUX_IP}:11434/v1"
+  export QDRANT_URL="http://${TAILSCALE_LINUX_IP}:6333"
+fi
+export OMEIA_REPO_ROOT="${OMEIA_REPO_ROOT:-$PROJECT_ROOT}"
+export DATABASE_ROOT="${DATABASE_ROOT:-$PROJECT_ROOT/../OMEIA-database}"
+export PROJECTS_ROOT="${PROJECTS_ROOT:-$DATABASE_ROOT/projects}"
+if [ -z "${FIREBASE_SERVICE_ACCOUNT_PATH:-}" ] && [ -f "$PROJECT_ROOT/configs/secrets/firebase-adminsdk.json" ]; then
+  export FIREBASE_SERVICE_ACCOUNT_PATH="$PROJECT_ROOT/configs/secrets/firebase-adminsdk.json"
+fi
+
 BACKEND_PID=""
 FRONTEND_PID=""
 
