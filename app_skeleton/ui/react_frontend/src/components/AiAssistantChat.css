@@ -1,0 +1,186 @@
+/* Premium chat surface for Gemini Research Copilot (ChatWidget). */
+
+.assistant-chat-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.assistant-chat-provider-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 28%, var(--border-color));
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  color: var(--text-secondary);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.assistant-chat-provider-pill.is-mock {
+  border-color: color-mix(in srgb, var(--color-warning) 34%, var(--border-color));
+  background: color-mix(in srgb, var(--color-warning) 10%, transparent);
+  color: var(--color-warning);
+}
+
+.assistant-chat-container {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 18px);
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--bg-surface) 92%, transparent), color-mix(in srgb, var(--bg-inset) 30%, transparent));
+  box-shadow: var(--shadow-card, 0 14px 34px rgba(0, 0, 0, 0.1));
+}
+
+.assistant-chat-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.32;
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--color-primary) 12%, transparent), transparent 18rem),
+    radial-gradient(circle at 90% 20%, color-mix(in srgb, var(--color-accent, var(--color-primary)) 10%, transparent), transparent 22rem);
+}
+
+.assistant-chat-messages {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.85rem;
+  max-height: min(58vh, 34rem);
+  overflow: auto;
+  padding: 1rem 1rem 0.5rem;
+}
+
+.assistant-chat-input-area {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.55rem;
+  padding: 0.75rem 1rem 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--border-color) 72%, transparent);
+}
+
+.chat-bubble {
+  position: relative;
+  padding: 0.75rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 80%, transparent);
+  background: color-mix(in srgb, var(--bg-surface) 88%, transparent);
+}
+
+.chat-bubble.user {
+  margin-left: 12%;
+  border-color: color-mix(in srgb, var(--color-primary) 24%, var(--border-color));
+  background: color-mix(in srgb, var(--color-primary) 7%, var(--bg-surface));
+}
+
+.chat-bubble.assistant {
+  margin-right: 8%;
+}
+
+.chat-bubble.error-state {
+  border-color: color-mix(in srgb, var(--color-danger, #c0392b) 40%, var(--border-color));
+  background: color-mix(in srgb, var(--color-danger, #c0392b) 8%, transparent);
+}
+
+.chat-bubble__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-bottom: 0.38rem;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.chat-bubble__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.chat-rich-text {
+  white-space: normal;
+}
+
+.chat-rich-text h2,
+.chat-rich-text h3,
+.chat-rich-text p {
+  margin: 0;
+}
+
+.chat-rich-text h2,
+.chat-rich-text h3 {
+  color: var(--text-primary);
+  font-family: var(--font-heading, var(--font-display, Georgia, serif));
+  line-height: 1.2;
+}
+
+.chat-rich-text p {
+  color: inherit;
+  line-height: 1.58;
+  white-space: pre-wrap;
+}
+
+.chat-rich-spacer {
+  height: 0.55rem;
+}
+
+.chat-rich-bullet {
+  padding-left: 0.15rem;
+}
+
+.chat-limitations {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--color-warning) 36%, var(--border-color));
+  border-radius: 12px;
+  color: var(--color-warning);
+  background: color-mix(in srgb, var(--color-warning) 9%, transparent);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.chat-retry-btn {
+  margin-top: 0.75rem;
+}
+
+.assistant-thinking-bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.assistant-chat-input {
+  min-height: 2.7rem;
+}
+
+.assistant-send-btn {
+  min-width: 6.8rem;
+}
+
+@media (max-width: 720px) {
+  .assistant-chat-messages {
+    max-height: 48vh;
+  }
+
+  .chat-bubble.user,
+  .chat-bubble.assistant {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

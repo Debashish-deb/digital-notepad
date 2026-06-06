@@ -12,7 +12,7 @@ validate_environment()
 
 from app_skeleton.api.common import *
 from app_skeleton.api.common import _app_lifespan
-from app_skeleton.api.routers import health, research, copilot, knowledge, vault, storage, datapad, digitalization, search, research_knowledge
+from app_skeleton.api.routers import health, research, copilot, knowledge, vault, storage, datapad, digitalization, search, research_knowledge, chat
 from app_skeleton.security import secure_files
 
 app = FastAPI(title="OMEIA Research Copilot API", version="0.4.0-premium", lifespan=_app_lifespan)
@@ -43,6 +43,7 @@ api_dependencies = [Depends(require_platform_user)]
 
 app.include_router(research.router, dependencies=api_dependencies)
 app.include_router(copilot.router, dependencies=api_dependencies)
+app.include_router(chat.router, dependencies=api_dependencies)
 app.include_router(knowledge.router, dependencies=api_dependencies)
 app.include_router(vault.router, dependencies=api_dependencies)
 app.include_router(storage.router, dependencies=api_dependencies)

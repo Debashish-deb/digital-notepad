@@ -8,9 +8,16 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { apiFetch } from '../api/client.js';
-import { navigateFromSearchHit, readStashedSearchQuery, stashOmniboxPrefill } from '../utils/searchHits.js';
+import { getChatStatus, sendChatMessage } from '../api/chatClient.js';
+import {
+  navigateFromSearchHit,
+  readStashedSearchQuery,
+  stashOmniboxPrefill,
+  formatChatProviderLabel,
+} from '../utils/searchNavigation.js';
 import AssistantSearchHits from './search/AssistantSearchHits.jsx';
 import './search/UnifiedSearch.css';
+import './AiAssistantChat.css';
 import AiAssistant3DScene from './AiAssistant3DScene.jsx';
 import TaskpadSheet from './TaskpadSheet.jsx';
 import { useModuleShellCover } from '../contexts/ModuleShellCoverContext.jsx';
@@ -147,6 +154,7 @@ export default function ChatWidget({
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [selProjs, setSelProjs] = useState(() => getDefaultProjects(dbProjects));
+  const [chatProvider, setChatProvider] = useState('mock');
 
   const projectCodes = useMemo(
     () => dbProjects.map(normalizeProjectCode).filter(Boolean),
@@ -173,6 +181,22 @@ export default function ChatWidget({
     },
     [onOpenSearch],
   );
+
+  useEffect(() => {
+    let cancelled = false;
+    getChatStatus()
+      .then((status) => {
+        if (cancelled) return;
+        const provider = status?.chat_provider || status?.llm?.provider || 'mock';
+        setChatProvider(provider);
+      })
+      .catch(() => {
+        if (!cancelled) setChatProvider('mock');
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (!selProjs.length) {
@@ -212,16 +236,13 @@ export default function ChatWidget({
       setLoading(true);
 
       try {
-        const data = await apiFetch('/ask', {
-          method: 'POST',
-          body: {
-            question: textToSend,
-            project_codes: selProjs,
-            mode: 'documentation_only',
-          },
+        const data = await sendChatMessage({
+          message: textToSend,
+          project_codes: selProjs,
         });
 
         const formatted = formatAssistantPayload(data);
+        if (data?.provider) setChatProvider(data.provider);
 
         setMessages((prev) => [
           ...prev,
@@ -320,13 +341,16 @@ export default function ChatWidget({
   const mainNav = nav.findMain(shellCover?.mainId || 'ai_assistant');
   const MainIcon = mainNav?.icon;
 
+  const providerLabel = useMemo(() => formatChatProviderLabel(chatProvider), [chatProvider]);
+
   const heroStats = useMemo(
     () => [
       { label: 'Mode', value: 'RAG' },
+      { label: 'LLM', value: providerLabel },
       { label: 'Scope', value: `${selProjs.length || 0}` },
       { label: 'Status', value: loading ? 'Thinking' : 'Ready' },
     ],
-    [loading, selProjs.length],
+    [loading, providerLabel, selProjs.length],
   );
 
   const coverToolbar = shellCover ? (
@@ -393,6 +417,14 @@ export default function ChatWidget({
                     'You'
                   )}
                 </span>
+                {message.role === 'assistant' && !message.isError ? (
+                  <span
+                    className={`assistant-chat-provider-pill${chatProvider === 'mock' ? ' is-mock' : ''}`}
+                    title="Server-side LLM provider"
+                  >
+                    {providerLabel}
+                  </span>
+                ) : null}
               </div>
 
               <MarkdownLite text={message.content} />

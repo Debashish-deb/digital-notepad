@@ -22,7 +22,7 @@ import math
 import os
 import re
 from dataclasses import dataclass
-from typing import Any, List
+from typing import Any, Iterator, List
 
 try:
     import requests
@@ -85,7 +85,7 @@ class ProviderConfig:
 class LLMClient:
     """Small OpenAI-compatible provider router used by the API."""
 
-    _KNOWN_PROVIDERS = {"mock", "openai", "groq", "openrouter", "together", "ollama", "deepseek"}
+    _KNOWN_PROVIDERS = {"mock", "openai", "groq", "openrouter", "together", "ollama", "deepseek", "gemini"}
 
     def __init__(self):
         self.provider = _env("LLM_PROVIDER", "mock").lower() or "mock"
@@ -96,10 +96,21 @@ class LLMClient:
         self.model = _env("LLM_MODEL", "mock-model") or "mock-model"
         self.api_key = _env("LLM_API_KEY", "")
         self.base_url = _env("LLM_BASE_URL", "")
-        fallback_env = _env("LLM_FALLBACK_PROVIDERS", "groq,openai,openrouter,together,deepseek,ollama,mock")
+        fallback_env = _env("LLM_FALLBACK_PROVIDERS", "gemini,groq,openai,openrouter,together,deepseek,ollama,mock")
         self.fallback_providers = self._normalize_provider_list(fallback_env)
         if "mock" not in self.fallback_providers:
             self.fallback_providers.append("mock")
+
+        if self.provider == "gemini":
+            if not self.api_key:
+                self.api_key = _env("GEMINI_API_KEY", "")
+            if not self.model or self.model == "mock-model":
+                self.model = _env("GEMINI_MODEL", "gemini-2.0-flash")
+            if not self.base_url:
+                self.base_url = _env(
+                    "GEMINI_BASE_URL",
+                    "https://generativelanguage.googleapis.com/v1beta/openai/",
+                )
 
         self.timeout_seconds = _bounded_float(_env("LLM_TIMEOUT_SECONDS", "45"), 45.0, 2.0, 240.0)
         self.max_tokens = _bounded_int(_env("LLM_MAX_TOKENS", "1400"), 1400, 64, 12000)
@@ -168,6 +179,16 @@ class LLMClient:
                 _env("OLLAMA_MODEL", self.model if self.provider == "ollama" else "llama3"),
                 "ollama",
                 _env("OLLAMA_BASE_URL", self.base_url or "http://localhost:11434/v1"),
+            )
+        if provider == "gemini":
+            return ProviderConfig(
+                "gemini",
+                _env("GEMINI_MODEL", self.model if self.provider == "gemini" else "gemini-2.0-flash"),
+                _env("GEMINI_API_KEY", self.api_key if self.provider == "gemini" else ""),
+                _env(
+                    "GEMINI_BASE_URL",
+                    "https://generativelanguage.googleapis.com/v1beta/openai/",
+                ),
             )
         return ProviderConfig("mock", "mock-model", "", "")
 
@@ -278,6 +299,61 @@ class LLMClient:
         if errors:
             fallback += "\n\n*Provider fallback note: " + "; ".join(errors[:4]) + ".*"
         return fallback
+
+    def _stream_once(self, cfg: ProviderConfig, prompt: str, system_prompt: str) -> Iterator[str]:
+        client = self._client_for(cfg)
+        if client is None:
+            yield self._mock_generate(prompt, system_prompt)
+            return
+
+        stream = client.chat.completions.create(
+            model=cfg.model,
+            messages=[
+                {"role": "system", "content": system_prompt or "You are a helpful research copilot."},
+                {"role": "user", "content": prompt or ""},
+            ],
+            temperature=self.temperature,
+            max_tokens=self.max_tokens,
+            stream=True,
+        )
+        for chunk in stream:
+            delta = chunk.choices[0].delta.content if chunk.choices else None
+            if delta:
+                yield delta
+
+    def stream_generate(self, prompt: str, system_prompt: str = "") -> Iterator[str]:
+        """Stream conversational text deltas with the same fallback routing as generate()."""
+        primary = self.provider or "mock"
+        providers = [primary] + [p for p in self.fallback_providers if p != primary]
+        errors: list[str] = []
+
+        for provider in providers:
+            cfg = self._current_config() if provider == primary else self._config_for(provider)
+            if cfg.provider != "mock" and not cfg.api_key and cfg.provider != "ollama":
+                continue
+            if cfg.provider != "mock" and OpenAI is None:
+                errors.append(f"{cfg.provider}: OpenAISDKMissing")
+                continue
+
+            try:
+                emitted = False
+                for delta in self._stream_once(cfg, prompt, system_prompt):
+                    emitted = True
+                    yield delta
+                if emitted:
+                    self.provider, self.model, self.api_key, self.base_url = cfg.provider, cfg.model, cfg.api_key, cfg.base_url
+                    self.client = self._client_for(cfg)
+                    self.last_provider_errors = errors
+                    return
+            except Exception as exc:
+                errors.append(f"{cfg.provider}: {type(exc).__name__}")
+                LOGGER.warning("LLM stream provider %s failed: %s", cfg.provider, exc)
+
+        self.last_provider_errors = errors
+        fallback = self._mock_generate(prompt, system_prompt)
+        if errors:
+            fallback += "\n\n*Provider fallback note: " + "; ".join(errors[:4]) + ".*"
+        yield fallback
 
     def _extract_sources(self, prompt: str) -> list[dict[str, str]]:
         sources: list[dict[str, str]] = []
