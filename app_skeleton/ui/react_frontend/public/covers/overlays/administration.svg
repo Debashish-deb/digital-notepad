@@ -1,8 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none" aria-hidden="true">
-  <path d="M120 36l52 20v44c0 36-22 56-52 68-30-12-52-32-52-68V56l52-20z" stroke="#94a3b8" stroke-width="2" opacity="0.52"/>
-  <path d="M96 100l16 16 32-32" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.57"/>
-  <circle cx="120" cy="88" r="36" stroke="#94a3b8" stroke-width="1" opacity="0.27"/>
-  <path d="M168 48l16-8v24l-16-8" stroke="#94a3b8" stroke-width="1.5" opacity="0.42"/>
-  <circle cx="184" cy="40" r="5" fill="#94a3b8" opacity="0.37"/>
-  <circle cx="56" cy="48" r="5" fill="#94a3b8" opacity="0.32"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 220" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="ad-slate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#475569" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield / platform security -->
+  <path d="M120 32l56 22v48c0 38-24 58-56 70-32-12-56-32-56-70V54l56-22z" stroke="url(#ad-slate)" stroke-width="2" opacity="0.55"/>
+  <path d="M96 108l16 16 32-32" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.58"/>
+  <circle cx="120" cy="96" r="36" stroke="#94a3b8" stroke-width="1" opacity="0.25"/>
+  <!-- Server rack -->
+  <rect x="196" y="48" width="56" height="72" rx="5" stroke="#94a3b8" stroke-width="1.5" opacity="0.45"/>
+  <path d="M196 64h56M196 80h56M196 96h56" stroke="#94a3b8" stroke-width="0.8" opacity="0.32"/>
+  <circle cx="208" cy="56" r="2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="208" cy="72" r="2" fill="#22c55e" opacity="0.45"/>
+  <circle cx="208" cy="88" r="2" fill="#fbbf24" opacity="0.42"/>
+  <rect x="204" y="104" width="16" height="6" rx="1" fill="#94a3b8" opacity="0.28"/>
+  <!-- Connector nodes -->
+  <circle cx="48" cy="72" r="10" stroke="#94a3b8" stroke-width="1.2" opacity="0.42"/>
+  <circle cx="48" cy="120" r="10" stroke="#94a3b8" stroke-width="1.2" opacity="0.38"/>
+  <circle cx="48" cy="168" r="10" stroke="#94a3b8" stroke-width="1.2" opacity="0.35"/>
+  <path d="M58 72h40M58 120h32M58 168h48" stroke="#94a3b8" stroke-width="1" opacity="0.32" stroke-dasharray="4 3"/>
+  <!-- Ingestion pipeline -->
+  <rect x="32" y="176" width="80" height="28" rx="4" stroke="#94a3b8" stroke-width="1.2" opacity="0.4"/>
+  <path d="M44 190h12v8H44zM60 186h12v12H60zM76 192h12v6H76z" fill="#64748b" opacity="0.32"/>
+  <path d="M112 190h48" stroke="#94a3b8" stroke-width="1.5" opacity="0.35" marker-end="url(#arrow)"/>
+  <polygon points="168,190 160,186 160,194" fill="#94a3b8" opacity="0.4"/>
+  <!-- Config gear -->
+  <circle cx="220" cy="168" r="16" stroke="#94a3b8" stroke-width="1.5" opacity="0.42"/>
+  <circle cx="220" cy="168" r="6" stroke="#94a3b8" stroke-width="1" opacity="0.38"/>
+  <path d="M220 148v8M220 180v8M200 168h8M232 168h8M206 152l6 6M228 174l6 6M206 184l6-6M228 162l6-6" stroke="#94a3b8" stroke-width="1.2" opacity="0.35"/>
+  <!-- Firebase auth hint -->
+  <circle cx="184" cy="40" r="6" fill="#fbbf24" opacity="0.38"/>
+  <path d="M184 36c-4 0-8 2-8 6 0 6 8 10 8 10s8-4 8-10c0-4-4-6-8-6z" stroke="#fbbf24" stroke-width="1" opacity="0.4"/>
 </svg>

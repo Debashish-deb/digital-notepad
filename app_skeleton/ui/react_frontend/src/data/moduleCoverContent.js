@@ -25,16 +25,22 @@ export const MODULE_COVER_OVERLAYS = {
 export const MODULE_COVER = {
   overview: {
     tone: 'overview',
+    accentHue: '#c45c8a',
     overlayArt: MODULE_COVER_OVERLAYS.overview,
     useIntroCopy: true,
+    tagline: 'ONCOSYS · ovarian cancer · spatial atlas',
+    tags: ['HGSC', 'Spatial biology', 'TME', 'TLS'],
     metaDescription:
       'Lab orientation, onboarding, guidelines, and permits for the Färkkilä Lab ONCOSYS research programme.',
   },
   orders: {
     tone: 'orders',
+    accentHue: '#d97706',
     overlayArt: MODULE_COVER_OVERLAYS.orders,
     eyebrow: 'Procurement & billing',
     title: 'Orders & related information',
+    tagline: 'Reagents · antibodies · HUS procurement',
+    tags: ['Vendor billing', 'Shipments', 'Lab supplies'],
     lead:
       'Vendor billing, HUS ordering instructions, shipment records, and archived procurement — everything needed to place and track lab orders.',
     metaDescription:
@@ -42,9 +48,12 @@ export const MODULE_COVER = {
   },
   data_storage: {
     tone: 'storage',
+    accentHue: '#0d9488',
     overlayArt: MODULE_COVER_OVERLAYS.data_storage,
     eyebrow: 'Infrastructure & FAIR data',
     title: 'Data & Storage',
+    tagline: 'FAIR principles · multi-tier storage',
+    tags: ['L-drive', 'DataCloud', 'CSC Allas', 'FAIR'],
     lead:
       'Where lab data lives: L-drive, P-drive, UH DataCloud & Databank, CSC Allas, local disks, and the workflows that keep ONCOSYS and project data safe.',
     metaDescription:
@@ -52,9 +61,12 @@ export const MODULE_COVER = {
   },
   projects_data: {
     tone: 'projects',
+    accentHue: '#2563eb',
     overlayArt: MODULE_COVER_OVERLAYS.projects_data,
     eyebrow: 'Research programmes',
     title: 'Project Portfolio',
+    tagline: 'SPACE · EyeMT · KRAS · clinical warehouse',
+    tags: ['ONCOSYS', 'Decision register', 'Notebooks'],
     lead:
       'SPACE, EyeMT, KRAS, and related programmes — portfolios, living notebooks, decision registers, and clinical feature warehouses.',
     metaDescription:
@@ -62,9 +74,12 @@ export const MODULE_COVER = {
   },
   wet_lab: {
     tone: 'wetlab',
+    accentHue: '#16a34a',
     overlayArt: MODULE_COVER_OVERLAYS.wet_lab,
     eyebrow: 'Bench science',
     title: 'Wet-lab',
+    tagline: 'Sample prep · staining · QC protocols',
+    tags: ['SOPs', 'Reagent panels', 'QC'],
     lead:
       'Protocols, reagent panels, wet-lab tasks, and on-disk SOPs for sample prep, staining, and quality control.',
     metaDescription:
@@ -72,9 +87,12 @@ export const MODULE_COVER = {
   },
   cycif: {
     tone: 'cycif',
+    accentHue: '#06b6d4',
     overlayArt: MODULE_COVER_OVERLAYS.cycif,
     eyebrow: 'Spatial imaging',
     title: 'CyCif / t-CycIF',
+    tagline: 'Multiplex tissue · antibody cycles · Napari',
+    tags: ['t-CyCIF', 'Visium', 'GeoMx', 'MHC-II'],
     lead:
       'Multiplex tissue imaging pipeline — staining plans, antibody inventory, sectioning orders, Napari viewers, and project run sheets.',
     metaDescription:
@@ -82,9 +100,12 @@ export const MODULE_COVER = {
   },
   computational: {
     tone: 'compute',
+    accentHue: '#0891b2',
     overlayArt: MODULE_COVER_OVERLAYS.computational,
     eyebrow: 'HPC & bioinformatics',
     title: 'Computational Hub',
+    tagline: 'LUMI · cPouta · single-cell · spatial omics',
+    tags: ['LUMI', 'SPACEstat', 'Tribus', 'CEFIIRA'],
     lead:
       'LUMI, cPouta, conda environments, file transfers, troubleshooting, and published lab tools — Tribus, CEFIIRA, SPACEstat.',
     metaDescription:
@@ -92,9 +113,12 @@ export const MODULE_COVER = {
   },
   ai_assistant: {
     tone: 'ai',
+    accentHue: '#6366f1',
     overlayArt: MODULE_COVER_OVERLAYS.ai_assistant,
     eyebrow: 'Lab intelligence',
     title: 'AI Lab Assistant',
+    tagline: 'RAG · hybrid search · grounded answers',
+    tags: ['RAG', 'Embeddings', 'Ingestion', 'Copilot'],
     lead:
       'RAG copilot over protocols and project docs, prompt templates, ingestion jobs, and model registry for assisted research.',
     metaDescription:
@@ -102,9 +126,12 @@ export const MODULE_COVER = {
   },
   profile: {
     tone: 'profile',
+    accentHue: '#64748b',
     overlayArt: MODULE_COVER_OVERLAYS.profile,
     eyebrow: 'Lab identity',
     title: 'User Profile',
+    tagline: 'Researcher profile · publications · skills',
+    tags: ['Publications', 'Skills', 'Contact'],
     lead:
       'Your researcher profile — role, publications, skills, and contact details within the Färkkilä Lab notebook.',
     metaDescription:
@@ -112,9 +139,12 @@ export const MODULE_COVER = {
   },
   meeting: {
     tone: 'meeting',
+    accentHue: '#0284c7',
     overlayArt: MODULE_COVER_OVERLAYS.meeting,
     eyebrow: 'Collaboration',
     title: 'Meeting & Booking',
+    tagline: 'Lab meetings · resource booking · coordination',
+    tags: ['Calendar', 'Booking', 'Team sync'],
     lead:
       'Schedule lab meetings, book shared resources, and coordinate team sessions across ONCOSYS programmes.',
     metaDescription:
@@ -122,9 +152,12 @@ export const MODULE_COVER = {
   },
   administration: {
     tone: 'admin',
+    accentHue: '#475569',
     overlayArt: MODULE_COVER_OVERLAYS.administration,
     eyebrow: 'Platform operations',
     title: 'Administration',
+    tagline: 'Auth · connectors · ingestion · config',
+    tags: ['Firebase', 'Connectors', 'Jobs'],
     lead:
       'User allowlist, Firebase auth, connector health, ingestion jobs, and platform configuration for this research notebook.',
     metaDescription:

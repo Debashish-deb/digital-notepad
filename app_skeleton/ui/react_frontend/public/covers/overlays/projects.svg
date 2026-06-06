@@ -1,10 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none" aria-hidden="true">
-  <rect x="40" y="48" width="72" height="56" rx="6" stroke="#60a5fa" stroke-width="2" opacity="0.52"/>
-  <rect x="128" y="32" width="72" height="56" rx="6" stroke="#60a5fa" stroke-width="2" opacity="0.47"/>
-  <rect x="84" y="112" width="72" height="56" rx="6" stroke="#60a5fa" stroke-width="2" opacity="0.57"/>
-  <path d="M112 76l16 20M160 88l-8 24M112 112l-8-8" stroke="#60a5fa" stroke-width="1.5" opacity="0.42"/>
-  <circle cx="76" cy="76" r="8" fill="#60a5fa" opacity="0.37"/>
-  <circle cx="164" cy="60" r="8" fill="#60a5fa" opacity="0.32"/>
-  <circle cx="120" cy="140" r="8" fill="#60a5fa" opacity="0.4"/>
-  <path d="M48 168h144" stroke="#60a5fa" stroke-width="1" opacity="0.32" stroke-dasharray="6 4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 220" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="pj-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#2563eb" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <!-- Network backbone -->
+  <path d="M72 56l48 32 56-24 48 40" stroke="#60a5fa" stroke-width="1.2" opacity="0.35" stroke-dasharray="5 4"/>
+  <path d="M72 56l32 72M120 88l40 56M176 64l-16 80M168 144l40-56" stroke="#60a5fa" stroke-width="1.5" opacity="0.42"/>
+  <!-- Project nodes -->
+  <rect x="44" y="36" width="56" height="40" rx="6" stroke="url(#pj-blue)" stroke-width="2" opacity="0.58"/>
+  <text x="72" y="60" text-anchor="middle" fill="#60a5fa" font-size="8" font-weight="700" opacity="0.55" font-family="system-ui,sans-serif">SPACE</text>
+  <rect x="148" y="24" width="56" height="40" rx="6" stroke="#60a5fa" stroke-width="2" opacity="0.52"/>
+  <text x="176" y="48" text-anchor="middle" fill="#60a5fa" font-size="8" font-weight="700" opacity="0.5" font-family="system-ui,sans-serif">EyeMT</text>
+  <rect x="96" y="108" width="56" height="40" rx="6" stroke="#60a5fa" stroke-width="2" opacity="0.6"/>
+  <text x="124" y="132" text-anchor="middle" fill="#60a5fa" font-size="8" font-weight="700" opacity="0.55" font-family="system-ui,sans-serif">KRAS</text>
+  <rect x="188" y="120" width="56" height="40" rx="6" stroke="#60a5fa" stroke-width="2" opacity="0.48"/>
+  <text x="216" y="144" text-anchor="middle" fill="#60a5fa" font-size="7" font-weight="700" opacity="0.48" font-family="system-ui,sans-serif">ONCOSYS</text>
+  <!-- Connection hubs -->
+  <circle cx="120" cy="88" r="10" fill="#3b82f6" opacity="0.38" stroke="#60a5fa" stroke-width="1.5"/>
+  <circle cx="176" cy="64" r="8" fill="#60a5fa" opacity="0.32"/>
+  <circle cx="168" cy="144" r="8" fill="#93c5fd" opacity="0.35"/>
+  <!-- Decision register timeline -->
+  <path d="M40 188h200" stroke="#60a5fa" stroke-width="1" opacity="0.3"/>
+  <circle cx="64" cy="188" r="4" fill="#60a5fa" opacity="0.45"/>
+  <circle cx="112" cy="188" r="4" fill="#60a5fa" opacity="0.4"/>
+  <circle cx="160" cy="188" r="5" fill="#3b82f6" opacity="0.5"/>
+  <circle cx="208" cy="188" r="4" fill="#60a5fa" opacity="0.38"/>
+  <path d="M64 188v-16M112 188v-24M160 188v-32M208 188v-20" stroke="#60a5fa" stroke-width="0.8" opacity="0.28"/>
+  <!-- Clinical warehouse layer -->
+  <ellipse cx="124" cy="172" rx="40" ry="10" stroke="#93c5fd" stroke-width="1" opacity="0.32"/>
+  <path d="M84 172v8c0 5.5 17.9 10 40 10s40-4.5 40-10v-8" stroke="#93c5fd" stroke-width="1" opacity="0.28"/>
 </svg>

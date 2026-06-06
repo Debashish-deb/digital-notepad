@@ -22,15 +22,23 @@ export default function ModuleCoverHero({
   const eyebrow = cover.useIntroCopy ? main.label : cover.eyebrow;
   const title = cover.useIntroCopy ? intro.title : cover.title || main.label;
   const lead = cover.useIntroCopy ? intro.lead : cover.lead || main.children[0]?.description || '';
+  const tags = cover.tags || [];
+  const tone = cover.tone || mainId;
 
   const MainIcon = main.icon;
 
   return (
     <header
-      className={`module-cover-hero module-cover-hero--${cover.tone || mainId}`}
+      className={`module-cover-hero module-cover-hero--${tone}`}
       lang={mainId === 'overview' ? locale : undefined}
+      style={cover.accentHue ? { '--cover-accent': cover.accentHue } : undefined}
     >
-      <div className="module-cover-hero__glow" aria-hidden />
+      <div className="module-cover-hero__mesh" aria-hidden />
+      <div className="module-cover-hero__grid" aria-hidden />
+      <div className="module-cover-hero__accent-line module-cover-hero__accent-line--top" aria-hidden />
+      <div className="module-cover-hero__accent-line module-cover-hero__accent-line--side" aria-hidden />
+      <div className="module-cover-hero__glow module-cover-hero__glow--primary" aria-hidden />
+      <div className="module-cover-hero__glow module-cover-hero__glow--secondary" aria-hidden />
       {cover.overlayArt?.src ? (
         <img
           className={`module-cover-hero__overlay module-cover-hero__overlay--${cover.overlayArt.position || 'bottom-right'}`}
@@ -47,8 +55,17 @@ export default function ModuleCoverHero({
           <div className="module-cover-hero__meta">
             <p className="module-cover-hero__eyebrow">
               {MainIcon ? <MainIcon size={14} aria-hidden /> : null}
-              {eyebrow}
+              <span className="module-cover-hero__eyebrow-text">{eyebrow}</span>
             </p>
+            {tags.length > 0 ? (
+              <ul className="module-cover-hero__tags" aria-label="Research focus areas">
+                {tags.map((tag) => (
+                  <li key={tag} className="module-cover-hero__tag">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
             {mainId === 'overview' ? <LanguageSwitcher variant="pills" /> : null}
           </div>
           <div className="module-cover-hero__actions">
@@ -83,7 +100,12 @@ export default function ModuleCoverHero({
           </div>
         </div>
 
-        <h1 className="module-cover-hero__title">{title}</h1>
+        <div className="module-cover-hero__headline">
+          <h1 className="module-cover-hero__title">{title}</h1>
+          {cover.tagline ? (
+            <p className="module-cover-hero__tagline">{cover.tagline}</p>
+          ) : null}
+        </div>
         <p className="module-cover-hero__lead">{lead}</p>
       </div>
     </header>
