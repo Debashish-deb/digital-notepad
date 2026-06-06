@@ -1,0 +1,51 @@
+app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx
+  s_d8ca0dcf385045::t_3e0900d3b50ccc 766
+  s_d8ca0dcf385045::t_43364c4542d181 264-275
+  s_d8ca0dcf385045::t_adde6d843d26cf 396-397
+  s_d8ca0dcf385045::t_fe82907a5a6829 302-306
+  s_d8ca0dcf385045::t_070b9fc827d7fd 42-66
+  s_d8ca0dcf385045::t_f58817330d4ccc 476
+  s_d8ca0dcf385045::t_08c274b10cd3bd 582
+  s_d8ca0dcf385045::t_76741428546914 5
+  s_d8ca0dcf385045::t_5e2be542d034e9 308-316,333-334,347-348
+  s_d8ca0dcf385045::t_c45d46ad4819fc 201-202
+  s_d8ca0dcf385045::t_d383d5233315db 719-751
+app_skeleton/ui/react_frontend/src/api/chatClient.js
+  s_d8ca0dcf385045::t_f6062d205bfcf6 11-14,18-19,26-32,36
+  s_d8ca0dcf385045::t_fe41bb30ca8487 46-47,64-67,71
+app_skeleton/api/routers/chat.py
+  s_d8ca0dcf385045::t_8aa924bf9c551e 93,97,101,105-107
+  s_d8ca0dcf385045::t_bb9ad9cd9cf0c7 113
+  s_d8ca0dcf385045::t_aaf659ab11a7ce 29-30
+  s_d8ca0dcf385045::t_c1df464cfe8637 54-60,65-77
+  s_d8ca0dcf385045::t_ae9489f04bdfa6 134
+  s_d8ca0dcf385045::t_793a3c46a9c680 12,15
+app_skeleton/ui/react_frontend/src/components/AiAssistant3D.css
+  s_d8ca0dcf385045::t_29b65555bc3902 241-242
+  s_d8ca0dcf385045::t_259ac66e897951 74-162,170-171
+app_skeleton/api/chat_model_catalog.py
+  s_d8ca0dcf385045::t_8f647f8d18601f 1-141
+app_skeleton/ui/react_frontend/src/components/AiAssistantChat.css
+  s_d8ca0dcf385045::t_ceb93b2ca7928a 407-465
+app_skeleton/ui/react_frontend/src/components/AiAssistant3DScene.jsx
+  s_d8ca0dcf385045::t_77be7fcd1009e1 10,18
+  s_d8ca0dcf385045::t_ddae61873182cf 31
+app_skeleton/ui/react_frontend/src/components/SwimmingProjectTopics.jsx
+  s_d8ca0dcf385045::t_94eb55220995f7 1-101
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "05324a7c6599227b09119a8104577370f0215379",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
