@@ -1,0 +1,154 @@
+{
+  "package": "OMEIA Farkkila Lab Research Knowledge Base Seed Sources",
+  "created": "2026-06-06",
+  "notes": [
+    "Seed URLs are public starting points, not a full corpus.",
+    "Crawler must respect robots.txt, access rights, copyright, and rate limits.",
+    "Internal lab files must be indexed separately behind authenticated routes."
+  ],
+  "lab_public_sources": [
+    {
+      "id": "farkkila_home",
+      "type": "website",
+      "priority": 1,
+      "url": "https://www.farkkilab.org/",
+      "why": "Lab identity, public mission, major research direction."
+    },
+    {
+      "id": "farkkila_research",
+      "type": "website",
+      "priority": 1,
+      "url": "https://www.farkkilab.org/research",
+      "why": "Core research programs: spatial biology, multi-omics, functional models, precision oncology."
+    },
+    {
+      "id": "farkkila_publications",
+      "type": "website",
+      "priority": 1,
+      "url": "https://www.farkkilab.org/publications",
+      "why": "Publication discovery seed and lab-authored paper list."
+    },
+    {
+      "id": "farkkila_clinic",
+      "type": "website",
+      "priority": 1,
+      "url": "https://www.farkkilab.org/clinic",
+      "why": "ONCOSYS-OVA / clinical translational context."
+    },
+    {
+      "id": "farkkila_computational_tools",
+      "type": "website",
+      "priority": 2,
+      "url": "https://www.farkkilab.org/research/computational-tools",
+      "why": "Computational and AI/spatial methods context."
+    },
+    {
+      "id": "farkkila_news",
+      "type": "website",
+      "priority": 2,
+      "url": "https://www.farkkilab.org/news",
+      "why": "Recent lab announcements and research context."
+    },
+    {
+      "id": "farkkila_github",
+      "type": "code",
+      "priority": 3,
+      "url": "https://github.com/farkkilab",
+      "why": "Public lab code repositories and computational methods."
+    }
+  ],
+  "priority_publications_and_datasets": [
+    {
+      "id": "mhc_class_ii_hgsc_atlas_2026",
+      "type": "publication",
+      "priority": 1,
+      "title": "Single-cell spatial atlas of high-grade serous ovarian cancer uncovers MHC class II as a key predictor of spatial tumor ecosystems and clinical outcomes",
+      "url": "https://aacrjournals.org/cancerdiscovery/article/doi/10.1158/2159-8290.CD-25-1492/784876/Single-Cell-Spatial-Atlas-of-High-Grade-Serous",
+      "doi": "10.1158/2159-8290.CD-25-1492",
+      "why": "Core lab/domain paper for MHC class II, HGSC spatial ecosystems, clinical outcomes."
+    },
+    {
+      "id": "mhc_class_ii_hgsc_pubmed",
+      "type": "publication_metadata",
+      "priority": 1,
+      "title": "PubMed record for MHC class II HGSC spatial atlas",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41661089/",
+      "why": "Stable biomedical metadata source."
+    },
+    {
+      "id": "tls_biorxiv_2023",
+      "type": "preprint",
+      "priority": 1,
+      "title": "Single-cell spatial atlas of tertiary lymphoid structures in high-grade serous ovarian cancer",
+      "url": "https://www.biorxiv.org/content/10.1101/2023.05.16.540946v1",
+      "why": "TLS, CyCIF, spatial topology, HGSC context."
+    },
+    {
+      "id": "tls_cancer_research_2026",
+      "type": "publication_metadata",
+      "priority": 1,
+      "title": "A spatially resolved multi-omics atlas of tertiary lymphoid structures in ovarian cancer",
+      "url": "https://researchportal.helsinki.fi/en/publications/a-spatially-resolved-multi-omics-atlas-of-tertiary-lymphoid-struc/",
+      "why": "TLS atlas metadata and citation tracking."
+    },
+    {
+      "id": "chemo_tcell_exhaustion_2024",
+      "type": "publication",
+      "priority": 1,
+      "title": "Chemotherapy induces myeloid-driven spatially confined T cell exhaustion in ovarian cancer",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39658541/",
+      "why": "Relevant Farkkila-area tumor immune microenvironment and treatment response paper."
+    },
+    {
+      "id": "denisenko_hgsoc_spatial_2024",
+      "type": "publication",
+      "priority": 2,
+      "title": "Spatial transcriptomics reveals discrete tumour microenvironments / subclones in HGSOC",
+      "url": "https://www.nature.com/articles/s41467-024-47271-y",
+      "why": "External worldwide spatial transcriptomics reference for HGSOC."
+    },
+    {
+      "id": "geo_gse211956",
+      "type": "dataset",
+      "priority": 1,
+      "accession": "GSE211956",
+      "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE211956",
+      "why": "HGSOC Visium and 10x scRNA-seq dataset seed."
+    },
+    {
+      "id": "ega_phs002262",
+      "type": "dataset",
+      "priority": 1,
+      "accession": "phs002262",
+      "url": "https://ega-archive.org/studies/phs002262",
+      "why": "HGSOC single-cell RNA-seq dataset metadata."
+    },
+    {
+      "id": "tcga_ov",
+      "type": "dataset",
+      "priority": 2,
+      "accession": "TCGA-OV",
+      "url": "https://portal.gdc.cancer.gov/projects/TCGA-OV",
+      "why": "Foundational ovarian cancer genomic cohort."
+    },
+    {
+      "id": "cptac_ovarian",
+      "type": "dataset",
+      "priority": 2,
+      "url": "https://proteomics.cancer.gov/programs/cptac",
+      "why": "Proteomics reference for ovarian cancer / multi-omics context."
+    }
+  ],
+  "worldwide_research_queries": [
+    "high-grade serous ovarian cancer spatial transcriptomics",
+    "ovarian cancer tertiary lymphoid structures spatial biology",
+    "HGSOC single-cell atlas tumor microenvironment",
+    "MHC class II ovarian cancer immune response survival",
+    "multiplex immunofluorescence ovarian cancer immune microenvironment",
+    "patient derived ovarian cancer immunotherapy platform",
+    "ovarian cancer chemotherapy resistance single-cell spatial",
+    "HGSOC Visium spatial transcriptomics dataset",
+    "ovarian cancer CyCIF dataset",
+    "tumor intrinsic MHC class II high grade serous ovarian cancer"
+  ]
+}

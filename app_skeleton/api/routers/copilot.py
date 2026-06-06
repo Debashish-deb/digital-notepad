@@ -185,34 +185,87 @@ def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> Qu
     ]
     search_hits_payload = [h.model_dump() for h in unified_hits[:12]]
 
+    has_research = any(h.bucket == "research" for h in unified_hits)
+
     # 5. Build prompt and generate response using active_llm
-    context_str = ""
-    for i, src in enumerate(sources):
-        context_str += f"[{i+1}] Source: {src.title} (Type: {src.source_type})\n{src.text_preview}\n\n"
-        
-    system_prompt = (
-        "You are the OMEIA Clinical-Spatial Biology Copilot, an expert AI platform assistant.\n"
-        "Your task is to answer the researcher's query based on the database counts and documentation snippets.\n"
-        "Follow these rules:\n"
-        "1. Report patient/sample statistics exactly as provided in the database counts. Do NOT invent/hallucinate figures.\n"
-        "2. If code installation commands or scripts are requested, return structured code blocks detailing required parameters.\n"
-        "3. Cite references [1], [2], etc., corresponding to context blocks.\n"
-        "4. Remain precise, professional, and highlight limitations."
-    )
-    
-    user_content = (
-        f"Database counts:\n"
-        f"- Patient total: {db_data.get('patient_count', 0)}\n"
-        f"- Sample total: {db_data.get('sample_count', 0)}\n"
-        f"- Projects: {db_data.get('project_samples', {})}\n"
-        f"- Modalities: {db_data.get('modality_samples', {})}\n\n"
-        f"{('Structured clinical/feature analysis:\\n' + clinical_block + '\\n\\n') if clinical_block else ''}"
-        f"Documentation Context:\n"
-        f"{context_str}\n"
-        f"Question: {safe_question}"
-    )
+    if has_research:
+        from app_skeleton.api.answer_grounding_service import (
+            SYSTEM_PROMPT as RESEARCH_SYSTEM_PROMPT,
+            build_grounded_prompt,
+            validate_answer_sources,
+        )
+
+        grounding_hits = []
+        for hit in unified_hits:
+            meta = hit.metadata or {}
+            grounding_hits.append({
+                "title": hit.title,
+                "source_type": hit.source_type or hit.bucket,
+                "source_url": meta.get("source_url"),
+                "doi": meta.get("doi"),
+                "pmid": meta.get("pmid"),
+                "snippet": hit.snippet,
+            })
+        for src in rag_sources:
+            cid = src.get("chunk_id")
+            if cid and cid in seen_ids:
+                continue
+            grounding_hits.append({
+                "title": src["title"],
+                "source_type": src["source_type"],
+                "source_url": None,
+                "doi": None,
+                "pmid": None,
+                "snippet": src["text_preview"],
+            })
+        grounding_hits = grounding_hits[:12]
+
+        system_prompt = (
+            RESEARCH_SYSTEM_PROMPT
+            + "\n\nReport patient/sample statistics exactly as provided in database counts. Do NOT invent figures."
+        )
+        user_content = (
+            f"Database counts:\n"
+            f"- Patient total: {db_data.get('patient_count', 0)}\n"
+            f"- Sample total: {db_data.get('sample_count', 0)}\n"
+            f"- Projects: {db_data.get('project_samples', {})}\n"
+            f"- Modalities: {db_data.get('modality_samples', {})}\n\n"
+            f"{('Structured clinical/feature analysis:\\n' + clinical_block + '\\n\\n') if clinical_block else ''}"
+            + build_grounded_prompt(safe_question, grounding_hits)
+        )
+    else:
+        context_str = ""
+        for i, src in enumerate(sources):
+            context_str += f"[{i+1}] Source: {src.title} (Type: {src.source_type})\n{src.text_preview}\n\n"
+
+        system_prompt = (
+            "You are the OMEIA Clinical-Spatial Biology Copilot, an expert AI platform assistant.\n"
+            "Your task is to answer the researcher's query based on the database counts and documentation snippets.\n"
+            "Follow these rules:\n"
+            "1. Report patient/sample statistics exactly as provided in the database counts. Do NOT invent/hallucinate figures.\n"
+            "2. If code installation commands or scripts are requested, return structured code blocks detailing required parameters.\n"
+            "3. Cite references [1], [2], etc., corresponding to context blocks.\n"
+            "4. Remain precise, professional, and highlight limitations."
+        )
+
+        user_content = (
+            f"Database counts:\n"
+            f"- Patient total: {db_data.get('patient_count', 0)}\n"
+            f"- Sample total: {db_data.get('sample_count', 0)}\n"
+            f"- Projects: {db_data.get('project_samples', {})}\n"
+            f"- Modalities: {db_data.get('modality_samples', {})}\n\n"
+            f"{('Structured clinical/feature analysis:\\n' + clinical_block + '\\n\\n') if clinical_block else ''}"
+            f"Documentation Context:\n"
+            f"{context_str}\n"
+            f"Question: {safe_question}"
+        )
 
     answer = active_llm.generate(user_content, system_prompt)
+
+    if has_research:
+        validation = validate_answer_sources(answer, grounding_hits)
+        if validation.get("warning"):
+            limitations.append(validation["warning"])
 
     if active_llm.provider == "mock":
         limitations.append("Running in local mock-synthesis mode because no LLM_API_KEY is configured.")

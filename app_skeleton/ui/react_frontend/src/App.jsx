@@ -18,6 +18,7 @@ import AdministrationScreen from './screens/AdministrationScreen';
 import IngestionDashboard from './screens/IngestionDashboard';
 import DigitalizationDashboard from './screens/DigitalizationDashboard';
 import KnowledgeSearchScreen from './screens/KnowledgeSearchScreen';
+import ResearchKnowledgeAdminScreen from './screens/ResearchKnowledgeAdminScreen';
 import LabCorpusBrowser from './components/LabCorpusBrowser.jsx';
 import { getApiUrl, apiFetch } from './api/client.js';
 import { useApiContext } from './api/ApiContext.jsx';
@@ -355,6 +356,8 @@ function App() {
             onSelectProject={(code) => setSelectedProject(code)}
           />
         );
+      case 'research_knowledge':
+        return <ResearchKnowledgeAdminScreen />;
       case 'lab_corpus':
         return (
           <LabCorpusBrowser title={subNav.label} description={subNav.description} />

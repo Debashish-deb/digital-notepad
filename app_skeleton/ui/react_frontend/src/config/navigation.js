@@ -165,6 +165,7 @@ export const MAIN_NAV = [
     children: [
       { id: 'copilot', label: 'Chat copilot', screen: 'ai_assistant', aiSub: 'copilot', description: 'RAG Q&A over protocols and project docs.' },
       { id: 'knowledge_search', label: 'Advanced search', screen: 'knowledge_search', description: 'Unified hybrid search across lab corpus, vault, and registry.' },
+      { id: 'research_kb', label: 'Research knowledge base', screen: 'research_knowledge', description: 'Färkkilä lab publications, datasets, and public research corpus for grounded AI answers.' },
       { id: 'prompts', label: 'Prompt templates', screen: 'ai_assistant', aiSub: 'prompts' },
       { id: 'ingest', label: 'Ingest documents', screen: 'ai_assistant', aiSub: 'ingest' },
       { id: 'models', label: 'Model registry', screen: 'ai_assistant', aiSub: 'models' },

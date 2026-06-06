@@ -15,6 +15,14 @@ collections:
         distance: Cosine
     payload_indexes: [repo, file_path, language, pipeline_stage, project_code, sensitivity_level]
 
+  research_knowledge:
+    description: "Färkkilä lab research KB — publications, datasets, crawled public sources."
+    vectors:
+      text:
+        size: 384
+        distance: Cosine
+    payload_indexes: [source_type, source_url, doi, pmid, dataset_accession, visibility, document_id, source_id]
+
   literature_chunks:
     description: "Public literature chunks."
     vectors:

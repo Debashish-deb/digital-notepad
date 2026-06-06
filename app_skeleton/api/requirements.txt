@@ -9,6 +9,7 @@ pyyaml
 python-dotenv
 streamlit
 requests
+beautifulsoup4
 sqlalchemy
 openai
 firebase-admin

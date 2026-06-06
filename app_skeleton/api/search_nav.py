@@ -82,6 +82,8 @@ def nav_for_bucket(
         return SearchNavAction(main="wet_lab", sub="tasks", task_id=task_id, project_code=project_code)
     if bucket == "project":
         return SearchNavAction(main="projects_data", sub="portfolio", project_code=project_code)
+    if bucket == "research":
+        return SearchNavAction(main="ai_assistant", sub="research_kb", query=relative_path)
     return None
 
 
@@ -95,6 +97,7 @@ def hit_source_label(bucket: SearchBucket, *, section_label: str | None = None) 
         "decision": "Decision registry",
         "task": "Lab task",
         "project": "Project workspace",
+        "research": "Research knowledge base",
     }
     if section_label and bucket in ("lab", "file"):
         return f"{labels.get(bucket, bucket)} · {section_label}"

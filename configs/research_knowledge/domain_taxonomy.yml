@@ -1,0 +1,57 @@
+research_domain: ovarian_cancer_spatial_biology
+
+entities:
+  diseases:
+    - ovarian cancer
+    - high-grade serous ovarian cancer
+    - high-grade serous ovarian carcinoma
+    - HGSC
+    - HGSOC
+  biomarkers:
+    - MHC class II
+    - HLA-DP
+    - HLA-DQ
+    - HLA-DR
+    - BRCA1
+    - BRCA2
+    - HRD
+    - TP53
+  immune_structures:
+    - tertiary lymphoid structures
+    - TLS
+    - lymphoid aggregates
+  technologies:
+    - tCyCIF
+    - CyCIF
+    - GeoMx
+    - Visium
+    - scRNA-seq
+    - multiplex immunofluorescence
+    - spatial transcriptomics
+  software_tools:
+    - Ashlar
+    - BaSiC
+    - StarDist
+    - Mesmer
+    - Qdrant
+    - SPACEstat
+  cell_types:
+    - tumor cells
+    - T cells
+    - B cells
+    - macrophages
+    - myeloid cells
+    - dendritic cells
+    - stromal cells
+
+relations:
+  - STUDIES
+  - USES
+  - REPORTS
+  - ASSOCIATED_WITH
+  - PREDICTS
+  - SUPPORTS
+  - MEASURES
+  - IDENTIFIES
+  - GENERATES
+  - TESTS

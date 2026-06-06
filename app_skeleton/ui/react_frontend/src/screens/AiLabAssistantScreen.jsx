@@ -12,6 +12,7 @@ import {
   Loader2,
   Sparkles,
   UploadCloud,
+  Microscope,
 } from 'lucide-react';
 import ChatWidget from '../components/ChatWidget.jsx';
 import AiAssistant3DScene from '../components/AiAssistant3DScene.jsx';
@@ -176,6 +177,12 @@ export default function AiLabAssistantScreen({
       desc: 'AI tools and hardware',
       icon: Cpu,
     },
+    {
+      id: 'research_kb',
+      label: 'Research KB',
+      desc: 'Publications & datasets',
+      icon: Microscope,
+    },
   ];
 
   const heroStats = useMemo(
@@ -211,7 +218,13 @@ export default function AiLabAssistantScreen({
                   key={item.id}
                   type="button"
                   className={`ai-lab-menu-item${active ? ' active' : ''}`}
-                  onClick={() => setSubTab(item.id)}
+                  onClick={() => {
+                    if (item.id === 'research_kb' && onNavigate) {
+                      onNavigate('ai_assistant', 'research_kb');
+                      return;
+                    }
+                    setSubTab(item.id);
+                  }}
                   aria-current={active ? 'page' : undefined}
                 >
                   <span className="ai-lab-menu-item__icon">

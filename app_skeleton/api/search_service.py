@@ -17,11 +17,12 @@ from app_skeleton.api.lab_knowledge_store import get_lab_index_stats, search_lab
 from app_skeleton.api.llm_client import LLMClient
 from app_skeleton.api.raw_vault_store import search_vault
 from app_skeleton.api.search_models import SearchHit, SearchMode, SearchNavAction, UnifiedSearchResponse
+from app_skeleton.api.research_knowledge_store import search_research
 from app_skeleton.api.search_nav import hit_source_label, nav_for_bucket, vault_domain_for_page
 
 LOGGER = logging.getLogger(__name__)
 
-DEFAULT_SCOPES = ("lab", "file", "vault", "notebook", "wiki", "decision", "task", "project")
+DEFAULT_SCOPES = ("lab", "file", "vault", "notebook", "wiki", "decision", "task", "project", "research")
 
 BUCKET_WEIGHTS: dict[str, float] = {
     "lab": 1.0,
@@ -32,6 +33,7 @@ BUCKET_WEIGHTS: dict[str, float] = {
     "decision": 0.76,
     "task": 0.74,
     "project": 0.65,
+    "research": 0.92,
 }
 
 RESTRICTED_LEVELS = frozenset({"restricted", "confidential"})
@@ -286,6 +288,42 @@ class SearchService:
             raw_hits.extend(self._search_projects(query, codes, limit=per_bucket))
             if explain:
                 explain_data["engines"].append({"scope": "project", "engine": "postgres_ilike", "count": len(raw_hits) - proj_before})
+
+        if "research" in active_scopes and (run_semantic or run_keyword):
+            rk_before = len(raw_hits)
+            rk_result = search_research(
+                query,
+                limit=per_bucket,
+                qdrant=self.qdrant,
+                llm=self.llm,
+            )
+            for raw in rk_result.get("hits") or []:
+                nav_data = raw.get("nav") or {}
+                raw_hits.append(
+                    SearchHit(
+                        id=str(raw.get("id") or raw.get("title")),
+                        bucket="research",
+                        title=raw.get("title") or "Research source",
+                        snippet=(raw.get("snippet") or "")[:1200],
+                        score=float(raw.get("score") or 0.0) * BUCKET_WEIGHTS["research"],
+                        source=hit_source_label("research"),
+                        source_type=raw.get("source_type"),
+                        highlights=_highlight_tokens(query, raw.get("snippet") or ""),
+                        nav=SearchNavAction(
+                            main=nav_data.get("main", "ai_assistant"),
+                            sub=nav_data.get("sub", "research_kb"),
+                            query=query,
+                        ),
+                        metadata={
+                            "source_url": raw.get("source_url"),
+                            "doi": raw.get("doi"),
+                            "pmid": raw.get("pmid"),
+                            "dataset_accession": raw.get("dataset_accession"),
+                        },
+                    )
+                )
+            if explain:
+                explain_data["engines"].append({"scope": "research", "engine": "qdrant+postgres", "count": len(raw_hits) - rk_before})
 
         if run_keyword and ("file" in active_scopes or "project" in active_scopes):
             pw_before = len(raw_hits)
@@ -717,7 +755,7 @@ class SearchService:
         codes = ",".join(project_codes) if project_codes else None
         resp = self.unified_search(
             query,
-            scopes="lab,file,vault,notebook,wiki",
+            scopes="lab,file,vault,notebook,wiki,research",
             project_codes=codes,
             mode="hybrid",
             limit=limit,

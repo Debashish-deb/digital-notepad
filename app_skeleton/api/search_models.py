@@ -16,6 +16,7 @@ SearchBucket = Literal[
     "file",
     "model",
     "dataset",
+    "research",
     "conversation",
 ]
 
