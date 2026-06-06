@@ -1,5 +1,9 @@
 #!/bin/bash
 # OMEIA / Farkki platform launcher (repo root)
+#
+# Starts FastAPI on :8000, waits until /health responds, then starts Vite on :5173.
+# To run Vite alone: cd app_skeleton/ui/react_frontend && npm run dev
+#   (backend must already be listening on http://127.0.0.1:8000)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$SCRIPT_DIR"
@@ -20,23 +24,59 @@ if [ -f "$BACKEND_DIR/configs/.env" ]; then
   eval "$("$BACKEND_DIR/scripts/load_env.sh" "$BACKEND_DIR/configs/.env")"
 fi
 
-echo "Starting OMEIA Research Platform..."
-# Note: Qdrant on :6333 is used when already running; Docker is optional for local dev.
-echo "  REPO:     $OMEIA_REPO_ROOT"
-echo "  DATABASE: $DATABASE_ROOT"
+BACKEND_PID=""
+FRONTEND_PID=""
 
 cleanup() {
   echo -e "\nStopping platform services..."
-  kill $BACKEND_PID $FRONTEND_PID 2>/dev/null
+  if [ -n "$FRONTEND_PID" ]; then
+    kill "$FRONTEND_PID" 2>/dev/null
+  fi
+  if [ -n "$BACKEND_PID" ]; then
+    kill "$BACKEND_PID" 2>/dev/null
+  fi
+  wait 2>/dev/null
   exit 0
 }
 
 trap cleanup SIGINT SIGTERM
 
+wait_for_backend() {
+  local url="http://127.0.0.1:8000/health"
+  local timeout=60
+  local elapsed=0
+
+  echo "Waiting for API at $url (up to ${timeout}s)..."
+  while [ "$elapsed" -lt "$timeout" ]; do
+    if curl -sf "$url" >/dev/null 2>&1; then
+      echo "API is ready."
+      return 0
+    fi
+    sleep 1
+    elapsed=$((elapsed + 1))
+    if [ $((elapsed % 5)) -eq 0 ]; then
+      echo "  still waiting... (${elapsed}s)"
+    fi
+  done
+
+  echo "ERROR: API did not become ready within ${timeout}s."
+  if [ -n "$BACKEND_PID" ]; then
+    kill "$BACKEND_PID" 2>/dev/null
+  fi
+  exit 1
+}
+
+echo "Starting OMEIA Research Platform..."
+# Note: Qdrant on :6333 is used when already running; Docker is optional for local dev.
+echo "  REPO:     $OMEIA_REPO_ROOT"
+echo "  DATABASE: $DATABASE_ROOT"
+
 echo "FastAPI backend http://localhost:8000"
 cd "$BACKEND_DIR" || exit 1
 "$VENV_UVICORN" app_skeleton.api.main:app --host 0.0.0.0 --port 8000 --reload &
 BACKEND_PID=$!
+
+wait_for_backend || exit 1
 
 echo "Vite frontend http://localhost:5173"
 cd "$FRONTEND_DIR" || exit 1
