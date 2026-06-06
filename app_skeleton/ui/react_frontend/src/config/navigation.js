@@ -275,6 +275,54 @@ export const SOCIAL_INNER_TAB_IDS = [
   'outreach',
 ];
 
+export function getDefaultSocialSub() {
+  return SOCIAL_INNER_TAB_IDS[0];
+}
+
+/** Read explicit ?sub= from the current URL (hash query or search). */
+export function readExplicitSubFromUrl() {
+  try {
+    const fromSearch = new URLSearchParams(window.location.search).get('sub');
+    if (fromSearch) return fromSearch;
+    const hash = window.location.hash || '';
+    const queryStart = hash.indexOf('?');
+    if (queryStart >= 0) {
+      return new URLSearchParams(hash.slice(queryStart + 1)).get('sub');
+    }
+  } catch {
+    /* ignore */
+  }
+  return null;
+}
+
+/** Resolve sidebar sub id: URL ?sub= wins, else explicit click, else section default. */
+export function resolveSectionSub(mainId, explicitSub, { fromMainNav = false } = {}) {
+  const main = findMainNav(mainId);
+  const urlSub = readExplicitSubFromUrl();
+  if (urlSub && main.children.some((child) => child.id === urlSub)) {
+    return urlSub;
+  }
+  if (fromMainNav || !explicitSub) {
+    return main.defaultSub;
+  }
+  if (main.children.some((child) => child.id === explicitSub)) {
+    return explicitSub;
+  }
+  return main.defaultSub;
+}
+
+/** Resolve Overview → Social inner tab from URL or defaults. */
+export function resolveSocialInnerSub(explicitSub, { fromMainNav = false, enteringSocial = false } = {}) {
+  const urlSub = readExplicitSubFromUrl();
+  if (urlSub && SOCIAL_INNER_TAB_IDS.includes(urlSub)) {
+    return urlSub;
+  }
+  if (explicitSub && SOCIAL_INNER_TAB_IDS.includes(explicitSub) && !fromMainNav && !enteringSocial) {
+    return explicitSub;
+  }
+  return getDefaultSocialSub();
+}
+
 /** Legacy top-level Social nav → Overview → Social with inner tab. */
 export function resolveSocialLegacyNav(main, sub) {
   if (main !== 'social') return null;

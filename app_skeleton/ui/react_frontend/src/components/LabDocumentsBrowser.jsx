@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FileText, LayoutGrid, List, Loader2, Lock } from 'lucide-react';
 import DocumentPreviewPane from './DocumentPreviewPane.jsx';
 import DocumentFileSearch from './DocumentFileSearch.jsx';
@@ -65,10 +65,18 @@ export default function LabDocumentsBrowser({
   const [revealSensitive, setRevealSensitive] = useState(false);
   const [visibleFiles, setVisibleFiles] = useState([]);
   const [layoutModeOverride, setLayoutModeOverride] = useState(null);
+  const [debouncedVisibleFiles, setDebouncedVisibleFiles] = useState([]);
+  const layoutDebounceRef = useRef(null);
   const { openTaskpad } = useTaskpad();
   const { t, localizeCategories } = useGuiT();
 
   const ids = sectionIds?.length ? sectionIds : [sectionId];
+
+  useEffect(() => {
+    setSelectedPath(null);
+    setVisibleFiles([]);
+    setLayoutModeOverride(null);
+  }, [ids.join(',')]);
 
   useEffect(() => {
     let mounted = true;
@@ -306,9 +314,31 @@ export default function LabDocumentsBrowser({
 
   const contentRoot = primaryTwin?.content_root;
 
+  const handleVisibleFilesChange = useCallback((files) => {
+    setVisibleFiles((prev) => {
+      if (
+        prev.length === files.length &&
+        prev.every((doc, index) => doc.path === files[index]?.path)
+      ) {
+        return prev;
+      }
+      return files;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (layoutDebounceRef.current) clearTimeout(layoutDebounceRef.current);
+    layoutDebounceRef.current = setTimeout(() => {
+      setDebouncedVisibleFiles(visibleFiles);
+    }, 120);
+    return () => {
+      if (layoutDebounceRef.current) clearTimeout(layoutDebounceRef.current);
+    };
+  }, [visibleFiles]);
+
   const layoutInfo = useMemo(
-    () => deriveBrowserLayoutMode(visibleFiles, { userOverride: layoutModeOverride }),
-    [visibleFiles, layoutModeOverride]
+    () => deriveBrowserLayoutMode(debouncedVisibleFiles, { userOverride: layoutModeOverride }),
+    [debouncedVisibleFiles, layoutModeOverride]
   );
 
   useEffect(() => {
@@ -341,6 +371,80 @@ export default function LabDocumentsBrowser({
     [twins, primaryTwin, relativeRoot]
   );
 
+  const galleryLabels = useMemo(
+    () => ({
+      loading: t('docs.mediaLoading'),
+      failed: t('docs.mediaFailed'),
+      videoLoading: t('docs.videoLoading'),
+      videoFailed: t('docs.videoFailed'),
+      zoomIn: t('docs.mediaZoomIn'),
+      zoomOut: t('docs.mediaZoomOut'),
+      fit: t('docs.mediaFit'),
+      actualSize: t('docs.mediaActualSize'),
+      rotate: t('docs.mediaRotate'),
+      fullscreen: t('docs.mediaFullscreen'),
+      download: t('docs.openOriginal'),
+      previous: t('docs.mediaPrevious'),
+      next: t('docs.mediaNext'),
+      gridView: t('docs.galleryGrid', 'Grid'),
+      heroView: t('docs.galleryPreview', 'Preview'),
+      itemOne: t('docs.galleryItemOne', 'item'),
+      itemMany: t('docs.galleryItemMany', 'items'),
+      filmstrip: t('docs.galleryFilmstrip', 'Thumbnails'),
+    }),
+    [t]
+  );
+
+  const galleryActions = useMemo(() => {
+    if (!selectedDoc || !assetUrl) return null;
+    return (
+      <>
+        <a
+          href={assetUrl}
+          className="btn btn-secondary btn-sm"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {t('docs.openOriginal')}
+        </a>
+        {isSensitive ? (
+          <button
+            type="button"
+            className="btn btn-secondary btn-sm"
+            onClick={() => setRevealSensitive((v) => !v)}
+          >
+            {revealSensitive ? t('docs.hideSensitive') : t('docs.revealSensitive')}
+          </button>
+        ) : null}
+      </>
+    );
+  }, [selectedDoc, assetUrl, isSensitive, revealSensitive, t]);
+
+  const mediaGalleryPane = useMemo(
+    () => (
+      <DocumentMediaGallery
+        files={visibleFiles}
+        selectedPath={selectedPath}
+        onSelectFile={setSelectedPath}
+        resolveUrl={resolveDocAssetUrl}
+        documentTitle={documentTitle}
+        mediaScope={layoutInfo.mediaScope || 'image'}
+        labels={galleryLabels}
+        actions={galleryActions}
+        emptyHint={t('docs.galleryEmpty', 'No images or videos in this category.')}
+      />
+    ),
+    [
+      visibleFiles,
+      selectedPath,
+      resolveDocAssetUrl,
+      documentTitle,
+      layoutInfo.mediaScope,
+      galleryLabels,
+      galleryActions,
+      t,
+    ]
+  );
   const layoutToggle = layoutInfo.mode === 'mixed' ? (
     <div className="lab-doc-layout-toggle" role="group" aria-label={t('docs.layoutToggleAria', 'Browse layout')}>
       <button
@@ -363,61 +467,6 @@ export default function LabDocumentsBrowser({
       </button>
     </div>
   ) : null;
-
-  const galleryActions = selectedDoc && assetUrl ? (
-    <>
-      <a
-        href={assetUrl}
-        className="btn btn-secondary btn-sm"
-        target="_blank"
-        rel="noreferrer"
-      >
-        {t('docs.openOriginal')}
-      </a>
-      {isSensitive ? (
-        <button
-          type="button"
-          className="btn btn-secondary btn-sm"
-          onClick={() => setRevealSensitive((v) => !v)}
-        >
-          {revealSensitive ? t('docs.hideSensitive') : t('docs.revealSensitive')}
-        </button>
-      ) : null}
-    </>
-  ) : null;
-
-  const mediaGalleryPane = (
-    <DocumentMediaGallery
-      files={visibleFiles}
-      selectedPath={selectedPath}
-      onSelectFile={setSelectedPath}
-      resolveUrl={resolveDocAssetUrl}
-      documentTitle={documentTitle}
-      mediaScope={layoutInfo.mediaScope || 'image'}
-      labels={{
-        loading: t('docs.mediaLoading'),
-        failed: t('docs.mediaFailed'),
-        videoLoading: t('docs.videoLoading'),
-        videoFailed: t('docs.videoFailed'),
-        zoomIn: t('docs.mediaZoomIn'),
-        zoomOut: t('docs.mediaZoomOut'),
-        fit: t('docs.mediaFit'),
-        actualSize: t('docs.mediaActualSize'),
-        rotate: t('docs.mediaRotate'),
-        fullscreen: t('docs.mediaFullscreen'),
-        download: t('docs.openOriginal'),
-        previous: t('docs.mediaPrevious'),
-        next: t('docs.mediaNext'),
-        gridView: t('docs.galleryGrid', 'Grid'),
-        heroView: t('docs.galleryPreview', 'Preview'),
-        itemOne: t('docs.galleryItemOne', 'item'),
-        itemMany: t('docs.galleryItemMany', 'items'),
-        filmstrip: t('docs.galleryFilmstrip', 'Thumbnails'),
-      }}
-      actions={galleryActions}
-      emptyHint={t('docs.galleryEmpty', 'No images or videos in this category.')}
-    />
-  );
 
   if (loading) {
     return (
@@ -613,7 +662,7 @@ export default function LabDocumentsBrowser({
       categoryLayout={useTopTabsLayout ? 'horizontal-top' : 'inline'}
       sectionHeader={isSplitCatalogLayout ? sectionHeader : null}
       toolbarAfterTabs={layoutToggle}
-      onVisibleFilesChange={setVisibleFiles}
+      onVisibleFilesChange={handleVisibleFilesChange}
       renderPreview={useTopTabsLayout ? renderCatalogBody : null}
     />
   );

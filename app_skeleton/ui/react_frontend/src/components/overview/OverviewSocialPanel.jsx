@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import LabDocumentsBrowser from '../LabDocumentsBrowser.jsx';
 import { useGuiT } from '../../i18n/useGuiT.js';
-import { SOCIAL_INNER_TAB_IDS } from '../../config/navigation.js';
+import { SOCIAL_INNER_TAB_IDS, getDefaultSocialSub } from '../../config/navigation.js';
 import {
   categorizeSocialPrimary,
   getSocialConfig,
@@ -47,7 +47,7 @@ function resolveInitialSocialSub(activeSub) {
   if (activeSub && SOCIAL_INNER_TAB_IDS.includes(activeSub)) return activeSub;
   try {
     const raw = sessionStorage.getItem(SEARCH_NAV_STORAGE_KEY);
-    if (!raw) return 'lab_photos';
+    if (!raw) return getDefaultSocialSub();
     const pending = JSON.parse(raw);
     if (pending?.sub && SOCIAL_INNER_TAB_IDS.includes(pending.sub)) return pending.sub;
     if (pending?.relative_path) {
@@ -57,7 +57,7 @@ function resolveInitialSocialSub(activeSub) {
   } catch {
     /* ignore */
   }
-  return 'lab_photos';
+  return getDefaultSocialSub();
 }
 
 export default function OverviewSocialPanel({
@@ -121,7 +121,6 @@ export default function OverviewSocialPanel({
       </nav>
 
       <LabDocumentsBrowser
-        key={`overview-social-${effectiveSub}`}
         sectionIds={config.sectionIds}
         title={tabLabels.find((tab) => tab.id === effectiveSub)?.label || title}
         description={

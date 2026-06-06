@@ -20,7 +20,10 @@ import {
   COMPUTATIONAL_LEGACY_NESTED,
   findMainNav,
   findSubNav,
+  getDefaultSocialSub,
   parseNavFromStorage,
+  resolveSectionSub,
+  resolveSocialInnerSub,
   resolveSocialLegacyNav,
 } from './config/navigation';
 import { useGuiT } from './i18n/useGuiT.js';
@@ -205,7 +208,9 @@ function App() {
   const [navSub, setNavSub] = useState(initialResolved.sub);
   const [sidebarExpandedMain, setSidebarExpandedMain] = useState(null);
   const [hubNestedSection, setHubNestedSection] = useState(initialResolved.hubNested);
-  const [overviewSocialSub, setOverviewSocialSub] = useState(initialResolved.socialSub || 'lab_photos');
+  const [overviewSocialSub, setOverviewSocialSub] = useState(
+    initialResolved.socialSub || getDefaultSocialSub()
+  );
   const [selectedProject, setSelectedProject] = useState(null);
   const [dbProjects, setDbProjects] = useState(() => mergeProjectsWithCatalog(projectsCatalog));
   const [projectCodes, setProjectCodesState] = useState(DEFAULT_PROJECT_CODES);
@@ -259,12 +264,15 @@ function App() {
 
   const resetProject = useCallback(() => setSelectedProject(null), []);
 
-  const handleNavChange = useCallback((main, sub) => {
+  const handleNavChange = useCallback((main, sub, options = {}) => {
+    const { fromMainNav = false } = options;
     const socialResolved = resolveSocialLegacyNav(main, sub);
     if (socialResolved) {
       setNavMain(socialResolved.main);
       setNavSub(socialResolved.sub);
-      setOverviewSocialSub(socialResolved.socialSub);
+      setOverviewSocialSub(
+        resolveSocialInnerSub(socialResolved.socialSub, { fromMainNav, enteringSocial: true })
+      );
       setHubNestedSection(null);
       setSidebarExpandedMain('overview');
       setSelectedProject(null);
@@ -272,7 +280,7 @@ function App() {
     }
 
     const mainItem = findMainNav(main);
-    let subId = sub || mainItem.defaultSub;
+    let subId = resolveSectionSub(mainItem.id, sub, { fromMainNav });
     let nested = null;
     if (mainItem.id === 'computational') {
       const legacy = COMPUTATIONAL_LEGACY_NESTED[subId];
@@ -281,10 +289,24 @@ function App() {
         subId = legacy.tab;
       }
     }
+    const resolvedSub = subId;
     setNavMain(mainItem.id);
-    setNavSub(subId);
+    setNavSub(resolvedSub);
     setHubNestedSection(nested);
     setSidebarExpandedMain(mainItem.id);
+
+    if (mainItem.id === 'overview') {
+      if (resolvedSub === 'social') {
+        setOverviewSocialSub(
+          resolveSocialInnerSub(sub, { fromMainNav, enteringSocial: !fromMainNav && sub === 'social' })
+        );
+      } else if (fromMainNav) {
+        setOverviewSocialSub(getDefaultSocialSub());
+      }
+    } else if (fromMainNav) {
+      setOverviewSocialSub(getDefaultSocialSub());
+    }
+
     if (!mainItem.keepsProject) setSelectedProject(null);
   }, []);
 
@@ -296,9 +318,10 @@ function App() {
     }
     if (main === navMain) {
       setSidebarExpandedMain(main);
+      handleNavChange(main, mainItem.defaultSub, { fromMainNav: true });
       return;
     }
-    handleNavChange(main, mainItem.defaultSub);
+    handleNavChange(main, mainItem.defaultSub, { fromMainNav: true });
   }, [navMain, sidebarExpandedMain, handleNavChange]);
 
   const handleAskAiFromSearch = useCallback((q) => {
@@ -571,26 +594,17 @@ function App() {
   );
 
   const screenBody = useMemo(() => renderScreenBody(), [
-    locale,
     navMain,
     navSub,
     hubNestedSection,
-    subNav,
-    localizedSub,
-    stats,
-    team,
-    auditLogs,
-    projectCodes,
-    setProjectCodes,
-    dbProjects,
-    resolvedApiUrl,
-    handleNavChange,
-    handleManualRefresh,
-    isLoading,
-    handleOpenSearch,
+    overviewSocialSub,
     selectedProject,
-    commonProps,
-    refreshReferenceData,
+    subNav?.screen,
+    subNav?.bioSub,
+    subNav?.aiSub,
+    subNav?.dataSection,
+    localizedSub?.label,
+    localizedSub?.description,
   ]);
 
   const requireLogin = firebaseAuthEnabled && !authDisabled;

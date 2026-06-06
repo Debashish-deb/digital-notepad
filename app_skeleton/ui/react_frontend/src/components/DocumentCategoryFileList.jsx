@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChevronRight, FileText, Lock } from 'lucide-react';
 import { inferExtension } from '../utils/fileTypeMeta.js';
 import { normalizeDocPath } from '../utils/folderBrowserUtils.js';
@@ -252,9 +252,19 @@ export default function DocumentCategoryFileList({
 
   const totalFiles = blocks.reduce((sum, block) => sum + block.fileCount, 0);
 
+  const visibleFilesSignature = useMemo(
+    () => visibleFiles.map((doc) => `${doc.sourceSection || ''}:${doc.path}`).join('\0'),
+    [visibleFiles]
+  );
+  const lastVisibleSignatureRef = useRef('');
+  const onVisibleFilesChangeRef = useRef(onVisibleFilesChange);
+  onVisibleFilesChangeRef.current = onVisibleFilesChange;
+
   useEffect(() => {
-    onVisibleFilesChange?.(visibleFiles);
-  }, [visibleFiles, onVisibleFilesChange]);
+    if (lastVisibleSignatureRef.current === visibleFilesSignature) return;
+    lastVisibleSignatureRef.current = visibleFilesSignature;
+    onVisibleFilesChangeRef.current?.(visibleFiles);
+  }, [visibleFiles, visibleFilesSignature]);
 
   if (!totalFiles) {
     return <p className="text-footnote muted lab-doc-grouped-empty">{t('docs.noFilesSearch')}</p>;

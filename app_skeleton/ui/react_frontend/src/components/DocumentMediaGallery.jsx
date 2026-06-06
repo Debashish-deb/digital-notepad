@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Film, Grid3x3, ImageIcon, Loader2, Play } from 'lucide-react';
 import MediaViewer from './MediaViewer.jsx';
 import FileTypeBadge from './FileTypeBadge.jsx';
@@ -7,10 +7,99 @@ import { getMediaPreviewKind } from '../utils/mediaPreviewKind.js';
 import { filterMediaFiles } from '../utils/documentBrowserLayoutMode.js';
 import { normalizeDocPath } from '../utils/folderBrowserUtils.js';
 
+const FILMSTRIP_WINDOW = 12;
+
+const GalleryGridCard = memo(function GalleryGridCard({
+  item,
+  active,
+  resolveUrl,
+  onSelect,
+}) {
+  const url = useMemo(() => resolveUrl?.(item.doc), [resolveUrl, item.doc]);
+  const isVideo = item.kind === 'video';
+
+  if (!url) return null;
+
+  return (
+    <button
+      type="button"
+      role="listitem"
+      className={`lab-doc-media-gallery-card${active ? ' lab-doc-media-gallery-card--active' : ''}`}
+      onClick={() => onSelect(item.path)}
+      aria-current={active ? 'true' : undefined}
+    >
+      <span className="lab-doc-media-gallery-card-media">
+        {isVideo ? (
+          <span className="lab-doc-media-gallery-video-thumb">
+            <video
+              src={url}
+              muted
+              playsInline
+              preload="none"
+              className="lab-doc-media-gallery-thumb-video"
+            />
+            <span className="lab-doc-media-gallery-play-badge" aria-hidden>
+              <Play size={18} />
+            </span>
+          </span>
+        ) : (
+          <img
+            src={url}
+            alt={item.title}
+            className="lab-doc-media-gallery-thumb"
+            loading="lazy"
+            decoding="async"
+          />
+        )}
+      </span>
+      <span className="lab-doc-media-gallery-card-copy">
+        <span className="lab-doc-media-gallery-card-title">{item.title}</span>
+        {item.extension ? (
+          <span className="lab-doc-media-gallery-card-ext">
+            {item.extension.replace('.', '')}
+          </span>
+        ) : null}
+      </span>
+    </button>
+  );
+});
+
+const FilmstripThumb = memo(function FilmstripThumb({
+  item,
+  active,
+  resolveUrl,
+  onSelect,
+}) {
+  const url = useMemo(() => resolveUrl?.(item.doc), [resolveUrl, item.doc]);
+  const isVideo = item.kind === 'video';
+
+  if (!url) return null;
+
+  return (
+    <button
+      type="button"
+      role="listitem"
+      className={`lab-doc-media-gallery-strip-thumb${active ? ' lab-doc-media-gallery-strip-thumb--active' : ''}`}
+      onClick={() => onSelect(item.path)}
+      aria-current={active ? 'true' : undefined}
+      title={item.title}
+    >
+      {isVideo ? (
+        <span className="lab-doc-media-gallery-strip-video">
+          <video src={url} muted playsInline preload="none" />
+          <Play size={10} aria-hidden />
+        </span>
+      ) : (
+        <img src={url} alt="" loading="lazy" decoding="async" />
+      )}
+    </button>
+  );
+});
+
 /**
  * Full-width image/video gallery — grid browse + hero preview with filmstrip.
  */
-export default function DocumentMediaGallery({
+function DocumentMediaGallery({
   files = [],
   selectedPath,
   onSelectFile,
@@ -34,11 +123,9 @@ export default function DocumentMediaGallery({
         .map((doc) => {
           const ext = inferExtension(doc.name, doc.extension);
           const kind = getMediaPreviewKind(ext);
-          const url = resolveUrl?.(doc);
-          if (!url || !kind) return null;
+          if (!kind) return null;
           return {
             path: doc.path,
-            url,
             title: documentTitle(doc),
             kind,
             extension: ext,
@@ -49,7 +136,7 @@ export default function DocumentMediaGallery({
         .sort((a, b) =>
           a.path.localeCompare(b.path, undefined, { numeric: true, sensitivity: 'base' })
         ),
-    [mediaFiles, resolveUrl, documentTitle]
+    [mediaFiles, documentTitle]
   );
 
   const selectedItem = useMemo(() => {
@@ -62,6 +149,33 @@ export default function DocumentMediaGallery({
     );
   }, [galleryItems, selectedPath]);
 
+  const selectedUrl = useMemo(
+    () => (selectedItem ? resolveUrl?.(selectedItem.doc) : null),
+    [selectedItem, resolveUrl]
+  );
+
+  const viewerGallery = useMemo(() => {
+    if (!selectedUrl || !selectedItem) return [];
+    return galleryItems.map((item) => ({
+      path: item.path,
+      url: item.path === selectedItem.path ? selectedUrl : null,
+      title: item.title,
+      kind: item.kind,
+    }));
+  }, [galleryItems, selectedItem, selectedUrl]);
+
+  const filmstripItems = useMemo(() => {
+    if (galleryItems.length <= FILMSTRIP_WINDOW) return galleryItems;
+    const selectedIndex = galleryItems.findIndex(
+      (item) => normalizeDocPath(item.path) === normalizeDocPath(selectedPath)
+    );
+    const center = selectedIndex >= 0 ? selectedIndex : 0;
+    const half = Math.floor(FILMSTRIP_WINDOW / 2);
+    const start = Math.max(0, center - half);
+    const end = Math.min(galleryItems.length, start + FILMSTRIP_WINDOW);
+    return galleryItems.slice(Math.max(0, end - FILMSTRIP_WINDOW), end);
+  }, [galleryItems, selectedPath]);
+
   useEffect(() => {
     if (!galleryItems.length) return;
     const key = normalizeDocPath(selectedPath);
@@ -70,6 +184,21 @@ export default function DocumentMediaGallery({
       onSelectFile(galleryItems[0].path);
     }
   }, [galleryItems, selectedPath, onSelectFile]);
+
+  const handleGridSelect = useCallback(
+    (path) => {
+      onSelectFile?.(path);
+      setViewMode('hero');
+    },
+    [onSelectFile]
+  );
+
+  const handleStripSelect = useCallback(
+    (path) => {
+      onSelectFile?.(path);
+    },
+    [onSelectFile]
+  );
 
   if (!galleryItems.length) {
     return (
@@ -80,6 +209,7 @@ export default function DocumentMediaGallery({
   }
 
   const showHero = viewMode === 'hero' && selectedItem;
+  const selectedKey = normalizeDocPath(selectedPath);
 
   return (
     <div className={`lab-doc-media-gallery lab-doc-media-gallery--${mediaScope}`}>
@@ -128,10 +258,10 @@ export default function DocumentMediaGallery({
       {showHero ? (
         <div className="lab-doc-media-gallery-stage">
           <MediaViewer
-            url={selectedItem.url}
+            url={selectedUrl}
             title={selectedItem.title}
             kind={selectedItem.kind}
-            gallery={galleryItems}
+            gallery={viewerGallery}
             currentPath={selectedItem.path}
             onNavigate={onSelectFile}
             labels={labels}
@@ -142,90 +272,33 @@ export default function DocumentMediaGallery({
         </div>
       ) : (
         <div className="lab-doc-media-gallery-grid" role="list">
-          {galleryItems.map((item) => {
-            const active =
-              normalizeDocPath(selectedPath) === normalizeDocPath(item.path);
-            const isVideo = item.kind === 'video';
-            return (
-              <button
-                key={item.path}
-                type="button"
-                role="listitem"
-                className={`lab-doc-media-gallery-card${active ? ' lab-doc-media-gallery-card--active' : ''}`}
-                onClick={() => {
-                  onSelectFile?.(item.path);
-                  setViewMode('hero');
-                }}
-                aria-current={active ? 'true' : undefined}
-              >
-                <span className="lab-doc-media-gallery-card-media">
-                  {isVideo ? (
-                    <span className="lab-doc-media-gallery-video-thumb">
-                      <video
-                        src={item.url}
-                        muted
-                        playsInline
-                        preload="metadata"
-                        className="lab-doc-media-gallery-thumb-video"
-                      />
-                      <span className="lab-doc-media-gallery-play-badge" aria-hidden>
-                        <Play size={18} />
-                      </span>
-                    </span>
-                  ) : (
-                    <img
-                      src={item.url}
-                      alt={item.title}
-                      className="lab-doc-media-gallery-thumb"
-                      loading="lazy"
-                    />
-                  )}
-                </span>
-                <span className="lab-doc-media-gallery-card-copy">
-                  <span className="lab-doc-media-gallery-card-title">{item.title}</span>
-                  {item.extension ? (
-                    <span className="lab-doc-media-gallery-card-ext">
-                      {item.extension.replace('.', '')}
-                    </span>
-                  ) : null}
-                </span>
-              </button>
-            );
-          })}
+          {galleryItems.map((item) => (
+            <GalleryGridCard
+              key={item.path}
+              item={item}
+              active={selectedKey === normalizeDocPath(item.path)}
+              resolveUrl={resolveUrl}
+              onSelect={handleGridSelect}
+            />
+          ))}
         </div>
       )}
 
       {showHero && galleryItems.length > 1 ? (
         <div className="lab-doc-media-gallery-filmstrip" role="list" aria-label={labels.filmstrip || 'Thumbnails'}>
-          {galleryItems.map((item) => {
-            const active =
-              normalizeDocPath(selectedPath) === normalizeDocPath(item.path);
-            const isVideo = item.kind === 'video';
-            return (
-              <button
-                key={`strip-${item.path}`}
-                type="button"
-                role="listitem"
-                className={`lab-doc-media-gallery-strip-thumb${active ? ' lab-doc-media-gallery-strip-thumb--active' : ''}`}
-                onClick={() => onSelectFile?.(item.path)}
-                aria-current={active ? 'true' : undefined}
-                title={item.title}
-              >
-                {isVideo ? (
-                  <span className="lab-doc-media-gallery-strip-video">
-                    <video src={item.url} muted playsInline preload="metadata" />
-                    <Play size={10} aria-hidden />
-                  </span>
-                ) : (
-                  <img src={item.url} alt="" loading="lazy" />
-                )}
-              </button>
-            );
-          })}
+          {filmstripItems.map((item) => (
+            <FilmstripThumb
+              key={`strip-${item.path}`}
+              item={item}
+              active={selectedKey === normalizeDocPath(item.path)}
+              resolveUrl={resolveUrl}
+              onSelect={handleStripSelect}
+            />
+          ))}
         </div>
       ) : null}
 
-      {showHero && !selectedItem?.url ? (
+      {showHero && !selectedUrl ? (
         <div className="lab-doc-media-gallery-loading">
           <Loader2 size={20} className="spin-inline" aria-hidden />
           <span>{labels.loading || 'Loading…'}</span>
@@ -234,3 +307,5 @@ export default function DocumentMediaGallery({
     </div>
   );
 }
+
+export default memo(DocumentMediaGallery);
