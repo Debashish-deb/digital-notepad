@@ -18,6 +18,8 @@ from app_skeleton.security.permissions import require_role
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 
+_STREAM_INTERNAL_KEYS = frozenset({"system_prompt", "user_content"})
+
 
 class ChatRequest(BaseModel):
     message: str
@@ -34,6 +36,12 @@ class ChatResponse(BaseModel):
     search_hits: List[dict[str, Any]] = Field(default_factory=list)
     provider: str = "mock"
     blocked_by_guardrail: bool = False
+    intent: str = "general_chat"
+    use_rag: bool = False
+    show_sources: bool = False
+    require_citations: bool = False
+    answer_style: str = "natural"
+    reason: str = ""
 
 
 def _chat_llm() -> LLMClient:
@@ -50,6 +58,10 @@ def _chat_llm() -> LLMClient:
 
 def _search_service(active_llm: LLMClient) -> SearchService:
     return SearchService(db_conn=DB_CONN, qdrant=qdrant_client, llm=active_llm)
+
+
+def _public_chat_payload(result: dict[str, Any]) -> dict[str, Any]:
+    return {k: v for k, v in result.items() if k not in _STREAM_INTERNAL_KEYS}
 
 
 @router.get("/status")
@@ -78,7 +90,7 @@ def chat_message(req: ChatRequest, user: dict = Depends(require_platform_user)) 
         search_svc=search_svc,
         rag_agent=rag_agent,
     )
-    return ChatResponse(**result)
+    return ChatResponse(**_public_chat_payload(result))
 
 
 def _sse_event(payload: dict[str, Any]) -> str:
@@ -99,42 +111,28 @@ def chat_stream(req: ChatRequest, user: dict = Depends(require_platform_user)) -
         search_svc=search_svc,
         rag_agent=rag_agent,
     )
+    public_base = _public_chat_payload(base)
+    system_prompt = base.get("system_prompt", "")
+    user_content = base.get("user_content", req.message)
 
     if base.get("blocked_by_guardrail"):
         def blocked_iter() -> Iterator[str]:
-            yield _sse_event({"type": "metadata", **{k: base[k] for k in ("sources", "search_hits", "limitations", "provider", "is_safe")}})
-            yield _sse_event({"type": "delta", "content": base.get("answer", "")})
+            yield _sse_event({"type": "metadata", **{k: public_base[k] for k in ("sources", "search_hits", "limitations", "provider", "is_safe", "intent", "show_sources")}})
+            yield _sse_event({"type": "delta", "content": public_base.get("answer", "")})
             yield _sse_event({"type": "done"})
         return StreamingResponse(blocked_iter(), media_type="text/event-stream")
-
-    # Rebuild prompts for streaming (answer_chat already retrieved context).
-    from app_skeleton.api.chat_service import _build_prompts, _hits_to_sources, guard_for_llm
-    from app_skeleton.api.common import _clinical_context_for_question, query_postgres_metadata
-
-    safe_message, _, _ = guard_for_llm(req.message, active_llm.provider)
-    db_data = query_postgres_metadata(req.project_codes)
-    clinical_block = _clinical_context_for_question(safe_message, req.project_codes or [])
-    unified_hits = search_svc.hits_for_copilot(safe_message, project_codes=req.project_codes, limit=12)
-    rag_sources = rag_agent.retrieve(safe_message, req.project_codes)
-    retrieved_sources, unified_hits = _hits_to_sources(unified_hits, rag_sources, limit=12)
-    system_prompt, user_content = _build_prompts(
-        question=safe_message,
-        unified_hits=unified_hits,
-        rag_sources=rag_sources,
-        db_data=db_data,
-        clinical_block=clinical_block,
-        sources=retrieved_sources,
-    )
 
     def event_iter() -> Iterator[str]:
         yield _sse_event({
             "type": "metadata",
-            "sources": base.get("sources", []),
-            "search_hits": base.get("search_hits", []),
-            "limitations": base.get("limitations", []),
-            "provider": base.get("provider", active_llm.provider),
-            "database_counts": base.get("database_counts", {}),
-            "is_safe": base.get("is_safe", True),
+            "sources": public_base.get("sources", []),
+            "search_hits": public_base.get("search_hits", []),
+            "limitations": public_base.get("limitations", []),
+            "provider": public_base.get("provider", active_llm.provider),
+            "database_counts": public_base.get("database_counts", {}),
+            "is_safe": public_base.get("is_safe", True),
+            "intent": public_base.get("intent", "general_chat"),
+            "show_sources": public_base.get("show_sources", False),
         })
         try:
             for delta in active_llm.stream_generate(user_content, system_prompt):
@@ -142,7 +140,7 @@ def chat_stream(req: ChatRequest, user: dict = Depends(require_platform_user)) -
                     yield _sse_event({"type": "delta", "content": delta})
         except Exception as exc:
             LOGGER.warning("Chat stream failed, falling back to buffered answer: %s", exc)
-            yield _sse_event({"type": "delta", "content": base.get("answer", "")})
+            yield _sse_event({"type": "delta", "content": public_base.get("answer", "")})
         yield _sse_event({"type": "done"})
 
     return StreamingResponse(event_iter(), media_type="text/event-stream")

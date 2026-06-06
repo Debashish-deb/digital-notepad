@@ -63,15 +63,21 @@ function getDefaultProjects(dbProjects = []) {
 
 function formatAssistantPayload(data) {
   const answer = data?.answer || 'No answer was returned by the copilot.';
-  const sources = Array.isArray(data?.sources) ? data.sources : [];
-  const searchHits = Array.isArray(data?.search_hits) ? data.search_hits : [];
-  const limitations = Array.isArray(data?.limitations) ? data.limitations.filter(Boolean) : [];
+  const showSources = data?.show_sources === true;
+  const intent = data?.intent || 'general_chat';
+  const sources = showSources && Array.isArray(data?.sources) ? data.sources : [];
+  const searchHits = showSources && Array.isArray(data?.search_hits) ? data.search_hits : [];
+  const limitations = showSources && Array.isArray(data?.limitations)
+    ? data.limitations.filter(Boolean)
+    : [];
 
   return {
     content: answer,
     sources,
     searchHits,
     limitations,
+    intent,
+    showSources,
     databaseCounts: data?.database_counts || {},
     isSafe: data?.is_safe !== false,
     provider: data?.provider,
@@ -331,6 +337,8 @@ export default function ChatWidget({
             searchHits: formatted.searchHits,
             queryContext: textToSend,
             limitations: formatted.limitations,
+            intent: formatted.intent,
+            showSources: formatted.showSources,
             databaseCounts: formatted.databaseCounts,
             isSafe: formatted.isSafe,
             provider: formatted.provider || chatProvider,
@@ -558,21 +566,25 @@ export default function ChatWidget({
 
                 <MarkdownLite text={message.content} />
 
-                {message.limitations?.length ? (
+                {message.showSources !== false && message.limitations?.length ? (
                   <div className="chat-limitations">
                     <AlertTriangle size={13} aria-hidden="true" />
                     <span>{message.limitations.join(' ')}</span>
                   </div>
                 ) : null}
 
-                <AssistantSearchHits
-                  hits={message.searchHits}
-                  sources={message.sources}
-                  query={message.queryContext || ''}
-                  onOpenHit={onNavigate ? handleOpenSource : null}
-                  onAskFollowUp={handleAskFollowUp}
-                  onSearchOmnibox={onOpenSearch ? handleSearchOmnibox : null}
-                />
+                {message.showSources !== false
+                  && message.intent !== 'smalltalk'
+                  && (message.sources?.length > 0 || message.searchHits?.length > 0) ? (
+                  <AssistantSearchHits
+                    hits={message.searchHits}
+                    sources={message.sources}
+                    query={message.queryContext || ''}
+                    onOpenHit={onNavigate ? handleOpenSource : null}
+                    onAskFollowUp={handleAskFollowUp}
+                    onSearchOmnibox={onOpenSearch ? handleSearchOmnibox : null}
+                  />
+                ) : null}
 
                 {message.isError && message.originalQuestion ? (
                   <button
@@ -612,7 +624,7 @@ export default function ChatWidget({
               </div>
               <div className="chat-bubble assistant assistant-thinking-bubble">
                 <TypingIndicator />
-                <span>Scanning sources and composing answer…</span>
+                <span>Composing answer…</span>
               </div>
             </article>
           )}

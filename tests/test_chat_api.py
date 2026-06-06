@@ -48,6 +48,25 @@ class TestChatApi(unittest.TestCase):
         self.assertIn("provider", data)
         self.assertTrue(data.get("is_safe"))
 
+    @patch("app_skeleton.api.routers.chat.require_role")
+    def test_chat_greeting_skips_rag_and_sources(self, _role_patch) -> None:
+        response = self.client.post(
+            "/api/chat",
+            json={
+                "message": "hi",
+                "project_codes": ["SPACE"],
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertTrue(data.get("answer"))
+        self.assertEqual(data.get("intent"), "smalltalk")
+        self.assertFalse(data.get("use_rag"))
+        self.assertFalse(data.get("show_sources"))
+        self.assertEqual(data.get("sources"), [])
+        self.assertEqual(data.get("search_hits"), [])
+        self.assertEqual(data.get("limitations"), [])
+
 
 if __name__ == "__main__":
     unittest.main()
