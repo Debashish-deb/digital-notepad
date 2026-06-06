@@ -9,4 +9,4 @@ import el from './el.js';
 import ml from './ml.js';
 import sv from './sv.js';
 
-export const GUI_STRINGS = { en, fi, ru, es, zh, bn, ne, el, ml, sv };
+export const GUI_STRINGS = { en, fi, sv, zh, ru, ne, bn, es, el, ml };
