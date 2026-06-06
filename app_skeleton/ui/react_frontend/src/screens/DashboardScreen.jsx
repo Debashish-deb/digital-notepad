@@ -1,4 +1,4 @@
-import './MacPlusVisualStyles.css';
+
 import React, {
   useCallback,
   useEffect,
@@ -23,6 +23,8 @@ import {
 } from 'lucide-react';
 
 import MetricCard from '../components/MetricCard';
+import LabTeamRoster from '../components/LabTeamRoster.jsx';
+import { normalizeTeamMember, sortLabTeamMembers } from '../utils/teamRoster.js';
 import { apiGet } from '../api/client.js';
 
 function asArray(value) {
@@ -439,11 +441,19 @@ function ResearchTeamPanel({
             Add documents under database/Overview/PERSONNEL or connect the team API.
           </p>
         </div>
+      ) : hasTeamApi ? (
+        <LabTeamRoster members={sortLabTeamMembers(roster)} className="dashboard-team-roster" />
       ) : (
         <div className="roster-grid dashboard-roster-grid">
           {roster.map((member) => (
             <article key={member.key} className="roster-card dashboard-roster-card">
-              <div className="roster-avatar">{getInitials(member.name)}</div>
+              <div className={`roster-avatar${member.photoUrl ? ' roster-avatar--photo' : ''}`}>
+                {member.photoUrl ? (
+                  <img className="lab-team-card__photo" src={member.photoUrl} alt="" />
+                ) : (
+                  getInitials(member.name)
+                )}
+              </div>
               <h4 className="roster-name">{member.name}</h4>
               <span className="roster-role">{member.role}</span>
               <p className="roster-focus">{member.focus}</p>
@@ -526,22 +536,23 @@ export default function DashboardScreen({
 
   const roster = useMemo(() => {
     if (safeTeam.length) {
-      return safeTeam.map((member, index) => ({
-        key: compactText(
-          member?.username ||
-            member?.email ||
-            member?.full_name ||
-            `team-member-${index}`,
-        ),
-        name: compactText(member?.full_name || member?.name || member?.username, 'Unnamed member'),
-        role: compactText(member?.role || member?.title || 'Researcher'),
-        focus: asArray(member?.allowed_projects).length
-          ? asArray(member.allowed_projects).join(', ')
-          : compactText(member?.focus || member?.speciality || '—'),
-      }));
+      return safeTeam.map((member, index) =>
+        normalizeTeamMember({
+          ...member,
+          username: compactText(
+            member?.username || member?.email || `team-member-${index}`,
+          ),
+          name: compactText(member?.full_name || member?.name || member?.username, 'Unnamed member'),
+          full_name: compactText(member?.full_name || member?.name || member?.username, 'Unnamed member'),
+          role: compactText(member?.role || member?.title || 'Researcher'),
+          focus: asArray(member?.allowed_projects).length
+            ? asArray(member.allowed_projects).join(', ')
+            : compactText(member?.focus || member?.speciality || '—'),
+        }),
+      );
     }
 
-    return personnelDocumentRoster;
+    return personnelDocumentRoster.map((member) => normalizeTeamMember(member));
   }, [personnelDocumentRoster, safeTeam]);
 
   const researcherCount = safeTeam.length || personnelFiles.length;

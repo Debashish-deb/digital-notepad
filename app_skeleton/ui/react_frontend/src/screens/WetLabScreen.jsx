@@ -1,20 +1,13 @@
-import './MacPlusVisualStyles.css';
-import React, { useState, useEffect } from 'react';
-import { BookOpen } from 'lucide-react';
-import DocumentFormatter from '../components/DocumentFormatter.jsx';
-import { useTaskpad } from '../contexts/TaskpadContext.jsx';
-import TasksScreen from './TasksScreen';
-import LabSectionTwinPanel from '../components/LabSectionTwinPanel.jsx';
 
-const WET_KEYWORDS = /wet|stain|sample|ffpe|tissue|antibody|chamber|bleach|protocol|prep/i;
+import TasksScreen from './TasksScreen';
+import SectionDocumentsScreen from './SectionDocumentsScreen.jsx';
+import WetLabProtocolsBrowser from '../components/WetLabProtocolsBrowser.jsx';
 
 export function WetLabProtocolsPanel() {
   return (
-    <LabSectionTwinPanel
-      sectionId="04_Wet_Lab"
+    <WetLabProtocolsBrowser
       title="Wet-lab SOPs"
-      description="Structured protocols, procedures, and methodologies for the wet lab. (Excludes tCycIF documents which are under the CyCIF tab)."
-      excludeFolder="tCycIF projects"
+      description="Protocols grouped by workflow — sample prep, spatial assays, staining, and patient sample sheets."
     />
   );
 }
@@ -25,8 +18,9 @@ export function WetLabTasksPanel(props) {
 
 export function WetLabInventoryPanel() {
   return (
-    <LabSectionTwinPanel
-      sectionId="wet_lab_files"
+    <SectionDocumentsScreen
+      mainId="wet_lab"
+      subId="files"
       title="Reagents, panels & wet-lab files"
       description="Protocols, inventories, GeoMx/Xenium notes, and wet-lab spreadsheets from WET_LAB."
     />

@@ -1,12 +1,16 @@
 /** Load lab database section twins from public/processed (works without API). */
 
+import {
+  cleanExtractedText,
+  humanizeFilenameLabel,
+  isJunkDisplayName,
+} from './textCleanup.js';
+
 const JUNK_TITLE_RE =
   /^(?:#+\s*)?(?:page\s*\d+(?:\s+of\s+\d+)?|slide\s*\d+|ppt\/slides\/|word\/document|\d{1,2}\.\d{1,2}\.\d{4})$/i;
 
 export function humanizeFilename(name) {
-  if (!name) return 'Document';
-  const stem = String(name).replace(/\.[^.]+$/, '');
-  return stem.replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160) || 'Document';
+  return humanizeFilenameLabel(name);
 }
 
 export function isJunkTitleLine(line) {
@@ -18,29 +22,37 @@ export function isJunkTitleLine(line) {
   return false;
 }
 
-/** Prefer real filename labels over extractor scaffolding (## Page 1, ppt/slides/…). */
+/** Prefer filename-based labels over extractor scaffolding and junk first lines. */
 export function documentDisplayTitle(doc) {
   const path = (doc.path || doc.relative_path || '').replace(/\\/g, '/');
-  const name = doc.name || path.split('/').pop() || '';
-  const human = humanizeFilename(name);
-  const raw = (doc.title || '').trim().replace(/\s+/g, ' ');
-  if (raw && !isJunkTitleLine(raw) && raw.toLowerCase() !== human.toLowerCase() && raw.length <= 120) {
-    return raw;
+  const fileName = path.split('/').pop() || '';
+  const humanFile = humanizeFilenameLabel(fileName);
+
+  const candidates = [doc.display_title, doc.title, doc.name]
+    .map((v) => (v || '').trim().replace(/\s+/g, ' '))
+    .filter(Boolean);
+
+  for (const raw of candidates) {
+    if (
+      raw &&
+      !isJunkTitleLine(raw) &&
+      !isJunkDisplayName(raw, fileName) &&
+      raw.length <= 120 &&
+      raw.toLowerCase() !== humanFile.toLowerCase()
+    ) {
+      return raw;
+    }
   }
-  return human;
+
+  return humanFile;
 }
 
 export function documentDisplayExcerpt(doc, maxChars = 500) {
   const excerpt = (doc.excerpt || '').trim();
   if (!excerpt) return null;
-  const cleaned = excerpt.replace(/\s+/g, ' ').trim();
+  const cleaned = cleanExtractedText(excerpt.replace(/\s+/g, ' '), { maxChars });
   if (!cleaned || isJunkTitleLine(cleaned)) return null;
-  if (cleaned.startsWith('### ') && cleaned.includes('/')) {
-    const withoutPaths = cleaned.replace(/###\s*ppt\/slides\/slide\d+\.xml\s*/gi, '');
-    const slice = withoutPaths.trim().slice(0, maxChars);
-    return slice || null;
-  }
-  return cleaned.slice(0, maxChars);
+  return cleaned || null;
 }
 
 export function labDatabaseAssetUrl(relativeRoot, relativePath) {

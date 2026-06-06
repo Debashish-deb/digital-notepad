@@ -65,7 +65,7 @@ export default function DigitalizationDashboard({ title, description }) {
   };
 
   return (
-    <div className="module-content">
+    <div className="module-content digitalization-dashboard">
       <div className="module-header">
         <h1 className="module-title">{title}</h1>
         <p className="module-description">{description}</p>
@@ -73,7 +73,7 @@ export default function DigitalizationDashboard({ title, description }) {
 
       <div className="stack-lg">
         {/* Settings & Actions */}
-        <div className="card">
+        <div className="metric-card panel">
           <div className="disk-pad-toolbar" style={{ marginBottom: '1rem' }}>
             <span className="text-secondary" style={{ fontSize: '0.85rem', fontWeight: 600 }}>Source Directory:</span>
             <input 
@@ -86,7 +86,7 @@ export default function DigitalizationDashboard({ title, description }) {
           </div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-          <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', justifyContent: 'center' }}>
+          <div className="metric-card panel" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', justifyContent: 'center' }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 600 }}>{status?.discovered || 0}</div>
             <div className="text-secondary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Search size={16} /> Discovered Files
@@ -102,14 +102,14 @@ export default function DigitalizationDashboard({ title, description }) {
             </div>
           </div>
 
-          <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', justifyContent: 'center' }}>
+          <div className="metric-card panel" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', justifyContent: 'center' }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 600 }}>{status?.extracted || 0}</div>
             <div className="text-secondary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <FileText size={16} /> Extracted Documents
             </div>
           </div>
 
-          <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', justifyContent: 'center' }}>
+          <div className="metric-card panel" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', justifyContent: 'center' }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--color-primary)' }}>{status?.canonicalized || 0}</div>
             <div className="text-secondary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <CheckCircle2 size={16} /> Canonicalized JSON
@@ -125,7 +125,7 @@ export default function DigitalizationDashboard({ title, description }) {
             </div>
           </div>
 
-          <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', justifyContent: 'center' }}>
+          <div className="metric-card panel" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', justifyContent: 'center' }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--color-success)' }}>{status?.ready_for_rag || 0}</div>
             <div className="text-secondary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Database size={16} /> Ready for RAG
@@ -135,7 +135,7 @@ export default function DigitalizationDashboard({ title, description }) {
             </div>
           </div>
 
-          <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', justifyContent: 'center' }}>
+          <div className="metric-card panel" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', justifyContent: 'center' }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--color-warning)' }}>{status?.needs_review || 0}</div>
             <div className="text-secondary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <AlertCircle size={16} /> Needs Review
@@ -216,7 +216,7 @@ export default function DigitalizationDashboard({ title, description }) {
 
         {/* Detail Panel */}
         {selectedDoc && (
-          <div className="card">
+          <div className="metric-card panel">
             <div className="card-header">
               <h3 className="card-title">Document Detail: {selectedDoc.title}</h3>
             </div>

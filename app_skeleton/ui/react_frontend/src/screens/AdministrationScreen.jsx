@@ -1,4 +1,4 @@
-import './MacPlusVisualStyles.css';
+
 import { useCallback, useEffect, useState } from 'react';
 import { Activity, Shield } from 'lucide-react';
 import AuthLoginPanel from '../components/AuthLoginPanel.jsx';
@@ -58,10 +58,6 @@ export default function AdministrationScreen({ title, description, onNavigate })
     } catch (err) {
       setError(String(err.message || err));
     }
-  };
-
-  const goToIngestion = () => {
-    if (onNavigate) onNavigate('data_storage', 'ingestion');
   };
 
   return (
@@ -165,11 +161,6 @@ export default function AdministrationScreen({ title, description, onNavigate })
             </li>
           ))}
         </ul>
-        {onNavigate && (
-          <button type="button" className="btn btn-sm" style={{ marginTop: '0.75rem' }} onClick={goToIngestion}>
-            Open ingestion dashboard
-          </button>
-        )}
       </div>
 
       <div className="panel">

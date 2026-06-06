@@ -576,15 +576,9 @@ def _qdrant_url() -> str:
 
 
 def _ensure_qdrant_collection(client: QdrantClient) -> None:
-    try:
-        client.get_collection(COLLECTION_DOC_CHUNKS)
-    except Exception:
-        client.create_collection(
-            collection_name=COLLECTION_DOC_CHUNKS,
-            vectors_config={
-                "text": models.VectorParams(size=EMBEDDING_DIM, distance=models.Distance.COSINE),
-            },
-        )
+    from app_skeleton.api.qdrant_vectors import ensure_doc_chunks_collection
+
+    ensure_doc_chunks_collection(client)
 
 
 def _start_embedding_job(cur, section_id: str) -> uuid.UUID:

@@ -20,6 +20,10 @@ const EXT_MAP = {
   '.tsv': { label: 'TSV', tone: 'data' },
   '.xlsx': { label: 'Excel', tone: 'data' },
   '.xls': { label: 'Excel', tone: 'data' },
+  '.xlsm': { label: 'Excel Macro', tone: 'data' },
+  '.xlsb': { label: 'Excel Binary', tone: 'data' },
+  '.ods': { label: 'OpenDocument Sheet', tone: 'data' },
+  '.fods': { label: 'OpenDocument Sheet', tone: 'data' },
   '.json': { label: 'JSON', tone: 'data' },
   '.yaml': { label: 'YAML', tone: 'data' },
   '.yml': { label: 'YAML', tone: 'data' },
@@ -39,7 +43,15 @@ const EXT_MAP = {
   '.h5': { label: 'HDF5', tone: 'bio' },
   '.h5ad': { label: 'AnnData', tone: 'bio' },
   '.mp4': { label: 'Video', tone: 'media' },
+  '.webm': { label: 'Video', tone: 'media' },
   '.mov': { label: 'Video', tone: 'media' },
+  '.m4v': { label: 'Video', tone: 'media' },
+  '.mkv': { label: 'Video', tone: 'media' },
+  '.glb': { label: '3D Model', tone: 'media' },
+  '.gltf': { label: '3D Model', tone: 'media' },
+  '.obj': { label: '3D Model', tone: 'media' },
+  '.usdz': { label: '3D Model', tone: 'media' },
+  '.stl': { label: '3D Model', tone: 'media' },
 };
 
 const ASSET_TYPE_MAP = {

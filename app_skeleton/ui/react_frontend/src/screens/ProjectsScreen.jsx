@@ -1,4 +1,4 @@
-import './MacPlusVisualStyles.css';
+
 import React, {
   useCallback,
   useEffect,
@@ -23,6 +23,7 @@ import {
   Users,
   X,
 } from 'lucide-react';
+import ProjectBrandMark from '../components/ProjectBrandMark.jsx';
 
 import WorkspaceScreen from './WorkspaceScreen';
 import { PROJECT_CATEGORIES } from '../data/projectsCatalog.js';
@@ -321,10 +322,12 @@ function normalizeProject(rawProject, index) {
 function StatCard({ icon: Icon, value, label, helper }) {
   return (
     <div className="projects-stat">
-      <span className="projects-stat-icon" aria-hidden="true">
-        {Icon ? <Icon size={16} /> : null}
-      </span>
-      <span className="projects-stat-value">{value}</span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.1rem' }}>
+        <span className="projects-stat-icon" aria-hidden="true" style={{ display: 'flex', alignItems: 'center', color: 'var(--color-primary)' }}>
+          {Icon ? <Icon size={18} /> : null}
+        </span>
+        <span className="projects-stat-value">{value}</span>
+      </div>
       <span className="projects-stat-label">{label}</span>
       {helper ? <span className="projects-stat-helper">{helper}</span> : null}
     </div>
@@ -387,28 +390,31 @@ function ProjectCard({ project, onOpen }) {
   return (
     <article className="project-card" aria-labelledby={`project-title-${project.project_code}`}>
       <div className="project-card-header">
-        <div className="project-card-code-row">
-          <span className="project-card-index">#{project.project_index}</span>
-          <span className="project-card-code">{project.project_code}</span>
+        <ProjectBrandMark
+          code={project.project_code}
+          index={project.project_index}
+          name={project.project_name}
+          variant="card"
+        />
+        <div className="project-card-header-meta">
           <span
             className="project-card-priority"
             style={{ background: priorityColor }}
             title={`${priorityLabel} priority`}
             aria-label={`${priorityLabel} priority`}
           />
+          <span
+            className="project-card-status"
+            style={{ background: statusStyle.bg, color: statusStyle.color }}
+          >
+            <StatusIcon size={12} aria-hidden="true" />
+            {statusStyle.label}
+          </span>
         </div>
-
-        <span
-          className="project-card-status"
-          style={{ background: statusStyle.bg, color: statusStyle.color }}
-        >
-          <StatusIcon size={12} aria-hidden="true" />
-          {statusStyle.label}
-        </span>
       </div>
 
-      <h4 id={`project-title-${project.project_code}`} className="project-card-title">
-        {project.project_name}
+      <h4 id={`project-title-${project.project_code}`} className="sr-only">
+        {project.project_name || project.project_code}
       </h4>
 
       <p className="project-card-summary">
@@ -751,34 +757,6 @@ export default function ProjectsScreen({
 
   return (
     <div className="projects-page">
-      <header className="page-header projects-hero-header">
-        <div className="projects-hero-copy">
-          <p className="text-caption">Lab intelligence portfolio</p>
-          <h1 className="page-title-gradient">Research Project Portfolio</h1>
-          <p className="page-subtitle">
-            {stats.total} lab project{stats.total === 1 ? '' : 's'} across spatial multi-omics,
-            computational tooling, patient-derived models, genomics, collaborations, and infrastructure.
-          </p>
-        </div>
-
-        <div className="projects-hero-actions">
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={handleProcessAll}
-            disabled={processing}
-            aria-busy={processing ? 'true' : 'false'}
-          >
-            <RefreshCw
-              size={15}
-              aria-hidden="true"
-              className={processing ? 'projects-spin' : undefined}
-            />
-            {processing ? 'Processing twins…' : 'Reprocess all twins'}
-          </button>
-        </div>
-      </header>
-
       <section className="projects-stats-bar" aria-label="Project portfolio statistics">
         <StatCard
           icon={LayoutGrid}
@@ -893,6 +871,22 @@ export default function ProjectsScreen({
             Flat List
           </button>
         </div>
+
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={handleProcessAll}
+          disabled={processing}
+          aria-busy={processing ? 'true' : 'false'}
+          style={{ marginLeft: 'auto' }}
+        >
+          <RefreshCw
+            size={15}
+            aria-hidden="true"
+            className={processing ? 'projects-spin' : undefined}
+          />
+          {processing ? 'Processing twins…' : 'Reprocess all twins'}
+        </button>
       </section>
 
       <ProcessMessage message={processMsg} />

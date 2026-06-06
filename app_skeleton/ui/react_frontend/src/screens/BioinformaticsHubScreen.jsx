@@ -1,16 +1,16 @@
-import './MacPlusVisualStyles.css';
+
 import React, { useState, useEffect } from 'react';
-import { 
-  Wrench, 
-  Terminal, 
-  Cpu, 
-  ShieldCheck, 
-  Database, 
-  Play, 
-  Settings, 
-  AlertCircle, 
-  ArrowRight, 
-  Clipboard, 
+import {
+  Wrench,
+  Terminal,
+  Cpu,
+  ShieldCheck,
+  Database,
+  Play,
+  Settings,
+  AlertCircle,
+  ArrowRight,
+  Clipboard,
   CheckCircle,
   HardDrive,
   UserCheck,
@@ -24,70 +24,120 @@ import {
   Lock,
   RefreshCw,
   Search,
-  BookOpen
+  BookOpen,
 } from 'lucide-react';
+import ComputationalToolsScreen from './ComputationalToolsScreen.jsx';
+import { HubSectionFrame, HubDetailFrame } from '../components/HubNestedNav.jsx';
+import { COMPUTATIONAL_LEGACY_NESTED } from '../config/navigation.js';
 
-export default function BioinformaticsHubScreen({ dbProjects, API_URL, activeSubTab, hideChrome = false }) {
-  const [subTab, setSubTab] = useState(activeSubTab || 'onboarding');
+function resolveHubTab(activeSubTab, nestedSection) {
+  const legacy = COMPUTATIONAL_LEGACY_NESTED[activeSubTab];
+  if (legacy) return { tab: legacy.tab, nested: legacy.section };
+  if (activeSubTab === 'utilities' && nestedSection === 'tools') {
+    return { tab: 'tools', nested: null };
+  }
+  return { tab: activeSubTab || 'onboarding', nested: nestedSection || null };
+}
+
+export default function BioinformaticsHubScreen({
+  dbProjects,
+  API_URL,
+  activeSubTab,
+  hubNestedSection = null,
+  hideChrome = false,
+  onNavigate,
+}) {
+  const resolved = resolveHubTab(activeSubTab, hubNestedSection);
+  const [subTab, setSubTab] = useState(resolved.tab);
+  const [nestedSection, setNestedSection] = useState(resolved.nested);
 
   useEffect(() => {
-    if (activeSubTab) setSubTab(activeSubTab);
-  }, [activeSubTab]);
+    const next = resolveHubTab(activeSubTab, hubNestedSection);
+    setSubTab(next.tab);
+    if (next.nested) setNestedSection(next.nested);
+  }, [activeSubTab, hubNestedSection]);
 
   const menuItems = [
-    { id: 'onboarding', label: '🔑 Onboarding & Credentials' },
-    { id: 'conda', label: '🐍 Conda & Environments' },
-    { id: 'install', label: '⚙️ Tool Installations' },
-    { id: 'file_ops', label: '🔐 File Operations' },
-    { id: 'lumi', label: '💻 LUMI Supercomputing' },
-    { id: 'pouta', label: '☁️ cPouta Cloud VMs' },
-    { id: 'diagnostics', label: '🩺 System Diagnostic' },
-    { id: 'troubleshoot', label: '🔍 Troubleshoot Logs' }
+    { id: 'onboarding', label: 'Onboarding & credentials' },
+    { id: 'lumi', label: 'LUMI HPC' },
+    { id: 'pouta', label: 'cPouta VMs' },
+    { id: 'roihu', label: 'Roihu' },
+    { id: 'troubleshoot', label: 'Troubleshooting' },
+    { id: 'utilities', label: 'Utilities' },
+    { id: 'tools', label: 'Lab computational tools' },
   ];
 
   return (
-    <div style={{ display: 'flex', gap: hideChrome ? 0 : '2rem', minHeight: hideChrome ? 'auto' : 'calc(100vh - 8rem)' }}>
+    <div
+      className="bioinformatics-hub-screen"
+      style={{ display: 'flex', gap: hideChrome ? 0 : '2rem', minHeight: hideChrome ? 'auto' : 'calc(100vh - 8rem)' }}
+    >
       {!hideChrome && (
-      <div style={{width: '260px', flexShrink: 0, borderRight: '1px solid var(--border-color)', paddingRight: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
-        <div style={{fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem', letterSpacing: '0.05em'}}>
-          BIOINFORMATICS SERVICES
+        <div style={{ width: '260px', flexShrink: 0, borderRight: '1px solid var(--border-color)', paddingRight: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
+            BIOINFORMATICS SERVICES
+          </div>
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={`sidebar-item bio-hub-nav-btn ${subTab === item.id ? 'active' : ''}`}
+              onClick={() => setSubTab(item.id)}
+              style={{
+                width: '100%',
+                textAlign: 'left',
+                border: 'none',
+                background: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                cursor: 'pointer',
+                borderRadius: '8px',
+                padding: '0.75rem 1rem',
+              }}
+            >
+              <span style={{ fontSize: '0.9rem' }}>{item.label}</span>
+            </button>
+          ))}
         </div>
-        {menuItems.map(item => (
-          <button
-            key={item.id}
-            className={`sidebar-item ${subTab === item.id ? 'active' : ''}`}
-            onClick={() => setSubTab(item.id)}
-            style={{
-              width: '100%', 
-              textAlign: 'left', 
-              border: 'none', 
-              background: 'none', 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '0.75rem',
-              cursor: 'pointer',
-              borderRadius: '8px',
-              padding: '0.75rem 1rem',
-              color: subTab === item.id ? '#ffffff' : 'var(--text-secondary)'
-            }}
-          >
-            <span style={{fontSize: '0.9rem'}}>{item.label}</span>
-          </button>
-        ))}
-      </div>
       )}
 
       <div style={{ flexGrow: 1, minWidth: 0 }}>
         {subTab === 'onboarding' && <OnboardingTab />}
-        {subTab === 'conda' && <CondaEnvironmentTab />}
-        {subTab === 'install' && <InstallSoftwareTab API_URL={API_URL} />}
-        {subTab === 'file_ops' && <FileOperationsTab />}
-        {subTab === 'lumi' && <LumiJobTab dbProjects={dbProjects} API_URL={API_URL} />}
-        {subTab === 'pouta' && <CpoutaVmTab API_URL={API_URL} />}
-        {subTab === 'diagnostics' && <DiagnosticsTab API_URL={API_URL} />}
-        {subTab === 'troubleshoot' && <TroubleshooterTab API_URL={API_URL} />}
+        {subTab === 'lumi' && (
+          <LumiHubTab
+            dbProjects={dbProjects}
+            API_URL={API_URL}
+            initialSection={nestedSection || 'jobs'}
+            onSectionChange={setNestedSection}
+          />
+        )}
+        {subTab === 'pouta' && (
+          <PoutaHubTab
+            API_URL={API_URL}
+            onNavigate={onNavigate}
+            initialSection={nestedSection || 'vms'}
+            onSectionChange={setNestedSection}
+          />
+        )}
+        {subTab === 'roihu' && <RoihuTab />}
+        {subTab === 'troubleshoot' && (
+          <TroubleshootingHubTab
+            API_URL={API_URL}
+            initialSection={nestedSection || 'diagnostics'}
+            onSectionChange={setNestedSection}
+          />
+        )}
+        {subTab === 'utilities' && (
+          <UtilitiesHubTab
+            API_URL={API_URL}
+            onNavigate={onNavigate}
+            initialSection={nestedSection || 'file_ops'}
+            onSectionChange={setNestedSection}
+          />
+        )}
+        {subTab === 'tools' && <ComputationalToolsScreen />}
       </div>
-
     </div>
   );
 }
@@ -115,7 +165,6 @@ function CopyableCodeBlock({ code, type = 'success' }) {
     <div style={{position: 'relative', marginTop: '0.5rem', marginBottom: '1rem'}}>
       <pre className="code-block" style={{
         color: getAccentColor(),
-        background: 'rgba(0,0,0,0.4)', 
         padding: '1rem', 
         borderRadius: '8px',
         overflowX: 'auto',
@@ -162,37 +211,33 @@ function OnboardingTab() {
     { num: '7', title: 'Lab Standard', desc: 'Follow file-naming SOP & log computing node allocations' }
   ];
 
+  const ONBOARDING_SECTIONS = [
+    { id: 'flowchart', label: 'Workflow standards' },
+    { id: 'account', label: 'Account creation' },
+    { id: 'ssh_gen', label: 'SSH key generation' },
+    { id: 'ssh_setup', label: 'SSH access (admins)' },
+  ];
+
   return (
     <div>
-      <div className="page-header" style={{marginBottom: '1.5rem'}}>
-        <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-primary)'}}>Onboarding & Credentials</h2>
-        <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Standard Operating Procedures for onboarding new researchers and establishing secure computing access.</p>
-      </div>
-
-      {/* Onboarding Interactive Flowchart */}
-      <div className="panel" style={{marginBottom: '2rem'}}>
-        <h3 className="panel-title" style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-          <Activity size={18} /> Computational Onboarding Workflow Flowchart
+      <div className="panel" style={{ marginBottom: '0.75rem', padding: '0.75rem 1rem' }}>
+        <h3 className="panel-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
+          <Activity size={16} /> Onboarding roadmap
         </h3>
-        <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.5rem'}}>
-          Interactive step-by-step roadmap for new members of the Färkkilä Lab to begin analytical work on CSC HPC platforms. Click any step to read related documentation.
+        <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.65rem' }}>
+          Click a step to open the related documentation section.
         </p>
 
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
-          position: 'relative'
-        }}>
-          <div className="grid-4col" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div className="grid-4col" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.45rem' }}>
             {steps.map((st) => (
-              <div 
+              <div className="surface-inset" 
                 key={st.num} 
                 style={{
                   background: 'var(--bg-app)', 
                   border: '1px solid var(--border-color)', 
-                  borderRadius: '8px', 
-                  padding: '1rem', 
+                  borderRadius: '6px', 
+                  padding: '0.55rem 0.65rem', 
                   position: 'relative',
                   display: 'flex',
                   flexDirection: 'column',
@@ -232,7 +277,7 @@ function OnboardingTab() {
                   }}>STEP 0{st.num}</span>
                   <span style={{color: 'var(--text-muted)'}}>→</span>
                 </div>
-                <h4 style={{fontSize: '0.9rem', color: '#ffffff', margin: 0}}>{st.title}</h4>
+                <h4 style={{fontSize: '0.9rem', color: 'var(--text-primary)', margin: 0}}>{st.title}</h4>
                 <p style={{fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: 1.4, margin: 0}}>{st.desc}</p>
               </div>
             ))}
@@ -240,39 +285,12 @@ function OnboardingTab() {
         </div>
       </div>
 
-      {/* Internal Navigation Tabs */}
-      <div style={{display: 'flex', gap: '0.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem'}}>
-        <button 
-          onClick={() => setActiveSec('flowchart')} 
-          className={`btn ${activeSec === 'flowchart' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          📋 Lab Workflow Standard
-        </button>
-        <button 
-          onClick={() => setActiveSec('account')} 
-          className={`btn ${activeSec === 'account' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          👤 Account Creation
-        </button>
-        <button 
-          onClick={() => setActiveSec('ssh_gen')} 
-          className={`btn ${activeSec === 'ssh_gen' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          🔑 SSH Key Generation
-        </button>
-        <button 
-          onClick={() => setActiveSec('ssh_setup')} 
-          className={`btn ${activeSec === 'ssh_setup' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          🛡️ SSH Access (Admins)
-        </button>
-      </div>
-
-      {/* Sub-tab content panels */}
+      <HubDetailFrame
+        sections={ONBOARDING_SECTIONS}
+        active={activeSec}
+        onChange={setActiveSec}
+        ariaLabel="Onboarding topics"
+      >
       {activeSec === 'flowchart' && (
         <div className="panel">
           <h3 className="panel-title"><UserCheck size={18} /> Färkkilä Lab HPC Workflow Standards</h3>
@@ -304,22 +322,22 @@ function OnboardingTab() {
           </p>
           
           <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
-            <div style={{background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
-              <h4 style={{fontSize: '0.95rem', color: '#ffffff', marginBottom: '0.5rem'}}>Step 1: Create Account</h4>
+            <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
+              <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Step 1: Create Account</h4>
               <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0}}>
                 Visit the CSC Customer Portal at <a href="https://my.csc.fi" target="_blank" rel="noreferrer" style={{color: 'var(--color-primary)'}}>my.csc.fi</a>, select "Create new account", and authenticate using your University <b>Haka login</b> credentials. Fill out details and confirm your email. Note your generated CSC username.
               </p>
             </div>
 
-            <div style={{background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
-              <h4 style={{fontSize: '0.95rem', color: '#ffffff', marginBottom: '0.5rem'}}>Step 2: Join Project</h4>
+            <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
+              <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Step 2: Join Project</h4>
               <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0}}>
                 Provide your CSC username to the project manager. The manager will add your account to our active projects (e.g., <code>project_462001415</code>) in the MyCSC system. You will receive an automated email confirmation once approved.
               </p>
             </div>
 
-            <div style={{background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
-              <h4 style={{fontSize: '0.95rem', color: '#ffffff', marginBottom: '0.5rem'}}>Step 3: Access Activation</h4>
+            <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
+              <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Step 3: Access Activation</h4>
               <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0}}>
                 Upon joining the project, accept the terms of service for the target supercomputing hosts (Puhti, Lumi, or Allas storage). Your account is now provisioned and waiting for your SSH public key injection.
               </p>
@@ -335,8 +353,8 @@ function OnboardingTab() {
             CSC services strictly enforce SSH key-based authentication. Password-based logins are disabled. Use the instructions below to generate your keys.
           </p>
 
-          <div style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
-            <h4 style={{fontSize: '1rem', color: '#ffffff', marginBottom: '0.75rem'}}>Option A: macOS & Linux Terminal</h4>
+          <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
+            <h4 style={{fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.75rem'}}>Option A: macOS & Linux Terminal</h4>
             <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem'}}>
               Open the Terminal app, check if keys exist with <code>ls ~/.ssh</code>. If empty, generate a secure Ed25519 pair:
             </p>
@@ -347,8 +365,8 @@ function OnboardingTab() {
             <CopyableCodeBlock code={`cat ~/.ssh/id_ed25519.pub`} type="primary" />
           </div>
 
-          <div style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', marginTop: '1rem'}}>
-            <h4 style={{fontSize: '1rem', color: '#ffffff', marginBottom: '0.75rem'}}>Option B: Windows PowerShell</h4>
+          <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', marginTop: '1rem'}}>
+            <h4 style={{fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.75rem'}}>Option B: Windows PowerShell</h4>
             <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem'}}>
               Open Windows PowerShell and check directory contents. Generate the key:
             </p>
@@ -359,8 +377,8 @@ function OnboardingTab() {
             <CopyableCodeBlock code={`type $env:USERPROFILE\\.ssh\\id_ed25519.pub`} type="primary" />
           </div>
 
-          <div style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', marginTop: '1rem'}}>
-            <h4 style={{fontSize: '1rem', color: '#ffffff', marginBottom: '0.75rem'}}>Option C: MobaXterm GUI (Windows Workstations)</h4>
+          <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', marginTop: '1rem'}}>
+            <h4 style={{fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.75rem'}}>Option C: MobaXterm GUI (Windows Workstations)</h4>
             <ul style={{fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.25rem'}}>
               <li>Install MobaXterm (use the Portable Edition if you do not have administrator install rights).</li>
               <li>Go to the main menu and select: <b>Tools → SSH-key generator (MobaKeyGen)</b>.</li>
@@ -378,7 +396,7 @@ function OnboardingTab() {
             Färkkilä Lab virtual machines (cPouta VMs) are isolated, meaning admins must provision users and key bindings manually on each virtual machine.
           </p>
 
-          <h4 style={{fontSize: '0.95rem', color: '#ffffff', marginBottom: '0.5rem'}}>Normal User Creation Script:</h4>
+          <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Normal User Creation Script:</h4>
           <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)'}}>
             Login to target server (e.g. <code>farkkila-gpu1</code>) as root. Select next available UID from <code>/etc/passwd</code> and run:
           </p>
@@ -400,13 +418,14 @@ sudo chown \${USERNAME}:farkkilab /home/\${USERNAME}/.ssh/authorized_keys
 sudo chmod 600 /home/\${USERNAME}/.ssh/authorized_keys
 sudo chmod 700 /home/\${USERNAME}/.ssh/.ssh`} type="success" />
 
-          <h4 style={{fontSize: '0.95rem', color: '#ffffff', marginTop: '1.5rem', marginBottom: '0.5rem'}}>User Permissions SOP (Umask configuration)</h4>
+          <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem'}}>User Permissions SOP (Umask configuration)</h4>
           <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem'}}>
             To ensure files created by an individual user are editable and readable by other members of the group, enforce group-write permissions by default. Append the umask parameters to their <code>.bashrc</code>:
           </p>
           <CopyableCodeBlock code={`echo "umask 0002" | sudo tee -a /home/\${USERNAME}/.bashrc`} type="success" />
         </div>
       )}
+      </HubDetailFrame>
     </div>
   );
 }
@@ -414,8 +433,39 @@ sudo chmod 700 /home/\${USERNAME}/.ssh/.ssh`} type="success" />
 /* ========================================================================= */
 /* 2. ANACONDA & CONDA ENVIRONMENTS                                          */
 /* ========================================================================= */
-function CondaEnvironmentTab() {
-  const [activeSec, setActiveSec] = useState('core');
+function StorageHubLinkBanner({ onNavigate, target = 'landscape', label = 'Open Data & Storage' }) {
+  if (!onNavigate) return null;
+  return (
+    <div
+      className="panel"
+      style={{
+        marginBottom: '1.25rem',
+        padding: '0.85rem 1rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '1rem',
+        flexWrap: 'wrap',
+      }}
+    >
+      <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+        <HardDrive size={14} style={{ verticalAlign: 'middle', marginRight: '0.35rem' }} />
+        Drive capacities, L/P-drive paths, and cPouta volume rules live in <strong>Data &amp; Storage</strong>.
+        Command snippets stay here.
+      </p>
+      <button
+        type="button"
+        className="btn btn-sm btn-secondary"
+        onClick={() => onNavigate('data_storage', target)}
+      >
+        {label} <ArrowRight size={12} />
+      </button>
+    </div>
+  );
+}
+
+function CondaEnvironmentTab({ onNavigate, variant = 'full', embedded = false }) {
+  const [activeSec, setActiveSec] = useState(variant === 'pouta' ? 'pouta_env' : 'core');
 
   const condaScript = `conda create -n farkki_spatial python=3.10 -y
 conda activate farkki_spatial
@@ -440,38 +490,13 @@ conda activate py311
 python --version
 conda info --envs`;
 
-  return (
-    <div>
-      <div className="page-header" style={{marginBottom: '1.5rem'}}>
-        <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-primary)'}}>Anaconda & Environment SOP</h2>
-        <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Standardized configuration steps to clone and maintain cluster environments.</p>
-      </div>
+  const condaPanels = (
+    <>
+      {variant !== 'pouta' && (
+        <StorageHubLinkBanner onNavigate={onNavigate} target="local_storage" label="cPouta volume rules" />
+      )}
 
-      <div style={{display: 'flex', gap: '0.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem'}}>
-        <button 
-          onClick={() => setActiveSec('core')} 
-          className={`btn ${activeSec === 'core' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          🐍 Core Environment Setup
-        </button>
-        <button 
-          onClick={() => setActiveSec('pouta_env')} 
-          className={`btn ${activeSec === 'pouta_env' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          ☁️ cPouta VM Miniconda Setup
-        </button>
-        <button 
-          onClick={() => setActiveSec('storage')} 
-          className={`btn ${activeSec === 'storage' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          💾 Storage Management
-        </button>
-      </div>
-
-      {activeSec === 'core' && (
+      {(variant === 'core' || variant === 'full') && activeSec === 'core' && (
         <div>
           <div className="panel">
             <h3 className="panel-title"><Terminal size={18} /> Core Environment Setup</h3>
@@ -481,14 +506,14 @@ conda info --envs`;
             <CopyableCodeBlock code={condaScript} type="primary" />
           </div>
 
-          <div className="grid-2col" style={{marginTop: '1.5rem'}}>
+          <div className="grid-2col" style={{marginTop: '0.85rem'}}>
             <div className="panel">
-              <h4 style={{color: '#ffffff', marginBottom: '0.5rem', fontSize: '0.95rem'}}>Exporting Environment Variables</h4>
+              <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem', fontSize: '0.95rem'}}>Exporting Environment Variables</h4>
               <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.75rem'}}>To save the active package configurations into an environment file for portability:</p>
               <pre className="code-block" style={{fontSize: '0.8rem'}}>conda env export --no-builds &gt; environment.yml</pre>
             </div>
             <div className="panel">
-              <h4 style={{color: '#ffffff', marginBottom: '0.5rem', fontSize: '0.95rem'}}>Recreating Environment from YML</h4>
+              <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem', fontSize: '0.95rem'}}>Recreating Environment from YML</h4>
               <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.75rem'}}>To recreate the dependencies from a git repository file:</p>
               <pre className="code-block" style={{fontSize: '0.8rem'}}>conda env create -f environment.yml</pre>
             </div>
@@ -496,7 +521,7 @@ conda info --envs`;
         </div>
       )}
 
-      {activeSec === 'pouta_env' && (
+      {(variant === 'pouta' || variant === 'full') && activeSec === 'pouta_env' && (
         <div className="panel">
           <h3 className="panel-title"><Terminal size={18} /> Setting Up Miniconda on CSC Pouta VMs</h3>
           <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>
@@ -504,7 +529,7 @@ conda info --envs`;
           </p>
           <CopyableCodeBlock code={minicondaPouta} type="success" />
 
-          <h4 style={{fontSize: '0.95rem', color: '#ffffff', marginTop: '1.5rem', marginBottom: '0.5rem'}}>Conda Environment Best Practices:</h4>
+          <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem'}}>Conda Environment Best Practices:</h4>
           <ul style={{fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.25rem'}}>
             <li>Keep environments lightweight and specific. Do not install unrelated tools in the same environment.</li>
             <li>Clear cached directories regularly using <code>conda clean -a</code> to free root disk space.</li>
@@ -512,33 +537,32 @@ conda info --envs`;
           </ul>
         </div>
       )}
+    </>
+  );
 
-      {activeSec === 'storage' && (
-        <div className="panel">
-          <h3 className="panel-title"><Database size={18} /> Pouta VM Data Storage & Workspaces</h3>
-          <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>
-            To keep root drives free and prevent system crash failures, follow these strict volume allocation principles:
-          </p>
-          
-          <ul style={{fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6, paddingLeft: '1.5rem', marginBottom: '1.5rem'}}>
-            <li><b>Home Directory:</b> Restrict <code>/home/username</code> strictly to config files, git repositories, and lightweight scripts. Do not write data here.</li>
-            <li><b>Data Volume:</b> Store all active raw slide files, packages, and stitching output under the persistent 2 TB storage mounted at <code>/data</code>.</li>
-            <li><b>Personal Folder:</b> Create a dedicated directory for your account: <code>mkdir -p /data/$USER</code>.</li>
-          </ul>
+  return (
+    <div>
+      {!embedded && (
+      <div className="page-header" style={{marginBottom: '1.5rem'}}>
+        <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-primary)'}}>Anaconda & Environment SOP</h2>
+        <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Standardized configuration steps to clone and maintain cluster environments.</p>
+      </div>
+      )}
 
-          <h4 style={{fontSize: '0.95rem', color: '#ffffff', marginBottom: '0.5rem'}}>Symlinking large datasets from /data to home:</h4>
-          <CopyableCodeBlock code={`# Move folder to /data
-mv ~/large_dataset /data/$USER/
-# Create a symbolic link in home
-ln -s /data/$USER/large_dataset ~/large_dataset`} type="primary" />
-
-          <h4 style={{fontSize: '0.95rem', color: '#ffffff', marginTop: '1.5rem', marginBottom: '0.5rem'}}>Disk Usage Audit Commands:</h4>
-          <CopyableCodeBlock code={`# Check personal directory size
-du -sh /data/$USER
-
-# Verify overall system disk volume percentages
-df -h`} type="primary" />
-        </div>
+      {variant === 'full' ? (
+        <HubDetailFrame
+          sections={[
+            { id: 'core', label: 'Core environment' },
+            { id: 'pouta_env', label: 'cPouta miniconda' },
+          ]}
+          active={activeSec}
+          onChange={setActiveSec}
+          ariaLabel="Conda environment views"
+        >
+          {condaPanels}
+        </HubDetailFrame>
+      ) : (
+        condaPanels
       )}
     </div>
   );
@@ -547,7 +571,7 @@ df -h`} type="primary" />
 /* ========================================================================= */
 /* 3. SOFTWARE TOOL INSTALLATIONS                                            */
 /* ========================================================================= */
-export function InstallSoftwareTab({ API_URL }) {
+export function InstallSoftwareTab({ API_URL, embedded = false }) {
   const [software, setSoftware] = useState('ashlar');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -601,37 +625,14 @@ singularity run --nv napari-xtra.sif napari_fast_masking.py
 #    File -> Open -> Computer -> select root drive -> search 'scratch'
 #    Open: /scratch/project_462001305/ -> choose target datasets.`;
 
+  const installViews = [
+    { id: 'generator', label: 'Installer guide' },
+    { id: 'lumi_folders', label: 'LUMI folder standards' },
+    { id: 'napari_lumi', label: 'Napari on LUMI' },
+  ];
+
   return (
-    <div>
-      <div className="page-header" style={{marginBottom: '1.5rem'}}>
-        <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-success)'}}>Bioinformatics Tool Installation</h2>
-        <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Dynamic guide generators to install spatial-biology packages on server environments.</p>
-      </div>
-
-      <div style={{display: 'flex', gap: '0.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem'}}>
-        <button 
-          onClick={() => setActiveSec('generator')} 
-          className={`btn ${activeSec === 'generator' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          ⚙️ Installer Guide Generator
-        </button>
-        <button 
-          onClick={() => setActiveSec('lumi_folders')} 
-          className={`btn ${activeSec === 'lumi_folders' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          📂 LUMI Folder Standards
-        </button>
-        <button 
-          onClick={() => setActiveSec('napari_lumi')} 
-          className={`btn ${activeSec === 'napari_lumi' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          🎥 running Napari in LUMI
-        </button>
-      </div>
-
+    <HubDetailFrame sections={installViews} active={activeSec} onChange={setActiveSec} ariaLabel="Tool installation views">
       {activeSec === 'generator' && (
         <div className="panel" style={{maxWidth: '650px'}}>
           <h3 className="panel-title"><Settings size={18} /> Choose Package to Install</h3>
@@ -649,9 +650,9 @@ singularity run --nv napari-xtra.sif napari_fast_masking.py
           </button>
 
           {result && (
-            <div style={{marginTop: '1.5rem', background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
+            <div className="surface-inset" style={{marginTop: '1.5rem', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
               <h4 style={{color: 'var(--color-primary)', marginBottom: '0.5rem'}}>Installation Command:</h4>
-              <code style={{background: '#000', padding: '0.5rem 1rem', borderRadius: '4px', display: 'block', color: 'var(--color-success)', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', marginBottom: '1rem'}}>{result.install_command}</code>
+              <code style={{background: 'var(--bg-inset)', padding: '0.5rem 1rem', borderRadius: '4px', display: 'block', color: 'var(--color-success)', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', marginBottom: '1rem'}}>{result.install_command}</code>
               <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.5}}>{result.instructions}</p>
             </div>
           )}
@@ -677,16 +678,16 @@ singularity run --nv napari-xtra.sif napari_fast_masking.py
           <CopyableCodeBlock code={napariLumi} type="success" />
         </div>
       )}
-    </div>
+    </HubDetailFrame>
   );
 }
 
 /* ========================================================================= */
 /* 4. FILE OPERATIONS & TRANSFERS                                            */
 /* ========================================================================= */
-function FileOperationsTab() {
-  const [activeSec, setActiveSec] = useState('guides');
-  const [activeGuideSub, setActiveGuideSub] = useState('lumi_o');
+function FileOperationsTab({ onNavigate, variant = 'full', embedded = false }) {
+  const [activeSec, setActiveSec] = useState(variant === 'lumi' ? 'guides' : 'guides');
+  const [activeGuideSub, setActiveGuideSub] = useState(variant === 'lumi' ? 'lumi_o' : 'csc_dc');
 
   const transferScript = `rsync -avzP --compress-level=6 \\
   -e "ssh -i ~/.ssh/id_rsa" \\
@@ -824,77 +825,43 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
 
   return (
     <div>
+      {!embedded && (
       <div className="page-header" style={{marginBottom: '1.5rem'}}>
         <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-accent)'}}>File Operations SOP</h2>
         <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Standard guidelines for transfer, compression, and encryption of large raw image directories.</p>
       </div>
+      )}
 
-      {/* Main sub-tabs for File Operations */}
-      <div style={{display: 'flex', gap: '0.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem'}}>
-        <button 
-          onClick={() => setActiveSec('guides')} 
-          className={`btn ${activeSec === 'guides' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          📂 File Transfer Guides
-        </button>
-        <button 
-          onClick={() => setActiveSec('cheatsheet')} 
-          className={`btn ${activeSec === 'cheatsheet' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          📝 rclone CLI Cheatsheet
-        </button>
-        <button 
-          onClick={() => setActiveSec('crypto')} 
-          className={`btn ${activeSec === 'crypto' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          🔐 Compression & Encryption
-        </button>
-      </div>
+      {variant !== 'lumi' && (
+        <StorageHubLinkBanner onNavigate={onNavigate} target="landscape" label="Storage landscape" />
+      )}
 
-      {/* 4.1 FILE TRANSFER GUIDES SUB-TAB */}
+      {(() => {
+        const fileOpViews = [
+          { id: 'guides', label: 'Transfer guides' },
+          { id: 'cheatsheet', label: 'rclone cheatsheet' },
+          { id: 'crypto', label: 'Compression & encryption' },
+        ];
+        const guideViews = [
+          ...(variant !== 'utilities' ? [{ id: 'lumi_o', label: 'LUMI & Lumi-O' }] : []),
+          { id: 'csc_dc', label: 'CSC to Datacloud' },
+          { id: 'local_allas', label: 'Workstation to Allas' },
+          { id: 'cyberduck', label: 'Cyberduck GUI' },
+        ];
+
+        const fileOpBody = (
+          <>
       {activeSec === 'guides' && (
-        <div style={{display: 'flex', gap: '1.5rem'}}>
-          
-          {/* Sub navigation side pills */}
-          <div style={{width: '220px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '0.25rem'}}>
-            <button 
-              onClick={() => setActiveGuideSub('lumi_o')} 
-              className={`sidebar-item ${activeGuideSub === 'lumi_o' ? 'active' : ''}`}
-              style={{border: 'none', background: 'none', textAlign: 'left', padding: '0.5rem 0.75rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem'}}
-            >
-              💻 LUMI & Lumi-O S3
-            </button>
-            <button 
-              onClick={() => setActiveGuideSub('csc_dc')} 
-              className={`sidebar-item ${activeGuideSub === 'csc_dc' ? 'active' : ''}`}
-              style={{border: 'none', background: 'none', textAlign: 'left', padding: '0.5rem 0.75rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem'}}
-            >
-              🏢 CSC to Datacloud
-            </button>
-            <button 
-              onClick={() => setActiveGuideSub('local_allas')} 
-              className={`sidebar-item ${activeGuideSub === 'local_allas' ? 'active' : ''}`}
-              style={{border: 'none', background: 'none', textAlign: 'left', padding: '0.5rem 0.75rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem'}}
-            >
-              🏠 Workstation to Allas
-            </button>
-            <button 
-              onClick={() => setActiveGuideSub('cyberduck')} 
-              className={`sidebar-item ${activeGuideSub === 'cyberduck' ? 'active' : ''}`}
-              style={{border: 'none', background: 'none', textAlign: 'left', padding: '0.5rem 0.75rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem'}}
-            >
-              🦢 Cyberduck Swift GUI
-            </button>
-          </div>
-
-          {/* Guide Display Panel */}
-          <div style={{flexGrow: 1}}>
+        <HubDetailFrame
+          sections={guideViews}
+          active={activeGuideSub}
+          onChange={setActiveGuideSub}
+          ariaLabel="Transfer guide topics"
+        >
+          <div>
             {activeGuideSub === 'lumi_o' && (
               <div className="panel" style={{margin: 0}}>
-                <h4 style={{color: '#ffffff', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <Cloud size={16} /> File Transfer in LUMI / Lumi-O Connection
                 </h4>
                 <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>
@@ -906,7 +873,7 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
 
             {activeGuideSub === 'csc_dc' && (
               <div className="panel" style={{margin: 0}}>
-                <h4 style={{color: '#ffffff', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <Cloud size={16} /> File Transfer from CSC to Datacloud / Allas
                 </h4>
                 <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>
@@ -918,7 +885,7 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
 
             {activeGuideSub === 'local_allas' && (
               <div className="panel" style={{margin: 0}}>
-                <h4 style={{color: '#ffffff', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <Cloud size={16} /> File Transfer from Workstation to Allas (rclone CLI)
                 </h4>
                 <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>
@@ -930,14 +897,13 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
 
             {activeGuideSub === 'cyberduck' && (
               <div className="panel" style={{margin: 0}}>
-                <h4 style={{color: '#ffffff', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <Cloud size={16} /> Graphical Transfer: Using Allas with Cyberduck
                 </h4>
                 <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>
                   For macOS and Windows users who prefer a graphical user interface instead of rclone shell command lines:
                 </p>
                 <pre style={{
-                  background: 'rgba(0,0,0,0.15)',
                   padding: '1.25rem',
                   borderRadius: '6px',
                   border: '1px solid var(--border-color)',
@@ -951,10 +917,9 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
               </div>
             )}
           </div>
-        </div>
+        </HubDetailFrame>
       )}
 
-      {/* 4.2 RCLONE CHEATSHEET SUB-TAB */}
       {activeSec === 'cheatsheet' && (
         <div className="panel">
           <h3 className="panel-title"><FileText size={18} /> rclone CLI Cheatsheet</h3>
@@ -965,7 +930,6 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
         </div>
       )}
 
-      {/* 4.3 CRYPTO & ENCRYPTION SUB-TAB */}
       {activeSec === 'crypto' && (
         <div>
           <div className="panel">
@@ -985,6 +949,22 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
           </div>
         </div>
       )}
+          </>
+        );
+
+        if (variant === 'lumi') return fileOpBody;
+
+        return (
+          <HubDetailFrame
+            sections={fileOpViews}
+            active={activeSec}
+            onChange={setActiveSec}
+            ariaLabel="File operation views"
+          >
+            {fileOpBody}
+          </HubDetailFrame>
+        );
+      })()}
     </div>
   );
 }
@@ -992,7 +972,7 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
 /* ========================================================================= */
 /* 5. LUMI SLURM JOBS                                                        */
 /* ========================================================================= */
-export function LumiJobTab({ dbProjects, API_URL }) {
+export function LumiJobTab({ dbProjects, API_URL, embedded = false }) {
   const [proj, setProj] = useState('SPACE');
   const [gpus, setGpus] = useState(1);
   const [walltime, setWalltime] = useState('02:00:00');
@@ -1049,30 +1029,13 @@ scancel <JOBID>
 # Cancel all your running jobs
 scancel -u $USER`;
 
+  const lumiJobViews = [
+    { id: 'generator', label: 'Script generator' },
+    { id: 'status', label: 'Slurm status' },
+  ];
+
   return (
-    <div>
-      <div className="page-header" style={{marginBottom: '1.5rem'}}>
-        <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-primary)'}}>LUMI HPC Job Script Generator</h2>
-        <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Configure cluster scripts to run parallel stitching and segmentations.</p>
-      </div>
-
-      <div style={{display: 'flex', gap: '0.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem'}}>
-        <button 
-          onClick={() => setActiveSec('generator')} 
-          className={`btn ${activeSec === 'generator' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          💻 Script Generator
-        </button>
-        <button 
-          onClick={() => setActiveSec('status')} 
-          className={`btn ${activeSec === 'status' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          🩺 Checking Slurm Status
-        </button>
-      </div>
-
+    <HubDetailFrame sections={lumiJobViews} active={activeSec} onChange={setActiveSec} ariaLabel="Slurm job views">
       {activeSec === 'generator' && (
         <div className="panel" style={{maxWidth: '650px'}}>
           <h3 className="panel-title"><Cpu size={18} /> Slurm Configuration</h3>
@@ -1098,7 +1061,7 @@ scancel -u $USER`;
 
           {result && (
             <div style={{marginTop: '1.5rem'}}>
-              <h4 style={{color: '#ffffff', marginBottom: '0.5rem'}}>Slurm Script Code:</h4>
+              <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Slurm Script Code:</h4>
               <CopyableCodeBlock code={result.slurm_script_content} type="success" />
             </div>
           )}
@@ -1116,7 +1079,7 @@ scancel -u $USER`;
           </div>
 
           <div className="panel">
-            <h4 style={{color: '#ffffff', marginBottom: '0.75rem', fontSize: '0.95rem'}}>Common Slurm Job State Codes</h4>
+            <h4 style={{color: 'var(--text-primary)', marginBottom: '0.75rem', fontSize: '0.95rem'}}>Common Slurm Job State Codes</h4>
             <table className="table" style={{width: '100%', fontSize: '0.85rem', borderCollapse: 'collapse'}}>
               <thead>
                 <tr style={{borderBottom: '1px solid var(--border-color)', textAlign: 'left'}}>
@@ -1138,47 +1101,24 @@ scancel -u $USER`;
           </div>
         </div>
       )}
-    </div>
+    </HubDetailFrame>
   );
 }
 
 /* ========================================================================= */
 /* 6. cPOUTA CLOUD VM MANAGEMENT & MEDIA                                     */
 /* ========================================================================= */
-function CpoutaVmTab({ API_URL }) {
+const CPOUTA_VM_VIEWS = [
+  { id: 'specs', label: 'VM servers & specs' },
+  { id: 'creation', label: 'VM creation guide' },
+  { id: 'media', label: 'Training media' },
+];
+
+function CpoutaVmTab({ API_URL, onNavigate, embedded = false }) {
   const [activeSec, setActiveSec] = useState('specs');
 
   return (
-    <div>
-      <div className="page-header" style={{marginBottom: '1.5rem'}}>
-        <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-primary)'}}>cPouta Cloud Virtual Machines</h2>
-        <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Deploy, configure, and manage custom virtual machine environments on CSC Pouta infrastructure.</p>
-      </div>
-
-      <div style={{display: 'flex', gap: '0.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem'}}>
-        <button 
-          onClick={() => setActiveSec('specs')} 
-          className={`btn ${activeSec === 'specs' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          🖥️ VM Servers & Specs
-        </button>
-        <button 
-          onClick={() => setActiveSec('creation')} 
-          className={`btn ${activeSec === 'creation' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          ⚙️ VM Creation Guide
-        </button>
-        <button 
-          onClick={() => setActiveSec('media')} 
-          className={`btn ${activeSec === 'media' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          🎥 Training Media Memos
-        </button>
-      </div>
-
+    <HubDetailFrame sections={CPOUTA_VM_VIEWS} active={activeSec} onChange={setActiveSec} ariaLabel="cPouta VM views">
       {activeSec === 'specs' && (
         <div>
           <div className="panel">
@@ -1188,7 +1128,7 @@ function CpoutaVmTab({ API_URL }) {
             </p>
 
             <div className="grid-3col" style={{gap: '1rem'}}>
-              <div style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
+              <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
                 <h4 style={{fontSize: '1rem', color: 'var(--color-primary)', margin: '0 0 0.5rem 0'}}>farkkila-gpu1</h4>
                 <p style={{fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.4, margin: '0 0 0.75rem 0'}}>
                   <b>OS:</b> Ubuntu 16.04 (CUDA-enabled)<br/>
@@ -1199,7 +1139,7 @@ function CpoutaVmTab({ API_URL }) {
                 <span style={{fontSize: '0.75rem', background: 'rgba(45,212,191,0.1)', color: 'var(--color-primary)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 'bold'}}>GPU pipelines & Avivator</span>
               </div>
 
-              <div style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
+              <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
                 <h4 style={{fontSize: '1rem', color: 'var(--color-primary)', margin: '0 0 0.5rem 0'}}>farkkila-cpu1</h4>
                 <p style={{fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.4, margin: '0 0 0.75rem 0'}}>
                   <b>OS:</b> Ubuntu 18.04 LTS<br/>
@@ -1210,7 +1150,7 @@ function CpoutaVmTab({ API_URL }) {
                 <span style={{fontSize: '0.75rem', background: 'rgba(13,148,136,0.1)', color: 'var(--color-primary)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 'bold'}}>Cyto App (port 9999)</span>
               </div>
 
-              <div style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
+              <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
                 <h4 style={{fontSize: '1rem', color: 'var(--color-primary)', margin: '0 0 0.5rem 0'}}>farkkila-cpu2</h4>
                 <p style={{fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.4, margin: '0 0 0.75rem 0'}}>
                   <b>OS:</b> Ubuntu 18.04 LTS<br/>
@@ -1224,11 +1164,24 @@ function CpoutaVmTab({ API_URL }) {
           </div>
 
           <div className="panel">
-            <h4 style={{color: '#ffffff', marginBottom: '0.75rem', fontSize: '1rem'}}>NFS Shared Storage Volumes</h4>
+            <h4 style={{color: 'var(--text-primary)', marginBottom: '0.75rem', fontSize: '1rem'}}>NFS Shared Storage Volumes</h4>
             <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5}}>
-              A persistent 2 TB storage volume is mounted directly on <code>farkkila-gpu1</code> at <code>/data</code>, acting as an NFS server. <code>farkkila-cpu1</code> and <code>farkkila-cpu2</code> mount this directory client-side. NFS exports settings are in <code>/etc/exports</code>:
+              2 TB at <code>/data</code> on <code>farkkila-gpu1</code> (NFS server); cpu1/cpu2 mount as clients.
+              Home vs <code>/data/$USER</code> rules, symlinks, and disk audits →{' '}
+              {onNavigate ? (
+                <button
+                  type="button"
+                  className="btn btn-sm btn-secondary"
+                  style={{ marginTop: '0.35rem' }}
+                  onClick={() => onNavigate('data_storage', 'local_storage')}
+                >
+                  Data &amp; Storage <ArrowRight size={12} />
+                </button>
+              ) : (
+                'Data & Storage → Local & external disks'
+              )}
             </p>
-            <pre className="code-block" style={{fontSize: '0.8rem', color: 'var(--color-warning)'}}>{`/data 192.168.1.7(rw,sync,no_subtree_check,no_root_squash) 192.168.1.12(rw,sync,no_subtree_check,no_root_squash)`}</pre>
+            <pre className="code-block" style={{fontSize: '0.8rem', color: 'var(--color-warning)', marginTop: '0.75rem'}}>{`/data 192.168.1.7(rw,sync,no_subtree_check,no_root_squash) 192.168.1.12(rw,sync,no_subtree_check,no_root_squash)`}</pre>
           </div>
         </div>
       )}
@@ -1274,28 +1227,28 @@ function CpoutaVmTab({ API_URL }) {
           </p>
 
           <div style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
-            <div style={{background: 'rgba(0,0,0,0.2)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
-              <h4 style={{color: '#ffffff', marginBottom: '0.75rem', fontSize: '0.95rem'}}>1. cPouta Setup Video Walkthrough</h4>
+            <div className="surface-inset" style={{padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
+              <h4 style={{color: 'var(--text-primary)', marginBottom: '0.75rem', fontSize: '0.95rem'}}>1. cPouta Setup Video Walkthrough</h4>
               <p style={{fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.75rem'}}>Screen recording of SSH key binding and network routers layout.</p>
               <video 
                 controls 
-                style={{width: '100%', borderRadius: '4px', background: '#000', maxHeight: '360px'}}
+                style={{width: '100%', borderRadius: '4px', background: 'var(--bg-inset)', maxHeight: '360px'}}
                 src={`${API_URL}/csc-media/Cpouta%20User%20setup/video1003837229.mp4`}
               />
             </div>
 
-            <div style={{background: 'rgba(0,0,0,0.2)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
-              <h4 style={{color: '#ffffff', marginBottom: '0.75rem', fontSize: '0.95rem'}}>2. VM Instance Creation & Shell Run</h4>
+            <div className="surface-inset" style={{padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
+              <h4 style={{color: 'var(--text-primary)', marginBottom: '0.75rem', fontSize: '0.95rem'}}>2. VM Instance Creation & Shell Run</h4>
               <p style={{fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.75rem'}}>Console run recording detailing useradd actions and ports checking.</p>
               <video 
                 controls 
-                style={{width: '100%', borderRadius: '4px', background: '#000', maxHeight: '360px'}}
+                style={{width: '100%', borderRadius: '4px', background: 'var(--bg-inset)', maxHeight: '360px'}}
                 src={`${API_URL}/csc-media/Cpouta%20User%20setup/video2003837229.mp4`}
               />
             </div>
 
-            <div style={{background: 'rgba(0,0,0,0.2)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
-              <h4 style={{color: '#ffffff', marginBottom: '0.75rem', fontSize: '0.95rem'}}>3. cPouta Audio Memo Notes</h4>
+            <div className="surface-inset" style={{padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
+              <h4 style={{color: 'var(--text-primary)', marginBottom: '0.75rem', fontSize: '0.95rem'}}>3. cPouta Audio Memo Notes</h4>
               <p style={{fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.75rem'}}>Voice dictation regarding persistent volumes attaching guidelines.</p>
               <audio 
                 controls 
@@ -1306,14 +1259,14 @@ function CpoutaVmTab({ API_URL }) {
           </div>
         </div>
       )}
-    </div>
+    </HubDetailFrame>
   );
 }
 
 /* ========================================================================= */
 /* 7. SYSTEM DIAGNOSTICS                                                     */
 /* ========================================================================= */
-export function DiagnosticsTab({ API_URL }) {
+export function DiagnosticsTab({ API_URL, embedded = false }) {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [checker, setChecker] = useState('python_env');
@@ -1359,10 +1312,12 @@ export function DiagnosticsTab({ API_URL }) {
 
   return (
     <div>
+      {!embedded && (
       <div className="module-page-header">
         <h2 className="text-title-1">Cluster Diagnostic Suite</h2>
         <p className="page-lead">Assess pipeline environment layers, Python dependencies, and local tooling.</p>
       </div>
+      )}
 
       <div className="panel" style={{ maxWidth: '750px' }}>
         <h3 className="panel-title"><Terminal size={18} /> Environment checkers</h3>
@@ -1399,7 +1354,7 @@ export function DiagnosticsTab({ API_URL }) {
 /* ========================================================================= */
 /* 8. ERROR TROUBLESHOOTER & LINUX CHEATSHEET                                */
 /* ========================================================================= */
-export function TroubleshooterTab({ API_URL }) {
+export function TroubleshooterTab({ API_URL, embedded = false }) {
   const [errorLogs, setErrorLogs] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -1432,28 +1387,22 @@ export function TroubleshooterTab({ API_URL }) {
 
   return (
     <div>
+      {!embedded && (
       <div className="page-header" style={{marginBottom: '1.5rem'}}>
         <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-danger)'}}>AI Stack Trace Analyzer</h2>
         <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Upload standard error streams from job fails to retrieve fast resolutions.</p>
       </div>
+      )}
 
-      <div style={{display: 'flex', gap: '0.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem'}}>
-        <button 
-          onClick={() => setActiveSec('troubleshoot')} 
-          className={`btn ${activeSec === 'troubleshoot' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          💡 Analyzer Tools
-        </button>
-        <button 
-          onClick={() => setActiveSec('linux_cli')} 
-          className={`btn ${activeSec === 'linux_cli' ? 'btn-primary' : 'btn-secondary'}`}
-          style={{padding: '0.5rem 1rem', fontSize: '0.85rem'}}
-        >
-          🐧 Linux Commands
-        </button>
-      </div>
-
+      <HubDetailFrame
+        sections={[
+          { id: 'troubleshoot', label: 'Log analyzer' },
+          { id: 'linux_cli', label: 'Linux commands' },
+        ]}
+        active={activeSec}
+        onChange={setActiveSec}
+        ariaLabel="Troubleshooting views"
+      >
       {activeSec === 'troubleshoot' && (
         <div className="panel" style={{maxWidth: '750px'}}>
           <h3 className="panel-title"><AlertCircle size={18} /> Troubleshoot Logs</h3>
@@ -1547,6 +1496,199 @@ export function TroubleshooterTab({ API_URL }) {
               </tr>
             </tbody>
           </table>
+        </div>
+      )}
+      </HubDetailFrame>
+    </div>
+  );
+}
+
+/* ========================================================================= */
+/* HUB COMPOSITE TABS (reorganized navigation)                                 */
+/* ========================================================================= */
+
+const LUMI_SECTIONS = [
+  { id: 'jobs', label: 'Slurm jobs' },
+  { id: 'install', label: 'Tool installations' },
+  { id: 'pipeline', label: 'Pipelines' },
+  { id: 'transfers', label: 'Lumi-O transfers' },
+];
+
+function LumiHubTab({ dbProjects, API_URL, initialSection = 'jobs', onSectionChange }) {
+  const [section, setSection] = useState(initialSection);
+
+  useEffect(() => {
+    setSection(initialSection);
+  }, [initialSection]);
+
+  const select = (id) => {
+    setSection(id);
+    onSectionChange?.(id);
+  };
+
+  return (
+    <HubSectionFrame sections={LUMI_SECTIONS} active={section} onChange={select} ariaLabel="LUMI HPC sections">
+      {section === 'jobs' && <LumiJobTab dbProjects={dbProjects} API_URL={API_URL} embedded />}
+      {section === 'install' && <InstallSoftwareTab API_URL={API_URL} embedded />}
+      {section === 'pipeline' && <RunPipelineTab dbProjects={dbProjects} API_URL={API_URL} />}
+      {section === 'transfers' && <FileOperationsTab variant="lumi" embedded />}
+    </HubSectionFrame>
+  );
+}
+
+const POUTA_SECTIONS = [
+  { id: 'vms', label: 'VMs & specs' },
+  { id: 'conda', label: 'VM conda setup' },
+];
+
+function PoutaHubTab({ API_URL, onNavigate, initialSection = 'vms', onSectionChange }) {
+  const [section, setSection] = useState(initialSection);
+
+  useEffect(() => {
+    setSection(initialSection);
+  }, [initialSection]);
+
+  const select = (id) => {
+    setSection(id);
+    onSectionChange?.(id);
+  };
+
+  return (
+    <HubSectionFrame sections={POUTA_SECTIONS} active={section} onChange={select} ariaLabel="cPouta sections">
+      {section === 'vms' && <CpoutaVmTab API_URL={API_URL} onNavigate={onNavigate} embedded />}
+      {section === 'conda' && <CondaEnvironmentTab onNavigate={onNavigate} variant="pouta" embedded />}
+    </HubSectionFrame>
+  );
+}
+
+function RoihuTab() {
+  return (
+    <div>
+      <div className="panel">
+        <h3 className="panel-title"><Cpu size={18} /> Coming soon</h3>
+        <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55, marginBottom: '1rem' }}>
+          Puhti is being phased out in favour of LUMI and Roihu. Use the LUMI HPC tab for active Slurm workflows today.
+          Roihu-specific onboarding, module stacks, and pipeline templates will be documented in this section.
+        </p>
+        <div style={{ background: 'rgba(251,191,36,0.1)', borderLeft: '4px solid var(--color-warning)', padding: '1rem', borderRadius: '4px' }}>
+          <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0 }}>
+            See also <strong>Onboarding &amp; credentials</strong> for the Puhti → Roihu migration reminder and
+            <strong> LUMI HPC → Lumi-O transfers</strong> for scratch-to-bucket workflows.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const TROUBLESHOOT_SECTIONS = [
+  { id: 'diagnostics', label: 'Environment diagnostics' },
+  { id: 'logs', label: 'Log analyzer' },
+];
+
+function TroubleshootingHubTab({ API_URL, initialSection = 'diagnostics', onSectionChange }) {
+  const [section, setSection] = useState(initialSection);
+
+  useEffect(() => {
+    setSection(initialSection);
+  }, [initialSection]);
+
+  const select = (id) => {
+    setSection(id);
+    onSectionChange?.(id);
+  };
+
+  return (
+    <HubSectionFrame sections={TROUBLESHOOT_SECTIONS} active={section} onChange={select} ariaLabel="Troubleshooting sections">
+      {section === 'diagnostics' && <DiagnosticsTab API_URL={API_URL} embedded />}
+      {section === 'logs' && <TroubleshooterTab API_URL={API_URL} embedded />}
+    </HubSectionFrame>
+  );
+}
+
+const UTILITIES_SECTIONS = [
+  { id: 'file_ops', label: 'File operations' },
+  { id: 'conda', label: 'Conda environments' },
+];
+
+function UtilitiesHubTab({ API_URL, onNavigate, initialSection = 'file_ops', onSectionChange }) {
+  const [section, setSection] = useState(initialSection);
+
+  useEffect(() => {
+    setSection(initialSection);
+  }, [initialSection]);
+
+  const select = (id) => {
+    setSection(id);
+    onSectionChange?.(id);
+  };
+
+  return (
+    <HubSectionFrame sections={UTILITIES_SECTIONS} active={section} onChange={select} ariaLabel="Utilities sections">
+      {section === 'file_ops' && <FileOperationsTab onNavigate={onNavigate} variant="utilities" embedded />}
+      {section === 'conda' && <CondaEnvironmentTab onNavigate={onNavigate} variant="core" embedded />}
+    </HubSectionFrame>
+  );
+}
+
+export function RunPipelineTab({ dbProjects, API_URL }) {
+  const [pipeline, setPipeline] = useState('stitching');
+  const [project, setProject] = useState('SPACE');
+  const [result, setResult] = useState(null);
+  const [running, setRunning] = useState(false);
+
+  const handleRun = async () => {
+    setRunning(true);
+    setResult(null);
+    try {
+      const res = await fetch(`${API_URL}/run_checker`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          check_type: `run_${pipeline}_pipeline`,
+          options: { project_code: project },
+        }),
+      });
+      if (res.ok) {
+        setResult(await res.json());
+      }
+    } catch (e) {
+      setResult({ status: 'error', details: String(e) });
+    } finally {
+      setRunning(false);
+    }
+  };
+
+  return (
+    <div className="panel" style={{ maxWidth: '650px' }}>
+      <h3 className="panel-title"><Play size={18} /> Trigger spatial biology pipeline (LUMI)</h3>
+      <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+        Launch Ashlar stitching, Stardist segmentation, or Cylinter gating checks against a project cohort on cluster infrastructure.
+      </p>
+      <div className="form-group">
+        <label className="form-label">Select pipeline action</label>
+        <select className="form-select" value={pipeline} onChange={(e) => setPipeline(e.target.value)}>
+          <option value="stitching">Ashlar image stitching &amp; registration</option>
+          <option value="segmentation">Stardist segmentations &amp; mask extraction</option>
+          <option value="gating">Cylinter ROI gating &amp; mask normalizations</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label className="form-label">Target cohort project</label>
+        <select className="form-select" value={project} onChange={(e) => setProject(e.target.value)}>
+          {dbProjects.map((p) => (
+            <option key={p.project_code} value={p.project_code}>{p.project_code}</option>
+          ))}
+        </select>
+      </div>
+      <button type="button" className="btn btn-primary" onClick={handleRun} disabled={running}>
+        {running ? 'Executing pipeline on cluster…' : '🚀 Launch pipeline run'}
+      </button>
+
+      {result && (
+        <div className="surface-inset" style={{ marginTop: '1.5rem', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+          <h4 style={{ fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>Execution result</h4>
+          <pre style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--color-success)', overflowX: 'auto' }}>{JSON.stringify(result, null, 2)}</pre>
         </div>
       )}
     </div>

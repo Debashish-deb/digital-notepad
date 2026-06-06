@@ -1,3 +1,5 @@
+from app_skeleton.security.permissions import require_role
+from app_skeleton.security.auth import require_platform_user
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
 from app_skeleton.api.common import *
 from typing import *
@@ -7,10 +9,26 @@ import psycopg
 router = APIRouter()
 
 @router.post("/ingest-document")
-def ingest_document(req: DocumentIngestRequest) -> dict:
+def ingest_document(req: DocumentIngestRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
+        email = user.get("email")
+        uid = user.get("uid") or user.get("sub")
+        
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
+                # Find researcher ID securely by mapping Firebase email/uid to username
+                # platform.researcher only has a 'username' column, so we match against email prefix or uid
+                username_guess = email.split("@")[0] if email else uid
+                cur.execute("""
+                    SELECT researcher_id FROM platform.researcher 
+                    WHERE username = %s OR username = %s LIMIT 1;
+                """, (username_guess, email))
+                row = cur.fetchone()
+                if not row:
+                    raise HTTPException(status_code=403, detail="No researcher profile linked to this authenticated user.")
+                rid = row[0]
+
                 # Find project ID if project_code is provided
                 pid = None
                 if req.project_code:
@@ -19,7 +37,69 @@ def ingest_document(req: DocumentIngestRequest) -> dict:
                     if row:
                         pid = row[0]
 
-                # Insert document record
+                # 1. Chunking and Embedding
+                text = req.extracted_text or ""
+                chunk_size = 3500
+                overlap = 500
+                chunks = []
+                start = 0
+                while start < len(text):
+                    end = start + chunk_size
+                    chunk = text[start:end]
+                    if chunk.strip():
+                        chunks.append(chunk.strip())
+                    start += chunk_size - overlap
+                
+                # We use the existing LLMClient to embed locally without secrets if offline
+                active_llm = LLMClient()
+                points = []
+                import hashlib
+                import uuid
+                
+                from app_skeleton.api.qdrant_vectors import (
+                    DOC_CHUNKS_COLLECTION,
+                    stable_point_uuid,
+                    upsert_text_points,
+                )
+
+                for idx, chunk in enumerate(chunks):
+                    vec = active_llm.embed(chunk, dim=384)
+                    text_hash = hashlib.md5(chunk.encode("utf-8")).hexdigest()
+                    point_id_str = f"ingest_{req.filename}_{idx}_{text_hash}"
+                    point_uuid = stable_point_uuid(point_id_str)
+
+                    points.append(models.PointStruct(
+                        id=point_uuid,
+                        vector={ "text": vec },
+                        payload={
+                            "corpus": "project_workspace",
+                            "project_code": req.project_code,
+                            "researcher_id": str(rid),
+                            "filename": req.filename,
+                            "title": req.filename,
+                            "document_title": req.filename,
+                            "chunk_index": idx,
+                            "chunk_id": str(idx),
+                            "text": chunk,
+                            "text_preview": chunk[:2000],
+                            "text_hash": text_hash,
+                            "source_type": "ingested_document",
+                        }
+                    ))
+
+                qdrant_indexed = 0
+                if points:
+                    try:
+                        qdrant_indexed = upsert_text_points(
+                            qdrant_client, points, collection=DOC_CHUNKS_COLLECTION
+                        )
+                    except Exception as qc_err:
+                        LOGGER.warning(
+                            "Qdrant ingest skipped (offline stub — document stored in Postgres only): %s",
+                            qc_err,
+                        )
+
+                # 2. Insert document record tracking the indexing
                 cur.execute("""
                     INSERT INTO platform.document_ingestion (filename, file_type, extracted_text, tags, project_id, software_associations, pipeline_stage_associations, metadata)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
@@ -27,21 +107,28 @@ def ingest_document(req: DocumentIngestRequest) -> dict:
                 """, (req.filename, req.file_type, req.extracted_text, req.tags, pid, req.software_associations, req.pipeline_stage_associations, psycopg.types.json.Jsonb(req.metadata_dict)))
                 doc_id = cur.fetchone()[0]
 
-                # Fetch researcher ID (default to IT Specialist / debdeba)
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = 'debdeba';")
-                rid = cur.fetchone()[0]
+                # Update the payload with actual doc_id now that we have it (optional, we already indexed)
+                # But it's fine, we used project_code and filename in Qdrant
 
                 # Log into Digital Notebook
                 auto_log_notebook_entry(
                     conn, pid, rid,
-                    title=f"Document Ingested: {req.filename}",
-                    content=f"Document '{req.filename}' ({req.file_type}) successfully parsed and uploaded to catalog.\nAssociations:\n- Software: {', '.join(req.software_associations) or 'None'}\n- Pipeline Stages: {', '.join(req.pipeline_stage_associations) or 'None'}",
+                    title=f"Document Indexed: {req.filename}",
+                    content=f"Document '{req.filename}' ({req.file_type}) indexed.\nQdrant chunks: {qdrant_indexed}/{len(points)}\nAssociations:\n- Software: {', '.join(req.software_associations) or 'None'}",
                     entry_type="general_note"
                 )
 
                 conn.commit()
-                return {"status": "success", "doc_id": str(doc_id)}
+                return {
+                    "status": "success",
+                    "doc_id": str(doc_id),
+                    "chunks_indexed": len(points),
+                    "qdrant_indexed": qdrant_indexed,
+                }
+    except HTTPException:
+        raise
     except Exception as exc:
+        LOGGER.error("Ingestion failed: %s", exc)
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.get("/gap-analysis")
@@ -369,7 +456,8 @@ def vault_ingest_retry_failed(
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 @router.post("/api/vault/rebuild", dependencies=_FIREBASE_PROTECTED)
-def vault_rebuild() -> dict:
+def vault_rebuild(user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     job = platform_admin.create_ingestion_job("vault_rebuild")
     try:
         result = vault_rebuild_inventory()
@@ -410,7 +498,8 @@ def supabase_sync_documents(
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 @router.post("/api/vault/sync", dependencies=_FIREBASE_PROTECTED)
-def vault_sync_postgres() -> dict:
+def vault_sync_postgres(user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     """Phase 3: upsert JSON inventory into platform.raw_asset_vault."""
     job = platform_admin.create_ingestion_job("vault_sync")
     try:

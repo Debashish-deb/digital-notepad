@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { firebaseAuthEnabled, signInEmailPassword } from '../config/firebase.js';
+import { mapFirebaseAuthError, signInEmailPassword } from '../config/firebase.js';
+import { useApiContext } from '../api/ApiContext.jsx';
 
 /**
  * Email/password login for Firebase project farkki-digital-notebook.
  * Shown when VITE_FIREBASE_* is configured and auth is required.
  */
 export default function AuthLoginPanel({ onToken }) {
+  const { firebaseAuthEnabled } = useApiContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -28,7 +30,7 @@ export default function AuthLoginPanel({ onToken }) {
       const token = await signInEmailPassword(email, password);
       if (onToken) onToken(token);
     } catch (err) {
-      setError(err.message || 'Sign-in failed');
+      setError(mapFirebaseAuthError(err));
     } finally {
       setBusy(false);
     }

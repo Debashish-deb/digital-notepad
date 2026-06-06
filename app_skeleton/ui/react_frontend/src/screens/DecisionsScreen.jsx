@@ -1,4 +1,4 @@
-import './MacPlusVisualStyles.css';
+
 import React, { useState, useEffect } from 'react';
 import { Scale, Trash2 } from 'lucide-react';
 import { apiDelete } from '../api/client.js';

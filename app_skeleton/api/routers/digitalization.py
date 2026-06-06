@@ -6,7 +6,9 @@ import logging
 from typing import Any, Optional
 
 import psycopg
-from fastapi import APIRouter, BackgroundTasks, HTTPException, Query
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
+
+from app_skeleton.security.auth import require_platform_user
 from pydantic import BaseModel, Field
 
 LOGGER = logging.getLogger(__name__)
@@ -80,7 +82,8 @@ class ScanRequest(BaseModel):
 
 
 @router.post("/api/digitalization/scan")
-def digitalization_scan(req: ScanRequest) -> dict:
+def digitalization_scan(req: ScanRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     """Trigger manifest scan (discovery only)."""
     from app_skeleton.digitalization.ingestion_job import run_digitalization
     result = run_digitalization(
@@ -102,7 +105,8 @@ class RunRequest(BaseModel):
 
 
 @router.post("/api/digitalization/run")
-def digitalization_run(req: RunRequest, background_tasks: BackgroundTasks) -> dict:
+def digitalization_run(req: RunRequest, background_tasks: BackgroundTasks, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     """Run full digitalization pipeline."""
     from app_skeleton.digitalization.ingestion_job import run_digitalization
 

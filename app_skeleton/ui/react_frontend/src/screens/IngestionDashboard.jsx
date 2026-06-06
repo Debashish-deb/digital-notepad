@@ -1,4 +1,4 @@
-import './MacPlusVisualStyles.css';
+
 import { useCallback, useEffect, useState } from 'react';
 import { BarChart3, RefreshCw } from 'lucide-react';
 import { apiGet } from '../api/client.js';
@@ -32,7 +32,7 @@ export default function IngestionDashboard({ title, description }) {
   const s = summary || {};
 
   return (
-    <div className="stack-md">
+    <div className="stack-md ingestion-dashboard">
       <div className="panel">
         <h3 className="panel-title">
           <BarChart3 size={18} /> {title || 'Ingestion dashboard'}

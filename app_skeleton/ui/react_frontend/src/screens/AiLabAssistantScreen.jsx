@@ -1,248 +1,517 @@
-import './MacPlusVisualStyles.css';
-import React, { useState, useEffect } from 'react';
-import { 
-  Bot, 
-  BookOpen, 
-  UploadCloud, 
-  Cpu, 
-  Layers, 
-  Plus, 
-  ArrowRight, 
-  Settings 
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  AlertTriangle,
+  BookOpen,
+  Bot,
+  Check,
+  Clipboard,
+  Cpu,
+  Database,
+  FileText,
+  Layers,
+  Loader2,
+  Sparkles,
+  UploadCloud,
 } from 'lucide-react';
-import ChatWidget from '../components/ChatWidget';
+import ChatWidget from '../components/ChatWidget.jsx';
+import AiAssistant3DScene from '../components/AiAssistant3DScene.jsx';
+import { apiFetch } from '../api/client.js';
 
+const FALLBACK_PROJECTS = ['SPACE', 'EyeMT', 'KRAS'];
 
-export default function AiLabAssistantScreen({ API_URL, activeSubTab, hideChrome = false, dbProjects = [] }) {
+function normalizeProjectCode(project) {
+  if (typeof project === 'string') return project;
+  return project?.project_code || project?.code || project?.id || '';
+}
+
+function getProjectOptions(dbProjects = []) {
+  const fromDb = dbProjects.map(normalizeProjectCode).filter(Boolean);
+  return Array.from(new Set([...fromDb, ...FALLBACK_PROJECTS]));
+}
+
+function statusToneFromMessage(message) {
+  const text = String(message || '').toLowerCase();
+  if (!text) return 'neutral';
+  if (text.includes('failed') || text.includes('error') || text.includes('expired') || text.includes('unauthorized')) return 'danger';
+  if (text.includes('success') || text.includes('indexed') || text.includes('completed')) return 'success';
+  if (text.includes('stored only') || text.includes('queued')) return 'warning';
+  return 'neutral';
+}
+
+export default function AiLabAssistantScreen({
+  API_URL,
+  activeSubTab,
+  hideChrome = false,
+  dbProjects = [],
+  onNavigate,
+  onSelectProject,
+  onOpenSearch,
+}) {
   const [subTab, setSubTab] = useState(activeSubTab || 'copilot');
+  const [models, setModels] = useState([]);
+  const [loadingModels, setLoadingModels] = useState(false);
+  const [modelsError, setModelsError] = useState('');
+
+  const [docTitle, setDocTitle] = useState('');
+  const [docContent, setDocContent] = useState('');
+  const [docProject, setDocProject] = useState('SPACE');
+  const [ingesting, setIngesting] = useState(false);
+  const [ingestStatus, setIngestStatus] = useState('');
+
+  const projectOptions = useMemo(() => getProjectOptions(dbProjects), [dbProjects]);
 
   useEffect(() => {
     if (activeSubTab) setSubTab(activeSubTab);
   }, [activeSubTab]);
-  const [models, setModels] = useState([]);
-  const [loading, setLoading] = useState(false);
 
-  // Document Ingest Form
-  const [docTitle, setDocTitle] = useState('');
-  const [docContent, setDocContent] = useState('');
-  const [docProject, setDocProject] = useState('SPACE');
-  const [ingestStatus, setIngestStatus] = useState('');
+  useEffect(() => {
+    if (!projectOptions.includes(docProject)) {
+      setDocProject(projectOptions[0] || 'SPACE');
+    }
+  }, [docProject, projectOptions]);
+
+  const fetchModels = useCallback(async () => {
+    setLoadingModels(true);
+    setModelsError('');
+
+    try {
+      const data = await apiFetch('/ai-models');
+      setModels(Array.isArray(data) ? data : data?.models || []);
+    } catch (error) {
+      console.error('[AiLabAssistantScreen] Failed to fetch model registry:', error);
+      setModelsError(
+        error?.status === 401 || error?.status === 403
+          ? 'Your session expired or you do not have permission to view model records.'
+          : error?.message || 'Could not load model registry.',
+      );
+    } finally {
+      setLoadingModels(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (subTab === 'models') {
       fetchModels();
     }
-  }, [subTab]);
+  }, [fetchModels, subTab]);
 
-  const fetchModels = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch(`${API_URL}/ai-models`);
-      if (res.ok) {
-        setModels(await res.json());
-      }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleIngest = useCallback(
+    async (event) => {
+      event.preventDefault();
 
-  const handleIngest = async (e) => {
-    e.preventDefault();
-    setIngestStatus('Ingesting and creating vector embeddings...');
-    try {
-      const res = await fetch(`${API_URL}/ingest-document`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          project_code: docProject,
-          document_title: docTitle,
-          content: docContent,
-          author: "debdeba"
-        })
-      });
-      if (res.ok) {
-        setIngestStatus('Success! Document vectorized and indexed in Qdrant collections.');
-        setDocTitle('');
-        setDocContent('');
-      } else {
-        setIngestStatus('Failed to ingest document.');
+      const cleanTitle = docTitle.trim();
+      const cleanText = docContent.trim();
+
+      if (!cleanTitle || !cleanText || ingesting) return;
+
+      setIngesting(true);
+      setIngestStatus('Queued document for parsing, chunking, embedding, and vector indexing…');
+
+      try {
+        const data = await apiFetch('/ingest-document', {
+          method: 'POST',
+          body: {
+            project_code: docProject,
+            filename: cleanTitle,
+            file_type: 'txt',
+            extracted_text: cleanText,
+          },
+        });
+
+        const chunkCount = data?.chunk_count ?? data?.chunks_indexed ?? data?.indexed_chunks ?? 0;
+        const indexed =
+          data?.indexed === true ||
+          data?.status === 'indexed' ||
+          data?.status === 'completed' ||
+          (data?.status === 'success' && Number(chunkCount) > 0);
+
+        if (indexed) {
+          setIngestStatus(
+            `Success — document indexed for RAG retrieval.\nChunks indexed: ${chunkCount || 'reported by backend'}\nCollection: ${data?.qdrant_collection || data?.collection || 'doc_chunks'}`,
+          );
+          setDocTitle('');
+          setDocContent('');
+        } else if (data?.status === 'queued') {
+          setIngestStatus(`Queued — backend accepted the document. Ingestion ID: ${data?.ingestion_id || data?.doc_id || 'pending'}`);
+        } else if (data?.status === 'stored_only') {
+          setIngestStatus('Stored only — backend saved the text but did not confirm vector indexing.');
+        } else {
+          setIngestStatus(`Completed with unknown indexing status: ${data?.status || 'unknown'}`);
+        }
+      } catch (error) {
+        setIngestStatus(
+          error?.status === 401 || error?.status === 403
+            ? 'Your session expired or unauthorized. Please sign in again.'
+            : `Connection error: ${error?.message || 'Unknown backend error'}`,
+        );
+      } finally {
+        setIngesting(false);
       }
-    } catch (e) {
-      setIngestStatus('Connection error: ' + e);
-    }
-  };
+    },
+    [docContent, docProject, docTitle, ingesting],
+  );
 
   const menuItems = [
-    { id: 'copilot', label: '💬 Chat Copilot' },
-    { id: 'prompts', label: '💡 AI Prompt Templates' },
-    { id: 'ingest', label: '📤 Ingest RAG Docs' },
-    { id: 'models', label: '🤖 Model Registry' }
+    {
+      id: 'copilot',
+      label: 'Chat Copilot',
+      desc: 'Ask indexed lab memory',
+      icon: Bot,
+    },
+    {
+      id: 'prompts',
+      label: 'Prompt Templates',
+      desc: 'Writing and analysis helpers',
+      icon: BookOpen,
+    },
+    {
+      id: 'ingest',
+      label: 'Ingest RAG Docs',
+      desc: 'Chunk, embed, index',
+      icon: UploadCloud,
+    },
+    {
+      id: 'models',
+      label: 'Model Registry',
+      desc: 'AI tools and hardware',
+      icon: Cpu,
+    },
   ];
 
+  const heroStats = useMemo(
+    () => [
+      { label: 'Services', value: menuItems.length },
+      { label: 'Projects', value: projectOptions.length },
+      { label: 'Mode', value: subTab === 'copilot' ? 'Live' : 'Tools' },
+    ],
+    [menuItems.length, projectOptions.length, subTab],
+  );
+
   return (
-    <div style={{ display: 'flex', gap: hideChrome ? 0 : '2rem', minHeight: hideChrome ? 'auto' : 'calc(100vh - 8rem)' }}>
+    <section className={`ai-lab-assistant${hideChrome ? ' ai-lab-assistant--embedded' : ''}`}>
       {!hideChrome && (
-      <div style={{width: '240px', flexShrink: 0, borderRight: '1px solid var(--border-color)', paddingRight: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
-        <div style={{fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem', letterSpacing: '0.05em'}}>
-          AI ASSISTANT SERVICES
-        </div>
-        {menuItems.map(item => (
-          <button
-            key={item.id}
-            className={`sidebar-item ${subTab === item.id ? 'active' : ''}`}
-            onClick={() => setSubTab(item.id)}
-            style={{
-              width: '100%', 
-              textAlign: 'left', 
-              border: 'none', 
-              background: 'none', 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '0.75rem',
-              cursor: 'pointer',
-              borderRadius: '8px',
-              padding: '0.75rem 1rem',
-              color: subTab === item.id ? '#ffffff' : 'var(--text-secondary)'
-            }}
-          >
-            <span style={{fontSize: '0.9rem'}}>{item.label}</span>
-          </button>
-        ))}
-      </div>
+        <aside className="ai-lab-rail" aria-label="AI assistant services">
+          <AiAssistant3DScene
+            title="AI Lab Assistant"
+            subtitle="A 3D command center for RAG search, document indexing, prompt workflows, and model intelligence."
+            stats={heroStats}
+            compact
+            className="ai-lab-rail-hero"
+          />
+
+          <div className="ai-lab-rail-label">Assistant services</div>
+
+          <nav className="ai-lab-menu">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+              const active = subTab === item.id;
+
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={`ai-lab-menu-item${active ? ' active' : ''}`}
+                  onClick={() => setSubTab(item.id)}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  <span className="ai-lab-menu-item__icon">
+                    <Icon size={17} aria-hidden="true" />
+                  </span>
+                  <span className="ai-lab-menu-item__copy">
+                    <strong>{item.label}</strong>
+                    <small>{item.desc}</small>
+                  </span>
+                </button>
+              );
+            })}
+          </nav>
+        </aside>
       )}
 
-      <div style={{ flexGrow: 1, minWidth: 0 }}>
-        {subTab === 'copilot' && <ChatWidget dbProjects={dbProjects} API_URL={API_URL} />}
-        {subTab === 'prompts' && <PromptsLibraryTab />}
-        
-        {subTab === 'ingest' && (
-          <div>
-            <div className="page-header" style={{marginBottom: '1.5rem'}}>
-              <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-primary)'}}>Ingest & Index RAG Documents</h2>
-              <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Upload SOP protocols or scripts directly into Qdrant vector databases.</p>
-            </div>
-
-            <div className="panel" style={{maxWidth: '700px'}}>
-              <h3 className="panel-title"><UploadCloud size={18} /> Document Vector Ingestion</h3>
-              <form onSubmit={handleIngest} style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
-                <div className="form-group">
-                  <label className="form-label">Scope Project Code</label>
-                  <select className="form-select" value={docProject} onChange={(e) => setDocProject(e.target.value)}>
-                    <option value="SPACE">SPACE</option>
-                    <option value="EyeMT">EyeMT</option>
-                    <option value="KRAS">KRAS</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label className="form-label">Document Title</label>
-                  <input type="text" className="form-input" required value={docTitle} onChange={(e) => setDocTitle(e.target.value)} placeholder="e.g. GeoMx Staining Protocol Batch 4" />
-                </div>
-                <div className="form-group">
-                  <label className="form-label">Raw Text Content</label>
-                  <textarea className="form-textarea" required value={docContent} onChange={(e) => setDocContent(e.target.value)} style={{height: '200px'}} placeholder="Paste text content of methodology or notes to index..." />
-                </div>
-                <button type="submit" className="btn btn-primary">Vectorize & Upload</button>
-              </form>
-
-              {ingestStatus && (
-                <div style={{marginTop: '1.25rem', padding: '0.75rem 1rem', borderRadius: '6px', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-color)', fontSize: '0.9rem', color: 'var(--color-success)'}}>
-                  {ingestStatus}
-                </div>
-              )}
-            </div>
+      <main className="ai-lab-main">
+        {hideChrome && subTab === 'copilot' ? null : (
+          <div className="ai-lab-top-hero">
+            <AiAssistant3DScene
+              title={
+                subTab === 'copilot'
+                  ? 'Research Copilot'
+                  : subTab === 'ingest'
+                    ? 'RAG Document Indexer'
+                    : subTab === 'models'
+                      ? 'Deep Learning Registry'
+                      : 'Prompt Engineering Library'
+              }
+              subtitle={
+                subTab === 'copilot'
+                  ? 'Ask questions across Qdrant vectors, database counts, and lab knowledge.'
+                  : subTab === 'ingest'
+                    ? 'Paste or prepare protocols, scripts, and SOP text for vector retrieval.'
+                    : subTab === 'models'
+                      ? 'Track model families, frameworks, tasks, and target compute environments.'
+                      : 'Reusable expert prompts for manuscript writing, logbooks, code review, and analysis.'
+              }
+              stats={heroStats}
+              compact
+            />
           </div>
         )}
 
-        {subTab === 'models' && (
-          <div>
-            <div className="page-header" style={{marginBottom: '1.5rem'}}>
-              <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-primary)'}}>Deep Learning Model Registry</h2>
-              <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Overview of neural network models active on regional cluster servers.</p>
+        {subTab === 'copilot' && (
+          <ChatWidget
+            dbProjects={dbProjects}
+            API_URL={API_URL}
+            onNavigate={onNavigate}
+            onSelectProject={onSelectProject}
+            onOpenSearch={onOpenSearch}
+          />
+        )}
+        {subTab === 'prompts' && <PromptsLibraryTab />}
+
+        {subTab === 'ingest' && (
+          <section className="ai-lab-tab-panel">
+            <div className="page-header ai-lab-page-header">
+              <span className="assistant-eyebrow">
+                <Database size={14} aria-hidden="true" />
+                Vector memory
+              </span>
+              <h2>Ingest & index RAG documents</h2>
+              <p>Paste SOP protocols, scripts, methods notes, or manual transcripts into the authenticated RAG pipeline.</p>
             </div>
 
-            <div className="panel">
-              <h3 className="panel-title"><Cpu size={18} /> Active Models</h3>
-              {loading ? (
-                <p style={{color: 'var(--text-secondary)'}}>Loading registry records...</p>
+            <div className="panel ai-ingest-panel">
+              <div className="ai-panel-title-row">
+                <h3 className="panel-title">
+                  <UploadCloud size={18} aria-hidden="true" />
+                  Document vector ingestion
+                </h3>
+                <span className="ai-status-pill">
+                  <Sparkles size={13} aria-hidden="true" />
+                  Qdrant-ready
+                </span>
+              </div>
+
+              <form onSubmit={handleIngest} className="ai-ingest-form">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="ai-doc-project">Scope project code</label>
+                  <select
+                    id="ai-doc-project"
+                    className="form-select"
+                    value={docProject}
+                    onChange={(event) => setDocProject(event.target.value)}
+                  >
+                    {projectOptions.map((code) => (
+                      <option key={code} value={code}>{code}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label" htmlFor="ai-doc-title">Document title</label>
+                  <input
+                    id="ai-doc-title"
+                    type="text"
+                    className="form-input"
+                    required
+                    value={docTitle}
+                    onChange={(event) => setDocTitle(event.target.value)}
+                    placeholder="e.g. GeoMx staining protocol batch 4"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label" htmlFor="ai-doc-content">Raw text content</label>
+                  <textarea
+                    id="ai-doc-content"
+                    className="form-textarea ai-ingest-textarea"
+                    value={docContent}
+                    onChange={(event) => setDocContent(event.target.value)}
+                    rows={10}
+                    required
+                    placeholder="Paste full document, SOP, protocol, code notes, or manual transcript here..."
+                  />
+                </div>
+
+                <div className="ai-ingest-actions">
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    disabled={ingesting || !docTitle.trim() || !docContent.trim()}
+                  >
+                    {ingesting ? <Loader2 size={16} className="spin" aria-hidden="true" /> : <UploadCloud size={16} aria-hidden="true" />}
+                    {ingesting ? 'Indexing…' : 'Run vector ingestion'}
+                  </button>
+
+                  <span className="ai-ingest-hint">
+                    Text is sent through the authenticated backend. Success only means indexed if backend confirms chunks.
+                  </span>
+                </div>
+              </form>
+
+              {ingestStatus && (
+                <div className={`ai-ingest-status ai-ingest-status--${statusToneFromMessage(ingestStatus)}`}>
+                  {statusToneFromMessage(ingestStatus) === 'danger' ? (
+                    <AlertTriangle size={16} aria-hidden="true" />
+                  ) : statusToneFromMessage(ingestStatus) === 'success' ? (
+                    <Check size={16} aria-hidden="true" />
+                  ) : (
+                    <Layers size={16} aria-hidden="true" />
+                  )}
+                  <span>{ingestStatus}</span>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {subTab === 'models' && (
+          <section className="ai-lab-tab-panel">
+            <div className="page-header ai-lab-page-header">
+              <span className="assistant-eyebrow">
+                <Cpu size={14} aria-hidden="true" />
+                Registry
+              </span>
+              <h2>Deep learning model registry</h2>
+              <p>Overview of neural network models active on local workstations, servers, and regional cluster environments.</p>
+            </div>
+
+            <div className="panel ai-models-panel">
+              <div className="ai-panel-title-row">
+                <h3 className="panel-title">
+                  <Cpu size={18} aria-hidden="true" />
+                  Active models
+                </h3>
+
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-sm"
+                  onClick={fetchModels}
+                  disabled={loadingModels}
+                >
+                  {loadingModels ? <Loader2 size={14} className="spin" aria-hidden="true" /> : <Database size={14} aria-hidden="true" />}
+                  Refresh
+                </button>
+              </div>
+
+              {loadingModels ? (
+                <div className="ai-empty-state">
+                  <Loader2 size={26} className="spin" aria-hidden="true" />
+                  <p>Loading registry records…</p>
+                </div>
+              ) : modelsError ? (
+                <div className="ai-empty-state ai-empty-state--danger">
+                  <AlertTriangle size={26} aria-hidden="true" />
+                  <p>{modelsError}</p>
+                </div>
               ) : models.length === 0 ? (
-                <p style={{color: 'var(--text-muted)'}}>No AI models registered in PostgreSQL schemas.</p>
+                <div className="ai-empty-state">
+                  <FileText size={28} aria-hidden="true" />
+                  <p>No AI models registered in PostgreSQL schemas.</p>
+                </div>
               ) : (
-                <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
-                  {models.map(m => (
-                    <div key={m.model_id} style={{border: '1px solid var(--border-color)', padding: '1.25rem', borderRadius: '8px', background: 'rgba(0,0,0,0.2)'}}>
-                      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem'}}>
-                        <span style={{fontWeight: 700, color: 'var(--color-primary)', fontSize: '1.05rem'}}>🤖 {m.model_name} (v{m.version})</span>
-                        <span style={{fontSize: '0.75rem', background: 'rgba(129,140,248,0.12)', color: 'var(--color-accent)', padding: '0.2rem 0.5rem', borderRadius: '4px'}}>{m.framework}</span>
+                <div className="ai-model-card-grid">
+                  {models.map((model) => (
+                    <article key={model.model_id || `${model.model_name}-${model.version}`} className="ai-model-card">
+                      <div className="ai-model-card__header">
+                        <div>
+                          <h4>🤖 {model.model_name}</h4>
+                          <p>v{model.version || 'unknown'}</p>
+                        </div>
+                        <span>{model.framework || 'framework n/a'}</span>
                       </div>
-                      <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '0.75rem'}}>{m.description}</p>
-                      <div style={{fontSize: '0.8rem', color: 'var(--text-muted)'}}>
-                        <div>Task Area: <b>{m.task_type}</b></div>
-                        <div>Target Environment: <code>{m.target_hardware}</code></div>
+
+                      <p className="ai-model-card__desc">{model.description || 'No description recorded.'}</p>
+
+                      <div className="ai-model-card__meta">
+                        <div>Task area: <strong>{model.task_type || 'unknown'}</strong></div>
+                        <div>Target environment: <code>{model.target_hardware || 'not specified'}</code></div>
                       </div>
-                    </div>
+                    </article>
                   ))}
                 </div>
               )}
             </div>
-          </div>
+          </section>
         )}
-      </div>
-
-    </div>
+      </main>
+    </section>
   );
 }
 
-// --- PROMPTS LIBRARY ---
 function PromptsLibraryTab() {
+  const [copiedIndex, setCopiedIndex] = useState(null);
+
   const prompts = [
     {
-      title: "✍️ Paper Abstract Improver",
-      desc: "Paste your raw results, cohort counts, and spatial findings to generate a professional abstract for conferences.",
-      prompt: "Act as an expert bioinformatician and clinical-spatial oncology oncologist. Review the following raw research observations and draft a cohesive, highly structured abstract suitable for EACR/AACR. Structure: Background, Methods, Results (include statistics), and Conclusions."
+      title: 'Paper abstract improver',
+      icon: '✍️',
+      desc: 'Paste raw results, cohort counts, and spatial findings to generate a professional abstract.',
+      prompt:
+        'Act as an expert bioinformatician and clinical-spatial oncology scientist. Review the following raw research observations and draft a cohesive, highly structured abstract suitable for EACR/AACR. Structure: Background, Methods, Results with statistics, and Conclusions.',
     },
     {
-      title: "⚙️ Code Script Refactoring",
-      desc: "Provide raw Python or R scripts to optimize memory, enable parallel threads, and format variables.",
-      prompt: "Analyze the following Python/R script for cell phenotyping/spatial clustering. Optimize it to handle large data arrays efficiently. Add clear comments, modularize operations, and ensure memory configurations are minimized to prevent OOM errors."
+      title: 'Code script refactoring',
+      icon: '⚙️',
+      desc: 'Optimize Python or R scripts for memory, parallelism, readability, and reproducibility.',
+      prompt:
+        'Analyze the following Python/R script for cell phenotyping or spatial clustering. Optimize it for large data arrays, add clear comments, modularize operations, and minimize memory pressure to prevent OOM errors.',
     },
     {
-      title: "📓 Logbook Summarizer",
-      desc: "Compile multiple short meetings and notes into a clean, formal system notebook entry.",
-      prompt: "Given these meeting updates and raw notebook items, synthesize them into a single, clean system of record note. Detail: 1) What was discussed, 2) Major gating or panel exclusions decided, 3) Action checklist items with assignees, and 4) Clear timeline milestones."
-    }
+      title: 'Logbook summarizer',
+      icon: '📓',
+      desc: 'Compile meeting notes and lab updates into a clean system-of-record entry.',
+      prompt:
+        'Given these meeting updates and raw notebook items, synthesize them into one formal system-of-record note. Include: 1) what was discussed, 2) major gating or panel exclusions, 3) action checklist with assignees, and 4) timeline milestones.',
+    },
   ];
 
+  const copyPrompt = async (prompt, index) => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopiedIndex(index);
+      window.setTimeout(() => setCopiedIndex(null), 1400);
+    } catch {
+      setCopiedIndex(null);
+    }
+  };
+
   return (
-    <div>
-      <div className="page-header" style={{marginBottom: '1.5rem'}}>
-        <h2 style={{fontSize: '1.75rem', fontWeight: 800, color: 'var(--color-accent)'}}>AI Prompt Engineering Library</h2>
-        <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)'}}>Templates to leverage LLMs for improving manuscript writing and cluster analysis.</p>
+    <section className="ai-lab-tab-panel">
+      <div className="page-header ai-lab-page-header">
+        <span className="assistant-eyebrow">
+          <Clipboard size={14} aria-hidden="true" />
+          Prompt system
+        </span>
+        <h2>AI prompt engineering library</h2>
+        <p>Templates to improve manuscript writing, computational workflows, and structured research documentation.</p>
       </div>
 
-      <div style={{display: 'flex', flexDirection: 'column', gap: '1.5rem'}}>
-        {prompts.map((p, idx) => (
-          <div key={idx} className="panel">
-            <h4 style={{color: '#ffffff', fontSize: '1.1rem', marginBottom: '0.35rem'}}>{p.title}</h4>
-            <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>{p.desc}</p>
-            <div style={{background: 'rgba(0,0,0,0.3)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)', position: 'relative'}}>
-              <div style={{fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem', fontWeight: 700}}>PROMPT TEMPLATE:</div>
-              <p style={{fontFamily: 'var(--font-sans)', fontSize: '0.92rem', color: 'var(--color-primary)', lineHeight: 1.4}}>{p.prompt}</p>
-              <button 
-                className="btn btn-secondary"
-                onClick={() => {
-                  navigator.clipboard.writeText(p.prompt);
-                  alert("Copied to clipboard!");
-                }}
-                style={{position: 'absolute', right: '10px', top: '10px', padding: '0.2rem 0.5rem', fontSize: '0.75rem'}}
+      <div className="ai-prompt-grid">
+        {prompts.map((prompt, index) => (
+          <article key={prompt.title} className="panel ai-prompt-card">
+            <div className="ai-prompt-card__header">
+              <span>{prompt.icon}</span>
+              <div>
+                <h4>{prompt.title}</h4>
+                <p>{prompt.desc}</p>
+              </div>
+            </div>
+
+            <div className="ai-prompt-template">
+              <div className="ai-prompt-template__label">Prompt template</div>
+              <p>{prompt.prompt}</p>
+
+              <button
+                type="button"
+                className="btn btn-secondary btn-sm ai-copy-template-btn"
+                onClick={() => copyPrompt(prompt.prompt, index)}
               >
-                Copy Template
+                {copiedIndex === index ? <Check size={14} aria-hidden="true" /> : <Clipboard size={14} aria-hidden="true" />}
+                {copiedIndex === index ? 'Copied' : 'Copy'}
               </button>
             </div>
-          </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

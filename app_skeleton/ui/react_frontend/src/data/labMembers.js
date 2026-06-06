@@ -6,12 +6,6 @@ export const labMembers = [
     avatar: "🧬"
   },
   {
-    name: "Debashish Deb, MSc",
-    role: "IT Specialist",
-    focus: "Platform architecture, software engineering, and lab application development.",
-    avatar: "💻"
-  },
-  {
     name: "Anastasia Lundgren, MSc",
     role: "Laboratory Manager",
     focus: "Sample biobanking, spatial proteomics (tCycIF) staining, sample coordination, and wet-lab protocols.",
@@ -36,15 +30,9 @@ export const labMembers = [
     avatar: "🔬"
   },
   {
-    name: "Ziqi Kang, MSc",
-    role: "Doctoral Researcher",
-    focus: "Lead developer of Tribus and CEFIIRA pipelines, machine learning models for single-cell spatial atlases.",
-    avatar: "📈"
-  },
-  {
-    name: "Andreas Hainari, MD",
-    role: "Doctoral Researcher",
-    focus: "Antibody-Drug Conjugate (ADC) target heterogeneity, spatial transcriptomics, and clinical-spatial outcome modeling.",
-    avatar: "🏥"
+    name: "Debashish Deb, MSc",
+    role: "IT Specialist",
+    focus: "Platform architecture, software engineering, and lab application development.",
+    avatar: "💻"
   }
 ];

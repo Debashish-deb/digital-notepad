@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { RefreshCw } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import ModuleShell from './components/ModuleShell';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -12,7 +13,7 @@ import BioinformaticsHubScreen from './screens/BioinformaticsHubScreen';
 import AiLabAssistantScreen from './screens/AiLabAssistantScreen';
 import FeatureClinicalScreen from './screens/FeatureClinicalScreen';
 import LabKnowledgeScreen from './screens/LabKnowledgeScreen';
-import DataStorageScreen from './screens/DataStorageScreen';
+const DataStorageScreen = lazy(() => import('./screens/DataStorageScreen'));
 import AdministrationScreen from './screens/AdministrationScreen';
 import IngestionDashboard from './screens/IngestionDashboard';
 import DigitalizationDashboard from './screens/DigitalizationDashboard';
@@ -20,16 +21,21 @@ import KnowledgeSearchScreen from './screens/KnowledgeSearchScreen';
 import LabCorpusBrowser from './components/LabCorpusBrowser.jsx';
 import { getApiUrl, apiFetch } from './api/client.js';
 import { useApiContext } from './api/ApiContext.jsx';
-import ComputationalToolsScreen from './screens/ComputationalToolsScreen';
 import CycifScreen from './screens/CycifScreen';
 import { TaskpadProvider } from './contexts/TaskpadContext.jsx';
+import TaskpadSheet from './components/TaskpadSheet.jsx';
+import { CENTRAL_WORKER_ID, TASKPAD_SCOPES } from './utils/taskpadRegistry.js';
 
 import {
   OrdersTasksPanel,
   OrdersRegisterPanel,
   OrdersRelatedPanel,
   OrdersBillingPanel,
+  OrdersArchivePanel,
 } from './screens/OrdersHubScreen';
+import OverviewDocumentsScreen from './screens/OverviewDocumentsScreen.jsx';
+import SectionDocumentsScreen from './screens/SectionDocumentsScreen.jsx';
+import { getSectionDocumentsConfig } from './utils/sectionDocumentsConfig.js';
 import {
   WetLabProtocolsPanel,
   WetLabTasksPanel,
@@ -41,13 +47,15 @@ import { activityLogs } from './data/activityLogs.js';
 import { platformStats } from './data/platformStats.js';
 import { mergeProjectRecord } from './utils/projectUtils.js';
 import {
-  MAIN_NAV,
+  COMPUTATIONAL_LEGACY_NESTED,
   findMainNav,
   findSubNav,
-  sectionTitle,
   parseNavFromStorage,
 } from './config/navigation';
+import { useGuiT } from './i18n/useGuiT.js';
 import { initFirebaseAnalytics } from './config/firebase.js';
+import LoginScreen from './screens/LoginScreen.jsx';
+import { stashOmniboxPrefill } from './utils/searchHits.js';
 import './App.css';
 
 const DEFAULT_PROJECT_CODES = Object.freeze(['SPACE', 'EyeMT', 'KRAS']);
@@ -77,9 +85,31 @@ function safeStorageSet(key, value) {
   }
 }
 
+function resolveComputationalNav(raw) {
+  if (raw.main === 'computational' && raw.sub === 'utilities' && raw.hubNested === 'tools') {
+    return { main: raw.main, sub: 'tools', hubNested: null };
+  }
+  const legacy = COMPUTATIONAL_LEGACY_NESTED[raw.sub];
+  if (raw.main === 'computational' && legacy) {
+    return { main: raw.main, sub: legacy.tab, hubNested: legacy.section };
+  }
+  if (raw.main === 'computational' && raw.sub === 'tools') {
+    return { main: raw.main, sub: 'tools', hubNested: null };
+  }
+  return { main: raw.main, sub: raw.sub, hubNested: null };
+}
+
 function migrateLegacyNav(stored) {
   const legacy = parseNavFromStorage(stored);
-  if (legacy) return legacy;
+  if (legacy) {
+    if (
+      legacy.main === 'overview' &&
+      (legacy.sub === 'dashboard' || legacy.sub === 'research')
+    ) {
+      return { main: 'overview', sub: 'get_started' };
+    }
+    return legacy;
+  }
   const map = {
     dashboard: { main: 'overview', sub: 'get_started' },
     projects: { main: 'projects_data', sub: 'portfolio' },
@@ -91,7 +121,7 @@ function migrateLegacyNav(stored) {
     features: { main: 'projects_data', sub: 'features' },
     ai_assistant: { main: 'ai_assistant', sub: 'prompts' },
   };
-  return map[stored] || { main: 'overview', sub: 'dashboard' };
+  return map[stored] || { main: 'overview', sub: 'get_started' };
 }
 
 function normalizeProjectCodes(value) {
@@ -125,21 +155,38 @@ function mergeProjectsWithCatalog(remoteProjects = []) {
 }
 
 function App() {
-  const { API_URL: contextApiUrl } = useApiContext();
+  const {
+    API_URL: contextApiUrl,
+    authReady,
+    isAuthenticated,
+    authDisabled,
+    firebaseAuthEnabled,
+    onAuthToken,
+    authUser,
+    userProfile,
+    signOut,
+  } = useApiContext();
+  const { t, nav } = useGuiT();
   const resolvedApiUrl = contextApiUrl || API_URL;
-  const initialNav = migrateLegacyNav(safeStorageGet(NAV_STORAGE_KEY, ''));
-  const [navMain, setNavMain] = useState(initialNav.main);
-  const [navSub, setNavSub] = useState(initialNav.sub);
+  const initialResolved = resolveComputationalNav(migrateLegacyNav(safeStorageGet(NAV_STORAGE_KEY, '')));
+  const [navMain, setNavMain] = useState(initialResolved.main);
+  const [navSub, setNavSub] = useState(initialResolved.sub);
+  const [sidebarExpandedMain, setSidebarExpandedMain] = useState(null);
+  const [hubNestedSection, setHubNestedSection] = useState(initialResolved.hubNested);
   const [selectedProject, setSelectedProject] = useState(null);
   const [dbProjects, setDbProjects] = useState(() => mergeProjectsWithCatalog(projectsCatalog));
   const [projectCodes, setProjectCodesState] = useState(DEFAULT_PROJECT_CODES);
   const [stats, setStats] = useState(platformStats || DEFAULT_STATS);
   const [team, setTeam] = useState(teamDirectory || []);
   const [auditLogs, setAuditLogs] = useState(activityLogs || []);
-  const [loadState, setLoadState] = useState({ phase: 'idle', message: 'Ready' });
-  const [theme, setTheme] = useState(() => safeStorageGet('theme', 'dark'));
+  const [loadState, setLoadState] = useState({ phase: 'idle' });
   const [apiHealth, setApiHealth] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const handleOpenSearch = useCallback((query) => {
+    if (query?.trim()) stashOmniboxPrefill(query);
+    setIsSearchOpen(true);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -152,9 +199,18 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const activeTitle = sectionTitle(navMain, navSub);
+  const activeTitle = nav.sectionTitle(navMain, navSub);
   const isLoading = loadState.phase === 'loading' || loadState.phase === 'refreshing';
   const subNav = findSubNav(navMain, navSub);
+  const localizedSub = nav.findSub(navMain, navSub);
+  const loadMessage = useMemo(() => {
+    if (loadState.phase === 'loading' || loadState.phase === 'refreshing') {
+      return t('common.syncing');
+    }
+    if (loadState.phase === 'ready') return t('common.projectsSynced');
+    if (loadState.phase === 'warning') return t('common.syncWarning');
+    return t('common.ready');
+  }, [loadState.phase, t]);
 
   const setProjectCodes = useCallback((nextValue) => {
     setProjectCodesState((previous) => {
@@ -168,11 +224,34 @@ function App() {
 
   const handleNavChange = useCallback((main, sub) => {
     const mainItem = findMainNav(main);
-    const subId = sub || mainItem.defaultSub;
+    let subId = sub || mainItem.defaultSub;
+    let nested = null;
+    if (mainItem.id === 'computational') {
+      const legacy = COMPUTATIONAL_LEGACY_NESTED[subId];
+      if (legacy) {
+        nested = legacy.section;
+        subId = legacy.tab;
+      }
+    }
     setNavMain(mainItem.id);
     setNavSub(subId);
+    setHubNestedSection(nested);
+    setSidebarExpandedMain(mainItem.id);
     if (!mainItem.keepsProject) setSelectedProject(null);
   }, []);
+
+  const handleMainNavClick = useCallback((main) => {
+    const mainItem = findMainNav(main);
+    if (main === navMain && sidebarExpandedMain === main) {
+      setSidebarExpandedMain(null);
+      return;
+    }
+    if (main === navMain) {
+      setSidebarExpandedMain(main);
+      return;
+    }
+    handleNavChange(main, mainItem.defaultSub);
+  }, [navMain, sidebarExpandedMain, handleNavChange]);
 
   const commonProps = useMemo(() => ({ dbProjects, API_URL: resolvedApiUrl }), [dbProjects, resolvedApiUrl]);
 
@@ -186,15 +265,12 @@ function App() {
   }, []);
 
   const refreshReferenceData = useCallback(async (signal, phase = 'refreshing') => {
-    setLoadState({ phase, message: 'Syncing project list…' });
+    setLoadState({ phase });
     try {
       await fetchProjects(signal);
-      setLoadState({ phase: 'ready', message: 'Projects synced' });
+      setLoadState({ phase: 'ready' });
     } catch (err) {
-      setLoadState({
-        phase: 'warning',
-        message: 'Using cached project list where the API was unavailable.',
-      });
+      setLoadState({ phase: 'warning' });
     }
   }, [fetchProjects]);
 
@@ -217,22 +293,50 @@ function App() {
           />
         );
       case 'lab_knowledge':
+        if (navMain === 'overview') {
+          return (
+            <OverviewDocumentsScreen
+              subId={navSub}
+              title={localizedSub.label}
+              description={localizedSub.description}
+              onSubChange={(sub) => handleNavChange('overview', sub)}
+              onNavigate={handleNavChange}
+              onRefresh={handleManualRefresh}
+              isRefreshing={isLoading}
+            />
+          );
+        }
+        if (getSectionDocumentsConfig(navMain, navSub)) {
+          // overview, social, wet_lab, cycif document-backed tabs
+          return (
+            <SectionDocumentsScreen
+              mainId={navMain}
+              subId={navSub}
+              title={localizedSub.label}
+              description={localizedSub.description}
+            />
+          );
+        }
         return (
           <LabKnowledgeScreen
             subId={navSub}
             navSub={subNav}
             API_URL={resolvedApiUrl}
-            title={subNav.label}
-            description={subNav.description}
+            title={localizedSub.label}
+            description={localizedSub.description}
           />
         );
       case 'data_storage':
         return (
-          <DataStorageScreen
-            title={subNav.label}
-            description={subNav.description}
-            section={subNav.dataSection || 'all'}
-          />
+          <Suspense fallback={<div className="panel module-loading-fallback">Loading data &amp; storage…</div>}>
+            <DataStorageScreen
+              key={`data-storage-${navSub}`}
+              title={localizedSub.label}
+              description={localizedSub.description}
+              section={subNav.dataSection || navSub || 'landscape'}
+              onNavigate={handleNavChange}
+            />
+          </Suspense>
         );
       case 'digitalization':
         return (
@@ -244,7 +348,12 @@ function App() {
         );
       case 'knowledge_search':
         return (
-          <KnowledgeSearchScreen title={subNav.label} description={subNav.description} />
+          <KnowledgeSearchScreen
+            title={subNav.label}
+            description={subNav.description}
+            onNavigate={handleNavChange}
+            onSelectProject={(code) => setSelectedProject(code)}
+          />
         );
       case 'lab_corpus':
         return (
@@ -253,8 +362,8 @@ function App() {
       case 'administration':
         return (
           <AdministrationScreen
-            title={subNav.label}
-            description={subNav.description}
+            title={localizedSub.label}
+            description={localizedSub.description}
             onNavigate={handleNavChange}
           />
         );
@@ -262,6 +371,8 @@ function App() {
         return <OrdersTasksPanel {...commonProps} hideHeader />;
       case 'orders_billing':
         return <OrdersBillingPanel API_URL={resolvedApiUrl} />;
+      case 'orders_archive':
+        return <OrdersArchivePanel />;
       case 'orders_register':
         return <OrdersRegisterPanel />;
       case 'orders_related':
@@ -299,19 +410,32 @@ function App() {
       case 'bioinformatics':
         return (
           <BioinformaticsHubScreen
+            key={`bio-${navSub}-${hubNestedSection || 'root'}`}
             {...commonProps}
             activeSubTab={subNav.bioSub || navSub}
+            hubNestedSection={hubNestedSection}
             hideChrome
+            onNavigate={handleNavChange}
           />
         );
       case 'computational_tools':
-        return <ComputationalToolsScreen />;
+        return (
+          <BioinformaticsHubScreen
+            {...commonProps}
+            activeSubTab="tools"
+            hideChrome
+            onNavigate={handleNavChange}
+          />
+        );
       case 'chat':
         return (
           <AiLabAssistantScreen
             {...commonProps}
             activeSubTab="copilot"
             hideChrome
+            onNavigate={handleNavChange}
+            onSelectProject={(code) => setSelectedProject(code)}
+            onOpenSearch={handleOpenSearch}
           />
         );
       case 'ai_assistant':
@@ -320,6 +444,9 @@ function App() {
             {...commonProps}
             activeSubTab={subNav.aiSub || navSub}
             hideChrome
+            onNavigate={handleNavChange}
+            onSelectProject={(code) => setSelectedProject(code)}
+            onOpenSearch={handleOpenSearch}
           />
         );
       default:
@@ -330,11 +457,6 @@ function App() {
   const handleManualRefresh = useCallback(() => {
     refreshReferenceData(new AbortController().signal, 'refreshing');
   }, [refreshReferenceData]);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    safeStorageSet('theme', theme);
-  }, [theme]);
 
   useEffect(() => {
     initFirebaseAnalytics();
@@ -355,8 +477,8 @@ function App() {
   }, [resolvedApiUrl]);
 
   useEffect(() => {
-    document.title = `${activeTitle} · Farkki Lab Assistant`;
-  }, [activeTitle]);
+    document.title = `${activeTitle} · ${t('common.documentTitleSuffix')}`;
+  }, [activeTitle, t]);
 
   useEffect(() => {
     safeStorageSet(NAV_STORAGE_KEY, `${navMain}:${navSub}`);
@@ -370,10 +492,39 @@ function App() {
 
 
 
+  const requireLogin = firebaseAuthEnabled && !authDisabled;
+
+  if (firebaseAuthEnabled && !authReady) {
+    return (
+      <div className="auth-boot-screen" role="status" aria-live="polite">
+        <p>{t('common.syncing')}</p>
+      </div>
+    );
+  }
+
+  if (requireLogin && authReady && !isAuthenticated) {
+    return <LoginScreen onAuthenticated={onAuthToken} />;
+  }
+
+  const displayUser =
+    userProfile?.name ||
+    authUser?.displayName ||
+    (authUser?.email ? authUser.email.split('@')[0] : null) ||
+    'Guest';
+
   const useModuleShell = navMain !== 'projects_data' || navSub !== 'portfolio' || !selectedProject;
+  const useWideContentShell = navMain === 'data_storage' && navSub === 'documents';
 
   const activeScreen = useModuleShell ? (
-    <ModuleShell mainId={navMain} subId={navSub} onSubChange={(sub) => handleNavChange(navMain, sub)}>
+    <ModuleShell
+      mainId={navMain}
+      subId={navSub}
+      onSubChange={(sub) => handleNavChange(navMain, sub)}
+      onRefresh={handleManualRefresh}
+      isRefreshing={isLoading}
+      compact={navMain === 'computational'}
+      landing
+    >
       {renderScreenBody()}
     </ModuleShell>
   ) : (
@@ -384,19 +535,22 @@ function App() {
     <TaskpadProvider>
       <div className="app-container" data-loading={isLoading ? 'true' : 'false'}>
         <a className="skip-link" href="#main-content">
-          Skip to workspace
+          {t('common.skipToWorkspace')}
         </a>
 
       <Sidebar
         navMain={navMain}
         navSub={navSub}
+        sidebarExpandedMain={sidebarExpandedMain}
         onNavChange={handleNavChange}
+        onMainNavClick={handleMainNavClick}
         onResetProject={resetProject}
-        theme={theme}
-        setTheme={setTheme}
         apiHealth={apiHealth}
         apiUrl={resolvedApiUrl}
         onOpenSearch={() => setIsSearchOpen(true)}
+        userLabel={displayUser}
+        userEmail={authUser?.email || userProfile?.email}
+        onSignOut={requireLogin ? signOut : null}
       />
 
       <main
@@ -406,25 +560,22 @@ function App() {
         aria-busy={isLoading}
         aria-labelledby="app-current-section"
       >
-        <div className="app-content-shell">
-          <div className="app-topline" role="status" aria-live="polite">
-            <div className="app-topline-copy">
-              <span className="app-topline-eyebrow">Farkki research platform</span>
-              <strong id="app-current-section">{activeTitle}</strong>
-              <span className="app-topline-status" data-phase={loadState.phase}>
-                {loadState.message}
-              </span>
-            </div>
+        <div className={`app-content-shell${useWideContentShell ? ' app-content-shell--wide' : ''}`}>
+          <span className="sr-only" id="app-current-section" role="status" aria-live="polite">
+            {activeTitle} — {loadMessage}
+          </span>
+          {!useModuleShell ? (
             <button
-              className="btn btn-secondary app-refresh-btn"
               type="button"
+              className="app-refresh-fab"
               onClick={handleManualRefresh}
               disabled={isLoading}
-              aria-label="Refresh project, team and audit data"
+              aria-label={isLoading ? t('common.syncing') : t('common.refreshAria')}
+              title={isLoading ? t('common.syncing') : t('common.refresh')}
             >
-              {isLoading ? 'Syncing…' : 'Refresh'}
+              <RefreshCw size={15} className={isLoading ? 'spin' : undefined} aria-hidden />
             </button>
-          </div>
+          ) : null}
 
           <ErrorBoundary>{activeScreen}</ErrorBoundary>
         </div>
@@ -433,8 +584,26 @@ function App() {
         <GlobalSearchOverlay
           isOpen={isSearchOpen}
           onClose={() => setIsSearchOpen(false)}
-          API_URL={resolvedApiUrl}
+          onNavigate={handleNavChange}
+          onSelectProject={(code) => setSelectedProject(code)}
+          onAskAi={(q) => {
+            handleNavChange('ai_assistant', 'copilot');
+            try {
+              sessionStorage.setItem('farkki_search_last_query', q);
+            } catch {
+              /* ignore */
+            }
+          }}
+          projectCode={
+            typeof selectedProject === 'string'
+              ? selectedProject
+              : selectedProject?.project_code || selectedProject?.code
+          }
         />
+
+        <div className="app-central-taskpad-host" aria-live="polite">
+          <TaskpadSheet scope={TASKPAD_SCOPES.CENTRAL} workerId={CENTRAL_WORKER_ID} />
+        </div>
       </div>
     </TaskpadProvider>
   );

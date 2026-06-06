@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import {
   Archive,
   BarChart3,
@@ -18,6 +18,10 @@ import {
   Search,
   Users,
 } from 'lucide-react';
+import MediaViewer from './MediaViewer.jsx';
+import { getMediaPreviewKind } from '../utils/mediaPreviewKind.js';
+
+const ModelViewer3D = lazy(() => import('./ModelViewer3D.jsx'));
 import {
   collectFolderEntries,
   filesForFolderEntry,
@@ -42,6 +46,7 @@ import DataPadEditor from './DataPadEditor.jsx';
 import DocumentFormatter from './DocumentFormatter.jsx';
 import { useTaskpad } from '../contexts/TaskpadContext.jsx';
 import { fetchDatapadSectionSummary } from '../api/datapad.js';
+import { folderSectionToWorkspaceTab } from '../utils/taskpadUtils.js';
 
 const PREVIEW_LIMIT = 12000;
 
@@ -451,7 +456,7 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
     sectionSummary?.sections?.[0]?.editable_count ??
     (selectedFolder ? visibleFiles.filter((f) => ['.md', '.txt', '.html', '.rtf'].includes(inferExtension(f.name, f.extension))).length : 0);
   const isPdf = selectedExt === '.pdf';
-  const isImage = isAssetPreviewable(selectedExt) && !isPdf;
+  const mediaKind = getMediaPreviewKind(selectedExt);
   const layoutClass = `pfb-layout${selectedFile ? ' pfb-layout--file-open' : ''}${foldersDrawerOpen ? ' pfb-layout--folders-open' : ''}`;
 
   return (
@@ -696,7 +701,7 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-secondary btn-sm"
-                    download={!isPdf && !isImage ? selectedFile.name : undefined}
+                    download={!isPdf && !mediaKind ? selectedFile.name : undefined}
                   >
                     Open file
                   </a>
@@ -726,10 +731,16 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
               )}
               {previewSlice && !['.md', '.txt', '.html', '.rtf'].includes(selectedExt) && (
                 <>
-                  <div style={{ padding: '1.5rem', background: 'var(--mac-bg-primary)', border: '1px solid var(--mac-border)', borderRadius: '6px' }}>
+                  <div className="surface-inset" style={{ padding: '1.5rem' }}>
                     <DocumentFormatter 
                       text={previewSlice} 
-                      onCreateTask={(text) => openTaskpad(text)}
+                      onCreateTask={(text) =>
+                        openTaskpad(text, {
+                          section: folderSectionToWorkspaceTab(selectedFolder?.id),
+                          filePath: selectedFile.path,
+                          fileName: selectedFile.name,
+                        })
+                      }
                     />
                   </div>
                   {preview.length > PREVIEW_LIMIT && (
@@ -746,8 +757,23 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
               {assetUrl && isPdf && (
                 <iframe title={selectedFile.name} src={assetUrl} className="database-pdf-frame pfb-pdf-frame" />
               )}
-              {assetUrl && isImage && !previewSlice && !previewLoading && (
-                <img src={assetUrl} alt={selectedFile.name} className="pfb-preview-image" />
+              {assetUrl && mediaKind === 'model3d' && !previewSlice && !previewLoading && (
+                <Suspense fallback={<p className="text-footnote muted">Loading 3D viewer…</p>}>
+                  <ModelViewer3D url={assetUrl} title={selectedFile.name} />
+                </Suspense>
+              )}
+              {assetUrl && mediaKind && mediaKind !== 'model3d' && !previewSlice && !previewLoading && (
+                <MediaViewer
+                  url={assetUrl}
+                  title={selectedFile.name}
+                  kind={mediaKind}
+                  labels={{
+                    loading: 'Loading…',
+                    failed: 'Could not load image.',
+                    videoLoading: 'Loading video…',
+                    videoFailed: 'Could not load video.',
+                  }}
+                />
               )}
               {assetUrl && isPdf && !previewSlice && !previewLoading && !previewError && (
                 <p className="text-footnote muted" style={{ marginTop: '0.5rem' }}>

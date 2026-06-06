@@ -1,4 +1,4 @@
-import './MacPlusVisualStyles.css';
+
 import React, { useState, useEffect } from 'react';
 import { Plus, CheckSquare } from 'lucide-react';
 

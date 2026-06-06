@@ -1,3 +1,5 @@
+from app_skeleton.security.permissions import require_role
+from app_skeleton.security.auth import require_platform_user
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
 from app_skeleton.api.common import *
 from typing import *
@@ -61,7 +63,9 @@ def knowledge_hybrid_search(
     limit: int = Query(12, ge=1, le=40),
 ) -> dict:
     """Semantic lab index + metadata vault search (no disk paths)."""
-    lab_hits = search_lab_knowledge(q, section_id=section_id, limit=limit)
+    lab_hits = search_lab_knowledge(
+        q, section_id=section_id, limit=limit, qdrant=qdrant_client, llm=llm_client
+    )
     vault_hits = search_vault(q, limit=max(5, limit // 2))
     return {
         "query": q,
@@ -81,10 +85,16 @@ def unified_search(
     """Unified search: exact|metadata|semantic|hybrid (LUMI-W140)."""
     mode = (mode or "hybrid").lower()
     out: dict = {"query": q, "mode": mode}
+    vault_domain = None
+    if page_domain_id:
+        from app_skeleton.api.search_nav import vault_domain_for_page
+        vault_domain = vault_domain_for_page(page_domain_id)
     if mode in ("semantic", "hybrid"):
-        out["lab_results"] = search_lab_knowledge(q, section_id=section_id, limit=limit)
+        out["lab_results"] = search_lab_knowledge(
+            q, section_id=section_id, limit=limit, qdrant=qdrant_client, llm=llm_client
+        )
     if mode in ("metadata", "exact", "hybrid"):
-        out["vault_results"] = search_vault(q, limit=limit)
+        out["vault_results"] = search_vault(q, domain=vault_domain, limit=limit)
     if mode == "exact" and not out.get("lab_results"):
         out["lab_results"] = []
     out["count"] = len(out.get("lab_results") or []) + len(out.get("vault_results") or [])
@@ -101,7 +111,8 @@ def documents_registry(
     return {"count": len(docs), "documents": docs}
 
 @router.get("/api/lab/sections")
-def lab_sections_list() -> dict:
+def lab_sections_list(user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     """Lab database sections with processed-twin and vault asset counts.
 
     Processed twins are read from local ``app_skeleton/data/processed_projects/lab__*.json``
@@ -223,7 +234,8 @@ def database_document_text(
     raise HTTPException(status_code=404, detail="No extracted text for this file.")
 
 @router.post("/api/database/process-all")
-def database_process_all() -> dict:
+def database_process_all(user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     """Extract lab files to processed twins, then assimilate into canonical rag.* + Qdrant."""
     job = platform_admin.create_ingestion_job("lab_process_all")
     try:
@@ -249,7 +261,8 @@ def database_process_all() -> dict:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 @router.post("/api/database/process/{section_id}")
-def database_process_section(section_id: str) -> dict:
+def database_process_section(section_id: str, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     if section_id not in DATABASE_SECTIONS:
         raise HTTPException(status_code=404, detail="Unknown section.")
     try:

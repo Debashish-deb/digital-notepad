@@ -6,7 +6,56 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = path.resolve(__dirname, '../../../../')
-const DATABASE_ROOT = path.join(REPO_ROOT, 'database')
+
+/** Mirror configs/.env Firebase keys into VITE_* when react_frontend/.env.local omits them. */
+function loadSharedFirebaseEnv() {
+  const envPath = path.join(REPO_ROOT, 'configs', '.env')
+  if (!fs.existsSync(envPath)) return
+
+  const mappings = [
+    ['FIREBASE_WEB_API_KEY', 'VITE_FIREBASE_API_KEY'],
+    ['FIREBASE_AUTH_DOMAIN', 'VITE_FIREBASE_AUTH_DOMAIN'],
+    ['FIREBASE_PROJECT_ID', 'VITE_FIREBASE_PROJECT_ID'],
+    ['FIREBASE_STORAGE_BUCKET', 'VITE_FIREBASE_STORAGE_BUCKET'],
+    ['FIREBASE_MESSAGING_SENDER_ID', 'VITE_FIREBASE_MESSAGING_SENDER_ID'],
+    ['FIREBASE_WEB_APP_ID', 'VITE_FIREBASE_APP_ID'],
+    ['FIREBASE_MEASUREMENT_ID', 'VITE_FIREBASE_MEASUREMENT_ID'],
+  ]
+
+  for (const line of fs.readFileSync(envPath, 'utf8').split('\n')) {
+    const trimmed = line.trim()
+    if (!trimmed || trimmed.startsWith('#')) continue
+    const eq = trimmed.indexOf('=')
+    if (eq < 1) continue
+    const key = trimmed.slice(0, eq).trim()
+    const value = trimmed.slice(eq + 1).trim().replace(/^["']|["']$/g, '')
+    for (const [from, to] of mappings) {
+      if (key === from && value && !process.env[to]) {
+        process.env[to] = value
+      }
+    }
+  }
+}
+
+loadSharedFirebaseEnv()
+const DATABASE_ROOT_ENV = process.env.DATABASE_ROOT?.trim()
+const EXTERNAL_DATABASE_ROOT = path.resolve(REPO_ROOT, '..', 'OMEIA-database')
+const LEGACY_DATABASE_ROOT = path.join(REPO_ROOT, 'database')
+function resolveDatabaseRoot() {
+  const candidates = [
+    DATABASE_ROOT_ENV ? path.resolve(DATABASE_ROOT_ENV) : null,
+    EXTERNAL_DATABASE_ROOT,
+    LEGACY_DATABASE_ROOT,
+  ].filter(Boolean)
+  for (const root of candidates) {
+    if (fs.existsSync(path.join(root, 'WET_LAB'))) return root
+  }
+  for (const root of candidates) {
+    if (fs.existsSync(root)) return root
+  }
+  return LEGACY_DATABASE_ROOT
+}
+const DATABASE_ROOT = resolveDatabaseRoot()
 const DATABASE_PROJECTS = path.join(DATABASE_ROOT, 'projects')
 const LEGACY_PROJECTS = path.join(REPO_ROOT, 'projects')
 const PROJECTS_ROOT = fs.existsSync(DATABASE_PROJECTS)

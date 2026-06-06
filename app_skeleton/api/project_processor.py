@@ -196,6 +196,13 @@ def _parse_timeline_from_log(content: str, source_file: str) -> list[dict[str, A
     return entries
 
 
+NON_PERSON_NAME_RE = re.compile(
+    r"\b(pathway|pathways|inhibitor|inhibitors|levels|samples|panck|p21|p27|cdk|pi3k|"
+    r"akt|mtor|fgfr|treatment|resistant|tumou?r|protein|marker|magenta|yellow|green)\b",
+    re.I,
+)
+
+
 def _is_valid_person_name(name: str) -> bool:
     name = _clean(name).strip(" :,")
     if not name or len(name) < 4 or len(name) > 72:
@@ -204,14 +211,24 @@ def _is_valid_person_name(name: str) -> bool:
         return False
     if URL_LIKE.search(name) or "http" in name.lower():
         return False
+    if NON_PERSON_NAME_RE.search(name):
+        return False
+    if re.match(r"^\.{0,2}/?\d", name):
+        return False
     low = name.lower()
     if low.startswith("personnel") or low in ("responsible personnel", "role / focus", ":"):
         return False
     core = name.split(",")[0].strip()
     parts = core.split()
-    if len(parts) >= 2:
-        return parts[0][0].isupper() and all(p.replace("-", "").isalpha() for p in parts)
-    return bool(NAME_LIKE.match(core))
+    if len(parts) < 2 or len(parts) > 4:
+        return False
+    for part in parts:
+        token = part.replace("-", "").replace("'", "")
+        if not token or not token.isalpha():
+            return False
+        if not part[0].isupper():
+            return False
+    return True
 
 
 def _parse_responsible_raw(raw: str) -> tuple[str, list[str]]:

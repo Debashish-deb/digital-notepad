@@ -1,4 +1,4 @@
-import './MacPlusVisualStyles.css';
+
 import React, { useEffect, useState } from 'react';
 import { Database, GitCompare, LineChart, Search, Sparkles, Play, RefreshCw } from 'lucide-react';
 

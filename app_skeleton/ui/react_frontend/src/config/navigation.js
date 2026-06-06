@@ -19,67 +19,32 @@ export const MAIN_NAV = [
     icon: LayoutDashboard,
     defaultSub: 'get_started',
     children: [
-      { id: 'get_started', label: 'General lab information', screen: 'lab_knowledge', description: 'All general lab documents: onboarding, guidelines, permits, cleaning, and related folders.' },
+      { id: 'get_started', label: 'General lab information', sidebarLabel: 'General info', screen: 'lab_knowledge', description: 'Introduction to the Färkkilä Lab and ONCOSYS — orientation and onboarding files are under Onboarding & Outboarding.' },
       {
         id: 'onboarding',
         label: 'Onboarding & Outboarding',
+        sidebarLabel: 'Onboarding',
         screen: 'lab_knowledge',
         databaseSub: 'overview_onboarding',
         description: 'Orientation and onboarding/outboarding checklists.',
       },
-      { id: 'guidelines', label: 'Guidelines', screen: 'lab_knowledge', description: 'Research and work-related lab guidelines.' },
-      { id: 'documents_permits', label: 'Documents & Permits', screen: 'lab_knowledge', description: 'Permits, forms, datasheets, and handbooks.' },
-      { id: 'personnel', label: 'Personnel', screen: 'lab_knowledge', description: 'Personnel records and support documents.' },
+      { id: 'guidelines', label: 'Guidelines', sidebarLabel: 'Guidelines', screen: 'lab_knowledge', description: 'Research and work-related lab guidelines.' },
+      { id: 'documents_permits', label: 'Documents & Permits', sidebarLabel: 'Documents', screen: 'lab_knowledge', description: 'Permits, forms, datasheets, and handbooks.' },
+      { id: 'personnel', label: 'Personnel', sidebarLabel: 'Personnel', screen: 'lab_knowledge', description: 'Personnel records and support documents.' },
       {
         id: 'cleaning',
         label: 'Lab cleaning',
+        sidebarLabel: 'Cleaning',
         screen: 'lab_knowledge',
         databaseSub: 'overview_cleaning',
         description: 'Cleaning schedules and lab upkeep documents.',
       },
-      { id: 'dashboard', label: 'Lab dashboard', screen: 'dashboard', description: 'Metrics, team, audit trail, platform readiness.' },
-      { id: 'research', label: 'Research materials', screen: 'lab_knowledge', databaseSub: 'overview_research_materials', description: 'Conference materials, posters, and publications on disk.' },
-    ],
-  },
-  {
-    id: 'orders',
-    label: 'Orders & related information',
-    icon: ClipboardList,
-    defaultSub: 'billing',
-    children: [
-      { id: 'billing', label: 'Billing & ordering instructions', screen: 'orders_billing', description: 'Billing, vendors, shipments, and HUS ordering.' },
-      { id: 'archive', label: 'Archive', screen: 'lab_knowledge', description: 'Historical orders, quotes, and procurement archives.' },
-      { id: 'orders', label: 'Orders register', screen: 'orders_register', description: 'Reagents, sequencing, and service orders.' },
-      { id: 'related', label: 'Related records', screen: 'orders_related', description: 'Linked samples, shipments, and metadata.' },
-    ],
-  },
-  {
-    id: 'social',
-    label: 'Social & miscellaneous',
-    icon: Users,
-    defaultSub: 'social_browse',
-    children: [
-      { id: 'social_browse', label: 'Browse', screen: 'lab_knowledge', description: 'Parties, retreats, photos, outreach, and visits.' },
-    ],
-  },
-  {
-    id: 'data_storage',
-    label: 'Data & Storage',
-    icon: HardDrive,
-    defaultSub: 'vault',
-    children: [
-      { id: 'vault', label: 'Raw knowledge vault', screen: 'data_storage', dataSection: 'vault', description: 'Asset registry, search, and review queue.' },
-      { id: 'roots', label: 'Storage roots', screen: 'data_storage', dataSection: 'roots', description: 'DataCloud WebDAV, P-drive mount, Supabase metadata, and connector status.' },
-      { id: 'ingest', label: 'Ingestion & sync', screen: 'data_storage', dataSection: 'ingest', description: 'Digitalization, vault ingest, Supabase sync (dry run), and review.' },
-      { id: 'digitalization', label: 'Data Digitalization', screen: 'digitalization', description: 'End-to-end data digitalization pipeline dashboard.' },
-      { id: 'ingestion', label: 'Ingestion dashboard', screen: 'ingestion_dashboard', description: 'Vault summary metrics and digitalization run history.' },
-      { id: 'knowledge', label: 'Knowledge search', screen: 'knowledge_search', description: 'Hybrid lab corpus and vault metadata search.' },
-      { id: 'lab_corpus', label: 'Lab corpus browser', screen: 'lab_corpus', description: 'All database sections with processed twins and vault counts.' },
     ],
   },
   {
     id: 'projects_data',
-    label: 'Projects & Data',
+    label: 'Project Portfolio',
+    sidebarLabel: 'Project Portfolio',
     icon: FolderOpen,
     defaultSub: 'portfolio',
     keepsProject: true,
@@ -88,6 +53,23 @@ export const MAIN_NAV = [
       { id: 'notebook', label: 'Living notebook', screen: 'notebook', description: 'Lab notebook logs and protocol wiki.' },
       { id: 'decisions', label: 'Research decisions', screen: 'decisions', description: 'Formal decision register across projects.' },
       { id: 'features', label: 'Feature warehouse', screen: 'features', description: 'Clinical feature matrix and similarity search.' },
+    ],
+  },
+  {
+    id: 'data_storage',
+    label: 'Data & Storage',
+    icon: HardDrive,
+    defaultSub: 'landscape',
+    children: [
+      { id: 'landscape', label: 'Storage landscape', screen: 'data_storage', dataSection: 'landscape', description: 'Overview map — where data goes, capacity summary, and links to each storage tab.' },
+      { id: 'network_drives', label: 'L-drive & P-drive', screen: 'data_storage', dataSection: 'network_drives', description: 'L-drive: UH sensitive clinical (not Allas). P-drive: ~80 TB active project storage across all shares.' },
+      { id: 'datacloud', label: 'DataCloud & Databank', screen: 'data_storage', dataSection: 'datacloud', description: 'University services: DataCloud WebDAV /farkkila/ (~10 TB) and UH Databank for long-term pseudonymized archives.' },
+      { id: 'cloud_archive', label: 'CSC Allas', screen: 'data_storage', dataSection: 'cloud_archive', description: 'CSC object storage (~30 TB active) for datasets staged before Puhti/LUMI analysis.' },
+      { id: 'google_drive', label: 'Google Drive', screen: 'data_storage', dataSection: 'google_drive', description: 'Project logs, onboarding docs, and collaboration — archive inactive projects regularly.' },
+      { id: 'local_storage', label: 'Local & external disks', screen: 'data_storage', dataSection: 'local_storage', description: 'Workstations, cPouta /data NFS, external disks, GeoMx exports, and HUH Datalake / OVCA.' },
+      { id: 'guidelines', label: 'Guidelines & workflow', screen: 'data_storage', dataSection: 'guidelines', description: 'Lifecycle workflow, FAIR rules, sensitivity classes, cleaning-day checklist, and lab source docs.' },
+      { id: 'tools', label: 'Transfer tools', screen: 'data_storage', dataSection: 'tools', description: 'rclone, Lumi-O, allas-conf, Cyberduck, rsync — when to use each and common transfer patterns.' },
+      { id: 'documents', label: 'Lab documents', screen: 'data_storage', dataSection: 'documents', description: 'Interactive map of every document zone in the app — browse and preview lab files with readable content.' },
     ],
   },
   {
@@ -106,12 +88,46 @@ export const MAIN_NAV = [
     id: 'cycif',
     label: 'CyCif',
     icon: Microscope,
-    defaultSub: 'pipeline',
+    defaultSub: 'cycif_projects',
     children: [
       { id: 'pipeline', label: 'Imaging pipeline', screen: 'cycif_pipeline', description: 'Stitching, segmentation, and QC triggers.' },
       { id: 'install', label: 'Tool setup', screen: 'cycif_install', description: 'Napari, Cylinter, and viewer installs.' },
       { id: 'structure', label: 'Project structure', screen: 'cycif_structure', description: 't-CycIF folder layout validation.' },
-      { id: 'knowledge', label: 'Knowledge Base', screen: 'cycif_knowledge', description: 't-CycIF extracted documents and SOPs.' },
+      {
+        id: 'cycif_projects',
+        label: 'Individual Projects',
+        screen: 'lab_knowledge',
+        databaseSub: 'wet_lab_files',
+        description: 'Per-project staining plans, notes, and run spreadsheets.',
+      },
+      {
+        id: 'cycif_instructions',
+        label: 'Instructions & SOPs',
+        screen: 'lab_knowledge',
+        databaseSub: 'wet_lab_files',
+        description: 't-CycIF workflow instructions, templates, and planning files.',
+      },
+      {
+        id: 'cycif_sectioning',
+        label: 'Sectioning & H&E',
+        screen: 'lab_knowledge',
+        databaseSub: 'wet_lab_files',
+        description: 'Sectioning orders and H&E staining after t-CycIF.',
+      },
+      {
+        id: 'cycif_inventory',
+        label: 'Antibody Inventory',
+        screen: 'lab_knowledge',
+        databaseSub: 'wet_lab_files',
+        description: 'CyCIF antibody panels and inventory spreadsheets.',
+      },
+      {
+        id: 'cycif_protocols',
+        label: 'Protocols & Resources',
+        screen: 'lab_knowledge',
+        databaseSub: 'wet_lab_files',
+        description: 'Spatial CycIF protocols and GeoMx / CycIF resources.',
+      },
     ],
   },
   {
@@ -121,14 +137,24 @@ export const MAIN_NAV = [
     defaultSub: 'onboarding',
     children: [
       { id: 'onboarding', label: 'Onboarding & credentials', screen: 'bioinformatics', bioSub: 'onboarding' },
-      { id: 'conda', label: 'Conda environments', screen: 'bioinformatics', bioSub: 'conda' },
-      { id: 'install', label: 'Tool installations', screen: 'bioinformatics', bioSub: 'install' },
-      { id: 'file_ops', label: 'File operations', screen: 'bioinformatics', bioSub: 'file_ops' },
-      { id: 'lumi', label: 'LUMI HPC', screen: 'bioinformatics', bioSub: 'lumi' },
-      { id: 'pouta', label: 'cPouta VMs', screen: 'bioinformatics', bioSub: 'pouta' },
-      { id: 'diagnostics', label: 'Diagnostics', screen: 'bioinformatics', bioSub: 'diagnostics' },
-      { id: 'troubleshoot', label: 'Log troubleshooting', screen: 'bioinformatics', bioSub: 'troubleshoot' },
-      { id: 'tools', label: 'Lab computational tools', screen: 'computational_tools', description: 'Tribus, CEFIIRA, and published pipelines.' },
+      { id: 'lumi', label: 'LUMI HPC', screen: 'bioinformatics', bioSub: 'lumi', description: 'Slurm jobs, spatial tool installs (Ashlar, Stardist, Cylinter), pipelines, and Lumi-O transfers.' },
+      { id: 'pouta', label: 'cPouta VMs', screen: 'bioinformatics', bioSub: 'pouta', description: 'Lab cloud VMs, provisioning guides, and VM-side conda setup.' },
+      { id: 'roihu', label: 'Roihu', screen: 'bioinformatics', bioSub: 'roihu', description: 'CSC Roihu supercomputer — content coming soon.' },
+      { id: 'troubleshoot', label: 'Troubleshooting', screen: 'bioinformatics', bioSub: 'troubleshoot', description: 'Environment diagnostics and log analysis.' },
+      {
+        id: 'utilities',
+        label: 'Utilities',
+        screen: 'bioinformatics',
+        bioSub: 'utilities',
+        description: 'File operations and conda environment management.',
+      },
+      {
+        id: 'tools',
+        label: 'Lab computational tools',
+        screen: 'bioinformatics',
+        bioSub: 'tools',
+        description: 'Published lab software — Tribus, CEFIIRA, SPACEstat, and related spatial analysis tools.',
+      },
     ],
   },
   {
@@ -138,9 +164,74 @@ export const MAIN_NAV = [
     defaultSub: 'copilot',
     children: [
       { id: 'copilot', label: 'Chat copilot', screen: 'ai_assistant', aiSub: 'copilot', description: 'RAG Q&A over protocols and project docs.' },
+      { id: 'knowledge_search', label: 'Advanced search', screen: 'knowledge_search', description: 'Unified hybrid search across lab corpus, vault, and registry.' },
       { id: 'prompts', label: 'Prompt templates', screen: 'ai_assistant', aiSub: 'prompts' },
       { id: 'ingest', label: 'Ingest documents', screen: 'ai_assistant', aiSub: 'ingest' },
       { id: 'models', label: 'Model registry', screen: 'ai_assistant', aiSub: 'models' },
+    ],
+  },
+  {
+    id: 'orders',
+    label: 'Orders & related information',
+    sidebarLabel: 'Orders',
+    icon: ClipboardList,
+    defaultSub: 'billing',
+    children: [
+      { id: 'billing', label: 'Billing & ordering instructions', sidebarLabel: 'Billing', screen: 'orders_billing', description: 'Billing, vendors, shipments, and HUS ordering.' },
+      { id: 'archive', label: 'Archive', sidebarLabel: 'Archive', screen: 'orders_archive', description: 'Historical orders, quotes, and procurement archives.' },
+      { id: 'orders', label: 'Orders register', sidebarLabel: 'Register', screen: 'orders_register', description: 'Reagents, sequencing, and service orders.' },
+      { id: 'related', label: 'Related records', sidebarLabel: 'Related', screen: 'orders_related', description: 'Linked samples, shipments, and metadata.' },
+    ],
+  },
+  {
+    id: 'social',
+    label: 'Social & miscellaneous',
+    sidebarLabel: 'Social',
+    icon: Users,
+    defaultSub: 'lab_photos',
+    children: [
+      {
+        id: 'lab_parties',
+        label: 'Lab Parties',
+        sidebarLabel: 'Parties',
+        screen: 'lab_knowledge',
+        description: 'Halloween, grilling parties, and event planning documents.',
+      },
+      {
+        id: 'winter_events',
+        label: 'Winter Day & Seasonal',
+        sidebarLabel: 'Winter events',
+        screen: 'lab_knowledge',
+        description: 'Lab winter day photos and seasonal gatherings.',
+      },
+      {
+        id: 'lab_retreats',
+        label: 'Lab Retreats',
+        sidebarLabel: 'Retreats',
+        screen: 'lab_knowledge',
+        description: 'Retreat planning and Nuuksio retreat materials.',
+      },
+      {
+        id: 'lab_photos',
+        label: 'Lab Photos',
+        sidebarLabel: 'Photos',
+        screen: 'lab_knowledge',
+        description: 'Group photos, retreat albums, and lab life pictures.',
+      },
+      {
+        id: 'researcher_visits',
+        label: 'Researcher Visits',
+        sidebarLabel: 'Visits',
+        screen: 'lab_knowledge',
+        description: 'Visitor records and hosting materials.',
+      },
+      {
+        id: 'outreach',
+        label: 'Outreach & Social Media',
+        sidebarLabel: 'Outreach',
+        screen: 'lab_knowledge',
+        description: 'Outreach campaigns and social media assets.',
+      },
     ],
   },
   {
@@ -159,9 +250,46 @@ export function findMainNav(mainId) {
   return MAIN_NAV.find((m) => m.id === mainId) || MAIN_NAV[0];
 }
 
+const DATA_STORAGE_LEGACY_SUBS = {
+  vault: 'landscape',
+  roots: 'landscape',
+  ingest: 'tools',
+  digitalization: 'landscape',
+  ingestion: 'landscape',
+  knowledge: 'guidelines',
+  lab_corpus: 'landscape',
+};
+
+/** Old Computational Hub tabs → new top-level tab id. */
+export const COMPUTATIONAL_LEGACY_SUBS = {
+  conda: 'utilities',
+  install: 'lumi',
+  file_ops: 'utilities',
+  diagnostics: 'troubleshoot',
+  tools: 'tools',
+};
+
+/** Nested section inside a reorganized hub tab (when opening a legacy sub id). */
+export const COMPUTATIONAL_LEGACY_NESTED = {
+  conda: { tab: 'utilities', section: 'conda' },
+  install: { tab: 'lumi', section: 'install' },
+  file_ops: { tab: 'utilities', section: 'file_ops' },
+  diagnostics: { tab: 'troubleshoot', section: 'diagnostics' },
+};
+
+export function normalizeComputationalSub(subId) {
+  return COMPUTATIONAL_LEGACY_SUBS[subId] || subId;
+}
+
 export function findSubNav(mainId, subId) {
   const main = findMainNav(mainId);
-  return main.children.find((c) => c.id === subId) || main.children[0];
+  let resolvedSub = subId;
+  if (mainId === 'data_storage' && DATA_STORAGE_LEGACY_SUBS[subId]) {
+    resolvedSub = DATA_STORAGE_LEGACY_SUBS[subId];
+  } else if (mainId === 'computational') {
+    resolvedSub = normalizeComputationalSub(subId);
+  }
+  return main.children.find((c) => c.id === resolvedSub) || main.children[0];
 }
 
 export function sectionTitle(mainId, subId) {

@@ -1,0 +1,231 @@
+/**
+ * Cross-app visual consistency — every screen inherits the same tokens,
+ * surfaces, headings, and code blocks from themeManager.css.
+ */
+
+/* ── Screen shells ─────────────────────────────────────────────────────────── */
+
+.bioinformatics-hub-screen,
+.notebook-wiki-screen,
+.lab-knowledge-screen,
+.data-storage-screen,
+.workspace-screen,
+.orders-hub-screen,
+.administration-screen,
+.ingestion-dashboard,
+.digitalization-dashboard,
+.knowledge-search-screen {
+  color: var(--text-primary);
+}
+
+/* Headings must never hardcode white/dark ink */
+.main-content :where(h1, h2, h3, h4, h5, h6),
+.bioinformatics-hub-screen :where(h1, h2, h3, h4, h5, h6),
+.notebook-wiki-screen :where(h1, h2, h3, h4, h5, h6),
+.panel :where(h1, h2, h3, h4, h5, h6),
+.module-shell :where(h1, h2, h3, h4, h5, h6) {
+  color: var(--text-primary);
+}
+
+/* ── Surfaces: panels, cards, inset regions ──────────────────────────────── */
+
+html[data-theme='light'] :where(.panel, .panel-inset, .metric-card, .project-card, .workspace-section),
+html[data-theme='academic'] :where(.panel, .panel-inset, .metric-card, .project-card, .workspace-section) {
+  background: var(--bg-surface);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+html[data-theme='light'] .project-log-panel,
+html[data-theme='academic'] .project-log-panel {
+  background: var(--bg-surface);
+}
+
+html[data-theme='light'] .log-scroller-viewport,
+html[data-theme='academic'] .log-scroller-viewport {
+  background: var(--bg-inset);
+  border-color: var(--border-color);
+}
+
+html[data-theme='light'] .log-card,
+html[data-theme='academic'] .log-card {
+  background: var(--bg-surface);
+  border-color: var(--border-color);
+}
+
+html[data-theme='light'] .log-card:hover,
+html[data-theme='academic'] .log-card:hover {
+  background: var(--bg-surface-hover);
+  box-shadow: var(--shadow-card);
+}
+
+html[data-theme='light'] .log-scroller-viewport::-webkit-scrollbar-track,
+html[data-theme='academic'] .log-scroller-viewport::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--border-color) 25%, transparent);
+}
+
+html[data-theme='light'] .log-scroller-viewport::-webkit-scrollbar-thumb,
+html[data-theme='academic'] .log-scroller-viewport::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--text-muted) 35%, transparent);
+}
+
+/* ── Code & terminal surfaces ────────────────────────────────────────────── */
+
+.main-content :where(pre, code).code-block,
+.main-content .code-preview,
+.main-content .code-preview-pre,
+.bioinformatics-hub-screen pre,
+.bioinformatics-hub-screen code,
+.notebook-wiki-screen pre,
+.notebook-wiki-screen code {
+  background: var(--bg-inset);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+html[data-theme='light'] .code-preview,
+html[data-theme='academic'] .code-preview,
+html[data-theme='light'] .doc-preview-editor-stage,
+html[data-theme='academic'] .doc-preview-editor-stage {
+  background: var(--bg-surface);
+}
+
+/* ── Bioinformatics hub chrome ───────────────────────────────────────────── */
+
+.bioinformatics-hub-screen .bio-hub-nav-btn {
+  color: var(--text-secondary);
+}
+
+.bioinformatics-hub-screen .bio-hub-nav-btn.active,
+.bioinformatics-hub-screen .bio-hub-nav-btn[aria-current='page'] {
+  color: var(--text-primary);
+}
+
+.bioinformatics-hub-screen video,
+.bioinformatics-hub-screen .bio-hub-media {
+  background: var(--bg-inset);
+  border-radius: var(--radius-sm, 8px);
+}
+
+/* ── Login: form panel follows app theme; scene stays illustrative ───────── */
+
+html[data-theme='academic'] .login-page__panel-wrap .login-card,
+html[data-theme='light'] .login-page__panel-wrap .login-card {
+  background: color-mix(in srgb, var(--bg-surface) 96%, transparent);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-card);
+}
+
+html[data-theme='academic'] .login-card :where(h1, h2, h3, p, label),
+html[data-theme='light'] .login-card :where(h1, h2, h3, p, label) {
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] .login-card .text-muted,
+html[data-theme='light'] .login-card .text-muted,
+html[data-theme='academic'] .login-card .login-muted,
+html[data-theme='light'] .login-card .login-muted {
+  color: var(--text-muted);
+}
+
+html[data-theme='academic'] .login-card .btn-primary,
+html[data-theme='light'] .login-card .btn-primary {
+  background: var(--color-primary);
+  color: var(--text-on-accent, #fffdf8);
+  border-color: color-mix(in srgb, var(--color-primary) 80%, var(--border-color));
+}
+
+html[data-theme='academic'] .login-card input,
+html[data-theme='light'] .login-card input {
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+/* ── Tab controls unified with module shell ──────────────────────────────── */
+
+html[data-theme='academic'] :where(.tab-button, .module-top-tab, .module-subnav-item),
+html[data-theme='light'] :where(.tab-button, .module-top-tab, .module-subnav-item) {
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--bg-surface) 88%, transparent);
+  border-color: var(--border-color);
+}
+
+html[data-theme='academic'] :where(.tab-button.active, .module-top-tab.active, .module-subnav-item.active),
+html[data-theme='light'] :where(.tab-button.active, .module-top-tab.active, .module-subnav-item.active) {
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border-color: color-mix(in srgb, var(--color-primary) 35%, var(--border-color));
+}
+
+/* ── Status / badge colors use semantic tokens ───────────────────────────── */
+
+.log-live-status,
+.log-category-badge.code {
+  color: var(--color-success);
+  background: color-mix(in srgb, var(--color-success) 12%, transparent);
+  border-color: color-mix(in srgb, var(--color-success) 28%, transparent);
+}
+
+.log-live-dot {
+  background-color: var(--color-success);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--color-success) 55%, transparent);
+}
+
+/* ── Shared surface utilities ─────────────────────────────────────────────── */
+
+.surface-inset {
+  background: var(--bg-inset);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm, 8px);
+  color: var(--text-secondary);
+}
+
+.surface-code {
+  background: var(--bg-inset);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm, 8px);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  overflow-x: auto;
+}
+
+html[data-theme='light'] .btn-secondary,
+html[data-theme='academic'] .btn-secondary {
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--bg-surface-hover) 80%, var(--bg-surface));
+}
+
+html[data-theme='light'] .btn-primary,
+html[data-theme='academic'] .btn-primary {
+  color: var(--text-on-accent, #fffdf8);
+}
+
+html[data-theme='light'] .report-nav-btn.active,
+html[data-theme='academic'] .report-nav-btn.active,
+html[data-theme='light'] .timeline-title,
+html[data-theme='academic'] .timeline-title {
+  color: var(--text-primary);
+}
+
+html[data-theme='light'] .obp-doc-item,
+html[data-theme='academic'] .obp-doc-item {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-color);
+}
+
+html[data-theme='light'] .obp-doc-item:hover,
+html[data-theme='academic'] .obp-doc-item:hover,
+html[data-theme='light'] .obp-doc-item:focus-visible,
+html[data-theme='academic'] .obp-doc-item:focus-visible {
+  background: var(--bg-surface);
+  border-color: color-mix(in srgb, var(--color-primary) 30%, var(--border-color));
+}
+
+html[data-theme='light'] .obp-doc-item.is-active,
+html[data-theme='academic'] .obp-doc-item.is-active {
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--bg-surface));
+  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--border-color));
+}

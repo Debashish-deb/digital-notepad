@@ -1,4 +1,4 @@
-import './MacPlusVisualStyles.css';
+
 import React, {
   useCallback,
   useEffect,
@@ -8,6 +8,10 @@ import React, {
 
 import TasksScreen from './TasksScreen';
 import LabSectionTwinPanel from '../components/LabSectionTwinPanel.jsx';
+import OrdersBillingBrowser from '../components/OrdersBillingBrowser.jsx';
+import OrdersArchiveBrowser from '../components/OrdersArchiveBrowser.jsx';
+import OrdersSpacePanel from '../components/OrdersSpacePanel.jsx';
+import { ClipboardList, Link2 } from 'lucide-react';
 import { billingInstructions } from '../data/billingInstructions.js';
 
 /**
@@ -1028,17 +1032,10 @@ function DocumentDetail({ document, searchQuery }) {
 }
 
 export function OrdersBillingPanel() {
-  return (
-    <LabSectionTwinPanel
-      sectionId="orders_billing"
-      title="Billing & Invoicing Blueprints"
-      description="Invoices, billing instructions, and financial procurement documents from the billing folder."
-      filterFolder="Billing"
-    />
-  );
+  return <OrdersBillingBrowser />;
 }
 export function OrdersArchivePanel() {
-  return <OrdersArchiveSpotlight />;
+  return <OrdersArchiveBrowser />;
 }
 
 export function OrdersTasksPanel(props) {
@@ -1047,39 +1044,24 @@ export function OrdersTasksPanel(props) {
 
 export function OrdersRegisterPanel() {
   return (
-    <div className="obp-shell">
-      <div className="panel obp-header">
-        <div>
-          <p className="text-caption">Orders system</p>
-          <h2 className="text-title-1 obp-title">Orders Register</h2>
-          <p className="page-lead obp-lead">
-            Manage your reagent, sequencing, and service orders.
-          </p>
-        </div>
-      </div>
-      <div className="panel" style={{ padding: '3rem', textAlign: 'center' }}>
-        <p className="muted">Orders register component is currently under maintenance.</p>
-      </div>
-    </div>
+    <OrdersSpacePanel
+      icon={ClipboardList}
+      title="Orders register"
+      description="Reagents, sequencing, and service orders."
+      message="The orders register is under maintenance."
+      hint="Use Billing or Archive tabs to browse existing order documents in the meantime."
+    />
   );
 }
 
 export function OrdersRelatedPanel() {
   return (
-    <div className="obp-shell">
-      <div className="panel obp-header">
-        <div>
-          <p className="text-caption">Orders intelligence</p>
-          <h2 className="text-title-1 obp-title">Related Records</h2>
-          <p className="page-lead obp-lead">
-            Cross-links between samples, shipments, sequencing batches, project folders,
-            and order events.
-          </p>
-        </div>
-      </div>
-      <div className="panel" style={{ padding: '3rem', textAlign: 'center' }}>
-        <p className="muted">Traceability functionality is currently offline.</p>
-      </div>
-    </div>
+    <OrdersSpacePanel
+      icon={Link2}
+      title="Related records"
+      description="Cross-links between samples, shipments, sequencing batches, project folders, and order events."
+      message="Traceability linking is currently offline."
+      hint="Shipment waybills and procurement files are available under Billing and Archive."
+    />
   );
 }

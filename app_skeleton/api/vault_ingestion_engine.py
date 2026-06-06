@@ -342,7 +342,11 @@ def _maybe_vectorize(cur, asset_id: str, result: de.ExtractionResult) -> None:
         return
     try:
         from app_skeleton.api.llm_client import LLMClient
-        from qdrant_client import QdrantClient
+        from app_skeleton.api.qdrant_vectors import (
+            get_qdrant_client,
+            ping_qdrant,
+            upsert_text_points,
+        )
         from qdrant_client.http import models
     except ImportError:
         cur.execute(
@@ -352,23 +356,13 @@ def _maybe_vectorize(cur, asset_id: str, result: de.ExtractionResult) -> None:
         return
 
     client = LLMClient()
-    qdrant_url = os.environ.get("QDRANT_URL", "http://localhost:6333")
-    try:
-        qc = QdrantClient(url=qdrant_url, api_key=os.environ.get("QDRANT_API_KEY") or None)
-        qc.get_collection(VAULT_QDRANT_COLLECTION)
-    except Exception:
-        try:
-            qc.create_collection(
-                collection_name=VAULT_QDRANT_COLLECTION,
-                vectors_config=models.VectorParams(size=384, distance=models.Distance.COSINE),
-            )
-        except Exception as exc:
-            LOGGER.warning("Qdrant collection setup failed: %s", exc)
-            cur.execute(
-                "UPDATE platform.raw_asset_vault SET vector_status = 'failed' WHERE asset_id = %s;",
-                (asset_id,),
-            )
-            return
+    if not ping_qdrant():
+        cur.execute(
+            "UPDATE platform.raw_asset_vault SET vector_status = 'disabled' WHERE asset_id = %s;",
+            (asset_id,),
+        )
+        return
+    qc = get_qdrant_client()
 
     points = []
     for chunk in result.chunks[:50]:
@@ -392,7 +386,7 @@ def _maybe_vectorize(cur, asset_id: str, result: de.ExtractionResult) -> None:
         )
     if points:
         try:
-            qc.upsert(collection_name=VAULT_QDRANT_COLLECTION, points=points)
+            upsert_text_points(qc, points, collection=VAULT_QDRANT_COLLECTION)
             cur.execute(
                 "UPDATE platform.raw_asset_vault SET vector_status = 'vectorized' WHERE asset_id = %s;",
                 (asset_id,),

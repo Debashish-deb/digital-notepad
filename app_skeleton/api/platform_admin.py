@@ -15,19 +15,12 @@ def _db_conn() -> str:
     return postgres_conn()
 
 
-DEFAULT_PLATFORM_ADMIN_EMAILS: tuple[str, ...] = (
-    "anniina.farkkila@helsinki.fi",
-    "debashish.deb@helsinki.fi",
-    "joonas.jukonen@helsinki.fi",
-)
-
-
 def platform_admin_emails() -> set[str]:
     """Emails with platform admin role (registration approve, allowlist CRUD)."""
     raw = os.getenv("PLATFORM_ADMIN_EMAILS", "").strip()
     if raw:
         return {e.strip().lower() for e in raw.split(",") if e.strip()}
-    return {e.lower() for e in DEFAULT_PLATFORM_ADMIN_EMAILS}
+    return set()
 
 
 def is_platform_admin(email: str | None) -> bool:
@@ -65,13 +58,77 @@ def upsert_allowed_email(email: str, *, status: str = "approved", approved_by: s
     return {"email": email, "status": status}
 
 
+def create_registration_request(
+    email: str,
+    *,
+    display_name: str | None = None,
+    organization: str | None = None,
+) -> dict[str, Any]:
+    """Record a new lab account request; platform admins are auto-approved on the allowlist."""
+    email = email.strip().lower()
+    name = (display_name or "").strip() or None
+    org = (organization or "").strip() or None
+    auto_approve = is_platform_admin(email)
+    status = "approved" if auto_approve else "pending"
+
+    with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+        with conn.cursor() as cur:
+            try:
+                cur.execute(
+                    """
+                    INSERT INTO platform.registration_request (
+                        email, display_name, organization, status, reviewed_at, reviewed_by
+                    )
+                    VALUES (%s, %s, %s, %s, CASE WHEN %s THEN now() ELSE NULL END, %s);
+                    """,
+                    (
+                        email,
+                        name,
+                        org,
+                        status,
+                        auto_approve,
+                        "platform-admin" if auto_approve else None,
+                    ),
+                )
+            except psycopg.errors.UndefinedColumn:
+                conn.rollback()
+                with conn.cursor() as cur2:
+                    cur2.execute(
+                        """
+                        INSERT INTO platform.registration_request (
+                            email, display_name, status, reviewed_at, reviewed_by
+                        )
+                        VALUES (%s, %s, %s, CASE WHEN %s THEN now() ELSE NULL END, %s);
+                        """,
+                        (
+                            email,
+                            name,
+                            status,
+                            auto_approve,
+                            "platform-admin" if auto_approve else None,
+                        ),
+                    )
+        conn.commit()
+
+    if auto_approve:
+        upsert_allowed_email(email, status="approved", approved_by="platform-admin")
+
+    return {
+        "email": email,
+        "display_name": name,
+        "organization": org,
+        "status": status,
+        "role": "admin" if auto_approve else "researcher",
+    }
+
+
 def list_registration_requests(*, status: str | None = "pending") -> list[dict[str, Any]]:
     with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
         with conn.cursor() as cur:
             if status:
                 cur.execute(
                     """
-                    SELECT request_id, email, display_name, status, requested_at
+                    SELECT request_id, email, display_name, organization, status, requested_at
                     FROM platform.registration_request WHERE status = %s ORDER BY requested_at DESC;
                     """,
                     (status,),
@@ -79,7 +136,7 @@ def list_registration_requests(*, status: str | None = "pending") -> list[dict[s
             else:
                 cur.execute(
                     """
-                    SELECT request_id, email, display_name, status, requested_at
+                    SELECT request_id, email, display_name, organization, status, requested_at
                     FROM platform.registration_request ORDER BY requested_at DESC LIMIT 100;
                     """
                 )
@@ -88,8 +145,9 @@ def list_registration_requests(*, status: str | None = "pending") -> list[dict[s
                     "request_id": str(r[0]),
                     "email": r[1],
                     "display_name": r[2],
-                    "status": r[3],
-                    "requested_at": str(r[4]),
+                    "organization": r[3],
+                    "status": r[4],
+                    "requested_at": str(r[5]),
                 }
                 for r in cur.fetchall()
             ]

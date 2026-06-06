@@ -1,0 +1,1155 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   OMEIA AI Assistant 3D Graphics + Assistant UI Polish
+   Place beside ChatWidget.jsx as: src/components/AiAssistant3D.css
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.ai3d-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(12rem, 18rem) minmax(0, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: center;
+  min-height: 15.5rem;
+  margin-bottom: 1rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid color-mix(in srgb, var(--border-color) 86%, transparent);
+  border-radius: var(--radius-xl, 24px);
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 22rem),
+    radial-gradient(circle at 90% 18%, color-mix(in srgb, var(--color-accent, var(--color-primary)) 14%, transparent), transparent 24rem),
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 92%, transparent), color-mix(in srgb, var(--bg-inset) 36%, transparent));
+  box-shadow:
+    var(--shadow-card, 0 18px 48px rgba(0, 0, 0, 0.16)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ai3d-hero::before {
+  content: '';
+  position: absolute;
+  inset: -35%;
+  z-index: -1;
+  opacity: 0.5;
+  background:
+    conic-gradient(
+      from 160deg,
+      transparent,
+      color-mix(in srgb, var(--color-primary) 12%, transparent),
+      transparent,
+      color-mix(in srgb, var(--color-accent, var(--color-primary)) 10%, transparent),
+      transparent
+    );
+  animation: ai3d-ambient-spin 18s linear infinite;
+}
+
+.ai3d-hero--compact {
+  grid-template-columns: minmax(8.5rem, 13rem) minmax(0, 1fr);
+  min-height: 12rem;
+  padding: 1rem;
+}
+
+.ai3d-hero--merged {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.ai3d-hero--merged.ai3d-hero--compact {
+  min-height: auto;
+}
+
+.ai3d-hero--module-ai {
+  --cover-accent: #6366f1;
+  border-color: color-mix(in srgb, var(--cover-accent) 28%, var(--border-color));
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%, color-mix(in srgb, var(--cover-accent) 16%, transparent), transparent 55%),
+    radial-gradient(ellipse 50% 45% at 95% 20%, color-mix(in srgb, var(--cover-accent) 10%, transparent), transparent 50%),
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--color-primary) 18%, transparent), transparent 22rem),
+    radial-gradient(circle at 90% 18%, color-mix(in srgb, var(--color-accent, var(--color-primary)) 14%, transparent), transparent 24rem),
+    linear-gradient(155deg, color-mix(in srgb, var(--bg-surface) 90%, var(--cover-accent) 4%), var(--bg-surface));
+}
+
+.ai3d-hero__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  width: 100%;
+}
+
+.ai3d-hero__toolbar-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.ai3d-hero__toolbar-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  margin: 0;
+  color: var(--cover-accent, var(--color-primary));
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.ai3d-hero__toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+}
+
+.ai3d-hero__taskpad .taskpad-dock {
+  margin: 0;
+}
+
+.ai3d-hero__taskpad .taskpad-dock-collapsed {
+  min-height: 2rem;
+}
+
+.ai3d-hero__taskpad .taskpad-dock-toggle {
+  min-height: 2rem;
+  padding-inline: 0.65rem;
+}
+
+.ai3d-hero__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid color-mix(in srgb, var(--border-color) 88%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-surface) 88%, transparent);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.ai3d-hero__icon-btn:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--cover-accent, var(--color-primary)) 42%, var(--border-color));
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--bg-surface) 70%, var(--cover-accent, var(--color-primary)) 6%);
+}
+
+.ai3d-hero__main {
+  display: grid;
+  grid-template-columns: minmax(8.5rem, 13rem) minmax(0, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.ai3d-hero--merged .ai3d-hero__main {
+  grid-template-columns: minmax(8.5rem, 13rem) minmax(0, 1fr);
+}
+
+.ai3d-hero__visual {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+}
+
+.ai3d-stage {
+  position: relative;
+  width: min(13rem, 100%);
+  aspect-ratio: 1;
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.ai3d-hero--compact .ai3d-stage {
+  width: min(10.5rem, 100%);
+}
+
+.ai3d-orbit,
+.ai3d-ring,
+.ai3d-grid-plane,
+.ai3d-core,
+.ai3d-node,
+.ai3d-particle {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.ai3d-orbit {
+  inset: 7%;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 36%, transparent);
+  border-radius: 999px;
+  box-shadow:
+    0 0 26px color-mix(in srgb, var(--color-primary) 18%, transparent),
+    inset 0 0 24px color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.ai3d-orbit--outer {
+  transform: rotateX(68deg) rotateZ(-20deg);
+  animation: ai3d-orbit-a 12s linear infinite;
+}
+
+.ai3d-orbit--middle {
+  inset: 16%;
+  border-color: color-mix(in srgb, var(--color-accent, var(--color-primary)) 34%, transparent);
+  transform: rotateX(74deg) rotateY(28deg);
+  animation: ai3d-orbit-b 9s linear infinite reverse;
+}
+
+.ai3d-orbit--inner {
+  inset: 25%;
+  border-style: dashed;
+  opacity: 0.8;
+  transform: rotateX(62deg) rotateY(-38deg);
+  animation: ai3d-orbit-c 7s linear infinite;
+}
+
+.ai3d-grid-plane {
+  inset: 17%;
+  border-radius: 22px;
+  opacity: 0.5;
+  background:
+    linear-gradient(color-mix(in srgb, var(--color-primary) 18%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 18%, transparent) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(circle, #000 20%, transparent 74%);
+}
+
+.ai3d-grid-plane--back {
+  transform: translateZ(-48px) rotateX(62deg);
+}
+
+.ai3d-grid-plane--floor {
+  transform: translateY(38%) translateZ(-66px) rotateX(84deg);
+  opacity: 0.35;
+}
+
+.ai3d-core {
+  inset: 27%;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transform: translateZ(72px);
+}
+
+.ai3d-core__glow {
+  position: absolute;
+  inset: -35%;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--color-primary) 36%, transparent), transparent 66%);
+  filter: blur(12px);
+  animation: ai3d-pulse 2.6s ease-in-out infinite;
+}
+
+.ai3d-core__shell {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 40%, white 8%);
+  border-radius: 50%;
+  color: var(--text-on-accent, #fff);
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.32), transparent 34%),
+    linear-gradient(145deg, var(--color-primary), color-mix(in srgb, var(--color-accent, var(--color-primary)) 70%, black 10%));
+  box-shadow:
+    0 18px 44px color-mix(in srgb, var(--color-primary) 24%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.ai3d-core__scanline {
+  position: absolute;
+  inset: 8%;
+  z-index: 3;
+  border-radius: 50%;
+  background:
+    linear-gradient(180deg, transparent 0 42%, rgba(255, 255, 255, 0.38) 48%, transparent 55% 100%);
+  mix-blend-mode: screen;
+  animation: ai3d-scan 2.4s ease-in-out infinite;
+}
+
+.ai3d-ring {
+  inset: 22%;
+  border: 2px solid transparent;
+  border-top-color: color-mix(in srgb, var(--color-primary) 70%, white 8%);
+  border-bottom-color: color-mix(in srgb, var(--color-accent, var(--color-primary)) 60%, white 8%);
+  border-radius: 999px;
+  opacity: 0.75;
+}
+
+.ai3d-ring--one {
+  transform: rotateX(74deg) rotateZ(12deg) translateZ(36px);
+  animation: ai3d-ring-spin 4.8s linear infinite;
+}
+
+.ai3d-ring--two {
+  inset: 17%;
+  transform: rotateY(72deg) rotateZ(-34deg) translateZ(24px);
+  animation: ai3d-ring-spin 6.2s linear infinite reverse;
+}
+
+.ai3d-ring--three {
+  inset: 31%;
+  transform: rotateX(28deg) rotateY(68deg) translateZ(54px);
+  animation: ai3d-ring-spin 3.9s linear infinite;
+}
+
+.ai3d-node {
+  display: grid;
+  place-items: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  border: 1px solid color-mix(in srgb, var(--border-color) 70%, white 8%);
+  border-radius: 14px;
+  color: var(--color-primary);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 96%, transparent), color-mix(in srgb, var(--bg-inset) 42%, transparent));
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px) saturate(1.2);
+  animation: ai3d-float 4s ease-in-out infinite;
+}
+
+.ai3d-node--a { left: 1%; top: 20%; transform: translateZ(58px); }
+.ai3d-node--b { right: 2%; top: 22%; transform: translateZ(42px); animation-delay: -1s; }
+.ai3d-node--c { left: 8%; bottom: 11%; transform: translateZ(34px); animation-delay: -1.8s; }
+.ai3d-node--d { right: 7%; bottom: 12%; transform: translateZ(62px); animation-delay: -2.4s; }
+
+.ai3d-particle {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-primary) 80%, white 10%);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--color-primary) 70%, transparent);
+  animation: ai3d-particle-drift 6s ease-in-out infinite;
+}
+
+.ai3d-particle--1 { left: 18%; top: 10%; animation-delay: -0.4s; }
+.ai3d-particle--2 { left: 80%; top: 14%; animation-delay: -1.2s; }
+.ai3d-particle--3 { left: 16%; top: 72%; animation-delay: -2.2s; }
+.ai3d-particle--4 { left: 72%; top: 78%; animation-delay: -3.2s; }
+.ai3d-particle--5 { left: 48%; top: 5%; animation-delay: -4s; }
+
+.ai3d-hero__copy {
+  min-width: 0;
+}
+
+.ai3d-eyebrow,
+.assistant-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  margin-bottom: 0.55rem;
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.ai3d-hero h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-heading, var(--font-display, Georgia, serif));
+  font-size: clamp(1.28rem, 1rem + 1vw, 2rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.ai3d-hero p {
+  max-width: 60ch;
+  margin: 0.55rem 0 0;
+  color: var(--text-secondary);
+  line-height: 1.58;
+}
+
+.ai3d-stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.ai3d-stat {
+  min-width: 4.8rem;
+  padding: 0.48rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--border-color) 84%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--bg-surface) 76%, transparent);
+}
+
+.ai3d-stat span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.ai3d-stat strong {
+  display: block;
+  margin-top: 0.1rem;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+/* Chat upgrade ------------------------------------------------------------- */
+
+.assistant-chat-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.assistant-scope-panel {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 18px);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 90%, transparent), color-mix(in srgb, var(--bg-inset) 36%, transparent));
+  box-shadow: var(--shadow-card, 0 14px 34px rgba(0, 0, 0, 0.1));
+}
+
+.assistant-scope-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.assistant-scope-panel h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.assistant-scope-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.assistant-project-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.48rem;
+}
+
+.assistant-project-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--bg-surface) 74%, transparent);
+  font-size: 0.78rem;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.assistant-project-chip input {
+  width: 0.9rem;
+  height: 0.9rem;
+  accent-color: var(--color-primary);
+}
+
+.assistant-project-chip.is-active {
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 42%, var(--border-color));
+  background: color-mix(in srgb, var(--color-primary) 11%, transparent);
+}
+
+.assistant-chat-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.assistant-chat-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--color-primary) 12%, transparent), transparent 18rem),
+    radial-gradient(circle at 90% 20%, color-mix(in srgb, var(--color-accent, var(--color-primary)) 10%, transparent), transparent 22rem);
+}
+
+.assistant-chat-messages,
+.assistant-chat-input-area {
+  position: relative;
+  z-index: 1;
+}
+
+.chat-bubble {
+  position: relative;
+}
+
+.chat-bubble__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.38rem;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.chat-bubble__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.chat-rich-text {
+  white-space: normal;
+}
+
+.chat-rich-text h2,
+.chat-rich-text h3,
+.chat-rich-text p {
+  margin: 0;
+}
+
+.chat-rich-text h2,
+.chat-rich-text h3 {
+  color: var(--text-primary);
+  font-family: var(--font-heading, var(--font-display, Georgia, serif));
+  line-height: 1.2;
+}
+
+.chat-rich-text p {
+  color: inherit;
+  line-height: 1.58;
+  white-space: pre-wrap;
+}
+
+.chat-rich-spacer {
+  height: 0.55rem;
+}
+
+.chat-rich-bullet {
+  padding-left: 0.15rem;
+}
+
+.chat-sources {
+  margin-top: 0.8rem;
+  border-top: 1px solid color-mix(in srgb, var(--border-color) 72%, transparent);
+  padding-top: 0.65rem;
+}
+
+.chat-sources summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.chat-sources summary span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.35rem;
+  min-height: 1.35rem;
+  border-radius: 999px;
+  color: var(--text-on-accent, #fff);
+  background: var(--color-primary);
+  font-size: 0.68rem;
+}
+
+.chat-sources ol {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.65rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.chat-sources li {
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.chat-sources li strong {
+  color: var(--text-primary);
+}
+
+.chat-sources li p {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.chat-source-score {
+  margin-left: 0.45rem;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.chat-source-link {
+  display: inline;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.chat-source-link:hover {
+  text-decoration: underline;
+}
+
+.chat-source-bucket {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.05rem 0.35rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  background: var(--bg-inset);
+  color: var(--text-muted);
+}
+
+.chat-limitations {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--color-warning) 36%, var(--border-color));
+  border-radius: 12px;
+  color: var(--color-warning);
+  background: color-mix(in srgb, var(--color-warning) 9%, transparent);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.chat-retry-btn {
+  margin-top: 0.75rem;
+}
+
+.assistant-thinking-bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.assistant-chat-input {
+  min-height: 2.7rem;
+}
+
+.assistant-send-btn {
+  min-width: 6.8rem;
+}
+
+/* AI Lab Assistant screen -------------------------------------------------- */
+
+.ai-lab-assistant {
+  display: grid;
+  grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  min-height: calc(100vh - 8rem);
+}
+
+.ai-lab-assistant--embedded {
+  display: block;
+  min-height: auto;
+}
+
+.ai-lab-rail {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  padding-right: 1rem;
+  border-right: 1px solid var(--border-color);
+}
+
+.ai-lab-rail-hero {
+  grid-template-columns: 1fr;
+  min-height: auto;
+}
+
+.ai-lab-rail-hero .ai3d-hero__copy {
+  text-align: left;
+}
+
+.ai-lab-rail-label {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.ai-lab-menu {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ai-lab-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: transparent;
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease,
+    transform 0.16s ease;
+}
+
+.ai-lab-menu-item:hover,
+.ai-lab-menu-item.active {
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--border-color));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-primary) 10%, transparent), color-mix(in srgb, var(--bg-surface) 72%, transparent));
+  transform: translateX(2px);
+}
+
+.ai-lab-menu-item__icon {
+  display: grid;
+  place-items: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  flex: 0 0 auto;
+  border-radius: 13px;
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.ai-lab-menu-item__copy {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.ai-lab-menu-item__copy strong {
+  color: inherit;
+  font-size: 0.88rem;
+}
+
+.ai-lab-menu-item__copy small {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.ai-lab-main {
+  min-width: 0;
+}
+
+.ai-lab-top-hero {
+  margin-bottom: 1rem;
+}
+
+.ai-lab-tab-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.ai-lab-page-header h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-heading, var(--font-display, Georgia, serif));
+  font-size: clamp(1.55rem, 1.15rem + 1vw, 2.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.ai-lab-page-header p {
+  max-width: 70ch;
+  margin: 0.45rem 0 0;
+  color: var(--text-secondary);
+  line-height: 1.58;
+}
+
+.ai-ingest-panel {
+  max-width: 860px;
+}
+
+.ai-panel-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ai-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 1.8rem;
+  padding: 0.2rem 0.62rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, var(--border-color));
+  border-radius: 999px;
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.ai-ingest-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.ai-ingest-textarea {
+  min-height: 16rem;
+}
+
+.ai-ingest-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.ai-ingest-hint {
+  max-width: 38rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.ai-ingest-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: 1.15rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  color: var(--text-secondary);
+  background: var(--bg-inset);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.ai-ingest-status--success {
+  color: var(--color-success);
+  border-color: color-mix(in srgb, var(--color-success) 38%, var(--border-color));
+  background: color-mix(in srgb, var(--color-success) 10%, transparent);
+}
+
+.ai-ingest-status--warning {
+  color: var(--color-warning);
+  border-color: color-mix(in srgb, var(--color-warning) 38%, var(--border-color));
+  background: color-mix(in srgb, var(--color-warning) 10%, transparent);
+}
+
+.ai-ingest-status--danger {
+  color: var(--color-danger);
+  border-color: color-mix(in srgb, var(--color-danger) 42%, var(--border-color));
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+}
+
+.ai-empty-state {
+  display: grid;
+  place-items: center;
+  gap: 0.65rem;
+  min-height: 11rem;
+  padding: 2rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.ai-empty-state--danger {
+  color: var(--color-danger);
+}
+
+.ai-model-card-grid,
+.ai-prompt-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.ai-model-card {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 18px);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 88%, transparent), color-mix(in srgb, var(--bg-inset) 34%, transparent));
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.ai-model-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.ai-model-card__header h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.04rem;
+}
+
+.ai-model-card__header p {
+  margin: 0.15rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.ai-model-card__header span {
+  align-self: start;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  color: var(--color-accent, var(--color-primary));
+  background: color-mix(in srgb, var(--color-accent, var(--color-primary)) 10%, transparent);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.ai-model-card__desc {
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.ai-model-card__meta {
+  display: grid;
+  gap: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.ai-prompt-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-prompt-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-accent, var(--color-primary)));
+}
+
+.ai-prompt-card__header {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.ai-prompt-card__header > span {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  flex: 0 0 auto;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.ai-prompt-card__header h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+}
+
+.ai-prompt-card__header p {
+  margin: 0.25rem 0 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.ai-prompt-template {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--bg-inset) 58%, transparent);
+}
+
+.ai-prompt-template__label {
+  margin-bottom: 0.45rem;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-prompt-template p {
+  margin: 0;
+  padding-right: 5.5rem;
+  color: var(--color-primary);
+  line-height: 1.55;
+}
+
+.ai-copy-template-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+}
+
+html[data-theme='academic'] .ai3d-hero {
+  background:
+    linear-gradient(90deg, rgba(152, 50, 50, 0.08) 0 1px, transparent 1px) 3.4rem 0 / 1px 100%,
+    linear-gradient(rgba(30, 58, 95, 0.04) 1px, transparent 1px) 0 1.1rem / 100% 1.9rem,
+    radial-gradient(circle at 12% 0%, rgba(30, 58, 95, 0.1), transparent 20rem),
+    linear-gradient(145deg, rgba(255, 253, 248, 0.88), rgba(246, 238, 224, 0.76));
+}
+
+html[data-theme='academic'] .ai3d-core__shell {
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.42), transparent 34%),
+    linear-gradient(145deg, #315b7b, #6f8267 60%, #9b6a3c);
+}
+
+html[data-theme='academic'] .ai3d-hero h2,
+html[data-theme='academic'] .ai-lab-page-header h2 {
+  color: #172235;
+  background: linear-gradient(135deg, #172235 0%, #1e3a5f 48%, #7a552d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes ai3d-ambient-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ai3d-orbit-a {
+  to { transform: rotateX(68deg) rotateZ(340deg); }
+}
+
+@keyframes ai3d-orbit-b {
+  to { transform: rotateX(74deg) rotateY(28deg) rotateZ(360deg); }
+}
+
+@keyframes ai3d-orbit-c {
+  to { transform: rotateX(62deg) rotateY(-38deg) rotateZ(-360deg); }
+}
+
+@keyframes ai3d-ring-spin {
+  to { rotate: 360deg; }
+}
+
+@keyframes ai3d-pulse {
+  0%, 100% { opacity: 0.55; scale: 0.92; }
+  50% { opacity: 0.95; scale: 1.08; }
+}
+
+@keyframes ai3d-scan {
+  0%, 100% { transform: translateY(-22%); opacity: 0.28; }
+  50% { transform: translateY(22%); opacity: 0.68; }
+}
+
+@keyframes ai3d-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
+}
+
+@keyframes ai3d-particle-drift {
+  0%, 100% { transform: translate3d(0, 0, 38px); opacity: 0.4; }
+  50% { transform: translate3d(10px, -16px, 76px); opacity: 1; }
+}
+
+@media (max-width: 980px) {
+  .ai-lab-assistant {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-lab-rail {
+    position: relative;
+    top: auto;
+    max-height: none;
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+  }
+
+  .ai-lab-menu {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .ai3d-hero,
+  .ai3d-hero--compact {
+    grid-template-columns: 1fr;
+  }
+
+  .ai3d-hero__main,
+  .ai3d-hero--merged .ai3d-hero__main {
+    grid-template-columns: 1fr;
+  }
+
+  .ai3d-hero__visual {
+    order: -1;
+  }
+
+  .ai-panel-title-row,
+  .assistant-scope-panel__header,
+  .ai-model-card__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ai-prompt-template p {
+    padding-right: 0;
+  }
+
+  .ai-copy-template-btn {
+    position: static;
+    margin-top: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai3d-hero::before,
+  .ai3d-orbit,
+  .ai3d-ring,
+  .ai3d-core__glow,
+  .ai3d-core__scanline,
+  .ai3d-node,
+  .ai3d-particle {
+    animation: none !important;
+  }
+
+  .ai-lab-menu-item:hover {
+    transform: none;
+  }
+}

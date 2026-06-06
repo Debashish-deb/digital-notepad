@@ -1,11 +1,15 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
 import './fonts.css';   /* Source Sans 3, Source Serif 4, JetBrains Mono */
 import './index.css';
 import './typography.css';
+import './theme/themeManager.css';
+import './theme/consistency.css';
 
-import App from './App.jsx';
 import { ApiProvider } from './api/ApiContext.jsx';
+import { LocaleProvider } from './contexts/LocaleContext.jsx';
+import { ThemeProvider } from './contexts/ThemeContext.jsx';
 
 const rootElement = document.getElementById('root');
 
@@ -16,7 +20,11 @@ if (!rootElement) {
 createRoot(rootElement).render(
   <StrictMode>
     <ApiProvider>
-      <App />
+      <LocaleProvider>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </LocaleProvider>
     </ApiProvider>
   </StrictMode>,
 );

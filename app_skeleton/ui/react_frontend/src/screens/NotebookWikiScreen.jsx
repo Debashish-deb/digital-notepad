@@ -1,4 +1,4 @@
-import './MacPlusVisualStyles.css';
+
 import React, { useState, useEffect } from 'react';
 import { BookOpen, FileText } from 'lucide-react';
 import { technicalNotebook } from '../data/technicalNotebook.js';
@@ -70,7 +70,7 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
   };
 
   return (
-    <div>
+    <div className="notebook-wiki-screen">
       {!hideHeader && (
         <div className="page-header">
           <h1 className="page-title-gradient">Living Notebook & Wiki SOPs</h1>
@@ -157,7 +157,7 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
             {selectedNotebook ? (
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                  <h2 style={{color: '#ffffff', margin: 0}}>{selectedNotebook.title}</h2>
+                  <h2 style={{color: 'var(--text-primary)', margin: 0}}>{selectedNotebook.title}</h2>
                   <button type="button" className="btn btn-secondary btn-sm" style={{ borderColor: 'var(--color-danger)', color: 'var(--color-danger)', background: 'transparent' }} onClick={() => handleDeleteNotebook(selectedNotebook.entry_id)}>
                     Delete Log
                   </button>
@@ -165,7 +165,7 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
                 <div style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.5rem'}}>
                   Project: <b>{selectedNotebook.project_code}</b> | Version: <b>{selectedNotebook.version}</b> | Date: <i>{selectedNotebook.created_at.replace('T', ' ').slice(0, 16)}</i>
                 </div>
-                <div className="markdown-body" style={{background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', minHeight: '180px', whiteSpace: 'pre-wrap', color: 'var(--text-secondary)'}}>
+                <div className="surface-inset" className="markdown-body" style={{padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', minHeight: '180px', whiteSpace: 'pre-wrap', color: 'var(--text-secondary)'}}>
                   {selectedNotebook.content}
                 </div>
                 
@@ -236,7 +236,7 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
             {selectedWiki ? (
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                  <h2 style={{color: '#ffffff', margin: 0}}>{selectedWiki.title}</h2>
+                  <h2 style={{color: 'var(--text-primary)', margin: 0}}>{selectedWiki.title}</h2>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
                     <button type="button" className="btn btn-secondary btn-sm" onClick={() => {
                       setShowHistory(!showHistory);
@@ -253,14 +253,14 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
                   Category: <b>{selectedWiki.wiki_type || 'SOP'}</b> | Revision: <b>{selectedWiki.revision || 1}</b> | Editor: <i>{selectedWiki.author_name || 'debdeba'}</i>
                 </div>
                 {showHistory && (
-                  <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '1rem' }}>
+                  <div className="surface-inset" style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)', marginBottom: '1rem' }}>
                     <h4 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
                       <span>Version History</span>
                       <span className="text-muted" style={{ fontSize: '0.75rem' }}>Select a revision to rollback</span>
                     </h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxHeight: '180px', overflowY: 'auto' }}>
                       {revisions.map((rev) => (
-                        <div key={rev.revision_id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem', background: 'rgba(0,0,0,0.2)', borderRadius: '4px', fontSize: '0.85rem' }}>
+                        <div key={rev.revision_id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem', borderRadius: '4px', fontSize: '0.85rem' }}>
                           <div>
                             <strong>Rev {rev.revision_number}</strong> · <span>{rev.title}</span>
                             <div className="text-muted" style={{ fontSize: '0.7rem' }}>By {rev.author_name} on {rev.created_at?.slice(0, 16).replace('T', ' ')}</div>
@@ -275,7 +275,7 @@ export default function NotebookWikiScreen({ dbProjects, API_URL, hideHeader = f
                     </div>
                   </div>
                 )}
-                <div style={{background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', minHeight: '300px', whiteSpace: 'pre-wrap', color: 'var(--text-secondary)'}}>
+                <div className="surface-inset" style={{padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', minHeight: '300px', whiteSpace: 'pre-wrap', color: 'var(--text-secondary)'}}>
                   {selectedWiki.content}
                 </div>
               </div>

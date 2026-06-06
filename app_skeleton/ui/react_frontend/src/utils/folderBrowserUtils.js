@@ -165,8 +165,14 @@ export function filesUnderTreePath(twin, folderPath) {
 }
 
 const TEXT_READABLE_EXTENSIONS = new Set([
-  '.md', '.txt', '.py', '.r', '.sh', '.json', '.yaml', '.yml', '.sql', '.csv', '.tsv',
-  '.html', '.xml', '.toml', '.ini', '.cfg', '.log', '.ipynb',
+  '.md', '.txt', '.py', '.pyw', '.pyi', '.r', '.rmd', '.sh', '.bash', '.zsh', '.fish',
+  '.ps1', '.psm1', '.bat', '.cmd', '.json', '.jsonl', '.yaml', '.yml', '.sql', '.csv', '.tsv',
+  '.html', '.htm', '.xml', '.toml', '.ini', '.cfg', '.log', '.ipynb',
+  '.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs', '.java', '.go', '.rs', '.rb', '.php', '.pl',
+  '.lua', '.swift', '.kt', '.scala', '.vb', '.cs', '.cpp', '.c', '.h', '.hpp', '.vue', '.svelte',
+  '.tf', '.hcl', '.proto', '.graphql', '.gql', '.jl', '.nim', '.zig', '.ex', '.exs', '.erl',
+  '.hs', '.fs', '.clj', '.dart', '.groovy', '.m', '.mm', '.f', '.f90', '.awk', '.sed', '.tcl',
+  '.v', '.sv', '.vhd', '.vhdl',
 ]);
 
 const EXTRACT_PREVIEW_EXTENSIONS = new Set([
@@ -174,11 +180,42 @@ const EXTRACT_PREVIEW_EXTENSIONS = new Set([
 ]);
 
 const ASSET_PREVIEW_EXTENSIONS = new Set([
-  '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.tif', '.tiff',
+  '.pdf',
+  '.png',
+  '.jpg',
+  '.jpeg',
+  '.gif',
+  '.webp',
+  '.svg',
+  '.tif',
+  '.tiff',
+  '.bmp',
+  '.avif',
+  '.heic',
+  '.heif',
+  '.mp4',
+  '.webm',
+  '.mov',
+  '.m4v',
+  '.mkv',
+  '.ogv',
+  '.avi',
+  '.glb',
+  '.gltf',
+  '.obj',
+  '.usdz',
+  '.fbx',
+  '.stl',
+  '.dae',
 ]);
 
 export function normalizeRelPath(path) {
   return (path || '').replace(/\\/g, '/').replace(/^\/+/, '');
+}
+
+/** Stable path key for document selection (slashes + Unicode normalization). */
+export function normalizeDocPath(path) {
+  return normalizeRelPath(path).normalize('NFC');
 }
 
 export function isTextPreviewable(ext) {
@@ -191,6 +228,11 @@ export function isExtractPreviewable(ext) {
 
 export function isAssetPreviewable(ext) {
   return ASSET_PREVIEW_EXTENSIONS.has((ext || '').toLowerCase());
+}
+
+export function isSpreadsheetPreviewable(ext) {
+  const e = (ext || '').toLowerCase();
+  return ['.xlsx', '.xls', '.xlsm', '.xlsb', '.ods', '.fods', '.csv', '.tsv'].includes(e);
 }
 
 export function getDocumentIndexEntry(twin, relativePath) {

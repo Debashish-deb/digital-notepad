@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import {
   Database, Users, FlaskConical, Calendar, FileText, GitBranch,
   FolderOpen, Edit3, Save, X, Plus, Trash2, ChevronDown, ChevronRight, Images,
@@ -60,18 +60,27 @@ function GroupHeader({ group, open, onToggle, count }) {
   );
 }
 
-export default function DigitalTwinPanel({
+const DigitalTwinPanel = forwardRef(function DigitalTwinPanel({
   twin,
   onSave,
   saving = false,
   section = 'all',
   projectCode,
   API_URL,
-}) {
-  const [editing, setEditing] = useState(false);
+  hideToolbar = false,
+  editing: controlledEditing,
+  onEditingChange,
+}, ref) {
+  const [internalEditing, setInternalEditing] = useState(false);
+  const editing = controlledEditing !== undefined ? controlledEditing : internalEditing;
+  const setEditing = onEditingChange || setInternalEditing;
   const [draft, setDraft] = useState(null);
   const { openTaskpad } = useTaskpad();
-  const [openGroups, setOpenGroups] = useState(() => new Set(['content', 'research', 'team', 'methods', 'outputs', 'activity']));
+  const [openGroups, setOpenGroups] = useState(() => {
+    const initial = new Set(['content', 'research', 'methods', 'outputs', 'activity']);
+    if (section !== 'overview') initial.add('team');
+    return initial;
+  });
   const [saveMsg, setSaveMsg] = useState(null);
   const [filePreview, setFilePreview] = useState(null);
   const [filePreviewLoading, setFilePreviewLoading] = useState(false);
@@ -80,7 +89,7 @@ export default function DigitalTwinPanel({
     setEditing(false);
     setDraft(null);
     setSaveMsg(null);
-  }, [twin?.project_code, twin?.edited_at]);
+  }, [twin?.project_code, twin?.edited_at, setEditing]);
 
   const display = editing && draft ? draft : twin;
   const outputs = display?.outputs?.length
@@ -125,8 +134,16 @@ export default function DigitalTwinPanel({
       setSaveMsg('Changes saved.');
     } catch {
       setSaveMsg('Save failed — please try again.');
+      throw new Error('save failed');
     }
   };
+
+  useImperativeHandle(ref, () => ({
+    startEdit,
+    cancelEdit,
+    save: handleSave,
+    isEditing: editing,
+  }), [editing, draft, onSave]);
 
   const patchIdentity = (key, val) => {
     setDraft((d) => ({ ...d, identity: { ...d.identity, [key]: val } }));
@@ -147,7 +164,7 @@ export default function DigitalTwinPanel({
     });
   };
 
-  const showToolbar = section !== 'timeline';
+  const showToolbar = !hideToolbar && section !== 'timeline';
 
   const previewSourceFile = async (relativePath) => {
     if (!projectCode || !API_URL || !relativePath) return;
@@ -234,6 +251,12 @@ export default function DigitalTwinPanel({
 
                 {group.id === 'team' && (
                   <>
+                    {section === 'overview' && !editing ? (
+                      <p className="text-footnote muted">
+                        Team and cohort batches are shown in the project vitals card above. Expand Edit to update roster data.
+                      </p>
+                    ) : (
+                      <>
                     <h4 className="dt-subheading"><Users size={16} /> Team</h4>
                     <table className="digital-twin-table">
                       <thead><tr><th>Name</th><th>Role</th>{editing && <th />}</tr></thead>
@@ -277,6 +300,8 @@ export default function DigitalTwinPanel({
                       <button type="button" className="btn btn-secondary btn-sm dt-add-row" onClick={() => patchList('cohorts', [...(draft.cohorts || []), { batch_id: 'New batch', sample_count: null, description: '', exclusions: [] }])}>
                         <Plus size={14} /> Add cohort
                       </button>
+                    )}
+                      </>
                     )}
                   </>
                 )}
@@ -416,7 +441,25 @@ export default function DigitalTwinPanel({
             <div style={{ marginTop: '1rem', padding: '1.5rem', background: 'var(--mac-bg-primary)', border: '1px solid var(--mac-border)', borderRadius: '6px' }}>
               <DocumentFormatter 
                 text={filePreview.content.slice(0, 8000) + (filePreview.content.length > 8000 ? '…' : '')} 
-                onCreateTask={(text) => openTaskpad(text)}
+                onCreateTask={(text) =>
+                  openTaskpad(text, {
+                    projectCode,
+                    section:
+                      section === 'overview'
+                        ? 'overview'
+                        : section === 'abstracts'
+                          ? 'writing'
+                          : section === 'catalog'
+                            ? 'data'
+                            : section === 'protocols' || section === 'content'
+                              ? 'methods'
+                              : section === 'timeline'
+                                ? 'log'
+                                : 'overview',
+                    filePath: filePreview?.path,
+                    fileName: filePreview?.path?.split('/').pop(),
+                  })
+                }
               />
             </div>
           )}
@@ -425,7 +468,9 @@ export default function DigitalTwinPanel({
       )}
     </div>
   );
-}
+});
+
+export default DigitalTwinPanel;
 
 function ActivityLog({ timeline, onOpenFile }) {
   const [filter, setFilter] = useState('all');

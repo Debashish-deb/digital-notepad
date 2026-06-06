@@ -17,6 +17,8 @@ APP_ENV = os.getenv("APP_ENV", "development")
 AUTH_DISABLED = os.getenv("PLATFORM_AUTH_DISABLED", "true" if APP_ENV == "development" else "false").lower() in (
     "1", "true", "yes",
 )
+AUTH_ALLOW_SKIP = os.getenv("PLATFORM_AUTH_ALLOW_SKIP", "false").lower() in ("1", "true", "yes")
+AUTH_SKIP_HEADER = "testing"
 
 
 def _dev_user() -> dict[str, Any]:
@@ -32,6 +34,11 @@ async def require_firebase_user(request: Request) -> dict[str, Any]:
     """Verify Firebase Bearer token on protected routes (dev bypass when auth disabled)."""
     if AUTH_DISABLED:
         return _dev_user()
+
+    if AUTH_ALLOW_SKIP and request.headers.get("X-Platform-Auth-Skip") == AUTH_SKIP_HEADER:
+        user = _dev_user()
+        user["auth_skip"] = True
+        return user
 
     auth_header = request.headers.get("Authorization") or ""
     if not auth_header.startswith("Bearer "):

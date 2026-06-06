@@ -1,0 +1,372 @@
+.kindle-doc {
+  position: relative;
+  width: 100%;
+  color: var(--text-primary);
+}
+
+.kindle-doc--full {
+  max-width: none;
+}
+
+.kindle-doc-body {
+  display: grid;
+  gap: clamp(1rem, 1.6vw, 1.45rem);
+}
+
+.kindle-section {
+  position: relative;
+  padding: clamp(1rem, 1.8vw, 1.4rem);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl, 24px);
+  background:
+    radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--color-primary) 7%, transparent), transparent 18rem),
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 92%, transparent), color-mix(in srgb, var(--bg-inset) 38%, transparent));
+  box-shadow:
+    var(--shadow-card, 0 14px 34px rgba(0, 0, 0, 0.12)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.kindle-section--alt {
+  background:
+    radial-gradient(circle at 96% 0%, color-mix(in srgb, var(--color-accent, var(--color-primary)) 7%, transparent), transparent 18rem),
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 90%, transparent), color-mix(in srgb, var(--bg-inset) 44%, transparent));
+}
+
+.kindle-heading {
+  margin: 0 0 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading, var(--font-display, Georgia, serif));
+  font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.kindle-section-body {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.doc-card {
+  position: relative;
+  padding: clamp(0.85rem, 1.4vw, 1.15rem);
+  border: 1px solid color-mix(in srgb, var(--border-color) 86%, transparent);
+  border-radius: var(--radius-lg, 18px);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 94%, transparent), color-mix(in srgb, var(--bg-page, var(--bg-app)) 62%, transparent));
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.doc-card-title {
+  margin: 0 0 0.75rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading, var(--font-display, Georgia, serif));
+  font-size: clamp(1rem, 0.92rem + 0.28vw, 1.18rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+.doc-card-body {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.doc-inline-label {
+  margin: 0.25rem 0 0.1rem;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.doc-field {
+  display: grid;
+  gap: 0.32rem;
+  margin: 0;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--border-color) 78%, transparent);
+  border-radius: var(--radius-md, 14px);
+  background: color-mix(in srgb, var(--bg-inset) 42%, transparent);
+}
+
+.doc-field-label,
+.doc-link-field-label {
+  color: var(--text-muted);
+  font-size: 0.69rem;
+  font-weight: 850;
+  letter-spacing: 0.075em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.doc-field-body {
+  display: grid;
+  gap: 0.38rem;
+  margin: 0;
+}
+
+.doc-field-value {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.62;
+  overflow-wrap: anywhere;
+}
+
+.doc-link-field {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.68rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, var(--border-color));
+  border-radius: var(--radius-md, 14px);
+  background: color-mix(in srgb, var(--color-primary) 7%, transparent);
+}
+
+.doc-url-block {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.doc-url-link {
+  overflow-wrap: anywhere;
+}
+
+.kindle-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.22rem;
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  overflow-wrap: anywhere;
+}
+
+.kindle-link:hover {
+  text-decoration: underline;
+}
+
+.kindle-link--invalid {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.doc-list {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.62;
+}
+
+.doc-lines {
+  display: grid;
+  gap: 0.32rem;
+}
+
+.doc-lines p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.58;
+}
+
+.doc-paragraph-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.65rem;
+}
+
+.doc-paragraph {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.72;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+.kindle-task-btn {
+  align-self: start;
+  min-height: 1.8rem;
+  padding: 0.25rem 0.48rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  white-space: nowrap;
+  opacity: 0.74;
+}
+
+.doc-paragraph-row:hover .kindle-task-btn,
+.doc-paragraph-row:focus-within .kindle-task-btn {
+  opacity: 1;
+}
+
+.doc-divider,
+.kindle-divider {
+  width: 100%;
+  height: 1px;
+  margin: 0.25rem 0;
+  border: 0;
+  background:
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--border-color) 90%, transparent), transparent);
+}
+
+.kindle-spreadsheet {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.kindle-spreadsheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 18px);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 92%, transparent), color-mix(in srgb, var(--bg-inset) 42%, transparent));
+  box-shadow:
+    var(--shadow-card, 0 14px 34px rgba(0, 0, 0, 0.1)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.kindle-spreadsheet-title,
+.kindle-spreadsheet-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.kindle-spreadsheet-title {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.kindle-spreadsheet-meta {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 750;
+}
+
+.kindle-table-wrap {
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 18px);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card, 0 14px 34px rgba(0, 0, 0, 0.1));
+}
+
+.kindle-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.kindle-table th,
+.kindle-table td {
+  padding: 0.72rem 0.85rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color) 78%, transparent);
+  text-align: left;
+  vertical-align: top;
+}
+
+.kindle-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: var(--color-primary);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-surface-hover) 92%, white 8%), var(--bg-surface-hover));
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.kindle-table td {
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.48;
+}
+
+.kindle-table tbody tr:hover td {
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+}
+
+.kindle-doc--code {
+  overflow: hidden;
+}
+
+.kindle-empty {
+  display: grid;
+  place-items: center;
+  gap: 0.6rem;
+  min-height: 220px;
+  padding: 2rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.kindle-empty-icon {
+  opacity: 0.32;
+}
+
+/* Legacy alias */
+.kindle-paragraph {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+html[data-theme='academic'] .doc-paragraph {
+  color: var(--text-secondary);
+  font-family: var(--font-manuscript, var(--font-serif, Georgia, serif));
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+html[data-theme='academic'] .doc-card {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 248, 238, 0.5)),
+    rgba(255, 253, 248, 0.7);
+}
+
+html[data-theme='academic'] .kindle-section {
+  background:
+    linear-gradient(90deg, rgba(152, 50, 50, 0.09) 0 1px, transparent 1px) 3.35rem 0 / 1px 100%,
+    linear-gradient(rgba(30, 58, 95, 0.04) 1px, transparent 1px) 0 1.1rem / 100% 1.9rem,
+    linear-gradient(145deg, rgba(255, 253, 248, 0.88), rgba(246, 238, 224, 0.76));
+}
+
+@media (max-width: 720px) {
+  .doc-paragraph-row {
+    grid-template-columns: 1fr;
+  }
+
+  .kindle-task-btn {
+    justify-self: start;
+  }
+
+  .kindle-spreadsheet-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kindle-task-btn,
+  .kindle-link {
+    transition: none;
+  }
+}

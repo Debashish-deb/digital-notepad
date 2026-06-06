@@ -105,7 +105,7 @@ export default function NotepadWidget({ projectCode, fileList, fetchReport, API_
             </button>
           </div>
         ) : (
-          <div style={{background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem', overflowX: 'auto', whiteSpace: 'pre-wrap', maxHeight: '450px'}}>
+          <div className="surface-inset" style={{padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem', overflowX: 'auto', whiteSpace: 'pre-wrap', maxHeight: '450px'}}>
             {content}
           </div>
         )}

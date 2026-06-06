@@ -1,4 +1,4 @@
-import './MacPlusVisualStyles.css';
+
 import React from 'react';
 import { computationalToolsData } from '../data/labData';
 

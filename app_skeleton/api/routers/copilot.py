@@ -1,3 +1,5 @@
+from app_skeleton.security.permissions import require_role
+from app_skeleton.security.auth import require_platform_user
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
 from app_skeleton.api.common import *
 from typing import *
@@ -54,7 +56,10 @@ def get_billing_instructions() -> dict:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.post("/ask", response_model=QuestionResponse)
-def ask(req: QuestionRequest) -> QuestionResponse:
+def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> QuestionResponse:
+    mode = (req.mode or "documentation_only").strip().lower()
+    if mode != "search_only":
+        require_role(user, ["editor", "admin"])
     # 1. Initialize temporary LLM client dynamically if configured from frontend
     active_llm = llm_client
     if req.llm_provider and req.llm_provider != "mock":
@@ -83,34 +88,86 @@ def ask(req: QuestionRequest) -> QuestionResponse:
 
     safe_question = audit["redacted_text"]
 
+    if mode == "search_only":
+        from app_skeleton.api.search_service import SearchService
+
+        search_svc = SearchService(db_conn=DB_CONN, qdrant=qdrant_client, llm=llm_client)
+        codes = ",".join(req.project_codes) if req.project_codes else None
+        unified = search_svc.unified_search(
+            safe_question,
+            project_codes=codes,
+            mode="hybrid",
+            limit=20,
+            user_role=user.get("role"),
+            user_email=user.get("email"),
+        )
+        sources = [
+            SourceInfo(
+                title=h.title,
+                source_type=h.source_type or h.bucket,
+                source_uuid=h.document_code or h.relative_path or h.id,
+                chunk_id=h.id,
+                text_preview=h.snippet,
+                score=h.score,
+                nav=h.nav.model_dump() if h.nav else None,
+                bucket=h.bucket,
+            )
+            for h in unified.hits
+        ]
+        return QuestionResponse(
+            answer="",
+            limitations=["Search-only mode — retrieval without LLM synthesis. Use clickable sources to open documents."],
+            sources=sources,
+            database_counts={},
+            is_safe=True,
+            search_hits=[h.model_dump() for h in unified.hits],
+        )
+
     # 3. Fetch structured stats from Postgres
     db_data = query_postgres_metadata(req.project_codes)
 
     clinical_block = _clinical_context_for_question(safe_question, req.project_codes or [])
     
-    # 4. Retrieve documentation chunks using RAGAgent (use active_llm for embedding queries)
-    temp_rag = RAGAgent(qdrant_client, active_llm)
-    retrieved_sources = temp_rag.retrieve(safe_question, req.project_codes)
+    # 4. Retrieve via shared SearchService + project-scoped RAGAgent
+    from app_skeleton.api.search_service import SearchService
 
-    lab_hits = search_lab_knowledge(
-        safe_question,
-        limit=8,
-        qdrant=qdrant_client,
-        llm=active_llm,
+    search_svc = SearchService(db_conn=DB_CONN, qdrant=qdrant_client, llm=active_llm)
+    unified_hits = search_svc.hits_for_copilot(
+        safe_question, project_codes=req.project_codes, limit=12
     )
-    seen_ids = {src.get("chunk_id") for src in retrieved_sources}
-    for hit in lab_hits:
-        cid = hit.get("chunk_uid")
-        if cid in seen_ids:
-            continue
-        seen_ids.add(cid)
+
+    temp_rag = RAGAgent(qdrant_client, active_llm)
+    rag_sources = temp_rag.retrieve(safe_question, req.project_codes)
+
+    seen_ids = {h.id for h in unified_hits}
+    retrieved_sources: list[dict] = []
+    for hit in unified_hits:
         retrieved_sources.append({
-            "title": hit.get("title") or hit.get("citation"),
-            "source_type": "lab_knowledge",
-            "source_uuid": hit.get("document_code") or hit.get("relative_path") or "",
+            "title": hit.title,
+            "source_type": hit.source_type or hit.bucket,
+            "source_uuid": hit.document_code or hit.relative_path or hit.id,
+            "chunk_id": hit.id,
+            "text_preview": hit.snippet,
+            "score": hit.score,
+            "nav": hit.nav.model_dump() if hit.nav else None,
+            "bucket": hit.bucket,
+        })
+
+    for src in rag_sources:
+        cid = src.get("chunk_id")
+        if cid and cid in seen_ids:
+            continue
+        if cid:
+            seen_ids.add(cid)
+        retrieved_sources.append({
+            "title": src["title"],
+            "source_type": src["source_type"],
+            "source_uuid": src["source_uuid"],
             "chunk_id": cid,
-            "text_preview": hit.get("excerpt") or "",
-            "score": hit.get("score", 0.0),
+            "text_preview": src["text_preview"],
+            "score": src.get("score", 0.0),
+            "nav": None,
+            "bucket": "lab",
         })
     retrieved_sources = retrieved_sources[:12]
 
@@ -121,9 +178,12 @@ def ask(req: QuestionRequest) -> QuestionResponse:
             source_uuid=src["source_uuid"],
             chunk_id=src["chunk_id"],
             text_preview=src["text_preview"],
-            score=src["score"]
+            score=src["score"],
+            nav=src.get("nav"),
+            bucket=src.get("bucket"),
         ) for src in retrieved_sources
     ]
+    search_hits_payload = [h.model_dump() for h in unified_hits[:12]]
 
     # 5. Build prompt and generate response using active_llm
     context_str = ""
@@ -185,11 +245,13 @@ def ask(req: QuestionRequest) -> QuestionResponse:
         limitations=limitations,
         sources=sources,
         database_counts=db_data,
-        is_safe=True
+        is_safe=True,
+        search_hits=search_hits_payload,
     )
 
 @router.post("/install_guide")
-def install_guide(req: InstallRequest) -> dict:
+def install_guide(req: InstallRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     guide = install_agent.get_instructions(req.tool_name, req.os_platform)
     if guide["status"] == "success":
         # Package standard script using script wrapper
@@ -209,7 +271,8 @@ def install_guide(req: InstallRequest) -> dict:
         raise HTTPException(status_code=400, detail=guide["message"])
 
 @router.post("/lumi_job")
-def lumi_job(req: LumiJobRequest) -> dict:
+def lumi_job(req: LumiJobRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     script = hpc_agent.generate_job(req.model_dump())
     
     # Save script to database
@@ -243,7 +306,8 @@ def lumi_job(req: LumiJobRequest) -> dict:
     }
 
 @router.post("/parse_log")
-def parse_log(req: LogParseRequest) -> dict:
+def parse_log(req: LogParseRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     diagnosis = troubleshooting_agent.diagnose_log(req.log_text)
     return {
         "status": "success",
@@ -253,7 +317,8 @@ def parse_log(req: LogParseRequest) -> dict:
     }
 
 @router.post("/run_checker")
-def run_checker(req: CheckerRequest) -> dict:
+def run_checker(req: CheckerRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     script_path = checker_script(req.checker_name)
     if not script_path:
         raise HTTPException(status_code=400, detail=f"Checker script {req.checker_name} not found.")
@@ -276,7 +341,8 @@ def run_checker(req: CheckerRequest) -> dict:
         raise HTTPException(status_code=500, detail=f"Failed to run environment verification tool: {exc}")
 
 @router.post("/run_checker_suite")
-def run_checker_suite() -> dict:
+def run_checker_suite(user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     """Run all available environment checkers and return combined report."""
     names = ["python_env", "gpu", "napari", "docker", "lumi_modules", "cylinter_inputs", "project_structure"]
     results = []
@@ -306,7 +372,8 @@ def run_checker_suite() -> dict:
     }
 
 @router.post("/features/seed")
-def features_seed() -> dict:
+def features_seed(user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     return seed_feature_warehouse()
 
 @router.get("/features/definitions")
@@ -324,7 +391,8 @@ def features_sample(sample_code: str) -> dict:
     return get_sample_features(sample_code)
 
 @router.post("/features/similarity")
-def features_similarity(req: SimilarityRequest) -> dict:
+def features_similarity(req: SimilarityRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     similar = find_similar_samples(req.sample_code, limit=req.limit, project_code=req.project_code)
     result = {"query_sample": req.sample_code, "similar": similar}
     register_analysis_run("feature_similarity", req.model_dump(), result, req.project_code, title=f"Similarity: {req.sample_code}")
@@ -336,7 +404,8 @@ def clinical_variables() -> dict:
     return {"count": len(vars_), "variables": vars_}
 
 @router.post("/clinical/survival")
-def clinical_survival(req: SurvivalRequest) -> dict:
+def clinical_survival(req: SurvivalRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     results = run_survival_analysis(
         duration_col=req.duration_col,
         event_col=req.event_col,
@@ -348,7 +417,8 @@ def clinical_survival(req: SurvivalRequest) -> dict:
     return results
 
 @router.post("/clinical/group-compare")
-def clinical_group_compare(req: GroupCompareRequest) -> dict:
+def clinical_group_compare(req: GroupCompareRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     results = run_group_comparison(
         feature_col=req.feature_col,
         group_col=req.group_col,

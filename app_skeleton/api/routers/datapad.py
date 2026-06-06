@@ -1,3 +1,5 @@
+from app_skeleton.security.permissions import require_role
+from app_skeleton.security.auth import require_platform_user
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
 from app_skeleton.api.common import *
 from typing import *
@@ -94,7 +96,8 @@ def serve_project_file(project_code: str = Query(...), relative_path: str = Quer
     return FileResponse(abs_path)
 
 @router.post("/api/project-files/write")
-def write_project_file(req: FileWriteRequest):
+def write_project_file(req: FileWriteRequest, user: dict = Depends(require_platform_user)):
+    require_role(user, ["editor", "admin"])
     folder_path = get_project_folder_path(req.project_code)
     if not folder_path:
         raise HTTPException(status_code=404, detail="Project folder not found on disk.")
@@ -119,7 +122,8 @@ def project_digital_twin(project_code: str, refresh: bool = False) -> dict:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.put("/api/projects/{project_code}/digital-twin")
-def save_project_digital_twin(project_code: str, body: dict) -> dict:
+def save_project_digital_twin(project_code: str, body: dict, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         return update_digital_twin(project_code, body)
     except ValueError as exc:
@@ -158,7 +162,8 @@ def get_project_asset(project_code: str, path: str = Query(...), preview: bool =
     )
 
 @router.post("/api/projects/process-all")
-def process_all_projects() -> dict:
+def process_all_projects(user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         catalog_path = Path(CATALOG_PATH)
         codes = []
@@ -250,7 +255,7 @@ def get_project_report(project_code: str) -> dict:
 def datapad_get_document(
     project_code: str = Query(...),
     relative_path: str = Query(...),
-    user: dict[str, Any] = Depends(require_firebase_user),
+    user: dict[str, Any] = Depends(require_platform_user),
 ) -> dict:
     del user
     try:
@@ -263,7 +268,7 @@ def datapad_get_document(
 @router.put("/api/datapad/document", dependencies=_FIREBASE_PROTECTED)
 def datapad_put_document(
     req: DatapadSaveRequest,
-    user: dict[str, Any] = Depends(require_firebase_user),
+    user: dict[str, Any] = Depends(require_platform_user),
 ) -> dict:
     try:
         return datapad.save_section_document(
@@ -287,17 +292,19 @@ def datapad_put_document(
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
 @router.post("/api/datapad/suggest-headings", dependencies=_FIREBASE_PROTECTED)
-def datapad_suggest_headings(req: DatapadContentRequest) -> dict:
+def datapad_suggest_headings(req: DatapadContentRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     return datapad.suggest_headings(req.content, req.doc_type)
 
 @router.post("/api/datapad/proofread", dependencies=_FIREBASE_PROTECTED)
-def datapad_proofread(req: DatapadContentRequest) -> dict:
+def datapad_proofread(req: DatapadContentRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     return datapad.proofread_content(req.content)
 
 @router.post("/api/datapad/apply-patches", dependencies=_FIREBASE_PROTECTED)
 def datapad_apply_patches(
     req: DatapadApplyPatchesRequest,
-    user: dict[str, Any] = Depends(require_firebase_user),
+    user: dict[str, Any] = Depends(require_platform_user),
 ) -> dict:
     try:
         doc = datapad.read_section_document(req.project_code, req.relative_path)
@@ -321,7 +328,7 @@ def datapad_apply_patches(
 @router.post("/api/datapad/restore-backup", dependencies=_FIREBASE_PROTECTED)
 def datapad_restore_backup(
     req: DatapadRestoreRequest,
-    user: dict[str, Any] = Depends(require_firebase_user),
+    user: dict[str, Any] = Depends(require_platform_user),
 ) -> dict:
     try:
         return datapad.restore_backup(
@@ -348,7 +355,8 @@ def datapad_section_summary(
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 @router.get("/api/datapad/config")
-def datapad_config() -> dict:
+def datapad_config(user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     return {
         "edit_enabled": datapad.DATAPAD_EDIT_ENABLED,
         "ai_enabled": datapad.datapad_ai_available(),

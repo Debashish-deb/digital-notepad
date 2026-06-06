@@ -1,3 +1,5 @@
+from app_skeleton.security.permissions import require_role
+from app_skeleton.security.auth import require_platform_user
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
 from app_skeleton.api.common import *
 from typing import *
@@ -11,7 +13,8 @@ def get_projects() -> List[Dict[str, Any]]:
     return fetch_projects_unified()
 
 @router.put("/projects/{project_code}")
-def update_project(project_code: str, req: ProjectExtensionUpdate) -> dict:
+def update_project(project_code: str, req: ProjectExtensionUpdate, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
@@ -117,7 +120,8 @@ def get_notebook_revisions(entry_id: str) -> List[Dict[str, Any]]:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.post("/notebook")
-def create_notebook(req: NotebookEntryCreate) -> dict:
+def create_notebook(req: NotebookEntryCreate, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
@@ -156,7 +160,8 @@ def create_notebook(req: NotebookEntryCreate) -> dict:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.put("/notebook/{entry_id}")
-def update_notebook(entry_id: str, req: NotebookEntryUpdate) -> dict:
+def update_notebook(entry_id: str, req: NotebookEntryUpdate, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
@@ -212,7 +217,8 @@ def rollback_notebook(entry_id: str, revision_number: int = Query(...)) -> dict:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.get("/decisions")
-def get_decisions(project_code: Optional[str] = None) -> List[Dict[str, Any]]:
+def get_decisions(project_code: Optional[str] = None, user: dict = Depends(require_platform_user)) -> List[Dict[str, Any]]:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
@@ -243,7 +249,8 @@ def get_decisions(project_code: Optional[str] = None) -> List[Dict[str, Any]]:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.post("/decisions")
-def create_decision(req: DecisionCreate) -> dict:
+def create_decision(req: DecisionCreate, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
@@ -301,7 +308,8 @@ def get_wiki() -> List[Dict[str, Any]]:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.post("/wiki")
-def create_wiki_page(req: WikiPageCreate) -> dict:
+def create_wiki_page(req: WikiPageCreate, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
@@ -331,7 +339,8 @@ def create_wiki_page(req: WikiPageCreate) -> dict:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.put("/wiki/{wiki_id}")
-def update_wiki_page(wiki_id: str, req: WikiPageUpdate) -> dict:
+def update_wiki_page(wiki_id: str, req: WikiPageUpdate, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
@@ -420,7 +429,8 @@ def search_notebook(
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.delete("/notebook/{entry_id}")
-def delete_notebook_entry(entry_id: str) -> dict:
+def delete_notebook_entry(entry_id: str, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     """Permanently delete a notebook entry and all its revisions."""
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
@@ -505,7 +515,8 @@ def rollback_wiki(wiki_id: str, revision_number: int = Query(...)) -> dict:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.delete("/wiki/{wiki_id}")
-def delete_wiki_page(wiki_id: str) -> dict:
+def delete_wiki_page(wiki_id: str, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     """Permanently delete a wiki page and all its revisions."""
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
@@ -611,7 +622,8 @@ def search_decisions(
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.delete("/decisions/{decision_id}")
-def delete_decision(decision_id: str) -> dict:
+def delete_decision(decision_id: str, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     """Permanently delete a decision registry entry."""
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
@@ -628,7 +640,8 @@ def delete_decision(decision_id: str) -> dict:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.delete("/tasks/{task_id}")
-def delete_task(task_id: str) -> dict:
+def delete_task(task_id: str, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     """Permanently delete a task."""
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
@@ -648,7 +661,7 @@ def delete_task(task_id: str) -> dict:
 def platform_search(
     q: str = Query(..., min_length=2),
     project_code: Optional[str] = Query(None),
-    include: str = Query("notebook,wiki,decisions", description="Comma-separated: notebook,wiki,decisions"),
+    include: str = Query("notebook,wiki,decisions,tasks", description="Comma-separated: notebook,wiki,decisions,tasks"),
     limit: int = Query(10, ge=1, le=50),
 ) -> Dict[str, Any]:
     """Unified full-text keyword search across notebook entries, wiki pages, and decisions.
@@ -680,8 +693,11 @@ def platform_search(
                     nb_params.append(limit)
                     cur.execute(nb_query, tuple(nb_params))
                     out["notebook"] = [
-                        {"id": r[0], "project_code": r[1], "title": r[2],
-                         "excerpt": r[3], "kind": r[4], "created_at": r[5].isoformat()}
+                        {
+                            "id": r[0], "entry_id": r[0], "project_code": r[1], "title": r[2],
+                            "excerpt": r[3], "content": r[3], "kind": r[4], "entry_type": r[4],
+                            "created_at": r[5].isoformat() if r[5] else None,
+                        }
                         for r in cur.fetchall()
                     ]
 
@@ -701,8 +717,11 @@ def platform_search(
                     w_params.append(limit)
                     cur.execute(w_query, tuple(w_params))
                     out["wiki"] = [
-                        {"id": r[0], "project_code": r[1], "title": r[2],
-                         "excerpt": r[3], "kind": r[4], "updated_at": r[5].isoformat()}
+                        {
+                            "id": r[0], "wiki_id": r[0], "project_code": r[1], "title": r[2],
+                            "excerpt": r[3], "content": r[3], "kind": r[4], "wiki_type": r[4],
+                            "updated_at": r[5].isoformat() if r[5] else None, "revision": 1,
+                        }
                         for r in cur.fetchall()
                     ]
 
@@ -722,13 +741,39 @@ def platform_search(
                     d_params.append(limit)
                     cur.execute(d_query, tuple(d_params))
                     out["decisions"] = [
-                        {"id": r[0], "project_code": r[1], "title": r[2],
-                         "excerpt": r[3], "decision_date": str(r[4])}
+                        {
+                            "id": r[0], "decision_id": r[0], "project_code": r[1], "title": r[2],
+                            "excerpt": r[3], "decision_details": r[3], "decision_date": str(r[4]),
+                        }
+                        for r in cur.fetchall()
+                    ]
+
+                if "tasks" in targets:
+                    t_query = """
+                        SELECT t.task_id::text, p.project_code, t.title,
+                               LEFT(t.description, 300), t.status, r.full_name
+                        FROM platform.task t
+                        JOIN core.project p ON t.project_id = p.project_id
+                        LEFT JOIN platform.researcher r ON t.assigned_to = r.researcher_id
+                        WHERE (t.title ILIKE %s OR t.description ILIKE %s)
+                    """
+                    t_params: list = [pattern, pattern]
+                    if project_code:
+                        t_query += " AND p.project_code = %s"
+                        t_params.append(project_code)
+                    t_query += " ORDER BY t.due_date DESC NULLS LAST LIMIT %s;"
+                    t_params.append(limit)
+                    cur.execute(t_query, tuple(t_params))
+                    out["tasks"] = [
+                        {
+                            "id": r[0], "task_id": r[0], "project_code": r[1], "title": r[2],
+                            "description": r[3], "excerpt": r[3], "status": r[4], "assignee": r[5],
+                        }
                         for r in cur.fetchall()
                     ]
 
                 total = sum(
-                    len(out.get(k) or []) for k in ("notebook", "wiki", "decisions")
+                    len(out.get(k) or []) for k in ("notebook", "wiki", "decisions", "tasks")
                 )
                 out["total"] = total
                 return out
@@ -864,7 +909,8 @@ def get_tasks(project_code: Optional[str] = None) -> List[Dict[str, Any]]:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.post("/tasks")
-def create_task(req: TaskCreate) -> dict:
+def create_task(req: TaskCreate, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
@@ -904,7 +950,8 @@ def create_task(req: TaskCreate) -> dict:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.put("/tasks/{task_id}")
-def update_task(task_id: str, req: TaskUpdate) -> dict:
+def update_task(task_id: str, req: TaskUpdate, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
@@ -977,7 +1024,8 @@ def get_team() -> List[Dict[str, Any]]:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.post("/projects")
-def create_project(req: ProjectCreate) -> dict:
+def create_project(req: ProjectCreate, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
@@ -1180,11 +1228,17 @@ def get_project_checklists(project_code: str) -> List[Dict[str, Any]]:
                     "status": r[4],
                     "checked_at": r[5].isoformat() if r[5] else None
                 } for r in rows]
+    except HTTPException:
+        raise
     except Exception as exc:
+        # Table may be missing on fresh DB — don't break project workspace load
+        if "onboarding_checklist" in str(exc) or "does not exist" in str(exc):
+            return []
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.post("/checklists/toggle")
-def toggle_checklist(req: ChecklistToggleRequest) -> dict:
+def toggle_checklist(req: ChecklistToggleRequest, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:

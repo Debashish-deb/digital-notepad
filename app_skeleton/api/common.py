@@ -346,6 +346,8 @@ class SourceInfo(BaseModel):
     chunk_id: Optional[str] = None
     text_preview: str
     score: float
+    nav: Optional[Dict[str, Any]] = None
+    bucket: Optional[str] = None
 
 class QuestionResponse(BaseModel):
     answer: str
@@ -353,6 +355,7 @@ class QuestionResponse(BaseModel):
     sources: List[SourceInfo]
     database_counts: Dict[str, Any] = Field(default_factory=dict)
     is_safe: bool = True
+    search_hits: List[Dict[str, Any]] = Field(default_factory=list)
 
 class InstallRequest(BaseModel):
     tool_name: str
@@ -642,7 +645,15 @@ import mimetypes
 
 from fastapi.responses import FileResponse
 
-SAFE_TEXT_EXTENSIONS = {".txt", ".md", ".py", ".r", ".sh", ".json", ".yaml", ".yml", ".sql", ".csv", ".tsv", ".toml", ".ini", ".cfg", ".log"}
+SAFE_TEXT_EXTENSIONS = {
+    ".txt", ".md", ".py", ".pyw", ".pyi", ".r", ".rmd", ".sh", ".bash", ".zsh", ".fish",
+    ".ps1", ".psm1", ".bat", ".cmd", ".json", ".jsonl", ".yaml", ".yml", ".sql", ".csv", ".tsv",
+    ".toml", ".ini", ".cfg", ".log", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs", ".java", ".go",
+    ".rs", ".rb", ".php", ".pl", ".lua", ".swift", ".kt", ".scala", ".vb", ".cs", ".cpp", ".c",
+    ".h", ".hpp", ".ipynb", ".html", ".htm", ".xml", ".vue", ".svelte", ".tf", ".hcl", ".proto",
+    ".graphql", ".gql", ".jl", ".nim", ".zig", ".awk", ".sed", ".tcl", ".ex", ".exs", ".erl",
+    ".hs", ".fs", ".clj", ".dart", ".groovy", ".m", ".mm", ".f", ".f90", ".v", ".sv", ".vhd",
+}
 
 MAX_PROJECT_FILE_READ_BYTES = int(os.getenv("MAX_PROJECT_FILE_READ_BYTES", str(2 * 1024 * 1024)))
 
@@ -690,10 +701,13 @@ _LAB_FILE_BROWSER_DEPRECATED = (
 )
 
 def _database_static_url(section_id: str, relative_path: str) -> str:
+    from urllib.parse import quote
+
     meta = DATABASE_SECTIONS[section_id]
     rel_root = meta["relative_root"].strip("/")
-    rel_file = relative_path.strip().lstrip("/")
-    return f"/database-static/{rel_root}/{rel_file}"
+    rel_file = relative_path.strip().lstrip("/").replace("\\", "/")
+    combined = "/".join(p for p in (rel_root, rel_file) if p)
+    return "/database-static/" + "/".join(quote(seg, safe="") for seg in combined.split("/"))
 
 def get_project_folder_path(project_code: str) -> Optional[str]:
     root = get_content_root(project_code)
@@ -791,13 +805,33 @@ PROJECT_ASSET_MIME = {
     ".tsv": "text/tab-separated-values",
     ".md": "text/markdown",
     ".txt": "text/plain",
+    ".py": "text/plain; charset=utf-8",
+    ".pyw": "text/plain; charset=utf-8",
+    ".r": "text/plain; charset=utf-8",
+    ".sh": "text/plain; charset=utf-8",
+    ".bash": "text/plain; charset=utf-8",
+    ".js": "text/javascript; charset=utf-8",
+    ".jsx": "text/javascript; charset=utf-8",
+    ".ts": "text/typescript; charset=utf-8",
+    ".tsx": "text/typescript; charset=utf-8",
+    ".json": "application/json; charset=utf-8",
+    ".yaml": "text/yaml; charset=utf-8",
+    ".yml": "text/yaml; charset=utf-8",
+    ".sql": "text/plain; charset=utf-8",
+    ".html": "text/html; charset=utf-8",
+    ".htm": "text/html; charset=utf-8",
+    ".xml": "application/xml; charset=utf-8",
+    ".ipynb": "application/json; charset=utf-8",
 }
 
 def _project_asset_disposition(filename: str, ext: str) -> str:
     from urllib.parse import quote
     safe = filename.replace('"', "'")
     encoded = quote(filename)
-    inline_ext = {".pdf", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".tif", ".tiff"}
+    inline_ext = {
+        ".pdf", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".tif", ".tiff",
+        *SAFE_TEXT_EXTENSIONS,
+    }
     disp = "inline" if ext in inline_ext else "attachment"
     return f'{disp}; filename="{safe}"; filename*=UTF-8\'\'{encoded}'
 

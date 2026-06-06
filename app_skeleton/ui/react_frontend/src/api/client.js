@@ -2,6 +2,11 @@
  * Shared API client — base URL from VITE_API_URL, Bearer token when available.
  */
 
+import {
+  AUTH_SKIP_HEADER_VALUE,
+  isAuthSkipActive,
+} from '../utils/authSkip.js';
+
 const TOKEN_KEY = 'farkki_id_token';
 
 export function getApiUrl() {
@@ -51,6 +56,7 @@ function buildHeaders(extra = {}, body) {
   const headers = { Accept: 'application/json', ...extra };
   const token = getAuthToken();
   if (token) headers.Authorization = `Bearer ${token}`;
+  else if (isAuthSkipActive()) headers['X-Platform-Auth-Skip'] = AUTH_SKIP_HEADER_VALUE;
   if (body !== undefined && body !== null && !(body instanceof FormData)) {
     if (!headers['Content-Type']) headers['Content-Type'] = 'application/json';
   }

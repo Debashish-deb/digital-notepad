@@ -1,9 +1,10 @@
-import './MacPlusVisualStyles.css';
+
 import { useCallback, useEffect, useState } from 'react';
 import { BookOpen, Loader2, FileText, ChevronRight, Search, Folder, AlertCircle } from 'lucide-react';
 import DocumentViewer from '../components/DocumentViewer.jsx';
 import { databaseSectionIdForSub } from '../config/databaseSections.js';
 import { teamDirectory } from '../data/teamDirectory.js';
+import LabTeamRoster from '../components/LabTeamRoster.jsx';
 import { activityLogs } from '../data/activityLogs.js';
 import { Users, Activity } from 'lucide-react';
 
@@ -100,17 +101,7 @@ export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, desc
           <p className="panel-lead prose-block">
             {description || 'Personnel records and support documents.'}
           </p>
-          <ul className="stack-sm text-footnote" style={{ listStyle: 'none', padding: 0, marginTop: '1rem' }}>
-            {teamDirectory.map((member) => (
-              <li key={member.username} className="overview-news-row" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
-                <strong className="text-body">{member.full_name}</strong>
-                <span className="text-caption muted">{member.role}</span>
-                <p className="text-caption" style={{ marginTop: '0.25rem' }}>
-                  Allowed projects: {member.allowed_projects?.join(', ') || 'None'}
-                </p>
-              </li>
-            ))}
-          </ul>
+          <LabTeamRoster members={teamDirectory} className="lab-team-panel__roster lab-team-panel__roster--spaced" />
         </div>
       )}
 

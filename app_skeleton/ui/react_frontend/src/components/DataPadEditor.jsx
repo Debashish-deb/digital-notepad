@@ -77,13 +77,15 @@ export default function DataPadEditor({
   fileName,
   sectionLabel,
   initialContent = '',
+  defaultEditMode = false,
+  editorHeight = '60vh',
   onClose,
   onSaved,
 }) {
   const ext = inferExtension(fileName, '');
   const canEdit = EDITABLE_EXTS.has(ext);
 
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(defaultEditMode && canEdit);
   const [draft, setDraft] = useState(initialContent);
   const [saved, setSaved] = useState(initialContent);
   const [etag, setEtag] = useState(null);
@@ -117,8 +119,10 @@ export default function DataPadEditor({
         fetchDatapadConfig().catch(() => ({ edit_enabled: true, ai_enabled: false })),
       ]);
       setConfig(cfg);
-      setDraft(doc.content ?? '');
-      setSaved(doc.content ?? '');
+      const loaded = (doc.content ?? '').trim();
+      const content = loaded || initialContent || '';
+      setDraft(content);
+      setSaved(content);
       setEtag(doc.etag ?? null);
       setBackups(doc.backups ?? []);
     } catch (e) {
@@ -157,6 +161,15 @@ export default function DataPadEditor({
       if (res.backup_path) showToast(`Saved (backup: ${res.backup_path})`, 'success');
       else showToast('Saved to disk', 'success');
       onSaved?.(draft);
+      window.dispatchEvent(
+        new CustomEvent('project-log-updated', {
+          detail: {
+            projectCode,
+            relativePath,
+            content: draft,
+          },
+        })
+      );
       await loadDocument();
     } catch (e) {
       if (e.status === 409) {
@@ -359,7 +372,7 @@ export default function DataPadEditor({
       {editMode ? (
         <div style={{ border: '1px solid var(--border-color)', borderRadius: '6px', overflow: 'hidden' }}>
           <Editor
-            height="60vh"
+            height={editorHeight}
             language={ext === '.md' ? 'markdown' : ext === '.json' ? 'json' : ext === '.html' ? 'html' : 'plaintext'}
             theme="vs-dark"
             value={draft}
