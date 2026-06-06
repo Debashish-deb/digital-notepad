@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "skip_already_dockerized": ["postgres", "qdrant", "ollama"],
+  "services": {
+    "embeddings": {
+      "port": 8101,
+      "models": {
+        "pubmedbert": {
+          "hf_id": "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+          "task": "embedding",
+          "max_tokens": 512
+        },
+        "biobert": {
+          "hf_id": "dmis-lab/biobert-v1.1",
+          "task": "embedding",
+          "max_tokens": 512
+        },
+        "medcpt-query": {
+          "hf_id": "ncbi/MedCPT-Query-Encoder",
+          "task": "embedding",
+          "max_tokens": 512
+        },
+        "medcpt-article": {
+          "hf_id": "ncbi/MedCPT-Article-Encoder",
+          "task": "embedding",
+          "max_tokens": 512
+        }
+      }
+    },
+    "biogpt": {
+      "port": 8102,
+      "models": {
+        "biogpt": {
+          "hf_id": "microsoft/biogpt",
+          "task": "text-generation",
+          "max_tokens": 1024
+        }
+      }
+    },
+    "txgemma": {
+      "port": 8103,
+      "models": {
+        "txgemma-2b": {
+          "hf_id": "google/txgemma-2b-predict",
+          "task": "text-generation",
+          "max_tokens": 2048
+        }
+      }
+    },
+    "geneformer": {
+      "port": 8110,
+      "models": {
+        "geneformer": {
+          "hf_id": "ctheodoris/Geneformer",
+          "task": "single-cell-embedding",
+          "notes": "Requires gene expression token ranks"
+        }
+      }
+    },
+    "scgpt": {
+      "port": 8111,
+      "models": {
+        "scgpt-human": {
+          "hf_id": "bowang-lab/scGPT-human",
+          "task": "single-cell-embedding"
+        }
+      }
+    },
+    "scprint": {
+      "port": 8112,
+      "models": {
+        "scprint": {
+          "hf_id": "jkobject/scPRINT",
+          "task": "single-cell-embedding"
+        }
+      }
+    }
+  }
+}

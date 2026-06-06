@@ -126,7 +126,9 @@ class DockerServiceClient:
         if ollama_base.endswith("/v1"):
             ollama_base = ollama_base[:-3]
         qdrant_url = _env("QDRANT_URL", "http://127.0.0.1:6333").rstrip("/")
-        return [
+        biomodels_gateway = _env("BIOMEDICAL_MODELS_GATEWAY_URL", "http://127.0.0.1:8100").rstrip("/")
+        biomodels_embeddings = _env("BIOMEDICAL_EMBEDDINGS_URL", "http://127.0.0.1:8101").rstrip("/")
+        specs = [
             ServiceSpec(
                 name="ollama",
                 compose_service="ollama",
@@ -163,7 +165,43 @@ class DockerServiceClient:
                 startup_timeout_sec=60.0,
                 critical=True,
             ),
+            ServiceSpec(
+                name="biomedical-gateway",
+                compose_service="biomedical-gateway",
+                base_url=biomodels_gateway,
+                health_path="/health",
+                startup_timeout_sec=120.0,
+                critical=False,
+            ),
+            ServiceSpec(
+                name="biomedical-embeddings",
+                compose_service="biomedical-embeddings",
+                base_url=biomodels_embeddings,
+                health_path="/health",
+                startup_timeout_sec=180.0,
+                critical=False,
+            ),
         ]
+        if _env_bool("BIOMODELS_ENABLE_REGISTRY", False):
+            specs.extend([
+                ServiceSpec(
+                    name="biomedical-biogpt",
+                    compose_service="biomedical-biogpt",
+                    base_url=_env("BIOMEDICAL_BIOGPT_URL", "http://127.0.0.1:8102").rstrip("/"),
+                    health_path="/health",
+                    startup_timeout_sec=300.0,
+                    critical=False,
+                ),
+                ServiceSpec(
+                    name="biomedical-txgemma",
+                    compose_service="biomedical-txgemma",
+                    base_url=_env("BIOMEDICAL_TXGEMMA_URL", "http://127.0.0.1:8103").rstrip("/"),
+                    health_path="/health",
+                    startup_timeout_sec=300.0,
+                    critical=False,
+                ),
+            ])
+        return specs
 
     def get_spec(self, name: str) -> ServiceSpec | None:
         for spec in self._registry:

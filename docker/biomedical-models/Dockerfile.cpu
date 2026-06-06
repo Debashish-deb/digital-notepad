@@ -1,0 +1,21 @@
+FROM python:3.11-slim-bookworm
+
+ENV PYTHONUNBUFFERED=1
+ENV HF_HOME=/models/hf-cache
+ENV BIOMODEL_LAZY_LOAD=true
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential git curl \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY docker/biomedical-models/requirements-cpu.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+
+COPY docker/biomedical-models/shared /app/shared
+
+ARG SERVICE_DIR=embeddings
+COPY docker/biomedical-models/${SERVICE_DIR}/main.py /app/main.py
+
+EXPOSE 8100
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8100"]
