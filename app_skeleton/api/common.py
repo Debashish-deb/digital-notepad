@@ -356,6 +356,11 @@ class QuestionResponse(BaseModel):
     database_counts: Dict[str, Any] = Field(default_factory=dict)
     is_safe: bool = True
     search_hits: List[Dict[str, Any]] = Field(default_factory=list)
+    provider: str = "mock"
+    effective_provider: str = "mock"
+    model: str = "mock-model"
+    fallback_used: bool = False
+    synthesis_mode: str = "mock"
 
 class InstallRequest(BaseModel):
     tool_name: str

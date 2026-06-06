@@ -35,6 +35,10 @@ class ChatResponse(BaseModel):
     is_safe: bool = True
     search_hits: List[dict[str, Any]] = Field(default_factory=list)
     provider: str = "mock"
+    effective_provider: str = "mock"
+    model: str = "mock-model"
+    fallback_used: bool = False
+    synthesis_mode: str = "mock"
     blocked_by_guardrail: bool = False
     intent: str = "general_chat"
     use_rag: bool = False

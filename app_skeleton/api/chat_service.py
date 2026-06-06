@@ -218,6 +218,27 @@ def _intent_metadata(intent_decision: IntentDecision) -> dict[str, Any]:
     }
 
 
+def _llm_provenance(llm: Any, *, configured_provider: str) -> dict[str, Any]:
+    provenance = getattr(llm, "synthesis_provenance", None)
+    if callable(provenance):
+        meta = provenance()
+    else:
+        meta = {
+            "effective_provider": configured_provider,
+            "model": getattr(llm, "model", ""),
+            "fallback_used": False,
+            "synthesis_mode": "mock" if configured_provider == "mock" else "live",
+        }
+    effective = meta.get("effective_provider") or configured_provider
+    return {
+        "provider": effective,
+        "effective_provider": effective,
+        "model": meta.get("model") or getattr(llm, "model", ""),
+        "fallback_used": bool(meta.get("fallback_used")),
+        "synthesis_mode": meta.get("synthesis_mode") or "mock",
+    }
+
+
 def answer_chat(
     message: str,
     *,
@@ -300,6 +321,7 @@ def answer_chat(
     )
 
     answer = llm.generate(user_content, system_prompt)
+    provenance = _llm_provenance(llm, configured_provider=provider)
 
     if intent_decision.use_rag and not retrieved_sources:
         limitations.append(
@@ -322,7 +344,7 @@ def answer_chat(
         if validation.get("warning"):
             limitations.append(validation["warning"])
 
-    if provider == "mock":
+    if provenance["synthesis_mode"] == "mock":
         limitations.append("Running in local mock-synthesis mode because no cloud LLM API key is configured.")
 
     sources_payload: list[dict[str, Any]] = []
@@ -350,8 +372,8 @@ def answer_chat(
         "database_counts": db_data,
         "is_safe": True,
         "search_hits": search_hits_payload,
-        "provider": provider,
         "blocked_by_guardrail": False,
+        **provenance,
         "audit": {
             "redaction_count": audit.get("redaction_count", 0),
             "violations": audit.get("violations", []),

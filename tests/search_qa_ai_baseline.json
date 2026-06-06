@@ -1,0 +1,662 @@
+{
+  "run_at": "2026-06-06T12:28:14.887365+00:00",
+  "branch": "cursor/unified-search-ai-lab-assistant",
+  "mode": "in_process_testclient",
+  "gemini_key_configured": true,
+  "providers_seen": {
+    "mock": 14,
+    "gemini": 1
+  },
+  "synthesis_modes_seen": {
+    "mock": 14,
+    "live": 1
+  },
+  "http_errors": 0,
+  "env_info": {
+    "auth_role": "researcher",
+    "chat_status_code": 200,
+    "chat_status": {
+      "chat_provider": "gemini",
+      "chat_model": "gemini-3.5-flash",
+      "stream_enabled": true,
+      "max_sources": 12,
+      "llm": {
+        "provider": "gemini",
+        "model": "gemini-3.5-flash",
+        "base_url_configured": true,
+        "api_key_configured": true,
+        "fallback_providers": [
+          "gemini",
+          "groq",
+          "openai",
+          "openrouter",
+          "together",
+          "deepseek",
+          "ollama",
+          "mock"
+        ],
+        "healthy": true,
+        "last_provider_errors": [],
+        "last_synthesis": {
+          "effective_provider": "mock",
+          "model": "mock-model",
+          "fallback_used": false,
+          "synthesis_mode": "mock"
+        }
+      }
+    },
+    "total_elapsed_s": 56.5
+  },
+  "infra": {
+    "research_kb_status_code": 200,
+    "research_kb": {
+      "qdrant_connected": true,
+      "collection": "research_knowledge",
+      "vector_name": "text",
+      "schema_ok": true,
+      "points_count": 6,
+      "source_count": 12,
+      "document_count": 12,
+      "chunk_count": 6,
+      "dataset_count": 3,
+      "entity_count": 2,
+      "relation_count": 0,
+      "warnings": []
+    },
+    "unified_search_code": 200,
+    "unified_search_sample": {
+      "total_hits": 10,
+      "buckets": {
+        "lab": 1,
+        "vault": 9
+      },
+      "mode": "hybrid"
+    },
+    "unified_search_gse": {
+      "total_hits": 10,
+      "buckets": {
+        "research": 4,
+        "lab": 6
+      }
+    }
+  },
+  "chat_results": [
+    {
+      "category": "smalltalk",
+      "question": "hi",
+      "status_code": 200,
+      "elapsed_s": 1.2,
+      "intent": "smalltalk",
+      "answer_style": "brief_conversational",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": []
+    },
+    {
+      "category": "smalltalk",
+      "question": "what can you do?",
+      "status_code": 200,
+      "elapsed_s": 1.31,
+      "intent": "smalltalk",
+      "answer_style": "brief_conversational",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": []
+    },
+    {
+      "category": "research",
+      "question": "What does Färkkilä Lab study?",
+      "status_code": 200,
+      "elapsed_s": 1.28,
+      "intent": "general_chat",
+      "answer_style": "natural",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "mock synthesis — not live Gemini"
+      ]
+    },
+    {
+      "category": "research",
+      "question": "What is MHC class II in HGSC?",
+      "status_code": 200,
+      "elapsed_s": 3.61,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 12,
+      "search_hits_count": 12,
+      "buckets": {
+        "file": 12
+      },
+      "limitations": [
+        "Answer contains no source citations.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "citations required but none in answer",
+        "mock synthesis — not live Gemini"
+      ]
+    },
+    {
+      "category": "research",
+      "question": "Explain tertiary lymphoid structures in ovarian cancer",
+      "status_code": 200,
+      "elapsed_s": 6.18,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "gemini",
+      "effective_provider": "gemini",
+      "model": "gemini-3.5-flash",
+      "fallback_used": false,
+      "synthesis_mode": "live",
+      "sources_count": 12,
+      "search_hits_count": 12,
+      "buckets": {
+        "file": 12
+      },
+      "limitations": [
+        "Answer contains no source citations."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": false,
+      "has_citations": false,
+      "answer": "1.  **Direct answer**\n    Information regarding tertiary lymphoid structures in ovarian cancer is not available in the provided sources.\n\n2.  **Evidence summary**\n    No scientific claims or descriptions related to tertiary lymphoid structures or ovarian cancer could be extracted from the provided document excerpts.\n\n3.  **Sources/publications/datasets**\n    No relevant information was found in the provided sources [1-12].\n\n4.  **Limitations**\n    The provided excerpts from the sources do not contain any information about tertiary lymphoid structures in ovarian cancer. Therefore, no explanation can be given based on the current data.\n\n5.  **Suggested next action**\n    To answer this question, please provide access to the full content of the documents or additional sources that discuss tertiary lymphoid structures in the context of ovarian cancer.",
+      "answer_preview": "1. **Direct answer** Information regarding tertiary lymphoid structures in ovarian cancer is not available in the provided sources. 2. **Evidence summary** No scientific claims or …",
+      "quality_score": 4,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "citations required but none in answer"
+      ]
+    },
+    {
+      "category": "research",
+      "question": "What datasets does the lab use for spatial transcriptomics?",
+      "status_code": 200,
+      "elapsed_s": 3.44,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 12,
+      "search_hits_count": 12,
+      "buckets": {
+        "file": 12
+      },
+      "limitations": [
+        "Answer contains no source citations.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "no research-bucket sources for research question",
+        "citations required but none in answer",
+        "mock synthesis — not live Gemini"
+      ]
+    },
+    {
+      "category": "protocol",
+      "question": "How do I run Ashlar stitching in tCyCIF?",
+      "status_code": 200,
+      "elapsed_s": 3.37,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 12,
+      "search_hits_count": 12,
+      "buckets": {
+        "file": 12
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *How do I run Ashlar stitching in tCyCIF?*\n\n- **[1] Reporting of tCycIF Image processing.docx (Type: file)** — \n- **[2] How to master your Masters thesis.docx (Type: file)** — \n- **[3] 03_CG000584_Xenium_Analyzer_UserGuide_RevJ.pdf (Type: file)** — \n- **[4] ESGO2026_AndreasH.pdf (Type: file)** — \n- **[5] 08_Introduction to networks and pathways.pdf (Type: file)** — \n- **[6] Teaser slides_2022-05-11_AF_MS.pptx (Type: file)** — \n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *How do I run Ashlar stitching in tCyCIF?* - **[1] Reporting of tCycIF Image processing.docx (Type: file)** — - **[2] How to master your Maste…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ]
+    },
+    {
+      "category": "protocol",
+      "question": "What is BaSiC illumination correction?",
+      "status_code": 200,
+      "elapsed_s": 3.4,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 12,
+      "search_hits_count": 12,
+      "buckets": {
+        "file": 8,
+        "lab": 4
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *What is BaSiC illumination correction?*\n\n- **[1] Oncosys-OVA Sample Collection Meeting 241119.pptx (Type: file)** — \n- **[2] Färkkilä_Lab_ ONBOARDING.docx (Type: file)** — \n- **[3] Conference abstracts and reporting guideline.docx (Type: file)** — \n- **[4] Grants for PhD students and postdocs.docx (Type: file)** — \n- **[5] Responsibilities and instructions for lab manager.docx (Type: file)** — \n- **[6] MAN-10154-06_GeoMx_DSP_Data_Analysis_User_Manual_for_software_3-1-2.pdf (Type: file)** — \n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *What is BaSiC illumination correction?* - **[1] Oncosys-OVA Sample Collection Meeting 241119.pptx (Type: file)** — - **[2] Färkkilä_Lab_ ON…",
+      "quality_score": 5,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ]
+    },
+    {
+      "category": "app_help",
+      "question": "How do I ingest documents into RAG?",
+      "status_code": 200,
+      "elapsed_s": 1.28,
+      "intent": "document_ingestion_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini",
+        "over-formal structure for conversational intent"
+      ]
+    },
+    {
+      "category": "app_help",
+      "question": "How do I set up Gemini?",
+      "status_code": 200,
+      "elapsed_s": 1.25,
+      "intent": "app_help",
+      "answer_style": "helpful_steps",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini",
+        "over-formal structure for conversational intent"
+      ]
+    },
+    {
+      "category": "search",
+      "question": "Find GSE211956",
+      "status_code": 200,
+      "elapsed_s": 3.52,
+      "intent": "search_request",
+      "answer_style": "search_summary",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 12,
+      "search_hits_count": 12,
+      "buckets": {
+        "lab": 12
+      },
+      "limitations": [
+        "Answer contains no source citations.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "citations required but none in answer",
+        "mock synthesis — not live Gemini"
+      ]
+    },
+    {
+      "category": "search",
+      "question": "Where is the GeoMx DSP manual?",
+      "status_code": 200,
+      "elapsed_s": 2.97,
+      "intent": "research_question",
+      "answer_style": "scientific_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 12,
+      "search_hits_count": 12,
+      "buckets": {
+        "file": 12
+      },
+      "limitations": [
+        "Answer contains no source citations.",
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 4,
+      "gap_notes": [
+        "citations required but none in answer",
+        "mock synthesis — not live Gemini"
+      ]
+    },
+    {
+      "category": "edge_pii",
+      "question": "Patient #ABC123 needs review for sample S12345",
+      "status_code": 200,
+      "elapsed_s": 0.01,
+      "intent": "sensitive_private",
+      "answer_style": "safety",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "gemini",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": false,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [
+        "Privacy guardrail: potential identifiers were redacted before retrieval/LLM.",
+        "Safety alert: query blocked for external LLM because patient-identifiable data was detected (Patient/subject identifier, Case/sample identifier)."
+      ],
+      "blocked_by_guardrail": true,
+      "has_headings": false,
+      "has_citations": false,
+      "answer": "Your message was blocked by local privacy guardrails because patient-identifiable data was detected and the copilot is configured to use an external cloud LLM. Remove identifiers and try again, or use a local provider (ollama/mock).",
+      "answer_preview": "Your message was blocked by local privacy guardrails because patient-identifiable data was detected and the copilot is configured to use an external cloud LLM. Remove identifiers a…",
+      "quality_score": 5,
+      "gap_notes": []
+    },
+    {
+      "category": "edge_no_sources",
+      "question": "What is the quantum chromodynamics of quark-gluon plasma in 12 dimensions?",
+      "status_code": 200,
+      "elapsed_s": 1.16,
+      "intent": "general_chat",
+      "answer_style": "natural",
+      "use_rag": false,
+      "show_sources": false,
+      "require_citations": false,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 0,
+      "search_hits_count": 0,
+      "buckets": {},
+      "limitations": [],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": false,
+      "answer": "### OMEIA copilot synthesis\n\nNo matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the active scope.",
+      "answer_preview": "### OMEIA copilot synthesis No matching document chunks were retrieved for this query. The structured database context is still available, with 0 patients and 0 samples in the acti…",
+      "quality_score": 2,
+      "gap_notes": [
+        "no sources for obscure query — answer may be ungrounded"
+      ]
+    },
+    {
+      "category": "edge_mixed_lang",
+      "question": "Miten teen Ashlar stitching tCyCIF-protokollassa?",
+      "status_code": 200,
+      "elapsed_s": 3.12,
+      "intent": "protocol_question",
+      "answer_style": "practical_with_sources",
+      "use_rag": true,
+      "show_sources": true,
+      "require_citations": true,
+      "provider": "mock",
+      "effective_provider": "mock",
+      "model": "mock-model",
+      "fallback_used": true,
+      "synthesis_mode": "mock",
+      "sources_count": 12,
+      "search_hits_count": 12,
+      "buckets": {
+        "file": 12
+      },
+      "limitations": [
+        "Running in local mock-synthesis mode because no cloud LLM API key is configured."
+      ],
+      "blocked_by_guardrail": false,
+      "has_headings": true,
+      "has_citations": true,
+      "answer": "### OMEIA copilot synthesis\n\nQuestion: *Miten teen Ashlar stitching tCyCIF-protokollassa?*\n\n- **[1] Reporting of tCycIF Image processing.docx (Type: file)** — \n- **[2] How to master your Masters thesis.docx (Type: file)** — \n- **[3] THL_Riskinarviointipohja_BSL-2.pdf (Type: file)** — \n- **[4] THL_Riskinarviointipohja_BSL-2.pdf (Type: file)** — \n- **[5] THL_Riskinarviointipohja_BSL-2.pdf (Type: file)** — \n- **[6] GMM Ilmoitis Hakemus Täyttöohje2018.doc (Type: file)** — \n\n*System context: 0 patients and 0 samples in the active scope.*",
+      "answer_preview": "### OMEIA copilot synthesis Question: *Miten teen Ashlar stitching tCyCIF-protokollassa?* - **[1] Reporting of tCycIF Image processing.docx (Type: file)** — - **[2] How to master y…",
+      "quality_score": 4,
+      "gap_notes": [
+        "mock synthesis — not live Gemini"
+      ]
+    }
+  ],
+  "ask_comparisons": [
+    {
+      "question": "How do I run Ashlar stitching in tCyCIF?",
+      "ask_search_only": {
+        "sources_count": 20,
+        "buckets": {
+          "file": 20
+        },
+        "search_hits_count": 20
+      },
+      "ask_doc_mode": {
+        "sources_count": 12,
+        "buckets": {
+          "file": 12
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock",
+        "answer_preview": "### OMEIA copilot synthesis Question: *How do I run Ashlar stitching in tCyCIF?* - **[1] Reporting of tCycIF Image processing.docx (Type: file)** — - **[2] How to master your Maste…",
+        "has_citations": true
+      },
+      "chat": {
+        "intent": "protocol_question",
+        "sources_count": 12,
+        "buckets": {
+          "file": 12
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock"
+      },
+      "divergence": [
+        "chat sources != /ask search_only hits"
+      ]
+    },
+    {
+      "question": "What does Färkkilä Lab study?",
+      "ask_search_only": {
+        "sources_count": 20,
+        "buckets": {
+          "file": 20
+        },
+        "search_hits_count": 20
+      },
+      "ask_doc_mode": {
+        "sources_count": 12,
+        "buckets": {
+          "file": 12
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock",
+        "answer_preview": "### OMEIA copilot synthesis Question: *What does Färkkilä Lab study?* - **[1] ESGO2026 ePoster Anni H.pptx (Type: file)** — - **[2] NatCancer_Song_2026.docx (Type: file)** — - **[3…",
+        "has_citations": true
+      },
+      "chat": {
+        "intent": "general_chat",
+        "sources_count": 0,
+        "buckets": {},
+        "effective_provider": "mock",
+        "synthesis_mode": "mock"
+      },
+      "divergence": [
+        "source count differs chat vs /ask doc mode",
+        "chat sources != /ask search_only hits"
+      ]
+    },
+    {
+      "question": "Find GSE211956",
+      "ask_search_only": {
+        "sources_count": 20,
+        "buckets": {
+          "lab": 13,
+          "file": 7
+        },
+        "search_hits_count": 20
+      },
+      "ask_doc_mode": {
+        "sources_count": 12,
+        "buckets": {
+          "lab": 12
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock",
+        "answer_preview": "### OMEIA copilot synthesis Question: *Find GSE211956* - **[1] CONCATENATE(A2, , \"_\", C2, \"_\", D2,\"_\",B2) (Type: lab_policy_document)** — ### xl/worksheets/sheet1.xml 0 1 2 3 4 4.0…",
+        "has_citations": true
+      },
+      "chat": {
+        "intent": "search_request",
+        "sources_count": 12,
+        "buckets": {
+          "lab": 12
+        },
+        "effective_provider": "mock",
+        "synthesis_mode": "mock"
+      },
+      "divergence": [
+        "chat sources != /ask search_only hits"
+      ]
+    }
+  ]
+}

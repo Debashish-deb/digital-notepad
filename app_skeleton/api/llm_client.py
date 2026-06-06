@@ -117,6 +117,10 @@ class LLMClient:
         self.temperature = _bounded_float(_env("LLM_TEMPERATURE", "0.0"), 0.0, 0.0, 2.0)
         self.client: Any | None = None
         self.last_provider_errors: list[str] = []
+        self.last_effective_provider: str = "mock"
+        self.last_model_used: str = "mock-model"
+        self.last_fallback_used: bool = False
+        self.last_synthesis_mode: str = "mock"
         self._init_client()
 
     @classmethod
@@ -277,6 +281,27 @@ class LLMClient:
                 models.append(model)
         return models
 
+    @staticmethod
+    def _synthesis_mode_for(provider: str) -> str:
+        if provider == "mock":
+            return "mock"
+        if provider == "ollama":
+            return "ollama"
+        return "live"
+
+    def _record_synthesis(
+        self,
+        *,
+        configured_primary: str,
+        effective_provider: str,
+        model: str,
+        fallback_used: bool,
+    ) -> None:
+        self.last_effective_provider = effective_provider
+        self.last_model_used = model
+        self.last_fallback_used = fallback_used
+        self.last_synthesis_mode = self._synthesis_mode_for(effective_provider)
+
     def _chat_once(self, cfg: ProviderConfig, prompt: str, system_prompt: str) -> str:
         client = self._client_for(cfg)
         if client is None:
@@ -315,12 +340,12 @@ class LLMClient:
 
     def generate(self, prompt: str, system_prompt: str = "") -> str:
         """Generate conversational text with automatic fallback routing."""
-        primary = self.provider or "mock"
-        providers = [primary] + [p for p in self.fallback_providers if p != primary]
+        configured_primary = self.provider or "mock"
+        providers = [configured_primary] + [p for p in self.fallback_providers if p != configured_primary]
         errors: list[str] = []
 
         for provider in providers:
-            cfg = self._current_config() if provider == primary else self._config_for(provider)
+            cfg = self._current_config() if provider == configured_primary else self._config_for(provider)
             if cfg.provider != "mock" and not cfg.api_key and cfg.provider != "ollama":
                 continue
             if cfg.provider != "mock" and OpenAI is None:
@@ -333,6 +358,12 @@ class LLMClient:
                     self.provider, self.model, self.api_key, self.base_url = cfg.provider, cfg.model, cfg.api_key, cfg.base_url
                     self.client = self._client_for(cfg)
                     self.last_provider_errors = errors
+                    self._record_synthesis(
+                        configured_primary=configured_primary,
+                        effective_provider=cfg.provider,
+                        model=self.model,
+                        fallback_used=cfg.provider != configured_primary,
+                    )
                     return result
             except Exception as exc:
                 errors.append(f"{cfg.provider}: {type(exc).__name__}")
@@ -342,6 +373,12 @@ class LLMClient:
         fallback = self._mock_generate(prompt, system_prompt)
         if errors:
             fallback += "\n\n*Provider fallback note: " + "; ".join(errors[:4]) + ".*"
+        self._record_synthesis(
+            configured_primary=configured_primary,
+            effective_provider="mock",
+            model="mock-model",
+            fallback_used=True,
+        )
         return fallback
 
     def _stream_once(self, cfg: ProviderConfig, prompt: str, system_prompt: str) -> Iterator[str]:
@@ -411,6 +448,12 @@ class LLMClient:
                     self.provider, self.model, self.api_key, self.base_url = cfg.provider, cfg.model, cfg.api_key, cfg.base_url
                     self.client = self._client_for(cfg)
                     self.last_provider_errors = errors
+                    self._record_synthesis(
+                        configured_primary=primary,
+                        effective_provider=cfg.provider,
+                        model=self.model,
+                        fallback_used=cfg.provider != primary,
+                    )
                     return
             except Exception as exc:
                 errors.append(f"{cfg.provider}: {type(exc).__name__}")
@@ -420,6 +463,12 @@ class LLMClient:
         fallback = self._mock_generate(prompt, system_prompt)
         if errors:
             fallback += "\n\n*Provider fallback note: " + "; ".join(errors[:4]) + ".*"
+        self._record_synthesis(
+            configured_primary=primary,
+            effective_provider="mock",
+            model="mock-model",
+            fallback_used=True,
+        )
         yield fallback
 
     def _extract_sources(self, prompt: str) -> list[dict[str, str]]:
@@ -578,6 +627,15 @@ class LLMClient:
     def embed_many(self, texts: list[str], dim: int = 384) -> list[list[float]]:
         return [self.embed(text, dim=dim) for text in texts]
 
+    def synthesis_provenance(self) -> dict[str, Any]:
+        """Return provenance for the most recent synthesis call."""
+        return {
+            "effective_provider": self.last_effective_provider,
+            "model": self.last_model_used,
+            "fallback_used": self.last_fallback_used,
+            "synthesis_mode": self.last_synthesis_mode,
+        }
+
     def public_status(self) -> dict[str, Any]:
         """Return safe status metadata for health endpoints without exposing secrets."""
         return {
@@ -588,4 +646,5 @@ class LLMClient:
             "fallback_providers": [p for p in self.fallback_providers if p != "mock"] + ["mock"],
             "healthy": self.healthCheck(),
             "last_provider_errors": list(self.last_provider_errors[-4:]),
+            "last_synthesis": self.synthesis_provenance(),
         }

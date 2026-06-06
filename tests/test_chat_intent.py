@@ -41,6 +41,16 @@ class TestChatIntent(unittest.TestCase):
         self.assertFalse(decision.use_rag)
         self.assertFalse(decision.show_sources)
 
+    def test_find_gse_uses_rag(self) -> None:
+        decision = classify_chat_intent("Find GSE211956")
+        self.assertEqual(decision.intent, "search_request")
+        self.assertTrue(decision.use_rag)
+
+    def test_bare_gse_accession_uses_rag(self) -> None:
+        decision = classify_chat_intent("GSE211956")
+        self.assertEqual(decision.intent, "search_request")
+        self.assertTrue(decision.use_rag)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -70,23 +70,24 @@ def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> Qu
         active_llm.base_url = req.llm_base_url or active_llm.base_url
         active_llm._init_client()
 
-    # 2. Run privacy audit checks
-    audit = PrivacyGuardrailAgent.audit_query(req.question)
-    limitations = []
-    
-    if not audit["is_safe"]:
-        limitations.append(f"Safety Alert: Potential Patient Identifiers Redacted ({', '.join(audit['violations'])}).")
-        # Block forwarding query to external LLM provider if set to public
-        if active_llm.provider != "ollama" and active_llm.provider != "mock":
-            return QuestionResponse(
-                answer="Error: User query blocked by local privacy guardrails because patient-identifiable data (PII) was detected and LLM is configured to utilize external cloud APIs. De-identify patient data and try again.",
-                limitations=limitations,
-                sources=[],
-                database_counts={},
-                is_safe=False
-            )
+    from app_skeleton.api.privacy_guardrails import allow_external_llm, guard_for_llm, is_external_provider
 
-    safe_question = audit["redacted_text"]
+    configured_provider = active_llm.provider or "mock"
+    safe_question, audit, limitations = guard_for_llm(req.question, configured_provider)
+
+    if is_external_provider(configured_provider) and not allow_external_llm(audit, configured_provider):
+        return QuestionResponse(
+            answer="Error: User query blocked by local privacy guardrails because patient-identifiable data (PII) was detected and LLM is configured to utilize external cloud APIs. De-identify patient data and try again.",
+            limitations=limitations,
+            sources=[],
+            database_counts={},
+            is_safe=False,
+            provider=configured_provider,
+            effective_provider=configured_provider,
+            model=active_llm.model,
+            fallback_used=False,
+            synthesis_mode="mock",
+        )
 
     if mode == "search_only":
         from app_skeleton.api.search_service import SearchService
@@ -267,7 +268,10 @@ def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> Qu
         if validation.get("warning"):
             limitations.append(validation["warning"])
 
-    if active_llm.provider == "mock":
+    from app_skeleton.api.chat_service import _llm_provenance
+
+    provenance = _llm_provenance(active_llm, configured_provider=configured_provider)
+    if provenance["synthesis_mode"] == "mock":
         limitations.append("Running in local mock-synthesis mode because no LLM_API_KEY is configured.")
 
     # Audit conversations to DB
@@ -300,6 +304,7 @@ def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> Qu
         database_counts=db_data,
         is_safe=True,
         search_hits=search_hits_payload,
+        **provenance,
     )
 
 @router.post("/install_guide")

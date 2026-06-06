@@ -64,6 +64,30 @@ SENSITIVE_PATTERNS = [
     r"\b(?:api[_-]?key|secret|password|token)\s*[:=]\s*['\"]?[^'\"\s]{8,}",
 ]
 
+SCIENTIFIC_ACCESSION_PATTERNS = [
+    re.compile(r"\bGSE\d+\b", re.I),
+    re.compile(r"\bGSM\d+\b", re.I),
+    re.compile(r"\bGPL\d+\b", re.I),
+    re.compile(r"\bPRJNA\d+\b", re.I),
+    re.compile(r"\bSRR\d+\b", re.I),
+    re.compile(r"\bSRX\d+\b", re.I),
+    re.compile(r"\bEGAS\d+\b", re.I),
+    re.compile(r"\bEGAD\d+\b", re.I),
+    re.compile(r"\bphs\d+(?:\.v\d+)?\b", re.I),
+    re.compile(r"\bTCGA-[A-Z0-9-]+\b", re.I),
+    re.compile(r"\b10\.\d{4,}/[^\s]+", re.I),
+    re.compile(r"\bPMID:?\s*\d+\b", re.I),
+]
+
+RESEARCH_PROTOCOL_SHORT_TERMS = RESEARCH_TERMS | PROTOCOL_TERMS | {
+    "gse", "gsm", "ega", "tcga", "doi", "pmid", "accession", "dataset",
+}
+
+
+def _contains_scientific_identifier(text: str) -> bool:
+    return any(pattern.search(text) for pattern in SCIENTIFIC_ACCESSION_PATTERNS)
+
+
 def _contains_any(text: str, terms: set[str]) -> bool:
     lower = text.lower()
     return any(term in lower for term in terms)
@@ -104,8 +128,18 @@ def classify_chat_intent(message: str) -> IntentDecision:
                 reason="smalltalk/greeting",
             )
 
+    if _contains_scientific_identifier(text):
+        return IntentDecision(
+            intent="search_request",
+            use_rag=True,
+            show_sources=True,
+            require_citations=True,
+            answer_style="search_summary",
+            reason="scientific accession or identifier detected",
+        )
+
     # Very short generic messages should not trigger RAG.
-    if len(text.split()) <= 2 and not _contains_any(lower, RESEARCH_TERMS | PROTOCOL_TERMS):
+    if len(text.split()) <= 2 and not _contains_any(lower, RESEARCH_PROTOCOL_SHORT_TERMS):
         return IntentDecision(
             intent="general_chat",
             use_rag=False,
