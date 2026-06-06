@@ -11,6 +11,11 @@ if ! command -v docker >/dev/null 2>&1; then
 fi
 
 echo "=== Starting OMEIA Docker stack on $(hostname) ==="
+# docker compose reads project-root .env for ${VAR} substitution — link configs/.env
+if [[ -f "$ROOT/configs/.env" && ! -f "$ROOT/.env" ]]; then
+  ln -sf configs/.env "$ROOT/.env"
+  echo "Linked .env -> configs/.env for docker compose"
+fi
 docker compose up -d
 
 if [[ -x "$ROOT/scripts/generate_ollama_token.sh" ]] && ! grep -q '^OLLAMA_INTERNAL_TOKEN=.\+' "$ROOT/configs/.env" 2>/dev/null; then

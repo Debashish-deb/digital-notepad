@@ -22,14 +22,24 @@ import shlex
 import sys
 from pathlib import Path
 
-try:
-    from dotenv import dotenv_values
-except ImportError:
-    sys.stderr.write("load_env.sh: python-dotenv is required\n")
-    sys.exit(1)
-
 path = Path(sys.argv[1])
-for key, value in dotenv_values(path).items():
+
+def parse_env_file(p: Path) -> dict[str, str]:
+    try:
+        from dotenv import dotenv_values
+        raw = dotenv_values(p)
+        return {k: v for k, v in raw.items() if v is not None}
+    except ImportError:
+        out: dict[str, str] = {}
+        for line in p.read_text(encoding="utf-8", errors="replace").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, value = line.partition("=")
+            out[key.strip()] = value.strip().strip("'").strip('"')
+        return out
+
+for key, value in parse_env_file(path).items():
     if value is None:
         continue
     print(f"export {key}={shlex.quote(str(value))}")

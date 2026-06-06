@@ -1,15 +1,22 @@
-# Ollama reverse proxy — localhost only, bearer-token gated.
-# Set OLLAMA_INTERNAL_TOKEN in configs/.env (never commit real tokens).
+# Ollama reverse proxy — bearer-token gated when OLLAMA_INTERNAL_TOKEN is set.
 {
 	admin off
 }
 
 :11434 {
-	@token_set expression {env.OLLAMA_INTERNAL_TOKEN} != ""
-	@unauthorized token_set not header Authorization "Bearer {env.OLLAMA_INTERNAL_TOKEN}"
-	respond @unauthorized "Unauthorized" 401
+	@has_token expression {env.OLLAMA_INTERNAL_TOKEN} != ""
 
-	reverse_proxy ollama:11434 {
-		header_up -Authorization
+	handle @has_token {
+		@authorized header Authorization "Bearer {env.OLLAMA_INTERNAL_TOKEN}"
+		handle @authorized {
+			reverse_proxy ollama:11434 {
+				header_up -Authorization
+			}
+		}
+		respond "Unauthorized" 401
+	}
+
+	handle {
+		reverse_proxy ollama:11434
 	}
 }

@@ -72,6 +72,8 @@ services:
     networks: [omeia-internal]
     ports:
       - "127.0.0.1:11434:11434"
+    env_file:
+      - configs/.env
     environment:
       OLLAMA_INTERNAL_TOKEN: ${OLLAMA_INTERNAL_TOKEN:-}
     volumes:

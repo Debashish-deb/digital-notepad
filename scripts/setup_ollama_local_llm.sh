@@ -8,7 +8,11 @@ cd "$ROOT"
 
 if [[ -f "$ROOT/configs/.env" ]]; then
   # shellcheck disable=SC1091
-  eval "$("$ROOT/scripts/load_env.sh" "$ROOT/configs/.env")"
+  eval "$("$ROOT/scripts/load_env.sh" "$ROOT/configs/.env")" || true
+  if [[ -z "${OLLAMA_INTERNAL_TOKEN:-}" ]]; then
+    OLLAMA_INTERNAL_TOKEN="$(grep -E '^OLLAMA_INTERNAL_TOKEN=' "$ROOT/configs/.env" | head -1 | cut -d= -f2- | tr -d '"' | tr -d "'" || true)"
+    export OLLAMA_INTERNAL_TOKEN
+  fi
 fi
 
 OLLAMA_MODEL="${OLLAMA_MODEL:-qwen2.5:3b}"
@@ -73,11 +77,15 @@ if [[ -n "${OLLAMA_INTERNAL_TOKEN:-}" ]]; then
 fi
 for i in $(seq 1 90); do
   if curl -sf "${WAIT_AUTH[@]}" "http://127.0.0.1:11434/" >/dev/null 2>&1; then
-    echo "Ollama API ready (${i}s)"
+    echo "Ollama API ready via proxy (${i}s)"
+    break
+  fi
+  if docker exec "$CONTAINER" ollama list >/dev/null 2>&1; then
+    echo "Ollama container healthy (proxy curl pending); continuing (${i}s)"
     break
   fi
   if [[ "$i" -eq 90 ]]; then
-    echo "ERROR: Ollama did not become ready on :11434 (image may still be pulling — retry in a few minutes)"
+    echo "ERROR: Ollama did not become ready on :11434 (check: docker logs omeia-ollama-proxy)"
     exit 1
   fi
   sleep 2
