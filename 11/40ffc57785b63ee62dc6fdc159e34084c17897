@@ -1,0 +1,65 @@
+app_skeleton/api/routers/chat.py
+  s_60cd7b8c112725::t_c1d9288f862b4c 38-41
+app_skeleton/api/chat_service.py
+  s_60cd7b8c112725::t_507aced8f0973c 324
+  s_60cd7b8c112725::t_bcdb586303e990 221-241
+  s_60cd7b8c112725::t_f1c349b5873200 347
+  s_60cd7b8c112725::t_f3d7e0495e582b 376
+app_skeleton/api/privacy_guardrails.py
+  s_60cd7b8c112725::t_8e21d089d0b006 6-8,13,29-42,45-98,111-124
+  s_60cd7b8c112725::t_9d7434b0020830 43-44
+tests/auth_fixtures.py
+  s_60cd7b8c112725::t_b351f97631df45 1-56
+scripts/run_ai_lab_assistant_eval.py
+  s_60cd7b8c112725::t_56b36d14cc87ad 2-354
+tests/search_qa_ai_baseline.json
+  s_60cd7b8c112725::t_5011113816457a 1-662
+app_skeleton/api/routers/copilot.py
+  s_60cd7b8c112725::t_bc199f84875c9a 307
+  s_60cd7b8c112725::t_a34e74cee8419f 73,75-90
+  s_60cd7b8c112725::t_5aaa39fe2ce9e6 271-274
+tests/test_chat_intent.py
+  s_60cd7b8c112725::t_0f138ceed1443d 44-53
+app_skeleton/api/chat_intent.py
+  s_60cd7b8c112725::t_6f130ac2554252 67-90
+  s_60cd7b8c112725::t_a7e281033ca454 131-140,142
+docs/33_AI_LAB_ASSISTANT_PRODUCTION_PLAN.md
+  s_60cd7b8c112725::t_0278bf77c14495 364-365
+  s_d8ca0dcf385045::t_d67a149e3054d4 1-363
+tests/test_chat_api.py
+  s_60cd7b8c112725::t_d25c9144ea98eb 9,12,28,31-33,76-117
+app_skeleton/api/llm_client.py
+  s_60cd7b8c112725::t_47c64f61d40261 284-304
+  s_60cd7b8c112725::t_70f8c359f5b5d9 630-638,649
+  s_60cd7b8c112725::t_4e911dd7d5f58d 120-123
+  s_60cd7b8c112725::t_b61f78cecfd1e8 451-456,466-471
+  s_60cd7b8c112725::t_28e980842b78c1 343-344,348,361-366,376-381
+tests/test_privacy_guardrails.py
+  s_60cd7b8c112725::t_ad35bffb00b56c 1-66
+app_skeleton/api/common.py
+  s_60cd7b8c112725::t_eb3d6a3f8be3de 359-363
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "1140ffc57785b63ee62dc6fdc159e34084c17897",
+  "prompts": {},
+  "sessions": {
+    "s_60cd7b8c112725": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "7d2ea783-33f8-4be8-b4d4-1e7e432baa58",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
