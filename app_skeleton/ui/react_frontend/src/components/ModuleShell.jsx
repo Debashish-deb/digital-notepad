@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import TaskpadSheet from './TaskpadSheet.jsx';
 import { useTaskpad } from '../contexts/TaskpadContext.jsx';
@@ -115,4 +115,4 @@ function ModuleShell({
   );
 }
 
-export default memo(ModuleShell);
+export default ModuleShell;

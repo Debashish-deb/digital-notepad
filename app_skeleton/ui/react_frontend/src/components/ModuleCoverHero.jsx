@@ -30,7 +30,7 @@ export default function ModuleCoverHero({
   return (
     <header
       className={`module-cover-hero module-cover-hero--${tone}`}
-      lang={mainId === 'overview' ? locale : undefined}
+      lang={locale}
       style={cover.accentHue ? { '--cover-accent': cover.accentHue } : undefined}
     >
       <div className="module-cover-hero__mesh" aria-hidden />
@@ -66,9 +66,14 @@ export default function ModuleCoverHero({
                 ))}
               </ul>
             ) : null}
-            {mainId === 'overview' ? <LanguageSwitcher variant="pills" /> : null}
+            {mainId === 'overview' ? (
+              <LanguageSwitcher variant="pills" />
+            ) : null}
           </div>
           <div className="module-cover-hero__actions">
+            {mainId !== 'overview' ? (
+              <LanguageSwitcher variant="pills" showLabel={false} className="module-cover-hero__lang" />
+            ) : null}
             <div className="module-cover-hero__taskpad">
               <TaskpadSheet mainId={mainId} subId={subId} />
             </div>

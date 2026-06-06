@@ -1,23 +1,23 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { getStoredLocale, storeLocale } from '../data/localeStorage.js';
 import { isSupportedLocale } from '../i18n/translate.js';
 
 const LocaleContext = createContext(null);
 
 export function LocaleProvider({ children }) {
-  const [locale, setLocaleState] = useState(getStoredLocale);
+  const [locale, setLocaleState] = useState(() => getStoredLocale());
 
-  const setLocale = (id) => {
+  const setLocale = useCallback((id) => {
     if (!isSupportedLocale(id)) return;
     setLocaleState(id);
     storeLocale(id);
-  };
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
 
-  const value = useMemo(() => ({ locale, setLocale }), [locale]);
+  const value = useMemo(() => ({ locale, setLocale }), [locale, setLocale]);
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 }

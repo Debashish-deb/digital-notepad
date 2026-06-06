@@ -9,6 +9,10 @@ export default function LanguageSwitcher({
 }) {
   const { locale, setLocale, t } = useGuiT();
 
+  const handleLocaleChange = (nextLocale) => {
+    setLocale(nextLocale);
+  };
+
   if (variant === 'pills') {
     return (
       <div
@@ -28,7 +32,10 @@ export default function LanguageSwitcher({
               key={opt.id}
               type="button"
               className={`overview-intro-lang-btn${locale === opt.id ? ' active' : ''}`}
-              onClick={() => setLocale(opt.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleLocaleChange(opt.id);
+              }}
               aria-pressed={locale === opt.id}
               lang={opt.id}
             >
@@ -46,7 +53,11 @@ export default function LanguageSwitcher({
       <select
         className="locale-switcher-select"
         value={locale}
-        onChange={(e) => setLocale(e.target.value)}
+        onChange={(e) => {
+          e.stopPropagation();
+          handleLocaleChange(e.target.value);
+        }}
+        onClick={(e) => e.stopPropagation()}
         aria-label={t('common.langLabel')}
         style={{ textAlign: 'center', textAlignLast: 'center', borderRadius: '8px' }}
       >

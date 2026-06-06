@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import {
   ChevronDown,
   Dna,
@@ -34,7 +34,7 @@ function Sidebar({
   userEmail = null,
   onSignOut = null,
 }) {
-  const { t, nav } = useGuiT();
+  const { locale, t, nav } = useGuiT();
   const { openCentralTaskpad } = useTaskpad();
   const { theme: activeTheme, cycleTheme, availableThemes, themeMeta } = useTheme();
 
@@ -74,7 +74,8 @@ function Sidebar({
     };
   }, [apiHealth]);
 
-  const handleThemeToggle = useCallback(() => {
+  const handleThemeToggle = useCallback((e) => {
+    e.stopPropagation();
     cycleTheme();
   }, [cycleTheme]);
 
@@ -204,7 +205,7 @@ function Sidebar({
 
         <div className="sidebar-footer-toolbar" role="toolbar" aria-label={t('common.sidebarToolbarAria', 'Sidebar settings')}>
           <div className="sidebar-footer-toolbar-lang">
-            <LanguageSwitcher variant="select" showLabel={false} />
+            <LanguageSwitcher key={locale} variant="select" showLabel={false} />
           </div>
 
           <div className="sidebar-footer-toolbar-actions">
@@ -236,4 +237,4 @@ function Sidebar({
   );
 }
 
-export default memo(Sidebar);
+export default Sidebar;

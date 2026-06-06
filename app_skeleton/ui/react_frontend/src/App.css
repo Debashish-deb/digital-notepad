@@ -92,9 +92,9 @@ body,
 /* ::after overlay removed — no longer needed with flat background */
 
 .sidebar {
+  --sidebar-width: 280px;
   z-index: 20;
   background: color-mix(in srgb, var(--bg-surface) 97%, transparent);
-  contain: layout style;
 }
 
 /* Sidebar header — override themeManager box on legacy .sidebar-logo */
@@ -501,8 +501,13 @@ button:disabled,
     margin-left: 0.35rem;
   }
 
-  .sidebar-footer {
+  .sidebar-footer-profile,
+  .sidebar-central-taskpad-btn {
     display: none;
+  }
+
+  .sidebar-footer-toolbar {
+    padding-top: 0.15rem;
   }
 
   .app-topline {

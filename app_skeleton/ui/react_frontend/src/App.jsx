@@ -198,7 +198,7 @@ function App() {
     userProfile,
     signOut,
   } = useApiContext();
-  const { t, nav } = useGuiT();
+  const { locale, t, nav } = useGuiT();
   const resolvedApiUrl = contextApiUrl || API_URL;
   const initialResolved = resolveComputationalNav(migrateLegacyNav(safeStorageGet(NAV_STORAGE_KEY, '')));
   const [navMain, setNavMain] = useState(initialResolved.main);
@@ -571,6 +571,7 @@ function App() {
   );
 
   const screenBody = useMemo(() => renderScreenBody(), [
+    locale,
     navMain,
     navSub,
     hubNestedSection,
