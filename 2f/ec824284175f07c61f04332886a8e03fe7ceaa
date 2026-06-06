@@ -1,0 +1,27 @@
+scripts/setup_mac_portable.sh
+  s_d8ca0dcf385045::t_d081a0fa8513fd 1-56
+docs/PORTABLE_MAC_TO_LINUX.md
+  s_d8ca0dcf385045::t_fcf4fbd61edacd 1-96
+scripts/start_portable.sh
+  s_d8ca0dcf385045::t_9a2bfac3ed9ca0 1-12
+scripts/portable_apply_env.sh
+  s_d8ca0dcf385045::t_961f458d453639 1-36
+start.sh
+  s_d8ca0dcf385045::t_470ea2a3e24b1e 27-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "2fec824284175f07c61f04332886a8e03fe7ceaa",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
