@@ -1,0 +1,23 @@
+app_skeleton/ui/react_frontend/public/covers/overlays/profile.svg
+  s_536deae9fb8068::t_ac3a1c9d019924 1-7
+app_skeleton/ui/react_frontend/src/data/moduleCoverContent.js
+  s_536deae9fb8068::t_a4a47b5d9c181c 1,3-23,28,35,45,55,65,75,85,95,105,115,125,156
+app_skeleton/ui/react_frontend/public/covers/overlays/meeting.svg
+  s_536deae9fb8068::t_d71d7a6ce97880 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "2d374653f84eb48a7de35f0bc72a75196beab531",
+  "prompts": {},
+  "sessions": {
+    "s_536deae9fb8068": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "b6d09416-4aa8-4bf7-8ba1-5a731246348d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
