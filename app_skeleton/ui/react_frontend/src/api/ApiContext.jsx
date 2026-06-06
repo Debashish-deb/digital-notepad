@@ -71,30 +71,33 @@ export function ApiProvider({ children }) {
           setFirebaseAuthChecked(true);
           return;
         }
-        unsubscribe = subscribeAuth(async (user) => {
+        unsubscribe = subscribeAuth((user) => {
+          // Unblock the UI immediately; token refresh can lag when the API was down on first paint.
+          setFirebaseAuthChecked(true);
           if (user) {
-            try {
-              clearAuthSkipActive();
-              setAuthSkipped(false);
-              const token = await user.getIdToken();
-              setAuthToken(token);
-              setAuthTokenState(token);
-              setAuthUser({
-                uid: user.uid,
-                email: user.email,
-                displayName: user.displayName,
-              });
-            } catch {
-              clearAuthToken();
-              setAuthTokenState(null);
-              setAuthUser(null);
-            }
+            clearAuthSkipActive();
+            setAuthSkipped(false);
+            void (async () => {
+              try {
+                const token = await user.getIdToken();
+                setAuthToken(token);
+                setAuthTokenState(token);
+                setAuthUser({
+                  uid: user.uid,
+                  email: user.email,
+                  displayName: user.displayName,
+                });
+              } catch {
+                clearAuthToken();
+                setAuthTokenState(null);
+                setAuthUser(null);
+              }
+            })();
           } else if (!isAuthSkipActive()) {
             clearAuthToken();
             setAuthTokenState(null);
             setAuthUser(null);
           }
-          setFirebaseAuthChecked(true);
         });
       })
       .catch(() => {

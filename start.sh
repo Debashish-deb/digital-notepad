@@ -41,6 +41,17 @@ cleanup() {
 
 trap cleanup SIGINT SIGTERM
 
+free_port() {
+  local port="$1"
+  local pids
+  pids="$(lsof -ti tcp:"$port" 2>/dev/null || true)"
+  if [ -n "$pids" ]; then
+    echo "Stopping existing process(es) on port $port..."
+    kill $pids 2>/dev/null || true
+    sleep 1
+  fi
+}
+
 wait_for_backend() {
   local url="http://127.0.0.1:8000/health"
   local timeout=60
@@ -71,6 +82,9 @@ echo "Starting OMEIA Research Platform..."
 echo "  REPO:     $OMEIA_REPO_ROOT"
 echo "  DATABASE: $DATABASE_ROOT"
 
+free_port 8000
+free_port 5173
+
 echo "FastAPI backend http://localhost:8000"
 cd "$BACKEND_DIR" || exit 1
 "$VENV_UVICORN" app_skeleton.api.main:app --host 0.0.0.0 --port 8000 --reload &
@@ -80,7 +94,7 @@ wait_for_backend || exit 1
 
 echo "Vite frontend http://localhost:5173"
 cd "$FRONTEND_DIR" || exit 1
-npm run dev -- --host 0.0.0.0 --port 5173 &
+npm run dev -- --host 0.0.0.0 --port 5173 --strictPort &
 FRONTEND_PID=$!
 
 wait $BACKEND_PID $FRONTEND_PID
