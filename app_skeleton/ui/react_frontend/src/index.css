@@ -4095,32 +4095,6 @@ html[data-theme="dark"] .pcl-figure-img {
 .module-cover-hero--profile { --cover-accent: #475569; }
 .module-cover-hero--meeting { --cover-accent: #0284c7; }
 
-.module-cover-hero__visual {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center right;
-  background-repeat: no-repeat;
-  opacity: 0.48;
-  mask-image: linear-gradient(105deg, transparent 28%, rgba(0, 0, 0, 0.35) 48%, black 72%);
-  -webkit-mask-image: linear-gradient(105deg, transparent 28%, rgba(0, 0, 0, 0.35) 48%, black 72%);
-  pointer-events: none;
-}
-
-.module-cover-hero__scrim {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      102deg,
-      color-mix(in srgb, var(--bg-surface) 96%, transparent) 0%,
-      color-mix(in srgb, var(--bg-surface) 82%, transparent) 42%,
-      color-mix(in srgb, var(--bg-surface) 38%, transparent) 68%,
-      transparent 100%
-    );
-  pointer-events: none;
-}
-
 .module-cover-hero__glow {
   position: absolute;
   inset: auto -20% -40% 30%;

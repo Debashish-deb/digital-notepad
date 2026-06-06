@@ -1,18 +1,38 @@
-/** Cover card copy and imagery per top-level main nav section. */
+/** Cover card copy and transparent overlay art per top-level main nav section. */
 
-const COVERS = '/covers';
+const OVERLAYS = '/covers/overlays';
+
+/** @typedef {'bottom-right' | 'top-right' | 'bottom-left'} CoverOverlayPosition */
+
+/**
+ * Transparent accent art layered on the gradient card (not a full-bleed background).
+ * @type {Record<string, { src: string, position?: CoverOverlayPosition }>}
+ */
+export const MODULE_COVER_OVERLAYS = {
+  overview: { src: `${OVERLAYS}/overview.svg`, position: 'bottom-right' },
+  orders: { src: `${OVERLAYS}/orders.svg`, position: 'bottom-right' },
+  data_storage: { src: `${OVERLAYS}/data-storage.svg`, position: 'bottom-right' },
+  projects_data: { src: `${OVERLAYS}/projects.svg`, position: 'bottom-right' },
+  wet_lab: { src: `${OVERLAYS}/wetlab.svg`, position: 'bottom-right' },
+  cycif: { src: `${OVERLAYS}/cycif.svg`, position: 'top-right' },
+  computational: { src: `${OVERLAYS}/computational.svg`, position: 'bottom-right' },
+  ai_assistant: { src: `${OVERLAYS}/ai-assistant.svg`, position: 'top-right' },
+  profile: { src: `${OVERLAYS}/profile.svg`, position: 'bottom-right' },
+  meeting: { src: `${OVERLAYS}/meeting.svg`, position: 'bottom-right' },
+  administration: { src: `${OVERLAYS}/administration.svg`, position: 'bottom-right' },
+};
 
 export const MODULE_COVER = {
   overview: {
     tone: 'overview',
-    coverImage: `${COVERS}/overview.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.overview,
     useIntroCopy: true,
     metaDescription:
       'Lab orientation, onboarding, guidelines, and permits for the Färkkilä Lab ONCOSYS research programme.',
   },
   orders: {
     tone: 'orders',
-    coverImage: `${COVERS}/orders.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.orders,
     eyebrow: 'Procurement & billing',
     title: 'Orders & related information',
     lead:
@@ -20,19 +40,9 @@ export const MODULE_COVER = {
     metaDescription:
       'Procurement, vendor billing, HUS ordering instructions, and shipment records for Färkkilä Lab.',
   },
-  social: {
-    tone: 'social',
-    coverImage: `${COVERS}/social.png`,
-    eyebrow: 'Lab culture & outreach',
-    title: 'Social & miscellaneous',
-    lead:
-      'Retreats, seasonal events, lab photos, visitor hosting, and outreach materials — the human side of the Färkkilä Lab.',
-    metaDescription:
-      'Lab retreats, events, photos, visitor hosting, and outreach for the Färkkilä research community.',
-  },
   data_storage: {
     tone: 'storage',
-    coverImage: `${COVERS}/data-storage.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.data_storage,
     eyebrow: 'Infrastructure & FAIR data',
     title: 'Data & Storage',
     lead:
@@ -42,7 +52,7 @@ export const MODULE_COVER = {
   },
   projects_data: {
     tone: 'projects',
-    coverImage: `${COVERS}/projects.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.projects_data,
     eyebrow: 'Research programmes',
     title: 'Project Portfolio',
     lead:
@@ -52,7 +62,7 @@ export const MODULE_COVER = {
   },
   wet_lab: {
     tone: 'wetlab',
-    coverImage: `${COVERS}/wetlab.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.wet_lab,
     eyebrow: 'Bench science',
     title: 'Wet-lab',
     lead:
@@ -62,7 +72,7 @@ export const MODULE_COVER = {
   },
   cycif: {
     tone: 'cycif',
-    coverImage: `${COVERS}/cycif.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.cycif,
     eyebrow: 'Spatial imaging',
     title: 'CyCif / t-CycIF',
     lead:
@@ -72,7 +82,7 @@ export const MODULE_COVER = {
   },
   computational: {
     tone: 'compute',
-    coverImage: `${COVERS}/computational.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.computational,
     eyebrow: 'HPC & bioinformatics',
     title: 'Computational Hub',
     lead:
@@ -82,7 +92,7 @@ export const MODULE_COVER = {
   },
   ai_assistant: {
     tone: 'ai',
-    coverImage: `${COVERS}/ai-assistant.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.ai_assistant,
     eyebrow: 'Lab intelligence',
     title: 'AI Lab Assistant',
     lead:
@@ -92,7 +102,7 @@ export const MODULE_COVER = {
   },
   profile: {
     tone: 'profile',
-    coverImage: `${COVERS}/profile.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.profile,
     eyebrow: 'Lab identity',
     title: 'User Profile',
     lead:
@@ -102,7 +112,7 @@ export const MODULE_COVER = {
   },
   meeting: {
     tone: 'meeting',
-    coverImage: `${COVERS}/meeting.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.meeting,
     eyebrow: 'Collaboration',
     title: 'Meeting & Booking',
     lead:
@@ -112,7 +122,7 @@ export const MODULE_COVER = {
   },
   administration: {
     tone: 'admin',
-    coverImage: `${COVERS}/admin.png`,
+    overlayArt: MODULE_COVER_OVERLAYS.administration,
     eyebrow: 'Platform operations',
     title: 'Administration',
     lead:
@@ -143,7 +153,7 @@ export function moduleHasCover(mainId, subId) {
 export function getModulePageMeta(sectionTitle, mainId, subId, titleSuffix) {
   const cover = getModuleCover(mainId, subId);
   const description = cover?.metaDescription || cover?.lead || PAGE_META_FALLBACK;
-  const image = cover?.coverImage || `${COVERS}/overview.png`;
+  const image = '/assets/hero.png';
   return {
     title: `${sectionTitle} · ${titleSuffix}`,
     description,

@@ -30,14 +30,6 @@ export default function ModuleCoverHero({
       className={`module-cover-hero module-cover-hero--${cover.tone || mainId}`}
       lang={mainId === 'overview' ? locale : undefined}
     >
-      {cover.coverImage ? (
-        <div
-          className="module-cover-hero__visual"
-          style={{ backgroundImage: `url(${cover.coverImage})` }}
-          aria-hidden
-        />
-      ) : null}
-      <div className="module-cover-hero__scrim" aria-hidden />
       <div className="module-cover-hero__glow" aria-hidden />
       {cover.overlayArt?.src ? (
         <img
