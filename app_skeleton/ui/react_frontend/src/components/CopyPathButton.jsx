@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 
-export default function CopyPathButton({ value, label = 'Copy path', className = '' }) {
+export default function CopyPathButton({
+  value,
+  label = 'Copy path',
+  className = '',
+  iconOnly = false,
+}) {
   const [copied, setCopied] = useState(false);
 
   if (!value) return null;
@@ -21,13 +26,13 @@ export default function CopyPathButton({ value, label = 'Copy path', className =
   return (
     <button
       type="button"
-      className={`copy-path-btn ${className}`.trim()}
+      className={`copy-path-btn${iconOnly ? ' copy-path-btn--icon-only' : ''}${className ? ` ${className}` : ''}`.trim()}
       onClick={handleCopy}
       title={label}
       aria-label={label}
     >
       {copied ? <Check size={14} /> : <Copy size={14} />}
-      <span>{copied ? 'Copied' : 'Copy'}</span>
+      {iconOnly ? null : <span>{copied ? 'Copied' : 'Copy'}</span>}
     </button>
   );
 }

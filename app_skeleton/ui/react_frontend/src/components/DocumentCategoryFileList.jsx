@@ -14,6 +14,7 @@ import {
   wetLabProtocolPathHint,
 } from '../utils/wetLabProtocolCategories.js';
 import DocumentSubfolderAlbums from './DocumentSubfolderAlbums.jsx';
+import DocumentSectionHeader from './DocumentSectionHeader.jsx';
 import { useGuiT } from '../i18n/useGuiT.js';
 
 function FileList({
@@ -158,6 +159,7 @@ export default function DocumentCategoryFileList({
   categoryLayout = 'inline',
   renderPreview = null,
   toolbarAfterTabs = null,
+  sectionHeader = null,
 }) {
   const { t } = useGuiT();
 
@@ -285,17 +287,14 @@ export default function DocumentCategoryFileList({
       ? flatCategories[0].cat
       : null;
 
+  const integratedHeader = Boolean(horizontalTop && sectionHeader);
+
   const categoryTabsNav = showCategoryTabs && activeBlock ? (
     <div
-      className={`lab-doc-category-strip${horizontalTop ? ' lab-doc-category-strip--horizontal-top lab-doc-tab-tier--child' : flattenSubfolders ? ' lab-doc-category-strip--chips' : ''}`}
+      className={`lab-doc-category-strip${horizontalTop ? ' lab-doc-category-strip--horizontal-top' : ''}${integratedHeader ? ' lab-doc-category-strip--integrated' : ''}${flattenSubfolders ? ' lab-doc-category-strip--chips' : ''}`}
     >
-      {horizontalTop ? (
-        <span className="lab-doc-tab-tier-eyebrow lab-doc-tab-tier-eyebrow--child">
-          {t('docs.subcategoryEyebrow')}
-        </span>
-      ) : null}
       <nav
-        className={`lab-doc-nav-tabs lab-doc-category-tabs${horizontalTop ? ' lab-doc-category-tabs--horizontal-top' : flattenSubfolders ? ' lab-doc-category-tabs--chips' : ''}`}
+        className={`lab-doc-nav-tabs lab-doc-category-tabs${horizontalTop ? ' lab-doc-category-tabs--horizontal-top' : ''}${integratedHeader ? ' lab-doc-category-tabs--integrated' : ''}${flattenSubfolders ? ' lab-doc-category-tabs--chips' : ''}`}
         aria-label={t('docs.categoryTabsAria')}
       >
         {activeBlock.categories.map(({ cat, files }) => {
@@ -400,19 +399,14 @@ export default function DocumentCategoryFileList({
     <p className="text-footnote muted lab-doc-grouped-empty">{t('docs.noFilesCategory')}</p>
   );
 
-  const topChrome = (
+  const tabToolbar = (
     <>
       {showGroupTabs ? (
         <div
-          className={`lab-doc-group-strip${horizontalTop ? ' lab-doc-group-strip--horizontal-top lab-doc-tab-tier--parent' : ''}`}
+          className={`lab-doc-group-strip${horizontalTop ? ' lab-doc-group-strip--horizontal-top' : ''}${integratedHeader ? ' lab-doc-group-strip--integrated' : ''}`}
         >
-          {horizontalTop ? (
-            <span className="lab-doc-tab-tier-eyebrow lab-doc-tab-tier-eyebrow--parent">
-              {t('docs.groupEyebrow')}
-            </span>
-          ) : null}
           <nav
-            className={`lab-doc-nav-tabs lab-doc-group-tabs${horizontalTop ? ' lab-doc-group-tabs--horizontal-top' : ''}`}
+            className={`lab-doc-nav-tabs lab-doc-group-tabs${horizontalTop ? ' lab-doc-group-tabs--horizontal-top' : ''}${integratedHeader ? ' lab-doc-group-tabs--integrated' : ''}`}
             aria-label={t('docs.groupTabsAria')}
           >
             {blocks.map((block) => (
@@ -435,7 +429,7 @@ export default function DocumentCategoryFileList({
         </div>
       ) : null}
       {categoryTabsNav}
-      {horizontalTop && (activeCat?.description || flatCategories[0]?.cat?.description) ? (
+      {horizontalTop && !integratedHeader && (activeCat?.description || flatCategories[0]?.cat?.description) ? (
         <p className="lab-doc-category-desc lab-doc-category-desc--catalog-top">
           {(activeCat || flatCategories[0]?.cat)?.description}
         </p>
@@ -446,10 +440,23 @@ export default function DocumentCategoryFileList({
     </>
   );
 
+  const hasTabToolbar =
+    showGroupTabs || categoryTabsNav || (horizontalTop && toolbarAfterTabs);
+
+  if (integratedHeader) {
+    const headerChrome = hasTabToolbar ? tabToolbar : null;
+    return (
+      <div className="lab-doc-grouped-list lab-doc-grouped-list--tabbed lab-doc-grouped-list--horizontal-top lab-doc-grouped-list--integrated-header">
+        <DocumentSectionHeader {...sectionHeader}>{headerChrome}</DocumentSectionHeader>
+        {renderPreview ? renderPreview(fileBody) : fileBody}
+      </div>
+    );
+  }
+
   if (horizontalTop && renderPreview) {
     return (
       <div className="lab-doc-grouped-list lab-doc-grouped-list--tabbed lab-doc-grouped-list--horizontal-top">
-        <div className="lab-doc-category-top-bar">{topChrome}</div>
+        <div className="lab-doc-category-top-bar">{tabToolbar}</div>
         {renderPreview(fileBody)}
       </div>
     );
@@ -457,7 +464,7 @@ export default function DocumentCategoryFileList({
 
   return (
     <div className={`lab-doc-grouped-list lab-doc-grouped-list--tabbed${horizontalTop ? ' lab-doc-grouped-list--horizontal-top' : ''}`}>
-      {horizontalTop ? <div className="lab-doc-category-top-bar">{topChrome}</div> : topChrome}
+      {horizontalTop ? <div className="lab-doc-category-top-bar">{tabToolbar}</div> : tabToolbar}
       {fileBody}
     </div>
   );

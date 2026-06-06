@@ -841,6 +841,7 @@ export default {
     noFilesSearch: 'No files match your search.',
     groupTabsAria: 'Document groups',
     groupEyebrow: 'Sections',
+    sectionCorpusEyebrow: 'Document library',
     categoryTabsAria: 'Document categories',
     subcategoryEyebrow: 'Categories',
     subfolderTabsAria: 'Document subfolders',

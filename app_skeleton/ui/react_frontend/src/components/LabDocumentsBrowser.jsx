@@ -35,9 +35,9 @@ import { consumeSearchNavigation } from '../utils/searchHits.js';
 export default function LabDocumentsBrowser({
   sectionId,
   sectionIds,
-  title: _title,
-  description: _description,
-  icon: _Icon = FileText,
+  title,
+  description,
+  icon: Icon = FileText,
   categoryGroups,
   defaultCategory,
   categorizePath,
@@ -318,9 +318,20 @@ export default function LabDocumentsBrowser({
   const resolvedLayoutVariant = layoutVariant === 'default' ? 'catalog' : layoutVariant;
   const isSplitCatalogLayout =
     resolvedLayoutVariant === 'protocols' || resolvedLayoutVariant === 'catalog';
+  const sectionHeader = title
+    ? {
+        eyebrow: t('docs.sectionCorpusEyebrow', 'Document library'),
+        title,
+        description: description || null,
+        icon: Icon,
+        contentRoot: contentRoot || null,
+      }
+    : null;
+
   const browserClassName = [
     className,
     isSplitCatalogLayout ? 'catalog-space-browser lab-documents-browser--catalog' : '',
+    isSplitCatalogLayout && sectionHeader ? 'lab-documents-browser--section-header' : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -454,6 +465,7 @@ export default function LabDocumentsBrowser({
       categoryIcons={categoryIcons}
       sensitiveCategories={sensitiveCategories}
       categoryLayout={isSplitCatalogLayout ? 'horizontal-top' : 'inline'}
+      sectionHeader={isSplitCatalogLayout ? sectionHeader : null}
       renderPreview={
         isSplitCatalogLayout
           ? (fileBody) => (
@@ -476,7 +488,7 @@ export default function LabDocumentsBrowser({
     <section className={`panel workspace-section data-pad data-pad--compact data-pad--embedded ${browserClassName}`}>
       {topPanel}
 
-      {contentRoot ? (
+      {!sectionHeader && contentRoot ? (
         <div className="data-pad-root data-pad-root--inline">
           <SmartLink href={contentRoot} showCopy maxLabelLen={48} />
         </div>
