@@ -1,0 +1,36 @@
+scripts/linux_tunnel_to_mac.sh
+  s_d8ca0dcf385045::t_f295e8a50054f3 1-31
+docker-compose.yml
+  s_d8ca0dcf385045::t_fe5501820bdf5a 75-76
+scripts/load_env.sh
+  s_d8ca0dcf385045::t_ea3ad4954699b7 26-42
+scripts/setup_ollama_local_llm.sh
+  s_d8ca0dcf385045::t_0b9e2ee0e08246 80-84,88
+  s_d8ca0dcf385045::t_3e87f8946c3188 11-15
+scripts/mac_connect_linux.sh
+  s_d8ca0dcf385045::t_fffce5a2509c9b 1-47
+scripts/start_linux_docker_stack.sh
+  s_d8ca0dcf385045::t_1937bd44cbde88 14-18
+docs/MAC_STARTUP.md
+  s_d8ca0dcf385045::t_146e91a0382f2e 1-62
+scripts/mac_test_linux.sh
+  s_d8ca0dcf385045::t_1a61375cc927fd 1-39
+configs/caddy/Caddyfile
+  s_d8ca0dcf385045::t_63db266c4810cf 1,7,9-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "c340b3bb5231f17fe97af579dd23c560c742dc83",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
