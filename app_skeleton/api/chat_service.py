@@ -369,7 +369,9 @@ def answer_chat(
                 project_codes=project_codes,
                 limit=max_sources,
             )
-        rag_sources = rag_agent.retrieve(safe_message, project_codes)
+        use_legacy_rag = os.getenv("CHAT_USE_LEGACY_RAG", "false").lower() in {"1", "true", "yes"}
+        if use_legacy_rag and len(unified_hits) < max(3, max_sources // 2):
+            rag_sources = rag_agent.retrieve(safe_message, project_codes)
         retrieved_sources, unified_hits = _hits_to_sources(unified_hits, rag_sources, limit=max_sources)
 
         if not retrieved_sources:

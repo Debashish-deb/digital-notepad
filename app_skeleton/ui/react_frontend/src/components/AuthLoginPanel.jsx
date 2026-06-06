@@ -37,8 +37,8 @@ export default function AuthLoginPanel({ onToken }) {
   };
 
   return (
-    <form className="panel" onSubmit={handleSubmit} style={{ maxWidth: '24rem' }}>
-      <h3 className="panel-title">Lab platform sign-in</h3>
+    <form className="stack-sm" onSubmit={handleSubmit} style={{ maxWidth: '24rem' }}>
+      <h3 className="text-title-3">Lab platform sign-in</h3>
       <p className="text-footnote" style={{ marginBottom: '1rem' }}>
         University email and password (Firebase Email/Password — not Google).
       </p>

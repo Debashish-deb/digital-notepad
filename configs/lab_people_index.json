@@ -1,0 +1,62 @@
+[
+  {
+    "username": "afarkkila",
+    "full_name": "Anniina Färkkilä, MD, PhD",
+    "role": "Principal Investigator",
+    "affiliation": "University of Helsinki / Färkkilä Lab",
+    "email": "anniina.farkkila@helsinki.fi",
+    "bio": "Principal Investigator focusing on spatial biology, tumor microenvironment, and precision oncology in ovarian cancer.",
+    "research_interests": ["spatial biology", "HGSC", "ovarian cancer", "precision oncology", "clinical trials"],
+    "provenance": "teamDirectory + userProfilesData"
+  },
+  {
+    "username": "alundgren",
+    "full_name": "Anastasia Lundgren, MSc",
+    "role": "Lab Manager",
+    "affiliation": "Färkkilä Lab",
+    "email": "anastasia.lundgren@helsinki.fi",
+    "bio": "Lab Manager overseeing spatial biology experiments, protocols, and lab operations.",
+    "research_interests": ["t-CycIF", "sample processing", "lab management"],
+    "provenance": "teamDirectory + userProfilesData"
+  },
+  {
+    "username": "jjukonen",
+    "full_name": "Joonas Jukonen, PhD",
+    "role": "Research Coordinator",
+    "affiliation": "Färkkilä Lab",
+    "email": "joonas.jukonen@helsinki.fi",
+    "bio": "Research coordinator for regulatory compliance, ethical approvals, and translational projects.",
+    "research_interests": ["research coordination", "regulatory compliance", "translational medicine"],
+    "provenance": "teamDirectory + userProfilesData"
+  },
+  {
+    "username": "mvaariskoski",
+    "full_name": "Maija Vääriskoski, MSc Midwife",
+    "role": "Clinical Research Coordinator",
+    "affiliation": "Färkkilä Lab",
+    "email": "maija.vaariskoski@helsinki.fi",
+    "bio": "Clinical research coordinator bridging patient care and translational research.",
+    "research_interests": ["clinical trials", "FINPROVE", "patient samples"],
+    "provenance": "teamDirectory + userProfilesData"
+  },
+  {
+    "username": "sshah",
+    "full_name": "Saundarya (Saun) Shah, MSc",
+    "role": "Doctoral Researcher",
+    "affiliation": "Färkkilä Lab",
+    "email": "saundarya.shah@helsinki.fi",
+    "bio": "Doctoral researcher working on spatial and computational oncology projects.",
+    "research_interests": ["spatial transcriptomics", "HGSC", "computational biology"],
+    "provenance": "teamDirectory + userProfilesData"
+  },
+  {
+    "username": "debdeba",
+    "full_name": "Debashish Deb, MSc",
+    "role": "IT Specialist",
+    "affiliation": "Färkkilä Lab",
+    "email": "debashish.deb@helsinki.fi",
+    "bio": "IT specialist supporting OMEIA platform, data infrastructure, and lab informatics.",
+    "research_interests": ["informatics", "OMEIA", "data platforms"],
+    "provenance": "teamDirectory + userProfilesData"
+  }
+]

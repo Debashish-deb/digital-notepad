@@ -36,6 +36,11 @@ try:
 except Exception:  # pragma: no cover - dependency availability is environment-specific.
     OpenAI = None  # type: ignore[assignment]
 
+try:
+    from app_skeleton.api.docker_service_client import docker_services
+except Exception:  # pragma: no cover - import-safe for isolated unit tests.
+    docker_services = None  # type: ignore[assignment]
+
 LOGGER = logging.getLogger(__name__)
 
 _STOPWORDS = {
@@ -180,11 +185,12 @@ class LLMClient:
                 _env("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
             )
         if provider == "ollama":
+            ollama_cfg = self._ollama_endpoint()
             return ProviderConfig(
                 "ollama",
                 _env("OLLAMA_MODEL", self.model if self.provider == "ollama" else "llama3"),
-                "ollama",
-                _env("OLLAMA_BASE_URL", self.base_url or "http://localhost:11434/v1"),
+                ollama_cfg["api_key"],
+                ollama_cfg["base_url"],
             )
         if provider == "gemini":
             return ProviderConfig(
@@ -198,11 +204,27 @@ class LLMClient:
             )
         return ProviderConfig("mock", "mock-model", "", "")
 
+    @staticmethod
+    def _ollama_endpoint() -> dict[str, str]:
+        if docker_services is not None:
+            return docker_services.ollama_openai_config()
+        return {
+            "base_url": _env("OLLAMA_BASE_URL", "http://127.0.0.1:11434/v1"),
+            "api_key": _env("OLLAMA_INTERNAL_TOKEN", "") or "ollama",
+            "bearer_token": _env("OLLAMA_INTERNAL_TOKEN", ""),
+        }
+
     def _current_config(self) -> ProviderConfig:
         if self.provider == "mock":
             return ProviderConfig("mock", "mock-model", "", "")
         if self.provider == "ollama":
-            return ProviderConfig("ollama", self.model or "llama3", "ollama", self.base_url or "http://localhost:11434/v1")
+            ollama_cfg = self._ollama_endpoint()
+            return ProviderConfig(
+                "ollama",
+                self.model or "llama3",
+                ollama_cfg["api_key"],
+                self.base_url or ollama_cfg["base_url"],
+            )
         return ProviderConfig(self.provider, self.model, self.api_key, self.base_url)
 
     def _init_client(self) -> None:
@@ -233,8 +255,13 @@ class LLMClient:
         }
         if cfg.base_url:
             kwargs["base_url"] = cfg.base_url
-        if cfg.extra_headers:
-            kwargs["default_headers"] = cfg.extra_headers
+        headers = dict(cfg.extra_headers or {})
+        if cfg.provider == "ollama":
+            token = _env("OLLAMA_INTERNAL_TOKEN", "")
+            if token:
+                headers["Authorization"] = f"Bearer {token}"
+        if headers:
+            kwargs["default_headers"] = headers
         return OpenAI(**kwargs)
 
     def healthCheck(self) -> bool:
@@ -243,10 +270,16 @@ class LLMClient:
             return True
         try:
             if self.provider == "ollama":
+                if docker_services is not None:
+                    return docker_services.ensure_healthy("ollama", allow_auto_start=True).healthy
                 if requests is None:
                     return False
-                base = (self.base_url or "http://localhost:11434/v1").replace("/v1", "")
-                return requests.get(base, timeout=2).status_code < 500
+                ollama_cfg = self._ollama_endpoint()
+                base = ollama_cfg["base_url"].replace("/v1", "")
+                headers = {}
+                if ollama_cfg.get("bearer_token"):
+                    headers["Authorization"] = f"Bearer {ollama_cfg['bearer_token']}"
+                return requests.get(base, headers=headers, timeout=2).status_code < 500
             if self.client:
                 self.client.models.list()
                 return True
@@ -309,6 +342,10 @@ class LLMClient:
         if client is None:
             return self._mock_generate(prompt, system_prompt)
 
+        if cfg.provider == "ollama" and docker_services is not None:
+            prompt = docker_services.sanitize_llm_text(prompt, label="user_prompt")
+            system_prompt = docker_services.sanitize_llm_text(system_prompt, label="system_prompt")
+
         messages = [
             {"role": "system", "content": system_prompt or "You are a helpful research copilot."},
             {"role": "user", "content": prompt or ""},
@@ -320,6 +357,7 @@ class LLMClient:
 
         for model in models:
             for attempt in range(max_retries):
+                started = time.monotonic()
                 try:
                     response = client.chat.completions.create(
                         model=model,
@@ -328,11 +366,28 @@ class LLMClient:
                         max_tokens=self.max_tokens,
                     )
                     content = response.choices[0].message.content
+                    if cfg.provider == "ollama" and docker_services is not None:
+                        docker_services.audit_llm_invocation(
+                            model=model,
+                            provider=cfg.provider,
+                            latency_ms=(time.monotonic() - started) * 1000.0,
+                            success=True,
+                            prompt_chars=len(prompt or "") + len(system_prompt or ""),
+                        )
                     if model != cfg.model:
                         LOGGER.info("Gemini model fallback succeeded: %s -> %s", cfg.model, model)
                     self.model = model
                     return (content or "").strip()
                 except Exception as exc:
+                    if cfg.provider == "ollama" and docker_services is not None:
+                        docker_services.audit_llm_invocation(
+                            model=model,
+                            provider=cfg.provider,
+                            latency_ms=(time.monotonic() - started) * 1000.0,
+                            success=False,
+                            error=str(exc),
+                            prompt_chars=len(prompt or "") + len(system_prompt or ""),
+                        )
                     last_exc = exc
                     err_text = str(exc).lower()
                     is_rate_limit = "429" in err_text or "rate" in err_text or "quota" in err_text
@@ -491,12 +546,28 @@ class LLMClient:
 
     def _extract_sources(self, prompt: str) -> list[dict[str, str]]:
         sources: list[dict[str, str]] = []
-        pattern = re.compile(r"\[(\d+)\] Source:\s*(.*?)\n(.*?)(?=\n\[\d+\] Source:|\n\nQuestion:|\Z)", re.DOTALL)
-        for match in pattern.finditer(prompt or ""):
+        legacy = re.compile(
+            r"\[(\d+)\] Source:\s*(.*?)\n(.*?)(?=\n\[\d+\] Source:|\n\nQuestion:|\Z)",
+            re.DOTALL,
+        )
+        for match in legacy.finditer(prompt or ""):
             sources.append({
                 "index": match.group(1),
                 "title": match.group(2).strip(),
                 "content": match.group(3).strip(),
+            })
+        if sources:
+            return sources
+
+        grounded = re.compile(
+            r"\[(\d+)\]\s*(.*?)\nType:\s*(.*?)\n(?:URL:.*?\n)?(?:DOI:.*?\n)?(?:PMID:.*?\n)?Excerpt:\s*(.*?)(?=\n\[\d+\]|\n\nQuestion:|\Z)",
+            re.DOTALL,
+        )
+        for match in grounded.finditer(prompt or ""):
+            sources.append({
+                "index": match.group(1),
+                "title": match.group(2).strip(),
+                "content": match.group(4).strip(),
             })
         return sources
 
@@ -560,10 +631,23 @@ class LLMClient:
             )
 
         if not sources:
+            if "gemini" in lower_q:
+                return (
+                    "### OMEIA platform guide (mock)\n\n"
+                    "Set up Gemini server-side only: add `GEMINI_API_KEY` and `LLM_PROVIDER=gemini` to `configs/.env`, "
+                    "restart the API, and verify `/api/chat/status`. Never put API keys in the Vite frontend."
+                )
+            if any(k in lower_q for k in ("ingest", "rag", "qdrant", "upload", "login", "api environment")):
+                return (
+                    "### OMEIA platform guide (mock)\n\n"
+                    "Use Administration → Research KB or the ingestion scripts to add documents to RAG/Qdrant. "
+                    "For uploads, use the vault/document upload flow in the UI. Configure API keys only in `configs/.env`."
+                )
             return (
-                "### OMEIA copilot synthesis\n\n"
-                "No matching document chunks were retrieved for this query. The structured database context is still available, "
-                f"with {patients_cnt} patients and {samples_cnt} samples in the active scope."
+                "### OMEIA mock synthesis (development mode)\n\n"
+                "No indexed sources were parsed from the retrieval context for this query. "
+                "Try platform search (⌘K), ingest more sources into the Research KB, or configure a live LLM provider. "
+                f"Structured DB scope: {patients_cnt} patients, {samples_cnt} samples."
             )
 
         query_terms = {

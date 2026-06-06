@@ -17,9 +17,11 @@ export const BUCKET_LABELS = {
   decision: 'Decisions',
   task: 'Tasks',
   project: 'Projects',
+  research: 'Research KB',
+  people: 'Lab members',
 };
 
-export const BUCKET_ORDER = ['lab', 'file', 'vault', 'notebook', 'wiki', 'decision', 'task', 'project'];
+export const BUCKET_ORDER = ['research', 'lab', 'people', 'file', 'vault', 'notebook', 'wiki', 'decision', 'task', 'project'];
 
 export function stashSearchNavigation(nav) {
   if (!nav) return;

@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "description": "Curated Ollama models for OMEIA / F\u00e4rkkil\u00e4 lab research (HGSC, spatial biology, immunology). Stored in Docker volume omeia-ollama-data.",
+  "default_chat_model": "qwen2.5:3b",
+  "default_batch_eval_model": "qwen2.5:7b-instruct",
+  "default_medical_model": "medllama2:7b",
+  "pull_order": [
+    "qwen2.5:3b",
+    "llama3.2:3b",
+    "phi3:mini",
+    "medgemma:4b",
+    "meditron:7b",
+    "medllama2:7b",
+    "qwen2.5:7b-instruct",
+    "llama3.1:8b",
+    "mistral-nemo:12b"
+  ],
+  "models": [
+    {
+      "tag": "qwen2.5:3b",
+      "size_tier": "small",
+      "use_case": "fast_eval",
+      "omeia_chat": true,
+      "omeia_batch_eval": true,
+      "notes": "Default OLLAMA_MODEL \u2014 daily dev, smoke tests, low-latency lab assistant."
+    },
+    {
+      "tag": "llama3.2:3b",
+      "size_tier": "small",
+      "use_case": "fast_eval",
+      "omeia_chat": true,
+      "omeia_batch_eval": false,
+      "notes": "Small Meta instruct (pull tag llama3.2:3b; doc alias llama3.2:3b-instruct)."
+    },
+    {
+      "tag": "phi3:mini",
+      "size_tier": "small",
+      "use_case": "fast_eval",
+      "omeia_chat": true,
+      "omeia_batch_eval": true,
+      "notes": "Fastest local summarization and eval iterations."
+    },
+    {
+      "tag": "medgemma:4b",
+      "size_tier": "small",
+      "use_case": "medical_general",
+      "omeia_chat": true,
+      "omeia_batch_eval": false,
+      "notes": "MedGemma \u2014 biomedical Q&A, precision oncology concepts."
+    },
+    {
+      "tag": "meditron:7b",
+      "size_tier": "medium",
+      "use_case": "medical_general",
+      "omeia_chat": true,
+      "omeia_batch_eval": true,
+      "notes": "Clinical/scientific literature style; publications and methods."
+    },
+    {
+      "tag": "medllama2:7b",
+      "size_tier": "medium",
+      "use_case": "cancer_oncology",
+      "omeia_chat": true,
+      "omeia_batch_eval": true,
+      "notes": "Recommended for HGSC, immunotherapy, and oncology vocabulary."
+    },
+    {
+      "tag": "qwen2.5:7b-instruct",
+      "size_tier": "medium",
+      "use_case": "spatial_biology",
+      "omeia_chat": true,
+      "omeia_batch_eval": true,
+      "notes": "Recommended for Visium/GeoMx/TME/TLS and spatial methods synthesis."
+    },
+    {
+      "tag": "llama3.1:8b",
+      "size_tier": "medium",
+      "use_case": "lab_assistant",
+      "omeia_chat": true,
+      "omeia_batch_eval": true,
+      "notes": "General scientific summarization and protocol explanation."
+    },
+    {
+      "tag": "mistral-nemo:12b",
+      "size_tier": "large",
+      "use_case": "synthesis",
+      "omeia_chat": false,
+      "omeia_batch_eval": true,
+      "notes": "Long-form multi-source synthesis when GPU/RAM allows."
+    }
+  ],
+  "not_on_ollama_library": [
+    "biomistral \u2014 use meditron:7b or medllama2:7b",
+    "openbiollm \u2014 not in official Ollama library"
+  ],
+  "research_domains": [
+    "HGSC / ovarian cancer",
+    "spatial transcriptomics (GeoMx, tCyCIF)",
+    "MHC / TLS / tumor microenvironment",
+    "immunotherapy and precision oncology",
+    "publications, GEO datasets, lab protocols"
+  ]
+}

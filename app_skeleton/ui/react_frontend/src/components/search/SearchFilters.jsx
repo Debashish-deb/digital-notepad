@@ -15,6 +15,7 @@ const SCOPE_OPTIONS = [
   { id: 'decision', label: 'Decisions' },
   { id: 'task', label: 'Tasks' },
   { id: 'project', label: 'Projects' },
+  { id: 'research', label: 'Research KB' },
 ];
 
 export default function SearchFilters({

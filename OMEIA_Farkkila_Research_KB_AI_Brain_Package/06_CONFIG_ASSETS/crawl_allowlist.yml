@@ -1,0 +1,22 @@
+allowed_domains:
+  - farkkilab.org
+  - www.farkkilab.org
+  - pubmed.ncbi.nlm.nih.gov
+  - ncbi.nlm.nih.gov
+  - aacrjournals.org
+  - biorxiv.org
+  - researchportal.helsinki.fi
+  - nature.com
+  - ega-archive.org
+  - portal.gdc.cancer.gov
+  - proteomics.cancer.gov
+
+rate_limits:
+  default_delay_seconds: 1.0
+  max_pages_per_run: 300
+  max_publication_queries_per_run: 25
+
+copyright_policy:
+  closed_access: metadata_abstract_short_snippet_only
+  open_access: store_text_if_license_allows
+  internal_pdf: store_only_if_user_has_rights

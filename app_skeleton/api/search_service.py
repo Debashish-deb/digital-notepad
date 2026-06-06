@@ -19,11 +19,12 @@ from app_skeleton.api.llm_client import LLMClient
 from app_skeleton.api.raw_vault_store import search_vault
 from app_skeleton.api.search_models import SearchHit, SearchMode, SearchNavAction, UnifiedSearchResponse
 from app_skeleton.api.research_knowledge_store import search_research
+from app_skeleton.api.people_index import search_people
 from app_skeleton.api.search_nav import hit_source_label, nav_for_bucket, vault_domain_for_page
 
 LOGGER = logging.getLogger(__name__)
 
-DEFAULT_SCOPES = ("lab", "file", "vault", "notebook", "wiki", "decision", "task", "project", "research")
+DEFAULT_SCOPES = ("lab", "file", "vault", "notebook", "wiki", "decision", "task", "project", "research", "people")
 
 BUCKET_WEIGHTS: dict[str, float] = {
     "lab": 1.0,
@@ -35,17 +36,29 @@ BUCKET_WEIGHTS: dict[str, float] = {
     "task": 0.74,
     "project": 0.65,
     "research": 0.92,
+    "people": 0.88,
 }
 
 COPILOT_MIN_SCORE = float(os.getenv("COPILOT_MIN_SIMILARITY", "0.06"))
 
 INTENT_SCOPES: dict[str, str] = {
-    "research_question": "lab,research,file,vault,notebook,wiki",
+    "research_question": "research,lab,file,vault,notebook,wiki",
     "protocol_question": "lab,vault,file,notebook,wiki",
-    "search_request": "lab,file,vault,research,notebook,wiki",
+    "search_request": "research,lab,file,vault,notebook,wiki",
+    "people_question": "people,lab,research",
     "app_help": "lab,file,wiki",
     "document_ingestion_help": "lab,file,wiki",
 }
+
+INTENT_BUCKET_CAPS: dict[str, dict[str, int]] = {
+    "research_question": {"vault": 2, "file": 3, "lab": 4},
+    "search_request": {"vault": 2, "file": 3},
+    "protocol_question": {"research": 1},
+    "people_question": {"file": 2, "vault": 2},
+}
+
+RESEARCH_INTENTS = frozenset({"research_question", "search_request"})
+PROTOCOL_INTENTS = frozenset({"protocol_question"})
 
 INTENT_BUCKET_WEIGHTS: dict[str, dict[str, float]] = {
     "research_question": {
@@ -73,6 +86,12 @@ INTENT_BUCKET_WEIGHTS: dict[str, dict[str, float]] = {
         "lab": 1.1,
         "wiki": 1.05,
         "file": 0.9,
+    },
+    "people_question": {
+        **BUCKET_WEIGHTS,
+        "people": 1.35,
+        "lab": 1.05,
+        "research": 0.9,
     },
 }
 
@@ -108,7 +127,40 @@ def _rerank_hits(query: str, hits: list["SearchHit"], *, top_n: int = 20) -> lis
     return reranked
 
 
-def _dedup_and_diversify(hits: list["SearchHit"], limit: int, *, max_per_bucket: int = 4) -> list["SearchHit"]:
+def _reserve_bucket_slots(
+    hits: list[SearchHit],
+    *,
+    bucket: str,
+    min_count: int,
+    limit: int,
+    bucket_caps: dict[str, int] | None = None,
+    max_per_bucket: int = 4,
+) -> list[SearchHit]:
+    """Guarantee minimum hits from a bucket even when other buckets score higher."""
+    if min_count <= 0:
+        return _dedup_and_diversify(hits, limit, max_per_bucket=max_per_bucket, bucket_caps=bucket_caps)
+    pool = sorted([h for h in hits if h.bucket == bucket], key=lambda h: h.score, reverse=True)
+    reserved = pool[:min_count]
+    reserved_ids = {id(h) for h in reserved}
+    remainder = [h for h in hits if id(h) not in reserved_ids]
+    rest_limit = max(0, limit - len(reserved))
+    rest = _dedup_and_diversify(
+        remainder,
+        rest_limit,
+        max_per_bucket=max_per_bucket,
+        bucket_caps=bucket_caps,
+    ) if rest_limit else []
+    return (reserved + rest)[:limit]
+
+
+def _dedup_and_diversify(
+    hits: list["SearchHit"],
+    limit: int,
+    *,
+    max_per_bucket: int = 4,
+    bucket_caps: dict[str, int] | None = None,
+    min_research: int = 0,
+) -> list["SearchHit"]:
     """Deduplicate near-identical snippets and cap per-bucket dominance."""
     seen_snippets: set[str] = set()
     bucket_counts: dict[str, int] = {}
@@ -122,7 +174,8 @@ def _dedup_and_diversify(hits: list["SearchHit"], limit: int, *, max_per_bucket:
             seen_snippets.add(snippet_key)
 
         bucket = hit.bucket or "unknown"
-        if bucket_counts.get(bucket, 0) >= max_per_bucket:
+        cap = (bucket_caps or {}).get(bucket, max_per_bucket)
+        if bucket_counts.get(bucket, 0) >= cap:
             continue
         bucket_counts[bucket] = bucket_counts.get(bucket, 0) + 1
         diversified.append(hit)
@@ -137,7 +190,8 @@ def _dedup_and_diversify(hits: list["SearchHit"], limit: int, *, max_per_bucket:
             if snippet_key and snippet_key in seen_snippets:
                 continue
             bucket = hit.bucket or "unknown"
-            if bucket_counts.get(bucket, 0) >= max_per_bucket:
+            cap = (bucket_caps or {}).get(bucket, max_per_bucket)
+            if bucket_counts.get(bucket, 0) >= cap:
                 continue
             if snippet_key:
                 seen_snippets.add(snippet_key)
@@ -145,7 +199,16 @@ def _dedup_and_diversify(hits: list["SearchHit"], limit: int, *, max_per_bucket:
             diversified.append(hit)
             if len(diversified) >= limit:
                 break
-    return diversified
+
+    if min_research > 0 and bucket_counts.get("research", 0) < min_research:
+        for hit in hits:
+            if hit in diversified or hit.bucket != "research":
+                continue
+            diversified.append(hit)
+            bucket_counts["research"] = bucket_counts.get("research", 0) + 1
+            if bucket_counts.get("research", 0) >= min_research:
+                break
+    return diversified[:limit]
 
 
 def _apply_intent_weights(hits: list["SearchHit"], intent: str | None) -> list["SearchHit"]:
@@ -335,20 +398,29 @@ class SearchService:
                 sid = chunk.get("section_id")
                 rel = chunk.get("source_file") or chunk.get("relative_path") or ""
                 text = chunk.get("text") or chunk.get("excerpt") or ""
-                score = min(1.0, float(chunk.get("score") or 3) / 12.0) * BUCKET_WEIGHTS["file"]
+                source_type = chunk.get("source_type") or chunk.get("corpus") or ""
+                is_lab_corpus = (
+                    str(source_type).startswith("lab")
+                    or (sid or "").startswith("overview")
+                    or (sid or "").startswith("wet_lab")
+                )
+                bucket = "lab" if is_lab_corpus else "file"
+                weight = BUCKET_WEIGHTS[bucket]
+                score = min(1.0, float(chunk.get("score") or 3) / 12.0) * weight
                 title = rel.split("/")[-1] if rel else chunk.get("section_label") or "Document"
                 raw_hits.append(
                     SearchHit(
-                        id=f"file-{sid}-{chunk.get('chunk_id') or rel}",
-                        bucket="file",
+                        id=f"{bucket}-{sid}-{chunk.get('chunk_id') or rel}",
+                        bucket=bucket,
                         title=title,
                         snippet=text[:1200],
                         score=score,
-                        source=hit_source_label("file", section_label=chunk.get("section_label")),
+                        source=hit_source_label(bucket, section_label=chunk.get("section_label")),
+                        source_type=source_type or None,
                         section_id=sid,
                         relative_path=rel or None,
                         highlights=_highlight_tokens(query, text),
-                        nav=nav_for_bucket("file", section_id=sid, relative_path=rel or None),
+                        nav=nav_for_bucket(bucket, section_id=sid, relative_path=rel or None),
                         metadata={"chunk_id": chunk.get("chunk_id")},
                     )
                 )
@@ -409,6 +481,31 @@ class SearchService:
             raw_hits.extend(self._search_projects(query, codes, limit=per_bucket))
             if explain:
                 explain_data["engines"].append({"scope": "project", "engine": "postgres_ilike", "count": len(raw_hits) - proj_before})
+
+        if "people" in active_scopes and run_keyword:
+            people_before = len(raw_hits)
+            for raw in search_people(query, limit=per_bucket):
+                raw_hits.append(
+                    SearchHit(
+                        id=f"people-{raw.get('id')}",
+                        bucket="people",
+                        title=raw.get("title") or "Lab member",
+                        snippet=(raw.get("snippet") or "")[:1200],
+                        score=float(raw.get("score") or 0.0) * BUCKET_WEIGHTS["people"],
+                        source=hit_source_label("people"),
+                        source_type=raw.get("source_type"),
+                        highlights=_highlight_tokens(query, raw.get("snippet") or ""),
+                        nav=SearchNavAction(main="overview", sub="personnel", query=raw.get("username")),
+                        metadata={
+                            "username": raw.get("username"),
+                            "role": raw.get("role"),
+                            "email": raw.get("email"),
+                            "profile_url": raw.get("profile_url"),
+                        },
+                    )
+                )
+            if explain:
+                explain_data["engines"].append({"scope": "people", "engine": "lab_people_index", "count": len(raw_hits) - people_before})
 
         if "research" in active_scopes and (run_semantic or run_keyword):
             rk_before = len(raw_hits)
@@ -881,7 +978,7 @@ class SearchService:
     ) -> list[SearchHit]:
         """Intent-aware retrieval for chat/ask — rerank, gate, dedup, diversify."""
         codes = ",".join(project_codes) if project_codes else None
-        scopes = INTENT_SCOPES.get(intent or "", "lab,file,vault,notebook,wiki,research")
+        scopes = INTENT_SCOPES.get(intent or "", "lab,file,vault,notebook,wiki,research,people")
         fetch_limit = max(limit * 3, 24)
         resp = self.unified_search(
             query,
@@ -892,7 +989,62 @@ class SearchService:
             include_restricted=False,
         )
         hits = list(resp.hits)
+
+        # Research-heavy intents: pull extra research hits so vault/file cannot crowd them out.
+        if intent in RESEARCH_INTENTS:
+            rk_resp = self.unified_search(
+                query,
+                scopes="research",
+                project_codes=codes,
+                mode="hybrid",
+                limit=max(8, limit),
+                include_restricted=False,
+            )
+            seen = {f"{h.bucket}:{h.id}" for h in hits}
+            for hit in rk_resp.hits:
+                key = f"{hit.bucket}:{hit.id}"
+                if key not in seen:
+                    seen.add(key)
+                    hits.append(hit)
+
         hits = _apply_intent_weights(hits, intent)
-        hits = _rerank_hits(query, hits, top_n=min(fetch_limit, 20))
+        hits.sort(key=lambda h: h.score, reverse=True)
+        research_pool = [h for h in hits if h.bucket == "research"] if intent in RESEARCH_INTENTS else []
+        lab_pool = [h for h in hits if h.bucket == "lab"] if intent in PROTOCOL_INTENTS else []
+        hits = _rerank_hits(query, hits, top_n=min(fetch_limit, 30))
         hits = [h for h in hits if h.score >= COPILOT_MIN_SCORE]
-        return _dedup_and_diversify(hits, limit)
+        for pool in (research_pool, lab_pool):
+            seen = {f"{h.bucket}:{h.id}" for h in hits}
+            for hit in pool:
+                key = f"{hit.bucket}:{hit.id}"
+                if key not in seen and hit.score >= COPILOT_MIN_SCORE:
+                    hits.append(hit)
+                    seen.add(key)
+        bucket_caps = INTENT_BUCKET_CAPS.get(intent or "", {})
+        min_research = 2 if intent in RESEARCH_INTENTS else 0
+        min_lab = 1 if intent in PROTOCOL_INTENTS else 0
+        if min_research:
+            result = _reserve_bucket_slots(
+                hits,
+                bucket="research",
+                min_count=min_research,
+                limit=limit,
+                bucket_caps=bucket_caps,
+            )
+            if min_lab:
+                return _reserve_bucket_slots(result, bucket="lab", min_count=min_lab, limit=limit, bucket_caps=bucket_caps)
+            return result
+        if min_lab:
+            return _reserve_bucket_slots(
+                hits,
+                bucket="lab",
+                min_count=min_lab,
+                limit=limit,
+                bucket_caps=bucket_caps,
+            )
+        return _dedup_and_diversify(
+            hits,
+            limit,
+            max_per_bucket=4,
+            bucket_caps=bucket_caps,
+        )

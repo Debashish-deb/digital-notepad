@@ -17,6 +17,7 @@ SearchBucket = Literal[
     "model",
     "dataset",
     "research",
+    "people",
     "conversation",
 ]
 

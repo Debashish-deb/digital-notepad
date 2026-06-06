@@ -78,9 +78,17 @@ wait_for_backend() {
 }
 
 echo "Starting OMEIA Research Platform..."
-# Note: Qdrant on :6333 is used when already running; Docker is optional for local dev.
 echo "  REPO:     $OMEIA_REPO_ROOT"
 echo "  DATABASE: $DATABASE_ROOT"
+
+# Auto-verify / start Docker stack when Docker runs locally (skip when DOCKER_LOCAL=false).
+if [ "${DOCKER_LOCAL:-true}" = "false" ] || [ "${DOCKER_LOCAL:-true}" = "0" ]; then
+  echo "DOCKER_LOCAL=false — API only on this machine (LLM/DB on remote host)."
+else
+  if [ -x "$PROJECT_ROOT/scripts/docker_bootstrap.sh" ]; then
+    "$PROJECT_ROOT/scripts/docker_bootstrap.sh" || echo "WARN: Docker bootstrap incomplete — API will use fallbacks."
+  fi
+fi
 
 free_port 8000
 free_port 5173

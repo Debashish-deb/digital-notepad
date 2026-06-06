@@ -30,6 +30,7 @@ dist/
 *.local
 
 # Runtime / generated data
+logs/
 app_skeleton/data/logs/
 app_skeleton/data/ingestion_reports/
 app_skeleton/data/raw_asset_inventory.csv

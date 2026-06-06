@@ -171,9 +171,17 @@ LOGGER = logging.getLogger(__name__)
 @asynccontextmanager
 async def _app_lifespan(application: FastAPI):
     from app_skeleton.api.firebase_app import init_firebase_if_configured
+    from app_skeleton.api.docker_service_client import docker_services
 
     init_firebase_if_configured()
+    try:
+        bootstrap = docker_services.bootstrap()
+        LOGGER.info("Docker bootstrap: %s", bootstrap)
+        docker_services.start_background_watcher()
+    except Exception as exc:
+        LOGGER.warning("Docker bootstrap skipped or failed: %s", exc)
     yield
+    docker_services.stop_background_watcher()
 
 _cors_origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "*").split(",") if o.strip()]
 

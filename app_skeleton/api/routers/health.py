@@ -18,12 +18,14 @@ def health() -> dict:
         db_ok = False
         
     from app_skeleton.api.connector_status import production_connectors_summary
+    from app_skeleton.api.docker_service_client import docker_services
 
     return {
         "status": "ok",
         "database_connected": db_ok,
         "llm_client_provider": llm_client.provider,
         "llm_client_healthy": llm_client.healthCheck(),
+        "docker_services": docker_services.public_status(),
         "connectors": production_connectors_summary(),
     }
 

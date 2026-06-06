@@ -30,6 +30,13 @@ export default function AssistantSearchHits({
           const title = hit.title || 'Untitled source';
           const preview = hitPreview(hit);
           const nav = hit.nav;
+          const meta = hit.metadata || {};
+          const externalUrl =
+            meta.source_url ||
+            (meta.doi ? `https://doi.org/${String(meta.doi).replace(/^https?:\/\/doi\.org\//i, '')}` : null) ||
+            (meta.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${String(meta.pmid).replace(/\D/g, '')}/` : null) ||
+            meta.profile_url ||
+            null;
           const followUp = `Tell me more about: ${title}`;
 
           return (
@@ -62,10 +69,21 @@ export default function AssistantSearchHits({
               ) : null}
 
               <div className="assistant-search-hit__actions">
+                {externalUrl ? (
+                  <a
+                    href={externalUrl}
+                    className="btn btn-sm btn-secondary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink size={12} aria-hidden />
+                    Open source
+                  </a>
+                ) : null}
                 {nav && onOpenHit ? (
                   <button type="button" className="btn btn-sm btn-secondary" onClick={() => onOpenHit(nav, hit)}>
                     <ExternalLink size={12} aria-hidden />
-                    Open
+                    {externalUrl ? 'Open in OMEIA' : 'Open'}
                   </button>
                 ) : null}
                 {onAskFollowUp ? (
