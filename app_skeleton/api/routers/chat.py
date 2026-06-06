@@ -66,7 +66,7 @@ def chat_status(user: dict = Depends(require_platform_user)) -> dict[str, Any]:
 
 @router.post("", response_model=ChatResponse)
 def chat_message(req: ChatRequest, user: dict = Depends(require_platform_user)) -> ChatResponse:
-    require_role(user, ["editor", "admin"])
+    require_role(user, ["researcher", "viewer", "editor", "admin"])
     active_llm = _chat_llm()
     search_svc = _search_service(active_llm)
 
@@ -87,7 +87,7 @@ def _sse_event(payload: dict[str, Any]) -> str:
 
 @router.post("/stream")
 def chat_stream(req: ChatRequest, user: dict = Depends(require_platform_user)) -> StreamingResponse:
-    require_role(user, ["editor", "admin"])
+    require_role(user, ["researcher", "viewer", "editor", "admin"])
     active_llm = _chat_llm()
     search_svc = _search_service(active_llm)
 

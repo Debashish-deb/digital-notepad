@@ -105,7 +105,7 @@ class LLMClient:
             if not self.api_key:
                 self.api_key = _env("GEMINI_API_KEY", "")
             if not self.model or self.model == "mock-model":
-                self.model = _env("GEMINI_MODEL", "gemini-2.0-flash")
+                self.model = _env("GEMINI_MODEL", "gemini-3.5-flash")
             if not self.base_url:
                 self.base_url = _env(
                     "GEMINI_BASE_URL",
@@ -183,7 +183,7 @@ class LLMClient:
         if provider == "gemini":
             return ProviderConfig(
                 "gemini",
-                _env("GEMINI_MODEL", self.model if self.provider == "gemini" else "gemini-2.0-flash"),
+                _env("GEMINI_MODEL", self.model if self.provider == "gemini" else "gemini-3.5-flash"),
                 _env("GEMINI_API_KEY", self.api_key if self.provider == "gemini" else ""),
                 _env(
                     "GEMINI_BASE_URL",
@@ -252,22 +252,66 @@ class LLMClient:
     def health_check(self) -> bool:
         return self.healthCheck()
 
+    @staticmethod
+    def _is_model_unavailable(exc: Exception) -> bool:
+        name = type(exc).__name__.lower()
+        text = str(exc).lower()
+        return (
+            "notfound" in name
+            or "model" in name and "not" in text
+            or "404" in text
+            or "does not exist" in text
+            or "is not found" in text
+            or "not supported" in text
+        )
+
+    def _gemini_model_candidates(self, primary: str) -> list[str]:
+        models: list[str] = []
+        for candidate in (
+            primary or _env("GEMINI_MODEL", "gemini-3.5-flash"),
+            _env("GEMINI_FALLBACK_MODEL", "gemini-2.5-flash"),
+            "gemini-2.0-flash",
+        ):
+            model = candidate.strip()
+            if model and model not in models:
+                models.append(model)
+        return models
+
     def _chat_once(self, cfg: ProviderConfig, prompt: str, system_prompt: str) -> str:
         client = self._client_for(cfg)
         if client is None:
             return self._mock_generate(prompt, system_prompt)
 
-        response = client.chat.completions.create(
-            model=cfg.model,
-            messages=[
-                {"role": "system", "content": system_prompt or "You are a helpful research copilot."},
-                {"role": "user", "content": prompt or ""},
-            ],
-            temperature=self.temperature,
-            max_tokens=self.max_tokens,
-        )
-        content = response.choices[0].message.content
-        return (content or "").strip()
+        messages = [
+            {"role": "system", "content": system_prompt or "You are a helpful research copilot."},
+            {"role": "user", "content": prompt or ""},
+        ]
+        models = self._gemini_model_candidates(cfg.model) if cfg.provider == "gemini" else [cfg.model]
+        last_exc: Exception | None = None
+
+        for model in models:
+            try:
+                response = client.chat.completions.create(
+                    model=model,
+                    messages=messages,
+                    temperature=self.temperature,
+                    max_tokens=self.max_tokens,
+                )
+                content = response.choices[0].message.content
+                if model != cfg.model:
+                    LOGGER.info("Gemini model fallback succeeded: %s -> %s", cfg.model, model)
+                self.model = model
+                return (content or "").strip()
+            except Exception as exc:
+                last_exc = exc
+                if cfg.provider == "gemini" and self._is_model_unavailable(exc):
+                    LOGGER.warning("Gemini model %s unavailable, trying fallback: %s", model, exc)
+                    continue
+                raise
+
+        if last_exc:
+            raise last_exc
+        return self._mock_generate(prompt, system_prompt)
 
     def generate(self, prompt: str, system_prompt: str = "") -> str:
         """Generate conversational text with automatic fallback routing."""
@@ -306,20 +350,43 @@ class LLMClient:
             yield self._mock_generate(prompt, system_prompt)
             return
 
-        stream = client.chat.completions.create(
-            model=cfg.model,
-            messages=[
-                {"role": "system", "content": system_prompt or "You are a helpful research copilot."},
-                {"role": "user", "content": prompt or ""},
-            ],
-            temperature=self.temperature,
-            max_tokens=self.max_tokens,
-            stream=True,
-        )
-        for chunk in stream:
-            delta = chunk.choices[0].delta.content if chunk.choices else None
-            if delta:
-                yield delta
+        messages = [
+            {"role": "system", "content": system_prompt or "You are a helpful research copilot."},
+            {"role": "user", "content": prompt or ""},
+        ]
+        models = self._gemini_model_candidates(cfg.model) if cfg.provider == "gemini" else [cfg.model]
+        last_exc: Exception | None = None
+
+        for model in models:
+            try:
+                stream = client.chat.completions.create(
+                    model=model,
+                    messages=messages,
+                    temperature=self.temperature,
+                    max_tokens=self.max_tokens,
+                    stream=True,
+                )
+                emitted = False
+                for chunk in stream:
+                    delta = chunk.choices[0].delta.content if chunk.choices else None
+                    if delta:
+                        emitted = True
+                        yield delta
+                if emitted:
+                    if model != cfg.model:
+                        LOGGER.info("Gemini stream model fallback succeeded: %s -> %s", cfg.model, model)
+                    self.model = model
+                    return
+            except Exception as exc:
+                last_exc = exc
+                if cfg.provider == "gemini" and self._is_model_unavailable(exc):
+                    LOGGER.warning("Gemini stream model %s unavailable, trying fallback: %s", model, exc)
+                    continue
+                raise
+
+        if last_exc:
+            raise last_exc
+        yield self._mock_generate(prompt, system_prompt)
 
     def stream_generate(self, prompt: str, system_prompt: str = "") -> Iterator[str]:
         """Stream conversational text deltas with the same fallback routing as generate()."""

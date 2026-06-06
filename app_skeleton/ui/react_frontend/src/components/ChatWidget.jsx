@@ -1,11 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AlertTriangle,
+  Bot,
   Layers,
   Loader2,
   RefreshCw,
   Send,
   Sparkles,
+  User,
 } from 'lucide-react';
 import { apiFetch } from '../api/client.js';
 import { getChatStatus, sendChatMessage } from '../api/chatClient.js';
@@ -26,9 +28,16 @@ import { useGuiT } from '../i18n/useGuiT.js';
 const WELCOME_MESSAGE = {
   id: 'assistant-welcome',
   role: 'assistant',
+  isWelcome: true,
   content:
-    'Hello! I am OMEIA Research Copilot. Ask me about staining methodology, spatial deconvolution parameters, ROI selection, Gate normalization, SPACEStat, Ashlar stitching, Stardist segmentation masks, or indexed lab documents.',
+    'Hello — I am **OMEIA Research Copilot**. Ask about staining methodology, spatial deconvolution, ROI selection, Gate normalization, SPACEStat, Ashlar stitching, StarDist masks, or any indexed lab document.',
 };
+
+const SUGGESTED_PROMPTS = [
+  'How do I install Napari on macOS?',
+  'What CycIF gating workflow does the lab use?',
+  'Summarize SPACEStat spatial statistics steps',
+];
 
 function makeMessage(role, content, extra = {}) {
   return {
@@ -65,12 +74,33 @@ function formatAssistantPayload(data) {
     limitations,
     databaseCounts: data?.database_counts || {},
     isSafe: data?.is_safe !== false,
+    provider: data?.provider,
+    model: data?.model,
   };
+}
+
+function formatTime(iso) {
+  if (!iso) return '';
+  try {
+    return new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  } catch {
+    return '';
+  }
 }
 
 function MarkdownLite({ text }) {
   const content = String(text || '');
   const lines = content.split('\n');
+
+  const renderInline = (line) => {
+    const parts = line.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i}>{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
 
   return (
     <div className="chat-rich-text">
@@ -90,11 +120,30 @@ function MarkdownLite({ text }) {
         }
 
         if (trimmed.startsWith('- ')) {
-          return <p key={index} className="chat-rich-bullet">• {trimmed.slice(2)}</p>;
+          return (
+            <p key={index} className="chat-rich-bullet">
+              <span className="chat-rich-bullet__dot" aria-hidden="true" />
+              {renderInline(trimmed.slice(2))}
+            </p>
+          );
         }
 
-        return <p key={index}>{line}</p>;
+        if (trimmed.startsWith('```')) {
+          return null;
+        }
+
+        return <p key={index}>{renderInline(line)}</p>;
       })}
+    </div>
+  );
+}
+
+function TypingIndicator() {
+  return (
+    <div className="chat-typing-dots" aria-hidden="true">
+      <span />
+      <span />
+      <span />
     </div>
   );
 }
@@ -155,11 +204,36 @@ export default function ChatWidget({
   const [loading, setLoading] = useState(false);
   const [selProjs, setSelProjs] = useState(() => getDefaultProjects(dbProjects));
   const [chatProvider, setChatProvider] = useState('mock');
+  const [chatModel, setChatModel] = useState('');
+  const [chatHealthy, setChatHealthy] = useState(null);
+
+  const messagesEndRef = useRef(null);
+  const textareaRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
   const projectCodes = useMemo(
     () => dbProjects.map(normalizeProjectCode).filter(Boolean),
     [dbProjects],
   );
+
+  const scrollToBottom = useCallback((behavior = 'smooth') => {
+    messagesEndRef.current?.scrollIntoView({ behavior, block: 'end' });
+  }, []);
+
+  const resizeTextarea = useCallback(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = `${Math.min(el.scrollHeight, 160)}px`;
+  }, []);
+
+  useEffect(() => {
+    resizeTextarea();
+  }, [input, resizeTextarea]);
+
+  useEffect(() => {
+    scrollToBottom(messages.length > 2 ? 'smooth' : 'auto');
+  }, [messages, loading, scrollToBottom]);
 
   const handleOpenSource = useCallback(
     (nav) => {
@@ -170,6 +244,7 @@ export default function ChatWidget({
 
   const handleAskFollowUp = useCallback((text) => {
     setInput(String(text || '').trim());
+    textareaRef.current?.focus();
   }, []);
 
   const handleSearchOmnibox = useCallback(
@@ -189,9 +264,14 @@ export default function ChatWidget({
         if (cancelled) return;
         const provider = status?.chat_provider || status?.llm?.provider || 'mock';
         setChatProvider(provider);
+        setChatModel(status?.chat_model || status?.llm?.model || '');
+        setChatHealthy(status?.llm?.healthy ?? null);
       })
       .catch(() => {
-        if (!cancelled) setChatProvider('mock');
+        if (!cancelled) {
+          setChatProvider('mock');
+          setChatHealthy(false);
+        }
       });
     return () => {
       cancelled = true;
@@ -253,6 +333,7 @@ export default function ChatWidget({
             limitations: formatted.limitations,
             databaseCounts: formatted.databaseCounts,
             isSafe: formatted.isSafe,
+            provider: formatted.provider || chatProvider,
           }),
         ]);
       } catch (error) {
@@ -272,7 +353,7 @@ export default function ChatWidget({
             const formatted = formatAssistantPayload(searchData);
             setMessages((prev) => [
               ...prev,
-              makeMessage('assistant', formatted.content || 'Search results (no LLM synthesis — editor role required for full copilot).', {
+              makeMessage('assistant', formatted.content || 'Search results (no LLM synthesis — sign in with an approved account for full copilot).', {
                 sources: formatted.sources,
                 searchHits: formatted.searchHits,
                 queryContext: textToSend,
@@ -293,7 +374,7 @@ export default function ChatWidget({
             isAuthError
               ? 'Your session expired. Please sign in again.'
               : isRoleBlocked
-                ? 'Search-only mode unavailable. Ask an editor/admin or use ⌘K platform search.'
+                ? 'Chat unavailable for this account. Ask an admin or use ⌘K platform search.'
                 : 'Connection timed out or API offline. You can retry this message without retyping it.',
             {
               isError: true,
@@ -306,7 +387,7 @@ export default function ChatWidget({
         setLoading(false);
       }
     },
-    [loading, selProjs],
+    [loading, selProjs, chatProvider],
   );
 
   useEffect(() => {
@@ -329,6 +410,16 @@ export default function ChatWidget({
     [input, sendQuestion],
   );
 
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendQuestion(input);
+      }
+    },
+    [input, sendQuestion],
+  );
+
   const retryMessage = useCallback(
     (question) => {
       sendQuestion(question, { appendUserMessage: false });
@@ -343,14 +434,22 @@ export default function ChatWidget({
 
   const providerLabel = useMemo(() => formatChatProviderLabel(chatProvider), [chatProvider]);
 
+  const providerBadge = useMemo(() => {
+    if (chatModel && chatProvider !== 'mock') {
+      const shortModel = chatModel.replace(/^gemini-/, '').replace(/-flash.*/, '');
+      return `${providerLabel} · ${shortModel}`;
+    }
+    return providerLabel;
+  }, [chatModel, chatProvider, providerLabel]);
+
   const heroStats = useMemo(
     () => [
       { label: 'Mode', value: 'RAG' },
-      { label: 'LLM', value: providerLabel },
+      { label: 'LLM', value: providerBadge },
       { label: 'Scope', value: `${selProjs.length || 0}` },
-      { label: 'Status', value: loading ? 'Thinking' : 'Ready' },
+      { label: 'Status', value: loading ? 'Thinking' : chatHealthy === false ? 'Offline' : 'Ready' },
     ],
-    [loading, providerLabel, selProjs.length],
+    [loading, providerBadge, selProjs.length, chatHealthy],
   );
 
   const coverToolbar = shellCover ? (
@@ -381,6 +480,8 @@ export default function ChatWidget({
     </>
   ) : null;
 
+  const showSuggestions = messages.length === 1 && messages[0]?.isWelcome && !loading;
+
   return (
     <section className="assistant-chat-shell" aria-label="OMEIA AI Lab Assistant">
       <AiAssistant3DScene
@@ -400,91 +501,152 @@ export default function ChatWidget({
       />
 
       <div className="chat-container assistant-chat-container">
-        <div className="chat-messages assistant-chat-messages">
+        <div
+          ref={messagesContainerRef}
+          className="chat-messages assistant-chat-messages"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+        >
           {messages.map((message) => (
             <article
               key={message.id}
-              className={`chat-bubble ${message.role} ${message.isError ? 'error-state' : ''}`}
+              className={[
+                'chat-message-row',
+                message.role,
+                message.isError ? 'is-error' : '',
+                message.isWelcome ? 'is-welcome' : '',
+              ].filter(Boolean).join(' ')}
             >
-              <div className="chat-bubble__meta">
-                <span>
-                  {message.role === 'assistant' ? (
-                    <>
-                      <Sparkles size={13} aria-hidden="true" />
-                      OMEIA
-                    </>
-                  ) : (
-                    'You'
-                  )}
-                </span>
-                {message.role === 'assistant' && !message.isError ? (
-                  <span
-                    className={`assistant-chat-provider-pill${chatProvider === 'mock' ? ' is-mock' : ''}`}
-                    title="Server-side LLM provider"
-                  >
-                    {providerLabel}
-                  </span>
-                ) : null}
+              <div
+                className={`chat-avatar chat-avatar--${message.role}`}
+                aria-hidden="true"
+              >
+                {message.role === 'assistant' ? <Bot size={18} /> : <User size={18} />}
               </div>
 
-              <MarkdownLite text={message.content} />
-
-              {message.limitations?.length ? (
-                <div className="chat-limitations">
-                  <AlertTriangle size={13} aria-hidden="true" />
-                  <span>{message.limitations.join(' ')}</span>
+              <div
+                className={`chat-bubble ${message.role} ${message.isError ? 'error-state' : ''} ${message.isWelcome ? 'welcome-state' : ''}`}
+              >
+                <div className="chat-bubble__meta">
+                  <span className="chat-bubble__sender">
+                    {message.role === 'assistant' ? (
+                      <>
+                        <Sparkles size={12} aria-hidden="true" />
+                        OMEIA Copilot
+                      </>
+                    ) : (
+                      'You'
+                    )}
+                  </span>
+                  <span className="chat-bubble__meta-end">
+                    {message.role === 'assistant' && !message.isError ? (
+                      <span
+                        className={`assistant-chat-provider-pill${(message.provider || chatProvider) === 'mock' ? ' is-mock' : ' is-live'}`}
+                        title="Server-side LLM provider"
+                      >
+                        {formatChatProviderLabel(message.provider || chatProvider)}
+                      </span>
+                    ) : null}
+                    {message.createdAt && !message.isWelcome ? (
+                      <time className="chat-bubble__time" dateTime={message.createdAt}>
+                        {formatTime(message.createdAt)}
+                      </time>
+                    ) : null}
+                  </span>
                 </div>
-              ) : null}
 
-              <AssistantSearchHits
-                hits={message.searchHits}
-                sources={message.sources}
-                query={message.queryContext || ''}
-                onOpenHit={onNavigate ? handleOpenSource : null}
-                onAskFollowUp={handleAskFollowUp}
-                onSearchOmnibox={onOpenSearch ? handleSearchOmnibox : null}
-              />
+                <MarkdownLite text={message.content} />
 
-              {message.isError && message.originalQuestion ? (
-                <button
-                  type="button"
-                  onClick={() => retryMessage(message.originalQuestion)}
-                  className="btn btn-sm btn-secondary chat-retry-btn"
-                  disabled={loading}
-                >
-                  <RefreshCw size={13} aria-hidden="true" />
-                  Retry message
-                </button>
-              ) : null}
+                {message.limitations?.length ? (
+                  <div className="chat-limitations">
+                    <AlertTriangle size={13} aria-hidden="true" />
+                    <span>{message.limitations.join(' ')}</span>
+                  </div>
+                ) : null}
+
+                <AssistantSearchHits
+                  hits={message.searchHits}
+                  sources={message.sources}
+                  query={message.queryContext || ''}
+                  onOpenHit={onNavigate ? handleOpenSource : null}
+                  onAskFollowUp={handleAskFollowUp}
+                  onSearchOmnibox={onOpenSearch ? handleSearchOmnibox : null}
+                />
+
+                {message.isError && message.originalQuestion ? (
+                  <button
+                    type="button"
+                    onClick={() => retryMessage(message.originalQuestion)}
+                    className="btn btn-sm btn-secondary chat-retry-btn"
+                    disabled={loading}
+                  >
+                    <RefreshCw size={13} aria-hidden="true" />
+                    Retry message
+                  </button>
+                ) : null}
+              </div>
             </article>
           ))}
 
+          {showSuggestions ? (
+            <div className="chat-suggestions" aria-label="Suggested prompts">
+              {SUGGESTED_PROMPTS.map((prompt) => (
+                <button
+                  key={prompt}
+                  type="button"
+                  className="chat-suggestion-chip"
+                  onClick={() => sendQuestion(prompt)}
+                  disabled={loading}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
+          ) : null}
+
           {loading && (
-            <article className="chat-bubble assistant assistant-thinking-bubble" aria-live="polite">
-              <Loader2 size={15} className="spin" aria-hidden="true" />
-              <span>Scanning vector collections, ranking sources, and composing answer…</span>
+            <article className="chat-message-row assistant assistant-thinking-row" aria-live="polite">
+              <div className="chat-avatar chat-avatar--assistant" aria-hidden="true">
+                <Bot size={18} />
+              </div>
+              <div className="chat-bubble assistant assistant-thinking-bubble">
+                <TypingIndicator />
+                <span>Scanning sources and composing answer…</span>
+              </div>
             </article>
           )}
+
+          <div ref={messagesEndRef} className="chat-scroll-anchor" aria-hidden="true" />
         </div>
 
         <form onSubmit={handleSend} className="chat-input-area assistant-chat-input-area">
-          <input
-            type="text"
-            placeholder="Ask about CycIF gating, SPACEStat, Ashlar, StarDist, GeoMx, protocols..."
-            className="form-input assistant-chat-input"
-            value={input}
-            onChange={(event) => setInput(event.target.value)}
-            disabled={loading}
-            aria-label="Ask OMEIA Research Copilot"
-          />
+          <div className="assistant-chat-input-wrap">
+            <textarea
+              ref={textareaRef}
+              rows={1}
+              placeholder="Ask about CycIF gating, SPACEStat, Ashlar, StarDist, GeoMx, protocols…"
+              className="form-input assistant-chat-input"
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              onKeyDown={handleKeyDown}
+              disabled={loading}
+              aria-label="Ask OMEIA Research Copilot"
+            />
+            <span className="assistant-chat-input-hint">Enter to send · Shift+Enter for newline</span>
+          </div>
 
           <button
             type="submit"
             className="btn btn-primary assistant-send-btn"
             disabled={loading || !input.trim()}
+            aria-label="Send message"
           >
-            {loading ? <Loader2 size={16} className="spin" aria-hidden="true" /> : <Send size={16} aria-hidden="true" />}
-            Send
+            {loading ? (
+              <Loader2 size={18} className="spin" aria-hidden="true" />
+            ) : (
+              <Send size={18} aria-hidden="true" />
+            )}
           </button>
         </form>
       </div>
