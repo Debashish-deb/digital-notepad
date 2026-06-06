@@ -1,0 +1,65 @@
+app_skeleton/ui/react_frontend/src/App.jsx
+  s_d9b93da1291584::t_0744b97684d9d5 29-30
+  s_d9b93da1291584::t_63dbbceaa37468 555-556
+app_skeleton/ui/react_frontend/src/index.css
+  s_d9b93da1291584::t_b444b4e2e61840 4075
+  s_d9b93da1291584::t_6d003459d6179a 4188,4190,4192
+  s_d9b93da1291584::t_25a8f7d91915c8 4095-4122
+  s_d9b93da1291584::t_ce12fbdb58700e 4162-4163
+  s_536deae9fb8068::t_0af1f031c536c9 4132-4158,4161
+  s_d9b93da1291584::t_4efcafdd331caa 4259,4263-4264,4266,4271-4275
+app_skeleton/ui/react_frontend/src/utils/pageMeta.js
+  s_d9b93da1291584::t_6824780edd81d3 1-63
+app_skeleton/ui/react_frontend/public/covers/overlays/cycif.svg
+  s_536deae9fb8068::t_94eea05e3a9caf 1-11
+app_skeleton/ui/react_frontend/public/covers/overlays/ai-assistant.svg
+  s_536deae9fb8068::t_e9fe77c6b9f6ea 1-12
+app_skeleton/ui/react_frontend/src/components/ModuleShell.jsx
+  s_d9b93da1291584::t_d03677831dcc84 33
+app_skeleton/ui/react_frontend/src/data/moduleCoverContent.js
+  s_d9b93da1291584::t_df8e67a634865f 1-3,8,10-11,15,20-31,35,40-41,45,50-51,55,60-61,65,70-71,75,80-81,85,90-111,115,120-121,125-128,132-133,135-155
+app_skeleton/ui/react_frontend/index.html
+  s_d9b93da1291584::t_82f76bb7d1a44e 7-18
+app_skeleton/ui/react_frontend/src/components/ModuleCoverHero.jsx
+  s_d9b93da1291584::t_aa4ac84ab84561 33-40
+  s_d9b93da1291584::t_7eaeae4a5b43b1 18
+  s_536deae9fb8068::t_6ffca45d69670f 42-52
+app_skeleton/ui/react_frontend/public/covers/overlays/data-storage.svg
+  s_536deae9fb8068::t_be74ab06afc5c4 1-11
+app_skeleton/ui/react_frontend/public/covers/overlays/wetlab.svg
+  s_536deae9fb8068::t_d90e4f6c69ee12 1-10
+app_skeleton/ui/react_frontend/public/covers/overlays/orders.svg
+  s_536deae9fb8068::t_2deac4b93e429b 1-9
+app_skeleton/ui/react_frontend/public/covers/overlays/computational.svg
+  s_536deae9fb8068::t_f18b753fa9d976 1-12
+app_skeleton/ui/react_frontend/public/covers/overlays/projects.svg
+  s_536deae9fb8068::t_f0dda229b2bfe5 1-10
+app_skeleton/ui/react_frontend/public/covers/overlays/overview.svg
+  s_536deae9fb8068::t_0dfdb2850b0ae0 1-12
+app_skeleton/ui/react_frontend/public/covers/overlays/administration.svg
+  s_536deae9fb8068::t_0249cedf28a7c4 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "15c32aadcfd6b69df7a3b88d13a1c6b40b525c09",
+  "prompts": {},
+  "sessions": {
+    "s_536deae9fb8068": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "b6d09416-4aa8-4bf7-8ba1-5a731246348d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d9b93da1291584": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4b357c52-35b3-441f-84a0-9c528a5b9df9",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
