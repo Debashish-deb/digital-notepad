@@ -21,9 +21,8 @@ import ProjectLogPanel from '../components/ProjectLogPanel';
 import { useDigitalTwin } from '../hooks/useDigitalTwin.js';
 import { ProjectTaskpadScope, useTaskpad } from '../contexts/TaskpadContext.jsx';
 import { resolveProject, fetchWithTimeout } from '../utils/projectUtils.js';
-import { ensureProjectReadme } from '../api/datapad.js';
 import { normalizeDigitalTwin } from '../utils/digitalTwinUtils.js';
-import { twinHasReadme } from '../utils/projectReadmeUtils.js';
+import { useEnsureProjectReadme } from '../hooks/useEnsureProjectReadme.js';
 import NotebookWikiPanel from '../components/projectPortfolio/NotebookWikiPanel.jsx';
 import DecisionsPanel from '../components/projectPortfolio/DecisionsPanel.jsx';
 import '../components/projectPortfolio/ProjectPortfolioIntegrated.css';
@@ -56,6 +55,10 @@ export default function WorkspaceScreen({
     save: saveTwin,
     setTwin,
   } = useDigitalTwin(projectCode, API_URL);
+  const { ensuring: readmeEnsuring, error: readmeEnsureError, ensureReadme } = useEnsureProjectReadme(
+    projectCode,
+    { twin, setTwin, refreshTwin },
+  );
   const { setTargetSection } = useTaskpad();
   const { t } = useGuiT();
   const menuItems = useMemo(
@@ -88,30 +91,6 @@ export default function WorkspaceScreen({
   useEffect(() => {
     setTargetSection(workspaceMenu);
   }, [workspaceMenu, setTargetSection]);
-
-  useEffect(() => {
-    if (!twin || twinLoading || !projectCode) return;
-    if (twinHasReadme(twin)) return;
-
-    let cancelled = false;
-    (async () => {
-      try {
-        const result = await ensureProjectReadme(projectCode);
-        if (cancelled || !result?.created) return;
-        if (result.twin) {
-          setTwin(normalizeDigitalTwin(result.twin));
-        } else {
-          refreshTwin();
-        }
-      } catch (e) {
-        console.warn('Failed to ensure project README', e);
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [twin, twinLoading, projectCode, setTwin, refreshTwin]);
 
   useEffect(() => {
     const onReadmeUpdated = async (event) => {
@@ -200,6 +179,9 @@ export default function WorkspaceScreen({
         API_URL={API_URL}
         workspaceTab={tabId}
         onReadmeSaved={handleReadmeSaved}
+        readmeEnsuring={readmeEnsuring}
+        readmeEnsureError={readmeEnsureError}
+        onCreateReadme={ensureReadme}
         {...extra}
       />
     ) : null;

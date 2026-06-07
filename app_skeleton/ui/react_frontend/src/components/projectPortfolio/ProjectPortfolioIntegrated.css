@@ -145,6 +145,26 @@
   border: 1px solid rgba(129, 140, 248, 0.15);
 }
 
+.project-readme-setup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 1.25rem 1.35rem;
+  max-width: 42rem;
+}
+
+.project-readme-setup__icon {
+  color: var(--color-primary);
+  opacity: 0.9;
+}
+
+.project-readme-setup__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 @media (max-width: 960px) {
   .decisions-panel__grid,
   .notebook-wiki-panel__grid {

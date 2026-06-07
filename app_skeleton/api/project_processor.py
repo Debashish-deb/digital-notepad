@@ -14,8 +14,11 @@ from app_skeleton.api.paths import (
     CATALOG_PATH,
     PROCESSED_DIR,
     PUBLIC_PROCESSED_DIR,
+    projects_roots_for_scan,
     safe_relative_path,
 )
+
+_LAB_STORAGE_SUBPATHS = ("", "Data", "afarkkilab/Data", "projects")
 
 TEXT_EXTENSIONS = {".txt", ".md", ".py", ".r", ".sh", ".json", ".yaml", ".yml", ".sql", ".csv", ".tsv"}
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".tif", ".tiff", ".bmp"}
@@ -1150,32 +1153,98 @@ def _folder_file_count(path: Path) -> int:
     return sum(1 for _ in path.rglob("*") if _.is_file())
 
 
-def find_project_folder(project_code: str) -> Path | None:
-    if not PROJECTS_ROOT.exists():
-        return None
-    catalog = _load_catalog().get(project_code, {})
-    folder_path = (catalog.get("folder_path") or "").strip()
-    if folder_path:
-        candidate = PROJECTS_ROOT / folder_path
+def _folder_search_hints(catalog: dict[str, Any], project_code: str) -> list[str]:
+    """Relative path hints for locating a project folder across scan roots."""
+    hints: list[str] = []
+    seen: set[str] = set()
+
+    def add_hint(value: str) -> None:
+        text = (value or "").strip().strip("/\\")
+        if not text or text in seen:
+            return
+        seen.add(text)
+        hints.append(text)
+
+    add_hint(catalog.get("folder_path") or "")
+    for alias in catalog.get("folder_aliases") or []:
+        add_hint(str(alias))
+
+    idx = catalog.get("project_index")
+    code = (project_code or catalog.get("project_code") or "").strip()
+    if idx and code:
+        add_hint(f"{idx}_{code}")
+        add_hint(f"{idx}-{code}")
+        add_hint(f"{idx}_{code.replace('-', '_')}")
+        add_hint(f"{idx}-{code.replace('_', '-')}")
+
+    for part in catalog.get("folder_structure") or []:
+        add_hint(str(part))
+
+    return hints
+
+
+def _collect_folder_candidates(root: Path, rel_hint: str) -> list[Path]:
+    """Try a catalog hint at common lab-storage subpaths."""
+    found: list[Path] = []
+    rel = rel_hint.strip().strip("/\\")
+    if not rel:
+        return found
+    for sub in _LAB_STORAGE_SUBPATHS:
+        candidate = (root / sub / rel) if sub else (root / rel)
         if candidate.is_dir():
-            return candidate
+            found.append(candidate)
+    return found
+
+
+def find_project_folder(project_code: str) -> Path | None:
+    catalog = _load_catalog().get(project_code, {})
+    roots = projects_roots_for_scan()
+    if not roots:
+        return None
+
+    matches: list[tuple[int, Path]] = []
+    seen_paths: set[str] = set()
+
+    def consider(path: Path | None) -> None:
+        if not path or not path.is_dir():
+            return
+        key = str(path.resolve())
+        if key in seen_paths:
+            return
+        seen_paths.add(key)
+        matches.append((_folder_file_count(path), path))
+
+    for hint in _folder_search_hints(catalog, project_code):
+        for root in roots:
+            for candidate in _collect_folder_candidates(root, hint):
+                consider(candidate)
 
     code_clean = _norm(project_code)
-    matches: list[tuple[int, Path]] = []
-    for folder in PROJECTS_ROOT.iterdir():
-        if not folder.is_dir() or folder.name in ("compiled_scripts", "project_scripts"):
+    project_index = catalog.get("project_index")
+    for root in roots:
+        try:
+            children = list(root.iterdir())
+        except OSError:
             continue
-        name_clean = _norm(folder.name)
-        if code_clean and (code_clean in name_clean or name_clean.startswith(code_clean) or name_clean.endswith(code_clean)):
-            matches.append((_folder_file_count(folder), folder))
-        elif folder.name.startswith(tuple(f"{i}_" for i in range(100))):
-            prefix = folder.name.split("_")[0]
-            if code_clean.startswith(_norm(prefix)) or project_code.lower() in folder.name.lower():
-                matches.append((_folder_file_count(folder), folder))
+        for folder in children:
+            if not folder.is_dir() or folder.name in ("compiled_scripts", "project_scripts"):
+                continue
+            name_clean = _norm(folder.name)
+            if code_clean and (
+                code_clean in name_clean
+                or name_clean.startswith(code_clean)
+                or name_clean.endswith(code_clean)
+            ):
+                consider(folder)
+                continue
+            if project_index and folder.name.startswith(f"{project_index}"):
+                tail = folder.name[len(str(project_index)) :]
+                if tail[:1] in ("_", "-", ".") and code_clean in _norm(folder.name):
+                    consider(folder)
 
     if not matches:
         return None
-    matches.sort(key=lambda x: -x[0])
+    matches.sort(key=lambda x: (-x[0], str(x[1])))
     return matches[0][1]
 
 
@@ -1709,16 +1778,66 @@ def load_processed(project_code: str) -> dict | None:
 
 
 def get_digital_twin(project_code: str, refresh: bool = False) -> dict[str, Any]:
+    cached = load_processed(project_code)
     if not refresh:
-        cached = load_processed(project_code)
         if cached:
             return normalize_twin(cached)
     data = normalize_twin(process_project(project_code))
+    if cached and refresh:
+        old_assets = int(cached.get("total_assets_count") or cached.get("metrics", {}).get("total_assets") or 0)
+        new_assets = int(data.get("total_assets_count") or data.get("metrics", {}).get("total_assets") or 0)
+        if old_assets > 0 and new_assets < old_assets:
+            return normalize_twin(cached)
     save_processed(project_code, data)
     return data
 
 
 README_DEFAULT_CONTENT = "Welcome to the project, start your readme file here."
+
+
+def _readme_template(catalog: dict[str, Any]) -> str:
+    name = compact_text(
+        catalog.get("project_name") or catalog.get("project_code") or "Project",
+        "Project",
+    )
+    lead = compact_text(catalog.get("project_lead"), "—")
+    pi = compact_text(catalog.get("principal_investigator"), "—")
+    summary = compact_text(catalog.get("project_summary") or catalog.get("research_question"), "")
+    status = compact_text(catalog.get("status"), "active")
+    disease = compact_text(catalog.get("disease_focus"), "")
+    lines = [
+        f"# {name}",
+        "",
+        "## Summary",
+        summary or "Describe the project goals, cohort, and current scope.",
+        "",
+        "## People",
+        f"- **Lead:** {lead}",
+        f"- **PI:** {pi}",
+    ]
+    if disease:
+        lines.extend(["", "## Disease focus", disease])
+    lines.extend(
+        [
+            "",
+            "## Data & storage",
+            "Document where raw data, analysis outputs, and key folders live.",
+            "",
+            "## Status",
+            f"{status.title()} — note milestones, blockers, and next steps here.",
+            "",
+            "---",
+            "*Edit this README to keep the lab informed about this project.*",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def compact_text(value: Any, fallback: str = "") -> str:
+    if value is None:
+        return fallback
+    text = str(value).strip()
+    return text if text else fallback
 
 
 def _readme_exists_on_disk(root: Path) -> str | None:
@@ -1729,10 +1848,18 @@ def _readme_exists_on_disk(root: Path) -> str | None:
 
 
 def _twin_has_readme(twin: dict[str, Any] | None) -> bool:
+    paths: list[str] = []
     for entry in (twin or {}).get("document_index") or []:
         path = (entry.get("path") or entry.get("relative_path") or "").strip()
-        if not path:
-            continue
+        if path:
+            paths.append(path)
+    for section in (twin or {}).get("content_library", {}).get("sections") or []:
+        for key in ("documents", "text_files", "presentations", "data_files"):
+            for item in section.get(key) or []:
+                path = (item.get("path") or "").strip()
+                if path:
+                    paths.append(path)
+    for path in paths:
         base = path.split("/")[-1].lower()
         if base.startswith("readme."):
             return True
@@ -1741,12 +1868,23 @@ def _twin_has_readme(twin: dict[str, Any] | None) -> bool:
 
 def ensure_project_readme(project_code: str) -> dict[str, Any]:
     """Create README.md at the project content root when no readme is indexed."""
+    catalog = _load_catalog().get(project_code, {})
     root = get_content_root(project_code)
     if not root or not root.is_dir():
         raise FileNotFoundError("Project folder not found on disk.")
 
+    twin = load_processed(project_code)
     existing = _readme_exists_on_disk(root)
     if existing:
+        if not _twin_has_readme(twin):
+            refreshed = get_digital_twin(project_code, refresh=True)
+            return {
+                "created": False,
+                "project_code": project_code,
+                "relative_path": existing,
+                "reason": "rescanned",
+                "twin": refreshed,
+            }
         return {
             "created": False,
             "project_code": project_code,
@@ -1754,7 +1892,6 @@ def ensure_project_readme(project_code: str) -> dict[str, Any]:
             "reason": "exists_on_disk",
         }
 
-    twin = load_processed(project_code)
     if _twin_has_readme(twin):
         return {
             "created": False,
@@ -1763,14 +1900,15 @@ def ensure_project_readme(project_code: str) -> dict[str, Any]:
         }
 
     rel = "README.md"
+    content = _readme_template(catalog)
     abs_path = root / rel
-    abs_path.write_text(f"{README_DEFAULT_CONTENT}\n", encoding="utf-8")
+    abs_path.write_text(content, encoding="utf-8")
     refreshed = get_digital_twin(project_code, refresh=True)
     return {
         "created": True,
         "project_code": project_code,
         "relative_path": rel,
-        "content": README_DEFAULT_CONTENT,
+        "content": content,
         "twin": refreshed,
     }
 

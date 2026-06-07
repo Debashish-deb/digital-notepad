@@ -141,8 +141,17 @@ function savePortfolioPrefs(prefs) {
   }
 }
 
+function getAlphabeticalSortKey(project) {
+  const name = compactText(project?.project_name || project?.project_code || '');
+  // Strip catalog-style prefixes (e.g. "3D Myelonets" → "Myelonets") so A→Z is by title, not folder index.
+  const stripped = name.replace(/^\d+(?:[A-Za-z])?(?:[\s._-]+)/, '').trim();
+  return stripped || name;
+}
+
 function compareProjectNames(a, b, direction = 1) {
-  return direction * a.project_name.localeCompare(b.project_name, undefined, {
+  const nameA = getAlphabeticalSortKey(a);
+  const nameB = getAlphabeticalSortKey(b);
+  return direction * nameA.localeCompare(nameB, undefined, {
     sensitivity: 'base',
     numeric: true,
   });
@@ -1135,19 +1144,6 @@ export default function ProjectsScreen({
         ))
       ) : (
         <section className="projects-category-section">
-          <div className="projects-category-header">
-            <div>
-              <p className="text-caption">Portfolio list</p>
-              <h2 className="projects-category-title">
-                {SORT_OPTIONS.find((option) => option.id === sortMode)?.label || 'Projects'}
-              </h2>
-            </div>
-
-            <span className="projects-category-count">
-              {sortedFiltered.length} project{sortedFiltered.length === 1 ? '' : 's'}
-            </span>
-          </div>
-
           <div className="projects-grid">
             {sortedFiltered.map((project) => (
               <ProjectCard

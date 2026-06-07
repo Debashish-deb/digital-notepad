@@ -57,8 +57,9 @@ import {
   findCategoryLabelInGroups,
   prettifyPreviewLabel,
 } from '../utils/previewMetaUtils.js';
-import { isProjectReadmePath } from '../utils/projectReadmeUtils.js';
+import { findReadmeInTwin, isProjectReadmePath, twinHasReadme } from '../utils/projectReadmeUtils.js';
 import { canEditDocument, documentViewBadge, isSourceDocument } from '../utils/documentEditPolicy.js';
+import ProjectReadmeSetupPanel from './ProjectReadmeSetupPanel.jsx';
 
 const CATEGORY_ICONS = {
   root: FolderOpen,
@@ -92,6 +93,9 @@ export default function ProjectDocumentsBrowser({
   defaultCategory: defaultCategoryProp,
   className = 'project-documents-browser',
   onReadmeSaved,
+  readmeEnsuring = false,
+  readmeEnsureError = null,
+  onCreateReadme,
 }) {
   const [selectedPath, setSelectedPath] = useState(null);
   const [fileQuery, setFileQuery] = useState('');
@@ -178,11 +182,17 @@ export default function ProjectDocumentsBrowser({
     const logPath = projectLogFile?.path;
     if (workspaceTab === 'log' && logPath && (grouped.project_log || []).some((d) => d.path === logPath)) {
       setSelectedPath(logPath);
+      setFileQuery('');
+      return;
+    }
+    const readme = findReadmeInTwin(twin);
+    if (workspaceTab === 'overview' && readme?.path) {
+      setSelectedPath(normalizeRelPath(readme.path));
     } else {
       setSelectedPath(null);
     }
     setFileQuery('');
-  }, [workspaceTab, categoryOrder.join(','), twin?.processed_at, projectLogFile?.path, grouped]);
+  }, [workspaceTab, categoryOrder.join(','), twin?.processed_at, projectLogFile?.path, grouped, twin]);
 
   const visibleFileCount = useMemo(
     () =>
@@ -365,6 +375,18 @@ export default function ProjectDocumentsBrowser({
   }
 
   if (!allDocs.length) {
+    if (!twinHasReadme(twin) || readmeEnsuring || readmeEnsureError) {
+      return (
+        <section className={`workspace-section ${className}`}>
+          <ProjectReadmeSetupPanel
+            ensuring={readmeEnsuring}
+            error={readmeEnsureError}
+            onCreateReadme={onCreateReadme}
+            workspaceTab={workspaceTab}
+          />
+        </section>
+      );
+    }
     return (
       <section className={`panel workspace-section data-pad data-pad--compact ${className}`}>
         <p className="text-footnote muted">{t('docs.noProjectFiles')}</p>

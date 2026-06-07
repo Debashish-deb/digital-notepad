@@ -190,6 +190,12 @@
     "publication": "",
     "timeline": "",
     "folder_path": "5_EMT-20260602T171604Z-3-001",
+    "folder_aliases": [
+      "5-EMT",
+      "5_EMT",
+      "afarkkilab/Data/5-EMT",
+      "Data/5-EMT"
+    ],
     "folder_structure": [
       "5_EMT"
     ],

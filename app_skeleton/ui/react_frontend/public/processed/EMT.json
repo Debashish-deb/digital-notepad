@@ -1,10 +1,10 @@
 {
   "project_code": "EMT",
-  "processed_at": "2026-06-06T22:33:47.764538+00:00",
+  "processed_at": "2026-06-07T16:58:13.437349+00:00",
   "folder_path": "5_EMT-20260602T171604Z-3-001",
   "content_root": "5_EMT-20260602T171604Z-3-001/5_EMT",
-  "source_files_count": 1,
-  "total_assets_count": 1,
+  "source_files_count": 2,
+  "total_assets_count": 2,
   "content_library": {
     "sections": [
       {
@@ -30,19 +30,37 @@
         ],
         "presentations": [],
         "data_files": [],
-        "text_files": [],
+        "text_files": [
+          {
+            "path": "README.md",
+            "name": "README.md",
+            "extension": ".md",
+            "size_bytes": 53,
+            "modified_at": "2026-06-07T16:58:13.394832+00:00",
+            "asset_type": "text",
+            "document_kind": "markdown",
+            "previewable": false,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          }
+        ],
         "videos": [],
         "code_files": [],
         "counts": {
-          "document": 1
+          "document": 1,
+          "text": 1
         },
-        "total_files": 1
+        "total_files": 2
       }
     ],
     "figures_gallery": [],
     "totals": {
       "document": 1,
-      "all": 1
+      "all": 2,
+      "text": 1
     },
     "figure_count": 0
   },
@@ -82,9 +100,10 @@
     "folder_tree": [
       {
         "path": ".",
-        "file_count": 1,
+        "file_count": 2,
         "categories": [
-          "document"
+          "document",
+          "overview"
         ]
       }
     ]
@@ -94,7 +113,7 @@
       "date": "Undated",
       "title": "Project update",
       "category": "update",
-      "summary": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued Goals: EMT profiling through tcycif and geomx Estimated timeline: December: tCycIF January: GeoMx #2401 Validation of Mariana's and other antibodies #2402 First pilot experiment #2403 Order and validation of the new antibodies #2404 Selection of the samples for the second round of experiments #2405 ROI selection #2406 GeoMx training Set priorities, which tasks are interdepende",
+      "summary": "### word/document.xml Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued Goals: EMT profiling through tcycif and geomx HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/Projects/5.%20EMT%20project/WebHome?section=2&form_token=fxYH3lB8ONgH9C9vbhyHRQ\" Estimated timeline: December: tCycIF January: GeoMx #2401 Validation of Mariana's and other antibodies #2402 First pilot experiment #2403 Order and validation of",
       "source_file": "5_Project_Log.docx"
     }
   ],
@@ -118,20 +137,35 @@
       "modified_at": "2025-03-05T01:59:00+00:00",
       "sha256": "83cd2a9ca170d751da3c3b70a9f15de038a06ae4a71db4e6bed553e0e4470c52",
       "status": "extracted",
-      "extractor": "python-docx",
+      "extractor": "docx-zip-xml",
       "title": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued",
-      "excerpt": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued Goals: EMT profiling through tcycif and geomx Validation of Mariana's and other antibodies Order and validation of the new antibodies Selection of the samples for the second round of experiments Set priorities, which tasks are interdependent? I will keep progressing on the computational part while the rest of the projects are ongoing Cycif Data: Adas antibody validations in cold storage 1.",
-      "char_count": 667,
-      "word_count": 102,
+      "excerpt": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued Goals: EMT profiling through tcycif and geomx HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/Projects/5.%20EMT%20project/WebHome?section=2&form_token=fxYH3lB8ONgH9C9vbhyHRQ\" Validation of Mariana's and other antibodies Order and validation of the new antibodies Selection of the samples for the second round of experiments Set priorities, which tasks are interdependent? I will keep progressing on the computational part while the rest of the projects are ongoing Cycif Data: Adas antibody validations in cold storage 1.",
+      "char_count": 841,
+      "word_count": 126,
       "metadata": {
-        "paragraph_count": 21,
-        "table_count": 0,
-        "author": "",
-        "title": "Word Document",
-        "subject": "",
-        "created": null,
-        "modified": "2026-06-06T22:33:47+00:00"
+        "zip_members_read": 1
       },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "README.md",
+      "name": "README.md",
+      "extension": ".md",
+      "document_kind": "markdown",
+      "mime_type": "text/markdown",
+      "size_bytes": 53,
+      "modified_at": "2026-06-07T16:58:13.394832+00:00",
+      "sha256": "b7dc7aa00477e9a7d0afdb0143eb144beccf0919f3b1c91a57b4fcd4f49e723c",
+      "status": "extracted",
+      "extractor": "text:utf-8",
+      "title": "Welcome to the project, start your readme file here.",
+      "excerpt": "Welcome to the project, start your readme file here.",
+      "char_count": 52,
+      "word_count": 9,
+      "metadata": {},
       "warnings": [],
       "errors": []
     }
@@ -142,24 +176,36 @@
       "source_file": "5_Project_Log.docx",
       "chunk_index": 0,
       "start_char": 0,
-      "end_char": 667,
-      "char_count": 667,
-      "word_count": 102,
-      "text": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued \nGoals: EMT profiling through tcycif and geomx\nEstimated timeline:\nDecember: tCycIF\nJanuary: GeoMx\n#2401\nValidation of Mariana's and other antibodies\n#2402\nFirst pilot experiment\n#2403\nOrder and validation of the new antibodies\n#2404\nSelection of the samples for the second round of experiments\n#2405\nROI selection \n#2406\nGeoMx training\nSet priorities, which tasks are interdependent?\nI will keep progressing on the computational part while the rest of the projects are ongoing\nGeomx data?\nCycif Data: Adas antibody validations in cold storage 1."
+      "end_char": 841,
+      "char_count": 841,
+      "word_count": 126,
+      "text": "### word/document.xml\nZhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued \nGoals: EMT profiling through tcycif and geomx\n HYPERLINK \"https://wiki.helsinki.fi/xwiki/bin/edit/FL/Farkkila%20Lab/Projects/5.%20EMT%20project/WebHome?section=2&form_token=fxYH3lB8ONgH9C9vbhyHRQ\" \nEstimated timeline:\nDecember: tCycIF\nJanuary: GeoMx\n#2401\nValidation of Mariana's and other antibodies\n#2402\nFirst pilot experiment\n#2403\nOrder and validation of the new antibodies\n#2404\nSelection of the samples for the second round of experiments\n#2405\nROI selection \n#2406\nGeoMx training\nSet priorities, which tasks are interdependent?\nI will keep progressing on the computational part while the rest of the projects are ongoing\nGeomx data?\nCycif Data: Adas antibody validations in cold storage 1."
+    },
+    {
+      "chunk_id": "README.md::chunk_0000",
+      "source_file": "README.md",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 52,
+      "char_count": 52,
+      "word_count": 9,
+      "text": "Welcome to the project, start your readme file here."
     }
   ],
   "extraction": {
-    "total_scannable_assets": 1,
-    "extracted_records": 1,
-    "chunk_count": 1,
+    "total_scannable_assets": 2,
+    "extracted_records": 2,
+    "chunk_count": 2,
     "status_counts": {
-      "extracted": 1
+      "extracted": 2
     },
     "extractor_counts": {
-      "python-docx": 1
+      "docx-zip-xml": 1,
+      "text:utf-8": 1
     },
     "extension_counts": {
-      ".docx": 1
+      ".docx": 1,
+      ".md": 1
     },
     "errors": [],
     "limits": {
@@ -174,21 +220,21 @@
     },
     "optional_extractors_detected": {
       "pypdf": false,
-      "PyPDF2": true,
-      "python_docx": true,
-      "python_pptx": true,
-      "openpyxl": true,
+      "PyPDF2": false,
+      "python_docx": false,
+      "python_pptx": false,
+      "openpyxl": false,
       "beautifulsoup4": true,
       "Pillow": true,
-      "tifffile": false,
+      "tifffile": true,
       "pdftotext_cli": true,
       "libreoffice_cli": true,
       "textutil_cli": true
     }
   },
   "metrics": {
-    "document_count": 1,
-    "total_assets": 1,
+    "document_count": 2,
+    "total_assets": 2,
     "figure_count": 0,
     "timeline_entries": 1,
     "meeting_count": 0,
@@ -199,8 +245,8 @@
     "storage_path_count": 0,
     "presentation_count": 0,
     "data_file_count": 0,
-    "extracted_document_count": 1,
-    "knowledge_chunk_count": 1,
+    "extracted_document_count": 2,
+    "knowledge_chunk_count": 2,
     "extraction_error_count": 0,
     "output_count": 0
   },

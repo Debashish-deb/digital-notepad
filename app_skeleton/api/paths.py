@@ -41,14 +41,12 @@ def _default_projects_root() -> Path:
 PROJECTS_ROOT = Path(os.environ.get("PROJECTS_ROOT", str(_default_projects_root()))).expanduser().resolve()
 DATABASE_ROOT = _default_database_root()
 
-_LAB_STORAGE_RAW = os.environ.get("LAB_STORAGE_ROOT", "").strip()
-
-
 def lab_storage_root() -> Path | None:
     """Mounted SMB or explicit lab notebook root — never hardcoded."""
-    if not _LAB_STORAGE_RAW:
+    raw = os.environ.get("LAB_STORAGE_ROOT", "").strip()
+    if not raw:
         return None
-    p = Path(_LAB_STORAGE_RAW).expanduser()
+    p = Path(raw).expanduser()
     return p.resolve() if p.is_dir() else None
 
 
