@@ -22,6 +22,42 @@ export function isSpreadsheetPreviewable(ext) {
   return SPREADSHEET_EXTENSIONS.has((ext || '').toLowerCase());
 }
 
+/** Convert API metadata_json.sheets into SpreadsheetPreview sheet models. */
+export function apiSpreadsheetSheetsToModels(sheets) {
+  if (!Array.isArray(sheets) || !sheets.length) return null;
+
+  const models = sheets
+    .map((sheet) => {
+      const headers = Array.isArray(sheet.column_headers) ? sheet.column_headers : [];
+      const samples = Array.isArray(sheet.sample_rows) ? sheet.sample_rows : [];
+      const rows = [];
+      if (headers.length) {
+        rows.push(headers.map((c) => (c == null ? '' : String(c))));
+      }
+      samples.forEach((row) => {
+        if (Array.isArray(row) && row.some((c) => c != null && String(c).trim())) {
+          rows.push(row.map((c) => (c == null ? '' : String(c))));
+        }
+      });
+      if (!rows.length) return null;
+      const maxCols = rows.reduce((m, r) => Math.max(m, r.length), 0);
+      return {
+        name: sheet.name || 'Sheet',
+        rows: rows.map((r) => {
+          const cells = [...r];
+          while (cells.length < maxCols) cells.push('');
+          return cells;
+        }),
+        truncated: true,
+        totalRows: rows.length,
+        totalCols: maxCols,
+      };
+    })
+    .filter(Boolean);
+
+  return models.length ? models : null;
+}
+
 async function fetchArrayBuffer(url) {
   const res = await fetch(url, { cache: 'no-store' });
   if (!res.ok) throw new Error(`Could not load file (HTTP ${res.status})`);
@@ -57,11 +93,10 @@ export function repairBinaryPayload(buffer) {
   if (trimmed.length >= 22) {
     const tail = trimmed.length;
     const view = new DataView(trimmed.buffer, trimmed.byteOffset, trimmed.byteLength);
-    let end = tail;
     for (let i = tail - 22; i >= Math.max(0, tail - 65558); i -= 1) {
       if (trimmed[i] === 0x50 && trimmed[i + 1] === 0x4b && trimmed[i + 2] === 0x05 && trimmed[i + 3] === 0x06) {
         const commentLen = view.getUint16(i + 20, true);
-        end = i + 22 + commentLen;
+        const end = i + 22 + commentLen;
         if (end < tail) {
           trimmed = trimmed.slice(0, end);
           notes.push('Trimmed trailing bytes after ZIP end record.');

@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function Timeline({ timeline }) {
   if (!timeline || timeline.length === 0) {

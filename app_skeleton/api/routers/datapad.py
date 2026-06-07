@@ -131,6 +131,18 @@ def save_project_digital_twin(project_code: str, body: dict, user: dict = Depend
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
 
+@router.post("/api/projects/{project_code}/ensure-readme")
+def project_ensure_readme(project_code: str, user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
+    try:
+        return ensure_project_readme(project_code)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except PermissionError as exc:
+        raise HTTPException(status_code=403, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
 @router.get("/api/projects/{project_code}/asset")
 def get_project_asset(project_code: str, path: str = Query(...), preview: bool = False):
     root = get_content_root(project_code)

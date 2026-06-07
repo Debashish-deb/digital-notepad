@@ -47,7 +47,7 @@ From the blueprint root:
 ```bash
 cd farkki_ai_platform_blueprint
 source ../.venv-local/bin/activate   # or your venv
-python scripts/apply_sql_migrations.py
+python scripts/database/apply_sql_migrations.py
 ```
 
 Restart the API (`start.sh` or uvicorn), then check:
@@ -73,9 +73,9 @@ Free tier: ~**500 MB** database; avoid Storage egress for lab corpora.
 
 ```bash
 # After SUPABASE_DB_PASSWORD + migrations + local vault ingest:
-python scripts/sync_documents_to_supabase.py --dry-run --limit 200
+python scripts/sync/sync_documents_to_supabase.py --dry-run --limit 200
 # Enable in .env: SUPABASE_SYNC_ENABLED=true
-python scripts/sync_documents_to_supabase.py --limit 500
+python scripts/sync/sync_documents_to_supabase.py --limit 500
 ```
 
 Admin API (when `PLATFORM_AUTH_DISABLED=false`): `POST /api/supabase/sync/documents?dry_run=true`

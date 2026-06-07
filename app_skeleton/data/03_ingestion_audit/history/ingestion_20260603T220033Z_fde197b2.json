@@ -1,0 +1,16 @@
+{
+  "run_id": "20260603T220033Z_fde197b2",
+  "checkpoint_id": "full_scan",
+  "scan_root": "/Users/debashishdeb/Downloads/OMEIA-AI/database",
+  "project_hint": null,
+  "vectorization_enabled": false,
+  "finished_at": "2026-06-03T22:07:32.472301+00:00",
+  "counts": {
+    "scanned": 4396,
+    "new": 0,
+    "updated": 4396,
+    "failed": 0,
+    "skipped_large": 37,
+    "uncategorized": 0
+  }
+}

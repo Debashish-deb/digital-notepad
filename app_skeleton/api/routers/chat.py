@@ -5,11 +5,12 @@ import json
 import os
 from typing import Any, Iterator, List, Optional
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from app_skeleton.api.chat_model_catalog import build_chat_model_catalog
+from app_skeleton.api.agent_orchestrator.registry import list_visible_categories, load_categories_config
 from app_skeleton.api.chat_service import answer_chat
 from app_skeleton.api.common import LOGGER, SourceInfo, llm_client, qdrant_client, rag_agent, DB_CONN
 from app_skeleton.api.llm_client import LLMClient, _env
@@ -99,6 +100,9 @@ def chat_status(user: dict = Depends(require_platform_user)) -> dict[str, Any]:
         "max_sources": int(os.getenv("CHAT_MAX_SOURCES", "12") or "12"),
         "llm": active.public_status(),
         "model_catalog": catalog,
+        "agent_categories": list_visible_categories(),
+        "default_agent_category": load_categories_config().get("default_category", "general_research"),
+        "default_agent_mode": load_categories_config().get("default_mode", "balanced"),
     }
 
 
@@ -107,9 +111,25 @@ def chat_models(user: dict = Depends(require_platform_user)) -> dict[str, Any]:
     return build_chat_model_catalog()
 
 
+def _enforce_chat_rate_limit(request: Request, response: Response, user: dict) -> None:
+    from app_skeleton.api.rate_limit import apply_rate_limit_headers, check_rate_limit
+
+    client_ip = request.client.host if request.client else "unknown"
+    allowed, headers = check_rate_limit(user_id=user.get("email"), ip_address=client_ip)
+    apply_rate_limit_headers(response, headers)
+    if not allowed:
+        raise HTTPException(status_code=429, detail="Rate limit exceeded. Try again shortly.")
+
+
 @router.post("", response_model=ChatResponse)
-def chat_message(req: ChatRequest, user: dict = Depends(require_platform_user)) -> ChatResponse:
+def chat_message(
+    req: ChatRequest,
+    request: Request,
+    response: Response,
+    user: dict = Depends(require_platform_user),
+) -> ChatResponse:
     require_role(user, ["researcher", "viewer", "editor", "admin"])
+    _enforce_chat_rate_limit(request, response, user)
     active_llm = _chat_llm(req.provider, req.model)
     search_svc = _search_service(active_llm)
 
@@ -129,8 +149,14 @@ def _sse_event(payload: dict[str, Any]) -> str:
 
 
 @router.post("/stream")
-def chat_stream(req: ChatRequest, user: dict = Depends(require_platform_user)) -> StreamingResponse:
+def chat_stream(
+    req: ChatRequest,
+    request: Request,
+    response: Response,
+    user: dict = Depends(require_platform_user),
+) -> StreamingResponse:
     require_role(user, ["researcher", "viewer", "editor", "admin"])
+    _enforce_chat_rate_limit(request, response, user)
     active_llm = _chat_llm(req.provider, req.model)
     search_svc = _search_service(active_llm)
 

@@ -1,89 +1,194 @@
 {
   "project_code": "Myelonets",
-  "processed_at": "2026-06-05T07:15:37.806521+00:00",
-  "folder_path": null,
-  "content_root": null,
-  "source_files_count": 0,
-  "total_assets_count": 0,
+  "processed_at": "2026-06-06T22:58:40.849354+00:00",
+  "folder_path": "1_3D_Myelonets-20260602T171540Z-3-001",
+  "content_root": "1_3D_Myelonets-20260602T171540Z-3-001/1_3D_Myelonets",
+  "source_files_count": 9,
+  "total_assets_count": 9,
   "content_library": {
     "sections": [
       {
-        "id": "1_3D_Myelonets",
-        "label": "1_3D_Myelonets",
-        "total_files": 8,
-        "documents": [
+        "id": "methods",
+        "label": "Methods & Experiments",
+        "figures": [],
+        "documents": [],
+        "presentations": [],
+        "data_files": [
           {
-            "path": "1_3D_Myelonets/3D CyCiF sample selection.xlsx",
+            "path": "3D CyCiF sample selection.xlsx",
             "name": "3D CyCiF sample selection.xlsx",
-            "asset_type": "document",
             "extension": ".xlsx",
+            "size_bytes": 19283,
+            "modified_at": "2023-09-07T05:13:02+00:00",
+            "asset_type": "data",
+            "document_kind": "spreadsheet",
             "previewable": true,
-            "excerpt": "R1: Patient_id | Comment | Added to presentation? | Status | | | CRS_score | | | PFS_progression\nR2: S026 | high immune infiltration, best | yes | best 1 | IVB | R0 | moderate response | gBRCA1 | no progression\nR3: S107 | high immune infiltration | yes | best 2 | IVB | R=1 | partial response | BRCAwt | progression - yes | 10.49\nR4: S095 | immune infiltration or apoptotic cells? | yes | | IVB | R>1"
-          },
-          {
-            "path": "1_3D_Myelonets/Meeting notes.docx",
-            "name": "Meeting notes.docx",
-            "asset_type": "document",
-            "extension": ".docx",
-            "previewable": true,
-            "excerpt": "Meeting with Anniina 20.09.23"
-          },
-          {
-            "path": "1_3D_Myelonets/1_Project_log.docx",
-            "name": "1_Project_log.docx",
-            "asset_type": "document",
-            "extension": ".docx",
-            "previewable": true,
-            "excerpt": "​"
-          },
-          {
-            "path": "1_3D_Myelonets/1_01_Antibody_panel_3D_Myelonets.xlsx",
-            "name": "1_01_Antibody_panel_3D_Myelonets.xlsx",
-            "asset_type": "document",
-            "extension": ".xlsx",
-            "previewable": true,
-            "excerpt": "R1: Project | Experiment (Panel) | Sample name | Slide | ID | Barcode\nR2: 1.0 | 1.0 | S026-1_iOme | 1.0 | 1_26-1_1\nR3: 1.0 | 1.0 | S026-1_iOme | 9.0 | 1_26-1_9\nR4: 1.0 | 1.0 | S026-1_iOme | 17.0 | 1_26-1_17\nR5: 1.0 | 1.0 | S026-1_iOme | 25.0 | 1_26-1_25\nR6: 1.0 | 1.0 | S026-1_iOme | 33.0 | 1_26-1_33\nR7: 1.0 | 1.0 | S026-1_iOme | 41.0 | 1_26-1_41\nR8: 1.0 | 1.0 | S026-1_iOme | 49.0 | 1_26-1_49\nR9: 1"
-          },
-          {
-            "path": "1_3D_Myelonets/Project ideas.pptx",
-            "name": "Project ideas.pptx",
-            "asset_type": "document",
-            "extension": ".pptx",
-            "previewable": true,
-            "excerpt": "Myelonets\n3D CyCiF"
-          },
-          {
-            "path": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-            "name": "Samples for 3D CyCif.pptx",
-            "asset_type": "document",
-            "extension": ".pptx",
-            "previewable": true,
-            "excerpt": "Sample selection for 3D CyCiF\n\nAnastasia Kachalova"
-          },
-          {
-            "path": "1_3D_Myelonets/Used concentrations and exposure times.docx",
-            "name": "Used concentrations and exposure times.docx",
-            "asset_type": "document",
-            "extension": ".docx",
-            "previewable": true,
-            "excerpt": "Final table with antibody dilution and exposure times:"
-          },
-          {
-            "path": "1_3D_Myelonets/Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
-            "name": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
-            "asset_type": "document",
-            "extension": ".pdf",
-            "previewable": true,
-            "excerpt": "BackgroundMaterialand methodsAims\nResults3D Investigationof Myelonets(myeloidnetworks) in OvarianCancerTumorMicroenvironment\nAnastasiia Kachalova1, Ada Junquera2, Inga-Maria Launonen2, Anni Virtanen2,3, Ulla-Maija Haltia2,4, Anniina Färkkilä1,2,4,5\n•Myeloid cells are known to play key supressive role in tumor microenvironment of HGSOC (myeloid-derived supressor cells, macrophages)1,2•Previous find"
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
           }
         ],
+        "text_files": [],
+        "videos": [],
+        "code_files": [],
+        "counts": {
+          "data": 1
+        },
+        "total_files": 1
+      },
+      {
+        "id": "root",
+        "label": "Project Root",
         "figures": [],
-        "data_files": [],
-        "code_scripts": []
+        "documents": [
+          {
+            "path": "1_Project_log.docx",
+            "name": "1_Project_log.docx",
+            "extension": ".docx",
+            "size_bytes": 10706,
+            "modified_at": "2025-09-15T03:25:12+00:00",
+            "asset_type": "document",
+            "document_kind": "word_document",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          },
+          {
+            "path": "Meeting notes.docx",
+            "name": "Meeting notes.docx",
+            "extension": ".docx",
+            "size_bytes": 9186,
+            "modified_at": "2023-09-28T22:50:02+00:00",
+            "asset_type": "document",
+            "document_kind": "word_document",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          },
+          {
+            "path": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
+            "name": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
+            "extension": ".pdf",
+            "size_bytes": 15635763,
+            "modified_at": "2023-11-23T02:34:02+00:00",
+            "asset_type": "document",
+            "document_kind": "pdf",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          },
+          {
+            "path": "Used concentrations and exposure times.docx",
+            "name": "Used concentrations and exposure times.docx",
+            "extension": ".docx",
+            "size_bytes": 8590,
+            "modified_at": "2023-11-09T01:57:12+00:00",
+            "asset_type": "document",
+            "document_kind": "word_document",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          }
+        ],
+        "presentations": [
+          {
+            "path": "Project ideas.pptx",
+            "name": "Project ideas.pptx",
+            "extension": ".pptx",
+            "size_bytes": 17868715,
+            "modified_at": "2025-04-29T10:23:26+00:00",
+            "asset_type": "presentation",
+            "document_kind": "presentation",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          },
+          {
+            "path": "Samples for 3D CyCif.pptx",
+            "name": "Samples for 3D CyCif.pptx",
+            "extension": ".pptx",
+            "size_bytes": 18876932,
+            "modified_at": "2024-02-27T01:17:00+00:00",
+            "asset_type": "presentation",
+            "document_kind": "presentation",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          }
+        ],
+        "data_files": [
+          {
+            "path": "1_01_Antibody_panel_3D_Myelonets.xlsx",
+            "name": "1_01_Antibody_panel_3D_Myelonets.xlsx",
+            "extension": ".xlsx",
+            "size_bytes": 118377,
+            "modified_at": "2024-03-19T05:00:38+00:00",
+            "asset_type": "data",
+            "document_kind": "spreadsheet",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          }
+        ],
+        "text_files": [
+          {
+            "path": "README.md",
+            "name": "README.md",
+            "extension": ".md",
+            "size_bytes": 53,
+            "modified_at": "2026-06-06T22:58:40.483557+00:00",
+            "asset_type": "text",
+            "document_kind": "markdown",
+            "previewable": false,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          }
+        ],
+        "videos": [],
+        "code_files": [],
+        "counts": {
+          "data": 1,
+          "document": 4,
+          "presentation": 2,
+          "text": 1
+        },
+        "total_files": 8
       }
     ],
     "figures_gallery": [],
-    "totals": {},
+    "totals": {
+      "data": 2,
+      "all": 9,
+      "document": 4,
+      "presentation": 2,
+      "text": 1
+    },
     "figure_count": 0
   },
   "identity": {
@@ -126,19 +231,87 @@
     "repositories": [],
     "folder_tree": [
       {
-        "path": "1_3D_Myelonets",
-        "file_count": 8,
+        "path": ".",
+        "file_count": 9,
         "categories": [
-          "document"
+          "activity",
+          "data",
+          "dissemination",
+          "document",
+          "overview",
+          "presentation"
         ]
       }
     ]
   },
-  "timeline": [],
+  "timeline": [
+    {
+      "date": "Undated",
+      "title": "Project update",
+      "category": "update",
+      "summary": "### word/document.xml Project 1_3D_Mylonets Goals: Describe myeloid cell subtypes and their functional heterogeneity in microenvironment of ovarian cancer Create a workflow (wet lab and data analysis) for 3D reconstruction of tumor microenvironment Main goal of 3-month rotation project: perform 3D visualization of TME, especially myelonets (myeloid cell aggregates) Responsible: Project manager : Anastasiia Kachalova macro:mentionmacro:velocitymacro:html@anaskach@helsinki_fi Role/tasks: tCycIF ex",
+      "source_file": "1_Project_log.docx"
+    }
+  ],
   "meetings": [],
   "protocols": [],
   "dissemination": [],
-  "publications": [],
+  "publications": [
+    {
+      "title": "3D Investigation of Myelonets (myeloid networks)",
+      "author": "",
+      "conference": "",
+      "year": null,
+      "doi": "10.3389/fimmu.2019.01273",
+      "type": "poster",
+      "source_file": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf"
+    },
+    {
+      "title": "DOI 10.1007/s00262-015-1782-5",
+      "author": "",
+      "conference": "document",
+      "year": null,
+      "doi": "10.1007/s00262-015-1782-5",
+      "type": "publication",
+      "source_file": ""
+    },
+    {
+      "title": "DOI 10.1016/j.cell.2022.12.028",
+      "author": "",
+      "conference": "document",
+      "year": null,
+      "doi": "10.1016/j.cell.2022.12.028",
+      "type": "publication",
+      "source_file": ""
+    },
+    {
+      "title": "DOI 10.1101/2022.12.09.519807v1.abstract",
+      "author": "",
+      "conference": "document",
+      "year": null,
+      "doi": "10.1101/2022.12.09.519807v1.abstract",
+      "type": "publication",
+      "source_file": ""
+    },
+    {
+      "title": "DOI 10.1371/journal.pone.0080908",
+      "author": "",
+      "conference": "document",
+      "year": null,
+      "doi": "10.1371/journal.pone.0080908",
+      "type": "publication",
+      "source_file": ""
+    },
+    {
+      "title": "DOI 10.3389/fimmu.2019.01273",
+      "author": "",
+      "conference": "document",
+      "year": null,
+      "doi": "10.3389/fimmu.2019.01273",
+      "type": "publication",
+      "source_file": ""
+    }
+  ],
   "derived_knowledge": {
     "methods": [],
     "findings": [],
@@ -146,1223 +319,511 @@
   },
   "document_index": [
     {
-      "document_id": "4a17942f11a870b028a2c45f98b338aa",
-      "path": "1_3D_Myelonets/3D CyCiF sample selection.xlsx",
-      "title": "3D CyCiF sample selection.xlsx",
-      "has_text": true,
-      "excerpt": "R1: Patient_id | Comment | Added to presentation? | Status | | | CRS_score | | | PFS_progression\nR2: S026 | high immune infiltration, best | yes | best 1 | IVB | R0 | moderate response | gBRCA1 | no progression\nR3: S107 | high immune infiltration | yes | best 2 | IVB | R=1 | partial response | BRCAwt | progression - yes | 10.49\nR4: S095 | immune infiltration or apoptotic cells? | yes | | IVB | R>1",
+      "path": "1_01_Antibody_panel_3D_Myelonets.xlsx",
+      "name": "1_01_Antibody_panel_3D_Myelonets.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 118377,
+      "modified_at": "2024-03-19T05:00:38+00:00",
+      "sha256": "6d0bd2d0eceef49d5a7b45c5f009aa146d35f9085423311414827e22654704d9",
+      "status": "extracted",
+      "extractor": "xlsx-zip-xml",
+      "title": "1 01 Antibody panel 3D Myelonets",
+      "excerpt": "### xl/worksheets/sheet1.xml 0 1 2 3 4 5 1.0 1.0 6 1.0 7 1.0 1.0 6 9.0 8 1.0 1.0 6 17.0 9 1.0 1.0 6 25.0 10 1.0 1.0 6 33.0 11 1.0 1.0 6 41.0 12 1.0 1.0 6 49.0 13 1.0 1.0 6 57.0 14 1.0 1.0 6 65.0 15 1.0 1.0 6 73.0 16 1.0 1.0 6 81.0 17 1.0 1.0 6 89.0 18 1.0 1.0 6 97.0 19 1.0 1.0 6 105.0 20 1.0 1.0 6 113.0 21 1.0 1.0 22 8.0 23 1.0 1.0 22 16.0 24 1.0 1.0 22 24.0 25 1.0 1.0 22 32.0 26 1.0 1.0 22 40.0 27 1.0 1.0 22 48.0 28 1.0 1.0 22 56.0 29 1.0 1.0 22 64.0 30 1.0 1.0 22 72.0 31 1.0 1.0 22 80.0 32 1.0 1.0 22 88.0 33 1.0 1.0 22 96.0 34 1.0 1.0 22 104.0 35 1.0 1.0 22 112.0 36 1.0 1.0 22 120.0 37 ### xl/worksheets/sheet2.xml 38 39 40 41 42 43 44 45 46 47 48 0.0 49 50 0.0 51 488.0 52 53 54 0.0 55 555.0 56 57 54 0.0 58 647.0 52 59 54 1.0 60 1.0 61 62 63 64 65 66 67 1.0 68 555.0 69 70 71 72 73 1.0 74 ",
+      "char_count": 3740,
+      "word_count": 1145,
       "metadata": {
-        "source": {
-          "filename": "3D CyCiF sample selection.xlsx",
-          "stem": "3D CyCiF sample selection",
-          "extension": ".xlsx",
-          "relative_path": "1_3D_Myelonets/3D CyCiF sample selection.xlsx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/1_3D_Myelonets-20260602T171540Z-3-001/1_3D_Myelonets/3D CyCiF sample selection.xlsx",
-          "size_bytes": 19283,
-          "size_human": "18.83 KB",
-          "modified": "2023-09-07T08:13:02",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "hashes": {
-            "md5": "fb379fcbf1c424ac230aab1385ec2325"
-          }
-        },
-        "classification": {
-          "family": "spreadsheet",
-          "extension": ".xlsx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "extractor": "openpyxl",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "sheet_names": [
-            "Лист1"
-          ],
-          "sheet_count": 1
-        },
-        "converted_at": "2026-06-05T15:27:44"
-      }
+        "zip_members_read": 6
+      },
+      "warnings": [
+        "openpyxl unavailable/failed: No module named 'openpyxl'"
+      ],
+      "errors": []
     },
     {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "path": "1_3D_Myelonets/Meeting notes.docx",
-      "title": "Meeting notes.docx",
-      "has_text": true,
-      "excerpt": "Meeting with Anniina 20.09.23",
+      "path": "1_Project_log.docx",
+      "name": "1_Project_log.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 10706,
+      "modified_at": "2025-09-15T03:25:12+00:00",
+      "sha256": "041d4da5bebab8929178bcfd6c44d9ae67dd304ab5d79f344df394c71769da32",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Project 1_3D_Mylonets",
+      "excerpt": "Describe myeloid cell subtypes and their functional heterogeneity in microenvironment of ovarian cancer Create a workflow (wet lab and data analysis) for 3D reconstruction of tumor microenvironment Main goal of 3-month rotation project: perform 3D visualization of TME, especially myelonets (myeloid cell aggregates) : Anastasiia Kachalova macro:mentionmacro:velocitymacro:html@anaskach@helsinki_fi tCycIF experiments, computational data analysis, sample selection for a preliminary 3-month project main advisor - help with protocols/data analysis Duration of the initial project - 3 months (September 2023 - November 2023, incl.) Design the panel - till early October Validation of antibodies: CD14-unconjugated (Abcam, ab133335, clone EPR3653), Lysozyme_C-647 (Santacruz, sc-518012 AF647, clone E-5",
+      "char_count": 2867,
+      "word_count": 410,
       "metadata": {
-        "source": {
-          "filename": "Meeting notes.docx",
-          "stem": "Meeting notes",
-          "extension": ".docx",
-          "relative_path": "1_3D_Myelonets/Meeting notes.docx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/1_3D_Myelonets-20260602T171540Z-3-001/1_3D_Myelonets/Meeting notes.docx",
-          "size_bytes": 9186,
-          "size_human": "8.97 KB",
-          "modified": "2023-09-29T01:50:02",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "hashes": {
-            "md5": "e66bedb53a1e4ab7022df5380de4df35"
-          }
-        },
-        "classification": {
-          "family": "word",
-          "extension": ".docx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "extractor": "python-docx",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "paragraph_count": 18,
-          "table_count": 0,
-          "core_properties": {
-            "title": "Word Document",
-            "subject": "",
-            "author": "",
-            "keywords": "",
-            "created": null,
-            "modified": "2026-06-05T12:27:44+00:00",
-            "last_modified_by": "python-docx"
-          }
-        },
-        "converted_at": "2026-06-05T15:27:44"
-      }
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
     },
     {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "path": "1_3D_Myelonets/1_Project_log.docx",
-      "title": "1_Project_log.docx",
-      "has_text": true,
-      "excerpt": "​",
+      "path": "3D CyCiF sample selection.xlsx",
+      "name": "3D CyCiF sample selection.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 19283,
+      "modified_at": "2023-09-07T05:13:02+00:00",
+      "sha256": "6517a2506203dae2e416a42a133fc0715ccdf7e04c529cbb83e294a2b4451fc6",
+      "status": "extracted",
+      "extractor": "xlsx-zip-xml",
+      "title": "3D CyCiF sample selection",
+      "excerpt": "### xl/worksheets/sheet1.xml 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 8 17 10 18 19 20 21 22 23 24 8 10 25 26 20 14 27 28 8 10 25 29 20 21 30 31 32 8 10 25 29 20 21 33 34 35 8 10 25 1.0 20 21 36 37 38 8 10 18 29 20 21 39 40 41 8 10 11 42 20 14 43 44 8 10 11 45 20 14 46 47 8 48 10 11 12 20 14 49 50 8 51 52 53 8 51 54 55 8 56 57 58 8 56 59 60 8 56 61 62 8 56 63 64 8 56 65 66 8 67 68 69 70 67 71 72 70 67 73 74 8 75 76 70 77 78 70 79 80 8 81 82 70 83 82 70 84 85 8 86 87 8 88 82 8 89 82 70 90 82 70 91 92 8 93 94 8 95 96 70 97 72 70 98 99 70 100 99 70 101 102 70 103 104 70 105 106 70 107 106 70 108 109 70 110 106 70 111 106 70 112 82 70 113 82 70 114 82 70 115 116 70 117 116 70 118 82 70 119 120 121 120 122 120 123 120 124 120 125 120 126 120 127 120 128 120 129 120 130 120 131 120",
+      "char_count": 786,
+      "word_count": 253,
       "metadata": {
-        "source": {
-          "filename": "1_Project_log.docx",
-          "stem": "1_Project_log",
-          "extension": ".docx",
-          "relative_path": "1_3D_Myelonets/1_Project_log.docx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/1_3D_Myelonets-20260602T171540Z-3-001/1_3D_Myelonets/1_Project_log.docx",
-          "size_bytes": 10706,
-          "size_human": "10.46 KB",
-          "modified": "2025-09-15T06:25:12",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "hashes": {
-            "md5": "e420a800f9bec5c92424c9fb2789b14a"
-          }
-        },
-        "classification": {
-          "family": "word",
-          "extension": ".docx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "extractor": "python-docx",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "paragraph_count": 66,
-          "table_count": 0,
-          "core_properties": {
-            "title": "Word Document",
-            "subject": "",
-            "author": "",
-            "keywords": "",
-            "created": null,
-            "modified": "2026-06-05T12:27:44+00:00",
-            "last_modified_by": "python-docx"
-          }
-        },
-        "converted_at": "2026-06-05T15:27:44"
-      }
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "openpyxl unavailable/failed: No module named 'openpyxl'"
+      ],
+      "errors": []
     },
     {
-      "document_id": "dd5f5c7896bfd9f9bb88f6c72b742197",
-      "path": "1_3D_Myelonets/1_01_Antibody_panel_3D_Myelonets.xlsx",
-      "title": "1_01_Antibody_panel_3D_Myelonets.xlsx",
-      "has_text": true,
-      "excerpt": "R1: Project | Experiment (Panel) | Sample name | Slide | ID | Barcode\nR2: 1.0 | 1.0 | S026-1_iOme | 1.0 | 1_26-1_1\nR3: 1.0 | 1.0 | S026-1_iOme | 9.0 | 1_26-1_9\nR4: 1.0 | 1.0 | S026-1_iOme | 17.0 | 1_26-1_17\nR5: 1.0 | 1.0 | S026-1_iOme | 25.0 | 1_26-1_25\nR6: 1.0 | 1.0 | S026-1_iOme | 33.0 | 1_26-1_33\nR7: 1.0 | 1.0 | S026-1_iOme | 41.0 | 1_26-1_41\nR8: 1.0 | 1.0 | S026-1_iOme | 49.0 | 1_26-1_49\nR9: 1",
+      "path": "Meeting notes.docx",
+      "name": "Meeting notes.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 9186,
+      "modified_at": "2023-09-28T22:50:02+00:00",
+      "sha256": "b2a4e3bccf36992bd4f9b06c3f47f79b4dc81b0f88281fce3640eb5b4a92cd01",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Meeting with Anniina 20.09.23",
+      "excerpt": "Meeting with Anniina 20.09.23 Myeloid cell subtypes identification and their functional heterogeneity in 3D 1 or 2 samples for initial 3D analysis (we selected S026 and S107) Stainings will be started after Inga-Maria will help me with understanding the distance which is required for myeloid phenotype changes in 2D (we will apply the same distance for z-scale for 3D) Exclude markers for lymphocytes (FOXP3, CD4, CD8, CD45RO, PCNA) and add functional markers for myeloid cells (pSTAT1, ANXA2, TIM3) Functional markers should go first in cycles and discrete markers (+/-) - later Prepare questions for 3D CyCiF before 3rd October! Meeting with Ada and Inga-Maria 25.09.23 We will profile 2 samples ( : gBRCA1, no progression and : BRCAwt, progression PFS 10.49) Slides will be 5 μm in thickness Thus",
+      "char_count": 1584,
+      "word_count": 287,
       "metadata": {
-        "source": {
-          "filename": "1_01_Antibody_panel_3D_Myelonets.xlsx",
-          "stem": "1_01_Antibody_panel_3D_Myelonets",
-          "extension": ".xlsx",
-          "relative_path": "1_3D_Myelonets/1_01_Antibody_panel_3D_Myelonets.xlsx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/1_3D_Myelonets-20260602T171540Z-3-001/1_3D_Myelonets/1_01_Antibody_panel_3D_Myelonets.xlsx",
-          "size_bytes": 118377,
-          "size_human": "115.60 KB",
-          "modified": "2024-03-19T07:00:38",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "hashes": {
-            "md5": "94a89ad138b32f7352571349a21d5652"
-          }
-        },
-        "classification": {
-          "family": "spreadsheet",
-          "extension": ".xlsx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "extractor": "openpyxl",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "sheet_names": [
-            "Samples",
-            "Experiment_1",
-            "Notes",
-            "Antibody_assessment",
-            "Computational_processing",
-            "validation"
-          ],
-          "sheet_count": 6
-        },
-        "converted_at": "2026-06-05T15:27:44"
-      }
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
     },
     {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "path": "1_3D_Myelonets/Project ideas.pptx",
-      "title": "Project ideas.pptx",
-      "has_text": true,
-      "excerpt": "Myelonets\n3D CyCiF",
+      "path": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
+      "name": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
+      "extension": ".pdf",
+      "document_kind": "pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 15635763,
+      "modified_at": "2023-11-23T02:34:02+00:00",
+      "sha256": "66927f8daa683bf1676b31175681ea9e65643beae914b3b69240d2434ed80e98",
+      "status": "extracted",
+      "extractor": "pdftotext",
+      "title": "3D Investigation of Myelonets (myeloid networks)",
+      "excerpt": "3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment anastasiia.kachalova@helsinki.fi Anastasiia Kachalova1, Ada Junquera2, Inga-Maria Launonen2, Anni Virtanen2,3, Ulla-Maija Haltia2,4, Anniina Färkkilä1,2,4,5 Färkkilä lab website @kachalova_an @SystemTmor • Create a workflow for 3D visualization of • Myeloid cells are known to play key supressive role in tumor microenvironment of HGSOC (myeloid-derived supressor cells, macrophages)1,2 • Create a myeloid-focused antibody panel • Previous findings reveal aggregates of myeloid cells (10 cells) across most of • Perform 3D vizualization of myelonets HGSOC samples Myelonet from previous data DNA Tumor Stroma Myeloid cells 1. Myelonets infiltrating tumor are mostly M2-like macrophages through the Z-axis DNA T",
+      "char_count": 3083,
+      "word_count": 500,
       "metadata": {
-        "source": {
-          "filename": "Project ideas.pptx",
-          "stem": "Project ideas",
-          "extension": ".pptx",
-          "relative_path": "1_3D_Myelonets/Project ideas.pptx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/1_3D_Myelonets-20260602T171540Z-3-001/1_3D_Myelonets/Project ideas.pptx",
-          "size_bytes": 17868715,
-          "size_human": "17.04 MB",
-          "modified": "2025-04-29T13:23:26",
-          "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          "hashes": {
-            "md5": "142c47c2823c3f167d2bfa96632da76c"
-          }
-        },
-        "classification": {
-          "family": "presentation",
-          "extension": ".pptx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          "extractor": "python-pptx",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "slide_count": 17
-        },
-        "converted_at": "2026-06-05T15:27:44"
-      }
+        "tabular_line_count_guess": 0,
+        "probably_contains_tables": false
+      },
+      "warnings": [
+        "pypdf unavailable/failed: No module named 'pypdf'",
+        "PyPDF2 unavailable/failed: No module named 'PyPDF2'"
+      ],
+      "errors": []
     },
     {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "path": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "title": "Samples for 3D CyCif.pptx",
-      "has_text": true,
-      "excerpt": "Sample selection for 3D CyCiF\n\nAnastasia Kachalova",
+      "path": "Project ideas.pptx",
+      "name": "Project ideas.pptx",
+      "extension": ".pptx",
+      "document_kind": "presentation",
+      "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "size_bytes": 17868715,
+      "modified_at": "2025-04-29T10:23:26+00:00",
+      "sha256": "fb775d056325b0c60d22e20a34d80dfb6689081fe8c399991a7407c8b525da88",
+      "status": "extracted",
+      "extractor": "pptx-slide-xml",
+      "title": "Myelonets",
+      "excerpt": "The most important result from 3D! EMT-like transitions and TB in CRC1 is characterized not by the formation of isolated spheres of cells , as first described by Weinberg and colleagues in tissue culture, but instead by the formation of large fibrillar structures that appear to be small buds when viewed in cross-section Fibrils can invade into several different environments, including stroma and mucin, and we speculate that their formation is driven by a gradual (not abrupt) breakdown in cell adhesion associated with a graded EMT-like transition 3D on immune composition However, we found that many of these domains were interconnected, forming larger 3D structures; for example, seven large networks, each spanning 12 sections and several millimeters laterally. TLSs undergo maturation and are",
+      "char_count": 8098,
+      "word_count": 1258,
       "metadata": {
-        "source": {
-          "filename": "Samples for 3D CyCif.pptx",
-          "stem": "Samples for 3D CyCif",
-          "extension": ".pptx",
-          "relative_path": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/1_3D_Myelonets-20260602T171540Z-3-001/1_3D_Myelonets/Samples for 3D CyCif.pptx",
-          "size_bytes": 18876932,
-          "size_human": "18.00 MB",
-          "modified": "2024-02-27T03:17:00",
-          "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          "hashes": {
-            "md5": "caa57111e38f8e19acfc5622f4815b50"
-          }
-        },
-        "classification": {
-          "family": "presentation",
-          "extension": ".pptx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          "extractor": "python-pptx",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "slide_count": 35
-        },
-        "converted_at": "2026-06-05T15:27:44"
-      }
+        "slide_count": 17
+      },
+      "warnings": [
+        "python-pptx unavailable/failed: No module named 'pptx'"
+      ],
+      "errors": []
     },
     {
-      "document_id": "ad3deeff132535601645f5146c17f3e9",
-      "path": "1_3D_Myelonets/Used concentrations and exposure times.docx",
-      "title": "Used concentrations and exposure times.docx",
-      "has_text": true,
-      "excerpt": "Final table with antibody dilution and exposure times:",
-      "metadata": {
-        "source": {
-          "filename": "Used concentrations and exposure times.docx",
-          "stem": "Used concentrations and exposure times",
-          "extension": ".docx",
-          "relative_path": "1_3D_Myelonets/Used concentrations and exposure times.docx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/1_3D_Myelonets-20260602T171540Z-3-001/1_3D_Myelonets/Used concentrations and exposure times.docx",
-          "size_bytes": 8590,
-          "size_human": "8.39 KB",
-          "modified": "2023-11-09T03:57:12",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "hashes": {
-            "md5": "9b012eb9d28dc58cd389834ca0092628"
-          }
-        },
-        "classification": {
-          "family": "word",
-          "extension": ".docx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "extractor": "python-docx",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "paragraph_count": 1,
-          "table_count": 1,
-          "core_properties": {
-            "title": "Word Document",
-            "subject": "",
-            "author": "",
-            "keywords": "",
-            "created": null,
-            "modified": "2026-06-05T12:27:44+00:00",
-            "last_modified_by": "python-docx"
-          }
-        },
-        "converted_at": "2026-06-05T15:27:44"
-      }
+      "path": "README.md",
+      "name": "README.md",
+      "extension": ".md",
+      "document_kind": "markdown",
+      "mime_type": "text/markdown",
+      "size_bytes": 53,
+      "modified_at": "2026-06-06T22:58:40.483557+00:00",
+      "sha256": "b7dc7aa00477e9a7d0afdb0143eb144beccf0919f3b1c91a57b4fcd4f49e723c",
+      "status": "extracted",
+      "extractor": "text:utf-8",
+      "title": "Welcome to the project, start your readme file here.",
+      "excerpt": "Welcome to the project, start your readme file here.",
+      "char_count": 52,
+      "word_count": 9,
+      "metadata": {},
+      "warnings": [],
+      "errors": []
     },
     {
-      "document_id": "c543b92b303b5111d63cb8d255b9f0b7",
-      "path": "1_3D_Myelonets/Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
-      "title": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
-      "has_text": true,
-      "excerpt": "BackgroundMaterialand methodsAims\nResults3D Investigationof Myelonets(myeloidnetworks) in OvarianCancerTumorMicroenvironment\nAnastasiia Kachalova1, Ada Junquera2, Inga-Maria Launonen2, Anni Virtanen2,3, Ulla-Maija Haltia2,4, Anniina Färkkilä1,2,4,5\n•Myeloid cells are known to play key supressive role in tumor microenvironment of HGSOC (myeloid-derived supressor cells, macrophages)1,2•Previous find",
+      "path": "Samples for 3D CyCif.pptx",
+      "name": "Samples for 3D CyCif.pptx",
+      "extension": ".pptx",
+      "document_kind": "presentation",
+      "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "size_bytes": 18876932,
+      "modified_at": "2024-02-27T01:17:00+00:00",
+      "sha256": "90fa16834a3b0a4b378a80834f878aadf134e9b33cbb3c40ffe7a8a79092bd4d",
+      "status": "extracted",
+      "extractor": "pptx-slide-xml",
+      "title": "Sample selection for 3D CyCiF",
+      "excerpt": "Sample selection for 3D CyCiF High immune infiltration Maybe mix of macrophages and tumor cells? High immune infiltration high immune infiltration - macrophages may be presented High immune and low tumor compartment Only small areas of immune cells? No tumor infiltration in other parts Immune cells on the edge, but no tumor around Immune cells around the tumor No infiltration, dead cells are surrounded by space S100 - high infiltration but a lot of necrosis",
+      "char_count": 1709,
+      "word_count": 280,
       "metadata": {
-        "source": {
-          "filename": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
-          "stem": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment",
-          "extension": ".pdf",
-          "relative_path": "1_3D_Myelonets/Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/1_3D_Myelonets-20260602T171540Z-3-001/1_3D_Myelonets/Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
-          "size_bytes": 15635763,
-          "size_human": "14.91 MB",
-          "modified": "2023-11-23T04:34:02",
-          "mime_type": "application/pdf",
-          "hashes": {
-            "md5": "3a721ad05472ac2f086d4a06b58452bc"
-          }
-        },
-        "classification": {
-          "family": "pdf",
-          "extension": ".pdf",
-          "mime_type": "application/pdf",
-          "extractor": "PyMuPDF/pypdf/PyPDF2",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "page_count": 1
-        },
-        "converted_at": "2026-06-05T15:27:44"
-      }
+        "slide_count": 35
+      },
+      "warnings": [
+        "python-pptx unavailable/failed: No module named 'pptx'"
+      ],
+      "errors": []
+    },
+    {
+      "path": "Used concentrations and exposure times.docx",
+      "name": "Used concentrations and exposure times.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 8590,
+      "modified_at": "2023-11-09T01:57:12+00:00",
+      "sha256": "ce427523638ad1fe527613d86a271fc508c3ee8064167a873256bd14dcdbe14d",
+      "status": "extracted",
+      "extractor": "docx-zip-xml",
+      "title": "Final table with antibody dilution and exposure times:",
+      "excerpt": "Final table with antibody dilution and exposure times: CD14 with secondaries (488) 1:100 (primary unconjugated + 1:2000 secondaries) Didn't work or not expressed Few cells, could be overexposed Spin 10 mins before usage Overexposed, use lower conc Didn't work in S107 sample, conc should be higher",
+      "char_count": 841,
+      "word_count": 199,
+      "metadata": {
+        "zip_members_read": 1
+      },
+      "warnings": [
+        "python-docx unavailable/failed: No module named 'docx'"
+      ],
+      "errors": []
     }
   ],
   "vector_chunks": [
     {
-      "document_id": "4a17942f11a870b028a2c45f98b338aa",
-      "source_file": "1_3D_Myelonets/3D CyCiF sample selection.xlsx",
+      "chunk_id": "1_01_Antibody_panel_3D_Myelonets.xlsx::chunk_0000",
+      "source_file": "1_01_Antibody_panel_3D_Myelonets.xlsx",
       "chunk_index": 0,
-      "text": "R1: Patient_id | Comment | Added to presentation? | Status | | | CRS_score | | | PFS_progression\nR2: S026 | high immune infiltration, best | yes | best 1 | IVB | R0 | moderate response | gBRCA1 | no progression\nR3: S107 | high immune infiltration | yes | best 2 | IVB | R=1 | partial response | BRCAwt | progression - yes | 10.49\nR4: S095 | immune infiltration or apoptotic cells? | yes | | IVB | R>1 | weak response | BRCAwt | no progression\nR5: S005 | seems as highly immune infiltated (lymph) | yes | | IVB | R>1 | not mentioned | BRCAwt | progression - yes | 6.90\nR6: S083 | immune infiltration (Ome2) + immune cells around tumor (Ome3) | yes | | IVB | R>1 | not mentioned | BRCAwt | progression - yes | 18.81\nR7: S120 | S120 - TLS + good infiltration | yes | | IVB | R>1 | 1.0 | BRCAwt | progression - yes | 8.98\nR8: S088 | immune infiltration? (more not) | yes | | IVB | R=1 | not mentioned | BRCAwt | progression - yes | 15.81\nR9: S106 | high immune infiltration but not sure where is the tumor | yes | | IVB | R0 | moderately good | BRCAwt | no progression\nR10: S091 | individual macrophages are seems to be presented but not structured | yes | | IVB | R0 | partial (weak) response | BRCAwt | no progression\nR11: S032 | iOme - no high immune infiltration, \niOvaL - immune cells at the edge? - bad that it is not Ome"
+      "start_char": 0,
+      "end_char": 1797,
+      "char_count": 1796,
+      "word_count": 611,
+      "text": "### xl/worksheets/sheet1.xml\n0\n1\n2\n3\n4\n5\n1.0\n1.0\n6\n1.0\n7\n1.0\n1.0\n6\n9.0\n8\n1.0\n1.0\n6\n17.0\n9\n1.0\n1.0\n6\n25.0\n10\n1.0\n1.0\n6\n33.0\n11\n1.0\n1.0\n6\n41.0\n12\n1.0\n1.0\n6\n49.0\n13\n1.0\n1.0\n6\n57.0\n14\n1.0\n1.0\n6\n65.0\n15\n1.0\n1.0\n6\n73.0\n16\n1.0\n1.0\n6\n81.0\n17\n1.0\n1.0\n6\n89.0\n18\n1.0\n1.0\n6\n97.0\n19\n1.0\n1.0\n6\n105.0\n20\n1.0\n1.0\n6\n113.0\n21\n1.0\n1.0\n22\n8.0\n23\n1.0\n1.0\n22\n16.0\n24\n1.0\n1.0\n22\n24.0\n25\n1.0\n1.0\n22\n32.0\n26\n1.0\n1.0\n22\n40.0\n27\n1.0\n1.0\n22\n48.0\n28\n1.0\n1.0\n22\n56.0\n29\n1.0\n1.0\n22\n64.0\n30\n1.0\n1.0\n22\n72.0\n31\n1.0\n1.0\n22\n80.0\n32\n1.0\n1.0\n22\n88.0\n33\n1.0\n1.0\n22\n96.0\n34\n1.0\n1.0\n22\n104.0\n35\n1.0\n1.0\n22\n112.0\n36\n1.0\n1.0\n22\n120.0\n37\n\n### xl/worksheets/sheet2.xml\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n0.0\n49\n50\n0.0\n51\n488.0\n52\n53\n54\n0.0\n55\n555.0\n56\n57\n54\n0.0\n58\n647.0\n52\n59\n54\n1.0\n60\n1.0\n61\n62\n63\n64\n65\n66\n67\n1.0\n68\n555.0\n69\n70\n71\n72\n73\n1.0\n74\n647.0\n75\n304018.0\n76\n66\n73\n77\n51\n488.0\n52\n53\n78\n2.0\n79\n2.0\n80\n488.0\n81\n301910.0\n82\n83\n84\n2.0\n85\n555.0\n63\n86\n87\n66\n88\n2.0\n89\n647.0\n63\n90\n91\n66\n2.0\n92\n750.0\n93\n94\n95\n66\n3.0\n96\n3.0\n97\n488.0\n63\n98\n99\n66\n3.0\n100\n555.0\n63\n101\n102\n66\n3.0\n103\n647.0\n63\n104\n105\n66\n4.0\n106\n4.0\n107\n488.0\n108\n109\n110\n66\n111\n4.0\n112\n555.0\n93\n113\n114\n115\n4.0\n116\n647.0\n117\n118\n119\n115\n120\n5.0\n121\n5.0\n122\n488.0\n93\n123\n124\n125\n5.0\n126\n555.0\n63\n127\n128\n129\n5.0\n130\n647.0\n63\n131\n132\n129\n6.0\n133\n6.0\n134\n488.0\n135\n72\n136\n6.0\n137\n555.0\n93\n138\n139\n72\n6.0\n140\n647.0\n141\n142\n143\n72\n7.0\n144\n7.0\n145\n488.0\n146\n147\n148\n7.0\n149\n555.0\n150\n151\n152\n148\n7.0\n153\n647.0\n72\n\n### xl/worksheets/sheet3.xml\n154\n155\n\n### xl/worksheets/sheet4.xml\n41\n156\n68\n74\n80\n85\n157\n92\n97\n100\n103\n158\n112\n116\n122\n126\n159\n134\n160\n140\n145\n149\n153\n161\n7\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n8\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n163\n9\n162\n162\n162\n163\n163\n162\n162\n162"
     },
     {
-      "document_id": "4a17942f11a870b028a2c45f98b338aa",
-      "source_file": "1_3D_Myelonets/3D CyCiF sample selection.xlsx",
+      "chunk_id": "1_01_Antibody_panel_3D_Myelonets.xlsx::chunk_0001",
+      "source_file": "1_01_Antibody_panel_3D_Myelonets.xlsx",
       "chunk_index": 1,
-      "text": "| yes | | IVB | R0 | partial (weak) response | BRCAwt | no progression\nR11: S032 | iOme - no high immune infiltration, \niOvaL - immune cells at the edge? - bad that it is not Ome\npOme - no high immune infiltration | yes | good but Ova | IVB | R0 | moderate response | BRCAwt | no progression\nR12: S113 | high immune and low tumor compartments | yes | maybe\nR13: S065 | Immune cells on the edge but no tumor around | yes | maybe\nR14: S098 | not sure | yes | ???\nR15: S027 | TLS, but no tumor infiltration in other parts | yes | ???\nR16: S081 | immune cell arounf the tumor (Ome1) a lot of fat | yes | ???\nR17: S123 | separated immune cells but no clear infiltration | yes | ???\nR18: S073 | low tumor but good infiltration in some sections | yes | ???\nR19: S110 | only small areas of immune cells? | yes | check\nR20: S080 | very low tumor compartment? | no | check\nR21: S084 | no clear immune infiltration | no | check\nR22: S011 | a lot of apoptotoc cells | yes\nR23: S015 | no high immune infiltration; no tumor in Ome | no\nR24: S049 | bad sample, no tumor, no immune | no\nR25: S050 | No high infiltration | yes\nR26: S057 | no immune infiltration | no\nR27: S062 | no immune infiltration | no\nR28: S100 | high immune infiltration\na lot of necrosis | yes\nR29: S101 | immune cells, but tumor is not presented | yes\nR30: S121 | no immune infiltration | yes\nR31: S126 | no immune infiltration | no"
+      "start_char": 1547,
+      "end_char": 3346,
+      "char_count": 1798,
+      "word_count": 474,
+      "text": "126\n159\n134\n160\n140\n145\n149\n153\n161\n7\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n8\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n163\n9\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n10\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n11\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n12\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n13\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n14\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n15\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n16\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n17\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n18\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n19\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n20\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n21\n162\n162\n162\n163\n163\n162\n162\n162\n163\n162\n162\n162\n162\n163\n162\n162\n162\n162\n162\n162\n162\n162\n\"yes\"\n\"no\"\n\"?\"\n\n### xl/worksheets/sheet6.xml\n164\n165\n166\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n0.0\n49\n50\n0.0\n51\n488.0\n52\n53\n54\n0.0\n55\n555.0\n56\n57\n54\n0.0\n58\n647.0\n52\n59\n54\n1.0\n60\n1.0\n156\n167\n63\n64\n65\n66\n168\n168\n77\n77\n169\n488.0\n52\n53\n78\n170\n171\n172\n168\n168\n2.0\n79\n173\n168\n168\n2.0\n174\n647.0\n175\n176\n177\n170\n178\n179\n180\n181\n182\n2.0\n92\n750.0\n93\n94\n95\n66\n170\n171\n183\n184\n185\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n166"
     },
     {
-      "document_id": "4a17942f11a870b028a2c45f98b338aa",
-      "source_file": "1_3D_Myelonets/3D CyCiF sample selection.xlsx",
+      "chunk_id": "1_01_Antibody_panel_3D_Myelonets.xlsx::chunk_0002",
+      "source_file": "1_01_Antibody_panel_3D_Myelonets.xlsx",
       "chunk_index": 2,
-      "text": "ne infiltration\na lot of necrosis | yes\nR29: S101 | immune cells, but tumor is not presented | yes\nR30: S121 | no immune infiltration | yes\nR31: S126 | no immune infiltration | no\nR32: S130 | no immune infiltration | no\nR33: S139 | small tumor amount, no infiltration | yes\nR34: S143 | no tumor on slide | yes\nR35: S067 | TLS, small tumor amount | no\nR36: S072 | no clear immune infiltration | no\nR37: S074 | no enough tumor | no\nR38: S076 | no enough tumor | no\nR39: S128 | low tumor cells amount | no\nR40: S023 | no high immune infiltration + low tumor compartment | no\nR41: S046 | bad sample, low tumor | no\nR42: S048 | bad sample, low tumor | no\nR43: S053 | low tumor amount | no\nR44: S056 | bad sample, low tumor | no\nR45: S063 | bad sample, low tumor | no\nR46: S099 | no immune infiltration | no\nR47: S112 | no immune infiltration | no\nR48: S118 | no immune infiltration | no\nR49: S127 | low tumor on slide | no\nR50: S129 | low tumor on slide | no\nR51: S131 | no immune infiltration | no\nR52: S159 | no images\nR53: S161 | no images\nR54: S162 | no images\nR55: S163 | no images\nR56: S164 | no images\nR57: S165 | no images\nR58: S168 | no images\nR59: S169 | no images\nR60: S170 | no images\nR61: S171 | no images\nR62: S172 | no images\nR63: S173 | no images"
+      "start_char": 3096,
+      "end_char": 3740,
+      "char_count": 644,
+      "word_count": 201,
+      "text": "647.0\n52\n59\n54\n1.0\n60\n1.0\n156\n167\n63\n64\n65\n66\n168\n168\n77\n77\n169\n488.0\n52\n53\n78\n170\n171\n172\n168\n168\n2.0\n79\n173\n168\n168\n2.0\n174\n647.0\n175\n176\n177\n170\n178\n179\n180\n181\n182\n2.0\n92\n750.0\n93\n94\n95\n66\n170\n171\n183\n184\n185\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n166\n0.0\n49\n50\n0.0\n51\n488.0\n52\n53\n54\n170\n171\n172\n0.0\n55\n555.0\n56\n57\n54\n170\n171\n186\n0.0\n58\n647.0\n52\n59\n54\n170\n171\n187\n1.0\n60\n1.0\n188\n167\n63\n64\n65\n66\n189\n190\n191\n192\n1.0\n68\n555.0\n69\n70\n71\n72\n170\n171\n193\n194\n1.0\n74\n647.0\n75\n304018.0\n76\n66\n170\n171\n195\n194\n77\n60\n77\n196\n488.0\n52\n53\n78\n170\n171\n172\n51\n77\n168\n77\n168\n2.0\n96\n173\n168\n168\n2.0\n174\n647.0\n175\n176\n177\n170\n178\n179\n2.0\n92\n750.0\n93\n94\n95\n170\n171\n183"
     },
     {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
+      "chunk_id": "1_Project_log.docx::chunk_0000",
+      "source_file": "1_Project_log.docx",
       "chunk_index": 0,
-      "text": "Meeting with Anniina 20.09.23"
+      "start_char": 0,
+      "end_char": 1761,
+      "char_count": 1760,
+      "word_count": 251,
+      "text": "### word/document.xml\n\nProject 1_3D_Mylonets\nGoals:\nDescribe myeloid cell subtypes and their functional heterogeneity in microenvironment of ovarian cancer \nCreate a workflow (wet lab and data analysis) for 3D reconstruction of tumor microenvironment\nMain goal of 3-month rotation project: perform 3D visualization of TME, especially myelonets (myeloid cell aggregates)\nResponsible:\nProject manager\n : Anastasiia Kachalova macro:mentionmacro:velocitymacro:html@anaskach@helsinki_fi\nRole/tasks: \ntCycIF experiments, computational data analysis, sample selection for a preliminary 3-month project\nAda Junquera\nRole/tasks: \nmain advisor - help with protocols/data analysis\nEstimated timeline:\nDuration of the initial project - 3 months (September 2023 - November 2023, incl.)\nmacro:task\n#2376\nDesign the panel - till early October\nmacro:task\n#2377\nValidation of antibodies: CD14-unconjugated (Abcam, ab133335, clone EPR3653), Lysozyme_C-647 (Santacruz, sc-518012 AF647, clone E-5), Vimentin-750 (CST, 69227S, clone D21H3): 26th Sept - 29th Sept\nmacro:task\n#2378\nValidation of CD15 (Biolegend, 301910, clone H198) and new ANXA2 (Santacruz, sc-47696 AF488, clone 3D5): 13th-16th October\nmacro:task\n#2379\nExperiment: 16th Oct - 13th November\nmacro:task\n#2380\nZoom meeting with Clarence (Boston) about 3D reconstruction approaches: November 14th\nmacro:task\n#2381\n3D reconstruction with simple software (3D Slicer)\nmacro:task\n#2382\nRegistration of slides in Z axis with custom MATLAB script\nmacro:task\n#2383\n3D visualisation with Imaris\nmacro:task\n#2384\nData analysis (cell segmentation, cell type calling, quantification)\n---------------------------------------------\nSlides used in experiments:\nS107_iOme: 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120"
     },
     {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
+      "chunk_id": "1_Project_log.docx::chunk_0001",
+      "source_file": "1_Project_log.docx",
       "chunk_index": 1,
-      "text": "Main aim: Myeloid cell subtypes identification and their functional heterogeneity in 3D"
+      "start_char": 1511,
+      "end_char": 2867,
+      "char_count": 1356,
+      "word_count": 194,
+      "text": "ation with Imaris\nmacro:task\n#2384\nData analysis (cell segmentation, cell type calling, quantification)\n---------------------------------------------\nSlides used in experiments:\nS107_iOme: 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120\nS026-1_iOme: 1, 9, 17, 25, 33, 41, 49, 57, 65, 73, 81, 89, 97, 105, 113\nAntibody panel:\nhttps://docs.google.com/spreadsheets/d/1PTxlu88EGZUAvDFr-qKXnHeWAh94sg93UKIJQB24CIw/edit#gid=711803750\nUsed antibodies' concentrations and exposure times:\nhttps://drive.google.com/drive/folders/1bBlCoGrpOm97VN96fZXFHPT5xHMHVTjb\nRaw data is stored:\nsample S026 - CSC intermediate storage, \nrcpnl files\nsample S107 - cold storage hard drive - SEAGATE2, \nrcpnl files\nOme tiffs are stored:\nsample S026 - cold storage hard drive - SEAGATE2\nsample S107 -cold storage hard drive - SEAGATE2\nSlides are stored:\nsample S026, sample S107 - in PBS in cold room, lower shelf\nOther sections from sample not used in experiment:\nCold room, blue boxes\nLink to Google Drive project folder\n:\nhttps://drive.google.com/drive/folders/1bBlCoGrpOm97VN96fZXFHPT5xHMHVTjb\nWhat to find in there:\nMeeting notes\nPresentations\nAntibody panel\nPoster, also in the datacloud\nhttps://datacloud.helsinki.fi/index.php/apps/files/?dir=/farkkila/Presentations_posters_abstracts&fileid=1018895#\nDocument containing used abs concentrations and exposure times"
     },
     {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
+      "chunk_id": "3D CyCiF sample selection.xlsx::chunk_0000",
+      "source_file": "3D CyCiF sample selection.xlsx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 786,
+      "char_count": 786,
+      "word_count": 253,
+      "text": "### xl/worksheets/sheet1.xml\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n8\n17\n10\n18\n19\n20\n21\n22\n23\n24\n8\n10\n25\n26\n20\n14\n27\n28\n8\n10\n25\n29\n20\n21\n30\n31\n32\n8\n10\n25\n29\n20\n21\n33\n34\n35\n8\n10\n25\n1.0\n20\n21\n36\n37\n38\n8\n10\n18\n29\n20\n21\n39\n40\n41\n8\n10\n11\n42\n20\n14\n43\n44\n8\n10\n11\n45\n20\n14\n46\n47\n8\n48\n10\n11\n12\n20\n14\n49\n50\n8\n51\n52\n53\n8\n51\n54\n55\n8\n56\n57\n58\n8\n56\n59\n60\n8\n56\n61\n62\n8\n56\n63\n64\n8\n56\n65\n66\n8\n67\n68\n69\n70\n67\n71\n72\n70\n67\n73\n74\n8\n75\n76\n70\n77\n78\n70\n79\n80\n8\n81\n82\n70\n83\n82\n70\n84\n85\n8\n86\n87\n8\n88\n82\n8\n89\n82\n70\n90\n82\n70\n91\n92\n8\n93\n94\n8\n95\n96\n70\n97\n72\n70\n98\n99\n70\n100\n99\n70\n101\n102\n70\n103\n104\n70\n105\n106\n70\n107\n106\n70\n108\n109\n70\n110\n106\n70\n111\n106\n70\n112\n82\n70\n113\n82\n70\n114\n82\n70\n115\n116\n70\n117\n116\n70\n118\n82\n70\n119\n120\n121\n120\n122\n120\n123\n120\n124\n120\n125\n120\n126\n120\n127\n120\n128\n120\n129\n120\n130\n120\n131\n120"
+    },
+    {
+      "chunk_id": "Meeting notes.docx::chunk_0000",
+      "source_file": "Meeting notes.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1584,
+      "char_count": 1584,
+      "word_count": 287,
+      "text": "### word/document.xml\nMeeting with Anniina 20.09.23\nMain aim\n: \nMyeloid cell subtypes identification and their functional heterogeneity in 3D\n1 or 2 samples for initial 3D analysis (we selected S026 and S107)\nStainings will be started after Inga-Maria will help me with understanding the distance which is required for myeloid phenotype changes in 2D (we will apply the same distance for z-scale for 3D)\nExclude markers for lymphocytes (FOXP3, CD4, CD8, CD45RO, PCNA) and add functional markers for myeloid cells (pSTAT1, ANXA2, TIM3)\nFunctional markers should go first in cycles and discrete markers (+/-) - later\nPrepare questions for 3D CyCiF before 3rd October!\nMeeting with Ada and Inga-Maria 25.09.23\nWe will profile 2 samples (\nS026\n: gBRCA1, no progression and \nS107\n: BRCAwt, progression PFS 10.49)\nWe will profile 600 \nμm of each block\nSlides will be 5 μm in thickness\nThus, we will get 120 slides from one block\nFor 3D we will use each 8th slide - for one block we will use for analysis 15 slides which is OK\nThus, the distance between slides for 3D will be 35 μm\nSo we will ask to cut the block continuously, but if it is technically impossible for any reason our \nplan B\n is to ask to do 3 slides continuously and then skip 20 μm and repeat.\nToday I will discuss with Saun blocks (she will send them this week to be cut) and I will order Annexin A2 antibody, cause we do not have it in the lab.\nThe panel is almost finalised, I just need to discuss the order with Ada.\nSome antibodies, in which we are not sure, will be tested together with Adhiti's validation this week."
+    },
+    {
+      "chunk_id": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf::chunk_0000",
+      "source_file": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1779,
+      "char_count": 1778,
+      "word_count": 297,
+      "text": "3D Investigation of Myelonets (myeloid networks)\n in Ovarian Cancer Tumor Microenvironment\nanastasiia.kachalova@helsinki.fi\n Anastasiia Kachalova1, Ada Junquera2, Inga-Maria Launonen2, Anni Virtanen2,3, Ulla-Maija Haltia2,4, Anniina Färkkilä1,2,4,5 Färkkilä lab website\n @kachalova_an @SystemTmor\n\n\n Background Aims\n • Create a workflow for 3D visualization of\n • Myeloid cells are known to play key supressive role in tumor\n tumor microenvironment\n microenvironment of HGSOC (myeloid-derived supressor cells,\n macrophages)1,2 • Create a myeloid-focused antibody panel\n • Previous findings reveal aggregates of myeloid cells (> 10 cells) across most of • Perform 3D vizualization of myelonets\n HGSOC samples Myelonet from previous data\n\n\n Panel composition\n Material and methods\n\n\n Results\n DNA Tumor Stroma Myeloid cells 1. Myelonets infiltrating tumor are mostly M2-like macrophages through the Z-axis\n DNA Tumor IBA-1 CD163 CD45 DNA Tumor IBA-1 CD163 CD45 DNA Tumor IBA-1 CD163 CD45 DNA Tumor IBA-1 CD163 CD45\n\n\n … … …\n\n\n Slide #1 Slide #5 Slide #10 Slide #15\n\n 2. Myelonets contain activated (ANXA2+) M2+like macrophages\n DNA Tumor M2 ANXA2 PD-1 DNA Tumor M2 ANXA2 PD-1 DNA Tumor M2 ANXA2 PD-1 DNA Tumor M2 ANXA2 PD-1\n Myelonets exist in 3D:\n N = 5 consecutive images\n IBA-1+ cells\n\n\n … … …\n\n\n Slide #1 Slide #5 Slide #10 Slide #15\n\n\n 3. PD1+CD4+ and PD1+CD8+ T cells interact with myelonets\n Tumor M2 CD4 CD8 PD-1 Tumor M2 CD4 CD8 PD-1 Tumor M2 CD4 CD8 PD-1 Tumor M2 CD4 CD8 PD-1\n Future work\n • Cell segmentation, cell type calling and\n quantifications for every section\n • Characterize the TME composition and\n … … …\n functional heterogeneity in 3D\n • Acquire the cohort of patients with\n clinically relevant differences and analyze\n presence and composition of myelonets"
+    },
+    {
+      "chunk_id": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf::chunk_0001",
+      "source_file": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
+      "chunk_index": 1,
+      "start_char": 1529,
+      "end_char": 3083,
+      "char_count": 1553,
+      "word_count": 239,
+      "text": "calling and\n quantifications for every section\n • Characterize the TME composition and\n … … …\n functional heterogeneity in 3D\n • Acquire the cohort of patients with\n clinically relevant differences and analyze\n presence and composition of myelonets\n Slide #1 Slide #5 Slide #10 Slide #15\n\nAuthors affilations References Funding\n1. Institute for Molecular Medicine Finland, Helsinki Institute of Life Sciences, University of Helsinki, Finland\n 1. Baert T, Vankerckhoven A, Riva M, Van Hoylandt A, Thirion G, Holger G, Mathivet T, Vergote I and Coosemans A (2019) Myeloid Derived\n2. Research Program in Systems Oncology, University of Helsinki, Helisnki, Finland Suppressor Cells: Key Drivers of Immunosuppression in Ovarian Cancer. Front. Immunol. 10:1273. doi: 10.3389/fimmu.2019.01273\n\n3. Department of Pathology, University of Helsinki and HUS Diagnostic Center, Helsinki University Hospital, Helsinki, Finland 2. Barros MHM, Hauck F, Dreyer JH, Kempkes B, Niedobitek G (2013) Macrophage Polarisation: an Immunohistochemical Approach for\n Identifying M1 and M2 Macrophages. PLoS ONE 8(11): e80908. doi.org/10.1371/journal.pone.0080908\n4. Department of Obstetrics and Gynecology, Helsinki University Hospital, Helsinki, Finland\n 3. Lin JR, Wang S, Coy S, Chen YA, Yapp C, Tyler M, Nariya MK, Heiser CN, Lau KS, Santagata S, Sorger PK. Multiplexed 3D atlas of state\n5. iCAN digital precision cancer medicine, Helsinki, Finland transitions and immune interaction in colorectal cancer. Cell. 2023 Jan 19;186(2):363-381.e19. doi: 10.1016/j.cell.2022.12.028"
+    },
+    {
+      "chunk_id": "Project ideas.pptx::chunk_0000",
+      "source_file": "Project ideas.pptx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1764,
+      "char_count": 1763,
+      "word_count": 278,
+      "text": "## Slide 1\nMyelonets\n3D CyCiF\n\n## Slide 2\nThe most important result from 3D!\nWe conclude that\nEMT-like transitions and TB in CRC1 is characterized not by the formation of isolated spheres of cells\n, as first described by Weinberg and colleagues in tissue culture,\n48\nbut instead by the formation of large fibrillar structures that appear to be small buds when viewed in cross-section\nat their distal tips.\nFibrils can invade into several different environments, including stroma and mucin, and we speculate that their formation is driven by a gradual (not abrupt) breakdown in cell adhesion associated with a graded EMT-like transition\n\n## Slide 3\n3D on immune composition\nHowever, we found that many of these domains were interconnected, forming larger 3D structures; for example, seven large networks, each spanning >12 sections and several millimeters laterally.\nTLSs undergo maturation and are expected to differ from one another, but when we mapped marker expression clusters onto the physical organization of TLSNs, we found that some were relatively homogeneous, containing cells from one expression cluster, whereas others were heterogeneous.\nFor example, TLSN-C, which was predominantly located in the subserosa, was >96% composed of expression cluster 7 and showed a marked predominance of CD45+ CD20+ B cells\n\n## Slide 4\nImmune profiling of the invasive margin\n(L) High-resolution 3D imaging of PDL1:PD1 interaction among tumor and myeloid cells.\nTop: maximum intensity projections. Bottom: 3D rendering, Imaris\n\n## Slide 5\nCell types involved in presenting PDL1 to PD1+ T cells\nAlthough a small minority (1%–5%) of tumor cells expressed PDL1,\nthe cells most likely to be PDL1+ were CD68+ (14%–51% positive) and CD11c+ myeloid cells (10%–88% positive);"
+    },
+    {
+      "chunk_id": "Project ideas.pptx::chunk_0001",
+      "source_file": "Project ideas.pptx",
+      "chunk_index": 1,
+      "start_char": 1514,
+      "end_char": 3228,
+      "char_count": 1713,
+      "word_count": 283,
+      "text": ", Imaris\n\n## Slide 5\nCell types involved in presenting PDL1 to PD1+ T cells\nAlthough a small minority (1%–5%) of tumor cells expressed PDL1,\nthe cells most likely to be PDL1+ were CD68+ (14%–51% positive) and CD11c+ myeloid cells (10%–88% positive);\nPDL1+ myeloid cells were also 6.5-fold more abundant on average than PDL1+ tumor cells (Figures 7F and S6E).\nSecond t\nhe most important result from the article!\nAcross the CRC cohort, we found that single positive CD68+ CD11c or CD68CD11c+ and double positive CD68+ CD11c+ cells were commonly PDL1+\n\n## Slide 6\nPD1-PDL1 binding\nFunctionally, it is not the prevalence of PDL1+ cells that is relevant for T cell suppression but rather which cells are close enough for PDL1:PD1 binding\ncells interacting with PD1+ cells were strongly enriched for CD45+ and depleted for CK+ (p < 0.001 pairwise t test, two-sided),\nshowing that PD1+ T cells interact with PDL1+ immune cells more commonly than PDL1+ tumor cells\n.\nFinally, high-resolution optical sectioning of 12-plex CyCIF provided direct evidence of PDL1+ on myeloid cells colocalizing with PD1+ T cells at the tumor margin, consistent with the formation of functional cell-cell interactions (Figure 7L).\nWe conclude that immunosuppression of PD1+ T cells in our CRC cohort most commonly involves PDL1+ myeloid cells, not tumor cells\n\n## Slide 7\nMain insights from the article\nEM transition (EMT) occurs on the tumor margin (cells are still connected, not isolated, but form fibrils - result from 3D reconstruction,\nnot visible in 2D\n)\nQuestion that can be asked here - can we found also any spatially resolved structures of immune cells that will show association between immune cell type and cells undergoing EMT?"
+    },
+    {
+      "chunk_id": "Project ideas.pptx::chunk_0002",
+      "source_file": "Project ideas.pptx",
       "chunk_index": 2,
-      "text": "1 or 2 samples for initial 3D analysis (we selected S026 and S107)"
+      "start_char": 2978,
+      "end_char": 4703,
+      "char_count": 1724,
+      "word_count": 272,
+      "text": "but form fibrils - result from 3D reconstruction,\nnot visible in 2D\n)\nQuestion that can be asked here - can we found also any spatially resolved structures of immune cells that will show association between immune cell type and cells undergoing EMT?\nImmunosuppression in tumors is provided by interaction of PD1+ T cells with PDL1+ myeloid cells, all myeloid cells expressed PDL1.\nQuestion -\nwhat type of myeloid cells\ndo we see in myelonets (suppressive or not)? Can we characterise them in more details? Do they have something in common with EMT regions?\n\n## Slide 8\nMore detailed small questions\nMyelonets - in which group of patients they are presented?\nresponders vs. non-responders\n/ before therapy vs. after therapy (\npaired samples are required\n) / mutated vs. wt)\nAbundance of myeloid cells between groups\nWhich myeloid cell types they are consists of?\nInclude M1(\nCD68+, anti-tumor*\n) and M2 (CD163+, pro-tumor) markers\nMDSC\ncells\n-?\nCell-cell interactions (?)\nMyeloid cells - tumor cells\nMyeloid cells -\nKi67\n+ tumor cells\nMyeloid cells - lymphocytes populations\nMyeloid cells - PD1+ T cells\nMyeloid PDL1+ cells - PD1+ T cells\n3D reconstruction - do we see any specific region of tumor which interacts with myeloid cells? May be EMT regions?\n\n## Slide 9\n*\nBetter distinguish between M1 and M2\nTranscription factors should also be studied\npSTAT1 for M1\nCMAF for M2\nhttps://journals.plos.org/plosone/article?id=10.1371/journal.pone.0080908\n(IHC)\n\n## Slide 10\nExisting studies\nhttps://www.nature.com/articles/s41586-022-05680-3\nthe study was done on brain tumors, but a lot of\nattention\nwas paid to the macrophages in TME and their association with prognosis.\nKaplan–Meier analysis based on\nMPO+ IBA1+ cell frequency"
     },
     {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
+      "chunk_id": "Project ideas.pptx::chunk_0003",
+      "source_file": "Project ideas.pptx",
       "chunk_index": 3,
-      "text": "Stainings will be started after Inga-Maria will help me with understanding the distance which is required for myeloid phenotype changes in 2D (we will apply the same distance for z-scale for 3D)"
+      "start_char": 4453,
+      "end_char": 6237,
+      "char_count": 1783,
+      "word_count": 260,
+      "text": "g studies\nhttps://www.nature.com/articles/s41586-022-05680-3\nthe study was done on brain tumors, but a lot of\nattention\nwas paid to the macrophages in TME and their association with prognosis.\nKaplan–Meier analysis based on\nMPO+ IBA1+ cell frequency\nas determined by IHF staining in 135 tumours from patients with glioblastoma (z-score). Cell frequencies were averaged when multiple samples corresponded to the same individual. Log-rank (Mantel–Cox) test\nStudied also cell interactions and showed that they are not random and do not correlate with cell frequencies\n\n## Slide 11\n2.\nh\nttps://aacrjournals.org/cancerimmunolres/article/9/6/665/666167/Chemotherapy-Induces-Tumor-Associated-Macrophages\nUsed\nunmatched\nsamples for pre and post (??)\nShowed that CD68+ macrophages “lakes” are associated with good prognosis following chemotherapy\nFrequency of CD163+ (M2) TAMs decreased after chemotherapy (but samples were unmatched!)\nExisting studies\n\n## Slide 12\nPre-selected samples\nTable with patients selection:\nhttps://docs.google.com/spreadsheets/d/1WFUiFqqeyxgsK4QTlxfdIgU121LQW01nqbrYx5sRp9o/edit?usp=sharing\nPresentation with HEs\nhttps://docs.google.com/presentation/d/1-8yd7birOFw8cDBFPt_tInu2pwZmuSVsrvYnzPisWlE/edit?usp=sharing\n❌\n❌\n\n## Slide 13\nSuggested panel\nPut PD1 and PDL1 in first cycles?\n\n## Slide 14\nCell combinations I expect\nCD68+ - macrophages\nCD163+ - M2 macrophages\nCD68+ CD163- - M1 macrophages (??)\nCD45+ CD4+ - T helpers\nCD45+ CD8+ - cytotoxic T cells\nCD11c+ - dendritic cells (?)\nPD1+ CD4/PD1+ CD8 T cells\nPAX8, PanCK - cancer cells\nKi67+ and/or PCNA+ - proliferating cells\nPAX8+/PanCK+ Ki67+/PCNA+ - proliferating tumor cells\nVimentin+, aSMA+ - stromal cells\nMDSC subsets (\nhttps://link.springer.com/article/10.1007/s00262-015-1782-5\n)\nCD33\n+ CD11b+ = all MDSC"
     },
     {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
+      "chunk_id": "Project ideas.pptx::chunk_0004",
+      "source_file": "Project ideas.pptx",
       "chunk_index": 4,
-      "text": "Exclude markers for lymphocytes (FOXP3, CD4, CD8, CD45RO, PCNA) and add functional markers for myeloid cells (pSTAT1, ANXA2, TIM3)"
+      "start_char": 5987,
+      "end_char": 7719,
+      "char_count": 1731,
+      "word_count": 275,
+      "text": "PanCK - cancer cells\nKi67+ and/or PCNA+ - proliferating cells\nPAX8+/PanCK+ Ki67+/PCNA+ - proliferating tumor cells\nVimentin+, aSMA+ - stromal cells\nMDSC subsets (\nhttps://link.springer.com/article/10.1007/s00262-015-1782-5\n)\nCD33\n+ CD11b+ = all MDSC\nCD14+ CD15- and any myeloid marker (\nCD11b\nor\nCD33\n) =\nmonocytic MDSC\nCD14- CD15+ and any myeloid marker (\nCD11b\nor\nCD33\n) =\nPMN MDSC (granulocytic)\nHLA-DR\nlow\nCD14+ =\nMDSC4\n(a subset which amount in peripheral blood is associated with response in many cancers)\nPDL1+ myeloid cells\n(different subtypes)\nCD11b - pan-myeloid marker\nCD11c - dendritic cells\n\n## Slide 15\n3D: distance between sections\n\"Due to whole slide structural changes that biologically occur in the\n5 μm space between sections\n, it was not possible to adequately register whole slide images this accurately without using non-rigid transformations, which resulted in imaging artifacts that skewed analysis.\"\nhttps://www.biorxiv.org/content/10.1101/2022.12.09.519807v1.abstract\nAverage cell size of lymphoid cells is 8-10\nμm\nhttps://www.ncbi.nlm.nih.gov/books/NBK459471/#:~:text=From%20the%20morphological%20point%20of,mitochondria%2C%20ribosomes%2C%20and%20lyzosomes\n.\n\n## Slide 16\n3D visualization\n“For CRC1, 106 serial sections were cut from an 1.7 x 1.7 cm piece of FFPE tissue and 22 H&E and\n25 CyCIF images\nwere collected,\nskipping some sections to increase the total dimension along the Z-axis\n”\nImaris:\nhttps://docs.google.com/document/d/1cyKqe58luBxH4ikf0TSJvxh6Z2zW6Pd-dG1_I92nTWo/edit?usp=sharing\nhttps://www.cell.com/cell/pdf/S0092-8674(22)01571-9.pdf\n\n## Slide 17\nWhy 3D ?\n\"At the tumor invasive margin, where tumor, normal, and immune cells compete, T cell suppression involves multiple cell types and"
     },
     {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
+      "chunk_id": "Project ideas.pptx::chunk_0005",
+      "source_file": "Project ideas.pptx",
       "chunk_index": 5,
-      "text": "Functional markers should go first in cycles and discrete markers (+/-) - later"
+      "start_char": 7469,
+      "end_char": 8098,
+      "char_count": 629,
+      "word_count": 95,
+      "text": "Jvxh6Z2zW6Pd-dG1_I92nTWo/edit?usp=sharing\nhttps://www.cell.com/cell/pdf/S0092-8674(22)01571-9.pdf\n\n## Slide 17\nWhy 3D ?\n\"At the tumor invasive margin, where tumor, normal, and immune cells compete, T cell suppression involves multiple cell types and\n3D imaging shows that seemingly localized 2D features such as tertiary lymphoid structures are commonly interconnected and have graded molecular properties\n\"\nOur data show that 3D reconstruction provides additional insight into the large-scale connectivity of biological structures, but for relatively straightforward tasks such as cell-type enumeration, 2D WSI is often adequate"
     },
     {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 6,
-      "text": "Prepare questions for 3D CyCiF before 3rd October!"
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 7,
-      "text": "Meeting with Ada and Inga-Maria 25.09.23"
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 8,
-      "text": "We will profile 2 samples (S026: gBRCA1, no progression and S107: BRCAwt, progression PFS 10.49)"
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 9,
-      "text": "We will profile 600 μm of each block"
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 10,
-      "text": "Slides will be 5 μm in thickness"
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 11,
-      "text": "Thus, we will get 120 slides from one block"
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 12,
-      "text": "For 3D we will use each 8th slide - for one block we will use for analysis 15 slides which is OK"
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 13,
-      "text": "Thus, the distance between slides for 3D will be 35 μm"
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 14,
-      "text": "So we will ask to cut the block continuously, but if it is technically impossible for any reason our plan B is to ask to do 3 slides continuously and then skip 20 μm and repeat."
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 15,
-      "text": "Today I will discuss with Saun blocks (she will send them this week to be cut) and I will order Annexin A2 antibody, cause we do not have it in the lab."
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 16,
-      "text": "The panel is almost finalised, I just need to discuss the order with Ada."
-    },
-    {
-      "document_id": "f3e07a9bd56eb6bc46e1ad450a16c58e",
-      "source_file": "1_3D_Myelonets/Meeting notes.docx",
-      "chunk_index": 17,
-      "text": "Some antibodies, in which we are not sure, will be tested together with Adhiti's validation this week."
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
+      "chunk_id": "README.md::chunk_0000",
+      "source_file": "README.md",
       "chunk_index": 0,
-      "text": "​"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 1,
-      "text": "Project 1_3D_Mylonets"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 2,
-      "text": "Goals:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 3,
-      "text": "Describe myeloid cell subtypes and their functional heterogeneity in microenvironment of ovarian cancer"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 4,
-      "text": "Create a workflow (wet lab and data analysis) for 3D reconstruction of tumor microenvironment"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 5,
-      "text": "Main goal of 3-month rotation project: perform 3D visualization of TME, especially myelonets (myeloid cell aggregates)"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 6,
-      "text": "Responsible:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 7,
-      "text": "Project manager : Anastasiia Kachalova macro:mentionmacro:velocitymacro:html@anaskach@helsinki_fi"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 8,
-      "text": "Role/tasks: tCycIF experiments, computational data analysis, sample selection for a preliminary 3-month project"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 9,
-      "text": "Ada Junquera"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 10,
-      "text": "Role/tasks: main advisor - help with protocols/data analysis"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 11,
-      "text": "Estimated timeline:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 12,
-      "text": "Duration of the initial project - 3 months (September 2023 - November 2023, incl.)"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 13,
-      "text": "macro:task"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 14,
-      "text": "#2376"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 15,
-      "text": "Design the panel - till early October"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 16,
-      "text": "macro:task"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 17,
-      "text": "#2377"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 18,
-      "text": "Validation of antibodies: CD14-unconjugated (Abcam, ab133335, clone EPR3653), Lysozyme_C-647 (Santacruz, sc-518012 AF647, clone E-5), Vimentin-750 (CST, 69227S, clone D21H3): 26th Sept - 29th Sept"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 19,
-      "text": "macro:task"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 20,
-      "text": "#2378"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 21,
-      "text": "Validation of CD15 (Biolegend, 301910, clone H198) and new ANXA2 (Santacruz, sc-47696 AF488, clone 3D5): 13th-16th October"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 22,
-      "text": "macro:task"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 23,
-      "text": "#2379"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 24,
-      "text": "Experiment: 16th Oct - 13th November"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 25,
-      "text": "macro:task"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 26,
-      "text": "#2380"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 27,
-      "text": "Zoom meeting with Clarence (Boston) about 3D reconstruction approaches: November 14th"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 28,
-      "text": "macro:task"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 29,
-      "text": "#2381"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 30,
-      "text": "3D reconstruction with simple software (3D Slicer)"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 31,
-      "text": "macro:task"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 32,
-      "text": "#2382"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 33,
-      "text": "Registration of slides in Z axis with custom MATLAB script"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 34,
-      "text": "macro:task"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 35,
-      "text": "#2383"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 36,
-      "text": "3D visualisation with Imaris"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 37,
-      "text": "macro:task"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 38,
-      "text": "#2384"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 39,
-      "text": "Data analysis (cell segmentation, cell type calling, quantification)"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 40,
-      "text": "---------------------------------------------"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 41,
-      "text": "Slides used in experiments:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 42,
-      "text": "S107_iOme: 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 43,
-      "text": "S026-1_iOme: 1, 9, 17, 25, 33, 41, 49, 57, 65, 73, 81, 89, 97, 105, 113"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 44,
-      "text": "Antibody panel:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 45,
-      "text": "https://docs.google.com/spreadsheets/d/1PTxlu88EGZUAvDFr-qKXnHeWAh94sg93UKIJQB24CIw/edit#gid=711803750"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 46,
-      "text": "Used antibodies' concentrations and exposure times:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 47,
-      "text": "https://drive.google.com/drive/folders/1bBlCoGrpOm97VN96fZXFHPT5xHMHVTjb"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 48,
-      "text": "Raw data is stored:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 49,
-      "text": "sample S026 - CSC intermediate storage, rcpnl files"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 50,
-      "text": "sample S107 - cold storage hard drive - SEAGATE2, rcpnl files"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 51,
-      "text": "Ome tiffs are stored:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 52,
-      "text": "sample S026 - cold storage hard drive - SEAGATE2"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 53,
-      "text": "sample S107 -cold storage hard drive - SEAGATE2"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 54,
-      "text": "Slides are stored:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 55,
-      "text": "sample S026, sample S107 - in PBS in cold room, lower shelf"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 56,
-      "text": "Other sections from sample not used in experiment:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 57,
-      "text": "Cold room, blue boxes"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 58,
-      "text": "Link to Google Drive project folder: https://drive.google.com/drive/folders/1bBlCoGrpOm97VN96fZXFHPT5xHMHVTjb"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 59,
-      "text": "What to find in there:"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 60,
-      "text": "Meeting notes"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 61,
-      "text": "Presentations"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 62,
-      "text": "Antibody panel"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 63,
-      "text": "Poster, also in the datacloud https://datacloud.helsinki.fi/index.php/apps/files/?dir=/farkkila/Presentations_posters_abstracts&fileid=1018895#"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 64,
-      "text": "Document containing used abs concentrations and exposure times"
-    },
-    {
-      "document_id": "865ddb89dfe062b7d91cd58a530e3f2c",
-      "source_file": "1_3D_Myelonets/1_Project_log.docx",
-      "chunk_index": 65,
-      "text": "​"
-    },
-    {
-      "document_id": "dd5f5c7896bfd9f9bb88f6c72b742197",
-      "source_file": "1_3D_Myelonets/1_01_Antibody_panel_3D_Myelonets.xlsx",
+      "start_char": 0,
+      "end_char": 52,
+      "char_count": 52,
+      "word_count": 9,
+      "text": "Welcome to the project, start your readme file here."
+    },
+    {
+      "chunk_id": "Samples for 3D CyCif.pptx::chunk_0000",
+      "source_file": "Samples for 3D CyCif.pptx",
       "chunk_index": 0,
-      "text": "R1: Project | Experiment (Panel) | Sample name | Slide | ID | Barcode\nR2: 1.0 | 1.0 | S026-1_iOme | 1.0 | 1_26-1_1\nR3: 1.0 | 1.0 | S026-1_iOme | 9.0 | 1_26-1_9\nR4: 1.0 | 1.0 | S026-1_iOme | 17.0 | 1_26-1_17\nR5: 1.0 | 1.0 | S026-1_iOme | 25.0 | 1_26-1_25\nR6: 1.0 | 1.0 | S026-1_iOme | 33.0 | 1_26-1_33\nR7: 1.0 | 1.0 | S026-1_iOme | 41.0 | 1_26-1_41\nR8: 1.0 | 1.0 | S026-1_iOme | 49.0 | 1_26-1_49\nR9: 1.0 | 1.0 | S026-1_iOme | 57.0 | 1_26-1_57\nR10: 1.0 | 1.0 | S026-1_iOme | 65.0 | 1_26-1_65\nR11: 1.0 | 1.0 | S026-1_iOme | 73.0 | 1_26-1_73\nR12: 1.0 | 1.0 | S026-1_iOme | 81.0 | 1_26-1_81\nR13: 1.0 | 1.0 | S026-1_iOme | 89.0 | 1_26-1_89\nR14: 1.0 | 1.0 | S026-1_iOme | 97.0 | 1_26-1_97\nR15: 1.0 | 1.0 | S026-1_iOme | 105.0 | 1_26-1_105\nR16: 1.0 | 1.0 | S026-1_iOme | 113.0 | 1_26-1_113\nR17: 1.0 | 1.0 | S107_iOme | 8.0 | 1_107_8\nR18: 1.0 | 1.0 | S107_iOme | 16.0 | 1_107_16\nR19: 1.0 | 1.0 | S107_iOme | 24.0 | 1_107_24\nR20: 1.0 | 1.0 | S107_iOme | 32.0 | 1_107_32\nR21: 1.0 | 1.0 | S107_iOme | 40.0 | 1_107_40\nR22: 1.0 | 1.0 | S107_iOme | 48.0 | 1_107_48\nR23: 1.0 | 1.0 | S107_iOme | 56.0 | 1_107_56\nR24: 1.0 | 1.0 | S107_iOme | 64.0 | 1_107_64\nR25: 1.0 | 1.0 | S107_iOme | 72.0 | 1_107_72\nR26: 1.0 | 1.0 | S107_iOme | 80.0 | 1_107_80\nR27: 1.0 | 1.0 | S107_iOme | 88.0 | 1_107_88\nR28: 1.0 | 1.0 | S107_iOme | 96.0 | 1_107_96\nR29: 1.0 | 1.0 | S107_iOme | 104.0 | 1_107_104"
+      "start_char": 0,
+      "end_char": 1709,
+      "char_count": 1709,
+      "word_count": 280,
+      "text": "## Slide 1\nSample selection for 3D CyCiF\nAnastasia Kachalova\n\n## Slide 2\nGood samples\n\n## Slide 3\nS026\nimmune cells!\nS026_iOme_1_11.5x\n\n## Slide 4\nS107\nHigh immune infiltration\nS107_iOme_8.2x\n\n## Slide 5\nS095\nOme1\nImmune infiltration\n\n## Slide 6\nS005\nBut it is a edge site\n\n## Slide 7\nS005\nMore centered part\n\n## Slide 8\nS005\n- question\nMaybe mix of macrophages and tumor cells?\n\n## Slide 9\nS083\nOme2\nHigh immune infiltration\n\n## Slide 10\nS120\n\n## Slide 11\nS088\nImmune infiltration\n\n## Slide 12\nS106\n\n## Slide 13\nS106\nhigh immune infiltration\n\n## Slide 14\nS091\n- macrophages may be presented\n\n## Slide 15\nS032_iOvaL\nEdge -\nuseful\nor not?\nBad because it´s ova\n\n## Slide 16\nQuestionable\nsamples\n\n## Slide 17\nS113\nHigh immune and low tumor compartment\n???\n\n## Slide 18\nS110\nOnly small areas of immune cells?\n\n## Slide 19\nS098\nnot sure\n???\n\n## Slide 20\nS027\nTLS\nNo tumor infiltration in other parts\n???\n\n## Slide 21\nS065\nImmune cells on the edge, but no tumor around\n???\n\n## Slide 22\nS081(Ome1)\nImmune cells around the tumor\n???\n\n## Slide 23\nBad\nsamples\n\n## Slide 24\nS011\nOme1\nDead cancer cells maybe\n\n## Slide 25\nS011\nOme2\nDead cells\n?\n\n## Slide 26\nS050\nNo infiltration, dead cells are surrounded by space\n\n## Slide 27\nS100 - high infiltration but a lot of necrosis\n\n## Slide 28\nS10\n1\nNo tumor is presented on this picture\n\n## Slide 29\nS101\nNo tumor is presented on the whole slide\n\n## Slide 30\nS121\nNo immune infiltration\n\n## Slide 31\nS139 - very small tumor amount & no infiltration\n\n## Slide 32\nS143 - no tumor on slide\n\n## Slide 33\nS073\nOme1\nLow tumor but good infiltration in some sections\n???\n\n## Slide 34\nS123\nSeparated immune cells\nIt seems that it is not immune infiltration\n\n## Slide 35\nS083\n- Ome3\n???"
     },
     {
-      "document_id": "dd5f5c7896bfd9f9bb88f6c72b742197",
-      "source_file": "1_3D_Myelonets/1_01_Antibody_panel_3D_Myelonets.xlsx",
-      "chunk_index": 1,
-      "text": "6: 1.0 | 1.0 | S107_iOme | 80.0 | 1_107_80\nR27: 1.0 | 1.0 | S107_iOme | 88.0 | 1_107_88\nR28: 1.0 | 1.0 | S107_iOme | 96.0 | 1_107_96\nR29: 1.0 | 1.0 | S107_iOme | 104.0 | 1_107_104\nR30: 1.0 | 1.0 | S107_iOme | 112.0 | 1_107_112\nR31: 1.0 | 1.0 | S107_iOme | 120.0 | 1_107_120"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
+      "chunk_id": "Used concentrations and exposure times.docx::chunk_0000",
+      "source_file": "Used concentrations and exposure times.docx",
       "chunk_index": 0,
-      "text": "Myelonets\n3D CyCiF"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 1,
-      "text": "The most important result from 3D!\n\nWe conclude that EMT-like transitions and TB in CRC1 is characterized not by the formation of isolated spheres of cells, as first described by Weinberg and colleagues in tissue culture,48 but instead by the formation of large fibrillar structures that appear to be small buds when viewed in cross-section at their distal tips.\nFibrils can invade into several different environments, including stroma and mucin, and we speculate that their formation is driven by a gradual (not abrupt) breakdown in cell adhesion associated with a graded EMT-like transition"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 2,
-      "text": "3D on immune composition\n\nHowever, we found that many of these domains were interconnected, forming larger 3D structures; for example, seven large networks, each spanning >12 sections and several millimeters laterally.\n\nTLSs undergo maturation and are expected to differ from one another, but when we mapped marker expression clusters onto the physical organization of TLSNs, we found that some were relatively homogeneous, containing cells from one expression cluster, whereas others were heterogeneous. \n\nFor example, TLSN-C, which was predominantly located in the subserosa, was >96% composed of expression cluster 7 and showed a marked predominance of CD45+ CD20+ B cells"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 3,
-      "text": "Immune profiling of the invasive margin\n\n(L) High-resolution 3D imaging of PDL1:PD1 interaction among tumor and myeloid cells. \n\nTop: maximum intensity projections. Bottom: 3D rendering, Imaris"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 4,
-      "text": "Cell types involved in presenting PDL1 to PD1+ T cells\n\nAlthough a small minority (1%–5%) of tumor cells expressed PDL1, the cells most likely to be PDL1+ were CD68+ (14%–51% positive) and CD11c+ myeloid cells (10%–88% positive); PDL1+ myeloid cells were also 6.5-fold more abundant on average than PDL1+ tumor cells (Figures 7F and S6E).\n\nSecond the most important result from the article!\n\nAcross the CRC cohort, we found that single positive CD68+ CD11c or CD68CD11c+ and double positive CD68+ CD11c+ cells were commonly PDL1+\n\nSpeaker notes:\nWe do not have the markers in our panels to subtype more precisely PDL1+ myeloid populations, but our interpretation is that they include variable proportions of macrophages, dendritic cells, and other mononuclear phagocytes."
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 5,
-      "text": "PD1-PDL1 binding\n\nFunctionally, it is not the prevalence of PDL1+ cells that is relevant for T cell suppression but rather which cells are close enough for PDL1:PD1 binding\n\ncells interacting with PD1+ cells were strongly enriched for CD45+ and depleted for CK+ (p < 0.001 pairwise t test, two-sided), showing that PD1+ T cells interact with PDL1+ immune cells more commonly than PDL1+ tumor cells.\n\nFinally, high-resolution optical sectioning of 12-plex CyCIF provided direct evidence of PDL1+ on myeloid cells colocalizing with PD1+ T cells at the tumor margin, consistent with the formation of functional cell-cell interactions (Figure 7L). \n\nWe conclude that immunosuppression of PD1+ T cells in our CRC cohort most commonly involves PDL1+ myeloid cells, not tumor cells"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 6,
-      "text": "Main insights from the article\n\nEM transition (EMT) occurs on the tumor margin (cells are still connected, not isolated, but form fibrils - result from 3D reconstruction, not visible in 2D)\nQuestion that can be asked here - can we found also any spatially resolved structures of immune cells that will show association between immune cell type and cells undergoing EMT?\n\nImmunosuppression in tumors is provided by interaction of PD1+ T cells with PDL1+ myeloid cells, all myeloid cells expressed PDL1.\nQuestion - what type of myeloid cells do we see in myelonets (suppressive or not)? Can we characterise them in more details? Do they have something in common with EMT regions?\n\nSpeaker notes:\nMaybe EMT regions are surrounded by myeloid cell types?"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 7,
-      "text": "More detailed small questions\n\nMyelonets - in which group of patients they are presented? \nresponders vs. non-responders / before therapy vs. after therapy (paired samples are required) / mutated vs. wt)\nAbundance of myeloid cells between groups\nWhich myeloid cell types they are consists of?\nInclude M1(CD68+, anti-tumor*) and M2 (CD163+, pro-tumor) markers MDSC cells -? \nCell-cell interactions (?) \nMyeloid cells - tumor cells\nMyeloid cells - Ki67+ tumor cells \nMyeloid cells - lymphocytes populations\nMyeloid cells - PD1+ T cells\nMyeloid PDL1+ cells - PD1+ T cells\n3D reconstruction - do we see any specific region of tumor which interacts with myeloid cells? May be EMT regions?"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 8,
-      "text": "* Better distinguish between M1 and M2\n\nTranscription factors should also be studied\npSTAT1 for M1\nCMAF for M2\nhttps://journals.plos.org/plosone/article?id=10.1371/journal.pone.0080908 (IHC)"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 9,
-      "text": "Existing studies\n\nhttps://www.nature.com/articles/s41586-022-05680-3 the study was done on brain tumors, but a lot of attention was paid to the macrophages in TME and their association with prognosis.\n\nKaplan–Meier analysis based on MPO+ IBA1+ cell frequency as determined by IHF staining in 135 tumours from patients with glioblastoma (z-score). Cell frequencies were averaged when multiple samples corresponded to the same individual. Log-rank (Mantel–Cox) test\n\nStudied also cell interactions and showed that they are not random and do not correlate with cell frequencies"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 10,
-      "text": "2.https://aacrjournals.org/cancerimmunolres/article/9/6/665/666167/Chemotherapy-Induces-Tumor-Associated-Macrophages\nUsed unmatched samples for pre and post (??)\nShowed that CD68+ macrophages “lakes” are associated with good prognosis following chemotherapy\nFrequency of CD163+ (M2) TAMs decreased after chemotherapy (but samples were unmatched!)\n\nExisting studies"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 11,
-      "text": "Pre-selected samples\n\nTable with patients selection: https://docs.google.com/spreadsheets/d/1WFUiFqqeyxgsK4QTlxfdIgU121LQW01nqbrYx5sRp9o/edit?usp=sharing\n\nPresentation with HEs\nhttps://docs.google.com/presentation/d/1-8yd7birOFw8cDBFPt_tInu2pwZmuSVsrvYnzPisWlE/edit?usp=sharing\n\n❌\n\n❌"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 12,
-      "text": "Suggested panel\n\nPut PD1 and PDL1 in first cycles?"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 13,
-      "text": "Cell combinations I expect\n\nCD68+ - macrophages\nCD163+ - M2 macrophages\nCD68+ CD163- - M1 macrophages (??)\nCD45+ CD4+ - T helpers\nCD45+ CD8+ - cytotoxic T cells\nCD11c+ - dendritic cells (?)\nPD1+ CD4/PD1+ CD8 T cells\nPAX8, PanCK - cancer cells\nKi67+ and/or PCNA+ - proliferating cells\nPAX8+/PanCK+ Ki67+/PCNA+ - proliferating tumor cells \nVimentin+, aSMA+ - stromal cells\nMDSC subsets (https://link.springer.com/article/10.1007/s00262-015-1782-5)\nCD33+ CD11b+ = all MDSC\nCD14+ CD15- and any myeloid marker (CD11b or CD33) = monocytic MDSC\nCD14- CD15+ and any myeloid marker (CD11b or CD33) = PMN MDSC (granulocytic)\nHLA-DRlow CD14+ = MDSC4 (a subset which amount in peripheral blood is associated with response in many cancers)\nPDL1+ myeloid cells (different subtypes)\n\nCD11b - pan-myeloid marker\nCD11c - dendritic cells"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 14,
-      "text": "3D: distance between sections\n\n\"Due to whole slide structural changes that biologically occur in the 5 μm space between sections, it was not possible to adequately register whole slide images this accurately without using non-rigid transformations, which resulted in imaging artifacts that skewed analysis.\"\nhttps://www.biorxiv.org/content/10.1101/2022.12.09.519807v1.abstract\n\nAverage cell size of lymphoid cells is 8-10 μm\nhttps://www.ncbi.nlm.nih.gov/books/NBK459471/#:~:text=From%20the%20morphological%20point%20of,mitochondria%2C%20ribosomes%2C%20and%20lyzosomes."
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 15,
-      "text": "3D visualization\n\n“For CRC1, 106 serial sections were cut from an 1.7 x 1.7 cm piece of FFPE tissue and 22 H&E and 25 CyCIF images were collected, skipping some sections to increase the total dimension along the Z-axis”\n\n\nImaris: https://docs.google.com/document/d/1cyKqe58luBxH4ikf0TSJvxh6Z2zW6Pd-dG1_I92nTWo/edit?usp=sharing\n\nhttps://www.cell.com/cell/pdf/S0092-8674(22)01571-9.pdf"
-    },
-    {
-      "document_id": "e6bdcb4f5662d5335ff259c0fb3aa4d1",
-      "source_file": "1_3D_Myelonets/Project ideas.pptx",
-      "chunk_index": 16,
-      "text": "Why 3D ?\n\n\"At the tumor invasive margin, where tumor, normal, and immune cells compete, T cell suppression involves multiple cell types and 3D imaging shows that seemingly localized 2D features such as tertiary lymphoid structures are commonly interconnected and have graded molecular properties\"\nOur data show that 3D reconstruction provides additional insight into the large-scale connectivity of biological structures, but for relatively straightforward tasks such as cell-type enumeration, 2D WSI is often adequate"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 0,
-      "text": "Sample selection for 3D CyCiF\n\nAnastasia Kachalova"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 1,
-      "text": "Good samples"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 2,
-      "text": "S026\n\nimmune cells!\n\nS026_iOme_1_11.5x"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 3,
-      "text": "S107\n\nHigh immune infiltration\n\nS107_iOme_8.2x"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 4,
-      "text": "S095 Ome1\n\nImmune infiltration"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 5,
-      "text": "S005\n\nBut it is a edge site"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 6,
-      "text": "S005\n\nMore centered part"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 7,
-      "text": "S005 - question\n\nMaybe mix of macrophages and tumor cells?"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 8,
-      "text": "S083 Ome2\n\nHigh immune infiltration"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 9,
-      "text": "S120"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 10,
-      "text": "S088\n\nImmune infiltration"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 11,
-      "text": "S106"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 12,
-      "text": "S106\n\nhigh immune infiltration"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 13,
-      "text": "S091 - macrophages may be presented"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 14,
-      "text": "S032_iOvaL\n\nEdge - useful or not?\n\nBad because it´s ova"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 15,
-      "text": "Questionable samples"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 16,
-      "text": "S113\n\nHigh immune and low tumor compartment\n\n???"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 17,
-      "text": "S110\n\nOnly small areas of immune cells?"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 18,
-      "text": "S098\n\nnot sure\n\n???"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 19,
-      "text": "S027\n\nTLS\n\nNo tumor infiltration in other parts\n\n???"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 20,
-      "text": "S065\n\nImmune cells on the edge, but no tumor around\n\n???"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 21,
-      "text": "S081(Ome1)\n\nImmune cells around the tumor\n\n???"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 22,
-      "text": "Bad samples"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 23,
-      "text": "S011\nOme1\n\nDead cancer cells maybe"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 24,
-      "text": "S011\nOme2\n\nDead cells?"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 25,
-      "text": "S050\n\nNo infiltration, dead cells are surrounded by space"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 26,
-      "text": "S100 - high infiltration but a lot of necrosis"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 27,
-      "text": "S101\n\nNo tumor is presented on this picture"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 28,
-      "text": "S101\n\nNo tumor is presented on the whole slide"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 29,
-      "text": "S121\n\nNo immune infiltration"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 30,
-      "text": "S139 - very small tumor amount & no infiltration"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 31,
-      "text": "S143 - no tumor on slide"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 32,
-      "text": "S073\n\nOme1\nLow tumor but good infiltration in some sections\n\n???"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 33,
-      "text": "S123\n\nSeparated immune cells\n\nIt seems that it is not immune infiltration"
-    },
-    {
-      "document_id": "87806da0f6209b34b23427fa0bf10d69",
-      "source_file": "1_3D_Myelonets/Samples for 3D CyCif.pptx",
-      "chunk_index": 34,
-      "text": "S083 - Ome3\n\n???"
-    },
-    {
-      "document_id": "ad3deeff132535601645f5146c17f3e9",
-      "source_file": "1_3D_Myelonets/Used concentrations and exposure times.docx",
-      "chunk_index": 0,
-      "text": "Final table with antibody dilution and exposure times:"
-    },
-    {
-      "document_id": "ad3deeff132535601645f5146c17f3e9",
-      "source_file": "1_3D_Myelonets/Used concentrations and exposure times.docx",
-      "chunk_index": 1,
-      "text": "Cycle | Antibody | Dilution | Exposure | Comment\nCycle 1 | CD14 with secondaries (488) | 1:100 (primary unconjugated + 1:2000 secondaries) | 0.1 | \nCycle 1 | PanCK | 1:200 | 0.03 | \nCycle 1 | CD45 | 1:100 | 0.125 | \nCycle 2 | CD15 | 1:30 | 0.2 | \nCycle 2 | PD-L1 | 1:100 | 0.2 | Didn't work or not expressed\nCycle 2 | HLA-A | 1:100 | 0.01 | Lower cocn!\nCycle 2 | Vimentin-750 | 1:100 | 0.2 | \nCycle 3 | CD163 | 1:100 | 0.15 | \nCycle 3 | CD11b | 1:100 | 0.3 | Few cells, could be overexposed\nCycle 3 | PD-1 | 1:100 | 0.175 | perfect\nCycle 4 | Annexin A2 | 1:100 | 0.2 | Spin 10 mins before usage\nCycle 4 | pSTAT1 | 1:50 | 0.2 | \nCycle 4 | CD8a | 1:50 | 0.1 | Overexposed, use lower conc\nCycle 5 | TIM-3 | 1:200 | 0.125 | \nCycle 5 | PAX8 | 1:300 | 0.2 | Didn't work in S107 sample, conc should be higher\nCycle 5 | HLA-DBP1 | 1:300 | 0.05 | Conc can be lower\nCycle 6 | IBA-1 | 1:200 | 0.1 | \nCycle 6 | Ki-67 (555) | 1:200 | 0.075 | \nCycle 6 | CD206 | 1:200 | 0.025 | Conc should be lower\nCycle 7 | CD4 | 1:150 | 0.175 | \nCycle 7 | CD11c | 1:150 | 0.1 | \nCycle 7 | p21 | 1:200 | 0.1 |"
-    },
-    {
-      "document_id": "c543b92b303b5111d63cb8d255b9f0b7",
-      "source_file": "1_3D_Myelonets/Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
-      "chunk_index": 0,
-      "text": "BackgroundMaterialand methodsAims\nResults3D Investigationof Myelonets(myeloidnetworks) in OvarianCancerTumorMicroenvironment\nAnastasiia Kachalova1, Ada Junquera2, Inga-Maria Launonen2, Anni Virtanen2,3, Ulla-Maija Haltia2,4, Anniina Färkkilä1,2,4,5\n•Myeloid cells are known to play key supressive role in tumor microenvironment of HGSOC (myeloid-derived supressor cells, macrophages)1,2•Previous findings reveal aggregates of myeloid cells (> 10 cells) across most of HGSOC samples•Create a workflow for 3D visualization of tumor microenvironment •Create a myeloid-focused antibody panel•Perform 3D vizualizationof myelonets\nDNATumorStromaMyeloidcellsDNATumorIBA-1CD163CD451. MyelonetsinfiltratingtumoraremostlyM2-like macrophagesthroughtheZ-axis\n2. Myelonetscontainactivated(ANXA2+) M2+like macrophages\nAuthorsaffilationsFuturework•Cell segmentation, celltypecallingand quantificationsfor everysection•CharacterizetheTME composition and functionalheterogeneityin 3D•Acquirethecohortof patientswithclinicallyrelevantdifferencesand analyzepresenceand composition of myelonetsanastasiia.kachalova@helsinki.fi\nReferences1.BaertT, VankerckhovenA, RivaM, Van HoylandtA, ThirionG, Holger G, MathivetT, VergoteI and CoosemansA (2019) MyeloidDerivedSuppressorCells: Key Driversof Immunosuppressionin OvarianCancer.Front. Immunol.10:1273."
-    },
-    {
-      "document_id": "c543b92b303b5111d63cb8d255b9f0b7",
-      "source_file": "1_3D_Myelonets/Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
-      "chunk_index": 1,
-      "text": "Van HoylandtA, ThirionG, Holger G, MathivetT, VergoteI and CoosemansA (2019) MyeloidDerivedSuppressorCells: Key Driversof Immunosuppressionin OvarianCancer.Front. Immunol.10:1273. doi: 10.3389/fimmu.2019.012732.BarrosMHM, HauckF, DreyerJH, KempkesB, NiedobitekG (2013) MacrophagePolarisation: an ImmunohistochemicalApproachfor IdentifyingM1 and M2 Macrophages. PLoSONE 8(11): e80908. doi.org/10.1371/journal.pone.00809083.Lin JR, Wang S, CoyS, Chen YA, YappC, Tyler M, NariyaMK, HeiserCN, LauKS, SantagataS, SorgerPK. Multiplexed3D atlas of statetransitionsand immuneinteractionin colorectalcancer. Cell. 2023 Jan 19;186(2):363-381.e19. doi: 10.1016/j.cell.2022.12.028\n@kachalova_an\nFärkkilälabwebsite\n@SystemTmor\nMyelonetfrompreviousdata\nFunding\nPanelcomposition\nDNATumorIBA-1CD163CD45DNATumorIBA-1CD163CD45DNATumorIBA-1CD163CD45\nSlide#1Slide#5Slide#10Slide#15………\n3. PD1+CD4+ and PD1+CD8+ T cellsinteractwithmyelonetsDNATumorM2ANXA2PD-1DNATumorM2ANXA2PD-1\nTumorM2CD8CD4PD-1…\n…Slide#1Slide#5Slide#10Slide#15\nSlide#1Slide#5Slide#10Slide#15\nTumorM2CD8CD4PD-1\nDNATumorM2ANXA2PD-1…\nTumorM2CD8CD4PD-1…\nDNATumorM2ANXA2PD-1…\nTumorM2CD8CD4PD-1…"
-    },
-    {
-      "document_id": "c543b92b303b5111d63cb8d255b9f0b7",
-      "source_file": "1_3D_Myelonets/Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf",
-      "chunk_index": 2,
-      "text": "TumorM2CD8CD4PD-1…\n…Slide#1Slide#5Slide#10Slide#15\nSlide#1Slide#5Slide#10Slide#15\nTumorM2CD8CD4PD-1\nDNATumorM2ANXA2PD-1…\nTumorM2CD8CD4PD-1…\nDNATumorM2ANXA2PD-1…\nTumorM2CD8CD4PD-1…\n1.Institute for MolecularMedicineFinland, Helsinki Institute of Life Sciences, Universityof Helsinki, Finland2.ResearchProgram in Systems Oncology, Universityof Helsinki, Helisnki, Finland3.Department of Pathology, Universityof Helsinki and HUS DiagnosticCenter, Helsinki UniversityHospital, Helsinki, Finland4.Department of Obstetricsand Gynecology, Helsinki UniversityHospital, Helsinki, Finland5.iCANdigitalprecisioncancermedicine, Helsinki, Finland\nMyelonetsexistin 3D:N = 5 consecutive imagesIBA-1+ cells"
+      "start_char": 0,
+      "end_char": 841,
+      "char_count": 841,
+      "word_count": 199,
+      "text": "### word/document.xml\nFinal table with antibody dilution and exposure times:\nCycle\nAntibody\nDilution\nExposure\nComment\nCycle 1\nCD14 with secondaries (488)\n1:100 (primary unconjugated + 1:2000 secondaries)\n0.1\nPanCK\n1:200\n0.03\nCD45\n1:100\n0.125\nCycle 2\nCD15\n1:30\n0.2\nPD-L1\n1:100\n0.2\nDidn't work or not expressed\nHLA-A\n1:100\n0.01\nLower cocn!\nVimentin-750\n1:100\n0.2\nCycle 3\nCD163\n1:100\n0.15\nCD11b\n1:100\n0.3\nFew cells, could be overexposed\nPD-1\n1:100\n0.175\nperfect\nCycle 4\nAnnexin A2\n1:100\n0.2\nSpin 10 mins before usage\npSTAT1\n1:50\n0.2\nCD8a\n1:50\n0.1\nOverexposed, use lower conc\nCycle 5\nTIM-3\n1:200\n0.125\nPAX8\n1:300\n0.2\nDidn't work in S107 sample, conc should be higher\nHLA-DBP1\n1:300\n0.05\nConc can be lower\nCycle 6\nIBA-1\n1:200\n0.1\nKi-67 (555)\n1:200\n0.075\nCD206\n1:200\n0.025\nConc should be lower\nCycle 7\nCD4\n1:150\n0.175\nCD11c\n1:150\n0.1\np21\n1:200\n0.1"
     }
   ],
   "extraction": {
-    "total_scannable_assets": 0,
-    "extracted_records": 0,
-    "chunk_count": 0,
-    "status_counts": {},
-    "extractor_counts": {},
-    "extension_counts": {},
-    "errors": []
+    "total_scannable_assets": 9,
+    "extracted_records": 9,
+    "chunk_count": 18,
+    "status_counts": {
+      "extracted": 9
+    },
+    "extractor_counts": {
+      "xlsx-zip-xml": 2,
+      "docx-zip-xml": 3,
+      "pdftotext": 1,
+      "pptx-slide-xml": 2,
+      "text:utf-8": 1
+    },
+    "extension_counts": {
+      ".xlsx": 2,
+      ".docx": 3,
+      ".pdf": 1,
+      ".pptx": 2,
+      ".md": 1
+    },
+    "errors": [],
+    "limits": {
+      "max_text_chars_per_file": 250000,
+      "chunk_chars": 1800,
+      "chunk_overlap": 250,
+      "max_pdf_pages": 120,
+      "max_pptx_slides": 180,
+      "max_xlsx_sheets": 20,
+      "max_xlsx_rows": 200,
+      "max_file_bytes": 536870912
+    },
+    "optional_extractors_detected": {
+      "pypdf": false,
+      "PyPDF2": false,
+      "python_docx": false,
+      "python_pptx": false,
+      "openpyxl": false,
+      "beautifulsoup4": true,
+      "Pillow": true,
+      "tifffile": true,
+      "pdftotext_cli": true,
+      "libreoffice_cli": true,
+      "textutil_cli": true
+    }
   },
   "metrics": {
-    "document_count": 0,
-    "total_assets": 0,
+    "document_count": 9,
+    "total_assets": 9,
     "figure_count": 0,
-    "timeline_entries": 0,
+    "timeline_entries": 1,
     "meeting_count": 0,
     "protocol_count": 0,
     "cohort_count": 0,
     "estimated_sample_count": null,
     "repository_count": 0,
     "storage_path_count": 0,
-    "presentation_count": 0,
-    "data_file_count": 0,
-    "extracted_document_count": 8,
-    "knowledge_chunk_count": 146,
+    "presentation_count": 2,
+    "data_file_count": 2,
+    "extracted_document_count": 9,
+    "knowledge_chunk_count": 18,
     "extraction_error_count": 0,
-    "output_count": 0
+    "output_count": 6
   },
-  "outputs": []
+  "outputs": [
+    {
+      "title": "3D Investigation of Myelonets (myeloid networks)",
+      "author": "",
+      "conference": "",
+      "year": null,
+      "doi": "10.3389/fimmu.2019.01273",
+      "type": "poster",
+      "source_file": "Poster - 3D Investigation of Myelonets (myeloid networks) in Ovarian Cancer Tumor Microenvironment.pdf"
+    },
+    {
+      "title": "DOI 10.1007/s00262-015-1782-5",
+      "author": "",
+      "conference": "document",
+      "year": null,
+      "doi": "10.1007/s00262-015-1782-5",
+      "type": "publication",
+      "source_file": ""
+    },
+    {
+      "title": "DOI 10.1016/j.cell.2022.12.028",
+      "author": "",
+      "conference": "document",
+      "year": null,
+      "doi": "10.1016/j.cell.2022.12.028",
+      "type": "publication",
+      "source_file": ""
+    },
+    {
+      "title": "DOI 10.1101/2022.12.09.519807v1.abstract",
+      "author": "",
+      "conference": "document",
+      "year": null,
+      "doi": "10.1101/2022.12.09.519807v1.abstract",
+      "type": "publication",
+      "source_file": ""
+    },
+    {
+      "title": "DOI 10.1371/journal.pone.0080908",
+      "author": "",
+      "conference": "document",
+      "year": null,
+      "doi": "10.1371/journal.pone.0080908",
+      "type": "publication",
+      "source_file": ""
+    },
+    {
+      "title": "DOI 10.3389/fimmu.2019.01273",
+      "author": "",
+      "conference": "document",
+      "year": null,
+      "doi": "10.3389/fimmu.2019.01273",
+      "type": "publication",
+      "source_file": ""
+    }
+  ]
 }

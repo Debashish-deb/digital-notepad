@@ -1,0 +1,63 @@
+{
+  "source": "category_tree.json",
+  "generated_from": "/Users/debashishdeb/Downloads/OMEIA-AI/reports/document_library_audit/first_pass/category_tree.json",
+  "main_tabs": {
+    "overview": {
+      "sub_tabs": [
+        "onboarding",
+        "guidelines",
+        "documents_permits",
+        "cleaning",
+        "personnel",
+        "research"
+      ],
+      "total_categories": 27
+    },
+    "wet_lab": {
+      "sub_tabs": [
+        "files"
+      ],
+      "total_categories": 11
+    },
+    "orders": {
+      "sub_tabs": [
+        "billing"
+      ],
+      "total_categories": 8
+    },
+    "projects": {
+      "sub_tabs": [
+        "overview",
+        "plan",
+        "methods",
+        "data",
+        "writing",
+        "log",
+        "archive"
+      ],
+      "total_categories": 29
+    }
+  },
+  "total_main_tabs": 4,
+  "total_sub_tabs": 15,
+  "total_categories": 15,
+  "domain_file_counts": {
+    "project": 3913,
+    "lab_operations": 483,
+    "social_memory": 222,
+    "administration": 112,
+    "orders_procurement": 70
+  },
+  "section_file_counts": {
+    "unknown": 3913,
+    "wet_lab_files": 483,
+    "social_misc": 222,
+    "overview_documents": 54,
+    "orders_archive": 42,
+    "orders_billing": 28,
+    "overview_personnel": 26,
+    "overview_guidelines": 18,
+    "overview_cleaning": 8,
+    "overview_onboarding": 6
+  }
+}

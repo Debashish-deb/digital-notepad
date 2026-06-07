@@ -1,0 +1,38 @@
+{
+  "enabled": true,
+  "schedule": {
+    "interval_hours": 24,
+    "run_at_startup": true,
+    "startup_delay_seconds": 90
+  },
+  "directories": [
+    {
+      "id": "mock_lab_orders",
+      "label": "Mock lab orders inbox",
+      "path": "data/scheduled_watch/mock_lab_orders",
+      "enabled": true,
+      "notes": "Replace path with your real orders folder when ready."
+    },
+    {
+      "id": "mock_vendor_billing",
+      "label": "Mock vendor billing drop",
+      "path": "data/scheduled_watch/mock_vendor_billing",
+      "enabled": true,
+      "notes": "Vendor invoices and billing PDFs."
+    },
+    {
+      "id": "mock_shipments",
+      "label": "Mock shipments records",
+      "path": "data/scheduled_watch/mock_shipments",
+      "enabled": true,
+      "notes": "FedEx/UPS receipts and shipment logs."
+    },
+    {
+      "id": "mock_procurement_archive",
+      "label": "Mock procurement archive",
+      "path": "data/scheduled_watch/mock_procurement_archive",
+      "enabled": true,
+      "notes": "Historical quotes and archived procurement files."
+    }
+  ]
+}

@@ -3,6 +3,7 @@
  */
 
 import { humanizeFilenameLabel } from './textCleanup.js';
+import { smartDocumentTitle } from './smartDocumentTitle.js';
 
 export function isCycifAntibodyInventoryPath(path) {
   const lower = (typeof path === 'string' ? path : (path?.path || ''))
@@ -94,7 +95,10 @@ export function categorizeCycifPath(path) {
 }
 
 export function cycifDocumentTitle(doc) {
-  const fileName = (doc?.path || '').split('/').pop() || '';
+  if (doc?.display_title) {
+    return smartDocumentTitle(doc);
+  }
+  const fileName = (doc?.path || doc?.filename || '').split('/').pop() || '';
   return humanizeFilenameLabel(fileName);
 }
 

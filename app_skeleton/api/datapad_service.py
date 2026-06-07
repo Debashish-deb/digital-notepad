@@ -245,6 +245,15 @@ def save_section_document(
         actor=actor,
         details={"backup_path": backup_rel, "size_bytes": len(encoded)},
     )
+    identity_synced = False
+    if "readme" in norm.lower():
+        try:
+            from app_skeleton.api.project_processor import sync_readme_identity_from_text
+
+            sync_readme_identity_from_text(project_code, content)
+            identity_synced = True
+        except Exception:
+            identity_synced = False
     return {
         "status": "saved",
         "project_code": project_code,
@@ -252,6 +261,7 @@ def save_section_document(
         "size_bytes": len(encoded),
         "etag": _content_etag(abs_path),
         "backup_path": backup_rel,
+        "identity_synced": identity_synced,
     }
 
 

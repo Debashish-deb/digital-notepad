@@ -1,0 +1,473 @@
+/* Full-page reading layout for overview document tabs */
+
+.sfe-root--reading {
+  --ovr-glass-blur: 20px;
+  --ovr-glass-saturate: 1.65;
+  --ovr-glass-radius: 20px;
+  --ovr-glass-fill: color-mix(in srgb, var(--bg-surface) 62%, transparent);
+  --ovr-glass-fill-deep: color-mix(in srgb, var(--surface-subtle) 44%, transparent);
+  --ovr-glass-highlight: color-mix(in srgb, var(--bg-surface) 14%, white);
+  --ovr-list-tint-a: color-mix(in srgb, var(--color-primary) 5%, var(--bg-surface) 36%);
+  --ovr-list-tint-b: color-mix(in srgb, var(--surface-subtle) 40%, transparent);
+  min-height: 0;
+}
+
+.sfe-root--reading .sfe-body--reading {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 1.35rem;
+  flex: 1;
+  min-height: 0;
+  height: auto;
+  max-height: none;
+  align-items: start;
+}
+
+/* Catalog column — single glass shell */
+.sfe-root--reading .sfe-main {
+  position: sticky;
+  top: 0.5rem;
+  max-height: calc(100vh - 10rem);
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  border-radius: var(--ovr-glass-radius);
+  border: none;
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--ovr-glass-fill) 92%, white) 0%,
+      var(--ovr-glass-fill) 100%
+    );
+  backdrop-filter: blur(var(--ovr-glass-blur)) saturate(var(--ovr-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--ovr-glass-blur)) saturate(var(--ovr-glass-saturate));
+  box-shadow:
+    0 1px 0 var(--ovr-glass-highlight) inset,
+    0 20px 44px -24px color-mix(in srgb, var(--text-primary) 14%, transparent);
+  isolation: isolate;
+}
+
+.sfe-root--reading .sfe-list-section--controls {
+  background: transparent;
+}
+
+.sfe-root--reading .sfe-list-section + .sfe-list-section {
+  border-top-color: color-mix(in srgb, var(--text-muted) 8%, transparent);
+}
+
+.sfe-root--reading .sfe-list-wrap {
+  flex: 1;
+  min-height: 0;
+  border: none;
+  background: transparent;
+  padding: 0.1rem 0;
+}
+
+.sfe-root--reading .sfe-virtual-scroll {
+  max-height: calc(100vh - 22rem);
+  padding: 0 0.12rem;
+}
+
+.sfe-root--reading .sfe-card-grid {
+  max-height: calc(100vh - 22rem);
+  overflow-y: auto;
+  gap: 0.45rem;
+  padding: 0.15rem 0.1rem;
+}
+
+/* Document list rows — glass tiles, no divider lines */
+.sfe-root--reading .sfe-row {
+  margin: 0 0 0.32rem;
+  padding: 0.42rem 0.65rem;
+  border: none;
+  border-radius: 11px;
+  border-bottom: none;
+  backdrop-filter: blur(10px) saturate(1.3);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  background: var(--ovr-list-tint-a);
+  box-shadow: 0 1px 0 color-mix(in srgb, white 5%, transparent) inset;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sfe-root--reading .sfe-row--alt {
+  background: var(--ovr-list-tint-b);
+}
+
+.sfe-root--reading .sfe-row:hover {
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--bg-surface) 48%);
+}
+
+.sfe-root--reading .sfe-row.is-selected {
+  background: color-mix(in srgb, var(--color-primary) 16%, var(--bg-surface) 58%);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-primary) 22%, transparent) inset,
+    0 1px 0 color-mix(in srgb, white 6%, transparent) inset;
+}
+
+.sfe-root--reading .sfe-row--header {
+  margin-bottom: 0.4rem;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface-subtle) 55%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.sfe-root--reading .sfe-card {
+  border: none;
+  border-radius: 12px;
+  background: var(--ovr-list-tint-a);
+  backdrop-filter: blur(10px) saturate(1.3);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  box-shadow: 0 1px 0 color-mix(in srgb, white 5%, transparent) inset;
+}
+
+.sfe-root--reading .sfe-card:nth-child(even) {
+  background: var(--ovr-list-tint-b);
+}
+
+.sfe-root--reading .sfe-card.is-selected {
+  background: color-mix(in srgb, var(--color-primary) 16%, var(--bg-surface) 58%);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-primary) 22%, transparent) inset,
+    0 1px 0 color-mix(in srgb, white 6%, transparent) inset;
+}
+
+/* Reader — one glass surface, no nested boxes */
+.overview-reading-article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  border-radius: var(--ovr-glass-radius);
+  border: none;
+  background:
+    linear-gradient(
+      168deg,
+      color-mix(in srgb, var(--ovr-glass-fill) 94%, white) 0%,
+      var(--ovr-glass-fill) 100%
+    );
+  backdrop-filter: blur(var(--ovr-glass-blur)) saturate(var(--ovr-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--ovr-glass-blur)) saturate(var(--ovr-glass-saturate));
+  box-shadow:
+    0 1px 0 var(--ovr-glass-highlight) inset,
+    0 24px 48px -20px color-mix(in srgb, var(--text-primary) 13%, transparent);
+  overflow: visible;
+  isolation: isolate;
+}
+
+.overview-reading-article--empty {
+  min-height: 70vh;
+  justify-content: center;
+}
+
+.overview-reading-article--hidden {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.overview-reading-hero {
+  padding: 1.45rem 1.65rem 0.85rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.overview-reading-hero__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.overview-reading-hero__subline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+  margin-top: 0.45rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.overview-reading-hero__subline .sfe-preview-date {
+  font-size: 0.75rem;
+}
+
+.overview-reading-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0 1.1rem 0.5rem;
+  padding: 0.45rem 0.75rem;
+  position: sticky;
+  top: 0.35rem;
+  z-index: 4;
+  border: none;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--ovr-glass-fill-deep) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
+  box-shadow: 0 1px 0 color-mix(in srgb, white 4%, transparent) inset;
+}
+
+.overview-reading-toolbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.overview-reading-toolbar .doc-viewer-tool--labeled {
+  border: 1px solid color-mix(in srgb, var(--text-muted) 14%, transparent);
+  background: color-mix(in srgb, var(--bg-surface) 72%, transparent);
+}
+
+.overview-reading-draft-toggle {
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  border: none;
+  background: color-mix(in srgb, var(--ovr-glass-fill-deep) 65%, transparent);
+  color: var(--text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.overview-reading-draft-toggle:hover,
+.overview-reading-draft-toggle.is-active {
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.overview-reading-draft {
+  margin: 0 1.1rem 0.5rem;
+  padding: 0.75rem 0.85rem;
+  border: none;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--ovr-glass-fill-deep) 58%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.overview-reading-draft textarea {
+  width: 100%;
+  min-height: 6rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: none;
+  background: color-mix(in srgb, var(--bg-surface) 70%, transparent);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  resize: vertical;
+  font-family: inherit;
+  box-shadow: 0 1px 0 color-mix(in srgb, white 4%, transparent) inset;
+}
+
+.overview-reading-draft__hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.overview-reading-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  padding: 0.35rem 1.65rem 1.65rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.overview-reading-body .sfe-preview-reader,
+.overview-reading-prose {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: visible;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.overview-reading-prose {
+  max-width: 72ch;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.overview-reading-prose p,
+.overview-reading-body .doc-preview-prose p,
+.overview-reading-body .kindle-section-body p {
+  text-align: justify;
+  line-height: 1.7;
+  margin-bottom: 1.1em;
+  word-spacing: normal;
+  hyphens: auto;
+}
+
+/* In-document sections — tint only, no boxes */
+.overview-reading-prose .kindle-doc-body,
+.overview-reading-body .kindle-doc-body {
+  gap: 1.35rem;
+}
+
+.overview-reading-prose .kindle-section,
+.overview-reading-body .kindle-section {
+  margin-bottom: 0;
+  padding: 0.25rem 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.overview-reading-prose .kindle-section--alt,
+.overview-reading-body .kindle-section--alt {
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--ovr-glass-fill-deep) 40%);
+}
+
+.overview-reading-prose .kindle-heading,
+.overview-reading-body .kindle-heading,
+.overview-reading-prose .kindle-subheading,
+.overview-reading-body .kindle-subheading,
+.overview-reading-body .kindle-subsection {
+  border: none;
+  border-left: 3px solid color-mix(in srgb, var(--color-primary) 38%, transparent);
+  border-radius: 0;
+  background: transparent;
+  padding: 0.35rem 0 0.35rem 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.overview-reading-body .doc-card {
+  border: none;
+  border-radius: 0;
+  padding: 0.5rem 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.overview-reading-body .doc-card-title,
+.overview-reading-body .doc-inline-label {
+  border: none;
+  border-left: 3px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  border-radius: 0;
+  background: transparent;
+  padding: 0.3rem 0 0.3rem 0.6rem;
+  margin-bottom: 0.65rem;
+}
+
+.overview-reading-body .sfe-pdf-frame {
+  min-height: 85vh;
+  height: 85vh;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 12px 28px -18px color-mix(in srgb, var(--text-primary) 12%, transparent);
+}
+
+.overview-reading-body .sfe-preview-media .media-viewer {
+  min-height: min(70vh, 640px);
+  border-radius: 12px;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 12px 28px -18px color-mix(in srgb, var(--text-primary) 12%, transparent);
+}
+
+.overview-reading-footer {
+  flex-shrink: 0;
+  margin: 0.5rem 1.1rem 1rem;
+  padding: 0.65rem 0.85rem;
+  border: none;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--ovr-glass-fill-deep) 50%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.overview-reading-footer.is-expanded {
+  max-height: none;
+}
+
+.overview-reading-footer .sfe-preview-footer-scroll {
+  max-height: min(40vh, 360px);
+}
+
+.overview-reading-warn {
+  margin: 0 1.1rem 0.5rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: none;
+  background: color-mix(in srgb, #c45a11 14%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fbd38d;
+  font-size: 0.8125rem;
+}
+
+html[data-theme='academic'] .sfe-root--reading,
+html[data-theme='academic'] .overview-reading-article {
+  --ovr-glass-highlight: rgba(255, 255, 255, 0.65);
+  --ovr-glass-fill: color-mix(in srgb, var(--bg-surface) 76%, rgba(255, 255, 255, 0.32));
+  --ovr-list-tint-a: color-mix(in srgb, var(--color-primary) 4%, rgba(255, 255, 255, 0.42));
+  --ovr-list-tint-b: color-mix(in srgb, var(--surface-subtle) 36%, rgba(255, 255, 255, 0.28));
+}
+
+@media (max-width: 960px) {
+  .sfe-root--reading .sfe-body--reading {
+    grid-template-columns: 1fr;
+  }
+
+  .sfe-root--reading .sfe-main {
+    position: static;
+    max-height: min(42vh, 380px);
+  }
+
+  .overview-reading-hero {
+    padding: 1.1rem 1.15rem 0.75rem;
+  }
+
+  .overview-reading-hero__title {
+    font-size: 1.25rem;
+  }
+
+  .overview-reading-toolbar {
+    margin-inline: 0.85rem;
+    padding: 0.4rem 0.65rem;
+  }
+
+  .overview-reading-body {
+    padding: 0.25rem 1.1rem 1.25rem;
+  }
+
+  .overview-reading-footer {
+    margin-inline: 0.85rem;
+  }
+}

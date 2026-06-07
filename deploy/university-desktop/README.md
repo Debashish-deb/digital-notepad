@@ -17,7 +17,7 @@ uname -s
 | **Linux** | Lab desktop production | `127.0.0.1:8000` behind :443 proxy | `omeia-api.service`, `omeia-ingest.timer`, `omeia-processor.service` |
 | **macOS** | Local dev / parity testing | `127.0.0.1:8000` (default in `run_api_dev.sh`) | `./run_api_dev.sh` or `com.omeia.api.plist` (launchd) |
 
-**Autonomous processor** (vault / digitalize / Supabase) runs **independently of Cursor IDE** — see `docs/28_AUTONOMOUS_PROCESSOR.md` and `./scripts/autonomous_processor.sh`.
+**Autonomous processor** (vault / digitalize / Supabase) runs **independently of Cursor IDE** — see `docs/28_AUTONOMOUS_PROCESSOR.md` and `./scripts/ops/autonomous_processor.sh`.
 
 **Both platforms:** Python venv, same `app_skeleton.api.main:app`, env from `.env.desktop.example`.
 
@@ -88,7 +88,7 @@ sudo systemctl enable --now omeia-processor.service
 |--------|---------|
 | `run_api_dev.sh` | Load `.env`, run uvicorn (Mac/Linux) |
 | `install_desktop_backend.sh` | `uname` branch: Linux → systemd; Darwin → launchd hints |
-| `scheduled_ingest.sh` | Wrapper → `scripts/scheduled_ingest.py` |
+| `scheduled_ingest.sh` | Wrapper → `scripts/ops/scheduled_ingest.py` |
 
 ```bash
 # Dev API (from repo root or any cwd — script resolves paths)
@@ -214,12 +214,12 @@ Desktop `.env` must list the exact Hostinger origin in `CORS_ORIGINS`.
 
 ## Scheduled ingest
 
-`scripts/scheduled_ingest.py` — read-only scans, optional Supabase sync, thumbnails via `thumbnail_service` (Path-based; works on macOS and Linux).
+`scripts/ops/scheduled_ingest.py` — read-only scans, optional Supabase sync, thumbnails via `thumbnail_service` (Path-based; works on macOS and Linux).
 
 ```bash
 ./deploy/university-desktop/scheduled_ingest.sh
 # Linux systemd:
-sudo -u omeia /opt/omeia/venv/bin/python /opt/omeia/digital-notepad/scripts/scheduled_ingest.py
+sudo -u omeia /opt/omeia/venv/bin/python /opt/omeia/digital-notepad/scripts/ops/scheduled_ingest.py
 ```
 
 ---

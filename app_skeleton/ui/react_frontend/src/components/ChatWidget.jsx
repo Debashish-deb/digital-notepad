@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AlertTriangle,
   Bot,
@@ -11,6 +11,21 @@ import {
 } from 'lucide-react';
 import { apiFetch } from '../api/client.js';
 import { getChatStatus, sendChatMessage, streamChatMessage } from '../api/chatClient.js';
+import {
+  fetchAgentCategories,
+  readStoredCategory,
+  readStoredMode,
+  sendCategoryChat,
+  setDebugModelsEnabled,
+  isDebugModelsEnabled,
+  writeStoredCategory,
+  writeStoredMode,
+} from '../api/agentCategoryClient.js';
+import { FALLBACK_AGENT_CATEGORIES } from '../data/agentCategoryFallback.js';
+import { getLibraryScopeContext } from '../utils/documentExplorerPresets.js';
+import AgentCategorySelector from './AgentCategorySelector.jsx';
+import { useChatAutoScroll } from '../hooks/useChatAutoScroll.js';
+import { revealTextProgressively } from '../utils/chatMotion.js';
 import {
   navigateFromSearchHit,
   readStashedSearchQuery,
@@ -123,51 +138,207 @@ function formatTime(iso) {
   }
 }
 
-function MarkdownLite({ text }) {
-  const content = String(text || '');
-  const lines = content.split('\n');
+function renderInlineMarkdown(text, keyPrefix = 'inline') {
+  const raw = String(text || '');
+  const tokens = raw.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*|`[^`]+`|https?:\/\/[^\s)]+)/g);
+  return tokens.map((part, i) => {
+    const key = `${keyPrefix}-${i}`;
+    const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (linkMatch) {
+      return (
+        <a key={key} href={linkMatch[2]} target="_blank" rel="noopener noreferrer" className="chat-rich-link">
+          {linkMatch[1]}
+        </a>
+      );
+    }
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={key}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith('`') && part.endsWith('`')) {
+      return <code key={key} className="chat-rich-code-inline">{part.slice(1, -1)}</code>;
+    }
+    if (/^https?:\/\//.test(part)) {
+      return (
+        <a key={key} href={part} target="_blank" rel="noopener noreferrer" className="chat-rich-link">
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
+}
 
-  const renderInline = (line) => {
-    const parts = line.split(/(\*\*[^*]+\*\*)/g);
-    return parts.map((part, i) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return <strong key={i}>{part.slice(2, -2)}</strong>;
-      }
-      return part;
-    });
+function parseMarkdownBlocks(content) {
+  const lines = String(content || '').split('\n');
+  const blocks = [];
+  let i = 0;
+  let listItems = null;
+  let listType = null;
+  let codeLines = null;
+  let codeLang = '';
+
+  const flushList = () => {
+    if (listItems?.length) {
+      blocks.push({ type: listType, items: listItems });
+    }
+    listItems = null;
+    listType = null;
   };
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith('```')) {
+      flushList();
+      if (codeLines === null) {
+        codeLang = trimmed.slice(3).trim();
+        codeLines = [];
+        i += 1;
+        continue;
+      }
+      blocks.push({ type: 'code', lang: codeLang, content: codeLines.join('\n') });
+      codeLines = null;
+      codeLang = '';
+      i += 1;
+      continue;
+    }
+
+    if (codeLines !== null) {
+      codeLines.push(line);
+      i += 1;
+      continue;
+    }
+
+    if (!trimmed) {
+      flushList();
+      blocks.push({ type: 'space' });
+      i += 1;
+      continue;
+    }
+
+    if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+      flushList();
+      const tableLines = [];
+      while (i < lines.length && lines[i].trim().startsWith('|')) {
+        tableLines.push(lines[i].trim());
+        i += 1;
+      }
+      const rows = tableLines
+        .filter((row) => !/^\|[\s\-:|]+\|$/.test(row))
+        .map((row) => row.slice(1, -1).split('|').map((cell) => cell.trim()));
+      if (rows.length) blocks.push({ type: 'table', rows });
+      continue;
+    }
+
+    const numbered = trimmed.match(/^(\d+)\.\s+(.*)$/);
+    if (numbered) {
+      if (listType !== 'ol') {
+        flushList();
+        listItems = [];
+        listType = 'ol';
+      }
+      listItems.push(numbered[2]);
+      i += 1;
+      continue;
+    }
+
+    if (trimmed.startsWith('- ')) {
+      if (listType !== 'ul') {
+        flushList();
+        listItems = [];
+        listType = 'ul';
+      }
+      listItems.push(trimmed.slice(2));
+      i += 1;
+      continue;
+    }
+
+    flushList();
+    if (trimmed.startsWith('### ')) {
+      blocks.push({ type: 'h3', text: trimmed.slice(4) });
+    } else if (trimmed.startsWith('## ')) {
+      blocks.push({ type: 'h2', text: trimmed.slice(3) });
+    } else {
+      blocks.push({ type: 'p', text: line });
+    }
+    i += 1;
+  }
+
+  flushList();
+  if (codeLines !== null) {
+    blocks.push({ type: 'code', lang: codeLang, content: codeLines.join('\n') });
+  }
+  return blocks;
+}
+
+function MarkdownLite({ text }) {
+  const blocks = useMemo(() => parseMarkdownBlocks(text), [text]);
 
   return (
     <div className="chat-rich-text">
-      {lines.map((line, index) => {
-        const trimmed = line.trim();
-
-        if (!trimmed) {
+      {blocks.map((block, index) => {
+        if (block.type === 'space') {
           return <div key={`space-${index}`} className="chat-rich-spacer" aria-hidden="true" />;
         }
-
-        if (trimmed.startsWith('### ')) {
-          return <h3 key={index}>{trimmed.replace(/^###\s+/, '')}</h3>;
+        if (block.type === 'h2') {
+          return <h2 key={index}>{renderInlineMarkdown(block.text, `h2-${index}`)}</h2>;
         }
-
-        if (trimmed.startsWith('## ')) {
-          return <h2 key={index}>{trimmed.replace(/^##\s+/, '')}</h2>;
+        if (block.type === 'h3') {
+          return <h3 key={index}>{renderInlineMarkdown(block.text, `h3-${index}`)}</h3>;
         }
-
-        if (trimmed.startsWith('- ')) {
+        if (block.type === 'p') {
+          return <p key={index}>{renderInlineMarkdown(block.text, `p-${index}`)}</p>;
+        }
+        if (block.type === 'ul') {
           return (
-            <p key={index} className="chat-rich-bullet">
-              <span className="chat-rich-bullet__dot" aria-hidden="true" />
-              {renderInline(trimmed.slice(2))}
-            </p>
+            <ul key={index} className="chat-rich-list">
+              {block.items.map((item, j) => (
+                <li key={j}>{renderInlineMarkdown(item, `ul-${index}-${j}`)}</li>
+              ))}
+            </ul>
           );
         }
-
-        if (trimmed.startsWith('```')) {
-          return null;
+        if (block.type === 'ol') {
+          return (
+            <ol key={index} className="chat-rich-list chat-rich-list--numbered">
+              {block.items.map((item, j) => (
+                <li key={j}>{renderInlineMarkdown(item, `ol-${index}-${j}`)}</li>
+              ))}
+            </ol>
+          );
         }
-
-        return <p key={index}>{renderInline(line)}</p>;
+        if (block.type === 'code') {
+          return (
+            <pre key={index} className="chat-rich-code-block">
+              <code>{block.content}</code>
+            </pre>
+          );
+        }
+        if (block.type === 'table') {
+          const [head, ...body] = block.rows;
+          return (
+            <div key={index} className="chat-rich-table-wrap">
+              <table className="chat-rich-table">
+                {head ? (
+                  <thead>
+                    <tr>
+                      {head.map((cell, j) => <th key={j}>{renderInlineMarkdown(cell, `th-${index}-${j}`)}</th>)}
+                    </tr>
+                  </thead>
+                ) : null}
+                <tbody>
+                  {(head ? body : block.rows).map((row, r) => (
+                    <tr key={r}>
+                      {row.map((cell, c) => <td key={c}>{renderInlineMarkdown(cell, `td-${index}-${r}-${c}`)}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+        return null;
       })}
     </div>
   );
@@ -200,19 +371,19 @@ export default function ChatWidget({
   const [streamEnabled, setStreamEnabled] = useState(false);
   const [modelCatalog, setModelCatalog] = useState({ groups: [], options: [], default_key: '' });
   const [selectedModelKey, setSelectedModelKey] = useState(() => readStoredModelKey());
+  const [agentCategories, setAgentCategories] = useState(FALLBACK_AGENT_CATEGORIES);
+  const [categoriesLoading, setCategoriesLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState(() => readStoredCategory());
+  const [selectedMode, setSelectedMode] = useState(() => readStoredMode());
+  const [debugModels, setDebugModels] = useState(() => isDebugModelsEnabled());
 
-  const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
-  const messagesContainerRef = useRef(null);
+  const revealAbortRef = useRef(null);
 
   const projectCodes = useMemo(
     () => dbProjects.map(normalizeProjectCode).filter(Boolean),
     [dbProjects],
   );
-
-  const scrollToBottom = useCallback((behavior = 'smooth') => {
-    messagesEndRef.current?.scrollIntoView({ behavior, block: 'end' });
-  }, []);
 
   const resizeTextarea = useCallback(() => {
     const el = textareaRef.current;
@@ -225,9 +396,14 @@ export default function ChatWidget({
     resizeTextarea();
   }, [input, resizeTextarea]);
 
-  useEffect(() => {
-    scrollToBottom(messages.length > 2 ? 'smooth' : 'auto');
-  }, [messages, loading, scrollToBottom]);
+  const scrollSignature = useMemo(
+    () => messages.map((m) => `${m.id}:${m.content?.length || 0}:${m.streaming ? 1 : 0}`).join('|'),
+    [messages],
+  );
+  const { containerRef: messagesContainerRef, endRef: messagesEndRef } = useChatAutoScroll(
+    [scrollSignature, loading],
+    { behavior: messages.length > 2 ? 'smooth' : 'auto' },
+  );
 
   const handleOpenSource = useCallback(
     (nav) => {
@@ -263,6 +439,25 @@ export default function ChatWidget({
         setStreamEnabled(status?.stream_enabled !== false);
         const catalog = status?.model_catalog || {};
         setModelCatalog(catalog);
+        const cats = status?.agent_categories || [];
+        if (cats.length) {
+          setAgentCategories(cats);
+          setCategoriesLoading(false);
+        } else {
+          fetchAgentCategories()
+            .then((payload) => {
+              const live = payload?.categories || [];
+              if (live.length) setAgentCategories(live);
+            })
+            .catch(() => {})
+            .finally(() => setCategoriesLoading(false));
+        }
+        if (status?.default_agent_category) {
+          const storedCat = readStoredCategory();
+          const valid = new Set((cats.length ? cats : []).map((c) => c.id));
+          if (!valid.size || valid.has(storedCat)) setSelectedCategory(storedCat);
+          else setSelectedCategory(status.default_agent_category);
+        }
         const stored = readStoredModelKey();
         const defaultKey = catalog?.default_key || '';
         const validKeys = new Set((catalog?.options || []).map((opt) => opt.key));
@@ -278,6 +473,7 @@ export default function ChatWidget({
         if (!cancelled) {
           setChatProvider('mock');
           setChatHealthy(false);
+          setCategoriesLoading(false);
         }
       });
     return () => {
@@ -316,6 +512,34 @@ export default function ChatWidget({
     if (picked.model) setChatModel(picked.model);
   }, []);
 
+  const handleCategoryChange = useCallback((categoryId) => {
+    setSelectedCategory(categoryId);
+    writeStoredCategory(categoryId);
+  }, []);
+
+  const handleModeChange = useCallback((mode) => {
+    setSelectedMode(mode);
+    writeStoredMode(mode);
+  }, []);
+
+  const handleToggleDebugModels = useCallback((on) => {
+    setDebugModels(on);
+    setDebugModelsEnabled(on);
+  }, []);
+
+  const activeCategoryLabel = useMemo(() => {
+    const cat = agentCategories.find((c) => c.id === selectedCategory);
+    return cat?.label || 'Lab Research Assistant';
+  }, [agentCategories, selectedCategory]);
+
+  const shellCover = useModuleShellCover();
+  const libraryScope = useMemo(
+    () => (shellCover?.mainId && shellCover?.subId
+      ? getLibraryScopeContext(shellCover.mainId, shellCover.subId)
+      : null),
+    [shellCover?.mainId, shellCover?.subId],
+  );
+
   const sendQuestion = useCallback(
     async (question, { appendUserMessage = true } = {}) => {
       const textToSend = String(question || '').trim();
@@ -326,14 +550,87 @@ export default function ChatWidget({
         setInput('');
       }
 
-      setLoading(true);
-
-      const assistantMessage = makeMessage('assistant', '', { streaming: true });
+      const assistantMessage = makeMessage('assistant', '', {
+        streaming: true,
+        statusText: 'Activating intelligence team…',
+      });
       let streamedAssistantId = null;
       const llmProvider = selectedModel.provider || chatProvider;
       const llmModel = selectedModel.model || chatModel || null;
+      const useLegacyModelPicker = debugModels;
+
+      if (!useLegacyModelPicker) {
+        streamedAssistantId = assistantMessage.id;
+        setMessages((prev) => [...prev, assistantMessage]);
+      }
+
+      setLoading(true);
 
       try {
+        if (!useLegacyModelPicker) {
+          const data = await sendCategoryChat({
+            message: textToSend,
+            category: selectedCategory,
+            mode: selectedMode,
+            project_codes: selProjs,
+            library_scope: libraryScope,
+          });
+          const formatted = formatAssistantPayload({
+            ...data,
+            synthesis_mode: data?.synthesis_mode || 'category_agents',
+            provider: 'category_agents',
+          });
+
+          revealAbortRef.current?.abort();
+          const controller = new AbortController();
+          revealAbortRef.current = controller;
+
+          const meta = {
+            sources: formatted.sources,
+            searchHits: formatted.searchHits,
+            queryContext: textToSend,
+            limitations: formatted.limitations,
+            intent: formatted.intent,
+            showSources: formatted.showSources,
+            databaseCounts: formatted.databaseCounts,
+            isSafe: formatted.isSafe,
+            provider: 'category_agents',
+            synthesisMode: formatted.synthesisMode,
+            agentCategory: data?.category || activeCategoryLabel,
+            agentMode: data?.mode || selectedMode,
+            agentsUsed: data?.agents_used || [],
+            confidence: data?.confidence,
+            traceId: data?.trace_id,
+          };
+
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === streamedAssistantId
+                ? { ...msg, statusText: 'Synthesizing response…', ...meta }
+                : msg,
+            ),
+          );
+
+          await revealTextProgressively(formatted.content, (partial) => {
+            setMessages((prev) =>
+              prev.map((msg) =>
+                msg.id === streamedAssistantId
+                  ? { ...msg, content: partial, streaming: true }
+                  : msg,
+              ),
+            );
+          }, { signal: controller.signal, chunkSize: 5, delayMs: 8 });
+
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === streamedAssistantId
+                ? { ...msg, content: formatted.content, streaming: false, statusText: null }
+                : msg,
+            ),
+          );
+          return;
+        }
+
         if (streamEnabled) {
           streamedAssistantId = assistantMessage.id;
           setMessages((prev) => [...prev, assistantMessage]);
@@ -459,9 +756,11 @@ export default function ChatWidget({
             'assistant',
             isAuthError
               ? 'Your session expired. Please sign in again.'
+              : error?.status === 429
+                ? (error.message || 'Rate limit reached — please wait a moment before asking again.')
               : isRoleBlocked
                 ? 'Chat unavailable for this account. Ask an admin or use ⌘K platform search.'
-                : 'Connection timed out or API offline. You can retry this message without retyping it.',
+                : (error?.message || 'Connection timed out or API offline. You can retry this message without retyping it.'),
             {
               isError: true,
               originalQuestion: textToSend,
@@ -473,7 +772,7 @@ export default function ChatWidget({
         setLoading(false);
       }
     },
-    [loading, selProjs, chatProvider, chatModel, selectedModel, streamEnabled],
+    [loading, selProjs, chatProvider, chatModel, selectedModel, streamEnabled, debugModels, selectedCategory, selectedMode, activeCategoryLabel, libraryScope],
   );
 
   useEffect(() => {
@@ -513,7 +812,6 @@ export default function ChatWidget({
     [sendQuestion],
   );
 
-  const shellCover = useModuleShellCover();
   const { nav, t: guiT } = useGuiT();
   const mainNav = nav.findMain(shellCover?.mainId || 'ai_assistant');
   const MainIcon = mainNav?.icon;
@@ -521,6 +819,10 @@ export default function ChatWidget({
   const providerLabel = useMemo(() => formatChatProviderLabel(chatProvider), [chatProvider]);
 
   const providerBadge = useMemo(() => {
+    if (!debugModels) {
+      const modeLabel = selectedMode.charAt(0).toUpperCase() + selectedMode.slice(1);
+      return `${activeCategoryLabel} · ${modeLabel}`;
+    }
     const mode = chatProvider === 'mock' ? 'mock' : 'live';
     const label = formatChatProviderLabel(chatProvider);
     if (chatModel && chatProvider !== 'mock') {
@@ -528,17 +830,49 @@ export default function ChatWidget({
       return `${label} · ${shortModel} (${mode})`;
     }
     return `${label} (${mode})`;
-  }, [chatModel, chatProvider, providerLabel]);
+  }, [activeCategoryLabel, chatModel, chatProvider, debugModels, providerLabel, selectedMode]);
 
-  const heroStats = useMemo(
-    () => [
-      { label: 'Mode', value: 'RAG' },
-      { label: 'LLM', value: providerBadge },
-      { label: 'Scope', value: `${selProjs.length || 0}` },
-      { label: 'Status', value: loading ? 'Thinking' : chatHealthy === false ? 'Offline' : 'Ready' },
-    ],
-    [loading, providerBadge, selProjs.length, chatHealthy],
-  );
+  const heroStats = useMemo(() => {
+    const status = loading
+      ? { value: 'Thinking', tone: 'warn' }
+      : chatHealthy === false
+        ? { value: 'Offline', tone: 'danger' }
+        : { value: 'Ready', tone: 'live' };
+    return [
+      {
+        id: 'mode',
+        label: 'Mode',
+        icon: 'database',
+        value: 'RAG',
+        tone: 'cyan',
+        title: 'Retrieval-augmented generation',
+      },
+      {
+        id: 'team',
+        label: 'Team',
+        icon: 'team',
+        value: debugModels ? (chatModel || 'LLM') : activeCategoryLabel,
+        tone: 'primary',
+        title: providerBadge,
+      },
+      {
+        id: 'scope',
+        label: 'Scope',
+        icon: 'scope',
+        value: `${selProjs.length || 0} proj`,
+        tone: 'neutral',
+        title: `${selProjs.length || 0} scoped project(s)`,
+      },
+      {
+        id: 'status',
+        label: 'Status',
+        icon: 'status',
+        value: status.value,
+        tone: status.tone,
+        title: 'Copilot availability',
+      },
+    ];
+  }, [loading, chatHealthy, debugModels, chatModel, activeCategoryLabel, providerBadge, selProjs.length]);
 
   const coverToolbar = shellCover ? (
     <>
@@ -572,20 +906,47 @@ export default function ChatWidget({
 
   return (
     <section className="assistant-chat-shell" aria-label="OMEIA AI Lab Assistant">
-      <Suspense fallback={<div className="ai3d-hero-skeleton" aria-hidden />}>
-        <AiAssistant3DScene
-          merged
-          toolbar={coverToolbar}
-          title="OMEIA AI Lab Assistant"
-          subtitle="RAG copilot and spatial-biology research interface — indexed protocols, lab knowledge, vector search, project docs, prompt templates, and model registry."
-          stats={heroStats}
-          swimmingTopics={swimmingTopics}
-          compact
-          className="ai3d-hero--module-ai"
-        />
-      </Suspense>
+      <div className="assistant-cover-card">
+        <Suspense fallback={<div className="ai3d-hero-skeleton" aria-hidden />}>
+          <AiAssistant3DScene
+            merged
+            toolbar={coverToolbar}
+            title="OMEIA Copilot"
+            subtitle="Spatial-biology RAG · lab protocols · intelligence teams"
+            stats={heroStats}
+            swimmingTopics={[]}
+            compact
+            dense
+            visual="solar"
+            visualPosition="right"
+            className="ai3d-hero--module-ai"
+          />
+        </Suspense>
+        <div className="assistant-cover-card__intel">
+          <AgentCategorySelector
+            layout="cover"
+            categories={agentCategories}
+            selectedCategory={selectedCategory}
+            selectedMode={selectedMode}
+            onCategoryChange={handleCategoryChange}
+            onModeChange={handleModeChange}
+            disabled={loading}
+            loading={categoriesLoading}
+            showDebug
+            modelCatalog={modelCatalog}
+            debugModels={debugModels}
+            onToggleDebugModels={handleToggleDebugModels}
+          />
+        </div>
+      </div>
 
       <div className="chat-container assistant-chat-container">
+        <AgentCategorySelector
+          variant="context"
+          categories={agentCategories}
+          selectedCategory={selectedCategory}
+          selectedMode={selectedMode}
+        />
         <div
           ref={messagesContainerRef}
           className="chat-messages assistant-chat-messages"
@@ -633,10 +994,14 @@ export default function ChatWidget({
                             ? ' is-mock'
                             : ' is-live'
                         }`}
-                        title={`Synthesis: ${message.synthesisMode || 'unknown'} · Provider: ${formatChatProviderLabel(message.provider || chatProvider)}`}
+                        title={
+                          message.agentCategory
+                            ? `${message.agentCategory} · ${message.agentMode || 'balanced'} team`
+                            : `Synthesis: ${message.synthesisMode || 'unknown'}`
+                        }
                       >
-                        {formatChatProviderLabel(message.provider || chatProvider)}
-                        {message.synthesisMode === 'mock' ? ' · mock' : message.synthesisMode === 'live' ? ' · live' : ''}
+                        {message.agentCategory || activeCategoryLabel}
+                        {message.agentMode ? ` · ${message.agentMode}` : ''}
                       </span>
                     ) : null}
                     {message.createdAt && !message.isWelcome ? (
@@ -647,7 +1012,17 @@ export default function ChatWidget({
                   </span>
                 </div>
 
-                <MarkdownLite text={message.content} />
+                {message.streaming && !message.content ? (
+                  <div className="chat-streaming-status">
+                    <TypingIndicator />
+                    <span>{message.statusText || 'Composing answer…'}</span>
+                  </div>
+                ) : (
+                  <MarkdownLite text={message.content} />
+                )}
+                {message.streaming && message.content ? (
+                  <span className="chat-streaming-cursor" aria-hidden="true" />
+                ) : null}
 
                 {message.limitations?.length ? (
                   <div className="chat-limitations">
@@ -700,55 +1075,45 @@ export default function ChatWidget({
             </div>
           ) : null}
 
-          {loading && !messages.some((message) => message.streaming) && (
-            <article className="chat-message-row assistant assistant-thinking-row" aria-live="polite">
-              <div className="chat-avatar chat-avatar--assistant" aria-hidden="true">
-                <Bot size={18} />
-              </div>
-              <div className="chat-bubble assistant assistant-thinking-bubble">
-                <TypingIndicator />
-                <span>Composing answer…</span>
-              </div>
-            </article>
-          )}
-
           <div ref={messagesEndRef} className="chat-scroll-anchor" aria-hidden="true" />
         </div>
 
         <form onSubmit={handleSend} className="chat-input-area assistant-chat-input-area">
           <div className="assistant-chat-composer">
-          <div className="assistant-chat-model-picker" title="Choose LLM for this message">
-            <label className="assistant-chat-model-picker__label" htmlFor="assistant-chat-model-select">
-              Model
-            </label>
-            <div className="assistant-chat-model-picker__control">
-              <select
-                id="assistant-chat-model-select"
-                className="assistant-chat-model-select"
-                value={selectedModelKey}
-                onChange={handleModelChange}
-                disabled={loading || !(modelCatalog?.options || []).length}
-                aria-label="Choose chat model"
-              >
-                {(modelCatalog?.groups || []).map((group) => (
-                  <optgroup
-                    key={group.provider}
-                    label={`${group.label}${group.healthy === false ? ' (offline)' : ''}`}
-                  >
-                    {(group.models || []).map((m) => {
-                      const key = `${group.provider}:${m.id}`;
-                      return (
-                        <option key={key} value={key} disabled={group.healthy === false}>
-                          {m.label}
-                        </option>
-                      );
-                    })}
-                  </optgroup>
-                ))}
-              </select>
-              <ChevronDown size={14} className="assistant-chat-model-picker__chevron" aria-hidden />
+          {debugModels ? (
+            <div className="assistant-chat-model-picker" title="Developer model override">
+              <label className="assistant-chat-model-picker__label" htmlFor="assistant-chat-model-select">
+                Debug model
+              </label>
+              <div className="assistant-chat-model-picker__control">
+                <select
+                  id="assistant-chat-model-select"
+                  className="assistant-chat-model-select"
+                  value={selectedModelKey}
+                  onChange={handleModelChange}
+                  disabled={loading || !(modelCatalog?.options || []).length}
+                  aria-label="Choose chat model"
+                >
+                  {(modelCatalog?.groups || []).map((group) => (
+                    <optgroup
+                      key={group.provider}
+                      label={`${group.label}${group.healthy === false ? ' (offline)' : ''}`}
+                    >
+                      {(group.models || []).map((m) => {
+                        const key = `${group.provider}:${m.id}`;
+                        return (
+                          <option key={key} value={key} disabled={group.healthy === false}>
+                            {m.label}
+                          </option>
+                        );
+                      })}
+                    </optgroup>
+                  ))}
+                </select>
+                <ChevronDown size={14} className="assistant-chat-model-picker__chevron" aria-hidden />
+              </div>
             </div>
-          </div>
+          ) : null}
           <div className="assistant-chat-input-wrap">
             <textarea
               ref={textareaRef}
@@ -758,7 +1123,6 @@ export default function ChatWidget({
               value={input}
               onChange={(event) => setInput(event.target.value)}
               onKeyDown={handleKeyDown}
-              disabled={loading}
               aria-label="Ask OMEIA Research Copilot"
             />
             <span className="assistant-chat-input-hint">Enter to send · Shift+Enter for newline</span>

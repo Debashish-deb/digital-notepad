@@ -6,28 +6,29 @@ import {
   Cpu,
   ShieldCheck,
   Database,
-  Play,
   Settings,
   AlertCircle,
   ArrowRight,
   Clipboard,
   CheckCircle,
   HardDrive,
-  UserCheck,
-  Key,
   FolderOpen,
   Cloud,
   FileText,
-  Activity,
   Video,
   Volume2,
-  Lock,
   RefreshCw,
   Search,
   BookOpen,
 } from 'lucide-react';
 import ComputationalToolsScreen from './ComputationalToolsScreen.jsx';
 import { HubSectionFrame, HubDetailFrame } from '../components/HubNestedNav.jsx';
+import { CopyableCodeBlock } from '../components/CopyableCodeBlock.jsx';
+import { RunPipelineTab } from '../components/RunPipelineTab.jsx';
+import OnboardingRoadmap from '../components/computationalHub/OnboardingRoadmap.jsx';
+import ImageProcessingPipelineScreen from './ImageProcessingPipelineScreen.jsx';
+
+export { RunPipelineTab };
 import { COMPUTATIONAL_LEGACY_NESTED } from '../config/navigation.js';
 
 function resolveHubTab(activeSubTab, nestedSection) {
@@ -35,6 +36,12 @@ function resolveHubTab(activeSubTab, nestedSection) {
   if (legacy) return { tab: legacy.tab, nested: legacy.section };
   if (activeSubTab === 'utilities' && nestedSection === 'tools') {
     return { tab: 'tools', nested: null };
+  }
+  if (activeSubTab === 'lumi' && nestedSection === 'install') {
+    return { tab: 'utilities', nested: 'lumi_modules' };
+  }
+  if (activeSubTab === 'lumi' && nestedSection === 'transfers') {
+    return { tab: 'utilities', nested: 'lumi_transfer' };
   }
   return { tab: activeSubTab || 'onboarding', nested: nestedSection || null };
 }
@@ -103,11 +110,12 @@ export default function BioinformaticsHubScreen({
       )}
 
       <div style={{ flexGrow: 1, minWidth: 0 }}>
-        {subTab === 'onboarding' && <OnboardingTab />}
+        {subTab === 'onboarding' && <OnboardingRoadmap />}
         {subTab === 'lumi' && (
           <LumiHubTab
             dbProjects={dbProjects}
             API_URL={API_URL}
+            onNavigate={onNavigate}
             initialSection={nestedSection || 'jobs'}
             onSectionChange={setNestedSection}
           />
@@ -138,294 +146,6 @@ export default function BioinformaticsHubScreen({
         )}
         {subTab === 'tools' && <ComputationalToolsScreen />}
       </div>
-    </div>
-  );
-}
-
-/* ========================================================================= */
-/* COPY CLIPBOARD UTILITY                                                    */
-/* ========================================================================= */
-function CopyableCodeBlock({ code, type = 'success' }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const getAccentColor = () => {
-    if (type === 'primary') return 'var(--color-primary)';
-    if (type === 'warning') return 'var(--color-warning)';
-    if (type === 'danger') return 'var(--color-danger)';
-    return 'var(--color-success)';
-  };
-
-  return (
-    <div style={{position: 'relative', marginTop: '0.5rem', marginBottom: '1rem'}}>
-      <pre className="code-block" style={{
-        color: getAccentColor(),
-        padding: '1rem', 
-        borderRadius: '8px',
-        overflowX: 'auto',
-        fontFamily: 'var(--font-mono)',
-        fontSize: '0.85rem',
-        border: '1px solid var(--border-color)',
-        whiteSpace: 'pre'
-      }}>{code}</pre>
-      <button 
-        className="btn btn-secondary" 
-        onClick={handleCopy}
-        style={{
-          position: 'absolute', 
-          right: '10px', 
-          top: '10px', 
-          padding: '0.25rem 0.6rem', 
-          fontSize: '0.75rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.25rem',
-          background: 'var(--bg-surface)',
-          borderColor: 'var(--border-color)'
-        }}
-      >
-        {copied ? '✓ Copied' : 'Copy'}
-      </button>
-    </div>
-  );
-}
-
-/* ========================================================================= */
-/* 1. ONBOARDING & ACCESS                                                    */
-/* ========================================================================= */
-function OnboardingTab() {
-  const [activeSec, setActiveSec] = useState('flowchart');
-
-  const steps = [
-    { num: '1', title: 'Get Access', desc: 'Create CSC account & request project membership (project_462001415)' },
-    { num: '2', title: 'Local Setup', desc: 'Generate Ed25519 SSH keys & upload to MyCSC portal' },
-    { num: '3', title: 'Data Setup', desc: 'Configure Allas / LUMI storage remotes for project files' },
-    { num: '4', title: 'Platform Select', desc: 'Determine target host: LUMI (heavy computing) or cPouta (custom VMs)' },
-    { num: '5', title: 'Running Jobs', desc: 'Prepare slurm script & submit via sbatch to compute queues' },
-    { num: '6', title: 'Review & Store', desc: 'Collect logs, store long‑term dataset backups in Allas storage' },
-    { num: '7', title: 'Lab Standard', desc: 'Follow file-naming SOP & log computing node allocations' }
-  ];
-
-  const ONBOARDING_SECTIONS = [
-    { id: 'flowchart', label: 'Workflow standards' },
-    { id: 'account', label: 'Account creation' },
-    { id: 'ssh_gen', label: 'SSH key generation' },
-    { id: 'ssh_setup', label: 'SSH access (admins)' },
-  ];
-
-  return (
-    <div>
-      <div className="panel" style={{ marginBottom: '0.75rem', padding: '0.75rem 1rem' }}>
-        <h3 className="panel-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
-          <Activity size={16} /> Onboarding roadmap
-        </h3>
-        <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.65rem' }}>
-          Click a step to open the related documentation section.
-        </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <div className="grid-4col" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.45rem' }}>
-            {steps.map((st) => (
-              <div className="surface-inset" 
-                key={st.num} 
-                style={{
-                  background: 'var(--bg-app)', 
-                  border: '1px solid var(--border-color)', 
-                  borderRadius: '6px', 
-                  padding: '0.55rem 0.65rem', 
-                  position: 'relative',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.5rem',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer'
-                }}
-                onClick={() => {
-                  if (st.num === '1') setActiveSec('account');
-                  else if (st.num === '2') setActiveSec('ssh_gen');
-                  else if (st.num === '3') setActiveSec('data_mgmt');
-                  else setActiveSec('flowchart');
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--color-primary)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-color)';
-                  e.currentTarget.style.transform = 'none';
-                }}
-              >
-                <div style={{
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'space-between',
-                  borderBottom: '1px solid var(--border-color)',
-                  paddingBottom: '0.5rem'
-                }}>
-                  <span style={{
-                    fontSize: '0.8rem', 
-                    fontWeight: 800, 
-                    background: 'var(--bg-badge)', 
-                    color: 'var(--color-primary)', 
-                    padding: '0.1rem 0.5rem', 
-                    borderRadius: '4px'
-                  }}>STEP 0{st.num}</span>
-                  <span style={{color: 'var(--text-muted)'}}>→</span>
-                </div>
-                <h4 style={{fontSize: '0.9rem', color: 'var(--text-primary)', margin: 0}}>{st.title}</h4>
-                <p style={{fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: 1.4, margin: 0}}>{st.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <HubDetailFrame
-        sections={ONBOARDING_SECTIONS}
-        active={activeSec}
-        onChange={setActiveSec}
-        ariaLabel="Onboarding topics"
-      >
-      {activeSec === 'flowchart' && (
-        <div className="panel">
-          <h3 className="panel-title"><UserCheck size={18} /> Färkkilä Lab HPC Workflow Standards</h3>
-          <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '1rem'}}>
-            The following guidelines ensure consistent, secure, and reproducible computational workflows across all cluster projects (SPACE, EyeMT, KRAS) within our research group:
-          </p>
-          <ul style={{fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6, paddingLeft: '1.5rem', marginBottom: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
-            <li><b>Directory Conventions:</b> Always store temporary data under <code>/scratch/project_462XXXXXX/username/</code> and applications/binaries in <code>/projappl/project_462XXXXXX/</code>.</li>
-            <li><b>Slurm Exclusivity:</b> Execute all processing workloads (Ashlar, Mesmer, Cylinter) via Slurm tasks. Avoid running jobs on the login nodes to prevent system overload blocks.</li>
-            <li><b>Containerization Standards:</b> Utilize Apptainer/Singularity containers for standard pipelines to guarantee version and configuration reproducibility.</li>
-            <li><b>Cold Storage Backups:</b> Upload completed datasets and raw WSI slides to <b>Allas</b> storage under the appropriate project bucket with descriptive metadata.</li>
-            <li><b>Data Cleaning Days:</b> Participate in quarterly group data cleanup runs. Delete temporary intermediate files and verify backups.</li>
-          </ul>
-
-          <div style={{background: 'rgba(251,191,36,0.1)', borderLeft: '4px solid var(--color-warning)', padding: '1rem', borderRadius: '4px'}}>
-            <h4 style={{color: 'var(--color-warning)', fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 600}}>⚠️ Migration Reminder: Puhti → Roihu</h4>
-            <p style={{fontSize: '0.8rem', color: 'var(--text-secondary)', margin: 0}}>
-              CSC is currently phasing out the Puhti supercomputer. All lab members must transfer project datasets to Lumi/Roihu using the provided rclone commands, update active singularity configuration profiles, and test pipelines early.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {activeSec === 'account' && (
-        <div className="panel">
-          <h3 className="panel-title"><UserCheck size={18} /> Creating and Activating a CSC Account</h3>
-          <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.25rem'}}>
-            CSC resources are project-based. Follow this sequence to establish and register your login account:
-          </p>
-          
-          <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
-            <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
-              <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Step 1: Create Account</h4>
-              <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0}}>
-                Visit the CSC Customer Portal at <a href="https://my.csc.fi" target="_blank" rel="noreferrer" style={{color: 'var(--color-primary)'}}>my.csc.fi</a>, select "Create new account", and authenticate using your University <b>Haka login</b> credentials. Fill out details and confirm your email. Note your generated CSC username.
-              </p>
-            </div>
-
-            <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
-              <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Step 2: Join Project</h4>
-              <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0}}>
-                Provide your CSC username to the project manager. The manager will add your account to our active projects (e.g., <code>project_462001415</code>) in the MyCSC system. You will receive an automated email confirmation once approved.
-              </p>
-            </div>
-
-            <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
-              <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Step 3: Access Activation</h4>
-              <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0}}>
-                Upon joining the project, accept the terms of service for the target supercomputing hosts (Puhti, Lumi, or Allas storage). Your account is now provisioned and waiting for your SSH public key injection.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {activeSec === 'ssh_gen' && (
-        <div className="panel">
-          <h3 className="panel-title"><Key size={18} /> SSH Key Pair Generation</h3>
-          <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.25rem'}}>
-            CSC services strictly enforce SSH key-based authentication. Password-based logins are disabled. Use the instructions below to generate your keys.
-          </p>
-
-          <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
-            <h4 style={{fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.75rem'}}>Option A: macOS & Linux Terminal</h4>
-            <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem'}}>
-              Open the Terminal app, check if keys exist with <code>ls ~/.ssh</code>. If empty, generate a secure Ed25519 pair:
-            </p>
-            <CopyableCodeBlock code={`ssh-keygen -t ed25519 -C "your_email@example.com"`} type="primary" />
-            <p style={{fontSize: '0.8rem', color: 'var(--text-muted)'}}>
-              Press Enter to accept the default folder location (<code>~/.ssh/id_ed25519</code>) and enter a strong passphrase. Display the public key:
-            </p>
-            <CopyableCodeBlock code={`cat ~/.ssh/id_ed25519.pub`} type="primary" />
-          </div>
-
-          <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', marginTop: '1rem'}}>
-            <h4 style={{fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.75rem'}}>Option B: Windows PowerShell</h4>
-            <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem'}}>
-              Open Windows PowerShell and check directory contents. Generate the key:
-            </p>
-            <CopyableCodeBlock code={`ssh-keygen -t ed25519 -C "your_email@example.com"`} type="primary" />
-            <p style={{fontSize: '0.8rem', color: 'var(--text-muted)'}}>
-              Accept default location and display the public key to copy:
-            </p>
-            <CopyableCodeBlock code={`type $env:USERPROFILE\\.ssh\\id_ed25519.pub`} type="primary" />
-          </div>
-
-          <div className="surface-inset" style={{background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', marginTop: '1rem'}}>
-            <h4 style={{fontSize: '1rem', color: 'var(--text-primary)', marginBottom: '0.75rem'}}>Option C: MobaXterm GUI (Windows Workstations)</h4>
-            <ul style={{fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.25rem'}}>
-              <li>Install MobaXterm (use the Portable Edition if you do not have administrator install rights).</li>
-              <li>Go to the main menu and select: <b>Tools → SSH-key generator (MobaKeyGen)</b>.</li>
-              <li>Select key type: <b>EdDSA (Ed25519)</b> and click <b>Generate</b>. Move your mouse cursor in the empty block to create randomness.</li>
-              <li>Save both the Private Key (somewhere safe) and copy the full public key string shown in the text field at the top to send to the admin or upload to MyCSC.</li>
-            </ul>
-          </div>
-        </div>
-      )}
-
-      {activeSec === 'ssh_setup' && (
-        <div className="panel">
-          <h3 className="panel-title"><Lock size={18} /> SSH User Provisioning (Administrator Guide)</h3>
-          <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>
-            Färkkilä Lab virtual machines (cPouta VMs) are isolated, meaning admins must provision users and key bindings manually on each virtual machine.
-          </p>
-
-          <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Normal User Creation Script:</h4>
-          <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)'}}>
-            Login to target server (e.g. <code>farkkila-gpu1</code>) as root. Select next available UID from <code>/etc/passwd</code> and run:
-          </p>
-          
-          <CopyableCodeBlock code={`export USERNAME="debdebas"
-export USERID="1105"
-export REALNAME="Debashish Deb"
-
-# Create user with primary group farkkilab
-sudo useradd --home /home/\${USERNAME} --shell /bin/bash --gid farkkilab --uid \${USERID} -c "\${REALNAME}" \${USERNAME}
-
-# Set up .ssh directory
-sudo mkdir -p /home/\${USERNAME}/.ssh
-sudo chown -R \${USERNAME}:farkkilab /home/\${USERNAME}
-
-# Insert public key into authorized_keys file
-sudo vi /home/\${USERNAME}/.ssh/authorized_keys # Paste key
-sudo chown \${USERNAME}:farkkilab /home/\${USERNAME}/.ssh/authorized_keys
-sudo chmod 600 /home/\${USERNAME}/.ssh/authorized_keys
-sudo chmod 700 /home/\${USERNAME}/.ssh/.ssh`} type="success" />
-
-          <h4 style={{fontSize: '0.95rem', color: 'var(--text-primary)', marginTop: '1.5rem', marginBottom: '0.5rem'}}>User Permissions SOP (Umask configuration)</h4>
-          <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem'}}>
-            To ensure files created by an individual user are editable and readable by other members of the group, enforce group-write permissions by default. Append the umask parameters to their <code>.bashrc</code>:
-          </p>
-          <CopyableCodeBlock code={`echo "umask 0002" | sudo tee -a /home/\${USERNAME}/.bashrc`} type="success" />
-        </div>
-      )}
-      </HubDetailFrame>
     </div>
   );
 }
@@ -510,12 +230,12 @@ conda info --envs`;
             <div className="panel">
               <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem', fontSize: '0.95rem'}}>Exporting Environment Variables</h4>
               <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.75rem'}}>To save the active package configurations into an environment file for portability:</p>
-              <pre className="code-block" style={{fontSize: '0.8rem'}}>conda env export --no-builds &gt; environment.yml</pre>
+              <CopyableCodeBlock code="conda env export --no-builds > environment.yml" type="primary" compact />
             </div>
             <div className="panel">
               <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem', fontSize: '0.95rem'}}>Recreating Environment from YML</h4>
               <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.75rem'}}>To recreate the dependencies from a git repository file:</p>
-              <pre className="code-block" style={{fontSize: '0.8rem'}}>conda env create -f environment.yml</pre>
+              <CopyableCodeBlock code="conda env create -f environment.yml" type="primary" compact />
             </div>
           </div>
         </div>
@@ -569,111 +289,114 @@ conda info --envs`;
 }
 
 /* ========================================================================= */
-/* 3. SOFTWARE TOOL INSTALLATIONS                                            */
+/* 3. LUMI MODULES, PYTHON & STORAGE TOOLS                                   */
 /* ========================================================================= */
-export function InstallSoftwareTab({ API_URL, embedded = false }) {
-  const [software, setSoftware] = useState('ashlar');
-  const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [activeSec, setActiveSec] = useState('generator');
+export function LumiModulesTab({ embedded = false }) {
+  const [activeSec, setActiveSec] = useState('modules');
 
-  const handleInstall = async () => {
-    setLoading(true);
-    setResult(null);
-    try {
-      const res = await fetch(`${API_URL}/install_guide`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ package_name: software })
-      });
-      if (res.ok) {
-        setResult(await res.json());
-      }
-    } catch (e) {
-      setResult({ error: String(e) });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const moduleStack = `# Load every new LUMI login session — modules do not persist
+module use /appl/local/csc/modulefiles
+module load cray-python/3.11.7
 
-  const folderStructureLumi = `# Move to work scratch directory
-cd /scratch/project_462XXXXXX/username/
+# Search what is available
+module avail python
+module spider rclone
 
-# Establish structured directories for pipeline consistency
-mkdir -p data/raw
-mkdir -p data/stitched
-mkdir -p data/masks
-mkdir -p scripts/0_illumination
-mkdir -p scripts/1_stitching
-mkdir -p scripts/2_segmentation
+# Common lab stack
+module load allas          # a-* commands + rclone allas remote helpers
+module load rclone         # when exposed on your partition
 
-# Upload your raw slide files into the data/raw folder
-# Upload your execution python/shell scripts into scripts/`;
+# Snakemake pipeline venv (project-specific path)
+source /projappl/project_<ID>/envs/snakemake311/bin/activate
+
+# Verify
+python --version
+which rclone`;
+
+  const pythonPackages = `# Create an isolated venv on LUMI (recommended over system pip)
+module load cray-python/3.11.7
+python -m venv $HOME/venvs/spatial-tools
+source $HOME/venvs/spatial-tools/bin/activate
+
+# Upgrade pip inside the venv
+pip install --upgrade pip wheel
+
+# Common analysis packages (CPU login node / lightweight tests)
+pip install numpy pandas scipy scikit-image tifffile
+
+# Install from a requirements file copied to scratch
+pip install -r /scratch/project_<ID>/$USER/requirements.txt
+
+# Apptainer is preferred for Ashlar / Mesmer / StarDist on compute nodes —
+# use pip only for orchestration scripts and QC utilities.`;
+
+  const storageModules = `# Allas + rclone on LUMI (new terminal each session)
+module use /appl/local/csc/modulefiles
+module load allas
+allas-conf -m s3          # first-time S3 keys into ~/.s3cfg
+allas-conf --lumi         # Lumi-O credentials (see Utilities → Lumi-O transfer)
+
+# Quick checks
+a-access-key list
+rclone lsd lumi-o:
+
+# Pull a bucket prefix into scratch before a pipeline run
+a-get -r bucket-name/path/to/raw/ /scratch/project_<ID>/$USER/data/raw/SAMPLE1/`;
 
   const napariLumi = `# 1. Log in to the LUMI web UI: https://www.lumi.csc.fi/
-# 2. Select 'Desktop' option from menu tools
-# 3. Configure the Launch parameters:
-#    - Compression: 0
-#    - Image Quality: 9
-#    - Partition: small-g (if using GPU visualization) or small
-# 4. Once Desktop is ready and launched, open Terminal Emulator.
-# 5. Execute the singularity container to run Napari viewer:
+# 2. Select Desktop from the menu
+# 3. Launch parameters: Compression 0, Image quality 9, partition small-g (GPU) or small
+# 4. Open Terminal in the desktop session
 cd ~/Desktop
 singularity run --nv napari-xtra.sif napari_fast_masking.py
 
-# 6. Inside Napari, load your slide image and features CSV from scratch:
-#    File -> Open -> Computer -> select root drive -> search 'scratch'
-#    Open: /scratch/project_462001305/ -> choose target datasets.`;
+# 5. Load OME-TIFF / masks from scratch (not $HOME):
+# File → Open → /scratch/project_<ID>/.../data/stitching/<sample>/`;
 
   const installViews = [
-    { id: 'generator', label: 'Installer guide' },
-    { id: 'lumi_folders', label: 'LUMI folder standards' },
-    { id: 'napari_lumi', label: 'Napari on LUMI' },
+    { id: 'modules', label: 'Module stack' },
+    { id: 'python', label: 'Python & pip' },
+    { id: 'storage_tools', label: 'Allas & rclone' },
+    { id: 'napari_lumi', label: 'Napari desktop' },
   ];
 
   return (
-    <HubDetailFrame sections={installViews} active={activeSec} onChange={setActiveSec} ariaLabel="Tool installation views">
-      {activeSec === 'generator' && (
-        <div className="panel" style={{maxWidth: '650px'}}>
-          <h3 className="panel-title"><Settings size={18} /> Choose Package to Install</h3>
-          <div className="form-group">
-            <label className="form-label">Spatial Toolbox Package</label>
-            <select className="form-select" value={software} onChange={(e) => setSoftware(e.target.value)}>
-              <option value="ashlar">Ashlar (Stitching & Registration)</option>
-              <option value="stardist">Stardist (Nuclei Cell Segmentation)</option>
-              <option value="cylinter">Cylinter (Gating QC & Normalization)</option>
-              <option value="spacestat">SPACEstat (Spatial joint analytics)</option>
-            </select>
-          </div>
-          <button className="btn btn-primary" onClick={handleInstall} disabled={loading}>
-            {loading ? "Generating setup guide..." : "⚙️ Fetch Installation Guide"}
-          </button>
-
-          {result && (
-            <div className="surface-inset" style={{marginTop: '1.5rem', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)'}}>
-              <h4 style={{color: 'var(--color-primary)', marginBottom: '0.5rem'}}>Installation Command:</h4>
-              <code style={{background: 'var(--bg-inset)', padding: '0.5rem 1rem', borderRadius: '4px', display: 'block', color: 'var(--color-success)', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', marginBottom: '1rem'}}>{result.install_command}</code>
-              <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.5}}>{result.instructions}</p>
-            </div>
-          )}
+    <HubDetailFrame sections={installViews} active={activeSec} onChange={setActiveSec} ariaLabel="LUMI modules and packages">
+      {activeSec === 'modules' && (
+        <div className="panel">
+          <h3 className="panel-title"><Terminal size={18} /> Loading LUMI modules</h3>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+            LUMI uses Environment Modules — load Python, Allas, and rclone at the start of each SSH session before running scripts or the image pipeline.
+          </p>
+          <CopyableCodeBlock code={moduleStack} type="primary" />
         </div>
       )}
 
-      {activeSec === 'lumi_folders' && (
+      {activeSec === 'python' && (
         <div className="panel">
-          <h3 className="panel-title"><FolderOpen size={18} /> LUMI Project Workspace Conventions</h3>
-          <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>
-            To run image processing pipelines (CEFIIRA/UTAG) seamlessly, configure your project scratch folders using the following layout parameters:
+          <h3 className="panel-title"><Settings size={18} /> Python packages in a venv</h3>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+            Use a personal virtual environment for helper scripts. Heavy pipeline stages (Ashlar, Mesmer, StarDist) run inside Apptainer images documented in LUMI HPC → Imaging pipeline.
           </p>
-          <CopyableCodeBlock code={folderStructureLumi} type="success" />
+          <CopyableCodeBlock code={pythonPackages} type="success" />
+        </div>
+      )}
+
+      {activeSec === 'storage_tools' && (
+        <div className="panel">
+          <h3 className="panel-title"><Cloud size={18} /> Allas &amp; rclone modules</h3>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+            Stage raw tiles from Allas or Lumi-O into scratch. Full Lumi-O setup and bucket transfers are under <strong>Utilities → Lumi-O transfer</strong>.
+          </p>
+          <CopyableCodeBlock code={storageModules} type="primary" />
         </div>
       )}
 
       {activeSec === 'napari_lumi' && (
         <div className="panel">
-          <h3 className="panel-title"><Video size={18} /> running Napari GUI in LUMI Desktops</h3>
-          <p style={{fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>
-            Napari is a graphical multi-dimensional image viewer. Since the slides are massive, run Napari inside the LUMI virtual desktop to inspect segmentation boundaries locally:
+          <h3 className="panel-title"><Video size={18} /> Napari on LUMI desktop</h3>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+            Inspect stitched OME-TIFFs and segmentation masks on a LUMI virtual desktop — required for pipeline QC gates.
           </p>
           <CopyableCodeBlock code={napariLumi} type="success" />
         </div>
@@ -682,12 +405,15 @@ singularity run --nv napari-xtra.sif napari_fast_masking.py
   );
 }
 
+/** @deprecated alias — use LumiModulesTab */
+export const InstallSoftwareTab = LumiModulesTab;
+
 /* ========================================================================= */
 /* 4. FILE OPERATIONS & TRANSFERS                                            */
 /* ========================================================================= */
 function FileOperationsTab({ onNavigate, variant = 'full', embedded = false }) {
-  const [activeSec, setActiveSec] = useState(variant === 'lumi' ? 'guides' : 'guides');
-  const [activeGuideSub, setActiveGuideSub] = useState(variant === 'lumi' ? 'lumi_o' : 'csc_dc');
+  const [activeSec, setActiveSec] = useState('guides');
+  const [activeGuideSub, setActiveGuideSub] = useState('csc_dc');
 
   const transferScript = `rsync -avzP --compress-level=6 \\
   -e "ssh -i ~/.ssh/id_rsa" \\
@@ -823,6 +549,27 @@ rclone copy /src /dst --progress --transfers=4 --checkers=8 --multi-thread-strea
 # For mixed workloads (slides + annotations tables)
 rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-streams=4 --retries=10 --low-level-retries=20 --stats 5s`;
 
+  if (variant === 'lumi_transfer') {
+    return (
+      <div>
+        <div className="panel">
+          <h3 className="panel-title"><Cloud size={18} /> Lumi-O object storage</h3>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+            LUMI uses <strong>Lumi-O</strong> (S3-compatible) for scratch-to-bucket transfers. Load the Allas module each session, then configure once with <code>allas-conf --lumi</code>.
+          </p>
+          <CopyableCodeBlock code={rcloneLumiO} type="primary" />
+        </div>
+        <div className="panel">
+          <h3 className="panel-title"><HardDrive size={18} /> rsync workstation → LUMI scratch</h3>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+            For large slide directories, push directly to project scratch before running the imaging pipeline.
+          </p>
+          <CopyableCodeBlock code={transferScript} type="primary" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       {!embedded && (
@@ -832,9 +579,7 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
       </div>
       )}
 
-      {variant !== 'lumi' && (
-        <StorageHubLinkBanner onNavigate={onNavigate} target="landscape" label="Storage landscape" />
-      )}
+      <StorageHubLinkBanner onNavigate={onNavigate} target="landscape" label="Storage landscape" />
 
       {(() => {
         const fileOpViews = [
@@ -843,7 +588,6 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
           { id: 'crypto', label: 'Compression & encryption' },
         ];
         const guideViews = [
-          ...(variant !== 'utilities' ? [{ id: 'lumi_o', label: 'LUMI & Lumi-O' }] : []),
           { id: 'csc_dc', label: 'CSC to Datacloud' },
           { id: 'local_allas', label: 'Workstation to Allas' },
           { id: 'cyberduck', label: 'Cyberduck GUI' },
@@ -859,18 +603,6 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
           ariaLabel="Transfer guide topics"
         >
           <div>
-            {activeGuideSub === 'lumi_o' && (
-              <div className="panel" style={{margin: 0}}>
-                <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <Cloud size={16} /> File Transfer in LUMI / Lumi-O Connection
-                </h4>
-                <p style={{fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1rem'}}>
-                  LUMI does not utilize standard Allas Swift protocols for object storage. Instead, LUMI uses **Lumi-O** (S3-compatible Object Storage). Connect and transfer using the following commands:
-                </p>
-                <CopyableCodeBlock code={rcloneLumiO} type="primary" />
-              </div>
-            )}
-
             {activeGuideSub === 'csc_dc' && (
               <div className="panel" style={{margin: 0}}>
                 <h4 style={{color: 'var(--text-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
@@ -951,8 +683,6 @@ rclone copy /src /dst --progress --transfers=8 --checkers=16 --multi-thread-stre
       )}
           </>
         );
-
-        if (variant === 'lumi') return fileOpBody;
 
         return (
           <HubDetailFrame
@@ -1181,7 +911,11 @@ function CpoutaVmTab({ API_URL, onNavigate, embedded = false }) {
                 'Data & Storage → Local & external disks'
               )}
             </p>
-            <pre className="code-block" style={{fontSize: '0.8rem', color: 'var(--color-warning)', marginTop: '0.75rem'}}>{`/data 192.168.1.7(rw,sync,no_subtree_check,no_root_squash) 192.168.1.12(rw,sync,no_subtree_check,no_root_squash)`}</pre>
+            <CopyableCodeBlock
+              code="/data 192.168.1.7(rw,sync,no_subtree_check,no_root_squash) 192.168.1.12(rw,sync,no_subtree_check,no_root_squash)"
+              type="warning"
+              compact
+            />
           </div>
         </div>
       )}
@@ -1509,12 +1243,10 @@ export function TroubleshooterTab({ API_URL, embedded = false }) {
 
 const LUMI_SECTIONS = [
   { id: 'jobs', label: 'Slurm jobs' },
-  { id: 'install', label: 'Tool installations' },
-  { id: 'pipeline', label: 'Pipelines' },
-  { id: 'transfers', label: 'Lumi-O transfers' },
+  { id: 'pipeline', label: 'Imaging pipeline' },
 ];
 
-function LumiHubTab({ dbProjects, API_URL, initialSection = 'jobs', onSectionChange }) {
+function LumiHubTab({ dbProjects, API_URL, onNavigate, initialSection = 'jobs', onSectionChange }) {
   const [section, setSection] = useState(initialSection);
 
   useEffect(() => {
@@ -1527,11 +1259,21 @@ function LumiHubTab({ dbProjects, API_URL, initialSection = 'jobs', onSectionCha
   };
 
   return (
-    <HubSectionFrame sections={LUMI_SECTIONS} active={section} onChange={select} ariaLabel="LUMI HPC sections">
+    <HubSectionFrame
+      sections={LUMI_SECTIONS}
+      active={section}
+      onChange={select}
+      ariaLabel="LUMI HPC sections"
+      layout="horizontal"
+    >
       {section === 'jobs' && <LumiJobTab dbProjects={dbProjects} API_URL={API_URL} embedded />}
-      {section === 'install' && <InstallSoftwareTab API_URL={API_URL} embedded />}
-      {section === 'pipeline' && <RunPipelineTab dbProjects={dbProjects} API_URL={API_URL} />}
-      {section === 'transfers' && <FileOperationsTab variant="lumi" embedded />}
+      {section === 'pipeline' && (
+        <ImageProcessingPipelineScreen
+          dbProjects={dbProjects}
+          API_URL={API_URL}
+          embeddedInHub
+        />
+      )}
     </HubSectionFrame>
   );
 }
@@ -1573,7 +1315,7 @@ function RoihuTab() {
         <div style={{ background: 'rgba(251,191,36,0.1)', borderLeft: '4px solid var(--color-warning)', padding: '1rem', borderRadius: '4px' }}>
           <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0 }}>
             See also <strong>Onboarding &amp; credentials</strong> for the Puhti → Roihu migration reminder and
-            <strong> LUMI HPC → Lumi-O transfers</strong> for scratch-to-bucket workflows.
+            <strong> Utilities → Lumi-O transfer</strong> for scratch-to-bucket workflows.
           </p>
         </div>
       </div>
@@ -1608,6 +1350,8 @@ function TroubleshootingHubTab({ API_URL, initialSection = 'diagnostics', onSect
 
 const UTILITIES_SECTIONS = [
   { id: 'file_ops', label: 'File operations' },
+  { id: 'lumi_transfer', label: 'Lumi-O transfer' },
+  { id: 'lumi_modules', label: 'LUMI modules & packages' },
   { id: 'conda', label: 'Conda environments' },
 ];
 
@@ -1625,72 +1369,11 @@ function UtilitiesHubTab({ API_URL, onNavigate, initialSection = 'file_ops', onS
 
   return (
     <HubSectionFrame sections={UTILITIES_SECTIONS} active={section} onChange={select} ariaLabel="Utilities sections">
-      {section === 'file_ops' && <FileOperationsTab onNavigate={onNavigate} variant="utilities" embedded />}
+      {section === 'file_ops' && <FileOperationsTab onNavigate={onNavigate} embedded />}
+      {section === 'lumi_transfer' && <FileOperationsTab variant="lumi_transfer" embedded />}
+      {section === 'lumi_modules' && <LumiModulesTab embedded />}
       {section === 'conda' && <CondaEnvironmentTab onNavigate={onNavigate} variant="core" embedded />}
     </HubSectionFrame>
   );
 }
 
-export function RunPipelineTab({ dbProjects, API_URL }) {
-  const [pipeline, setPipeline] = useState('stitching');
-  const [project, setProject] = useState('SPACE');
-  const [result, setResult] = useState(null);
-  const [running, setRunning] = useState(false);
-
-  const handleRun = async () => {
-    setRunning(true);
-    setResult(null);
-    try {
-      const res = await fetch(`${API_URL}/run_checker`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          check_type: `run_${pipeline}_pipeline`,
-          options: { project_code: project },
-        }),
-      });
-      if (res.ok) {
-        setResult(await res.json());
-      }
-    } catch (e) {
-      setResult({ status: 'error', details: String(e) });
-    } finally {
-      setRunning(false);
-    }
-  };
-
-  return (
-    <div className="panel" style={{ maxWidth: '650px' }}>
-      <h3 className="panel-title"><Play size={18} /> Trigger spatial biology pipeline (LUMI)</h3>
-      <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
-        Launch Ashlar stitching, Stardist segmentation, or Cylinter gating checks against a project cohort on cluster infrastructure.
-      </p>
-      <div className="form-group">
-        <label className="form-label">Select pipeline action</label>
-        <select className="form-select" value={pipeline} onChange={(e) => setPipeline(e.target.value)}>
-          <option value="stitching">Ashlar image stitching &amp; registration</option>
-          <option value="segmentation">Stardist segmentations &amp; mask extraction</option>
-          <option value="gating">Cylinter ROI gating &amp; mask normalizations</option>
-        </select>
-      </div>
-      <div className="form-group">
-        <label className="form-label">Target cohort project</label>
-        <select className="form-select" value={project} onChange={(e) => setProject(e.target.value)}>
-          {dbProjects.map((p) => (
-            <option key={p.project_code} value={p.project_code}>{p.project_code}</option>
-          ))}
-        </select>
-      </div>
-      <button type="button" className="btn btn-primary" onClick={handleRun} disabled={running}>
-        {running ? 'Executing pipeline on cluster…' : '🚀 Launch pipeline run'}
-      </button>
-
-      {result && (
-        <div className="surface-inset" style={{ marginTop: '1.5rem', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
-          <h4 style={{ fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>Execution result</h4>
-          <pre style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--color-success)', overflowX: 'auto' }}>{JSON.stringify(result, null, 2)}</pre>
-        </div>
-      )}
-    </div>
-  );
-}

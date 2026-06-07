@@ -70,6 +70,10 @@ def nav_for_bucket(
 ) -> SearchNavAction | None:
     if bucket in ("lab", "file"):
         return nav_for_section(section_id, relative_path=relative_path)
+    if bucket == "document_library":
+        return SearchNavAction(main="document_library", relative_path=relative_path, query=relative_path)
+    if bucket == "vault_review":
+        return SearchNavAction(main="data_storage", sub="documents", relative_path=relative_path, query=relative_path)
     if bucket == "vault":
         return SearchNavAction(main="data_storage", sub="documents", relative_path=relative_path, query=relative_path)
     if bucket == "notebook":
@@ -91,15 +95,17 @@ def nav_for_bucket(
 
 def hit_source_label(bucket: SearchBucket, *, section_label: str | None = None) -> str:
     labels = {
-        "lab": "Lab knowledge corpus",
+        "lab": "Lab Knowledge",
         "file": "Lab document index",
-        "vault": "Vault metadata",
+        "vault": "Vault Asset",
+        "document_library": "Document Library",
+        "vault_review": "Vault Review",
         "notebook": "Notebook entry",
         "wiki": "Research wiki",
         "decision": "Decision registry",
         "task": "Lab task",
         "project": "Project workspace",
-        "research": "Research knowledge base",
+        "research": "Research KB",
         "people": "Lab members",
     }
     if section_label and bucket in ("lab", "file"):

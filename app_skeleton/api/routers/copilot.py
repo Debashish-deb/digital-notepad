@@ -56,7 +56,20 @@ def get_billing_instructions() -> dict:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.post("/ask", response_model=QuestionResponse)
-def ask(req: QuestionRequest, user: dict = Depends(require_platform_user)) -> QuestionResponse:
+def ask(
+    req: QuestionRequest,
+    request: Request,
+    response: Response,
+    user: dict = Depends(require_platform_user),
+) -> QuestionResponse:
+    from app_skeleton.api.rate_limit import apply_rate_limit_headers, check_rate_limit
+
+    client_ip = request.client.host if request.client else "unknown"
+    allowed, rate_headers = check_rate_limit(user_id=user.get("email"), ip_address=client_ip)
+    apply_rate_limit_headers(response, rate_headers)
+    if not allowed:
+        raise HTTPException(status_code=429, detail="Rate limit exceeded. Try again shortly.")
+
     mode = (req.mode or "documentation_only").strip().lower()
     if mode != "search_only":
         require_role(user, ["researcher", "viewer", "editor", "admin"])

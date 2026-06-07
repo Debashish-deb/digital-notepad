@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Play, Search, AlertCircle, CheckCircle2, ShieldAlert, FileText, Database, Activity, RefreshCw } from 'lucide-react';
 import { apiFetch } from '../api/client';
-import DataPadEditor from '../components/DataPadEditor';
+import LazyDataPadEditor from '../components/LazyDataPadEditor.jsx';
 
 export default function DigitalizationDashboard({ title, description }) {
   const [status, setStatus] = useState(null);
@@ -248,7 +248,7 @@ export default function DigitalizationDashboard({ title, description }) {
 
                 <div style={{ marginTop: '1rem' }}>
                   <h4>Canonical JSON</h4>
-                  <DataPadEditor 
+                  <LazyDataPadEditor 
                     initialContent={JSON.stringify(docDetail.canonical_json, null, 2)}
                     fileName="canonical.json"
                     readOnly
@@ -258,7 +258,7 @@ export default function DigitalizationDashboard({ title, description }) {
 
                 <div style={{ marginTop: '1rem' }}>
                   <h4>Extracted Text (Redacted)</h4>
-                  <DataPadEditor 
+                  <LazyDataPadEditor 
                     initialContent={docDetail.canonical_text}
                     fileName="extracted.md"
                     readOnly

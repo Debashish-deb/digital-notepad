@@ -194,15 +194,50 @@
    ─────────────────────────────────────────────────────────────────────────── */
 @layer gem-fonts.theme {
   html[data-theme="academic"] {
-    /* Semantic re-map: academic mode promotes serif to display role */
+    /* Kindle × Apple: SF system UI + serif display */
+    --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Source Sans 3", "Segoe UI", system-ui, sans-serif;
     --font-body: var(--font-ui);
-    /* app chrome stays crisp */
-    --font-heading: var(--font-display);
-    /* titles in serif        */
+    --font-heading: "Source Serif 4", "Iowan Old Style", "New York", Georgia, serif;
+    --font-label: var(--font-ui);
+    --font-code: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, monospace;
 
     body {
       font-family: var(--font-ui);
+      letter-spacing: -0.011em;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
     }
+  }
+
+  /* Apple-like UI chrome in Kindle theme */
+  html[data-theme="academic"] :where(
+    button, input, textarea, select, label,
+    nav, .btn, .sidebar-item, .tab-button,
+    .form-input, .search-input, .metric-label,
+    .sidebar-title, .sidebar-eyebrow, .app-topline,
+    .module-shell-title, .subsection-cover-card) {
+    font-family: var(--font-ui);
+    letter-spacing: -0.014em;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html[data-theme="academic"] .sidebar-title,
+  html[data-theme="academic"] .module-shell-title,
+  html[data-theme="academic"] .panel-title {
+    font-weight: 650;
+    letter-spacing: -0.022em;
+  }
+
+  /* Apple-like icon strokes across Kindle theme */
+  html[data-theme="academic"] :where(svg, .lucide) {
+    stroke-width: 1.85;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  html[data-theme="academic"] :where(.sidebar-item-icon, .metric-icon, .btn svg, .icon-btn svg) {
+    transform: translateZ(0);
   }
 
   /* ── Display & heading typography ────────────────────────────────────────── */

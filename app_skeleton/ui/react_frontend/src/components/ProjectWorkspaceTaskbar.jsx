@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Edit3, RefreshCw, Save, X } from 'lucide-react';
 import DigitalTwinPanel from './DigitalTwinPanel.jsx';
 import ProjectRegistryEditor from './ProjectRegistryEditor.jsx';

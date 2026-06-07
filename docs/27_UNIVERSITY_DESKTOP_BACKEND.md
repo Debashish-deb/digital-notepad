@@ -131,7 +131,7 @@ Mac dev with `PLATFORM_AUTH_DISABLED=true` skips verify for faster local iterati
 
 | Trigger | Command | Safety |
 |---------|---------|--------|
-| `omeia-ingest.timer` (Linux) | `scheduled_ingest.sh` → `scripts/scheduled_ingest.py` | Read-only |
+| `omeia-ingest.timer` (Linux) | `scheduled_ingest.sh` → `scripts/ops/scheduled_ingest.py` | Read-only |
 | cron / launchd (Mac) | same wrapper | Read-only |
 
 Steps:

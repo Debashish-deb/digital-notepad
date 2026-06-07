@@ -1,35 +1,12 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { BookOpen, ChevronDown, Pencil, Save, X } from 'lucide-react';
 import { findProjectLogFile } from '../utils/projectLogUtils.js';
 import { fetchProjectLogContent } from '../utils/projectLogContent.js';
 import { inferExtension } from '../utils/fileTypeMeta.js';
 import { apiGet, apiPost } from '../api/client.js';
+import { CopyableCodeBlock } from './common/CopyableCodeBlock.jsx';
 
 const EDITABLE_EXTS = new Set(['.md', '.txt', '.html', '.rtf']);
-
-function CodeBlock({ code, lang }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="log-code-block-container">
-      <div className="log-code-block-header">
-        <span className="log-code-block-lang">{lang || 'code'}</span>
-        <button type="button" className="log-code-block-copy" onClick={handleCopy}>
-          {copied ? 'Copied!' : 'Copy'}
-        </button>
-      </div>
-      <pre className="log-code-block">
-        <code>{code}</code>
-      </pre>
-    </div>
-  );
-}
 
 export default function ProjectLogPanel({ twin, projectCode, API_URL }) {
   const logFile = useMemo(() => findProjectLogFile(twin), [twin]);
@@ -488,7 +465,7 @@ export default function ProjectLogPanel({ twin, projectCode, API_URL }) {
                   )}
 
                   {entry.codeBlocks?.map((block, bIdx) => (
-                    <CodeBlock key={bIdx} code={block.code} lang={block.lang} />
+                    <CopyableCodeBlock key={bIdx} code={block.code} lang={block.lang} />
                   ))}
                 </div>
               );

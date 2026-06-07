@@ -1,8 +1,9 @@
-import React, { memo, useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import {
   ExternalLink,
   PlusSquare,
   Rows3,
+  Star,
   Table2,
 } from 'lucide-react';
 import CodePreview from './CodePreview.jsx';
@@ -13,12 +14,19 @@ import {
   hasSpreadsheetRowMarkers,
   parseSpreadsheetRows,
 } from '../utils/spreadsheetText.js';
+import { isCommitmentOrPlanText } from '../utils/documentHighlightUtils.js';
+import { polishDisplayHeading } from '../utils/polishDisplayText.js';
 
 const MAX_PREVIEW_SAMPLE = 5000;
 const MAX_CODE_SIGNAL_LINES = 56;
 
 function safeText(value) {
   return String(value ?? '').trim();
+}
+
+function safeHeadingText(value) {
+  const raw = safeText(value);
+  return raw ? polishDisplayHeading(raw) : '';
 }
 
 function isNumericCell(value) {
@@ -88,26 +96,67 @@ function getStableKey(prefix, index, fallback = '') {
 }
 
 function buildFallbackSections(cleaned) {
-  const paragraphs = cleaned
-    .split(/\n{2,}/)
-    .map((part) => part.trim())
-    .filter(Boolean);
+  const lines = String(cleaned || '')
+    .split('\n')
+    .map((line) => line.trimEnd());
 
-  return [
-    {
-      title: null,
-      blocks: [
-        {
-          type: 'card',
-          title: null,
-          entries: paragraphs.map((paragraph) => ({
-            type: 'paragraph',
-            text: paragraph,
-          })),
-        },
-      ],
-    },
-  ];
+  const sections = [];
+  let current = {
+    title: null,
+    level: 2,
+    blocks: [{ type: 'card', title: null, entries: [] }],
+  };
+
+  const pushSection = () => {
+    const entries = current.blocks[0]?.entries || [];
+    if (current.title || entries.length) sections.push(current);
+  };
+
+  let paragraphBuffer = [];
+
+  const flushParagraph = () => {
+    const text = paragraphBuffer.join('\n').trim();
+    paragraphBuffer = [];
+    if (!text) return;
+    current.blocks[0].entries.push({ type: 'paragraph', text });
+  };
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      flushParagraph();
+      continue;
+    }
+
+    const mdHeading = trimmed.match(/^(#{1,6})\s+(.+)$/);
+    if (mdHeading) {
+      flushParagraph();
+      pushSection();
+      current = {
+        title: mdHeading[2].trim(),
+        level: mdHeading[1].length,
+        blocks: [{ type: 'card', title: null, entries: [] }],
+      };
+      continue;
+    }
+
+    paragraphBuffer.push(trimmed);
+  }
+
+  flushParagraph();
+  pushSection();
+
+  if (!sections.length) {
+    return [
+      {
+        title: null,
+        level: 2,
+        blocks: [{ type: 'card', title: null, entries: [] }],
+      },
+    ];
+  }
+
+  return sections;
 }
 
 function buildSafeKindleSections(cleaned) {
@@ -205,8 +254,8 @@ function InlineLink({ href, children, className = 'kindle-link' }) {
 
   return (
     <a href={safeHref} target="_blank" rel="noreferrer noopener" className={className}>
-      <span>{children || safeHref}</span>
-      <ExternalLink size={11} aria-hidden="true" />
+      {children || safeHref}
+      <ExternalLink size={11} aria-hidden="true" className="kindle-link__icon" />
     </a>
   );
 }
@@ -240,6 +289,15 @@ function renderLinks(value) {
   });
 }
 
+function CommitmentWrap({ children, active }) {
+  if (!active) return children;
+  return (
+    <div className="doc-commitment-block" role="note" aria-label="Plan or commitment">
+      {children}
+    </div>
+  );
+}
+
 function TaskButton({ text, onCreateTask }) {
   if (!onCreateTask || !text || text.length <= 40) return null;
 
@@ -262,7 +320,12 @@ const CardEntry = memo(function CardEntry({ entry, onCreateTask }) {
 
   switch (entry.type) {
     case 'label':
-      return <h4 className="doc-inline-label">{safeText(entry.text)}</h4>;
+      return (
+        <h4 className="doc-inline-label">
+          <Star size={12} className="doc-section-star" aria-hidden="true" />
+          <span>{safeText(entry.text)}</span>
+        </h4>
+      );
 
     case 'url':
       return (
@@ -303,23 +366,43 @@ const CardEntry = memo(function CardEntry({ entry, onCreateTask }) {
     case 'divider':
       return <hr className="doc-divider" aria-hidden="true" />;
 
-    case 'list':
-      return (
+    case 'list': {
+      const items = entry.items || [];
+      const allPlan = items.length > 0 && items.every((item) => isCommitmentOrPlanText(item));
+      const list = (
         <ul className="doc-list">
-          {(entry.items || []).map((item, index) => (
-            <li key={getStableKey('list-item', index, item)}>{renderLinks(item)}</li>
-          ))}
+          {items.map((item, index) => {
+            const plan = isCommitmentOrPlanText(item);
+            const content = <li key={getStableKey('list-item', index, item)}>{renderLinks(item)}</li>;
+            if (allPlan || !plan) return content;
+            return (
+              <li key={getStableKey('list-item', index, item)} className="doc-list-item--plan">
+                {renderLinks(item)}
+              </li>
+            );
+          })}
         </ul>
       );
+      return <CommitmentWrap active={allPlan}>{list}</CommitmentWrap>;
+    }
 
-    case 'lines':
-      return (
+    case 'lines': {
+      const lineItems = entry.items || [];
+      const allPlan = lineItems.length > 0 && lineItems.every((line) => isCommitmentOrPlanText(line));
+      const body = (
         <div className="doc-lines">
-          {(entry.items || []).map((line, index) => (
-            <p key={getStableKey('line', index, line)}>{renderLinks(line)}</p>
+          {lineItems.map((line, index) => (
+            <p
+              key={getStableKey('line', index, line)}
+              className={isCommitmentOrPlanText(line) ? 'doc-line--plan' : undefined}
+            >
+              {renderLinks(line)}
+            </p>
           ))}
         </div>
       );
+      return <CommitmentWrap active={allPlan}>{body}</CommitmentWrap>;
+    }
 
     case 'paragraph':
     default: {
@@ -327,11 +410,15 @@ const CardEntry = memo(function CardEntry({ entry, onCreateTask }) {
 
       if (!paragraphText) return null;
 
+      const isPlan = isCommitmentOrPlanText(paragraphText);
+
       return (
-        <div className="doc-paragraph-row">
-          <p className="doc-paragraph">{renderLinks(paragraphText)}</p>
-          <TaskButton text={paragraphText} onCreateTask={onCreateTask} />
-        </div>
+        <CommitmentWrap active={isPlan}>
+          <div className="doc-paragraph-row">
+            <p className="doc-paragraph">{renderLinks(paragraphText)}</p>
+            <TaskButton text={paragraphText} onCreateTask={onCreateTask} />
+          </div>
+        </CommitmentWrap>
       );
     }
   }
@@ -344,7 +431,12 @@ const DocumentCard = memo(function DocumentCard({ card, onCreateTask }) {
 
   return (
     <article className="doc-card">
-      {card.title ? <h3 className="doc-card-title">{safeText(card.title)}</h3> : null}
+      {card.title ? (
+        <h3 className="doc-card-title">
+          <Star size={13} className="doc-section-star" aria-hidden="true" />
+          <span>{safeHeadingText(card.title)}</span>
+        </h3>
+      ) : null}
 
       <div className="doc-card-body">
         {entries.map((entry, index) => (
@@ -379,7 +471,24 @@ function DocumentSections({ sections, onCreateTask }) {
             key={getStableKey('section', sectionIndex, section.title)}
             className={`kindle-section${sectionIndex % 2 === 1 ? ' kindle-section--alt' : ''}`}
           >
-            {section.title ? <h2 className="kindle-heading">{safeText(section.title)}</h2> : null}
+            {section.title ? (
+              (() => {
+                const level = section.level || 2;
+                const HeadingTag = level <= 2 ? 'h2' : level === 3 ? 'h3' : 'h4';
+                const headingClass =
+                  level <= 2
+                    ? 'kindle-heading'
+                    : level === 3
+                      ? 'kindle-subheading'
+                      : 'kindle-subsection';
+                return (
+                  <HeadingTag className={headingClass}>
+                    <Star size={14} className="doc-section-star" aria-hidden="true" />
+                    <span>{safeHeadingText(section.title)}</span>
+                  </HeadingTag>
+                );
+              })()
+            ) : null}
 
             <div className="kindle-section-body">
               {blocks.map((block, blockIndex) => {
@@ -398,11 +507,14 @@ function DocumentSections({ sections, onCreateTask }) {
                 }
 
                 if (block.type === 'paragraph' && block.text) {
+                  const isPlan = isCommitmentOrPlanText(block.text);
                   return (
-                    <div key={getStableKey('paragraph', blockIndex, block.text)} className="doc-paragraph-row">
-                      <p className="doc-paragraph">{renderLinks(block.text)}</p>
-                      <TaskButton text={block.text} onCreateTask={onCreateTask} />
-                    </div>
+                    <CommitmentWrap key={getStableKey('paragraph', blockIndex, block.text)} active={isPlan}>
+                      <div className="doc-paragraph-row">
+                        <p className="doc-paragraph">{renderLinks(block.text)}</p>
+                        <TaskButton text={block.text} onCreateTask={onCreateTask} />
+                      </div>
+                    </CommitmentWrap>
                   );
                 }
 

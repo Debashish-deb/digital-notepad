@@ -1,16 +1,11 @@
-import React, { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import {
   ChevronDown,
   Dna,
-  GitBranch,
   LogOut,
-  Moon,
   Search,
-  Sun,
 } from 'lucide-react';
-import LanguageSwitcher from './LanguageSwitcher.jsx';
 import { useGuiT } from '../i18n/useGuiT.js';
-import { useTaskpad } from '../contexts/TaskpadContext.jsx';
 import { useTheme } from '../contexts/ThemeContext.jsx';
 
 function getInitials(label = 'Guest') {
@@ -28,51 +23,21 @@ function Sidebar({
   sidebarExpandedMain = null,
   onNavChange,
   onMainNavClick,
-  apiHealth,
   onOpenSearch,
   userLabel = 'Guest',
   userEmail = null,
   onSignOut = null,
+  onProfileClick = null,
 }) {
-  const { locale, t, nav } = useGuiT();
-  const { openCentralTaskpad } = useTaskpad();
+  const { t, nav } = useGuiT();
   const { theme: activeTheme, cycleTheme, availableThemes, themeMeta } = useTheme();
 
   const activeMain = navMain;
   const currentIndex = availableThemes.indexOf(activeTheme);
   const nextTheme = availableThemes[(currentIndex + 1) % availableThemes.length];
-
   const currentThemeMeta = themeMeta[activeTheme] || themeMeta.dark;
   const nextThemeMeta = themeMeta[nextTheme] || themeMeta.dark;
   const CurrentThemeIcon = currentThemeMeta.icon;
-
-  const apiStatus = useMemo(() => {
-    if (!apiHealth) {
-      return {
-        label: 'Offline',
-        tone: 'muted',
-      };
-    }
-
-    if (apiHealth.ok || apiHealth.status === 'ok' || apiHealth.status === 'healthy') {
-      return {
-        label: 'Online',
-        tone: 'success',
-      };
-    }
-
-    if (apiHealth.status === 'degraded') {
-      return {
-        label: 'Degraded',
-        tone: 'warning',
-      };
-    }
-
-    return {
-      label: 'Check',
-      tone: 'danger',
-    };
-  }, [apiHealth]);
 
   const handleThemeToggle = useCallback((e) => {
     e.stopPropagation();
@@ -82,15 +47,27 @@ function Sidebar({
   return (
     <aside className="sidebar" aria-label={t('common.mainNavAria')}>
       <header className="sidebar-header">
-        <div className="sidebar-brand">
-          <div className="sidebar-logo-mark" aria-hidden="true">
-            <Dna size={17} strokeWidth={2.25} />
+        <div className="sidebar-header-top">
+          <div className="sidebar-brand">
+            <div className="sidebar-logo-mark" aria-hidden="true">
+              <Dna size={17} strokeWidth={2.25} />
+            </div>
+
+            <div className="sidebar-logo-copy">
+              <span className="sidebar-eyebrow">{t('common.appOrg')}</span>
+              <span className="sidebar-title">{t('common.appLabName')}</span>
+            </div>
           </div>
 
-          <div className="sidebar-logo-copy">
-            <span className="sidebar-eyebrow">{t('common.appOrg')}</span>
-            <span className="sidebar-title">{t('common.appLabName')}</span>
-          </div>
+          <button
+            type="button"
+            onClick={handleThemeToggle}
+            className="sidebar-header-theme-btn nav-glass-square theme-toggle-btn"
+            title={t('common.themeTitle', '', { theme: currentThemeMeta.label })}
+            aria-label={`Switch to ${nextThemeMeta.label} theme`}
+          >
+            <CurrentThemeIcon size={16} strokeWidth={2.1} aria-hidden="true" />
+          </button>
         </div>
 
         <button
@@ -117,11 +94,12 @@ function Sidebar({
           return (
             <div
               key={item.id}
+              data-main={item.id}
               className={`sidebar-group${isExpanded ? ' sidebar-group--active' : ''}${isActive ? ' sidebar-group--current' : ''}`}
             >
               <button
                 type="button"
-                className={`sidebar-item sidebar-item-main${isActive ? ' active' : ''}${isExpanded ? ' expanded' : ''}`}
+                className={`sidebar-item sidebar-item-main sidebar-item-main--${item.id}${isActive ? ' active' : ''}${isExpanded ? ' expanded' : ''}`}
                 aria-current={isActive && !showChildren ? 'page' : undefined}
                 aria-expanded={hasChildren ? isExpanded : undefined}
                 onClick={() => handleMainClick(item.id)}
@@ -173,64 +151,34 @@ function Sidebar({
       </nav>
 
       <div className="sidebar-footer">
-        <button
-          type="button"
-          className="sidebar-central-taskpad-btn"
-          onClick={openCentralTaskpad}
-          title={t('taskpad.centralTitle')}
-        >
-          <GitBranch size={15} aria-hidden="true" />
-          <span>{t('taskpad.centralTitle')}</span>
-        </button>
+        <div className="sidebar-footer-row">
+          <button
+            type="button"
+            className="sidebar-footer-profile nav-glass-square"
+            onClick={onProfileClick}
+            disabled={!onProfileClick}
+            aria-current={navMain === 'profile' ? 'page' : undefined}
+            aria-label={t('common.openProfile', 'Open profile')}
+            title={userEmail || userLabel}
+          >
+            <div className="sidebar-user-avatar" aria-hidden="true">
+              {getInitials(userLabel)}
+            </div>
+            <strong className="sidebar-user-name">{userLabel}</strong>
+          </button>
 
-        <div className="sidebar-footer-profile">
-          <div className="sidebar-user-avatar" aria-hidden="true">
-            {getInitials(userLabel)}
-          </div>
-
-          <div className="sidebar-user-copy">
-            <span className="sidebar-user-label">{t('common.user')}</span>
-            <strong className="sidebar-user-name" title={userEmail || userLabel}>
-              {userLabel}
-            </strong>
-            {userEmail ? <span className="sidebar-user-email">{userEmail}</span> : null}
-          </div>
-
-          <span
-            className={`sidebar-api-dot sidebar-api-dot--${apiStatus.tone}`}
-            title={`API: ${apiStatus.label}`}
-            aria-label={`API ${apiStatus.label}`}
-          />
-        </div>
-
-        <div className="sidebar-footer-toolbar" role="toolbar" aria-label={t('common.sidebarToolbarAria', 'Sidebar settings')}>
-          <div className="sidebar-footer-toolbar-lang">
-            <LanguageSwitcher variant="select" showLabel={false} />
-          </div>
-
-          <div className="sidebar-footer-toolbar-actions">
+          {onSignOut ? (
             <button
               type="button"
-              onClick={handleThemeToggle}
-              className="theme-toggle-btn sidebar-icon-btn"
-              title={`${currentThemeMeta.label} — switch to ${nextThemeMeta.label}`}
-              aria-label={`Switch to ${nextThemeMeta.label} theme`}
+              className="sidebar-exit-btn nav-glass-square"
+              onClick={onSignOut}
+              title="Sign out"
+              aria-label="Sign out"
             >
-              <CurrentThemeIcon size={17} aria-hidden="true" />
+              <LogOut size={18} strokeWidth={2.25} aria-hidden="true" />
+              <span>Exit</span>
             </button>
-
-            {onSignOut ? (
-              <button
-                type="button"
-                className="theme-toggle-btn sidebar-icon-btn sidebar-icon-btn--danger"
-                onClick={onSignOut}
-                title="Sign out"
-                aria-label="Sign out"
-              >
-                <LogOut size={17} aria-hidden="true" />
-              </button>
-            ) : null}
-          </div>
+          ) : null}
         </div>
       </div>
     </aside>

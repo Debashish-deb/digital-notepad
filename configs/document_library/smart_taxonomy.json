@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "generated_from": "OMEIA Smart Library Reorganization",
+  "domain_tabs": [
+    {
+      "id": "overview",
+      "label": "Lab Administration",
+      "description": "Onboarding, guidelines, permits, personnel, cleaning, and social records",
+      "search_tags": ["overview", "onboarding", "personnel", "permits", "guidelines", "cleaning"],
+      "display_priority": 1,
+      "domains": ["administration", "social_memory"],
+      "default_section": null,
+      "scope_chips": [
+        {
+          "id": "onboarding",
+          "label": "Onboarding & Outboarding",
+          "description": "Orientation checklists and lab entry/exit",
+          "filter": { "section": "overview_onboarding" },
+          "nav_sub": "onboarding"
+        },
+        {
+          "id": "guidelines",
+          "label": "Guidelines",
+          "description": "Research and work-related lab guidelines",
+          "filter": { "section": "overview_guidelines" },
+          "nav_sub": "guidelines"
+        },
+        {
+          "id": "documents_permits",
+          "label": "Documents & Permits",
+          "description": "Permits, forms, datasheets, and handbooks",
+          "filter": { "section": "overview_documents" },
+          "nav_sub": "documents_permits"
+        },
+        {
+          "id": "personnel",
+          "label": "Personnel",
+          "description": "Personnel records and support documents",
+          "filter": { "section": "overview_personnel" },
+          "nav_sub": "personnel"
+        },
+        {
+          "id": "cleaning",
+          "label": "Lab Cleaning",
+          "description": "Cleaning schedules and upkeep documents",
+          "filter": { "section": "overview_cleaning" },
+          "nav_sub": "cleaning"
+        },
+        {
+          "id": "research_materials",
+          "label": "Research Reference",
+          "description": "Papers, methods, and reference library materials",
+          "filter": { "section": "overview_research_materials" },
+          "nav_sub": "research_materials"
+        },
+        {
+          "id": "social",
+          "label": "Social & Events",
+          "description": "Retreats, photos, visitor hosting, outreach",
+          "filter": { "domain": "social_memory", "section": "social_misc" },
+          "nav_sub": "social"
+        }
+      ]
+    },
+    {
+      "id": "wet_lab",
+      "label": "Lab Operations",
+      "description": "Protocols, wet-lab files, equipment, staining, and CyCIF resources",
+      "search_tags": ["protocol", "wet-lab", "cycif", "staining", "reagent", "equipment"],
+      "display_priority": 2,
+      "domains": ["lab_operations"],
+      "default_section": "wet_lab_files",
+      "scope_chips": [
+        {
+          "id": "all_wet_lab",
+          "label": "All wet-lab files",
+          "filter": { "section": "wet_lab_files" },
+          "nav_sub": "files"
+        },
+        {
+          "id": "protocols",
+          "label": "Protocols & SOPs",
+          "filter": { "section": "wet_lab_files", "protocol_only": true },
+          "nav_sub": "protocols"
+        },
+        {
+          "id": "reagents_panels",
+          "label": "Reagents & panels",
+          "filter": { "section": "wet_lab_files", "reagents_only": true },
+          "nav_sub": "inventory"
+        },
+        {
+          "id": "reagents_inventory",
+          "label": "Reagent inventories",
+          "filter": { "section": "wet_lab_files", "reagents_only": true, "reagent_category": "reagents_inventory" }
+        },
+        {
+          "id": "reagents_geomx",
+          "label": "GeoMx resources",
+          "filter": { "section": "wet_lab_files", "reagents_only": true, "reagent_category": "reagents_geomx" }
+        },
+        {
+          "id": "reagents_xenium",
+          "label": "Xenium resources",
+          "filter": { "section": "wet_lab_files", "reagents_only": true, "reagent_category": "reagents_xenium" }
+        },
+        {
+          "id": "reagents_spreadsheets",
+          "label": "Registers & spreadsheets",
+          "filter": { "section": "wet_lab_files", "reagents_only": true, "reagent_category": "reagents_spreadsheets" }
+        },
+        {
+          "id": "proto_spatial",
+          "label": "Spatial & CyCIF",
+          "filter": { "section": "wet_lab_files", "protocol_category": "proto_spatial" }
+        },
+        {
+          "id": "proto_staining",
+          "label": "Staining & IF",
+          "filter": { "section": "wet_lab_files", "protocol_category": "proto_staining" }
+        },
+        {
+          "id": "proto_tissue",
+          "label": "Tissue Processing",
+          "filter": { "section": "wet_lab_files", "protocol_category": "proto_tissue_processing" }
+        },
+        {
+          "id": "proto_sample_prep",
+          "label": "Sample Prep",
+          "filter": { "section": "wet_lab_files", "protocol_category": "proto_sample_prep" }
+        },
+        {
+          "id": "patient_protocols",
+          "label": "Patient Sample Protocols",
+          "filter": { "section": "wet_lab_files", "protocol_category": "patient_omentum" }
+        },
+        {
+          "id": "spreadsheets",
+          "label": "Spreadsheets & Registers",
+          "filter": { "section": "wet_lab_files", "file_type": "table_or_registry" }
+        }
+      ]
+    },
+    {
+      "id": "orders",
+      "label": "Orders & Procurement",
+      "description": "Billing, shipping, yearly orders, quotes, and procurement archives",
+      "search_tags": ["order", "billing", "fedex", "ups", "quote", "procurement", "invoice"],
+      "display_priority": 3,
+      "domains": ["orders_procurement"],
+      "default_section": null,
+      "scope_chips": [
+        {
+          "id": "billing_all",
+          "label": "Billing & Instructions",
+          "description": "Active billing, vendors, and ordering instructions",
+          "filter": { "section": "orders_billing" },
+          "nav_sub": "billing"
+        },
+        {
+          "id": "billing_finance",
+          "label": "Billing & Finance",
+          "filter": { "section": "orders_billing", "smart_chip": "billing_finance" }
+        },
+        {
+          "id": "shipping_fedex",
+          "label": "FedEx",
+          "filter": { "section": "orders_billing", "smart_chip": "shipping_fedex" }
+        },
+        {
+          "id": "shipping_ups",
+          "label": "UPS",
+          "filter": { "section": "orders_billing", "smart_chip": "shipping_ups" }
+        },
+        {
+          "id": "shipping_dna",
+          "label": "DNA Shipments",
+          "filter": { "section": "orders_billing", "smart_chip": "shipping_dna" }
+        },
+        {
+          "id": "shipping_us_customs",
+          "label": "US Customs & Proforma",
+          "filter": { "section": "orders_billing", "smart_chip": "shipping_us_customs" }
+        },
+        {
+          "id": "archive",
+          "label": "Historical Archive",
+          "description": "Older orders, quotes, and procurement records",
+          "filter": { "section": "orders_archive" },
+          "nav_sub": "archive"
+        },
+        {
+          "id": "yearly_orders",
+          "label": "Yearly Order Registers",
+          "filter": { "section": "orders_archive", "smart_chip": "yearly_orders" }
+        },
+        {
+          "id": "quotes_offers",
+          "label": "Quotes & Offers",
+          "filter": { "section": "orders_archive", "smart_chip": "quotes_offers" }
+        }
+      ]
+    },
+    {
+      "id": "all_files",
+      "label": "Full Library",
+      "description": "Search across every indexed lab document",
+      "search_tags": ["all", "search", "library", "inventory"],
+      "display_priority": 5,
+      "domains": [],
+      "scope_chips": []
+    }
+  ],
+  "maintenance_views": [
+    { "id": "not_indexed", "label": "Not indexed" },
+    { "id": "needs_redigitalization", "label": "Needs redigitalization" },
+    { "id": "unknown_type", "label": "Unknown type" },
+    { "id": "duplicates", "label": "Duplicates" },
+    { "id": "large_files", "label": "Large files" }
+  ],
+  "library_zones": [
+    {
+      "id": "registry",
+      "label": "Project Registry",
+      "folder": "app_skeleton/data/00_registry",
+      "lifecycle": "config"
+    },
+    {
+      "id": "source_inventory",
+      "label": "Source Inventory",
+      "folder": "app_skeleton/data/01_source_inventory",
+      "lifecycle": "source"
+    },
+    {
+      "id": "processed_knowledge",
+      "label": "Processed Knowledge Base",
+      "folder": "app_skeleton/data/02_processed_projects",
+      "lifecycle": "processed"
+    },
+    {
+      "id": "lab_operations_docs",
+      "label": "Lab Operations",
+      "folder": "docs/01_lab_operations",
+      "lifecycle": "source"
+    },
+    {
+      "id": "procurement_docs",
+      "label": "Orders & Procurement",
+      "folder": "docs/02_procurement_and_orders",
+      "lifecycle": "source"
+    },
+    {
+      "id": "shipping_billing_docs",
+      "label": "Shipping, Billing & Accounts",
+      "folder": "docs/03_shipping_billing_and_accounts",
+      "lifecycle": "source"
+    },
+    {
+      "id": "research_reference",
+      "label": "Research Reference Library",
+      "folder": "docs/04_research_reference",
+      "lifecycle": "source"
+    }
+  ]
+}

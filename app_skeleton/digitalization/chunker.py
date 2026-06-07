@@ -80,6 +80,8 @@ def chunk_document(
     chunks: list[DocumentChunk] = []
     chunk_idx = 0
 
+    canonical_doc_id = canonical.id or canonical.document_id or ""
+
     base_metadata: dict[str, Any] = {
         "document_id": canonical.document_id,
         "source_file": manifest.file_name,
@@ -107,7 +109,7 @@ def chunk_document(
                     "sheet_name": section.get("sheet_name"),
                 }
                 chunks.append(DocumentChunk(
-                    canonical_document_id=canonical.id or "",
+                    canonical_document_id=canonical_doc_id,
                     chunk_id=chunk_id,
                     chunk_index=chunk_idx,
                     text=sub_text,
@@ -121,7 +123,7 @@ def chunk_document(
         for sub_text in text_chunks:
             chunk_id = _make_chunk_id(canonical.document_id, chunk_idx)
             chunks.append(DocumentChunk(
-                canonical_document_id=canonical.id or "",
+                canonical_document_id=canonical_doc_id,
                 chunk_id=chunk_id,
                 chunk_index=chunk_idx,
                 text=sub_text,

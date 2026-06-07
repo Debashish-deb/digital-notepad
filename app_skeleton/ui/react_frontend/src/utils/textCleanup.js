@@ -6,8 +6,8 @@ import {
   isNumericCellDump,
   normalizeSpreadsheetBody,
 } from './spreadsheetText.js';
+import { polishDisplayTitle } from './polishDisplayText.js';
 
-const SPREADSHEET_XML_DUMP = /###\s*xl\//i;
 const OFFICE_XML_DUMP = /###\s*(?:word|ppt|xl)\//i;
 
 const BROWSER_PRINT_HEADER =
@@ -85,33 +85,99 @@ export function isJunkDisplayName(value, fileName = '') {
   const s = (value || '').trim().replace(/\s+/g, ' ');
   if (!s) return true;
   if (s.length <= 3 && (fileName || '').length > 12) return true;
-  if (SPREADSHEET_XML_DUMP.test(s)) return true;
+  if (OFFICE_XML_DUMP.test(s)) return true;
   return JUNK_NAME_PATTERNS.some((re) => re.test(s));
 }
 
 export function humanizeFilenameLabel(fileName) {
   if (!fileName) return 'Document';
-  let stem = String(fileName).replace(/\.[^.]+$/, '');
-  stem = stem
-    .replace(/^BIlling_/i, 'Billing_')
-    .replace(/Ilmoitis/gi, 'Ilmoitus')
-    .replace(/luovotuspyyntö/gi, 'luovutuspyyntö')
-    .replace(/riskiarviounti/gi, 'riskiarviointi')
-    .replace(/Tayttoohje/gi, 'Täyttöohje')
-    .replace(/Riskinarviointipohja/gi, 'Riskinarviointipohja')
-    .replace(/DATASHEETS&HANDBOOKS/gi, 'Datasheets & Handbooks')
-    .replace(/&/g, ' & ')
-    .replace(/_/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-  return stem.slice(0, 160) || 'Document';
+  const stem = String(fileName).replace(/\.[^.]+$/, '');
+  const polished = polishDisplayTitle(stem);
+  return (polished || 'Document').slice(0, 160);
+}
+
+const GLUED_WORD_SUFFIXES = [
+  'suppressor',
+  'suppressors',
+  'macrophages',
+  'macrophage',
+  'aggregates',
+  'findings',
+  'samples',
+  'sample',
+  'cells',
+  'cell',
+  'tumor',
+  'tumors',
+  'stromal',
+  'immune',
+  'myeloid',
+  'derived',
+  'previous',
+  'reveal',
+  'networks',
+  'structures',
+  'pathway',
+  'pathways',
+  'markers',
+  'patients',
+  'analysis',
+  'visualization',
+  'microenvironment',
+  'composition',
+  'background',
+  'results',
+  'methods',
+];
+
+function needsSpacingRepair(text) {
+  const sample = String(text || '').slice(0, 4000);
+  if (!sample) return false;
+  const longTokens = (sample.match(/\b[a-zA-Z]{16,}\b/g) || []).length;
+  const camelHits = (sample.match(/[a-z][A-Z]/g) || []).length;
+  const acronymGlue = (sample.match(/[A-Z]{2,}[a-z]{3,}/g) || []).length;
+  const bulletGlue = (sample.match(/[^\s]•[^\s]/g) || []).length;
+  return longTokens >= 2 || camelHits >= 3 || acronymGlue >= 2 || bulletGlue >= 1;
+}
+
+/** Heal PDF/poster extracts where words are concatenated without spaces. */
+export function repairMissingWordSpaces(text) {
+  if (!text) return '';
+  let t = String(text);
+
+  t = t.replace(/\u000b/g, '\n');
+  t = t.replace(/([^\s])•/g, '$1\n• ');
+  t = t.replace(/•([^\s])/g, '• $1');
+  t = t.replace(/([,.;:!?])([A-Za-zÀ-ÿ])/g, '$1 $2');
+  t = t.replace(/([a-z0-9])([A-Z][a-z])/g, '$1 $2');
+  t = t.replace(/([A-Z]{2,})([a-z]{3,})/g, '$1 $2');
+  t = t.replace(/([a-z])(\d)/g, '$1 $2');
+  t = t.replace(/(\d)([A-Za-z])/g, '$1 $2');
+
+  for (const suffix of GLUED_WORD_SUFFIXES) {
+    const re = new RegExp(`([a-z])(${suffix})\\b`, 'gi');
+    t = t.replace(re, '$1 $2');
+  }
+
+  t = t.replace(/-([a-z]{4,})(suppressor|macrophage|aggregates|findings|samples|cells)\b/gi, '-$1 $2');
+  t = t.replace(/-([a-z]{4,})([a-z]{5,})/gi, (match, a, b) => {
+    for (const suffix of GLUED_WORD_SUFFIXES) {
+      const idx = b.toLowerCase().indexOf(suffix.toLowerCase());
+      if (idx > 0) {
+        return `-${a}${b.slice(0, idx)} ${b.slice(idx)}`;
+      }
+    }
+    return match;
+  });
+
+  return t.replace(/[ \t]{2,}/g, ' ');
 }
 
 export function cleanExtractedText(text, { maxChars } = {}) {
   if (!text) return '';
   let cleaned = String(text).replace(/\r\n/g, '\n');
 
-  if (SPREADSHEET_XML_DUMP.test(cleaned) || isNumericCellDump(cleaned)) return '';
+  if (OFFICE_XML_DUMP.test(cleaned) || isNumericCellDump(cleaned)) return '';
 
   cleaned = normalizeSpreadsheetBody(cleaned);
   if (!cleaned) return '';
@@ -141,6 +207,11 @@ export function cleanExtractedText(text, { maxChars } = {}) {
 
   // Collapse excessive blank lines
   cleaned = cleaned.replace(/\n{3,}/g, '\n\n').trim();
+
+  if (needsSpacingRepair(cleaned)) {
+    cleaned = repairMissingWordSpaces(cleaned);
+    cleaned = cleaned.replace(/\n{3,}/g, '\n\n').trim();
+  }
 
   if (maxChars && cleaned.length > maxChars) {
     cleaned = `${cleaned.slice(0, maxChars)}…`;

@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { useGuiT } from '../i18n/useGuiT.js';
 
 const ProjectRegistryEditor = forwardRef(function ProjectRegistryEditor(

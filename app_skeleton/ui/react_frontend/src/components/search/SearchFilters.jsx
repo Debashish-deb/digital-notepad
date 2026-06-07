@@ -1,4 +1,3 @@
-import React from 'react';
 
 const MODES = [
   { id: 'hybrid', label: 'Hybrid' },
@@ -7,15 +6,18 @@ const MODES = [
 ];
 
 const SCOPE_OPTIONS = [
-  { id: 'lab', label: 'Lab' },
+  { id: 'research', label: 'Research KB' },
+  { id: 'lab', label: 'Lab Knowledge' },
+  { id: 'document_library', label: 'Document Library' },
+  { id: 'people', label: 'Lab members' },
   { id: 'file', label: 'Files' },
-  { id: 'vault', label: 'Vault' },
+  { id: 'vault', label: 'Vault Asset' },
+  { id: 'vault_review', label: 'Vault Review' },
   { id: 'notebook', label: 'Notebook' },
   { id: 'wiki', label: 'Wiki' },
   { id: 'decision', label: 'Decisions' },
   { id: 'task', label: 'Tasks' },
   { id: 'project', label: 'Projects' },
-  { id: 'research', label: 'Research KB' },
 ];
 
 export default function SearchFilters({

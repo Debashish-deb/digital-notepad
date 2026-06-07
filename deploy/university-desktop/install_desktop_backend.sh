@@ -7,7 +7,7 @@ REPO_ROOT="$(cd "${REPO_DEPLOY}/../.." && pwd)"
 OS="$(uname -s)"
 
 chmod +x "${REPO_DEPLOY}/run_api_dev.sh" "${REPO_DEPLOY}/scheduled_ingest.sh" 2>/dev/null || true
-chmod +x "${REPO_ROOT}/scripts/autonomous_processor.sh" 2>/dev/null || true
+chmod +x "${REPO_ROOT}/scripts/ops/autonomous_processor.sh" 2>/dev/null || true
 
 echo "==> OMEIA desktop backend install (${OS})"
 

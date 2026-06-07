@@ -1,0 +1,171 @@
+{
+  "generated_at": "2026-06-07T08:07:23.180470+00:00",
+  "source_manifest": "/Users/debashishdeb/Downloads/OMEIA-AI/reports/smart_reorganization/move_manifest.json",
+  "entries": [
+    {
+      "current_path": "app_skeleton/data/raw_asset_inventory.json",
+      "proposed_path": "app_skeleton/data/01_source_inventory/raw_asset_inventory.json",
+      "action": "move",
+      "reason": "Canonical source inventory (requires --allow-data-moves + API path update) \u2014 canonical copy preserved",
+      "sha256": "cc495851f028449db7ef516b0842934068aced789b56503cebfa10734b527b26",
+      "size_bytes": 49333185,
+      "risk_level": "high",
+      "duplicate_group_id": "cc495851f028449d",
+      "quarantine_target": "app_skeleton/data/01_source_inventory/raw_asset_inventory.json"
+    },
+    {
+      "current_path": "app_skeleton/data/processed_projects/Ovca_VTE.chunks.jsonl",
+      "proposed_path": "app_skeleton/data/02_processed_projects/research_projects/Ovca_VTE/Ovca_VTE.chunks.jsonl",
+      "action": "quarantine",
+      "reason": "Empty or tiny placeholder file",
+      "sha256": null,
+      "size_bytes": 0,
+      "risk_level": "medium",
+      "duplicate_group_id": null,
+      "quarantine_target": "app_skeleton/data/02_processed_projects/research_projects/Ovca_VTE/Ovca_VTE.chunks.jsonl"
+    },
+    {
+      "current_path": "app_skeleton/data/processed_projects/Proteomics.chunks.jsonl",
+      "proposed_path": "app_skeleton/data/99_quarantine_review/unknown_category/Proteomics.chunks.jsonl",
+      "action": "quarantine",
+      "reason": "Exact SHA-256 duplicate of app_skeleton/data/processed_projects/SaloCollab.chunks.jsonl",
+      "sha256": "9cd610b71ea34d0ff968d56e22cbd57d20a85408cd59f166268d8a780a749620",
+      "size_bytes": 26822,
+      "risk_level": "medium",
+      "duplicate_group_id": "9cd610b71ea34d0f",
+      "quarantine_target": "app_skeleton/data/99_quarantine_review/unknown_category/Proteomics.chunks.jsonl"
+    },
+    {
+      "current_path": "app_skeleton/data/processed_projects/Organoids.chunks.jsonl",
+      "proposed_path": "app_skeleton/data/02_processed_projects/research_projects/Organoids/Organoids.chunks.jsonl",
+      "action": "quarantine",
+      "reason": "Empty or tiny placeholder file",
+      "sha256": null,
+      "size_bytes": 0,
+      "risk_level": "medium",
+      "duplicate_group_id": null,
+      "quarantine_target": "app_skeleton/data/02_processed_projects/research_projects/Organoids/Organoids.chunks.jsonl"
+    },
+    {
+      "current_path": "app_skeleton/data/processed_projects/LeppaCollab.chunks.jsonl",
+      "proposed_path": "app_skeleton/data/02_processed_projects/research_projects/LeppaCollab/LeppaCollab.chunks.jsonl",
+      "action": "quarantine",
+      "reason": "Empty or tiny placeholder file",
+      "sha256": null,
+      "size_bytes": 0,
+      "risk_level": "medium",
+      "duplicate_group_id": null,
+      "quarantine_target": "app_skeleton/data/02_processed_projects/research_projects/LeppaCollab/LeppaCollab.chunks.jsonl"
+    },
+    {
+      "current_path": "app_skeleton/data/processed_projects/VanharantaCollab.chunks.jsonl",
+      "proposed_path": "app_skeleton/data/02_processed_projects/research_projects/VanharantaCollab/VanharantaCollab.chunks.jsonl",
+      "action": "quarantine",
+      "reason": "Empty or tiny placeholder file",
+      "sha256": null,
+      "size_bytes": 0,
+      "risk_level": "medium",
+      "duplicate_group_id": null,
+      "quarantine_target": "app_skeleton/data/02_processed_projects/research_projects/VanharantaCollab/VanharantaCollab.chunks.jsonl"
+    },
+    {
+      "current_path": "app_skeleton/data/processed_projects/Mesenchymal_Ovca.chunks.jsonl",
+      "proposed_path": "app_skeleton/data/02_processed_projects/research_projects/Mesenchymal_Ovca/Mesenchymal_Ovca.chunks.jsonl",
+      "action": "quarantine",
+      "reason": "Empty or tiny placeholder file",
+      "sha256": null,
+      "size_bytes": 0,
+      "risk_level": "medium",
+      "duplicate_group_id": null,
+      "quarantine_target": "app_skeleton/data/02_processed_projects/research_projects/Mesenchymal_Ovca/Mesenchymal_Ovca.chunks.jsonl"
+    },
+    {
+      "current_path": "app_skeleton/data/processed_projects/SideProjects.chunks.jsonl",
+      "proposed_path": "app_skeleton/data/02_processed_projects/research_projects/SideProjects/SideProjects.chunks.jsonl",
+      "action": "quarantine",
+      "reason": "Empty or tiny placeholder file",
+      "sha256": null,
+      "size_bytes": 0,
+      "risk_level": "medium",
+      "duplicate_group_id": null,
+      "quarantine_target": "app_skeleton/data/02_processed_projects/research_projects/SideProjects/SideProjects.chunks.jsonl"
+    },
+    {
+      "current_path": "app_skeleton/data/processed_projects/Endometrial_HRD.chunks.jsonl",
+      "proposed_path": "app_skeleton/data/02_processed_projects/research_projects/Endometrial_HRD/Endometrial_HRD.chunks.jsonl",
+      "action": "quarantine",
+      "reason": "Empty or tiny placeholder file",
+      "sha256": null,
+      "size_bytes": 0,
+      "risk_level": "medium",
+      "duplicate_group_id": null,
+      "quarantine_target": "app_skeleton/data/02_processed_projects/research_projects/Endometrial_HRD/Endometrial_HRD.chunks.jsonl"
+    },
+    {
+      "current_path": "app_skeleton/data/processed_projects/SaloCollab.chunks.jsonl",
+      "proposed_path": "app_skeleton/data/02_processed_projects/research_projects/SaloCollab/SaloCollab.chunks.jsonl",
+      "action": "move",
+      "reason": "Processed twin (SaloCollab) \u2014 canonical copy preserved",
+      "sha256": "9cd610b71ea34d0ff968d56e22cbd57d20a85408cd59f166268d8a780a749620",
+      "size_bytes": 26822,
+      "risk_level": "high",
+      "duplicate_group_id": "9cd610b71ea34d0f",
+      "quarantine_target": "app_skeleton/data/02_processed_projects/research_projects/SaloCollab/SaloCollab.chunks.jsonl"
+    },
+    {
+      "current_path": "app_skeleton/data/processed_projects/sciSet.chunks.jsonl",
+      "proposed_path": "app_skeleton/data/02_processed_projects/research_projects/sciSet/sciSet.chunks.jsonl",
+      "action": "quarantine",
+      "reason": "Empty or tiny placeholder file",
+      "sha256": null,
+      "size_bytes": 0,
+      "risk_level": "medium",
+      "duplicate_group_id": null,
+      "quarantine_target": "app_skeleton/data/02_processed_projects/research_projects/sciSet/sciSet.chunks.jsonl"
+    },
+    {
+      "current_path": "reports/document_library_audit/metadata_v2/low_confidence_metadata_queue.csv",
+      "proposed_path": "reports/99_quarantine_review/obsolete_reports/low_confidence_metadata_queue.csv",
+      "action": "quarantine",
+      "reason": "Exact SHA-256 duplicate of reports/document_library_audit/metadata_v2/unknown_type_review_queue.csv",
+      "sha256": "52bd0fde328f5cbbbc211f5320ab8bd7714d61ce1ea353da0c6af32faac38776",
+      "size_bytes": 45207,
+      "risk_level": "medium",
+      "duplicate_group_id": "52bd0fde328f5cbb",
+      "quarantine_target": "reports/99_quarantine_review/obsolete_reports/low_confidence_metadata_queue.csv"
+    },
+    {
+      "current_path": "reports/document_library_audit/metadata_v2/unknown_type_review_queue.csv",
+      "proposed_path": "reports/01_current_machine_readable/unknown_type_review_queue.csv",
+      "action": "move",
+      "reason": "Current metadata_v2 audit artifact \u2014 canonical copy preserved",
+      "sha256": "52bd0fde328f5cbbbc211f5320ab8bd7714d61ce1ea353da0c6af32faac38776",
+      "size_bytes": 45207,
+      "risk_level": "low",
+      "duplicate_group_id": "52bd0fde328f5cbb",
+      "quarantine_target": "reports/01_current_machine_readable/unknown_type_review_queue.csv"
+    },
+    {
+      "current_path": "reports/document_library_audit/first_pass/document_inventory.csv",
+      "proposed_path": "reports/99_quarantine_review/obsolete_reports/document_inventory.csv",
+      "action": "quarantine",
+      "reason": "Superseded by metadata_v2 enriched inventory",
+      "sha256": "b48fc7eec8178a5081bcab4d0eb98f9aacd3c2138cccc16a467a087c84c845c1",
+      "size_bytes": 2907041,
+      "risk_level": "low",
+      "duplicate_group_id": null,
+      "quarantine_target": "reports/99_quarantine_review/obsolete_reports/document_inventory.csv"
+    },
+    {
+      "current_path": "reports/document_library_audit/first_pass/document_inventory.json",
+      "proposed_path": "reports/99_quarantine_review/obsolete_reports/document_inventory.json",
+      "action": "quarantine",
+      "reason": "Superseded by metadata_v2 enriched inventory",
+      "sha256": "cc495851f028449db7ef516b0842934068aced789b56503cebfa10734b527b26",
+      "size_bytes": 49333185,
+      "risk_level": "medium",
+      "duplicate_group_id": "cc495851f028449d",
+      "quarantine_target": "reports/99_quarantine_review/obsolete_reports/document_inventory.json"
+    }
+  ]
+}

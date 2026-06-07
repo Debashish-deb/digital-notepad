@@ -57,19 +57,19 @@ docker compose -f docker-compose.imaging.yml build
 docker compose -f docker-compose.imaging.yml run --rm imaging-worker
 
 # Or use the helper script:
-./scripts/build_imaging_worker.sh
+./scripts/docker/build_imaging_worker.sh
 ```
 
 **Sync from Mac to Linux** (if `digital-notepad` is behind):
 
 ```bash
 # On Mac, from OMEIA-AI repo:
-./scripts/sync_imaging_worker_to_linux.sh debdeba@dx9-3049-11090:~/data4TB/digital-notepad
+./scripts/imaging/sync_imaging_worker_to_linux.sh debdeba@dx9-3049-11090:~/data4TB/digital-notepad
 ```
 
 If you see `no such service: imaging-worker`, you used the **wrong compose file**. Do **not** use `--profile imaging` on root `docker-compose.yml` alone — use `-f docker-compose.imaging.yml` instead.
 
-Slim image without napari: `IMAGING_INCLUDE_NAPARI=0 ./scripts/build_imaging_worker.sh`
+Slim image without napari: `IMAGING_INCLUDE_NAPARI=0 ./scripts/docker/build_imaging_worker.sh`
 
 **Apple Silicon / `linux-aarch64`:** `bioformats2raw`, `raw2ometiff`, and `ashlar` are skipped (not on conda-forge for ARM). Core TIFF streaming stack still builds. For full CycIF tooling, build the image on your **x86 Linux workstation** (`linux/amd64`).
 

@@ -9,26 +9,43 @@ import {
   BookMarked,
   Calendar,
   LayoutDashboard,
-  Database
+  Database,
+  Scale,
+  NotebookPen,
 } from 'lucide-react';
 
 import ProjectIntroHeader from '../components/ProjectIntroHeader';
-import ProjectTwinStats from '../components/ProjectTwinStats';
 import ProjectWorkspaceTaskbar from '../components/ProjectWorkspaceTaskbar';
 import ProjectDocumentsBrowser from '../components/ProjectDocumentsBrowser';
 import ProjectLogPanel from '../components/ProjectLogPanel';
-import WorkspaceSectionDataPad from '../components/WorkspaceSectionDataPad.jsx';
 import { useDigitalTwin } from '../hooks/useDigitalTwin.js';
 import { ProjectTaskpadScope, useTaskpad } from '../contexts/TaskpadContext.jsx';
 import { resolveProject, fetchWithTimeout } from '../utils/projectUtils.js';
+import { ensureProjectReadme } from '../api/datapad.js';
+import { normalizeDigitalTwin } from '../utils/digitalTwinUtils.js';
+import { twinHasReadme } from '../utils/projectReadmeUtils.js';
+import NotebookWikiPanel from '../components/projectPortfolio/NotebookWikiPanel.jsx';
+import DecisionsPanel from '../components/projectPortfolio/DecisionsPanel.jsx';
+import '../components/projectPortfolio/ProjectPortfolioIntegrated.css';
 
-export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjects = [] }) {
+const WORKSPACE_TAB_IDS = new Set(['overview', 'plan', 'data', 'methods', 'writing', 'archive', 'log', 'notebook', 'decisions']);
+
+export default function WorkspaceScreen({
+  projectCode,
+  onBack,
+  API_URL,
+  dbProjects = [],
+  initialTab = 'overview',
+  onNavigate,
+  onSelectProject,
+}) {
   const [projectData, setProjectData] = useState(() => resolveProject(projectCode, dbProjects));
   const [projectFolders, setProjectFolders] = useState([]);
-  const [workspaceMenu, setWorkspaceMenu] = useState('overview');
+  const [workspaceMenu, setWorkspaceMenu] = useState(
+    WORKSPACE_TAB_IDS.has(initialTab) ? initialTab : 'overview',
+  );
   const [activeSub, setActiveSub] = useState({});
   const [loadError, setLoadError] = useState(null);
-  const [sectionSelectedFile, setSectionSelectedFile] = useState(null);
   
   const {
     twin,
@@ -37,6 +54,7 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
     error: twinError,
     refresh: refreshTwin,
     save: saveTwin,
+    setTwin,
   } = useDigitalTwin(projectCode, API_URL);
   const { setTargetSection } = useTaskpad();
   const { t } = useGuiT();
@@ -49,9 +67,17 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
       { id: 'writing', label: t('workspace.writing'), icon: Edit },
       { id: 'archive', label: t('workspace.archive'), icon: BookMarked },
       { id: 'log', label: t('workspace.log'), icon: BookOpen },
+      { id: 'notebook', label: t('workspace.notebook'), icon: NotebookPen },
+      { id: 'decisions', label: t('workspace.decisions'), icon: Scale },
     ],
     [t]
   );
+
+  useEffect(() => {
+    if (WORKSPACE_TAB_IDS.has(initialTab)) {
+      setWorkspaceMenu(initialTab);
+    }
+  }, [projectCode, initialTab]);
 
   useEffect(() => {
     setProjectData(resolveProject(projectCode, dbProjects));
@@ -64,8 +90,49 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
   }, [workspaceMenu, setTargetSection]);
 
   useEffect(() => {
-    setSectionSelectedFile(null);
-  }, [workspaceMenu, projectCode]);
+    if (!twin || twinLoading || !projectCode) return;
+    if (twinHasReadme(twin)) return;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        const result = await ensureProjectReadme(projectCode);
+        if (cancelled || !result?.created) return;
+        if (result.twin) {
+          setTwin(normalizeDigitalTwin(result.twin));
+        } else {
+          refreshTwin();
+        }
+      } catch (e) {
+        console.warn('Failed to ensure project README', e);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [twin, twinLoading, projectCode, setTwin, refreshTwin]);
+
+  useEffect(() => {
+    const onReadmeUpdated = async (event) => {
+      if (event.detail?.projectCode !== projectCode) return;
+      try {
+        const res = await fetchWithTimeout(
+          `${API_URL}/api/projects/${encodeURIComponent(projectCode)}/digital-twin`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setTwin(data);
+        } else {
+          refreshTwin();
+        }
+      } catch {
+        refreshTwin();
+      }
+    };
+    window.addEventListener('project-readme-updated', onReadmeUpdated);
+    return () => window.removeEventListener('project-readme-updated', onReadmeUpdated);
+  }, [projectCode, API_URL, setTwin, refreshTwin]);
 
   const fetchProjectFolders = async () => {
     try {
@@ -121,17 +188,9 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
 
   const currentMenu = menuItems.find(m => m.id === workspaceMenu) || menuItems[0];
 
-  const renderSectionDataPad = (tabId, { lockFile = false } = {}) =>
-    twin ? (
-      <WorkspaceSectionDataPad
-        twin={twin}
-        projectCode={projectCode}
-        API_URL={API_URL}
-        workspaceTab={tabId}
-        lockFile={lockFile}
-        preferredPath={sectionSelectedFile}
-      />
-    ) : null;
+  const handleReadmeSaved = () => {
+    refreshTwin();
+  };
 
   const renderDocBrowser = (tabId, extra = {}) =>
     twin ? (
@@ -140,8 +199,7 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
         projectCode={projectCode}
         API_URL={API_URL}
         workspaceTab={tabId}
-        taskpadMenuItems={menuItems}
-        onSelectedPathChange={setSectionSelectedFile}
+        onReadmeSaved={handleReadmeSaved}
         {...extra}
       />
     ) : null;
@@ -154,8 +212,6 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
           {renderDocBrowser('overview') || (
             <div className="panel text-empty"><p>Scan the project folder to load overview files.</p></div>
           )}
-          {twin ? <ProjectTwinStats twin={twin} /> : null}
-          {renderSectionDataPad('overview')}
         </div>
       );
     } 
@@ -165,7 +221,6 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
           {renderDocBrowser('plan') || (
             <div className="panel text-empty"><p>Scan the project folder to load plan files.</p></div>
           )}
-          {renderSectionDataPad('plan')}
         </div>
       );
     }
@@ -175,7 +230,6 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
           {renderDocBrowser('data') || (
             <div className="panel text-empty"><p>Scan the project folder to load data files.</p></div>
           )}
-          {renderSectionDataPad('data')}
         </div>
       );
     }
@@ -185,7 +239,6 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
           {renderDocBrowser('methods') || (
             <div className="panel text-empty"><p>Scan the project folder to load methods files.</p></div>
           )}
-          {renderSectionDataPad('methods')}
         </div>
       );
     }
@@ -195,7 +248,6 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
           {renderDocBrowser('writing') || (
             <div className="panel text-empty"><p>Scan the project folder to load writing files.</p></div>
           )}
-          {renderSectionDataPad('writing')}
         </div>
       );
     }
@@ -205,7 +257,6 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
           {renderDocBrowser('archive') || (
             <div className="panel text-empty"><p>Scan the project folder to load archive files.</p></div>
           )}
-          {renderSectionDataPad('archive')}
         </div>
       );
     }
@@ -219,8 +270,33 @@ export default function WorkspaceScreen({ projectCode, onBack, API_URL, dbProjec
               <p>Scan the project folder to load the project log.</p>
             </div>
           )}
-          {renderSectionDataPad('log', { lockFile: true })}
         </div>
+      );
+    }
+    else if (workspaceMenu === 'notebook') {
+      return (
+        <NotebookWikiPanel
+          dbProjects={dbProjects}
+          API_URL={API_URL}
+          projectCode={projectCode}
+          embedded
+          onOpenLogTab={() => setWorkspaceMenu('log')}
+          onNavigate={onNavigate}
+          onSelectProject={onSelectProject}
+        />
+      );
+    }
+    else if (workspaceMenu === 'decisions') {
+      return (
+        <DecisionsPanel
+          dbProjects={dbProjects}
+          API_URL={API_URL}
+          projectCode={projectCode}
+          lockProject
+          embedded
+          onNavigate={onNavigate}
+          onSelectProject={onSelectProject}
+        />
       );
     }
 

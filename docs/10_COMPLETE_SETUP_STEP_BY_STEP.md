@@ -34,26 +34,26 @@ pip install -r app_skeleton/api/requirements.txt
 
 ```bash
 export QDRANT_URL=http://localhost:6333
-python scripts/create_qdrant_collections.py
+python scripts/ingest/create_qdrant_collections.py
 ```
 
 ## 5. Validate manifest templates
 
 ```bash
-python scripts/validate_manifests.py
+python scripts/ops/validate_manifests.py
 ```
 
 ## 6. Generate synthetic data
 
 ```bash
-python scripts/synthetic_seed_data.py
+python scripts/database/synthetic_seed_data.py
 ```
 
 ## 7. Ingest demo docs
 
 ```bash
-python scripts/ingest_documents_demo.py
-python scripts/query_copilot_demo.py
+python scripts/ingest/ingest_documents_demo.py
+python scripts/ops/query_copilot_demo.py
 ```
 
 ## 8. Start API

@@ -24,13 +24,13 @@ cd ~/data4TB/digital-notepad
 git pull
 
 # Embeddings only (CPU, ~2GB RAM after first model load):
-BIOMODEL_PROFILES=biomodels ./scripts/setup_biomodels_docker.sh
+BIOMODEL_PROFILES=biomodels ./scripts/docker/setup_biomodels_docker.sh
 
 # + BioGPT + TxGemma (GPU recommended):
-BIOMODEL_PROFILES=biomodels,biomodels-llm ./scripts/setup_biomodels_docker.sh
+BIOMODEL_PROFILES=biomodels,biomodels-llm ./scripts/docker/setup_biomodels_docker.sh
 
 # + single-cell foundation models:
-BIOMODEL_PROFILES=biomodels,biomodels-llm,biomodels-singlecell ./scripts/setup_biomodels_docker.sh
+BIOMODEL_PROFILES=biomodels,biomodels-llm,biomodels-singlecell ./scripts/docker/setup_biomodels_docker.sh
 ```
 
 Optional HuggingFace token for gated models:
@@ -56,7 +56,7 @@ On Linux, expose to tailnet if needed:
 
 ```bash
 export BIOMED_GATEWAY_BIND=0.0.0.0
-./scripts/linux_fix_tailscale_inbound.sh
+./scripts/network/linux_fix_tailscale_inbound.sh
 ```
 
 ## API endpoints (OMEIA backend proxies)

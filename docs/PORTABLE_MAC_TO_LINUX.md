@@ -6,7 +6,7 @@ Same git repo + `configs/.env` + `configs/secrets/` moves between machines.
 
 | Component | Where |
 |-----------|--------|
-| UI + API | Mac (`./scripts/start_portable.sh`) |
+| UI + API | Mac (`./scripts/dev/start_portable.sh`) |
 | Ollama + models | Linux Docker (`digital-notepad`) |
 | Postgres | Supabase cloud (no local Docker) |
 | Link Mac→Linux | **Tailscale** (`100.x.x.x`) |
@@ -14,7 +14,7 @@ Same git repo + `configs/.env` + `configs/secrets/` moves between machines.
 ### Mac one-time
 
 ```bash
-./scripts/setup_mac_portable.sh
+./scripts/network/setup_mac_portable.sh
 sudo brew services start tailscale
 sudo tailscale up
 ```
@@ -38,12 +38,12 @@ LLM_PROVIDER=ollama
 LLM_FALLBACK_PROVIDERS=ollama,gemini,mock
 ```
 
-`scripts/portable_apply_env.sh` sets `OLLAMA_BASE_URL` and `QDRANT_URL` from `TAILSCALE_LINUX_IP`.
+`scripts/network/portable_apply_env.sh` sets `OLLAMA_BASE_URL` and `QDRANT_URL` from `TAILSCALE_LINUX_IP`.
 
 ### Daily start (Mac)
 
 ```bash
-./scripts/start_portable.sh
+./scripts/dev/start_portable.sh
 ```
 
 Open http://localhost:5173
@@ -73,8 +73,8 @@ FIREBASE_SERVICE_ACCOUNT_PATH=/home/debdeba/data4TB/digital-notepad/configs/secr
 
 ```bash
 cd ~/data4TB/digital-notepad
-scripts/start_linux_docker_stack.sh
-./scripts/start_portable.sh
+scripts/docker/start_linux_docker_stack.sh
+./scripts/dev/start_portable.sh
 ```
 
 4. **Browser:** `http://localhost:5173` on Linux (or SSH port-forward if remote).
@@ -90,7 +90,7 @@ scripts/start_linux_docker_stack.sh
 
 ## Files that travel with the repo
 
-- `scripts/start_portable.sh`
-- `scripts/portable_apply_env.sh`
+- `scripts/dev/start_portable.sh`
+- `scripts/network/portable_apply_env.sh`
 - `configs/.env.example`
 - `docs/TAILSCALE_SETUP.md`

@@ -1,6 +1,46 @@
 .document-viewer {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.document-viewer--hidden {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
   overflow: hidden;
+}
+
+.document-viewer-body--expanded {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.document-viewer-media {
+  flex: 1;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.document-viewer-media .media-viewer {
+  flex: 1;
+  min-height: 380px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.document-viewer-body--expanded .document-viewer-media {
+  min-height: min(75vh, 760px);
+}
+
+.document-viewer-body--expanded .document-viewer-media .media-viewer {
+  min-height: min(70vh, 720px);
 }
 
 .document-viewer::before {
@@ -205,7 +245,21 @@
 }
 
 .document-viewer-body {
+  flex: 1;
   min-height: 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.document-viewer-body .kindle-doc-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.25rem 0.15rem;
 }
 
 .document-viewer-no-text {

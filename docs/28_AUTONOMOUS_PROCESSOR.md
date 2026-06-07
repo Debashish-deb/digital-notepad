@@ -8,8 +8,8 @@ Switching to a different Cursor project **does not** stop this work. Only explic
 
 | Piece | Role |
 |-------|------|
-| `scripts/autonomous_processor.py` | Supervisor: `--once`, `--daemon`, `--resume`, `--stop`, `--force` |
-| `scripts/autonomous_processor.sh` | `start` / `stop` / `status` / `once` wrapper (`nohup` + `disown`) |
+| `scripts/ops/autonomous_processor.py` | Supervisor: `--once`, `--daemon`, `--resume`, `--stop`, `--force` |
+| `scripts/ops/autonomous_processor.sh` | `start` / `stop` / `status` / `once` wrapper (`nohup` + `disown`) |
 | `app_skeleton/data/processor_state.json` | Last step, checkpoint hints, errors, run history |
 | `app_skeleton/data/processor.pid` | Single-instance lock |
 | `app_skeleton/data/logs/autonomous_processor.log` | Append log (rotate externally if needed) |
@@ -44,18 +44,18 @@ Manual start (survives closing Cursor and the shell that launched it):
 
 ```bash
 cd farkki_ai_platform_blueprint
-chmod +x scripts/autonomous_processor.sh
-./scripts/autonomous_processor.sh start
-./scripts/autonomous_processor.sh status
-./scripts/autonomous_processor.sh stop
+chmod +x scripts/ops/autonomous_processor.sh
+./scripts/ops/autonomous_processor.sh start
+./scripts/ops/autonomous_processor.sh status
+./scripts/ops/autonomous_processor.sh stop
 ```
 
 One-shot foreground run:
 
 ```bash
-./scripts/autonomous_processor.sh once
+./scripts/ops/autonomous_processor.sh once
 # or with resume:
-./scripts/autonomous_processor.sh once -- --resume
+./scripts/ops/autonomous_processor.sh once -- --resume
 ```
 
 **launchd** (login auto-start): edit `deploy/university-desktop/launchd/com.omeia.processor.plist` placeholders, then:
@@ -83,7 +83,7 @@ Stop:
 ```bash
 sudo systemctl stop omeia-processor.service
 # or from repo checkout as omeia user:
-./scripts/autonomous_processor.sh stop
+./scripts/ops/autonomous_processor.sh stop
 ```
 
 ## API status (optional)
@@ -104,8 +104,8 @@ Reads `processor_state.json` and checks whether `processor.pid` is alive.
 
 ## What *does* stop it
 
-- `./scripts/autonomous_processor.sh stop`
-- `python scripts/autonomous_processor.py --stop`
+- `./scripts/ops/autonomous_processor.sh stop`
+- `python scripts/ops/autonomous_processor.py --stop`
 - `sudo systemctl stop omeia-processor.service`
 - `launchctl unload ~/Library/LaunchAgents/com.omeia.processor.plist`
 - Reboot (unless systemd/launchd is enabled to start again)

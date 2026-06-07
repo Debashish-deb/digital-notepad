@@ -1,0 +1,1593 @@
+{
+  "generated": "2026-06-07T02:31:54+03:00",
+  "project_root": "/Users/debashishdeb/Downloads/OMEIA-AI",
+  "settings": {
+    "paths": [
+      "app_skeleton/data",
+      "app_skeleton/storage",
+      "docs",
+      "scripts",
+      "configs",
+      "reports"
+    ],
+    "max_depth": 10,
+    "include_hidden": false,
+    "follow_symlinks": false,
+    "hash": false,
+    "count_lines": false,
+    "skip": [
+      ".cache",
+      ".dart_tool",
+      ".expo",
+      ".git",
+      ".hg",
+      ".idea",
+      ".mypy_cache",
+      ".next",
+      ".nuxt",
+      ".pytest_cache",
+      ".qodo",
+      ".ruff_cache",
+      ".svn",
+      ".turbo",
+      ".venv",
+      ".vscode",
+      "__pycache__",
+      "build",
+      "dist",
+      "env",
+      "node_modules",
+      "venv"
+    ]
+  },
+  "stats": {
+    "total_directories": 29,
+    "total_files": 401,
+    "total_size_bytes": 208632044,
+    "total_size_human": "199.0 MB",
+    "total_line_count": 0,
+    "by_extension": {
+      ".json": 111,
+      ".md": 88,
+      ".py": 50,
+      ".jsonl": 47,
+      ".sh": 36,
+      ".csv": 18,
+      ".pdf": 17,
+      ".xlsx": 13,
+      ".docx": 10,
+      ".yml": 3,
+      ".yaml": 3,
+      ".log": 1,
+      ".rtf": 1,
+      ".txt": 1,
+      ".png": 1,
+      "no_ext": 1
+    },
+    "by_directory": {
+      "app_skeleton/data": {
+        "files": 6,
+        "size_bytes": 52595139
+      },
+      "reports/document_library_audit/first_pass": {
+        "files": 14,
+        "size_bytes": 52264235
+      },
+      "app_skeleton/data/processed_projects": {
+        "files": 94,
+        "size_bytes": 51731872
+      },
+      "reports/document_library_audit/metadata_v2": {
+        "files": 21,
+        "size_bytes": 35747671
+      },
+      "docs/ORDERS & RELATED INFORMATION/Order_confirmations_manuals": {
+        "files": 2,
+        "size_bytes": 3730561
+      },
+      "reports/document_library_audit": {
+        "files": 2,
+        "size_bytes": 2540686
+      },
+      "docs/ORDERS & RELATED INFORMATION/ORDERS_Excels_Year_by_Year": {
+        "files": 6,
+        "size_bytes": 1818143
+      },
+      "docs/ORDERS & RELATED INFORMATION/Gas_ordering_instructions_Woikoski": {
+        "files": 3,
+        "size_bytes": 1254612
+      },
+      "docs/ORDERS & RELATED INFORMATION": {
+        "files": 3,
+        "size_bytes": 1223526
+      },
+      "docs": {
+        "files": 61,
+        "size_bytes": 1134174
+      },
+      "reports/document_library_audit/second_pass": {
+        "files": 10,
+        "size_bytes": 1102063
+      },
+      "docs/ORDERS & RELATED INFORMATION/OFFERS_QUOTES": {
+        "files": 7,
+        "size_bytes": 1066036
+      },
+      "docs/ORDERS & RELATED INFORMATION/Lab_coats_Färkkilä_lab": {
+        "files": 4,
+        "size_bytes": 501556
+      },
+      "scripts": {
+        "files": 80,
+        "size_bytes": 442047
+      },
+      "docs/ORDERS & RELATED INFORMATION/OFFERS_QUOTES/QUOTES Färkkilä lab": {
+        "files": 3,
+        "size_bytes": 341519
+      },
+      "docs/ORDERS & RELATED INFORMATION/Archive": {
+        "files": 5,
+        "size_bytes": 284016
+      },
+      "docs/ORDERS & RELATED INFORMATION/Välinehuolto": {
+        "files": 4,
+        "size_bytes": 239788
+      },
+      "configs/document_library": {
+        "files": 5,
+        "size_bytes": 209786
+      },
+      "docs/ORDERS & RELATED INFORMATION/Archive/Computers_orders": {
+        "files": 2,
+        "size_bytes": 126977
+      },
+      "app_skeleton/data/logs": {
+        "files": 1,
+        "size_bytes": 87472
+      },
+      "docs/ORDERS & RELATED INFORMATION/Sensire_minus80oC_Revco_sensor_1538B": {
+        "files": 2,
+        "size_bytes": 82674
+      },
+      "configs": {
+        "files": 13,
+        "size_bytes": 45838
+      },
+      "app_skeleton/data/ingestion_reports": {
+        "files": 41,
+        "size_bytes": 24739
+      },
+      "app_skeleton/storage": {
+        "files": 6,
+        "size_bytes": 21873
+      },
+      "configs/research_knowledge": {
+        "files": 3,
+        "size_bytes": 7335
+      },
+      "reports/document_library_audit/final_corrected": {
+        "files": 1,
+        "size_bytes": 4870
+      },
+      "configs/secrets": {
+        "files": 1,
+        "size_bytes": 2409
+      },
+      "configs/caddy": {
+        "files": 1,
+        "size_bytes": 427
+      }
+    },
+    "largest_files": [
+      {
+        "name": "raw_asset_inventory.json",
+        "path": "app_skeleton/data/raw_asset_inventory.json",
+        "size_bytes": 49333295,
+        "size_human": "47.0 MB",
+        "modified": "2026-06-07T02:09:35+03:00",
+        "modified_epoch": 1780787375.5292494,
+        "extension": ".json"
+      },
+      {
+        "name": "document_inventory.json",
+        "path": "reports/document_library_audit/first_pass/document_inventory.json",
+        "size_bytes": 49333295,
+        "size_human": "47.0 MB",
+        "modified": "2026-06-07T02:09:35+03:00",
+        "modified_epoch": 1780787375.8237793,
+        "extension": ".json"
+      },
+      {
+        "name": "metadata_enriched_inventory.json",
+        "path": "reports/document_library_audit/metadata_v2/metadata_enriched_inventory.json",
+        "size_bytes": 23178482,
+        "size_human": "22.1 MB",
+        "modified": "2026-06-06T22:57:52+03:00",
+        "modified_epoch": 1780775872.51531,
+        "extension": ".json"
+      },
+      {
+        "name": "lab__wet_lab_files.json",
+        "path": "app_skeleton/data/processed_projects/lab__wet_lab_files.json",
+        "size_bytes": 6751914,
+        "size_human": "6.4 MB",
+        "modified": "2026-06-04T08:08:36+03:00",
+        "modified_epoch": 1780549716.9584255,
+        "extension": ".json"
+      },
+      {
+        "name": "lab__wet_lab_files.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/lab__wet_lab_files.chunks.jsonl",
+        "size_bytes": 5595163,
+        "size_human": "5.3 MB",
+        "modified": "2026-06-04T08:08:36+03:00",
+        "modified_epoch": 1780549716.9845486,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "display_title_mapping_top_class.csv",
+        "path": "reports/document_library_audit/metadata_v2/display_title_mapping_top_class.csv",
+        "size_bytes": 3912507,
+        "size_human": "3.7 MB",
+        "modified": "2026-06-06T23:09:52+03:00",
+        "modified_epoch": 1780776592.379634,
+        "extension": ".csv"
+      },
+      {
+        "name": "HERAfreeze minus80 Manual english-ult-manual-328398h01.pdf",
+        "path": "docs/ORDERS & RELATED INFORMATION/Order_confirmations_manuals/HERAfreeze minus80 Manual english-ult-manual-328398h01.pdf",
+        "size_bytes": 3519632,
+        "size_human": "3.4 MB",
+        "modified": "2026-06-05T18:16:15+03:00",
+        "modified_epoch": 1780672575.2148802,
+        "extension": ".pdf"
+      },
+      {
+        "name": "raw_asset_inventory.csv",
+        "path": "app_skeleton/data/raw_asset_inventory.csv",
+        "size_bytes": 3169679,
+        "size_human": "3.0 MB",
+        "modified": "2026-06-03T18:14:54+03:00",
+        "modified_epoch": 1780499694.8634531,
+        "extension": ".csv"
+      },
+      {
+        "name": "NKI.json",
+        "path": "app_skeleton/data/processed_projects/NKI.json",
+        "size_bytes": 3006298,
+        "size_human": "2.9 MB",
+        "modified": "2026-06-07T01:50:15+03:00",
+        "modified_epoch": 1780786215.6225865,
+        "extension": ".json"
+      },
+      {
+        "name": "document_inventory.csv",
+        "path": "reports/document_library_audit/first_pass/document_inventory.csv",
+        "size_bytes": 2907041,
+        "size_human": "2.8 MB",
+        "modified": "2026-06-06T21:59:22+03:00",
+        "modified_epoch": 1780772362.8464866,
+        "extension": ".csv"
+      },
+      {
+        "name": "NKI.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/NKI.chunks.jsonl",
+        "size_bytes": 2707696,
+        "size_human": "2.6 MB",
+        "modified": "2026-06-07T01:50:15+03:00",
+        "modified_epoch": 1780786215.6392517,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "metadata_enriched_inventory.csv",
+        "path": "reports/document_library_audit/metadata_v2/metadata_enriched_inventory.csv",
+        "size_bytes": 2549318,
+        "size_human": "2.4 MB",
+        "modified": "2026-06-06T22:57:52+03:00",
+        "modified_epoch": 1780775872.5589767,
+        "extension": ".csv"
+      },
+      {
+        "name": "classification_report_by_page.md",
+        "path": "reports/document_library_audit/classification_report_by_page.md",
+        "size_bytes": 2314807,
+        "size_human": "2.2 MB",
+        "modified": "2026-06-06T22:46:01+03:00",
+        "modified_epoch": 1780775161.1032255,
+        "extension": ".md"
+      },
+      {
+        "name": "CellCycle.json",
+        "path": "app_skeleton/data/processed_projects/CellCycle.json",
+        "size_bytes": 2264968,
+        "size_human": "2.2 MB",
+        "modified": "2026-06-07T01:33:47+03:00",
+        "modified_epoch": 1780785227.7383769,
+        "extension": ".json"
+      },
+      {
+        "name": "Fanconi.json",
+        "path": "app_skeleton/data/processed_projects/Fanconi.json",
+        "size_bytes": 2255428,
+        "size_human": "2.2 MB",
+        "modified": "2026-06-07T01:33:38+03:00",
+        "modified_epoch": 1780785218.6004424,
+        "extension": ".json"
+      },
+      {
+        "name": "project_metadata_overlay.csv",
+        "path": "reports/document_library_audit/metadata_v2/project_metadata_overlay.csv",
+        "size_bytes": 2133339,
+        "size_human": "2.0 MB",
+        "modified": "2026-06-06T22:57:52+03:00",
+        "modified_epoch": 1780775872.5931644,
+        "extension": ".csv"
+      },
+      {
+        "name": "iPDC_1.0.json",
+        "path": "app_skeleton/data/processed_projects/iPDC_1.0.json",
+        "size_bytes": 2125024,
+        "size_human": "2.0 MB",
+        "modified": "2026-06-07T01:34:20+03:00",
+        "modified_epoch": 1780785260.3024833,
+        "extension": ".json"
+      },
+      {
+        "name": "lab__overview_documents.json",
+        "path": "app_skeleton/data/processed_projects/lab__overview_documents.json",
+        "size_bytes": 1705251,
+        "size_human": "1.6 MB",
+        "modified": "2026-06-04T08:08:09+03:00",
+        "modified_epoch": 1780549689.581504,
+        "extension": ".json"
+      },
+      {
+        "name": "iPDC_1.0.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/iPDC_1.0.chunks.jsonl",
+        "size_bytes": 1583061,
+        "size_human": "1.5 MB",
+        "modified": "2026-06-07T01:34:20+03:00",
+        "modified_epoch": 1780785260.3145335,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "lab__overview_documents.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/lab__overview_documents.chunks.jsonl",
+        "size_bytes": 1520350,
+        "size_human": "1.4 MB",
+        "modified": "2026-06-04T08:08:09+03:00",
+        "modified_epoch": 1780549689.589166,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "display_title_mapping.csv",
+        "path": "reports/document_library_audit/metadata_v2/display_title_mapping.csv",
+        "size_bytes": 1506847,
+        "size_human": "1.4 MB",
+        "modified": "2026-06-06T22:57:52+03:00",
+        "modified_epoch": 1780775872.6241322,
+        "extension": ".csv"
+      },
+      {
+        "name": "CellCycle.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/CellCycle.chunks.jsonl",
+        "size_bytes": 1271003,
+        "size_human": "1.2 MB",
+        "modified": "2026-06-07T01:33:47+03:00",
+        "modified_epoch": 1780785227.7476568,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "TLS.json",
+        "path": "app_skeleton/data/processed_projects/TLS.json",
+        "size_bytes": 1161521,
+        "size_human": "1.1 MB",
+        "modified": "2026-06-07T01:33:51+03:00",
+        "modified_epoch": 1780785231.844012,
+        "extension": ".json"
+      },
+      {
+        "name": "Sequencing.json",
+        "path": "app_skeleton/data/processed_projects/Sequencing.json",
+        "size_bytes": 1148086,
+        "size_human": "1.1 MB",
+        "modified": "2026-06-07T01:50:22+03:00",
+        "modified_epoch": 1780786222.0947695,
+        "extension": ".json"
+      },
+      {
+        "name": "Fanconi.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Fanconi.chunks.jsonl",
+        "size_bytes": 1082618,
+        "size_human": "1.0 MB",
+        "modified": "2026-06-07T01:33:38+03:00",
+        "modified_epoch": 1780785218.608232,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "iPDC_2.0.json",
+        "path": "app_skeleton/data/processed_projects/iPDC_2.0.json",
+        "size_bytes": 1071775,
+        "size_human": "1.0 MB",
+        "modified": "2026-06-07T01:34:32+03:00",
+        "modified_epoch": 1780785272.3316674,
+        "extension": ".json"
+      },
+      {
+        "name": "lab__overview_research_materials.json",
+        "path": "app_skeleton/data/processed_projects/lab__overview_research_materials.json",
+        "size_bytes": 1028052,
+        "size_human": "1004.0 KB",
+        "modified": "2026-06-04T08:11:47+03:00",
+        "modified_epoch": 1780549907.1056027,
+        "extension": ".json"
+      },
+      {
+        "name": "Credit card purchase invoicing information.docx",
+        "path": "docs/ORDERS & RELATED INFORMATION/Credit card purchase invoicing information.docx",
+        "size_bytes": 1007695,
+        "size_human": "984.1 KB",
+        "modified": "2026-06-05T18:16:15+03:00",
+        "modified_epoch": 1780672575.180558,
+        "extension": ".docx"
+      },
+      {
+        "name": "Tribus.json",
+        "path": "app_skeleton/data/processed_projects/Tribus.json",
+        "size_bytes": 980873,
+        "size_human": "957.9 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.2251043,
+        "extension": ".json"
+      },
+      {
+        "name": "Sequencing.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Sequencing.chunks.jsonl",
+        "size_bytes": 968497,
+        "size_human": "945.8 KB",
+        "modified": "2026-06-07T01:50:22+03:00",
+        "modified_epoch": 1780786222.099777,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "digitalized_data_inventory.csv",
+        "path": "reports/document_library_audit/second_pass/digitalized_data_inventory.csv",
+        "size_bytes": 967354,
+        "size_human": "944.7 KB",
+        "modified": "2026-06-06T22:03:59+03:00",
+        "modified_epoch": 1780772639.3447216,
+        "extension": ".csv"
+      },
+      {
+        "name": "metadata_enriched_inventory_top_class.csv",
+        "path": "reports/document_library_audit/metadata_v2/metadata_enriched_inventory_top_class.csv",
+        "size_bytes": 948611,
+        "size_human": "926.4 KB",
+        "modified": "2026-06-06T23:09:55+03:00",
+        "modified_epoch": 1780776595.3834887,
+        "extension": ".csv"
+      },
+      {
+        "name": "TLS.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/TLS.chunks.jsonl",
+        "size_bytes": 941713,
+        "size_human": "919.6 KB",
+        "modified": "2026-06-07T01:33:51+03:00",
+        "modified_epoch": 1780785231.8510296,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "lab__overview_research_materials.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/lab__overview_research_materials.chunks.jsonl",
+        "size_bytes": 844472,
+        "size_human": "824.7 KB",
+        "modified": "2026-06-04T08:11:47+03:00",
+        "modified_epoch": 1780549907.109478,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "iPDC_2.0.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/iPDC_2.0.chunks.jsonl",
+        "size_bytes": 800389,
+        "size_human": "781.6 KB",
+        "modified": "2026-06-07T01:34:32+03:00",
+        "modified_epoch": 1780785272.338081,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "SPACE.json",
+        "path": "app_skeleton/data/processed_projects/SPACE.json",
+        "size_bytes": 777457,
+        "size_human": "759.2 KB",
+        "modified": "2026-06-07T01:34:27+03:00",
+        "modified_epoch": 1780785267.202228,
+        "extension": ".json"
+      },
+      {
+        "name": "Tribus.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Tribus.chunks.jsonl",
+        "size_bytes": 766382,
+        "size_human": "748.4 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.2303665,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "EyeMT.json",
+        "path": "app_skeleton/data/processed_projects/EyeMT.json",
+        "size_bytes": 693407,
+        "size_human": "677.2 KB",
+        "modified": "2026-06-07T01:34:24+03:00",
+        "modified_epoch": 1780785264.9867508,
+        "extension": ".json"
+      },
+      {
+        "name": "suggested_renames_for_later_review.csv",
+        "path": "reports/document_library_audit/metadata_v2/suggested_renames_for_later_review.csv",
+        "size_bytes": 647836,
+        "size_human": "632.7 KB",
+        "modified": "2026-06-06T22:57:52+03:00",
+        "modified_epoch": 1780775872.6374426,
+        "extension": ".csv"
+      },
+      {
+        "name": "lab__orders_archive.json",
+        "path": "app_skeleton/data/processed_projects/lab__orders_archive.json",
+        "size_bytes": 628990,
+        "size_human": "614.2 KB",
+        "modified": "2026-06-04T08:08:12+03:00",
+        "modified_epoch": 1780549692.7638314,
+        "extension": ".json"
+      },
+      {
+        "name": "SPACE.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/SPACE.chunks.jsonl",
+        "size_bytes": 558124,
+        "size_human": "545.0 KB",
+        "modified": "2026-06-07T01:34:27+03:00",
+        "modified_epoch": 1780785267.2066674,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "EyeMT.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/EyeMT.chunks.jsonl",
+        "size_bytes": 548794,
+        "size_human": "535.9 KB",
+        "modified": "2026-06-07T01:34:25+03:00",
+        "modified_epoch": 1780785265.005301,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "lab__orders_archive.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/lab__orders_archive.chunks.jsonl",
+        "size_bytes": 514577,
+        "size_human": "502.5 KB",
+        "modified": "2026-06-04T08:08:12+03:00",
+        "modified_epoch": 1780549692.7661934,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "Auria.json",
+        "path": "app_skeleton/data/processed_projects/Auria.json",
+        "size_bytes": 502978,
+        "size_human": "491.2 KB",
+        "modified": "2026-06-07T01:35:04+03:00",
+        "modified_epoch": 1780785304.1340237,
+        "extension": ".json"
+      },
+      {
+        "name": "CIN2.json",
+        "path": "app_skeleton/data/processed_projects/CIN2.json",
+        "size_bytes": 485125,
+        "size_human": "473.8 KB",
+        "modified": "2026-06-07T01:34:29+03:00",
+        "modified_epoch": 1780785269.7639053,
+        "extension": ".json"
+      },
+      {
+        "name": "31_SEARCH_UNIFIED_AUDIT_AND_SOURCE_BUNDLE.md",
+        "path": "docs/31_SEARCH_UNIFIED_AUDIT_AND_SOURCE_BUNDLE.md",
+        "size_bytes": 476051,
+        "size_human": "464.9 KB",
+        "modified": "2026-06-06T11:06:24+03:00",
+        "modified_epoch": 1780733184.4848518,
+        "extension": ".md"
+      },
+      {
+        "name": "Gas ordering instructions at the Faculty of Medicine.pdf",
+        "path": "docs/ORDERS & RELATED INFORMATION/Gas_ordering_instructions_Woikoski/Gas ordering instructions at the Faculty of Medicine.pdf",
+        "size_bytes": 445000,
+        "size_human": "434.6 KB",
+        "modified": "2026-06-05T18:16:15+03:00",
+        "modified_epoch": 1780672575.182437,
+        "extension": ".pdf"
+      },
+      {
+        "name": "Kaasuntilausohje Lääketieteellisessä tiedekunnassa.pdf",
+        "path": "docs/ORDERS & RELATED INFORMATION/Gas_ordering_instructions_Woikoski/Kaasuntilausohje Lääketieteellisessä tiedekunnassa.pdf",
+        "size_bytes": 439249,
+        "size_human": "429.0 KB",
+        "modified": "2026-06-05T18:16:15+03:00",
+        "modified_epoch": 1780672575.1839554,
+        "extension": ".pdf"
+      },
+      {
+        "name": "non_project_clean_taxonomy.csv",
+        "path": "reports/document_library_audit/metadata_v2/non_project_clean_taxonomy.csv",
+        "size_bytes": 416404,
+        "size_human": "406.6 KB",
+        "modified": "2026-06-06T22:57:52+03:00",
+        "modified_epoch": 1780775872.600696,
+        "extension": ".csv"
+      },
+      {
+        "name": "BioNordika QuoteTA2022-0505-KL HY Anastasiya Chernenko (Färkkilä & Vähärautio labs).pdf",
+        "path": "docs/ORDERS & RELATED INFORMATION/OFFERS_QUOTES/BioNordika QuoteTA2022-0505-KL HY Anastasiya Chernenko (Färkkilä & Vähärautio labs).pdf",
+        "size_bytes": 415983,
+        "size_human": "406.2 KB",
+        "modified": "2026-06-05T18:16:15+03:00",
+        "modified_epoch": 1780672575.1898074,
+        "extension": ".pdf"
+      }
+    ],
+    "newest_files": [
+      {
+        "name": "FRONTEND_BACKEND_TUTORIAL.md",
+        "path": "docs/FRONTEND_BACKEND_TUTORIAL.md",
+        "size_bytes": 9029,
+        "size_human": "8.8 KB",
+        "modified": "2026-06-07T02:27:39+03:00",
+        "modified_epoch": 1780788459.865504,
+        "extension": ".md"
+      },
+      {
+        "name": "start_backend.sh",
+        "path": "scripts/start_backend.sh",
+        "size_bytes": 1266,
+        "size_human": "1.2 KB",
+        "modified": "2026-06-07T02:27:23+03:00",
+        "modified_epoch": 1780788443.3460083,
+        "extension": ".sh"
+      },
+      {
+        "name": "start_frontend.sh",
+        "path": "scripts/start_frontend.sh",
+        "size_bytes": 1139,
+        "size_human": "1.1 KB",
+        "modified": "2026-06-07T02:27:23+03:00",
+        "modified_epoch": 1780788443.3459806,
+        "extension": ".sh"
+      },
+      {
+        "name": "PROJECT_STRUCTURE_FINAL_ANALYSIS.md",
+        "path": "docs/PROJECT_STRUCTURE_FINAL_ANALYSIS.md",
+        "size_bytes": 14716,
+        "size_human": "14.4 KB",
+        "modified": "2026-06-07T02:21:38+03:00",
+        "modified_epoch": 1780788098.6593745,
+        "extension": ".md"
+      },
+      {
+        "name": "document_inventory.json",
+        "path": "reports/document_library_audit/first_pass/document_inventory.json",
+        "size_bytes": 49333295,
+        "size_human": "47.0 MB",
+        "modified": "2026-06-07T02:09:35+03:00",
+        "modified_epoch": 1780787375.8237793,
+        "extension": ".json"
+      },
+      {
+        "name": "raw_asset_inventory.json",
+        "path": "app_skeleton/data/raw_asset_inventory.json",
+        "size_bytes": 49333295,
+        "size_human": "47.0 MB",
+        "modified": "2026-06-07T02:09:35+03:00",
+        "modified_epoch": 1780787375.5292494,
+        "extension": ".json"
+      },
+      {
+        "name": "finalize_empty_extractions.py",
+        "path": "scripts/finalize_empty_extractions.py",
+        "size_bytes": 3733,
+        "size_human": "3.6 KB",
+        "modified": "2026-06-07T02:09:25+03:00",
+        "modified_epoch": 1780787365.2340434,
+        "extension": ".py"
+      },
+      {
+        "name": "extract_pending_inventory.py",
+        "path": "scripts/extract_pending_inventory.py",
+        "size_bytes": 5850,
+        "size_human": "5.7 KB",
+        "modified": "2026-06-07T02:09:20+03:00",
+        "modified_epoch": 1780787360.8859675,
+        "extension": ".py"
+      },
+      {
+        "name": "reconcile_inventory_status.py",
+        "path": "scripts/reconcile_inventory_status.py",
+        "size_bytes": 3822,
+        "size_human": "3.7 KB",
+        "modified": "2026-06-07T02:07:53+03:00",
+        "modified_epoch": 1780787273.7620783,
+        "extension": ".py"
+      },
+      {
+        "name": "duplicate_deletion_log.csv",
+        "path": "reports/document_library_audit/metadata_v2/duplicate_deletion_log.csv",
+        "size_bytes": 64,
+        "size_human": "64 B",
+        "modified": "2026-06-07T02:07:36+03:00",
+        "modified_epoch": 1780787256.9286654,
+        "extension": ".csv"
+      },
+      {
+        "name": "Myelonets.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Myelonets.chunks.jsonl",
+        "size_bytes": 30979,
+        "size_human": "30.3 KB",
+        "modified": "2026-06-07T01:58:40+03:00",
+        "modified_epoch": 1780786720.8533895,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "Myelonets.json",
+        "path": "app_skeleton/data/processed_projects/Myelonets.json",
+        "size_bytes": 57531,
+        "size_human": "56.2 KB",
+        "modified": "2026-06-07T01:58:40+03:00",
+        "modified_epoch": 1780786720.852819,
+        "extension": ".json"
+      },
+      {
+        "name": "SideProjects.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/SideProjects.chunks.jsonl",
+        "size_bytes": 0,
+        "size_human": "0 B",
+        "modified": "2026-06-07T01:50:37+03:00",
+        "modified_epoch": 1780786237.4149437,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "SideProjects.json",
+        "path": "app_skeleton/data/processed_projects/SideProjects.json",
+        "size_bytes": 1940,
+        "size_human": "1.9 KB",
+        "modified": "2026-06-07T01:50:37+03:00",
+        "modified_epoch": 1780786237.414782,
+        "extension": ".json"
+      },
+      {
+        "name": "ADC.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/ADC.chunks.jsonl",
+        "size_bytes": 40947,
+        "size_human": "40.0 KB",
+        "modified": "2026-06-07T01:50:37+03:00",
+        "modified_epoch": 1780786237.4105885,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "ADC.json",
+        "path": "app_skeleton/data/processed_projects/ADC.json",
+        "size_bytes": 69171,
+        "size_human": "67.5 KB",
+        "modified": "2026-06-07T01:50:37+03:00",
+        "modified_epoch": 1780786237.409773,
+        "extension": ".json"
+      },
+      {
+        "name": "TMA_Cohorts.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/TMA_Cohorts.chunks.jsonl",
+        "size_bytes": 89571,
+        "size_human": "87.5 KB",
+        "modified": "2026-06-07T01:50:37+03:00",
+        "modified_epoch": 1780786237.2808046,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "TMA_Cohorts.json",
+        "path": "app_skeleton/data/processed_projects/TMA_Cohorts.json",
+        "size_bytes": 123820,
+        "size_human": "120.9 KB",
+        "modified": "2026-06-07T01:50:37+03:00",
+        "modified_epoch": 1780786237.280179,
+        "extension": ".json"
+      },
+      {
+        "name": "SPACEstat.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/SPACEstat.chunks.jsonl",
+        "size_bytes": 114852,
+        "size_human": "112.2 KB",
+        "modified": "2026-06-07T01:50:37+03:00",
+        "modified_epoch": 1780786237.0936716,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "SPACEstat.json",
+        "path": "app_skeleton/data/processed_projects/SPACEstat.json",
+        "size_bytes": 167319,
+        "size_human": "163.4 KB",
+        "modified": "2026-06-07T01:50:37+03:00",
+        "modified_epoch": 1780786237.0922368,
+        "extension": ".json"
+      },
+      {
+        "name": "FINPROVE.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/FINPROVE.chunks.jsonl",
+        "size_bytes": 85184,
+        "size_human": "83.2 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.9271448,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "FINPROVE.json",
+        "path": "app_skeleton/data/processed_projects/FINPROVE.json",
+        "size_bytes": 161111,
+        "size_human": "157.3 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.925877,
+        "extension": ".json"
+      },
+      {
+        "name": "Proteomics.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Proteomics.chunks.jsonl",
+        "size_bytes": 26822,
+        "size_human": "26.2 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.5206199,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "Proteomics.json",
+        "path": "app_skeleton/data/processed_projects/Proteomics.json",
+        "size_bytes": 43176,
+        "size_human": "42.2 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.5203357,
+        "extension": ".json"
+      },
+      {
+        "name": "SPACEjoint.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/SPACEjoint.chunks.jsonl",
+        "size_bytes": 61090,
+        "size_human": "59.7 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.4536972,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "SPACEjoint.json",
+        "path": "app_skeleton/data/processed_projects/SPACEjoint.json",
+        "size_bytes": 97044,
+        "size_human": "94.8 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.4531922,
+        "extension": ".json"
+      },
+      {
+        "name": "Pixel_AI.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Pixel_AI.chunks.jsonl",
+        "size_bytes": 130223,
+        "size_human": "127.2 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.3731666,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "Pixel_AI.json",
+        "path": "app_skeleton/data/processed_projects/Pixel_AI.json",
+        "size_bytes": 175246,
+        "size_human": "171.1 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.3722768,
+        "extension": ".json"
+      },
+      {
+        "name": "Tribus.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Tribus.chunks.jsonl",
+        "size_bytes": 766382,
+        "size_human": "748.4 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.2303665,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "Tribus.json",
+        "path": "app_skeleton/data/processed_projects/Tribus.json",
+        "size_bytes": 980873,
+        "size_human": "957.9 KB",
+        "modified": "2026-06-07T01:50:36+03:00",
+        "modified_epoch": 1780786236.2251043,
+        "extension": ".json"
+      },
+      {
+        "name": "DCIS.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/DCIS.chunks.jsonl",
+        "size_bytes": 36030,
+        "size_human": "35.2 KB",
+        "modified": "2026-06-07T01:50:22+03:00",
+        "modified_epoch": 1780786222.3371816,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "DCIS.json",
+        "path": "app_skeleton/data/processed_projects/DCIS.json",
+        "size_bytes": 65407,
+        "size_human": "63.9 KB",
+        "modified": "2026-06-07T01:50:22+03:00",
+        "modified_epoch": 1780786222.3367465,
+        "extension": ".json"
+      },
+      {
+        "name": "Mesenchymal_Ovca.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Mesenchymal_Ovca.chunks.jsonl",
+        "size_bytes": 0,
+        "size_human": "0 B",
+        "modified": "2026-06-07T01:50:22+03:00",
+        "modified_epoch": 1780786222.1103694,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "Mesenchymal_Ovca.json",
+        "path": "app_skeleton/data/processed_projects/Mesenchymal_Ovca.json",
+        "size_bytes": 2251,
+        "size_human": "2.2 KB",
+        "modified": "2026-06-07T01:50:22+03:00",
+        "modified_epoch": 1780786222.1102865,
+        "extension": ".json"
+      },
+      {
+        "name": "Endometrial_HRD.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Endometrial_HRD.chunks.jsonl",
+        "size_bytes": 0,
+        "size_human": "0 B",
+        "modified": "2026-06-07T01:50:22+03:00",
+        "modified_epoch": 1780786222.1070585,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "Endometrial_HRD.json",
+        "path": "app_skeleton/data/processed_projects/Endometrial_HRD.json",
+        "size_bytes": 2215,
+        "size_human": "2.2 KB",
+        "modified": "2026-06-07T01:50:22+03:00",
+        "modified_epoch": 1780786222.1069815,
+        "extension": ".json"
+      },
+      {
+        "name": "Sequencing.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Sequencing.chunks.jsonl",
+        "size_bytes": 968497,
+        "size_human": "945.8 KB",
+        "modified": "2026-06-07T01:50:22+03:00",
+        "modified_epoch": 1780786222.099777,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "Sequencing.json",
+        "path": "app_skeleton/data/processed_projects/Sequencing.json",
+        "size_bytes": 1148086,
+        "size_human": "1.1 MB",
+        "modified": "2026-06-07T01:50:22+03:00",
+        "modified_epoch": 1780786222.0947695,
+        "extension": ".json"
+      },
+      {
+        "name": "HGSC_scRNAseq.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/HGSC_scRNAseq.chunks.jsonl",
+        "size_bytes": 15498,
+        "size_human": "15.1 KB",
+        "modified": "2026-06-07T01:50:15+03:00",
+        "modified_epoch": 1780786215.9189441,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "HGSC_scRNAseq.json",
+        "path": "app_skeleton/data/processed_projects/HGSC_scRNAseq.json",
+        "size_bytes": 30912,
+        "size_human": "30.2 KB",
+        "modified": "2026-06-07T01:50:15+03:00",
+        "modified_epoch": 1780786215.9184535,
+        "extension": ".json"
+      },
+      {
+        "name": "ovaHRDscar.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/ovaHRDscar.chunks.jsonl",
+        "size_bytes": 69447,
+        "size_human": "67.8 KB",
+        "modified": "2026-06-07T01:50:15+03:00",
+        "modified_epoch": 1780786215.8007233,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "ovaHRDscar.json",
+        "path": "app_skeleton/data/processed_projects/ovaHRDscar.json",
+        "size_bytes": 107365,
+        "size_human": "104.8 KB",
+        "modified": "2026-06-07T01:50:15+03:00",
+        "modified_epoch": 1780786215.799786,
+        "extension": ".json"
+      },
+      {
+        "name": "NKI.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/NKI.chunks.jsonl",
+        "size_bytes": 2707696,
+        "size_human": "2.6 MB",
+        "modified": "2026-06-07T01:50:15+03:00",
+        "modified_epoch": 1780786215.6392517,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "NKI.json",
+        "path": "app_skeleton/data/processed_projects/NKI.json",
+        "size_bytes": 3006298,
+        "size_human": "2.9 MB",
+        "modified": "2026-06-07T01:50:15+03:00",
+        "modified_epoch": 1780786215.6225865,
+        "extension": ".json"
+      },
+      {
+        "name": "KRAS.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/KRAS.chunks.jsonl",
+        "size_bytes": 205907,
+        "size_human": "201.1 KB",
+        "modified": "2026-06-07T01:49:52+03:00",
+        "modified_epoch": 1780786192.858877,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "KRAS.json",
+        "path": "app_skeleton/data/processed_projects/KRAS.json",
+        "size_bytes": 370351,
+        "size_human": "361.7 KB",
+        "modified": "2026-06-07T01:49:52+03:00",
+        "modified_epoch": 1780786192.8567655,
+        "extension": ".json"
+      },
+      {
+        "name": "vTMA.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/vTMA.chunks.jsonl",
+        "size_bytes": 197163,
+        "size_human": "192.5 KB",
+        "modified": "2026-06-07T01:35:06+03:00",
+        "modified_epoch": 1780785306.240399,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "vTMA.json",
+        "path": "app_skeleton/data/processed_projects/vTMA.json",
+        "size_bytes": 256436,
+        "size_human": "250.4 KB",
+        "modified": "2026-06-07T01:35:06+03:00",
+        "modified_epoch": 1780785306.2388682,
+        "extension": ".json"
+      },
+      {
+        "name": "Organoids.chunks.jsonl",
+        "path": "app_skeleton/data/processed_projects/Organoids.chunks.jsonl",
+        "size_bytes": 0,
+        "size_human": "0 B",
+        "modified": "2026-06-07T01:35:05+03:00",
+        "modified_epoch": 1780785305.016967,
+        "extension": ".jsonl"
+      },
+      {
+        "name": "Organoids.json",
+        "path": "app_skeleton/data/processed_projects/Organoids.json",
+        "size_bytes": 2138,
+        "size_human": "2.1 KB",
+        "modified": "2026-06-07T01:35:05+03:00",
+        "modified_epoch": 1780785305.0168397,
+        "extension": ".json"
+      }
+    ],
+    "oldest_files": [
+      {
+        "name": "00_EXECUTIVE_SUMMARY.md",
+        "path": "docs/00_EXECUTIVE_SUMMARY.md",
+        "size_bytes": 3002,
+        "size_human": "2.9 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "01_END_TO_END_ARCHITECTURE.md",
+        "path": "docs/01_END_TO_END_ARCHITECTURE.md",
+        "size_bytes": 4573,
+        "size_human": "4.5 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "02_MATURE_DATA_SCHEMA.md",
+        "path": "docs/02_MATURE_DATA_SCHEMA.md",
+        "size_bytes": 6830,
+        "size_human": "6.7 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "03_VECTOR_RAG_DEEP_DIVE.md",
+        "path": "docs/03_VECTOR_RAG_DEEP_DIVE.md",
+        "size_bytes": 4878,
+        "size_human": "4.8 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "04_KNOWLEDGE_GRAPH_DESIGN.md",
+        "path": "docs/04_KNOWLEDGE_GRAPH_DESIGN.md",
+        "size_bytes": 2241,
+        "size_human": "2.2 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "05_PIPELINE_INTEGRATION.md",
+        "path": "docs/05_PIPELINE_INTEGRATION.md",
+        "size_bytes": 3248,
+        "size_human": "3.2 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "06_SECURITY_GOVERNANCE.md",
+        "path": "docs/06_SECURITY_GOVERNANCE.md",
+        "size_bytes": 1920,
+        "size_human": "1.9 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "07_MVP_TO_PRODUCTION_ROADMAP.md",
+        "path": "docs/07_MVP_TO_PRODUCTION_ROADMAP.md",
+        "size_bytes": 2496,
+        "size_human": "2.4 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "08_DOCUMENTATION_AND_SCRIPT_INTAKE.md",
+        "path": "docs/08_DOCUMENTATION_AND_SCRIPT_INTAKE.md",
+        "size_bytes": 1524,
+        "size_human": "1.5 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "09_VALIDATION_QA_TESTING.md",
+        "path": "docs/09_VALIDATION_QA_TESTING.md",
+        "size_bytes": 1622,
+        "size_human": "1.6 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "10_COMPLETE_SETUP_STEP_BY_STEP.md",
+        "path": "docs/10_COMPLETE_SETUP_STEP_BY_STEP.md",
+        "size_bytes": 1953,
+        "size_human": "1.9 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".md"
+      },
+      {
+        "name": "00_bootstrap.sh",
+        "path": "scripts/00_bootstrap.sh",
+        "size_bytes": 368,
+        "size_human": "368 B",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".sh"
+      },
+      {
+        "name": "create_qdrant_collections.py",
+        "path": "scripts/create_qdrant_collections.py",
+        "size_bytes": 1973,
+        "size_human": "1.9 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".py"
+      },
+      {
+        "name": "synthetic_seed_data.py",
+        "path": "scripts/synthetic_seed_data.py",
+        "size_bytes": 1325,
+        "size_human": "1.3 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".py"
+      },
+      {
+        "name": "validate_manifests.py",
+        "path": "scripts/validate_manifests.py",
+        "size_bytes": 1204,
+        "size_human": "1.2 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".py"
+      },
+      {
+        "name": "docker-compose.dev.yml",
+        "path": "configs/docker-compose.dev.yml",
+        "size_bytes": 1245,
+        "size_human": "1.2 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".yml"
+      },
+      {
+        "name": "folder_structure.yaml",
+        "path": "configs/folder_structure.yaml",
+        "size_bytes": 1403,
+        "size_human": "1.4 KB",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".yaml"
+      },
+      {
+        "name": "rag_config.yaml",
+        "path": "configs/rag_config.yaml",
+        "size_bytes": 865,
+        "size_human": "865 B",
+        "modified": "2026-06-02T16:02:56+03:00",
+        "modified_epoch": 1780405376.0,
+        "extension": ".yaml"
+      },
+      {
+        "name": "ingest_database.py",
+        "path": "scripts/ingest_database.py",
+        "size_bytes": 6485,
+        "size_human": "6.3 KB",
+        "modified": "2026-06-02T17:32:58+03:00",
+        "modified_epoch": 1780410778.0,
+        "extension": ".py"
+      },
+      {
+        "name": "query_copilot_demo.py",
+        "path": "scripts/query_copilot_demo.py",
+        "size_bytes": 1534,
+        "size_human": "1.5 KB",
+        "modified": "2026-06-02T17:34:01+03:00",
+        "modified_epoch": 1780410841.0,
+        "extension": ".py"
+      },
+      {
+        "name": "check_python_env.sh",
+        "path": "scripts/check_python_env.sh",
+        "size_bytes": 1127,
+        "size_human": "1.1 KB",
+        "modified": "2026-06-02T18:39:26+03:00",
+        "modified_epoch": 1780414766.0,
+        "extension": ".sh"
+      },
+      {
+        "name": "check_gpu.sh",
+        "path": "scripts/check_gpu.sh",
+        "size_bytes": 1158,
+        "size_human": "1.1 KB",
+        "modified": "2026-06-02T18:39:31+03:00",
+        "modified_epoch": 1780414771.0,
+        "extension": ".sh"
+      },
+      {
+        "name": "check_napari.sh",
+        "path": "scripts/check_napari.sh",
+        "size_bytes": 1255,
+        "size_human": "1.2 KB",
+        "modified": "2026-06-02T18:39:38+03:00",
+        "modified_epoch": 1780414778.0,
+        "extension": ".sh"
+      },
+      {
+        "name": "check_docker.sh",
+        "path": "scripts/check_docker.sh",
+        "size_bytes": 724,
+        "size_human": "724 B",
+        "modified": "2026-06-02T18:39:44+03:00",
+        "modified_epoch": 1780414784.0,
+        "extension": ".sh"
+      },
+      {
+        "name": "check_lumi_modules.sh",
+        "path": "scripts/check_lumi_modules.sh",
+        "size_bytes": 843,
+        "size_human": "843 B",
+        "modified": "2026-06-02T18:39:48+03:00",
+        "modified_epoch": 1780414788.0,
+        "extension": ".sh"
+      },
+      {
+        "name": "check_cylinter_inputs.py",
+        "path": "scripts/check_cylinter_inputs.py",
+        "size_bytes": 1466,
+        "size_human": "1.4 KB",
+        "modified": "2026-06-02T18:39:53+03:00",
+        "modified_epoch": 1780414793.0,
+        "extension": ".py"
+      },
+      {
+        "name": "check_tcycif_project_structure.py",
+        "path": "scripts/check_tcycif_project_structure.py",
+        "size_bytes": 905,
+        "size_human": "905 B",
+        "modified": "2026-06-02T18:39:58+03:00",
+        "modified_epoch": 1780414798.0,
+        "extension": ".py"
+      },
+      {
+        "name": "README_DEVELOPER.md",
+        "path": "docs/README_DEVELOPER.md",
+        "size_bytes": 2309,
+        "size_human": "2.3 KB",
+        "modified": "2026-06-02T18:46:58+03:00",
+        "modified_epoch": 1780415218.0,
+        "extension": ".md"
+      },
+      {
+        "name": "README_RESEARCHER.md",
+        "path": "docs/README_RESEARCHER.md",
+        "size_bytes": 1616,
+        "size_human": "1.6 KB",
+        "modified": "2026-06-02T18:47:03+03:00",
+        "modified_epoch": 1780415223.0,
+        "extension": ".md"
+      },
+      {
+        "name": "ingest_platform_seed_data.py",
+        "path": "scripts/ingest_platform_seed_data.py",
+        "size_bytes": 20732,
+        "size_human": "20.2 KB",
+        "modified": "2026-06-02T21:05:26+03:00",
+        "modified_epoch": 1780423526.0,
+        "extension": ".py"
+      },
+      {
+        "name": "ingest_onboarding_metadata.py",
+        "path": "scripts/ingest_onboarding_metadata.py",
+        "size_bytes": 16368,
+        "size_human": "16.0 KB",
+        "modified": "2026-06-02T21:27:36+03:00",
+        "modified_epoch": 1780424856.0,
+        "extension": ".py"
+      },
+      {
+        "name": "ingest_real_projects.py",
+        "path": "scripts/ingest_real_projects.py",
+        "size_bytes": 12211,
+        "size_human": "11.9 KB",
+        "modified": "2026-06-03T00:18:43+03:00",
+        "modified_epoch": 1780435123.4358418,
+        "extension": ".py"
+      },
+      {
+        "name": "ingest_documents_demo.py",
+        "path": "scripts/ingest_documents_demo.py",
+        "size_bytes": 7204,
+        "size_human": "7.0 KB",
+        "modified": "2026-06-03T00:18:48+03:00",
+        "modified_epoch": 1780435128.1193893,
+        "extension": ".py"
+      },
+      {
+        "name": "projects_catalog.json",
+        "path": "app_skeleton/data/projects_catalog.json",
+        "size_bytes": 69770,
+        "size_human": "68.1 KB",
+        "modified": "2026-06-03T10:59:11+03:00",
+        "modified_epoch": 1780473551.4076912,
+        "extension": ".json"
+      },
+      {
+        "name": "11_LABORATORY_DIGITAL_TWIN_REPORT.md",
+        "path": "docs/11_LABORATORY_DIGITAL_TWIN_REPORT.md",
+        "size_bytes": 21231,
+        "size_human": "20.7 KB",
+        "modified": "2026-06-03T17:56:04+03:00",
+        "modified_epoch": 1780498564.5509577,
+        "extension": ".md"
+      },
+      {
+        "name": "raw_asset_inventory_summary.json",
+        "path": "app_skeleton/data/raw_asset_inventory_summary.json",
+        "size_bytes": 1867,
+        "size_human": "1.8 KB",
+        "modified": "2026-06-03T18:14:54+03:00",
+        "modified_epoch": 1780499694.8179586,
+        "extension": ".json"
+      },
+      {
+        "name": "raw_asset_inventory.csv",
+        "path": "app_skeleton/data/raw_asset_inventory.csv",
+        "size_bytes": 3169679,
+        "size_human": "3.0 MB",
+        "modified": "2026-06-03T18:14:54+03:00",
+        "modified_epoch": 1780499694.8634531,
+        "extension": ".csv"
+      },
+      {
+        "name": "firebase-adminsdk.json",
+        "path": "configs/secrets/firebase-adminsdk.json",
+        "size_bytes": 2409,
+        "size_human": "2.4 KB",
+        "modified": "2026-06-03T19:51:00+03:00",
+        "modified_epoch": 1780505460.7131772,
+        "extension": ".json"
+      },
+      {
+        "name": "ingestion_20260603T174415Z_dig_2b5d899a.json",
+        "path": "app_skeleton/data/ingestion_reports/ingestion_20260603T174415Z_dig_2b5d899a.json",
+        "size_bytes": 696,
+        "size_human": "696 B",
+        "modified": "2026-06-03T20:44:15+03:00",
+        "modified_epoch": 1780508655.723251,
+        "extension": ".json"
+      },
+      {
+        "name": "ingestion_20260603T174415Z_dig_8d9a3c8c.json",
+        "path": "app_skeleton/data/ingestion_reports/ingestion_20260603T174415Z_dig_8d9a3c8c.json",
+        "size_bytes": 697,
+        "size_human": "697 B",
+        "modified": "2026-06-03T20:44:15+03:00",
+        "modified_epoch": 1780508655.8884125,
+        "extension": ".json"
+      },
+      {
+        "name": "ingestion_20260603T174429Z_dig_d9c046dd.json",
+        "path": "app_skeleton/data/ingestion_reports/ingestion_20260603T174429Z_dig_d9c046dd.json",
+        "size_bytes": 696,
+        "size_human": "696 B",
+        "modified": "2026-06-03T20:44:29+03:00",
+        "modified_epoch": 1780508669.0673456,
+        "extension": ".json"
+      },
+      {
+        "name": "ingestion_20260603T174429Z_dig_0c4f2a57.json",
+        "path": "app_skeleton/data/ingestion_reports/ingestion_20260603T174429Z_dig_0c4f2a57.json",
+        "size_bytes": 697,
+        "size_human": "697 B",
+        "modified": "2026-06-03T20:44:29+03:00",
+        "modified_epoch": 1780508669.2361324,
+        "extension": ".json"
+      },
+      {
+        "name": "ingestion_20260603T174429Z_dig_44209810.json",
+        "path": "app_skeleton/data/ingestion_reports/ingestion_20260603T174429Z_dig_44209810.json",
+        "size_bytes": 697,
+        "size_human": "697 B",
+        "modified": "2026-06-03T20:44:29+03:00",
+        "modified_epoch": 1780508669.3481362,
+        "extension": ".json"
+      },
+      {
+        "name": "ingestion_20260603T174435Z_dig_5866bb06.json",
+        "path": "app_skeleton/data/ingestion_reports/ingestion_20260603T174435Z_dig_5866bb06.json",
+        "size_bytes": 696,
+        "size_human": "696 B",
+        "modified": "2026-06-03T20:44:35+03:00",
+        "modified_epoch": 1780508675.975577,
+        "extension": ".json"
+      },
+      {
+        "name": "ingestion_20260603T174435Z_dig_2332a5ca.json",
+        "path": "app_skeleton/data/ingestion_reports/ingestion_20260603T174435Z_dig_2332a5ca.json",
+        "size_bytes": 697,
+        "size_human": "697 B",
+        "modified": "2026-06-03T20:44:36+03:00",
+        "modified_epoch": 1780508676.1093445,
+        "extension": ".json"
+      },
+      {
+        "name": "ingestion_20260603T174436Z_dig_4d0db0e5.json",
+        "path": "app_skeleton/data/ingestion_reports/ingestion_20260603T174436Z_dig_4d0db0e5.json",
+        "size_bytes": 697,
+        "size_human": "697 B",
+        "modified": "2026-06-03T20:44:36+03:00",
+        "modified_epoch": 1780508676.2238245,
+        "extension": ".json"
+      },
+      {
+        "name": "r2_preview.py",
+        "path": "app_skeleton/storage/r2_preview.py",
+        "size_bytes": 825,
+        "size_human": "825 B",
+        "modified": "2026-06-03T21:39:37+03:00",
+        "modified_epoch": 1780511977.8014362,
+        "extension": ".py"
+      },
+      {
+        "name": "PDRIVE_SETUP.md",
+        "path": "configs/PDRIVE_SETUP.md",
+        "size_bytes": 1598,
+        "size_human": "1.6 KB",
+        "modified": "2026-06-03T21:39:37+03:00",
+        "modified_epoch": 1780511977.8014555,
+        "extension": ".md"
+      },
+      {
+        "name": "DATACLOUD_WEBDAV_SETUP.md",
+        "path": "configs/DATACLOUD_WEBDAV_SETUP.md",
+        "size_bytes": 2527,
+        "size_human": "2.5 KB",
+        "modified": "2026-06-03T21:39:37+03:00",
+        "modified_epoch": 1780511977.8015761,
+        "extension": ".md"
+      },
+      {
+        "name": "18_DATACLOUD_FOLDER_VALIDATION.md",
+        "path": "docs/18_DATACLOUD_FOLDER_VALIDATION.md",
+        "size_bytes": 2317,
+        "size_human": "2.3 KB",
+        "modified": "2026-06-03T21:39:37+03:00",
+        "modified_epoch": 1780511977.8016071,
+        "extension": ".md"
+      }
+    ],
+    "error_count": 0,
+    "skipped_count": 10,
+    "symlink_count": 0
+  },
+  "warnings": [
+    {
+      "level": "skip",
+      "path": "app_skeleton/storage/__pycache__",
+      "message": "configured skip name"
+    },
+    {
+      "level": "skip",
+      "path": "scripts/__pycache__",
+      "message": "configured skip name"
+    },
+    {
+      "level": "skip",
+      "path": "configs/.env",
+      "message": "hidden path"
+    },
+    {
+      "level": "skip",
+      "path": "configs/.env.backend.example",
+      "message": "hidden path"
+    },
+    {
+      "level": "skip",
+      "path": "configs/.env.example",
+      "message": "hidden path"
+    },
+    {
+      "level": "skip",
+      "path": "configs/.env.production.example",
+      "message": "hidden path"
+    },
+    {
+      "level": "skip",
+      "path": "configs/.gitignore",
+      "message": "hidden path"
+    },
+    {
+      "level": "skip",
+      "path": "reports/document_library_audit/.DS_Store",
+      "message": "hidden path"
+    },
+    {
+      "level": "skip",
+      "path": "reports/structure_analysis",
+      "message": "output directory"
+    },
+    {
+      "level": "skip",
+      "path": "reports/.DS_Store",
+      "message": "hidden path"
+    }
+  ]
+}

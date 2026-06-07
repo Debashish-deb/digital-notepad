@@ -59,12 +59,12 @@
 
 ### Scope
 1. **Test auth override.** Provide a documented mechanism so `TestClient` requests authenticate as a configurable role (researcher/viewer/editor/admin) without a live Firebase token. This must be test-only and never weaken production auth.
-2. **Evaluation harness skeleton.** Stand up `scripts/run_ai_lab_assistant_eval.py` (already exists as a stub) to: load a question set, call the chat service in-process, and write a timestamped JSON to `tests/`. Scoring comes in Phase 9; for now just capture raw responses + metadata.
+2. **Evaluation harness skeleton.** Stand up `scripts/search/run_ai_lab_assistant_eval.py` (already exists as a stub) to: load a question set, call the chat service in-process, and write a timestamped JSON to `tests/`. Scoring comes in Phase 9; for now just capture raw responses + metadata.
 3. **Baseline capture.** Run the harness once and store `tests/search_qa_ai_baseline.json` as the "before" snapshot for the final report.
 
 ### Files
 - `tests/conftest.py` or equivalent test fixture (auth override)
-- `scripts/run_ai_lab_assistant_eval.py`
+- `scripts/search/run_ai_lab_assistant_eval.py`
 - `docs/33_AI_LAB_ASSISTANT_PRODUCTION_PLAN.md` (this file — keep a running changelog at the bottom)
 
 ### Acceptance / gate
@@ -126,7 +126,7 @@
 - `app_skeleton/api/research_crawler.py`, `publication_fetcher.py`, `dataset_fetcher.py`
 - `app_skeleton/api/scientific_document_parser.py`, `qdrant_research_indexer.py`, `research_knowledge_store.py`
 - `configs/research_knowledge/seed_sources.json`, `crawl_allowlist.yml`
-- `scripts/setup_research_knowledge.sh`
+- `scripts/document-library/setup_research_knowledge.sh`
 
 ### Acceptance / gate
 - `GET /api/research-knowledge/status` shows **hundreds+** of points, multiple sources, and multiple datasets (not 6).
@@ -261,7 +261,7 @@
 
 ### Files
 - `app_skeleton/api/llm_client.py`
-- `scripts/run_ai_lab_assistant_eval.py`
+- `scripts/search/run_ai_lab_assistant_eval.py`
 - `docs/30_SEARCH_FUNCTIONALITY_AUDIT.md`
 
 ### Gate
@@ -286,7 +286,7 @@
 4. Persist results to timestamped JSON; print a summary table; re-run after every phase from here on.
 
 ### Files
-- `scripts/run_ai_lab_assistant_eval.py`
+- `scripts/search/run_ai_lab_assistant_eval.py`
 - `tests/ai_eval_gold_set.json` (new)
 - `tests/search_qa_ai_last_run.json` (output)
 
@@ -376,9 +376,9 @@ Never import `auth_fixtures` from production code paths.
 
 | Date | Phase | Change | Verification |
 |------|-------|--------|--------------|
-| 2026-06-06 | 0 | Added `tests/auth_fixtures.py` (test-only auth override for researcher/viewer/editor/admin). Hardened `scripts/run_ai_lab_assistant_eval.py` for in-process TestClient calls; captures intent, provider, buckets, answer. Baseline written to `tests/search_qa_ai_baseline.json` (15 questions, 0 HTTP errors). | `compileall` OK; Phase 0/1 unit tests OK; `npm run build` OK; baseline harness `http_errors: 0` |
+| 2026-06-06 | 0 | Added `tests/auth_fixtures.py` (test-only auth override for researcher/viewer/editor/admin). Hardened `scripts/search/run_ai_lab_assistant_eval.py` for in-process TestClient calls; captures intent, provider, buckets, answer. Baseline written to `tests/search_qa_ai_baseline.json` (15 questions, 0 HTTP errors). | `compileall` OK; Phase 0/1 unit tests OK; `npm run build` OK; baseline harness `http_errors: 0` |
 | 2026-06-06 | 1 | Scientific identifier allowlist in `privacy_guardrails.py` (GSE/GSM/EGA/TCGA/DOI/PMID etc.) before PII regex; secret-key blocking preserved. Short-query trap bypass for accessions in `chat_intent.py`. Provider honesty: `effective_provider`, `model`, `fallback_used`, `synthesis_mode` on `/api/chat` and `/ask`. | `test_privacy_guardrails` pass/block matrix green; `Find GSE211956` → `search_request` + `use_rag=true`; mock fallback reports `synthesis_mode=mock`, never `gemini` |
-| 2026-06-06 | 2 | Mass research KB ingestion: expanded PubMed/Crossref discovery (efetch abstracts, seed queries, 429 backoff); richer publication index text; setup script default crawl cap uses `RESEARCH_KB_MAX_PUBLIC_PAGES`. Ran `scripts/setup_research_knowledge.sh` with Playwright. **Before:** 6 points / 12 sources / 3 datasets. **After:** 224 points / 217 sources / 3 datasets. | `compileall app_skeleton/api` OK; `test_copilot` + `test_chat_intent` OK; `search_research("What is MHC class II in HGSC?")` → 5 hits |
+| 2026-06-06 | 2 | Mass research KB ingestion: expanded PubMed/Crossref discovery (efetch abstracts, seed queries, 429 backoff); richer publication index text; setup script default crawl cap uses `RESEARCH_KB_MAX_PUBLIC_PAGES`. Ran `scripts/document-library/setup_research_knowledge.sh` with Playwright. **Before:** 6 points / 12 sources / 3 datasets. **After:** 224 points / 217 sources / 3 datasets. | `compileall app_skeleton/api` OK; `test_copilot` + `test_chat_intent` OK; `search_research("What is MHC class II in HGSC?")` → 5 hits |
 | 2026-06-06 | 3 | Intent classifier reordered (sensitive → accession → ingestion → app_help → search → protocol → research → smalltalk); expanded `RESEARCH_TERMS` + lab overview patterns; removed `ingest` from protocol terms. 15 routing tests in `test_chat_intent.py`. | Intent matrix green; `Färkkilä Lab study` → `research_question` + RAG |
 | 2026-06-06 | 4 | Intent-aware scopes/weights, lexical reranker, min-score gating, dedup/diversify in `hits_for_copilot`; zero-count DB noise removed from prompts. `test_search_service.py` added. | Reranker unit test promotes relevant chunk; gating drops sub-threshold hits |
 | 2026-06-06 | 5 | Citation enforcement via re-prompt + sources append in `answer_grounding_service`; empty-corpus honest answers; off-topic refusal policy. Tests in `test_chat_api.py`. | Must-cite path appends `[n]` or sources block; off-topic labeled |

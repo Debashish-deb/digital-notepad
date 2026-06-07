@@ -22,7 +22,7 @@ def platform_unified_search(
     q: str = Query(..., min_length=2),
     scopes: Optional[str] = Query(
         None,
-        description="Comma-separated: lab,file,vault,notebook,wiki,decision,task,project",
+        description="Comma-separated buckets: lab,file,vault,document_library,vault_review,notebook,wiki,...",
     ),
     project_code: Optional[str] = Query(None),
     project_codes: Optional[str] = Query(None, description="Comma-separated project codes"),
@@ -33,6 +33,17 @@ def platform_unified_search(
     offset: int = Query(0, ge=0, le=500),
     include_restricted: bool = Query(False),
     explain: bool = Query(False),
+    category: Optional[str] = Query(None, description="Document library category filter"),
+    smart_chip: Optional[str] = Query(None, description="Document library smart chip filter"),
+    domain_tab: Optional[str] = Query(None, description="Document library domain tab filter"),
+    system_view: Optional[str] = Query(None, description="Document library system view filter"),
+    file_type: Optional[str] = Query(None, description="File type filter (document library / post-filter)"),
+    date_from: Optional[str] = Query(None, description="Modified-after date (ISO)"),
+    date_to: Optional[str] = Query(None, description="Modified-before date (ISO)"),
+    indexed_status: Optional[str] = Query(None, description="indexed | not_indexed"),
+    filter_project_codes: Optional[str] = Query(None, description="Advanced filter: comma-separated project codes"),
+    filter_section_id: Optional[str] = Query(None, description="Advanced filter: section id"),
+    source_buckets: Optional[str] = Query(None, description="Alias for scopes — comma-separated source buckets"),
     user: dict = Depends(require_platform_user),
 ) -> UnifiedSearchResponse:
     """Canonical omnibox search — semantic + keyword + metadata across lab corpora."""
@@ -51,6 +62,17 @@ def platform_unified_search(
             explain=explain,
             user_role=user.get("role"),
             user_email=user.get("email"),
+            category=category,
+            smart_chip=smart_chip,
+            domain_tab=domain_tab,
+            system_view=system_view,
+            file_type=file_type,
+            date_from=date_from,
+            date_to=date_to,
+            indexed_status=indexed_status,
+            filter_project_codes=filter_project_codes,
+            filter_section_id=filter_section_id,
+            source_buckets=source_buckets,
         )
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc

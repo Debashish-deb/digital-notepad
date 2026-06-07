@@ -1,4 +1,4 @@
-import { MAIN_NAV } from '../config/navigation.js';
+import { findMainNav, MAIN_NAV } from '../config/navigation.js';
 import { GUI_STRINGS } from './guiStrings/index.js';
 import { translate, translateNavSub } from './translate.js';
 
@@ -26,9 +26,21 @@ function localizeSubItem(mainId, child, locale) {
   };
 }
 
+function localizeNavItem(main, locale) {
+  return {
+    ...main,
+    label: translate(GUI_STRINGS, locale, `navMain.${main.id}`, main.label),
+    sidebarLabel: main.sidebarLabel
+      ? translate(GUI_STRINGS, locale, `navMainSidebar.${main.id}`, main.sidebarLabel)
+      : undefined,
+    children: main.children.map((child) => localizeSubItem(main.id, child, locale)),
+  };
+}
+
 export function findLocalizedMainNav(mainId, locale) {
+  const base = findMainNav(mainId);
   const nav = localizeMainNav(locale);
-  return nav.find((m) => m.id === mainId) || nav[0];
+  return nav.find((m) => m.id === base.id) || localizeNavItem(base, locale);
 }
 
 export function findLocalizedSubNav(mainId, subId, locale) {

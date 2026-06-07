@@ -1,5 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { ArrowRight, Map } from 'lucide-react';
+import { LazyViewFallback } from './common/LazyViewFallback.jsx';
+import './LabDocumentMapPanel.css';
 import {
   buildLabDocumentMermaid,
   buildZoneStats,
@@ -8,6 +10,7 @@ import {
 export default function LabDocumentMapPanel({ onNavigate, onZoneSelect, activeZoneId }) {
   const containerRef = useRef(null);
   const [renderError, setRenderError] = useState(null);
+  const [diagramLoading, setDiagramLoading] = useState(false);
   const [expanded, setExpanded] = useState(true);
   const [zones, setZones] = useState([]);
   const diagramId = useId().replace(/:/g, '');
@@ -35,6 +38,7 @@ export default function LabDocumentMapPanel({ onNavigate, onZoneSelect, activeZo
     if (!mermaidSrc) return undefined;
     let cancelled = false;
     setRenderError(null);
+    setDiagramLoading(true);
 
     (async () => {
       try {
@@ -65,6 +69,8 @@ export default function LabDocumentMapPanel({ onNavigate, onZoneSelect, activeZo
         }
       } catch (err) {
         if (!cancelled) setRenderError(err?.message || 'Could not draw map');
+      } finally {
+        if (!cancelled) setDiagramLoading(false);
       }
     })();
 
@@ -98,6 +104,9 @@ export default function LabDocumentMapPanel({ onNavigate, onZoneSelect, activeZo
 
       {expanded ? (
         <div className="lab-doc-map-panel__diagram-wrap">
+          {diagramLoading ? (
+            <LazyViewFallback variant="map" label="Drawing document map…" />
+          ) : null}
           {renderError ? (
             <pre className="lab-doc-map-panel__fallback">{mermaidSrc}</pre>
           ) : (

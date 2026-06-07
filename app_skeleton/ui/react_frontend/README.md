@@ -1,5 +1,16 @@
 # OMEIA React frontend (Vite)
 
+This is the **frontend application**. The API lives separately at `app_skeleton/api/` (port 8000).
+
+**Full architecture guide:** [docs/FRONTEND_BACKEND_TUTORIAL.md](../../../docs/FRONTEND_BACKEND_TUTORIAL.md)
+
+## Quick start (frontend only)
+
+```bash
+# From repo root — backend must already be running
+./scripts/dev/start_frontend.sh
+```
+
 ## Local full-stack development
 
 ### 1. PostgreSQL (local)

@@ -20,8 +20,8 @@ cp configs/.env.example configs/.env
 docker compose up -d
 
 # 3. One-shot search setup
-chmod +x scripts/setup_search_portable.sh
-./scripts/setup_search_portable.sh
+chmod +x scripts/search/setup_search_portable.sh
+./scripts/search/setup_search_portable.sh
 
 # 4. Run API + frontend (existing dev flow)
 ./deploy/university-desktop/run_api_dev.sh
@@ -80,7 +80,7 @@ When moving from MacBook dev to Linux:
    - `POSTGRES_CONN` or `SUPABASE_DB_PASSWORD` + pooler vars
    - `QDRANT_URL=http://localhost:6333` (local on desktop) or remote URL
 3. Run `sql/141_search_platform.sql` on Postgres
-4. `./scripts/setup_search_portable.sh`
+4. `./scripts/search/setup_search_portable.sh`
 5. Re-ingest: `POST /api/knowledge/lab/ingest-all` (editor/admin)
 
 Search UI and API contracts are unchanged.

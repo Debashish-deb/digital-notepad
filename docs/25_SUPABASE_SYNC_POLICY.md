@@ -52,7 +52,7 @@ Supabase free tier is roughly **500 MB database** and limited egress. This platf
 Operational notes:
 
 - Avoid Supabase Storage for lab corpora (egress + size).
-- Run `python scripts/sync_documents_to_supabase.py --dry-run` before first production sync.
+- Run `python scripts/sync/sync_documents_to_supabase.py --dry-run` before first production sync.
 - **Do not** run a full ~4800-row sync until `SUPABASE_DB_PASSWORD` is in `configs/.env` and migrations are applied.
 
 ## Reports and status
@@ -63,11 +63,11 @@ Operational notes:
 ## Enable sync (checklist)
 
 1. Set `SUPABASE_DB_PASSWORD` (and keys) in `configs/.env` — see `configs/SUPABASE_SETUP.md`
-2. `python scripts/apply_sql_migrations.py`
+2. `python scripts/database/apply_sql_migrations.py`
 3. Ingest vault locally (`vault_ingest` / digitalization) so local Postgres is populated
 4. Set `SUPABASE_SYNC_ENABLED=true`
-5. Dry run: `python scripts/sync_documents_to_supabase.py --dry-run --limit 200`
-6. Limited sync: `python scripts/sync_documents_to_supabase.py --limit 500`
+5. Dry run: `python scripts/sync/sync_documents_to_supabase.py --dry-run --limit 200`
+6. Limited sync: `python scripts/sync/sync_documents_to_supabase.py --limit 500`
 7. Or admin API: `POST /api/supabase/sync/documents` (requires auth when `PLATFORM_AUTH_DISABLED=false`)
 
 ## NEEDS_USER_DECISION

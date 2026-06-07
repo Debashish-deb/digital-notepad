@@ -20,11 +20,11 @@ flowchart LR
 
 ```bash
 # 1. Generate proxy bearer token (appends to configs/.env if missing)
-scripts/generate_ollama_token.sh
+scripts/llm/generate_ollama_token.sh
 
 # 2. Start stack + pull models
 docker compose up -d
-scripts/setup_ollama_local_llm.sh
+scripts/llm/setup_ollama_local_llm.sh
 
 # 3. Point LLM at Ollama in configs/.env
 #    LLM_PROVIDER=ollama
@@ -69,7 +69,7 @@ Docker Desktop uses significant RAM. Run the heavy stack on a **Linux workstatio
 | Machine | Runs |
 |---------|------|
 | **Mac** | `./start.sh` (FastAPI + Vite) — `DOCKER_LOCAL=false` |
-| **Linux workstation** | `scripts/start_linux_docker_stack.sh` (Ollama, Postgres, Qdrant) |
+| **Linux workstation** | `scripts/docker/start_linux_docker_stack.sh` (Ollama, Postgres, Qdrant) |
 
 ### Mac `configs/.env`
 
@@ -91,7 +91,7 @@ QDRANT_URL=http://<linux-ip>:6333
 Avoid exposing Ollama on your LAN — forward from Linux to Mac localhost:
 
 ```bash
-OLLAMA_SSH_HOST=user@linux-workstation ./scripts/ollama_ssh_tunnel.sh
+OLLAMA_SSH_HOST=user@linux-workstation ./scripts/llm/ollama_ssh_tunnel.sh
 ```
 
 Then keep `OLLAMA_BASE_URL=http://127.0.0.1:11434/v1` on the Mac.
@@ -100,7 +100,7 @@ Then keep `OLLAMA_BASE_URL=http://127.0.0.1:11434/v1` on the Mac.
 
 ```bash
 git clone <repo> && cd OMEIA-AI
-scripts/start_linux_docker_stack.sh
+scripts/docker/start_linux_docker_stack.sh
 ```
 
 On Linux, ensure `docker-compose.yml` ports are reachable from the Mac (bind `0.0.0.0` or use SSH tunnels for Postgres/Qdrant too).
@@ -111,7 +111,7 @@ You do **not** need Docker Desktop installed on the Mac. Quit it entirely to fre
 
 ```bash
 docker compose config          # validate compose (on Linux host)
-scripts/docker_bootstrap.sh    # manual bootstrap (local Docker only)
+scripts/dev/docker_bootstrap.sh    # manual bootstrap (local Docker only)
 docker compose logs ollama-proxy
 curl -H "Authorization: Bearer $OLLAMA_INTERNAL_TOKEN" http://127.0.0.1:11434/
 ```

@@ -1,6 +1,6 @@
 # OMEIA local stack — hardened for dev (localhost bind, internal network, auth proxy).
 # Only ollama-proxy exposes :11434 on 127.0.0.1; Ollama itself is internal-only.
-# Generate token once: scripts/generate_ollama_token.sh
+# Generate token once: scripts/llm/generate_ollama_token.sh
 
 networks:
   omeia-internal:
@@ -95,6 +95,26 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
+
+  # Optional full imaging stack (Linux workstation). Not needed for basic tifffile streaming.
+  # docker compose --profile imaging build imaging-worker
+  # docker compose --profile imaging run --rm imaging-worker
+  imaging-worker:
+    profiles: [imaging]
+    build:
+      context: .
+      dockerfile: docker/imaging-worker/Dockerfile
+      args:
+        IMAGING_INCLUDE_NAPARI: ${IMAGING_INCLUDE_NAPARI:-1}
+    container_name: omeia-imaging-worker
+    networks: [omeia-internal]
+    volumes:
+      - ${DATABASE_ROOT:-../OMEIA-database}:/data/database:ro
+    environment:
+      DATABASE_ROOT: /data/database
+    restart: "no"
+    security_opt:
+      - no-new-privileges:true
 
 volumes:
   omeia-pg-data:

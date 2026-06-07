@@ -11,6 +11,11 @@ from typing import Any
 
 from app_skeleton.api import document_extraction as de
 from app_skeleton.api.database_sections import DATABASE_SECTIONS, section_root
+from app_skeleton.api.data_layout import (
+    lab_processed_read_path,
+    lab_processed_write_path,
+    iter_lab_processed_files,
+)
 from app_skeleton.api.paths import DATABASE_ROOT, PROCESSED_DIR, PUBLIC_PROCESSED_DIR
 from app_skeleton.api.project_processor import sync_public_processed
 
@@ -53,11 +58,19 @@ def storage_key(section_id: str) -> str:
 
 
 def processed_json_path(section_id: str) -> Path:
-    return PROCESSED_DIR / f"{storage_key(section_id)}.json"
+    return lab_processed_read_path(section_id, chunks=False)
 
 
 def processed_chunks_path(section_id: str) -> Path:
-    return PROCESSED_DIR / f"{storage_key(section_id)}.chunks.jsonl"
+    return lab_processed_read_path(section_id, chunks=True)
+
+
+def processed_json_write_path(section_id: str) -> Path:
+    return lab_processed_write_path(section_id, chunks=False)
+
+
+def processed_chunks_write_path(section_id: str) -> Path:
+    return lab_processed_write_path(section_id, chunks=True)
 
 
 def _annotate_chunks(chunks: list[dict[str, Any]], section_id: str, section_label: str) -> list[dict[str, Any]]:
@@ -157,12 +170,11 @@ def process_section(section_id: str) -> dict[str, Any]:
 
 
 def save_processed_section(section_id: str, data: dict[str, Any] | None = None) -> Path:
-    PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     payload = data or process_section(section_id)
-    out = processed_json_path(section_id)
+    out = processed_json_write_path(section_id)
     out.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     chunks = payload.get("vector_chunks") or []
-    chunks_out = processed_chunks_path(section_id)
+    chunks_out = processed_chunks_write_path(section_id)
     with chunks_out.open("w", encoding="utf-8") as fh:
         for chunk in chunks:
             fh.write(json.dumps(chunk, ensure_ascii=False) + "\n")

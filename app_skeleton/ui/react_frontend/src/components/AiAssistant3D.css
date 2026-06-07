@@ -49,6 +49,219 @@
   padding: 1rem;
 }
 
+.ai3d-hero--dense {
+  min-height: 5.75rem;
+  padding: 0.42rem 0.65rem 0.45rem;
+  margin-bottom: 0;
+  gap: 0.3rem;
+}
+
+.ai3d-hero--dense.ai3d-hero--merged {
+  gap: 0.35rem;
+  align-items: start;
+}
+
+.ai3d-hero--dense .ai3d-hero__toolbar {
+  gap: 0.25rem 0.45rem;
+}
+
+.ai3d-hero--dense .ai3d-hero__toolbar-eyebrow {
+  font-size: 0.62rem;
+  gap: 0.3rem;
+}
+
+.ai3d-hero--dense .ai3d-hero__icon-btn {
+  width: 1.65rem;
+  height: 1.65rem;
+}
+
+.ai3d-hero--dense .ai3d-hero__taskpad .taskpad-dock-collapsed,
+.ai3d-hero--dense .ai3d-hero__taskpad .taskpad-dock-toggle {
+  min-height: 1.65rem;
+}
+
+.ai3d-hero--dense .ai3d-hero__main {
+  grid-template-columns: minmax(0, 1fr) minmax(5.25rem, 7rem);
+  gap: 0.4rem;
+  align-items: start;
+}
+
+.ai3d-hero--dense .ai3d-hero__main--visual-right {
+  grid-template-columns: minmax(0, 1fr) minmax(5.25rem, 7rem);
+}
+
+.ai3d-hero--dense .ai3d-hero__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: start;
+  min-width: 0;
+}
+
+.ai3d-hero--dense .ai3d-hero__title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.28rem;
+  width: 100%;
+}
+
+.ai3d-hero--dense h2 {
+  font-size: clamp(0.92rem, 0.85rem + 0.35vw, 1.12rem);
+  line-height: 1.05;
+  margin: 0;
+  flex: 0 1 auto;
+}
+
+.ai3d-hero--dense .ai3d-hero__visual {
+  align-self: start;
+}
+
+.ai3d-hero--dense .ai3d-solar {
+  width: min(6.25rem, 100%);
+}
+
+.ai3d-hero--dense .ai3d-solar--compact {
+  width: min(6rem, 100%);
+}
+
+.ai3d-hero--dense p {
+  margin-top: 0.28rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ai3d-hero--dense .ai3d-stat-row {
+  margin-top: 0.45rem;
+  gap: 0.35rem;
+}
+
+.ai3d-hero--dense .ai3d-stat {
+  min-width: 3.6rem;
+  padding: 0.28rem 0.45rem;
+  border-radius: 10px;
+}
+
+.ai3d-hero--dense .ai3d-stat span {
+  font-size: 0.56rem;
+}
+
+.ai3d-hero--dense .ai3d-stat strong {
+  font-size: 0.68rem;
+}
+
+.ai3d-telemetry {
+  display: grid;
+  gap: 0.25rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.28rem;
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 72%, transparent);
+  background: color-mix(in srgb, var(--bg-inset) 32%, var(--bg-surface));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.ai3d-telemetry--grid2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  min-height: 5.1rem;
+}
+
+.ai3d-telemetry__chip {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.12rem;
+  min-width: 0;
+  height: 100%;
+  padding: 0.24rem 0.36rem;
+  border-radius: 5px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 58%, transparent);
+  background: color-mix(in srgb, var(--bg-surface) 72%, transparent);
+  color: var(--text-secondary);
+  font-size: 0.62rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.ai3d-telemetry__label {
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ai3d-telemetry__body {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.24rem;
+  min-width: 0;
+  width: 100%;
+  flex: 1;
+}
+
+.ai3d-telemetry__chip svg {
+  flex-shrink: 0;
+  opacity: 0.82;
+}
+
+.ai3d-telemetry__value {
+  color: var(--text-primary);
+  font-weight: 750;
+  font-size: 0.63rem;
+  min-width: 0;
+  flex: 1;
+  line-height: 1.25;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+}
+
+.ai3d-telemetry__sub {
+  flex-shrink: 0;
+  font-size: 0.52rem;
+  font-weight: 700;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  padding: 0.06rem 0.24rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-inset) 45%, transparent);
+}
+
+.ai3d-telemetry__chip--cyan svg { color: #22d3ee; }
+.ai3d-telemetry__chip--primary svg { color: var(--color-primary); }
+.ai3d-telemetry__chip--neutral svg { color: var(--text-muted); }
+
+.ai3d-telemetry__chip--live .ai3d-telemetry__value::before {
+  content: '';
+  display: inline-block;
+  width: 0.38rem;
+  height: 0.38rem;
+  margin-right: 0.22rem;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 2px color-mix(in srgb, #22c55e 28%, transparent);
+  animation: ai3d-telemetry-pulse 1.8s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+.ai3d-telemetry__chip--warn .ai3d-telemetry__value { color: #f59e0b; }
+.ai3d-telemetry__chip--danger .ai3d-telemetry__value { color: #ef4444; }
+
+@keyframes ai3d-telemetry-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.88); }
+}
+
 .ai3d-hero--merged {
   display: flex;
   flex-direction: column;
@@ -246,6 +459,27 @@
   grid-template-columns: minmax(8.5rem, 13rem) minmax(0, 1fr);
 }
 
+.ai3d-hero__main--visual-right {
+  grid-template-columns: minmax(0, 1fr) minmax(6.5rem, 9.5rem);
+}
+
+.ai3d-hero__main--visual-right .ai3d-hero__visual {
+  order: 2;
+}
+
+.ai3d-hero__main--visual-right .ai3d-hero__copy {
+  order: 1;
+}
+
+.ai3d-hero__main--visual-only {
+  grid-template-columns: 1fr;
+  justify-items: end;
+}
+
+.ai3d-hero__main--visual-only .ai3d-hero__visual {
+  order: 1;
+}
+
 .ai3d-hero__visual {
   display: grid;
   place-items: center;
@@ -433,6 +667,467 @@
 .ai3d-particle--3 { left: 16%; top: 72%; animation-delay: -2.2s; }
 .ai3d-particle--4 { left: 72%; top: 78%; animation-delay: -3.2s; }
 .ai3d-particle--5 { left: 48%; top: 5%; animation-delay: -4s; }
+
+/* Solar system: AI brain hub + oncology cell planets (science-art) */
+.ai3d-solar {
+  position: relative;
+  width: min(10rem, 100%);
+  aspect-ratio: 1;
+  margin-inline: auto;
+  isolation: isolate;
+}
+
+.ai3d-solar--compact {
+  width: min(9.25rem, 100%);
+}
+
+.ai3d-solar__field {
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+}
+
+.ai3d-solar__hex {
+  position: absolute;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 1px solid color-mix(in srgb, #67e8f9 35%, transparent);
+  transform: rotate(30deg);
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  animation: ai3d-solar-hex-drift 8s ease-in-out infinite;
+}
+
+.ai3d-solar__hex--1 { left: 6%; top: 18%; }
+.ai3d-solar__hex--2 { right: 4%; top: 62%; animation-delay: -2.5s; }
+.ai3d-solar__hex--3 { left: 42%; bottom: 4%; animation-delay: -4.8s; width: 0.8rem; height: 0.8rem; }
+
+.ai3d-solar__scan {
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0 340deg, color-mix(in srgb, #22d3ee 55%, transparent) 350deg, transparent 360deg);
+  mask: radial-gradient(circle, transparent 42%, #000 43% 100%);
+  animation: ai3d-solar-scan 6s linear infinite;
+  opacity: 0.45;
+}
+
+.ai3d-solar__corona {
+  position: absolute;
+  inset: 2%;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(from 0deg, transparent 0 8deg, color-mix(in srgb, #a5b4fc 18%, transparent) 8deg 9deg);
+  mask: radial-gradient(circle, transparent 48%, #000 52% 72%, transparent 78%);
+  animation: ai3d-solar-corona 14s linear infinite;
+  opacity: 0.7;
+}
+
+.ai3d-solar__glow {
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, color-mix(in srgb, #6366f1 42%, transparent), transparent 62%),
+    radial-gradient(circle, color-mix(in srgb, #22d3ee 18%, transparent), transparent 75%);
+  filter: blur(12px);
+  animation: ai3d-solar-glow 3.2s ease-in-out infinite;
+}
+
+.ai3d-solar__dna {
+  position: absolute;
+  right: -4%;
+  top: 8%;
+  width: 1.35rem;
+  height: 3.2rem;
+  opacity: 0.72;
+  animation: ai3d-solar-dna-float 5.5s ease-in-out infinite;
+}
+
+.ai3d-solar__dna-strand {
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.ai3d-solar__dna-strand--a {
+  stroke: color-mix(in srgb, #38bdf8 80%, #fff);
+}
+
+.ai3d-solar__dna-strand--b {
+  stroke: color-mix(in srgb, #818cf8 80%, #fff);
+}
+
+.ai3d-solar__dna-rung {
+  stroke: color-mix(in srgb, #e0e7ff 70%, transparent);
+  stroke-width: 0.8;
+}
+
+.ai3d-solar__trail {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed color-mix(in srgb, var(--cover-accent, #6366f1) 16%, transparent);
+  opacity: 0.55;
+}
+
+.ai3d-solar__track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid color-mix(in srgb, var(--cover-accent, #6366f1) 28%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 12px color-mix(in srgb, #6366f1 8%, transparent);
+  animation: ai3d-solar-orbit linear infinite;
+}
+
+.ai3d-solar__synapse-ring {
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  border: 1px dashed color-mix(in srgb, #67e8f9 45%, transparent);
+  animation: ai3d-solar-synapse 4.5s ease-in-out infinite;
+  z-index: 2;
+}
+
+.ai3d-solar__synapse-ring--b {
+  inset: 12%;
+  border-style: dotted;
+  animation-direction: reverse;
+  animation-duration: 6.2s;
+  opacity: 0.65;
+}
+
+.ai3d-solar__brain {
+  position: absolute;
+  inset: 20%;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+}
+
+.ai3d-solar__neural-net {
+  position: absolute;
+  inset: -18%;
+  width: 136%;
+  height: 136%;
+  z-index: 1;
+  opacity: 0.85;
+  animation: ai3d-solar-neural-flicker 3s ease-in-out infinite;
+}
+
+.ai3d-solar__neural-lines line {
+  stroke: color-mix(in srgb, #67e8f9 55%, transparent);
+  stroke-width: 0.8;
+}
+
+.ai3d-solar__neural-nodes circle {
+  fill: #a5f3fc;
+  filter: drop-shadow(0 0 4px #22d3ee);
+}
+
+.ai3d-solar__brain-halo {
+  position: absolute;
+  inset: -8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, #818cf8 35%, transparent), transparent 70%);
+  filter: blur(6px);
+}
+
+.ai3d-solar__brain-core {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  color: #eef2ff;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.55), transparent 36%),
+    radial-gradient(circle at 70% 78%, rgba(34, 211, 238, 0.25), transparent 42%),
+    radial-gradient(circle, #a5b4fc 0%, #6366f1 38%, #3730a3 72%, #1e1b4b 100%);
+  box-shadow:
+    0 0 36px color-mix(in srgb, #6366f1 65%, transparent),
+    0 0 18px color-mix(in srgb, #22d3ee 35%, transparent),
+    inset 0 -8px 18px rgba(0, 0, 0, 0.28),
+    inset 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.ai3d-solar__brain-sulci {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(circle at 40% 35%, transparent 0 6px, rgba(0, 0, 0, 0.12) 6px 7px);
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+}
+
+.ai3d-solar__brain-scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0 44%, rgba(255, 255, 255, 0.35) 48%, transparent 52% 100%);
+  animation: ai3d-solar-brain-scan 2.6s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+.ai3d-solar__brain-pulse {
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, #818cf8 55%, transparent);
+  animation: ai3d-solar-pulse 2.8s ease-out infinite;
+  z-index: 0;
+}
+
+.ai3d-solar__brain-pulse--delayed {
+  animation-delay: -1.4s;
+  border-color: color-mix(in srgb, #22d3ee 45%, transparent);
+}
+
+.ai3d-solar__signals {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.ai3d-solar__signal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 42%;
+  height: 1px;
+  transform-origin: left center;
+  background: linear-gradient(90deg, color-mix(in srgb, #67e8f9 70%, transparent), transparent);
+  animation-duration: 2.2s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+.ai3d-solar__signal--1 { animation-name: ai3d-solar-signal-a; }
+.ai3d-solar__signal--2 { animation-name: ai3d-solar-signal-b; animation-delay: -0.8s; }
+.ai3d-solar__signal--3 { animation-name: ai3d-solar-signal-c; animation-delay: -1.5s; }
+
+.ai3d-solar__ions {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.ai3d-solar__ion {
+  position: absolute;
+  width: 0.22rem;
+  height: 0.22rem;
+  border-radius: 50%;
+  background: #67e8f9;
+  box-shadow: 0 0 6px #22d3ee;
+  animation: ai3d-solar-ion 4s ease-in-out infinite;
+}
+
+.ai3d-solar__ion--1 { left: 12%; top: 42%; }
+.ai3d-solar__ion--2 { left: 78%; top: 24%; animation-delay: -0.6s; }
+.ai3d-solar__ion--3 { left: 86%; top: 68%; animation-delay: -1.2s; }
+.ai3d-solar__ion--4 { left: 22%; top: 82%; animation-delay: -1.8s; }
+.ai3d-solar__ion--5 { left: 54%; top: 8%; animation-delay: -2.4s; }
+.ai3d-solar__ion--6 { left: 8%; top: 58%; animation-delay: -3s; }
+.ai3d-solar__ion--7 { left: 64%; top: 88%; animation-delay: -3.6s; }
+.ai3d-solar__ion--8 { left: 38%; top: 14%; animation-delay: -4.2s; }
+
+/* Oncology cell planets */
+.ai3d-cancer-cell {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 58% 42% 55% 45% / 48% 52% 46% 54%;
+  overflow: visible;
+  animation: ai3d-cancer-morph 5s ease-in-out infinite;
+}
+
+.ai3d-cancer-cell--sm { width: 0.72rem; height: 0.68rem; }
+.ai3d-cancer-cell--md { width: 0.88rem; height: 0.82rem; }
+.ai3d-cancer-cell--lg { width: 1rem; height: 0.94rem; }
+
+.ai3d-cancer-cell--rose .ai3d-cancer-cell__cytoplasm {
+  background: radial-gradient(circle at 35% 28%, #fecdd3, #f43f5e 52%, #9f1239 100%);
+}
+.ai3d-cancer-cell--coral .ai3d-cancer-cell__cytoplasm {
+  background: radial-gradient(circle at 35% 28%, #fed7aa, #f97316 52%, #9a3412 100%);
+}
+.ai3d-cancer-cell--magenta .ai3d-cancer-cell__cytoplasm {
+  background: radial-gradient(circle at 35% 28%, #f5d0fe, #d946ef 52%, #86198f 100%);
+}
+.ai3d-cancer-cell--pink .ai3d-cancer-cell__cytoplasm {
+  background: radial-gradient(circle at 35% 28%, #fbcfe8, #ec4899 52%, #9d174d 100%);
+}
+
+.ai3d-cancer-cell__membrane {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid color-mix(in srgb, #fff 40%, transparent);
+  box-shadow: 0 0 12px color-mix(in srgb, #fb7185 50%, transparent);
+}
+
+.ai3d-cancer-cell__cytoplasm {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.ai3d-cancer-cell__bleb {
+  position: absolute;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.85;
+}
+
+.ai3d-cancer-cell__bleb--1 {
+  width: 38%;
+  height: 38%;
+  right: -18%;
+  top: 18%;
+  background: color-mix(in srgb, #fda4af 80%, #f43f5e);
+}
+
+.ai3d-cancer-cell__bleb--2 {
+  width: 28%;
+  height: 28%;
+  left: -12%;
+  bottom: 8%;
+  background: color-mix(in srgb, #fb7185 75%, #be123c);
+}
+
+.ai3d-cancer-cell__mito {
+  position: absolute;
+  width: 18%;
+  height: 10%;
+  left: 22%;
+  top: 58%;
+  border-radius: 999px;
+  background: color-mix(in srgb, #fef08a 70%, #ca8a04);
+  opacity: 0.8;
+  transform: rotate(-24deg);
+}
+
+.ai3d-cancer-cell__mito--b {
+  left: 58%;
+  top: 34%;
+  transform: rotate(18deg);
+  width: 14%;
+}
+
+.ai3d-cancer-cell__nucleus {
+  position: absolute;
+  inset: 22% 24% 26% 20%;
+  border-radius: 46% 54% 50% 50%;
+  background: color-mix(in srgb, #450a0a 60%, #1c1917);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.45);
+}
+
+.ai3d-cancer-cell__nucleolus {
+  position: absolute;
+  width: 32%;
+  height: 32%;
+  right: 18%;
+  top: 22%;
+  border-radius: 50%;
+  background: color-mix(in srgb, #7f1d1d 80%, #000);
+}
+
+.ai3d-cancer-cell__chromatin {
+  position: absolute;
+  width: 22%;
+  height: 38%;
+  left: 16%;
+  bottom: 16%;
+  border-radius: 40%;
+  background: color-mix(in srgb, #991b1b 70%, transparent);
+  opacity: 0.75;
+}
+
+@keyframes ai3d-solar-orbit {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes ai3d-solar-glow {
+  0%, 100% { opacity: 0.7; transform: scale(0.94); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+@keyframes ai3d-solar-pulse {
+  0% { transform: scale(0.82); opacity: 0.8; }
+  70% { transform: scale(1.28); opacity: 0; }
+  100% { transform: scale(1.28); opacity: 0; }
+}
+
+@keyframes ai3d-solar-scan {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ai3d-solar-corona {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ai3d-solar-synapse {
+  0%, 100% { transform: scale(0.96); opacity: 0.5; }
+  50% { transform: scale(1.04); opacity: 0.9; }
+}
+
+@keyframes ai3d-solar-neural-flicker {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 1; }
+}
+
+@keyframes ai3d-solar-brain-scan {
+  0%, 100% { transform: translateY(-30%); opacity: 0; }
+  45% { opacity: 0.85; }
+  55% { transform: translateY(30%); opacity: 0; }
+}
+
+@keyframes ai3d-solar-signal-a {
+  0% { opacity: 0; transform: rotate(12deg) scaleX(0.1); }
+  30% { opacity: 0.9; transform: rotate(12deg) scaleX(1); }
+  100% { opacity: 0; transform: rotate(12deg) scaleX(1.1); }
+}
+
+@keyframes ai3d-solar-signal-b {
+  0% { opacity: 0; transform: rotate(128deg) scaleX(0.1); }
+  30% { opacity: 0.9; transform: rotate(128deg) scaleX(1); }
+  100% { opacity: 0; transform: rotate(128deg) scaleX(1.1); }
+}
+
+@keyframes ai3d-solar-signal-c {
+  0% { opacity: 0; transform: rotate(248deg) scaleX(0.1); }
+  30% { opacity: 0.9; transform: rotate(248deg) scaleX(1); }
+  100% { opacity: 0; transform: rotate(248deg) scaleX(1.1); }
+}
+
+@keyframes ai3d-solar-ion {
+  0%, 100% { transform: translate(0, 0) scale(0.8); opacity: 0.35; }
+  50% { transform: translate(2px, -3px) scale(1.2); opacity: 1; }
+}
+
+@keyframes ai3d-solar-hex-drift {
+  0%, 100% { transform: rotate(30deg) translateY(0); opacity: 0.35; }
+  50% { transform: rotate(36deg) translateY(-3px); opacity: 0.75; }
+}
+
+@keyframes ai3d-solar-dna-float {
+  0%, 100% { transform: translateY(0) rotate(-6deg); opacity: 0.55; }
+  50% { transform: translateY(-4px) rotate(6deg); opacity: 0.9; }
+}
+
+@keyframes ai3d-cancer-morph {
+  0%, 100% { border-radius: 58% 42% 55% 45% / 48% 52% 46% 54%; }
+  50% { border-radius: 45% 55% 48% 52% / 55% 45% 52% 48%; }
+}
 
 .ai3d-hero__copy {
   min-width: 0;
@@ -991,6 +1686,7 @@
 .ai-prompt-grid {
   display: grid;
   gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 }
 
 .ai-model-card {
@@ -1036,6 +1732,30 @@
 .ai-model-card__desc {
   color: var(--text-secondary);
   line-height: 1.55;
+}
+
+.ai-model-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.ai-model-card__chip {
+  font-size: 0.68rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--bg-inset));
+  color: var(--text-secondary);
+}
+
+.ai-model-card__status--live {
+  color: var(--color-success, #16a34a) !important;
+  background: color-mix(in srgb, var(--color-success, #16a34a) 12%, transparent) !important;
+}
+
+.ai-model-card__status--offline {
+  color: var(--text-muted) !important;
+  background: color-mix(in srgb, var(--text-muted) 12%, transparent) !important;
 }
 
 .ai-model-card__meta {
@@ -1238,7 +1958,15 @@ html[data-theme='academic'] .ai-lab-page-header h2 {
   .ai3d-core__glow,
   .ai3d-core__scanline,
   .ai3d-node,
-  .ai3d-particle {
+  .ai3d-particle,
+  .ai3d-solar__track,
+  .ai3d-solar__brain-pulse,
+  .ai3d-solar__glow,
+  .ai3d-solar__scan,
+  .ai3d-solar__corona,
+  .ai3d-solar__signal,
+  .ai3d-solar__ion,
+  .ai3d-cancer-cell {
     animation: none !important;
   }
 

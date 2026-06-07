@@ -1,0 +1,153 @@
+.portfolio-context-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 1.25rem;
+  padding: 1rem 1.15rem;
+  margin-bottom: 0.15rem;
+}
+
+.portfolio-context-bar__title {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.portfolio-context-bar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.55rem;
+}
+
+.portfolio-context-bar__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 12rem;
+}
+
+.decisions-panel__grid,
+.notebook-wiki-panel__grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(320px, 1.15fr);
+  gap: 1rem;
+}
+
+.decisions-panel__lead,
+.notebook-wiki-panel__lead {
+  margin: 0 0 0.65rem;
+}
+
+.decisions-panel__delete {
+  background: transparent;
+  border: none;
+  color: var(--color-danger);
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.7;
+}
+
+.decisions-panel__delete:hover {
+  opacity: 1;
+}
+
+.decisions-panel__open-project {
+  margin-top: 0.45rem;
+}
+
+.notebook-wiki-panel__tabs {
+  margin-bottom: 0.75rem;
+}
+
+.notebook-wiki-panel__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-height: 420px;
+  overflow-y: auto;
+  margin-top: 0.65rem;
+}
+
+.notebook-wiki-panel__list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+}
+
+.notebook-wiki-panel__list-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.notebook-wiki-panel__list-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.notebook-wiki-panel__detail-title {
+  margin: 0 0 0.35rem;
+  color: var(--text-primary);
+  font-size: 1.15rem;
+}
+
+.notebook-wiki-panel__content {
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  min-height: 160px;
+  white-space: pre-wrap;
+  color: var(--text-secondary);
+  margin-top: 0.75rem;
+}
+
+.notebook-wiki-panel__callout {
+  margin-top: 0.85rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+}
+
+.notebook-wiki-panel__callout h5 {
+  margin: 0 0 0.25rem;
+  font-size: 0.82rem;
+}
+
+.notebook-wiki-panel__callout p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.notebook-wiki-panel__callout--ok {
+  background: rgba(52, 211, 153, 0.06);
+  border: 1px solid rgba(52, 211, 153, 0.15);
+}
+
+.notebook-wiki-panel__callout--ok h5 {
+  color: var(--color-success);
+}
+
+.notebook-wiki-panel__callout--warn {
+  background: rgba(248, 113, 113, 0.06);
+  border: 1px solid rgba(248, 113, 113, 0.15);
+}
+
+.notebook-wiki-panel__callout--warn h5 {
+  color: var(--color-danger);
+}
+
+.notebook-wiki-panel__callout--next {
+  background: rgba(129, 140, 248, 0.06);
+  border: 1px solid rgba(129, 140, 248, 0.15);
+}
+
+@media (max-width: 960px) {
+  .decisions-panel__grid,
+  .notebook-wiki-panel__grid {
+    grid-template-columns: 1fr;
+  }
+}

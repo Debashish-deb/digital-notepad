@@ -37,10 +37,13 @@ def storage_roots() -> dict[str, Any]:
     db_exists = DATABASE_ROOT.is_dir()
     projects_exists = PROJECTS_ROOT.is_dir()
     processed_exists = PROCESSED_DIR.is_dir()
-    lab_sections = 0
-    if processed_exists:
-        lab_sections = len(list(PROCESSED_DIR.glob("lab__*.json")))
-    project_twins = len(list(PROCESSED_DIR.glob("*.json"))) - lab_sections if processed_exists else 0
+    from app_skeleton.api.data_layout import iter_lab_processed_files
+
+    lab_sections = len(list(iter_lab_processed_files())) if processed_exists else 0
+    project_twins = len([
+        p for p in PROCESSED_DIR.glob("*.json")
+        if not p.name.startswith("lab__")
+    ]) if processed_exists else 0
 
     return {
         "mode": STORAGE_MODE,

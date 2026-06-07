@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Center, Environment, OrbitControls, useAnimations, useGLTF } from '@react-three/drei';
+import { Center, OrbitControls, useAnimations, useGLTF } from '@react-three/drei';
 import { Loader2, Pause, Play, RotateCcw } from 'lucide-react';
 import * as THREE from 'three';
 
@@ -125,10 +125,10 @@ export default function ModelViewer3D({ url, title, labels = {} }) {
             }}
             onError={() => setError(labels.failed || 'Could not load 3D model.')}
           >
-            <ambientLight intensity={0.55} />
-            <directionalLight position={[4, 6, 3]} intensity={1.1} castShadow />
-            <directionalLight position={[-3, 2, -2]} intensity={0.35} />
-            <Environment preset="city" />
+            <ambientLight intensity={0.6} />
+            <hemisphereLight args={['#e0f2fe', '#1e293b', 0.5]} />
+            <directionalLight position={[4, 6, 3]} intensity={1.2} castShadow />
+            <directionalLight position={[-3, 2, -2]} intensity={0.4} />
             <AnimatedModel url={url} playing={playing} onReady={setMeta} />
             <OrbitControls
               ref={controlsRef}

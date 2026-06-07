@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { FileCode2, Loader2 } from 'lucide-react';
+import { LazyViewFallback } from './common/LazyViewFallback.jsx';
 import LabDocumentsBrowser from './LabDocumentsBrowser.jsx';
-import LabDocumentMapPanel from './LabDocumentMapPanel.jsx';
+
+const LabDocumentMapPanel = lazy(() => import('./LabDocumentMapPanel.jsx'));
 import {
   getLabDocumentsHubConfig,
   sectionLabelForHub,
@@ -128,11 +130,13 @@ export default function LabDocumentsHub({ onNavigate }) {
 
   return (
     <div className="lab-documents-hub stack-lg">
-      <LabDocumentMapPanel
-        onNavigate={onNavigate}
-        onZoneSelect={handleZoneSelect}
-        activeZoneId={activeZoneId}
-      />
+      <Suspense fallback={<LazyViewFallback variant="map" label="Loading document map…" />}>
+        <LabDocumentMapPanel
+          onNavigate={onNavigate}
+          onZoneSelect={handleZoneSelect}
+          activeZoneId={activeZoneId}
+        />
+      </Suspense>
 
       {activeZoneId === 'projects' ? null : (
         <>

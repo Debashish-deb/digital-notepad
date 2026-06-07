@@ -1,0 +1,16 @@
+{
+  "run_id": "20260604T043749Z_8dd023b9",
+  "checkpoint_id": "project:WET_LAB",
+  "scan_root": "/Users/debashishdeb/Downloads/OMEIA-AI/database/WET_LAB",
+  "project_hint": "WET_LAB",
+  "vectorization_enabled": false,
+  "finished_at": "2026-06-04T04:38:36.217640+00:00",
+  "counts": {
+    "scanned": 483,
+    "new": 0,
+    "updated": 483,
+    "failed": 0,
+    "skipped_large": 0,
+    "uncategorized": 0
+  }
+}

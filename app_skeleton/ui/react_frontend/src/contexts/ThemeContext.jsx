@@ -1,21 +1,17 @@
-import React, { createContext, useContext, useEffect, useState, useMemo, useCallback } from 'react';
-import { BookOpen, Moon, Sun } from 'lucide-react';
+import { createContext, useContext, useEffect, useState, useMemo, useCallback } from 'react';
+import { BookOpen, Moon } from 'lucide-react';
 
 const ThemeContext = createContext();
 
-export const THEME_CYCLE = ['dark', 'light', 'academic'];
+export const THEME_CYCLE = ['dark', 'academic'];
 
 export const THEME_META = {
   dark: {
     label: 'Dark',
     icon: Moon,
   },
-  light: {
-    label: 'Light',
-    icon: Sun,
-  },
   academic: {
-    label: 'Academic',
+    label: 'Kindle',
     icon: BookOpen,
   },
 };
@@ -27,6 +23,9 @@ export function ThemeProvider({ children }) {
     if (typeof window === 'undefined') return 'academic';
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'light') {
+        return 'academic';
+      }
       if (THEME_CYCLE.includes(stored)) {
         return stored;
       }
@@ -37,6 +36,9 @@ export function ThemeProvider({ children }) {
   });
 
   const setTheme = useCallback((newTheme) => {
+    if (newTheme === 'light') {
+      newTheme = 'academic';
+    }
     if (!THEME_CYCLE.includes(newTheme)) {
       newTheme = 'dark';
     }
@@ -52,7 +54,8 @@ export function ThemeProvider({ children }) {
 
   const cycleTheme = useCallback(() => {
     setThemeState((prev) => {
-      const currentIndex = THEME_CYCLE.indexOf(prev);
+      const active = prev === 'light' ? 'academic' : prev;
+      const currentIndex = THEME_CYCLE.indexOf(active);
       const nextTheme = THEME_CYCLE[(currentIndex + 1) % THEME_CYCLE.length];
       if (typeof window !== 'undefined') {
         try {

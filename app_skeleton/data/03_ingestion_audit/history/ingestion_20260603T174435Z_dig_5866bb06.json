@@ -1,0 +1,25 @@
+{
+  "run_id": "20260603T174435Z_dig_5866bb06",
+  "mode": "project",
+  "storage_root": "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/tests/fixtures",
+  "project_name": "digitalization_sample_project",
+  "dry_run": true,
+  "enable_ocr": false,
+  "enable_vectors": false,
+  "finished_at": "2026-06-03T17:44:35.975336+00:00",
+  "counts": {
+    "folders_scanned": 0,
+    "files_scanned": 8,
+    "files_processed": 0,
+    "files_skipped": 0,
+    "files_failed": 0,
+    "documents_extracted": 0,
+    "tables_extracted": 0,
+    "scripts_extracted": 0,
+    "logs_extracted": 0,
+    "large_metadata_only": 0,
+    "uncategorized": 0,
+    "review_needed": 0,
+    "unsupported": 0
+  }
+}

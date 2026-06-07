@@ -8,18 +8,33 @@ const MAX_PARAGRAPH_CHARS = 650;
 const SENTENCE_END_RE = /[.!?…]["')\]]?\s*$/;
 
 const SECTION_TITLE_RE =
-  /^(billing addresses|electronic invoicing address|new|customs invoice|usda import|onboarding|general guidelines|wet lab|safety|keys)$/i;
+  /^(attention to|billing addresses|billing and delivery|electronic invoicing address|invoice information|delivery information|new|customs invoice|usda import|onboarding|general guidelines|wet lab|safety|keys|key details|background aims?|panel composition|material and methods|results|conclusions|acknowledgements?|references|speaker notes)$/i;
 
 const PAGE_MARKER_RE = /^Page\s+\d+\s+of\s+\d+$/i;
 
 const PROSE_WORD_RE =
   /\b(the|for|that|with|must|should|please|have|will|can|from|your|our|found|information|following|located|either|learn|them|when|after|before|also|into|about)\b/i;
 
+function splitInlineBullets(line) {
+  const raw = String(line || '').trim();
+  if (!raw.includes('•')) return [raw];
+
+  const parts = raw.split(/\s*•\s*/).map((part) => part.trim()).filter(Boolean);
+  if (parts.length <= 1) return [raw];
+
+  return parts.map((part, index) => (index === 0 && !raw.startsWith('•') ? part : `• ${part}`));
+}
+
 function normalizeLines(rawText) {
-  return String(rawText || '')
-    .split('\n')
-    .map((l) => l.trim())
-    .filter((l) => l && !/^\d{1,3}$/.test(l) && !PAGE_MARKER_RE.test(l));
+  const lines = [];
+  for (const line of String(rawText || '').split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed || /^\d{1,3}$/.test(trimmed) || PAGE_MARKER_RE.test(trimmed)) continue;
+    for (const part of splitInlineBullets(trimmed)) {
+      if (part) lines.push(part);
+    }
+  }
+  return lines;
 }
 
 function letterRatioDigits(line) {
@@ -173,7 +188,7 @@ function isCardTitle(line) {
 }
 
 function isListLine(line) {
-  return /^[-*•]\s/.test(line) || /^\d+\.\s/.test(line);
+  return /^[-*•]\s?/.test(line) || /^\d+\.\s/.test(line);
 }
 
 function isDivider(line) {
@@ -191,6 +206,7 @@ function looksLikeProse(line) {
 
 function shouldJoinLines(prev, next) {
   if (!prev || !next) return false;
+  if (prev.includes('•') || next.includes('•')) return false;
   if (isSectionTitle(next) || isSectionTitle(prev)) return false;
   if (isCardTitle(next) || isCardTitle(prev)) return false;
   if (isFieldLabelOnly(next) || isFieldLabelOnly(prev)) return false;
@@ -247,6 +263,7 @@ function splitLongParagraph(text) {
   if (!t) return [];
   if (t.length <= MAX_PARAGRAPH_CHARS) return [t];
 
+  // eslint-disable-next-line no-useless-escape -- `[` is literal inside the lookahead character class
   const parts = t.split(/(?<=[.!?…])\s+(?=[A-ZÄÖÅÜ"“(\[])/);
   const chunks = [];
   let buf = '';
@@ -262,6 +279,41 @@ function splitLongParagraph(text) {
   }
   if (buf.trim()) chunks.push(buf.trim());
   return chunks.length ? chunks : [t];
+}
+
+/** Break prose around URLs so links wrap on their own line instead of stretching the paragraph. */
+function pushProseEntries(card, prose) {
+  const parts = String(prose || '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(/(https?:\/\/\S+)/i)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (!parts.length) return;
+
+  let textBuf = '';
+  const flushText = () => {
+    if (!textBuf.trim()) return;
+    splitLongParagraph(textBuf.trim()).forEach((p) => {
+      card.entries.push({ type: 'paragraph', text: p });
+    });
+    textBuf = '';
+  };
+
+  for (const part of parts) {
+    if (/^https?:\/\//i.test(part)) {
+      flushText();
+      const urlMatch = part.match(/^(https?:\/\/[^\s),.;:]+)([),.;:]+)?$/i);
+      const url = urlMatch?.[1] || part;
+      const trailing = urlMatch?.[2] || '';
+      card.entries.push({ type: 'url', url });
+      if (trailing) textBuf = trailing;
+      continue;
+    }
+    textBuf = textBuf ? `${textBuf} ${part}` : part;
+  }
+  flushText();
 }
 
 function createCard(title = null) {
@@ -383,9 +435,7 @@ function absorbLinesIntoCard(card, lines) {
         i += 1;
         if (prose.length > MAX_PARAGRAPH_CHARS) break;
       }
-      splitLongParagraph(prose).forEach((p) => {
-        card.entries.push({ type: 'paragraph', text: p });
-      });
+      pushProseEntries(card, prose);
       continue;
     }
 

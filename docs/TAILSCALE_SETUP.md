@@ -81,7 +81,7 @@ Restart app:
 ## 6. Quick test script (Mac)
 
 ```bash
-./scripts/mac_test_tailscale_ollama.sh
+./scripts/network/mac_test_tailscale_ollama.sh
 ```
 
 ## Troubleshooting

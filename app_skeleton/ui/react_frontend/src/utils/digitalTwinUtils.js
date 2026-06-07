@@ -158,7 +158,7 @@ export function categoryColor(category) {
  * URL to open/download a project file from disk (API resolves content_root).
  * Prefer same-origin /api/... so Vite dev proxy and co-hosted prod both work.
  */
-export function projectAssetUrl(projectCode, relativePath, API_URL = '', _contentRoot = null) {
+export function projectAssetUrl(projectCode, relativePath, API_URL = '') {
   const rel = (relativePath || '').replace(/^\/+/, '').replace(/\\/g, '/');
   if (!projectCode || !rel) return '#';
 

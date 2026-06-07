@@ -12,11 +12,73 @@ import {
   Calendar,
 } from 'lucide-react';
 
+/** CyCif imaging hub (included in MAIN_NAV before Wet Lab). */
+export const CYCIF_NAV = {
+  id: 'cycif',
+  label: 'CyCif',
+  icon: Microscope,
+  defaultSub: 'cycif_projects',
+  children: [
+    { id: 'pipeline', label: 'Imaging pipeline', screen: 'cycif_pipeline', description: 'LUMI image processing — login, Allas staging, stitching, segmentation, and quantification.' },
+    {
+      id: 'cycif_projects',
+      label: 'Individual Projects',
+      screen: 'lab_knowledge',
+      databaseSub: 'wet_lab_files',
+      description: 'Per-project staining plans, notes, and run spreadsheets.',
+    },
+    {
+      id: 'cycif_instructions',
+      label: 'Instructions & SOPs',
+      screen: 'lab_knowledge',
+      databaseSub: 'wet_lab_files',
+      description: 't-CycIF workflow instructions, templates, and planning files.',
+    },
+    {
+      id: 'cycif_sectioning',
+      label: 'Sectioning & H&E',
+      screen: 'lab_knowledge',
+      databaseSub: 'wet_lab_files',
+      description: 'Sectioning orders and H&E staining after t-CycIF.',
+    },
+    {
+      id: 'cycif_inventory',
+      label: 'Antibody Inventory',
+      screen: 'lab_knowledge',
+      databaseSub: 'wet_lab_files',
+      description: 'CyCIF antibody panels and inventory spreadsheets.',
+    },
+    {
+      id: 'cycif_protocols',
+      label: 'Protocols & Resources',
+      screen: 'lab_knowledge',
+      databaseSub: 'wet_lab_files',
+      description: 'Spatial CycIF protocols and GeoMx / CycIF resources.',
+    },
+  ],
+};
+
+/** Profile hub — opened from sidebar footer, not MAIN_NAV. */
+export const PROFILE_NAV = {
+  id: 'profile',
+  label: 'Profile',
+  icon: User,
+  defaultSub: 'user_profile',
+  children: [
+    { id: 'user_profile', label: 'User Profile', screen: 'user_profile', description: 'Manage your user profile and settings.' },
+    { id: 'admin', label: 'Administration', screen: 'administration', description: 'Health, connectors, allowlist, ingestion jobs, auth.' },
+    { id: 'image_streaming_admin', label: 'Image streaming', screen: 'image_streaming_admin', description: 'TIFF/OME-TIFF streaming readiness and inspect jobs.' },
+  ],
+};
+
+const AUX_NAV = [PROFILE_NAV];
+
 /** Top-level lab areas and their sub-sections (screens map to App.jsx). */
 export const MAIN_NAV = [
   {
     id: 'overview',
-    label: 'Overview',
+    label: 'Get Started',
+    sidebarLabel: 'Get Started',
     icon: LayoutDashboard,
     defaultSub: 'get_started',
     children: [
@@ -50,6 +112,15 @@ export const MAIN_NAV = [
     ],
   },
   {
+    id: 'meeting',
+    label: 'Meeting',
+    icon: Calendar,
+    defaultSub: 'booking',
+    children: [
+      { id: 'booking', label: 'Booking calendar', screen: 'meeting_booking', description: 'Schedule and manage meetings.' },
+    ],
+  },
+  {
     id: 'projects_data',
     label: 'Project Portfolio',
     sidebarLabel: 'Project Portfolio',
@@ -57,10 +128,50 @@ export const MAIN_NAV = [
     defaultSub: 'portfolio',
     keepsProject: true,
     children: [
-      { id: 'portfolio', label: 'Project portfolio', screen: 'projects', description: 'Browse projects and open workspace vitals.' },
-      { id: 'notebook', label: 'Living notebook', screen: 'notebook', description: 'Lab notebook logs and protocol wiki.' },
-      { id: 'decisions', label: 'Research decisions', screen: 'decisions', description: 'Formal decision register across projects.' },
+      { id: 'portfolio', label: 'Project portfolio', screen: 'projects', description: 'Browse projects and open the unified workspace (documents, log, notebook, decisions).' },
+      { id: 'notebook', label: 'Living notebook', screen: 'notebook', description: 'Project notebook + protocol wiki with AI assist grounded in your documents and data.' },
+      { id: 'decisions', label: 'Research decisions', screen: 'decisions', description: 'Decision register per project with AI-assisted drafting from project sources.' },
       { id: 'features', label: 'Feature warehouse', screen: 'features', description: 'Clinical feature matrix and similarity search.' },
+    ],
+  },
+  CYCIF_NAV,
+  {
+    id: 'wet_lab',
+    label: 'Wet Lab',
+    icon: FlaskConical,
+    defaultSub: 'files',
+    children: [
+      { id: 'files', label: 'Lab database files', screen: 'lab_knowledge', databaseSub: 'wet_lab_files', description: 'Protocols, inventories, and wet-lab documents on disk.' },
+      { id: 'protocols', label: 'Wet-lab protocols', screen: 'wet_protocols', description: 'SOPs for sample prep, staining prep, and QC.' },
+      { id: 'tasks', label: 'Wet-lab tasks', screen: 'wet_tasks', description: 'Tasks tagged for wet-lab work.' },
+      { id: 'inventory', label: 'Reagents & panels', screen: 'wet_inventory', description: 'Antibody panels and reagent references.' },
+    ],
+  },
+  {
+    id: 'computational',
+    label: 'Computational Hub',
+    icon: Cpu,
+    defaultSub: 'onboarding',
+    children: [
+      { id: 'onboarding', label: 'Onboarding & credentials', screen: 'bioinformatics', bioSub: 'onboarding' },
+      { id: 'lumi', label: 'LUMI HPC', screen: 'bioinformatics', bioSub: 'lumi', description: 'Slurm jobs and the full multiplex imaging pipeline (Snakemake, Ashlar, Mesmer, quantification).' },
+      { id: 'pouta', label: 'cPouta VMs', screen: 'bioinformatics', bioSub: 'pouta', description: 'Lab cloud VMs, provisioning guides, and VM-side conda setup.' },
+      { id: 'roihu', label: 'Roihu', screen: 'bioinformatics', bioSub: 'roihu', description: 'CSC Roihu supercomputer — content coming soon.' },
+      { id: 'troubleshoot', label: 'Troubleshooting', screen: 'bioinformatics', bioSub: 'troubleshoot', description: 'Environment diagnostics and log analysis.' },
+      {
+        id: 'utilities',
+        label: 'Utilities',
+        screen: 'bioinformatics',
+        bioSub: 'utilities',
+        description: 'File operations, Lumi-O transfers, LUMI module loading, and conda environments.',
+      },
+      {
+        id: 'tools',
+        label: 'Lab computational tools',
+        screen: 'bioinformatics',
+        bioSub: 'tools',
+        description: 'Published lab software — Tribus, CEFIIRA, SPACEstat, and related spatial analysis tools.',
+      },
     ],
   },
   {
@@ -78,105 +189,7 @@ export const MAIN_NAV = [
       { id: 'guidelines', label: 'Guidelines & workflow', screen: 'data_storage', dataSection: 'guidelines', description: 'Lifecycle workflow, FAIR rules, sensitivity classes, cleaning-day checklist, and lab source docs.' },
       { id: 'tools', label: 'Transfer tools', screen: 'data_storage', dataSection: 'tools', description: 'rclone, Lumi-O, allas-conf, Cyberduck, rsync — when to use each and common transfer patterns.' },
       { id: 'documents', label: 'Lab documents', screen: 'data_storage', dataSection: 'documents', description: 'Interactive map of every document zone in the app — browse and preview lab files with readable content.' },
-    ],
-  },
-  {
-    id: 'wet_lab',
-    label: 'Wet-lab',
-    icon: FlaskConical,
-    defaultSub: 'files',
-    children: [
-      { id: 'files', label: 'Lab database files', screen: 'lab_knowledge', databaseSub: 'wet_lab_files', description: 'Protocols, inventories, and wet-lab documents on disk.' },
-      { id: 'protocols', label: 'Wet-lab protocols', screen: 'wet_protocols', description: 'SOPs for sample prep, staining prep, and QC.' },
-      { id: 'tasks', label: 'Wet-lab tasks', screen: 'wet_tasks', description: 'Tasks tagged for wet-lab work.' },
-      { id: 'inventory', label: 'Reagents & panels', screen: 'wet_inventory', description: 'Antibody panels and reagent references.' },
-    ],
-  },
-  {
-    id: 'cycif',
-    label: 'CyCif',
-    icon: Microscope,
-    defaultSub: 'cycif_projects',
-    children: [
-      { id: 'pipeline', label: 'Imaging pipeline', screen: 'cycif_pipeline', description: 'Stitching, segmentation, and QC triggers.' },
-      { id: 'install', label: 'Tool setup', screen: 'cycif_install', description: 'Napari, Cylinter, and viewer installs.' },
-      { id: 'structure', label: 'Project structure', screen: 'cycif_structure', description: 't-CycIF folder layout validation.' },
-      {
-        id: 'cycif_projects',
-        label: 'Individual Projects',
-        screen: 'lab_knowledge',
-        databaseSub: 'wet_lab_files',
-        description: 'Per-project staining plans, notes, and run spreadsheets.',
-      },
-      {
-        id: 'cycif_instructions',
-        label: 'Instructions & SOPs',
-        screen: 'lab_knowledge',
-        databaseSub: 'wet_lab_files',
-        description: 't-CycIF workflow instructions, templates, and planning files.',
-      },
-      {
-        id: 'cycif_sectioning',
-        label: 'Sectioning & H&E',
-        screen: 'lab_knowledge',
-        databaseSub: 'wet_lab_files',
-        description: 'Sectioning orders and H&E staining after t-CycIF.',
-      },
-      {
-        id: 'cycif_inventory',
-        label: 'Antibody Inventory',
-        screen: 'lab_knowledge',
-        databaseSub: 'wet_lab_files',
-        description: 'CyCIF antibody panels and inventory spreadsheets.',
-      },
-      {
-        id: 'cycif_protocols',
-        label: 'Protocols & Resources',
-        screen: 'lab_knowledge',
-        databaseSub: 'wet_lab_files',
-        description: 'Spatial CycIF protocols and GeoMx / CycIF resources.',
-      },
-    ],
-  },
-  {
-    id: 'computational',
-    label: 'Computational Hub',
-    icon: Cpu,
-    defaultSub: 'onboarding',
-    children: [
-      { id: 'onboarding', label: 'Onboarding & credentials', screen: 'bioinformatics', bioSub: 'onboarding' },
-      { id: 'lumi', label: 'LUMI HPC', screen: 'bioinformatics', bioSub: 'lumi', description: 'Slurm jobs, spatial tool installs (Ashlar, Stardist, Cylinter), pipelines, and Lumi-O transfers.' },
-      { id: 'pouta', label: 'cPouta VMs', screen: 'bioinformatics', bioSub: 'pouta', description: 'Lab cloud VMs, provisioning guides, and VM-side conda setup.' },
-      { id: 'roihu', label: 'Roihu', screen: 'bioinformatics', bioSub: 'roihu', description: 'CSC Roihu supercomputer — content coming soon.' },
-      { id: 'troubleshoot', label: 'Troubleshooting', screen: 'bioinformatics', bioSub: 'troubleshoot', description: 'Environment diagnostics and log analysis.' },
-      {
-        id: 'utilities',
-        label: 'Utilities',
-        screen: 'bioinformatics',
-        bioSub: 'utilities',
-        description: 'File operations and conda environment management.',
-      },
-      {
-        id: 'tools',
-        label: 'Lab computational tools',
-        screen: 'bioinformatics',
-        bioSub: 'tools',
-        description: 'Published lab software — Tribus, CEFIIRA, SPACEstat, and related spatial analysis tools.',
-      },
-    ],
-  },
-  {
-    id: 'ai_assistant',
-    label: 'AI Lab Assistant',
-    icon: Bot,
-    defaultSub: 'copilot',
-    children: [
-      { id: 'copilot', label: 'Chat copilot', screen: 'ai_assistant', aiSub: 'copilot', description: 'RAG Q&A over protocols and project docs.' },
-      { id: 'knowledge_search', label: 'Advanced search', screen: 'knowledge_search', description: 'Unified hybrid search across lab corpus, vault, and registry.' },
-      { id: 'research_kb', label: 'Research knowledge base', screen: 'research_knowledge', description: 'Färkkilä lab publications, datasets, and public research corpus for grounded AI answers.' },
-      { id: 'prompts', label: 'Prompt templates', screen: 'ai_assistant', aiSub: 'prompts' },
-      { id: 'ingest', label: 'Ingest documents', screen: 'ai_assistant', aiSub: 'ingest' },
-      { id: 'models', label: 'Model registry', screen: 'ai_assistant', aiSub: 'models' },
+      { id: 'all_files', label: 'All Files', screen: 'document_library', description: 'Scientific file explorer — search, filter, and preview all 4800+ lab documents with audit-backed status badges.' },
     ],
   },
   {
@@ -193,28 +206,23 @@ export const MAIN_NAV = [
     ],
   },
   {
-    id: 'profile',
-    label: 'Profile',
-    icon: User,
-    defaultSub: 'user_profile',
+    id: 'ai_assistant',
+    label: 'AI Lab Assistant',
+    icon: Bot,
+    defaultSub: 'copilot',
     children: [
-      { id: 'user_profile', label: 'User Profile', screen: 'user_profile', description: 'Manage your user profile and settings.' },
-      { id: 'admin', label: 'Administration', screen: 'administration', description: 'Health, connectors, allowlist, ingestion jobs, auth.' },
-    ],
-  },
-  {
-    id: 'meeting',
-    label: 'Meeting',
-    icon: Calendar,
-    defaultSub: 'booking',
-    children: [
-      { id: 'booking', label: 'Booking calendar', screen: 'meeting_booking', description: 'Schedule and manage meetings.' },
+      { id: 'copilot', label: 'Chat copilot', screen: 'ai_assistant', aiSub: 'copilot', description: 'RAG Q&A over protocols and project docs.' },
+      { id: 'knowledge_search', label: 'Advanced search', screen: 'knowledge_search', description: 'Unified hybrid search across lab corpus, vault, and registry.' },
+      { id: 'research_kb', label: 'Research knowledge base', screen: 'research_knowledge', description: 'Färkkilä lab publications, datasets, and public research corpus for grounded AI answers.' },
+      { id: 'prompts', label: 'Prompt templates', screen: 'ai_assistant', aiSub: 'prompts' },
+      { id: 'ingest', label: 'Ingest documents', screen: 'ai_assistant', aiSub: 'ingest' },
+      { id: 'models', label: 'Model registry', screen: 'ai_assistant', aiSub: 'models' },
     ],
   },
 ];
 
 export function findMainNav(mainId) {
-  return MAIN_NAV.find((m) => m.id === mainId) || MAIN_NAV[0];
+  return MAIN_NAV.find((m) => m.id === mainId) || AUX_NAV.find((m) => m.id === mainId) || MAIN_NAV[0];
 }
 
 const DATA_STORAGE_LEGACY_SUBS = {
@@ -230,7 +238,7 @@ const DATA_STORAGE_LEGACY_SUBS = {
 /** Old Computational Hub tabs → new top-level tab id. */
 export const COMPUTATIONAL_LEGACY_SUBS = {
   conda: 'utilities',
-  install: 'lumi',
+  install: 'utilities',
   file_ops: 'utilities',
   diagnostics: 'troubleshoot',
   tools: 'tools',
@@ -239,9 +247,15 @@ export const COMPUTATIONAL_LEGACY_SUBS = {
 /** Nested section inside a reorganized hub tab (when opening a legacy sub id). */
 export const COMPUTATIONAL_LEGACY_NESTED = {
   conda: { tab: 'utilities', section: 'conda' },
-  install: { tab: 'lumi', section: 'install' },
+  install: { tab: 'utilities', section: 'lumi_modules' },
   file_ops: { tab: 'utilities', section: 'file_ops' },
   diagnostics: { tab: 'troubleshoot', section: 'diagnostics' },
+};
+
+/** Old CyCIF computational tabs → Computational Hub. */
+export const CYCIF_LEGACY_NESTED = {
+  install: { main: 'computational', sub: 'utilities', hubNested: 'lumi_modules' },
+  structure: { main: 'computational', sub: 'troubleshoot', hubNested: 'diagnostics' },
 };
 
 export function normalizeComputationalSub(subId) {
@@ -335,11 +349,24 @@ export function resolveSocialLegacyNav(main, sub) {
   return { main: 'overview', sub: 'social', socialSub: resolvedSub };
 }
 
+export function resolveCycifLegacyNav(main, sub) {
+  if (main !== 'cycif') return null;
+  const target = CYCIF_LEGACY_NESTED[sub];
+  if (!target) return null;
+  return {
+    main: target.main,
+    sub: target.sub,
+    hubNested: target.hubNested,
+  };
+}
+
 export function parseNavFromStorage(raw) {
   if (!raw || typeof raw !== 'string') return null;
   const [main, sub] = raw.split(':');
   const socialResolved = resolveSocialLegacyNav(main, sub);
   if (socialResolved) return socialResolved;
+  const cycifResolved = resolveCycifLegacyNav(main, sub);
+  if (cycifResolved) return cycifResolved;
   if (!findMainNav(main)) return null;
   return { main, sub: sub || findMainNav(main).defaultSub };
 }

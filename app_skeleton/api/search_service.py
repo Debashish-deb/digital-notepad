@@ -16,8 +16,16 @@ from app_skeleton.api.project_processor import load_processed
 from app_skeleton.api.storage_stub import storage_roots
 from app_skeleton.api.lab_knowledge_store import get_lab_index_stats, search_lab_knowledge
 from app_skeleton.api.llm_client import LLMClient
-from app_skeleton.api.raw_vault_store import search_vault
-from app_skeleton.api.search_models import SearchHit, SearchMode, SearchNavAction, UnifiedSearchResponse
+from app_skeleton.api.document_library_service import search_documents as search_document_library_rows
+from app_skeleton.api.raw_vault_store import deduplication_report, review_queue, search_vault
+from app_skeleton.api.retrieval_cache import get_cached, make_cache_key, set_cached, should_cache
+from app_skeleton.api.search_models import (
+    SearchFilters,
+    SearchHit,
+    SearchMode,
+    SearchNavAction,
+    UnifiedSearchResponse,
+)
 from app_skeleton.api.research_knowledge_store import search_research
 from app_skeleton.api.people_index import search_people
 from app_skeleton.api.search_nav import hit_source_label, nav_for_bucket, vault_domain_for_page
@@ -29,7 +37,9 @@ DEFAULT_SCOPES = ("lab", "file", "vault", "notebook", "wiki", "decision", "task"
 BUCKET_WEIGHTS: dict[str, float] = {
     "lab": 1.0,
     "file": 0.95,
+    "document_library": 0.90,
     "vault": 0.85,
+    "vault_review": 0.75,
     "notebook": 0.78,
     "wiki": 0.78,
     "decision": 0.76,
@@ -39,15 +49,33 @@ BUCKET_WEIGHTS: dict[str, float] = {
     "people": 0.88,
 }
 
+FILTER_SOURCE_SUPPORT: dict[str, frozenset[str]] = {
+    "document_library": frozenset({
+        "category", "smart_chip", "domain_tab", "system_view", "file_type",
+        "date_from", "date_to", "indexed_status", "project_codes", "section_id",
+    }),
+    "vault": frozenset({"project_codes", "section_id", "indexed_status"}),
+    "vault_review": frozenset({"indexed_status", "project_codes"}),
+    "lab": frozenset({"section_id", "project_codes"}),
+    "file": frozenset({"section_id", "project_codes", "file_type"}),
+    "research": frozenset({"project_codes"}),
+    "people": frozenset(),
+    "notebook": frozenset({"project_codes"}),
+    "wiki": frozenset({"project_codes"}),
+    "decision": frozenset({"project_codes"}),
+    "task": frozenset({"project_codes"}),
+    "project": frozenset({"project_codes"}),
+}
+
 COPILOT_MIN_SCORE = float(os.getenv("COPILOT_MIN_SIMILARITY", "0.06"))
 
 INTENT_SCOPES: dict[str, str] = {
-    "research_question": "research,lab,file,vault,notebook,wiki",
-    "protocol_question": "lab,vault,file,notebook,wiki",
-    "search_request": "research,lab,file,vault,notebook,wiki",
+    "research_question": "research,lab,file,vault,document_library,notebook,wiki",
+    "protocol_question": "lab,vault,file,document_library,notebook,wiki",
+    "search_request": "research,lab,file,vault,document_library,notebook,wiki",
     "people_question": "people,lab,research",
     "app_help": "lab,file,wiki",
-    "document_ingestion_help": "lab,file,wiki",
+    "document_ingestion_help": "lab,file,wiki,document_library,vault_review",
 }
 
 INTENT_BUCKET_CAPS: dict[str, dict[str, int]] = {
@@ -312,6 +340,301 @@ def _highlight_tokens(query: str, text: str, max_hits: int = 3) -> list[str]:
     return found
 
 
+def _build_search_filters(
+    *,
+    category: str | None = None,
+    smart_chip: str | None = None,
+    domain_tab: str | None = None,
+    system_view: str | None = None,
+    file_type: str | None = None,
+    date_from: str | None = None,
+    date_to: str | None = None,
+    indexed_status: str | None = None,
+    filter_project_codes: str | None = None,
+    filter_section_id: str | None = None,
+    source_buckets: str | None = None,
+    section_id: str | None = None,
+    project_codes: str | None = None,
+) -> SearchFilters:
+    effective_section = filter_section_id or section_id
+    effective_projects = filter_project_codes or project_codes
+    return SearchFilters(
+        category=category,
+        smart_chip=smart_chip,
+        domain_tab=domain_tab,
+        system_view=system_view,
+        file_type=file_type,
+        date_from=date_from,
+        date_to=date_to,
+        indexed_status=indexed_status,
+        project_codes=effective_projects,
+        section_id=effective_section,
+        source_buckets=source_buckets,
+    )
+
+
+def _resolve_filter_metadata(
+    active_scopes: set[str],
+    filters: SearchFilters,
+) -> tuple[dict[str, str], list[str]]:
+    active = filters.active_fields()
+    if filters.source_buckets and not active.get("source_buckets"):
+        active["source_buckets"] = filters.source_buckets
+    unsupported: set[str] = set()
+    for name, _val in active.items():
+        if name == "source_buckets":
+            continue
+        supported_any = any(name in FILTER_SOURCE_SUPPORT.get(scope, frozenset()) for scope in active_scopes)
+        if not supported_any:
+            unsupported.add(name)
+    applied = {k: v for k, v in active.items() if k not in unsupported and k != "source_buckets"}
+    return applied, sorted(unsupported)
+
+
+def _document_library_filter_dict(filters: SearchFilters) -> dict[str, Any]:
+    dl: dict[str, Any] = {}
+    if filters.category:
+        dl["category"] = filters.category
+    if filters.smart_chip:
+        dl["smart_chip"] = filters.smart_chip
+    if filters.file_type:
+        dl["file_type"] = filters.file_type
+    if filters.date_from:
+        dl["modified_after"] = filters.date_from
+    if filters.date_to:
+        dl["modified_before"] = filters.date_to
+    if filters.section_id:
+        dl["section"] = filters.section_id
+    if filters.project_codes:
+        first = filters.project_codes.split(",")[0].strip()
+        if first:
+            dl["project"] = first
+    return dl
+
+
+def _document_library_system_view(filters: SearchFilters) -> str | None:
+    if filters.system_view:
+        return filters.system_view
+    status = (filters.indexed_status or "").strip().lower()
+    if status == "not_indexed":
+        return "not_indexed"
+    if status == "indexed":
+        return "all_files"
+    return None
+
+
+def _row_matches_query(query: str, *parts: str | None) -> bool:
+    tokens = [t for t in re.findall(r"[a-z0-9\u00c0-\uffff]{2,}", (query or "").lower()) if t]
+    if not tokens:
+        return True
+    blob = " ".join(str(p or "") for p in parts).lower()
+    return any(tok in blob for tok in tokens)
+
+
+def search_document_library(
+    query: str,
+    *,
+    filters: SearchFilters,
+    limit: int,
+    seen_paths: set[str],
+    seen_ids: set[str],
+) -> list[SearchHit]:
+    """Faceted document library search — logical_path only, deduped against vault/file."""
+    dl_filters = _document_library_filter_dict(filters)
+    system_view = _document_library_system_view(filters)
+    if (filters.indexed_status or "").strip().lower() == "indexed":
+        dl_filters.setdefault("digitalization_status", "indexed")
+
+    result = search_document_library_rows(
+        q=query,
+        domain_tab=filters.domain_tab,
+        system_view=system_view,
+        filters=dl_filters,
+        limit=limit,
+    )
+    hits: list[SearchHit] = []
+    for item in result.get("items") or []:
+        asset_id = str(item.get("asset_id") or "")
+        logical_path = (item.get("logical_path") or "").strip()
+        if not logical_path or logical_path in seen_paths or asset_id in seen_ids:
+            continue
+        seen_paths.add(logical_path)
+        if asset_id:
+            seen_ids.add(asset_id)
+        title = item.get("display_title") or item.get("title") or item.get("filename") or logical_path.split("/")[-1]
+        excerpt = item.get("processed_excerpt") or item.get("subtitle") or ""
+        snippet = (excerpt or f"Document library entry — {logical_path}")[:1200]
+        confidence = item.get("metadata_score") or item.get("assignment_confidence")
+        hits.append(
+            SearchHit(
+                id=f"dl-{asset_id or logical_path}",
+                bucket="document_library",
+                title=title,
+                snippet=snippet,
+                score=min(1.0, 0.5 + float(item.get("metadata_score") or 0) / 200.0) * BUCKET_WEIGHTS["document_library"],
+                source=hit_source_label("document_library"),
+                project_code=item.get("project_hint"),
+                section_id=item.get("section_hint"),
+                relative_path=logical_path,
+                highlights=_highlight_tokens(query, snippet),
+                nav=SearchNavAction(main="data_storage", sub="documents", relative_path=logical_path, query=query),
+                metadata={
+                    "smart_chip": item.get("smart_chip"),
+                    "domain_tab": filters.domain_tab or item.get("domain"),
+                    "system_view": system_view,
+                    "indexed_status": "indexed" if item.get("indexed_in_search") else "not_indexed",
+                    "confidence": confidence,
+                    "logical_path": logical_path,
+                    "category": item.get("category"),
+                    "file_type": item.get("file_type"),
+                },
+            )
+        )
+    return hits[:limit]
+
+
+def search_vault_review(
+    query: str,
+    *,
+    filters: SearchFilters,
+    limit: int,
+) -> list[SearchHit]:
+    """Safe vault review queue hits — suggestions only, no original paths."""
+    hits: list[SearchHit] = []
+    queue_specs = (
+        ("low_confidence", "low_confidence", "Review low-confidence vault classification"),
+        ("uncategorized", "uncategorized", "Review uncategorized vault asset"),
+        ("failed", "failed_extraction", "Review failed text extraction"),
+    )
+    for queue_name, review_reason, suggestion in queue_specs:
+        for row in review_queue(limit=limit, queue=queue_name):
+            logical_path = (row.get("logical_path") or "").strip()
+            filename = row.get("filename") or logical_path.split("/")[-1]
+            if not _row_matches_query(query, filename, logical_path, row.get("domain"), row.get("section_hint")):
+                continue
+            if filters.project_codes:
+                codes = {c.strip().lower() for c in filters.project_codes.split(",") if c.strip()}
+                if codes and (row.get("project_hint") or "").lower() not in codes:
+                    continue
+            if (filters.indexed_status or "").strip().lower() == "indexed" and not row.get("indexed_at"):
+                continue
+            if (filters.indexed_status or "").strip().lower() == "not_indexed" and row.get("indexed_at"):
+                continue
+            snippet = (
+                f"{suggestion}: {filename}. "
+                f"Confidence {float(row.get('assignment_confidence') or 0):.2f}; "
+                f"status {row.get('review_status') or 'pending'}."
+            )[:1200]
+            hits.append(
+                SearchHit(
+                    id=f"vr-{row.get('asset_id') or logical_path}",
+                    bucket="vault_review",
+                    title=filename or "Vault review item",
+                    snippet=snippet,
+                    score=0.68 * BUCKET_WEIGHTS["vault_review"],
+                    source=hit_source_label("vault_review"),
+                    project_code=row.get("project_hint"),
+                    section_id=row.get("section_hint"),
+                    relative_path=logical_path or None,
+                    highlights=_highlight_tokens(query, snippet),
+                    nav=SearchNavAction(main="data_storage", sub="documents", relative_path=logical_path, query=query),
+                    metadata={
+                        "review_reason": review_reason,
+                        "suggestion": suggestion,
+                        "assignment_confidence": row.get("assignment_confidence"),
+                        "review_status": row.get("review_status"),
+                        "extraction_status": row.get("extraction_status"),
+                        "vector_status": row.get("vector_status"),
+                        "indexed_status": "indexed" if row.get("indexed_at") else "not_indexed",
+                        "action": "review_suggested",
+                    },
+                )
+            )
+            if len(hits) >= limit:
+                return hits[:limit]
+
+    if (filters.indexed_status or "").strip().lower() in {"", "not_indexed"}:
+        for row in review_queue(limit=limit, queue="low_confidence"):
+            if row.get("indexed_at") or row.get("vector_status") == "indexed":
+                continue
+            logical_path = (row.get("logical_path") or "").strip()
+            filename = row.get("filename") or logical_path.split("/")[-1]
+            if not _row_matches_query(query, filename, logical_path):
+                continue
+            snippet = f"Not indexed in search: {filename}. Suggest indexing or re-ingestion."[:1200]
+            hits.append(
+                SearchHit(
+                    id=f"vr-ni-{row.get('asset_id') or logical_path}",
+                    bucket="vault_review",
+                    title=filename or "Not indexed asset",
+                    snippet=snippet,
+                    score=0.62 * BUCKET_WEIGHTS["vault_review"],
+                    source=hit_source_label("vault_review"),
+                    project_code=row.get("project_hint"),
+                    relative_path=logical_path or None,
+                    metadata={
+                        "review_reason": "not_indexed",
+                        "suggestion": "Consider indexing or re-ingesting this asset",
+                        "action": "review_suggested",
+                    },
+                )
+            )
+            if len(hits) >= limit:
+                return hits[:limit]
+
+    dup_report = deduplication_report(limit=max(5, limit // 2))
+    for group in dup_report.get("groups") or []:
+        paths = group.get("logical_paths") or []
+        if not paths:
+            continue
+        label = ", ".join(paths[:3])
+        if not _row_matches_query(query, label):
+            continue
+        snippet = (
+            f"Duplicate candidate group ({group.get('count', 0)} files). "
+            f"Review duplicates before merging — suggestion only."
+        )[:1200]
+        hits.append(
+            SearchHit(
+                id=f"vr-dup-{group.get('checksum_sha256', '')[:12]}",
+                bucket="vault_review",
+                title=f"Duplicate group ({group.get('count', 0)} files)",
+                snippet=snippet,
+                score=0.58 * BUCKET_WEIGHTS["vault_review"],
+                source=hit_source_label("vault_review"),
+                metadata={
+                    "review_reason": "duplicate",
+                    "logical_paths": paths[:5],
+                    "suggestion": "Review duplicate candidates — no automatic merge or delete",
+                    "action": "review_suggested",
+                },
+            )
+        )
+        if len(hits) >= limit:
+            break
+    return hits[:limit]
+
+
+def _post_filter_hits(hits: list[SearchHit], filters: SearchFilters, applied: dict[str, str]) -> list[SearchHit]:
+    """Apply conservative AND filters to hits from sources with partial support."""
+    if not applied:
+        return hits
+    out: list[SearchHit] = []
+    for hit in hits:
+        if applied.get("file_type"):
+            ft = (hit.metadata or {}).get("file_type") or (hit.relative_path or "").split(".")[-1]
+            if ft and ft.lower() != applied["file_type"].lower():
+                continue
+        if applied.get("section_id") and hit.section_id and hit.section_id != applied["section_id"]:
+            continue
+        if applied.get("project_codes"):
+            codes = {c.strip() for c in applied["project_codes"].split(",") if c.strip()}
+            if codes and hit.project_code and hit.project_code not in codes:
+                continue
+        out.append(hit)
+    return out
+
+
 class SearchService:
     def __init__(
         self,
@@ -340,14 +663,60 @@ class SearchService:
         explain: bool = False,
         user_role: str | None = None,
         user_email: str | None = None,
+        category: str | None = None,
+        smart_chip: str | None = None,
+        domain_tab: str | None = None,
+        system_view: str | None = None,
+        file_type: str | None = None,
+        date_from: str | None = None,
+        date_to: str | None = None,
+        indexed_status: str | None = None,
+        filter_project_codes: str | None = None,
+        filter_section_id: str | None = None,
+        source_buckets: str | None = None,
     ) -> UnifiedSearchResponse:
         started = time.monotonic()
         query = (q or "").strip()
         if len(query) < 2:
             return UnifiedSearchResponse(query=query, mode=mode, scopes=[], limit=limit, offset=offset)
 
-        active_scopes = _parse_scopes(scopes)
-        codes = _parse_project_codes(project_code, project_codes)
+        search_filters = _build_search_filters(
+            category=category,
+            smart_chip=smart_chip,
+            domain_tab=domain_tab,
+            system_view=system_view,
+            file_type=file_type,
+            date_from=date_from,
+            date_to=date_to,
+            indexed_status=indexed_status,
+            filter_project_codes=filter_project_codes,
+            filter_section_id=filter_section_id,
+            source_buckets=source_buckets,
+            section_id=section_id,
+            project_codes=project_codes,
+        )
+        effective_scopes = source_buckets or scopes
+        active_scopes = _parse_scopes(effective_scopes)
+        codes = _parse_project_codes(project_code, search_filters.project_codes or project_codes)
+        if search_filters.section_id and not section_id:
+            section_id = search_filters.section_id
+        filters_applied, unsupported_filters = _resolve_filter_metadata(active_scopes, search_filters)
+
+        cache_key = make_cache_key(
+            query=query,
+            scopes=effective_scopes,
+            mode=mode,
+            user_id=user_email,
+            user_role=user_role,
+            project_codes=codes,
+            filters=filters_applied,
+            include_restricted=include_restricted,
+        )
+        if should_cache(include_restricted=include_restricted, user_role=user_role):
+            cached = get_cached(cache_key)
+            if cached:
+                cached["metadata"] = {**(cached.get("metadata") or {}), "cache_hit": True, "cache_key": cache_key}
+                return UnifiedSearchResponse(**cached)
         per_bucket = max(3, min(limit, 50))
         raw_hits: list[SearchHit] = []
         explain_data: dict[str, Any] = {"engines": []} if explain else {}
@@ -427,16 +796,51 @@ class SearchService:
             if explain:
                 explain_data["engines"].append({"scope": "file", "engine": "processed_json", "count": len(raw_hits) - file_before})
 
+        seen_paths: set[str] = set()
+        seen_asset_ids: set[str] = set()
+        for hit in raw_hits:
+            if hit.relative_path:
+                seen_paths.add(hit.relative_path)
+            if hit.bucket in ("vault", "file", "lab") and hit.id:
+                seen_asset_ids.add(hit.id)
+
+        if "document_library" in active_scopes and run_keyword:
+            dl_before = len(raw_hits)
+            raw_hits.extend(
+                search_document_library(
+                    query,
+                    filters=search_filters,
+                    limit=per_bucket,
+                    seen_paths=seen_paths,
+                    seen_ids=seen_asset_ids,
+                )
+            )
+            if explain:
+                explain_data["engines"].append({
+                    "scope": "document_library",
+                    "engine": "document_library_service",
+                    "count": len(raw_hits) - dl_before,
+                })
+
         if "vault" in active_scopes and run_keyword:
             vault_before = len(raw_hits)
             vault_limit = per_bucket if mode != "exact" else per_bucket * 2
+            vault_review_status = None
+            if (search_filters.indexed_status or "").strip().lower() == "not_indexed":
+                vault_review_status = "raw"
             for row in search_vault(
                 query,
                 domain=vault_domain,
                 project_hint=codes[0] if codes else None,
                 limit=vault_limit,
+                review_status=vault_review_status,
             ):
                 rel = row.get("logical_path") or row.get("filename") or ""
+                if rel:
+                    seen_paths.add(rel)
+                asset_key = str(row.get("asset_id") or row.get("vault_id") or rel)
+                if asset_key:
+                    seen_asset_ids.add(asset_key)
                 title = row.get("filename") or rel.split("/")[-1] or "Vault asset"
                 excerpt = (row.get("metadata_preview") or {}).get("excerpt") or row.get("excerpt") or ""
                 snippet = (excerpt or f"Vault asset in {row.get('page_domain_id') or 'lab storage'}")[:1200]
@@ -462,6 +866,16 @@ class SearchService:
                 )
             if explain:
                 explain_data["engines"].append({"scope": "vault", "engine": "postgres_metadata", "count": len(raw_hits) - vault_before})
+
+        if "vault_review" in active_scopes and run_keyword:
+            vr_before = len(raw_hits)
+            raw_hits.extend(search_vault_review(query, filters=search_filters, limit=per_bucket))
+            if explain:
+                explain_data["engines"].append({
+                    "scope": "vault_review",
+                    "engine": "raw_vault_review_queue",
+                    "count": len(raw_hits) - vr_before,
+                })
 
         if run_keyword:
             registry_hits = self._search_registry(
@@ -553,6 +967,8 @@ class SearchService:
                     "count": len(raw_hits) - pw_before,
                 })
 
+        raw_hits = _post_filter_hits(raw_hits, search_filters, filters_applied)
+
         # Deduplicate by id+bucket, sort by score desc
         seen: set[str] = set()
         merged: list[SearchHit] = []
@@ -590,7 +1006,16 @@ class SearchService:
             suggestions=suggestions,
             synonym_hints=synonym_hints,
             explain=explain_data if explain else None,
+            filters_applied=filters_applied,
+            unsupported_filters=unsupported_filters,
+            metadata={"cache_hit": False, "cache_key": cache_key},
         )
+        if should_cache(
+            include_restricted=include_restricted,
+            user_role=user_role,
+            hits=[h.model_dump() for h in merged],
+        ):
+            set_cached(cache_key, response.model_dump())
         self._log_query(
             query,
             mode=mode,

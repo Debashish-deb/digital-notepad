@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BookOpen, Database, Loader2, RefreshCw, Search, Sparkles } from 'lucide-react';
 import {
   crawlFarkkilaSite,

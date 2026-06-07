@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useCallback,
   useContext,
@@ -264,9 +264,13 @@ export function TaskpadProvider({ children }) {
   }, []);
 
   const openCentralTaskpad = useCallback(() => {
-    setManagerPanelOpen(true);
-    openWorkerTaskpad(CENTRAL_WORKER_ID);
-  }, [openWorkerTaskpad]);
+    setWorkers((prev) =>
+      upsertWorker(prev, {
+        workerId: CENTRAL_WORKER_ID,
+        scope: TASKPAD_SCOPES.CENTRAL,
+      }),
+    );
+  }, []);
 
   const openProjectLogTaskpad = useCallback(
     (file) => {

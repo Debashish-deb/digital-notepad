@@ -14,13 +14,17 @@ from typing import Any
 import psycopg
 
 from app_skeleton.api.page_registry import resolve_page_ids
+from app_skeleton.api.data_layout import inventory_json, inventory_summary_json, inventory_write_dir
 from app_skeleton.api.paths import BLUEPRINT_ROOT, DATABASE_ROOT, SCRIPTS_DIR
 
 LOGGER = logging.getLogger(__name__)
 
-INVENTORY_DIR = BLUEPRINT_ROOT / "app_skeleton" / "data"
-INVENTORY_JSON = INVENTORY_DIR / "raw_asset_inventory.json"
-INVENTORY_SUMMARY = INVENTORY_DIR / "raw_asset_inventory_summary.json"
+INVENTORY_DIR = inventory_write_dir()
+INVENTORY_JSON = inventory_json()
+AUDIT_INVENTORY_JSON = (
+    BLUEPRINT_ROOT / "reports" / "document_library_audit" / "first_pass" / "document_inventory.json"
+)
+INVENTORY_SUMMARY = inventory_summary_json()
 VAULT_SQL = BLUEPRINT_ROOT / "sql" / "111_raw_asset_vault.sql"
 
 _PUBLIC_FIELDS = (
@@ -107,14 +111,21 @@ def load_summary() -> dict[str, Any]:
 
 
 def load_inventory_rows() -> list[dict[str, Any]]:
-    if not INVENTORY_JSON.exists():
-        return []
-    try:
-        data = json.loads(INVENTORY_JSON.read_text(encoding="utf-8"))
-        return data if isinstance(data, list) else []
-    except Exception as exc:
-        LOGGER.warning("Failed to read vault inventory: %s", exc)
-        return []
+    for path, label in (
+        (INVENTORY_JSON, "raw_asset_inventory"),
+        (AUDIT_INVENTORY_JSON, "audit_inventory"),
+    ):
+        if not path.exists():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            if isinstance(data, list) and data:
+                if label == "audit_inventory":
+                    LOGGER.info("Vault inventory fallback: using audit document_inventory.json")
+                return data
+        except Exception as exc:
+            LOGGER.warning("Failed to read vault inventory from %s: %s", path, exc)
+    return []
 
 
 def _search_vault_json(
@@ -597,7 +608,7 @@ def vault_manifest_page(*, offset: int = 0, limit: int = 100) -> dict[str, Any]:
 
 
 def rebuild_inventory() -> dict[str, Any]:
-    script = SCRIPTS_DIR / "build_raw_asset_inventory.py"
+    script = SCRIPTS_DIR / "digitalization" / "build_raw_asset_inventory.py"
     if not script.is_file():
         raise FileNotFoundError(f"Inventory script not found: {script}")
     proc = subprocess.run(
@@ -610,4 +621,34 @@ def rebuild_inventory() -> dict[str, Any]:
     )
     if proc.returncode != 0:
         raise RuntimeError(proc.stderr.strip() or proc.stdout.strip() or "inventory build failed")
-    return {"status": "ok", "summary": load_summary()}
+
+    reconcile_stats: dict[str, Any] | None = None
+    reconcile_script = SCRIPTS_DIR / "digitalization" / "reconcile_inventory_status.py"
+    if reconcile_script.is_file():
+        rec = subprocess.run(
+            [sys.executable, str(reconcile_script)],
+            capture_output=True,
+            text=True,
+            cwd=str(BLUEPRINT_ROOT),
+            timeout=300,
+            check=False,
+        )
+        if rec.returncode == 0:
+            try:
+                reconcile_stats = json.loads(rec.stdout.strip() or "{}")
+            except json.JSONDecodeError:
+                reconcile_stats = {"status": "ok", "stdout": rec.stdout.strip()[:500]}
+        else:
+            LOGGER.warning(
+                "Inventory reconcile after rebuild failed: %s",
+                rec.stderr.strip() or rec.stdout.strip(),
+            )
+
+    try:
+        from app_skeleton.api.document_library_service import invalidate_cache
+
+        invalidate_cache()
+    except Exception as exc:
+        LOGGER.debug("Could not invalidate document library cache: %s", exc)
+
+    return {"status": "ok", "summary": load_summary(), "reconcile": reconcile_stats}

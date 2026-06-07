@@ -6,7 +6,10 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+import pytest
 from fastapi.testclient import TestClient
+
+from tests.db_safety import postgres_reachable, resolve_test_postgres_conn
 
 FIXTURE_PROJECT = "digitalization_sample_project"
 FIXTURES_ROOT = Path(__file__).resolve().parent / "fixtures"
@@ -20,6 +23,10 @@ class TestProjectDigitalization(unittest.TestCase):
         os.environ["PROJECTS_ROOT"] = str(FIXTURES_ROOT)
         os.environ["LAB_STORAGE_ROOT"] = ""
         os.environ["ENABLE_VECTOR_EMBEDDINGS"] = "false"
+        if not postgres_reachable():
+            raise unittest.SkipTest(
+                "Test database unavailable (set TEST_DATABASE_URL or local POSTGRES_CONN)"
+            )
         from app_skeleton.api.project_digitalization_engine import ensure_digitalization_schema
 
         ensure_digitalization_schema()
@@ -38,15 +45,16 @@ class TestProjectDigitalization(unittest.TestCase):
         self.assertGreater(report["counts"]["files_scanned"], 0)
         self.assertGreater(report["counts"]["files_processed"], 0)
 
+    @pytest.mark.requires_database
     def test_knowledge_assets_registered_even_on_edge(self) -> None:
         import psycopg
         from app_skeleton.api import paths
-        from app_skeleton.api.project_digitalization_engine import _db_conn, run_digitalization
+        from app_skeleton.api.project_digitalization_engine import run_digitalization
 
         paths.PROJECTS_ROOT = FIXTURES_ROOT
         run_digitalization(mode="project", project_name=FIXTURE_PROJECT, max_files=50)
 
-        with psycopg.connect(_db_conn(), connect_timeout=10) as conn:
+        with psycopg.connect(resolve_test_postgres_conn(), connect_timeout=10) as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """

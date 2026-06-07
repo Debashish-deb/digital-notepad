@@ -1,0 +1,25 @@
+{
+  "run_id": "20260606T121159Z_dig_fa1118c4",
+  "mode": "project",
+  "storage_root": "/Users/debashishdeb/Downloads/OMEIA-AI/tests/fixtures",
+  "project_name": "digitalization_sample_project",
+  "dry_run": false,
+  "enable_ocr": false,
+  "enable_vectors": false,
+  "finished_at": "2026-06-06T12:12:01.250480+00:00",
+  "counts": {
+    "folders_scanned": 0,
+    "files_scanned": 8,
+    "files_processed": 8,
+    "files_skipped": 0,
+    "files_failed": 0,
+    "documents_extracted": 2,
+    "tables_extracted": 0,
+    "scripts_extracted": 0,
+    "logs_extracted": 0,
+    "large_metadata_only": 5,
+    "uncategorized": 2,
+    "review_needed": 2,
+    "unsupported": 0
+  }
+}

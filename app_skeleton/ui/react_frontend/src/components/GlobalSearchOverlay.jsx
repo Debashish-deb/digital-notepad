@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Search, X, Sparkles, Loader2, AlertCircle, ExternalLink } from 'lucide-react';
 import { fetchSearchSuggestions, fetchUnifiedSearch, SEARCH_DEBOUNCE_MS } from '../api/searchApi.js';
 import {

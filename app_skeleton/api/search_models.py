@@ -8,6 +8,8 @@ from pydantic import BaseModel, Field
 SearchBucket = Literal[
     "lab",
     "vault",
+    "vault_review",
+    "document_library",
     "notebook",
     "wiki",
     "decision",
@@ -22,6 +24,44 @@ SearchBucket = Literal[
 ]
 
 SearchMode = Literal["keyword", "semantic", "hybrid", "exact"]
+
+ADVANCED_FILTER_FIELDS = (
+    "category",
+    "smart_chip",
+    "domain_tab",
+    "system_view",
+    "file_type",
+    "date_from",
+    "date_to",
+    "indexed_status",
+    "project_codes",
+    "section_id",
+    "source_buckets",
+)
+
+
+class SearchFilters(BaseModel):
+    """Optional advanced filters — all fields optional; AND logic when multiple set."""
+
+    category: Optional[str] = None
+    smart_chip: Optional[str] = None
+    domain_tab: Optional[str] = None
+    system_view: Optional[str] = None
+    file_type: Optional[str] = None
+    date_from: Optional[str] = None
+    date_to: Optional[str] = None
+    indexed_status: Optional[str] = None
+    project_codes: Optional[str] = None
+    section_id: Optional[str] = None
+    source_buckets: Optional[str] = None
+
+    def active_fields(self) -> dict[str, str]:
+        out: dict[str, str] = {}
+        for name in ADVANCED_FILTER_FIELDS:
+            val = getattr(self, name, None)
+            if val is not None and str(val).strip():
+                out[name] = str(val).strip()
+        return out
 
 
 class SearchNavAction(BaseModel):
@@ -77,6 +117,9 @@ class UnifiedSearchResponse(BaseModel):
     suggestions: list[str] = Field(default_factory=list)
     synonym_hints: list[str] = Field(default_factory=list)
     explain: Optional[dict[str, Any]] = None
+    filters_applied: dict[str, Any] = Field(default_factory=dict)
+    unsupported_filters: list[str] = Field(default_factory=list)
+    metadata: dict[str, Any] = Field(default_factory=dict)
 
 
 class SearchSuggestionsResponse(BaseModel):

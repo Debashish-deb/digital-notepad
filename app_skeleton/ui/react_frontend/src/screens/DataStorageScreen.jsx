@@ -1,5 +1,5 @@
-
 import { useMemo } from 'react';
+import './DataStorageScreen.css';
 import {
   Archive,
   ArrowRight,
@@ -56,6 +56,7 @@ const QUICK_NAV = [
   { id: 'guidelines', label: 'Guidelines' },
   { id: 'tools', label: 'Transfer tools' },
   { id: 'documents', label: 'Lab documents' },
+  { id: 'all_files', label: 'All Files' },
 ];
 
 function StorageIcon({ iconKey, size = 20 }) {
@@ -94,8 +95,15 @@ function ContentSection({ title, items, children }) {
 }
 
 function ContentSectionGrid({ sections }) {
+  if (!sections?.length) return null;
+  const gridClass = [
+    'storage-tab-section-grid',
+    sections.length === 1 && 'storage-tab-section-grid--single',
+    sections.length === 2 && 'storage-tab-section-grid--pair',
+  ].filter(Boolean).join(' ');
+
   return (
-    <div className="storage-tab-section-grid">
+    <div className={gridClass}>
       {sections.map((sec) => (
         <ContentSection key={sec.title} title={sec.title} items={sec.items} />
       ))}
@@ -323,11 +331,22 @@ function StoragePageShell({ children, activeSection, onNavigate, fullWidth = fal
 
 function SystemCards({ systemIds, pair }) {
   const systems = systemIds.map((id) => getStorageById(id)).filter(Boolean);
-  const gridClass = pair ? 'storage-cards-row storage-cards-row--pair' : 'storage-cards-row';
+  if (!systems.length) return null;
+
+  const count = systems.length;
+  const isSingle = count === 1;
+  const isPair = Boolean(pair) || count === 2;
+  const useWideLayout = isSingle || isPair;
+  const gridClass = [
+    'storage-cards-row',
+    isSingle && 'storage-cards-row--single',
+    isPair && 'storage-cards-row--pair',
+  ].filter(Boolean).join(' ');
+
   return (
     <div className={gridClass}>
       {systems.map((s) => (
-        <StorageCard key={s.id} system={s} layout={pair ? 'wide' : 'grid'} />
+        <StorageCard key={s.id} system={s} layout={useWideLayout ? 'wide' : 'grid'} />
       ))}
     </div>
   );
@@ -535,12 +554,12 @@ function LandscapeTab({ onNavigate }) {
       <div className="storage-hero panel">
         <div className="storage-hero__copy">
           <p className="storage-summary-lead">{LANDSCAPE_CONTENT.intro}</p>
-          <p className="text-footnote muted">
+          <p className="storage-hero__footnote text-footnote muted">
             Major allocations: P-drive ~80 TB · CSC Allas ~30 TB · DataCloud ~10 TB · UH Databank (UH quota)
             (~{totalTb} TB combined). L-drive uses UH clinical quota separately.
           </p>
         </div>
-        <div className="storage-hero__stats">
+        <div className="storage-hero__stats" aria-label="Storage capacities">
           {STORAGE_CAPACITY_OVERVIEW.map((row) => (
             <div key={row.id} className="storage-stat">
               <span className="storage-stat__value">{row.capacity}</span>

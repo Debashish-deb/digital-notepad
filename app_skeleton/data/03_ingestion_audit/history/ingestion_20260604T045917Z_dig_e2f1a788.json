@@ -1,0 +1,25 @@
+{
+  "run_id": "20260604T045917Z_dig_e2f1a788",
+  "mode": "full",
+  "storage_root": "/Users/debashishdeb/Downloads/OMEIA-AI/database/projects",
+  "project_name": null,
+  "dry_run": false,
+  "enable_ocr": false,
+  "enable_vectors": false,
+  "finished_at": "2026-06-04T04:59:21.021470+00:00",
+  "counts": {
+    "folders_scanned": 0,
+    "files_scanned": 6,
+    "files_processed": 6,
+    "files_skipped": 0,
+    "files_failed": 0,
+    "documents_extracted": 3,
+    "tables_extracted": 0,
+    "scripts_extracted": 0,
+    "logs_extracted": 0,
+    "large_metadata_only": 0,
+    "uncategorized": 5,
+    "review_needed": 5,
+    "unsupported": 0
+  }
+}

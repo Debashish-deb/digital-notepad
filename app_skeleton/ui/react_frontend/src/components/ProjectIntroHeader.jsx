@@ -1,98 +1,143 @@
-import { Calendar, FlaskConical } from 'lucide-react';
-import ExpandableText from './ExpandableText.jsx';
-import ProjectBrandMark from './ProjectBrandMark.jsx';
-import ProjectCohortStrip from './ProjectCohortStrip.jsx';
-import ProjectResourceCorner, { ProjectResourceDetails } from './ProjectResourceCorner.jsx';
-import { ProjectTeamSection } from './ProjectTeamRoster.jsx';
+import { Calendar, Layers, Target } from 'lucide-react';
+import GlassCardStack, { GlassMiniCard } from './GlassCardStack.jsx';
+import ProjectCoverNarrative from './ProjectCoverNarrative.jsx';
+import ProjectCoverTeamStrip from './ProjectCoverTeamStrip.jsx';
+import { sanitizeCoverSummary } from '../utils/projectCoverSummary.js';
+import { normalizeModalityList } from '../utils/modalityMeta.js';
+import './ProjectIntroHeader.css';
+import './GlassCardStack.css';
 
-/** Overview body from digital twin — no duplicate project title card (taskbar shows context). */
+const STATUS_META = {
+  active: { label: 'Active', tone: '#34d399' },
+  completed: { label: 'Completed', tone: '#60a5fa' },
+  discontinued: { label: 'Discontinued', tone: '#94a3b8' },
+  archived: { label: 'Archived', tone: '#94a3b8' },
+};
+
+function ProjectCoverStatus({ status }) {
+  const key = (status || 'active').toLowerCase();
+  const meta = STATUS_META[key] || STATUS_META.active;
+  return (
+    <div className="project-cover-status" title={`Project status: ${meta.label}`}>
+      <span className="project-cover-status__dot" style={{ '--status-tone': meta.tone }} aria-hidden />
+      <span className="project-cover-status__label">{meta.label}</span>
+    </div>
+  );
+}
+
+function ProjectCoverTitle({ identity }) {
+  const code = identity.project_code || '';
+  const index = identity.project_index;
+  if (!code) return null;
+
+  return (
+    <h2 className="project-cover__title">
+      {code}
+      {index != null && index !== '' ? (
+        <sup className="project-cover__index" aria-label={`project number ${index}`}>
+          {index}
+        </sup>
+      ) : null}
+    </h2>
+  );
+}
+
+/** Ultra-compact glass cover card for the project workspace. */
 export default function ProjectIntroHeader({ twin, className = '' }) {
   if (!twin) return null;
 
   const id = twin.identity || {};
-  const m = twin.metrics || {};
-  const summary = id.project_summary;
-  const researchQ = id.research_question;
-  const timeline = id.timeline;
+  const narrative = sanitizeCoverSummary(id.project_summary);
   const personnel = twin.personnel || [];
   const modalities = twin.modalities || [];
-  const cohorts = twin.cohorts || [];
-  const repos = twin.data_assets?.repositories || [];
-  const fileCount = twin.total_assets_count ?? m.asset_count;
 
-  const hasResourceCorner =
-    (cohorts.length || m.cohort_count) > 0
-    || repos.length > 0
-    || (fileCount != null && fileCount !== '—')
-    || (m.protocol_count ?? twin.protocols?.length) > 0;
+  const stackItems = [
+    ...normalizeModalityList(modalities).map((item) => ({
+      key: `modality-${item.name}`,
+      label: item.label,
+      value: item.name,
+      icon: item.Icon,
+      tone: item.tone,
+    })),
+    ...(id.disease_focus
+      ? [{
+        key: 'focus',
+        label: 'Focus',
+        value: id.disease_focus,
+        icon: Target,
+        tone: '#f43f5e',
+      }]
+      : []),
+    ...(id.timeline
+      ? [{
+        key: 'timeline',
+        label: 'Timeline',
+        value: id.timeline,
+        icon: Calendar,
+        tone: '#38bdf8',
+      }]
+      : []),
+  ].slice(0, 6);
 
   const hasContent =
-    summary
-    || (researchQ && researchQ !== summary)
-    || timeline
+    narrative.length > 0
     || modalities.length > 0
-    || cohorts.length > 0
-    || m.cohort_count > 0
     || personnel.length > 0
     || id.principal_investigator
-    || repos.length > 1
-    || hasResourceCorner;
+    || id.disease_focus
+    || id.timeline;
 
   if (!hasContent) return null;
 
   return (
-    <section className={`project-intro panel workspace-section workspace-section--no-hero${className ? ` ${className}` : ''}`}>
-      <ProjectBrandMark
-        code={id.project_code}
-        index={id.project_index}
-        name={id.project_name}
-        variant="intro"
+    <section
+      className={`project-cover project-cover--glass workspace-section workspace-section--no-hero${className ? ` ${className}` : ''}`}
+      aria-label="Project overview"
+    >
+      <div
+        className="project-cover__art"
+        style={{ backgroundImage: "url('/covers/overlays/project-workspace.svg')" }}
+        aria-hidden
       />
-      <ProjectResourceCorner twin={twin} />
+      <div className="project-cover__scrim" aria-hidden />
 
-      {summary ? (
-        <ExpandableText maxLength={400} className="project-intro-summary">
-          {summary}
-        </ExpandableText>
-      ) : null}
-
-      {researchQ && researchQ !== summary ? (
-        <details className="project-intro-research-details workspace-collapsible workspace-collapsible--nested">
-          <summary className="workspace-collapsible__summary workspace-collapsible__summary--sm">
-            Research focus
-          </summary>
-          <ExpandableText maxLength={280} className="prose-block project-intro-question-body">
-            {researchQ}
-          </ExpandableText>
-        </details>
-      ) : null}
-
-      {timeline ? (
-        <div className="project-intro-kv project-intro-kv--timeline">
-          <div className="project-intro-kv-item">
-            <Calendar size={14} aria-hidden />
-            <span className="label">Timeline</span>
-            <b>{timeline}</b>
+      <div className="project-cover__row project-cover__row--main">
+        <div className="project-cover__identity">
+          <div className="project-cover__glyph" aria-hidden>
+            <Layers size={18} strokeWidth={1.75} />
+          </div>
+          <div className="project-cover__copy">
+            <div className="project-cover__title-row">
+              <ProjectCoverTitle identity={id} />
+            </div>
+            <ProjectCoverNarrative summary={id.project_summary} compact />
           </div>
         </div>
-      ) : null}
 
-      {modalities.length > 0 ? (
-        <div className="project-intro-modalities">
-          <FlaskConical size={14} aria-hidden />
-          <div className="project-card-tags">
-            {modalities.map((m) => (
-              <span key={m.name || m} className="project-tag modality">
-                {m.name || m}
-              </span>
+        {stackItems.length > 0 ? (
+          <GlassCardStack className="project-cover__stack" columns={3} rows={2} meta compact>
+            {stackItems.map((item, index) => (
+              <GlassMiniCard
+                key={item.key}
+                label={item.label}
+                value={item.value}
+                icon={item.icon}
+                tone={item.tone}
+                delay={index * 90}
+                compact
+                title={`${item.label} — ${item.value}`}
+              />
             ))}
-          </div>
-        </div>
-      ) : null}
+          </GlassCardStack>
+        ) : null}
+      </div>
 
-      <ProjectCohortStrip cohorts={cohorts} metrics={twin.metrics} />
-      <ProjectTeamSection personnel={personnel} identity={id} />
-      <ProjectResourceDetails twin={twin} />
+      <div className="project-cover__divider" aria-hidden />
+
+      <div className="project-cover__row project-cover__row--footer">
+        <ProjectCoverTeamStrip personnel={personnel} identity={id} />
+        <ProjectCoverStatus status={id.status} />
+      </div>
     </section>
   );
 }

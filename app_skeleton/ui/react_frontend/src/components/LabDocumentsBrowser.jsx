@@ -36,6 +36,12 @@ import {
 import { useGuiT } from '../i18n/useGuiT.js';
 import { useModuleShellHeaderSlot } from '../contexts/ModuleShellHeaderSlotContext.jsx';
 import { consumeSearchNavigation } from '../utils/searchHits.js';
+import {
+  buildExpandedPreviewMetadata,
+  buildLabPreviewMetadata,
+  computePreviewMetadataScore,
+  prettifyPreviewLabel,
+} from '../utils/previewMetaUtils.js';
 
 export default function LabDocumentsBrowser({
   sectionId,
@@ -62,6 +68,7 @@ export default function LabDocumentsBrowser({
   const [error, setError] = useState(null);
   const [selectedPath, setSelectedPath] = useState(null);
   const [fileQuery, setFileQuery] = useState('');
+  const [viewerExpanded, setViewerExpanded] = useState(false);
   const [revealSensitive, setRevealSensitive] = useState(false);
   const [visibleFiles, setVisibleFiles] = useState([]);
   const [layoutModeOverride, setLayoutModeOverride] = useState(null);
@@ -314,6 +321,57 @@ export default function LabDocumentsBrowser({
 
   const contentRoot = primaryTwin?.content_root;
 
+  const previewMetadataItems = useMemo(
+    () =>
+      buildLabPreviewMetadata({
+        doc: selectedDoc,
+        sectionId,
+        previewKind,
+        extension: selectedExt,
+        previewText,
+      }),
+    [selectedDoc, sectionId, previewKind, selectedExt, previewText]
+  );
+
+  const expandedPreviewMetadata = useMemo(
+    () =>
+      buildExpandedPreviewMetadata({
+        doc: selectedDoc,
+        path: selectedDoc?.path,
+        previewKind,
+        extension: selectedExt,
+        previewText,
+        assetUrl,
+        extra: {
+          section: sectionId,
+          sensitivity: selectedDoc?.sensitivity_level,
+          source: previewFromCatalog ? 'catalog' : 'twin',
+        },
+      }),
+    [
+      selectedDoc,
+      previewKind,
+      selectedExt,
+      previewText,
+      assetUrl,
+      sectionId,
+      previewFromCatalog,
+    ]
+  );
+
+  const metadataCompleteness = useMemo(
+    () => computePreviewMetadataScore(selectedDoc, previewText || rawFilePreview?.content),
+    [selectedDoc, previewText, rawFilePreview?.content]
+  );
+
+  const previewBadges = useMemo(() => {
+    const items = [];
+    if (previewKind) items.push(prettifyPreviewLabel(previewKind));
+    if (previewFromCatalog) items.push('Catalog extract');
+    if (selectedDoc?.sensitivity_level) items.push(prettifyPreviewLabel(selectedDoc.sensitivity_level));
+    return items;
+  }, [previewKind, previewFromCatalog, selectedDoc?.sensitivity_level]);
+
   const handleVisibleFilesChange = useCallback((files) => {
     setVisibleFiles((prev) => {
       if (
@@ -523,6 +581,7 @@ export default function LabDocumentsBrowser({
         </div>
       ) : (
         <DocumentPreviewPane
+                  onExpandChange={setViewerExpanded}
                   onBackToFiles={() => setSelectedPath(null)}
                   title={documentTitle(selectedDoc)}
                   path={selectedDoc.path}
@@ -590,6 +649,17 @@ export default function LabDocumentsBrowser({
                       fileName: selectedDoc?.name || selectedDoc?.title,
                     })
                   }
+                  exportLocal={{
+                    filename: selectedDoc?.name || selectedDoc?.title,
+                    title: documentTitle(selectedDoc),
+                    text: previewText || rawFilePreview?.content,
+                    metadata: selectedDoc,
+                    originalUrl: assetUrl,
+                  }}
+                  metadataItems={previewMetadataItems}
+                  expandedMetadataItems={expandedPreviewMetadata}
+                  metadataCompleteness={metadataCompleteness}
+                  badges={previewBadges}
                   actions={
                     <>
                       {assetUrl ? (
@@ -636,7 +706,7 @@ export default function LabDocumentsBrowser({
 
     return (
       <div
-        className={`lab-docs-catalog-split pfb-layout lab-docs-layout lab-docs-layout--compact lab-docs-layout--catalog${selectedDoc ? ' pfb-layout--editor-focus pfb-layout--doc-full' : ''}`}
+        className={`lab-docs-catalog-split pfb-layout lab-docs-layout lab-docs-layout--compact lab-docs-layout--catalog${selectedDoc ? ' pfb-layout--editor-focus pfb-layout--doc-full' : ''}${viewerExpanded ? ' pfb-layout--viewer-expanded' : ''}`}
       >
         <div className="pfb-column pfb-files-pane lab-doc-files-panel lab-doc-files-panel--catalog">
           {sensitiveNote}
@@ -685,7 +755,7 @@ export default function LabDocumentsBrowser({
             </div>
           ) : (
             <div
-              className={`pfb-layout lab-docs-layout lab-docs-layout--compact${selectedDoc ? ' pfb-layout--editor-focus pfb-layout--doc-full' : ''}`}
+              className={`pfb-layout lab-docs-layout lab-docs-layout--compact${selectedDoc ? ' pfb-layout--editor-focus pfb-layout--doc-full' : ''}${viewerExpanded ? ' pfb-layout--viewer-expanded' : ''}`}
             >
               <div className="pfb-column pfb-files-pane lab-doc-files-panel">
                 {sensitiveNote}

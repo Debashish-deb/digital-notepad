@@ -29,7 +29,8 @@ export default {
   },
 
   navMain: {
-    overview: 'Overview',
+    overview: 'Get Started',
+    meeting: 'Meeting',
     orders: 'Orders & related information',
     social: 'Social & miscellaneous',
     data_storage: 'Data & Storage',
@@ -42,6 +43,7 @@ export default {
   },
 
   navMainSidebar: {
+    overview: 'Get Started',
     projects_data: 'Project Portfolio',
     orders: 'Orders',
     social: 'Social',
@@ -233,15 +235,7 @@ export default {
     cycif: {
       pipeline: {
         label: 'Imaging pipeline',
-        description: 'Stitching, segmentation, and QC triggers.',
-      },
-      install: {
-        label: 'Tool setup',
-        description: 'Napari, Cylinter, and viewer installs.',
-      },
-      structure: {
-        label: 'Project structure',
-        description: 't-CycIF folder layout validation.',
+        description: 'LUMI pipeline guide — login, Allas staging, stitching, segmentation, and quantification.',
       },
       cycif_projects: {
         label: 'Individual Projects',
@@ -831,6 +825,8 @@ export default {
     writing: 'Writing',
     archive: 'Archive',
     log: 'Log',
+    notebook: 'Notebook',
+    decisions: 'Decisions',
   },
 
   docs: {

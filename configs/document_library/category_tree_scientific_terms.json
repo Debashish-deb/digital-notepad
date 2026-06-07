@@ -1,0 +1,187 @@
+{
+  "source": "scientific_terms",
+  "categories": {
+    "protocol": {
+      "label": "Protocol",
+      "file_count": 342
+    },
+    "sop": {
+      "label": "Sop",
+      "file_count": 7
+    },
+    "wet_lab_operation": {
+      "label": "Wet Lab Operation",
+      "file_count": 488
+    },
+    "inventory": {
+      "label": "Inventory",
+      "file_count": 78
+    },
+    "reagent_list": {
+      "label": "Reagent List",
+      "file_count": 0
+    },
+    "antibody_panel": {
+      "label": "Antibody Panel",
+      "file_count": 105
+    },
+    "marker_panel": {
+      "label": "Marker Panel",
+      "file_count": 327
+    },
+    "sample_preparation": {
+      "label": "Sample Preparation",
+      "file_count": 0
+    },
+    "organoid_work": {
+      "label": "Organoid Work",
+      "file_count": 0
+    },
+    "tissue_fixation": {
+      "label": "Tissue Fixation",
+      "file_count": 0
+    },
+    "ffpe": {
+      "label": "Ffpe",
+      "file_count": 30
+    },
+    "frozen_tissue": {
+      "label": "Frozen Tissue",
+      "file_count": 4
+    },
+    "patient_sample": {
+      "label": "Patient Sample",
+      "file_count": 200
+    },
+    "omentum": {
+      "label": "Omentum",
+      "file_count": 0
+    },
+    "adnexa": {
+      "label": "Adnexa",
+      "file_count": 0
+    },
+    "other_anatomical_site": {
+      "label": "Other Anatomical Site",
+      "file_count": 0
+    },
+    "cycif": {
+      "label": "Cycif",
+      "file_count": 929
+    },
+    "tcycif": {
+      "label": "Tcycif",
+      "file_count": 743
+    },
+    "immunofluorescence": {
+      "label": "Immunofluorescence",
+      "file_count": 0
+    },
+    "microscopy": {
+      "label": "Microscopy",
+      "file_count": 0
+    },
+    "image_analysis": {
+      "label": "Image Analysis",
+      "file_count": 0
+    },
+    "segmentation": {
+      "label": "Segmentation",
+      "file_count": 0
+    },
+    "quantification": {
+      "label": "Quantification",
+      "file_count": 0
+    },
+    "qc": {
+      "label": "Qc",
+      "file_count": 0
+    },
+    "slides": {
+      "label": "Slides",
+      "file_count": 0
+    },
+    "sections": {
+      "label": "Sections",
+      "file_count": 0
+    },
+    "order_forms": {
+      "label": "Order Forms",
+      "file_count": 160
+    },
+    "scrna_seq": {
+      "label": "Scrna Seq",
+      "file_count": 56
+    },
+    "sequencing": {
+      "label": "Sequencing",
+      "file_count": 121
+    },
+    "bioinformatics": {
+      "label": "Bioinformatics",
+      "file_count": 0
+    },
+    "computational_notebook": {
+      "label": "Computational Notebook",
+      "file_count": 0
+    },
+    "database_export": {
+      "label": "Database Export",
+      "file_count": 0
+    },
+    "spreadsheet_tracker": {
+      "label": "Spreadsheet Tracker",
+      "file_count": 354
+    },
+    "archive_old_protocol": {
+      "label": "Archive Old Protocol",
+      "file_count": 0
+    },
+    "administrative_document": {
+      "label": "Administrative Document",
+      "file_count": 0
+    },
+    "unknown": {
+      "label": "Unknown",
+      "file_count": 2870
+    }
+  },
+  "enum_values": [
+    "protocol",
+    "sop",
+    "wet_lab_operation",
+    "inventory",
+    "reagent_list",
+    "antibody_panel",
+    "marker_panel",
+    "sample_preparation",
+    "organoid_work",
+    "tissue_fixation",
+    "ffpe",
+    "frozen_tissue",
+    "patient_sample",
+    "omentum",
+    "adnexa",
+    "other_anatomical_site",
+    "cycif",
+    "tcycif",
+    "immunofluorescence",
+    "microscopy",
+    "image_analysis",
+    "segmentation",
+    "quantification",
+    "qc",
+    "slides",
+    "sections",
+    "order_forms",
+    "scrna_seq",
+    "sequencing",
+    "bioinformatics",
+    "computational_notebook",
+    "database_export",
+    "spreadsheet_tracker",
+    "archive_old_protocol",
+    "administrative_document",
+    "unknown"
+  ]
+}

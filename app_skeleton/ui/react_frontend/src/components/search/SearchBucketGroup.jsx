@@ -1,4 +1,3 @@
-import React from 'react';
 import SearchResultCard from './SearchResultCard.jsx';
 
 export default function SearchBucketGroup({

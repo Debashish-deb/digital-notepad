@@ -91,12 +91,12 @@ export const MODULE_COVER = {
     overlayArt: MODULE_COVER_OVERLAYS.cycif,
     eyebrow: 'Spatial imaging',
     title: 'CyCif / t-CycIF',
-    tagline: 'Multiplex tissue · antibody cycles · Napari',
-    tags: ['t-CyCIF', 'Visium', 'GeoMx', 'MHC-II'],
+    tagline: 'Multiplex tissue · LUMI pipeline · antibody panels',
+    tags: ['t-CyCIF', 'LUMI', 'GeoMx', 'Ashlar'],
     lead:
-      'Multiplex tissue imaging pipeline — staining plans, antibody inventory, sectioning orders, Napari viewers, and project run sheets.',
+      'LUMI image processing pipeline guide, staining plans, antibody inventory, sectioning orders, and per-project run sheets. Tool setup and folder checks live in Computational Hub.',
     metaDescription:
-      't-CycIF spatial imaging — staining plans, antibody inventory, Napari viewers, and run sheets.',
+      't-CycIF spatial imaging — LUMI pipeline, staining plans, antibody inventory, and run sheets.',
   },
   computational: {
     tone: 'compute',

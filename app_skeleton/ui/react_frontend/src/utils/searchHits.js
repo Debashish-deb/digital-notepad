@@ -9,9 +9,11 @@ export const SEARCH_RECENT_STORAGE_KEY = 'farkki_search_recent_queries';
 const RECENT_MAX = 12;
 
 export const BUCKET_LABELS = {
-  lab: 'Lab corpus',
+  lab: 'Lab Knowledge',
   file: 'Documents',
-  vault: 'Vault',
+  vault: 'Vault Asset',
+  document_library: 'Document Library',
+  vault_review: 'Vault Review',
   notebook: 'Notebook',
   wiki: 'Wiki / SOP',
   decision: 'Decisions',
@@ -21,7 +23,20 @@ export const BUCKET_LABELS = {
   people: 'Lab members',
 };
 
-export const BUCKET_ORDER = ['research', 'lab', 'people', 'file', 'vault', 'notebook', 'wiki', 'decision', 'task', 'project'];
+export const BUCKET_ORDER = [
+  'research',
+  'lab',
+  'document_library',
+  'people',
+  'file',
+  'vault',
+  'vault_review',
+  'notebook',
+  'wiki',
+  'decision',
+  'task',
+  'project',
+];
 
 export function stashSearchNavigation(nav) {
   if (!nav) return;
@@ -140,6 +155,17 @@ export function buildUnifiedSearchParams({
   projectCode,
   sectionId,
   limit = 25,
+  category,
+  smartChip,
+  domainTab,
+  systemView,
+  fileType,
+  dateFrom,
+  dateTo,
+  indexedStatus,
+  filterProjectCodes,
+  filterSectionId,
+  sourceBuckets,
 }) {
   const params = new URLSearchParams();
   params.set('q', query.trim());
@@ -148,5 +174,16 @@ export function buildUnifiedSearchParams({
   if (scopes) params.set('scopes', scopes);
   if (projectCode) params.set('project_code', projectCode);
   if (sectionId) params.set('section_id', sectionId);
+  if (category) params.set('category', category);
+  if (smartChip) params.set('smart_chip', smartChip);
+  if (domainTab) params.set('domain_tab', domainTab);
+  if (systemView) params.set('system_view', systemView);
+  if (fileType) params.set('file_type', fileType);
+  if (dateFrom) params.set('date_from', dateFrom);
+  if (dateTo) params.set('date_to', dateTo);
+  if (indexedStatus) params.set('indexed_status', indexedStatus);
+  if (filterProjectCodes) params.set('filter_project_codes', filterProjectCodes);
+  if (filterSectionId) params.set('filter_section_id', filterSectionId);
+  if (sourceBuckets) params.set('source_buckets', sourceBuckets);
   return params;
 }

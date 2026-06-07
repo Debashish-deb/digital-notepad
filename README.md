@@ -4,6 +4,32 @@ An end-to-end framework and live prototype for a cancer and spatial-biology AI a
 
 ---
 
+## Modern app stack (React + FastAPI)
+
+The active UI is a **React SPA**; the API is **FastAPI**. They are separate processes and deploy to different hosts in production.
+
+| App | Path | Dev port |
+|-----|------|----------|
+| Frontend | `app_skeleton/ui/react_frontend/` | **5173** |
+| Backend | `app_skeleton/api/` | **8000** |
+
+```bash
+# Split dev (two terminals)
+./scripts/dev/start_backend.sh
+./scripts/dev/start_frontend.sh
+
+# Or both together
+./start.sh
+```
+
+**Architecture tutorial:** [docs/FRONTEND_BACKEND_TUTORIAL.md](docs/FRONTEND_BACKEND_TUTORIAL.md)  
+**Repo layout:** [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) · **Scripts index:** [scripts/README.md](scripts/README.md)  
+**Env split:** `configs/.env.backend.example` (API) + `app_skeleton/ui/react_frontend/.env.local.example` (UI)
+
+> Legacy **Streamlit** dashboard (`app_skeleton/ui/streamlit_app.py`, port 8501) is still in the repo but is not the primary UI.
+
+---
+
 ## 🌌 The Grand Master Plan
 
 The vision of the **Farkki-AI Platform** is to accelerate precision oncology discovery in ovarian cancer (specifically High-Grade Serous Ovarian Cancer - HGSC) by structuring high-quality cohort datasets into a unified spatial knowledge network. 
@@ -102,16 +128,16 @@ pip install -r app_skeleton/api/requirements.txt
 Create Qdrant collections, generate synthetic registries, and embed files:
 ```bash
 # Initialize vector collections
-python scripts/create_qdrant_collections.py
+python scripts/ingest/create_qdrant_collections.py
 
 # Generate synthetic CSV datasets
-python scripts/synthetic_seed_data.py
+python scripts/database/synthetic_seed_data.py
 
 # Ingest CSV registries into PostgreSQL
-python scripts/ingest_database.py
+python scripts/database/ingest_database.py
 
 # Ingest documentation and scripts into Qdrant
-python scripts/ingest_documents_demo.py
+python scripts/ingest/ingest_documents_demo.py
 ```
 
 ### 4. Launch the Applications
@@ -131,9 +157,9 @@ Open [http://localhost:8501](http://localhost:8501) in your browser to interact 
 Vault ingest, project digitalization, and optional Supabase sync can run as an **OS-level daemon**. Switching Cursor to another project does **not** stop it.
 
 ```bash
-chmod +x scripts/autonomous_processor.sh
-./scripts/autonomous_processor.sh start    # macOS / Linux — survives shell exit
-./scripts/autonomous_processor.sh status
+chmod +x scripts/ops/autonomous_processor.sh
+./scripts/ops/autonomous_processor.sh start    # macOS / Linux — survives shell exit
+./scripts/ops/autonomous_processor.sh status
 curl -s http://127.0.0.1:8000/api/processor/status | jq .
 ```
 

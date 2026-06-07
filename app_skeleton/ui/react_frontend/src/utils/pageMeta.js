@@ -50,14 +50,20 @@ export function applyPageMeta(meta) {
 
   document.title = title;
 
-  setMetaTag('description', description);
-  setMetaTag('og:title', title, 'property');
-  setMetaTag('og:description', description, 'property');
-  setMetaTag('og:image', image, 'property');
-  setMetaTag('og:type', 'website', 'property');
-  setMetaTag('og:site_name', siteName, 'property');
-  setMetaTag('twitter:card', 'summary_large_image');
-  setMetaTag('twitter:title', title);
-  setMetaTag('twitter:description', description);
-  setMetaTag('twitter:image', image);
+  const values = {
+    description,
+    'og:title': title,
+    'og:description': description,
+    'og:image': image,
+    'og:type': 'website',
+    'og:site_name': siteName,
+    'twitter:card': 'summary_large_image',
+    'twitter:title': title,
+    'twitter:description': description,
+    'twitter:image': image,
+  };
+
+  for (const [key, spec] of Object.entries(META_SELECTORS)) {
+    setMetaTag(spec.key, values[key], spec.attr);
+  }
 }

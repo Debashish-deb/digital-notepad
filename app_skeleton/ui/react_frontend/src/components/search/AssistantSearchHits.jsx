@@ -1,4 +1,3 @@
-import React from 'react';
 import { Database, ExternalLink, Search, Sparkles } from 'lucide-react';
 import HighlightedSnippet from './HighlightedSnippet.jsx';
 
@@ -31,6 +30,7 @@ export default function AssistantSearchHits({
           const preview = hitPreview(hit);
           const nav = hit.nav;
           const meta = hit.metadata || {};
+          const chipLabel = meta.smart_chip || meta.domain_tab || meta.review_reason || null;
           const externalUrl =
             meta.source_url ||
             (meta.doi ? `https://doi.org/${String(meta.doi).replace(/^https?:\/\/doi\.org\//i, '')}` : null) ||
@@ -56,9 +56,17 @@ export default function AssistantSearchHits({
                 {hit.score !== undefined && hit.score !== null ? (
                   <span className="chat-source-score">score {Number(hit.score).toFixed(3)}</span>
                 ) : null}
-                {hit.bucket || hit.source_type ? (
+                {hit.source || hit.bucket || hit.source_type ? (
                   <span className={`chat-source-bucket chat-source-bucket--${hit.bucket || hit.source_type}`}>
-                    {hit.bucket || hit.source_type}
+                    {hit.source || hit.bucket || hit.source_type}
+                  </span>
+                ) : null}
+                {chipLabel ? (
+                  <span className="chat-source-bucket chat-source-bucket--meta">{chipLabel}</span>
+                ) : null}
+                {meta.suggestion ? (
+                  <span className="chat-source-bucket chat-source-bucket--suggestion" title={meta.suggestion}>
+                    suggestion
                   </span>
                 ) : null}
                 {hit.rank ? <span className="chat-source-bucket">#{hit.rank}</span> : null}

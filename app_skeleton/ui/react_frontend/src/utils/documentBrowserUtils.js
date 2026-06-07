@@ -198,7 +198,6 @@ export function filterDocsByQuery(docs, fileQuery, documentTitle) {
 }
 
 const MIN_CATEGORIES_FOR_TAB_ROW = 2;
-const MIN_FILES_FOR_SUBFOLDER_TABS = 6;
 const MIN_SUBFOLDERS_FOR_TAB_ROW = 2;
 
 /**

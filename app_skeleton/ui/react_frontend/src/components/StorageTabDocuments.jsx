@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight, FileText, Loader2 } from 'lucide-react';
+import LabDocumentExplorer from './LabDocumentExplorer.jsx';
 import LabDocumentsBrowser from './LabDocumentsBrowser.jsx';
-import LabDocumentsHub from './LabDocumentsHub.jsx';
 import { getRepoDocsForTab, getStorageDocumentsConfig } from '../utils/storageDocumentsConfig.js';
 
 const STORAGE_CATEGORY_ICONS = {
@@ -129,7 +129,16 @@ function StorageRepoDocsInline({ tabId }) {
 
 export default function StorageTabDocuments({ tabId, title = 'Related lab documents', onNavigate }) {
   if (tabId === 'documents') {
-    return <LabDocumentsHub onNavigate={onNavigate} />;
+    return (
+      <div className="storage-tab-documents-wrap storage-tab-documents-wrap--explorer">
+        <LabDocumentExplorer
+          mainId="data_storage"
+          subId="documents"
+          title="Lab document library"
+          description="Search, filter, and preview all lab files with audit-backed indexing status."
+        />
+      </div>
+    );
   }
 
   const config = getStorageDocumentsConfig(tabId);

@@ -1,0 +1,9 @@
+{
+  "started_at": "2026-06-07T11:42:58.271329+00:00",
+  "dry_run": false,
+  "limit": null,
+  "since": null,
+  "status": "needs_user_decision",
+  "message": "SUPABASE_DB_PASSWORD is not set. Add it to configs/.env, apply migrations, then enable SUPABASE_SYNC_ENABLED. Do not run a full ~4800-row sync until then.",
+  "finished_at": "2026-06-07T11:42:58.271340+00:00"
+}

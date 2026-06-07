@@ -7,7 +7,7 @@
   <key>ProgramArguments</key>
   <array>
     <string>REPLACE_WITH_VENV/bin/python</string>
-    <string>REPLACE_WITH_REPO_ROOT/scripts/autonomous_processor.py</string>
+    <string>REPLACE_WITH_REPO_ROOT/scripts/ops/autonomous_processor.py</string>
     <string>--daemon</string>
   </array>
   <key>WorkingDirectory</key>

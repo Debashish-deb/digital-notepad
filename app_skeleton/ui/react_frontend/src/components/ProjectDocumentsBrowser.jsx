@@ -20,6 +20,7 @@ import {
   labDatabaseAssetUrl,
 } from '../utils/labDatabaseUtils.js';
 import { isJunkPreviewText } from '../utils/textCleanup.js';
+import { smartDocumentTitle } from '../utils/smartDocumentTitle.js';
 import { inferExtension } from '../utils/fileTypeMeta.js';
 import { getChunkTextForProjectFile, normalizeRelPath } from '../utils/folderBrowserUtils.js';
 import { getMediaPreviewKind } from '../utils/mediaPreviewKind.js';
@@ -40,7 +41,6 @@ import {
   projectDocumentTitle,
 } from '../utils/projectDocumentCategories.js';
 import { findProjectLogFile, isProjectLogFile } from '../utils/projectLogUtils.js';
-import { getProjectLogContentFromTwin } from '../utils/projectLogContent.js';
 import {
   getResearchMaterialsForProject,
   loadResearchMaterialsTwin,
@@ -50,6 +50,15 @@ import DocumentCategoryFileList, {
 } from './DocumentCategoryFileList.jsx';
 import { useGuiT } from '../i18n/useGuiT.js';
 import { consumeSearchNavigation } from '../utils/searchHits.js';
+import {
+  buildExpandedPreviewMetadata,
+  buildProjectPreviewMetadata,
+  computePreviewMetadataScore,
+  findCategoryLabelInGroups,
+  prettifyPreviewLabel,
+} from '../utils/previewMetaUtils.js';
+import { isProjectReadmePath } from '../utils/projectReadmeUtils.js';
+import { canEditDocument, documentViewBadge, isSourceDocument } from '../utils/documentEditPolicy.js';
 
 const CATEGORY_ICONS = {
   root: FolderOpen,
@@ -69,7 +78,9 @@ const CATEGORY_ICONS = {
 const EDITABLE_EXTENSIONS = new Set(['.md', '.txt', '.html', '.rtf']);
 
 function resolveDocumentTitle(doc) {
-  if (doc?.isResearchMaterial && doc.display_title) return doc.display_title;
+  if (doc?.display_title) {
+    return smartDocumentTitle(doc);
+  }
   return projectDocumentTitle(doc);
 }
 
@@ -80,14 +91,14 @@ export default function ProjectDocumentsBrowser({
   workspaceTab,
   defaultCategory: defaultCategoryProp,
   className = 'project-documents-browser',
-  taskpadMenuItems,
-  onSelectedPathChange,
+  onReadmeSaved,
 }) {
   const [selectedPath, setSelectedPath] = useState(null);
   const [fileQuery, setFileQuery] = useState('');
+  const [viewerExpanded, setViewerExpanded] = useState(false);
   const [researchDocs, setResearchDocs] = useState([]);
   const [researchTwin, setResearchTwin] = useState(null);
-  const { openTaskpad, openProjectLogTaskpad } = useTaskpad();
+  const { openTaskpad } = useTaskpad();
   const { t, localizeCategories } = useGuiT();
 
   useEffect(() => {
@@ -173,10 +184,6 @@ export default function ProjectDocumentsBrowser({
     setFileQuery('');
   }, [workspaceTab, categoryOrder.join(','), twin?.processed_at, projectLogFile?.path, grouped]);
 
-  useEffect(() => {
-    onSelectedPathChange?.(selectedPath);
-  }, [selectedPath, onSelectedPathChange]);
-
   const visibleFileCount = useMemo(
     () =>
       countGroupedFiles(localizedCategoryGroups, grouped, fileQuery, resolveDocumentTitle),
@@ -207,7 +214,7 @@ export default function ProjectDocumentsBrowser({
   const mediaKind = getMediaPreviewKind(selectedExt);
   const previewKind = getFilePreviewKind(selectedExt, selectedDoc?.path);
   const isSpreadsheet = previewKind === 'spreadsheet';
-  const isEditable = EDITABLE_EXTENSIONS.has(selectedExt);
+  const isEditable = selectedDoc ? canEditDocument(selectedDoc, selectedExt) : false;
 
   const previewText = useMemo(() => {
     if (!selectedDoc) return null;
@@ -287,6 +294,66 @@ export default function ProjectDocumentsBrowser({
     return mergeGalleryItem(selectedDoc, siblings, resolveDocAssetUrl, resolveDocumentTitle);
   }, [selectedDoc, allDocs, mediaKind, resolveDocAssetUrl, resolveDocumentTitle]);
 
+  const categoryLabel = useMemo(
+    () => findCategoryLabelInGroups(localizedCategoryGroups, selectedDoc?.categoryId),
+    [localizedCategoryGroups, selectedDoc?.categoryId]
+  );
+
+  const previewMetadataItems = useMemo(
+    () =>
+      buildProjectPreviewMetadata({
+        doc: selectedDoc,
+        projectCode,
+        workspaceTab,
+        previewKind,
+        extension: selectedExt,
+        previewText,
+        categoryLabel,
+      }),
+    [selectedDoc, projectCode, workspaceTab, previewKind, selectedExt, previewText, categoryLabel]
+  );
+
+  const expandedPreviewMetadata = useMemo(
+    () =>
+      buildExpandedPreviewMetadata({
+        doc: selectedDoc,
+        path: selectedDoc?.path,
+        previewKind,
+        extension: selectedExt,
+        previewText,
+        assetUrl,
+        extra: {
+          project: projectCode,
+          tab: workspaceTab,
+          category: categoryLabel,
+        },
+      }),
+    [
+      selectedDoc,
+      previewKind,
+      selectedExt,
+      previewText,
+      assetUrl,
+      projectCode,
+      workspaceTab,
+      categoryLabel,
+    ]
+  );
+
+  const metadataCompleteness = useMemo(
+    () => computePreviewMetadataScore(selectedDoc, previewText || rawFilePreview?.content),
+    [selectedDoc, previewText, rawFilePreview?.content]
+  );
+
+  const previewBadges = useMemo(() => {
+    const items = [];
+    if (previewKind) items.push(prettifyPreviewLabel(previewKind));
+    if (selectedDoc?.isResearchMaterial) items.push('Research material');
+    const sourceBadge = selectedDoc ? documentViewBadge(selectedDoc, selectedExt) : null;
+    if (sourceBadge) items.push(sourceBadge);
+    return items;
+  }, [previewKind, selectedDoc, selectedExt]);
+
   const contentRoot = twin?.content_root || twin?.folder_path || null;
 
   if (!twin) {
@@ -317,7 +384,7 @@ export default function ProjectDocumentsBrowser({
         <div className="lab-docs-section-main">
 
           <div
-            className={`pfb-layout lab-docs-layout lab-docs-layout--compact lab-docs-layout--project${selectedDoc ? ' pfb-layout--editor-focus pfb-layout--doc-full' : ''}`}
+            className={`pfb-layout lab-docs-layout lab-docs-layout--compact lab-docs-layout--project${selectedDoc ? ' pfb-layout--editor-focus pfb-layout--doc-full' : ''}${viewerExpanded ? ' pfb-layout--viewer-expanded' : ''}`}
           >
             <div className="pfb-column pfb-files-pane lab-doc-files-panel">
               <DocumentCategoryFileList
@@ -340,6 +407,7 @@ export default function ProjectDocumentsBrowser({
             </p>
           ) : (
             <DocumentPreviewPane
+              onExpandChange={setViewerExpanded}
               onBackToFiles={() => setSelectedPath(null)}
               title={resolveDocumentTitle(selectedDoc)}
               path={selectedDoc.path}
@@ -384,13 +452,8 @@ export default function ProjectDocumentsBrowser({
                       fileName: selectedDoc.name,
                       sectionLabel: selectedDoc.section_label,
                       initialContent: previewText,
-                      onSaved: () => {},
+                      onSaved: isProjectReadmePath(selectedDoc.path) ? onReadmeSaved : undefined,
                     }
-                  : null
-              }
-              editorHint={
-                isProjectLogFile(selectedDoc.path)
-                  ? t('docs.taskpadEditorHint')
                   : null
               }
               spreadsheetPreview={isSpreadsheet ? spreadsheetPreview : null}
@@ -416,26 +479,19 @@ export default function ProjectDocumentsBrowser({
                   fileName: selectedDoc?.name || selectedDoc?.title,
                 })
               }
+              metadataItems={previewMetadataItems}
+              expandedMetadataItems={expandedPreviewMetadata}
+              metadataCompleteness={metadataCompleteness}
+              badges={previewBadges}
+              exportLocal={{
+                filename: selectedDoc?.name || selectedDoc?.title,
+                title: resolveDocumentTitle(selectedDoc),
+                text: previewText || rawFilePreview?.content,
+                metadata: selectedDoc,
+                originalUrl: assetUrl,
+              }}
               actions={
                 <>
-                  {isProjectLogFile(selectedDoc.path) ? (
-                    <button
-                      type="button"
-                      className="btn btn-primary btn-sm"
-                      onClick={() =>
-                        openProjectLogTaskpad({
-                          ...selectedDoc,
-                          projectCode,
-                          excerpt:
-                            getProjectLogContentFromTwin(twin, selectedDoc)?.content ||
-                            selectedDoc.excerpt ||
-                            '',
-                        })
-                      }
-                    >
-                      {t('docs.editInTaskpad')}
-                    </button>
-                  ) : null}
                   {assetUrl ? (
                     <a
                       href={assetUrl}

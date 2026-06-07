@@ -14,8 +14,15 @@ import {
   Tag,
 } from 'lucide-react';
 import DocumentFormatter from './DocumentFormatter.jsx';
+import DocumentExportMenu from './DocumentExportMenu.jsx';
+import DocumentProofreadPanel from './DocumentProofreadPanel.jsx';
+import MediaViewer from './MediaViewer.jsx';
+import { getMediaPreviewKind } from '../utils/mediaPreviewKind.js';
+import { DocumentViewerExpandButton, DocumentViewerExpandPortal } from './DocumentViewerExpand.jsx';
 import { useTaskpad } from '../contexts/TaskpadContext.jsx';
 import './DocumentViewer.css';
+import './DocumentExportMenu.css';
+import './DocumentViewerExpand.css';
 
 function normalizeDocumentId(documentId) {
   const value = String(documentId || '')
@@ -115,6 +122,7 @@ function MetaItem({ icon, label, value }) {
 
 export default function DocumentViewer({ documentId }) {
   const [doc, setDoc] = useState(null);
+  const [viewerExpanded, setViewerExpanded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [reloadKey, setReloadKey] = useState(0);
@@ -127,6 +135,10 @@ export default function DocumentViewer({ documentId }) {
   const documentUrl = useMemo(() => {
     if (!documentPath) return null;
     return `/database/docs/${documentPath}.json`;
+  }, [documentPath]);
+
+  useEffect(() => {
+    setViewerExpanded(false);
   }, [documentPath]);
 
   useEffect(() => {
@@ -318,8 +330,91 @@ export default function DocumentViewer({ documentId }) {
 
   if (!doc) return null;
 
+  const rawExtension = classification.extension || '';
+  const extension = rawExtension
+    ? (rawExtension.startsWith('.') ? rawExtension : `.${rawExtension}`).toLowerCase()
+    : (doc.filename?.match(/\.[^.]+$/i)?.[0] || '').toLowerCase();
+  const mediaKind = getMediaPreviewKind(extension);
+  const mediaUrl = mediaKind && relativePath
+    ? `/database-static/${relativePath.split('/').map(encodeURIComponent).join('/')}`
+    : null;
+  const hasMedia = Boolean(mediaKind && mediaUrl);
+
+  const documentBody = hasMedia ? (
+    <div className="document-viewer-media">
+      <MediaViewer
+        url={mediaUrl}
+        title={displayTitle}
+        kind={mediaKind}
+        labels={{
+          loading: 'Loading image…',
+          failed: 'Could not load image.',
+          videoLoading: 'Loading video…',
+          videoFailed: 'Could not load video.',
+        }}
+      />
+    </div>
+  ) : doc.full_text ? (
+    <>
+      <div className="kindle-doc-scroll academic-manuscript doc-preview-prose">
+        <DocumentFormatter text={doc.full_text} onCreateTask={handleCreateTask} preferProse />
+      </div>
+      <DocumentProofreadPanel content={doc.full_text} className="doc-preview-proofread" />
+    </>
+  ) : (
+    <div className="document-viewer-no-text">
+      <FileText size={52} aria-hidden="true" />
+      <h3>No readable text extracted</h3>
+      <p>
+        This file may be binary, image-based, encrypted, unsupported, or missing text
+        from the static extraction output.
+      </p>
+    </div>
+  );
+
+  const headerActions = (
+    <>
+      {(doc.full_text || hasMedia) ? (
+        <DocumentViewerExpandButton
+          expanded={viewerExpanded}
+          onToggle={() => setViewerExpanded((value) => !value)}
+        />
+      ) : null}
+      <DocumentExportMenu
+        local={{
+          filename: doc?.filename || displayTitle,
+          title: displayTitle,
+          text: doc?.full_text,
+          metadata: metadata,
+          originalUrl: relativePath ? `/database-static/${relativePath}` : null,
+        }}
+      />
+      {relativePath && (
+        <button
+          type="button"
+          className="document-viewer-icon-btn"
+          onClick={handleCopyPath}
+          title={copied ? 'Copied path' : 'Copy document path'}
+          aria-label={copied ? 'Copied document path' : 'Copy document path'}
+        >
+          {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+        </button>
+      )}
+      <button
+        type="button"
+        className="document-viewer-icon-btn"
+        onClick={handleRetry}
+        title="Reload document"
+        aria-label="Reload document"
+      >
+        <RefreshCw size={16} aria-hidden="true" />
+      </button>
+    </>
+  );
+
   return (
-    <article className="notebook-page document-viewer" aria-labelledby="document-viewer-title">
+    <>
+    <article className={`notebook-page document-viewer${viewerExpanded ? ' document-viewer--hidden' : ''}`} aria-labelledby="document-viewer-title">
       <header className="notebook-page-header document-viewer-header">
         <div className="notebook-page-header-main">
           <div className="notebook-page-title-row">
@@ -341,27 +436,7 @@ export default function DocumentViewer({ documentId }) {
         </div>
 
         <div className="document-viewer-actions" aria-label="Document actions">
-          {relativePath && (
-            <button
-              type="button"
-              className="document-viewer-icon-btn"
-              onClick={handleCopyPath}
-              title={copied ? 'Copied path' : 'Copy document path'}
-              aria-label={copied ? 'Copied document path' : 'Copy document path'}
-            >
-              {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
-            </button>
-          )}
-
-          <button
-            type="button"
-            className="document-viewer-icon-btn"
-            onClick={handleRetry}
-            title="Reload document"
-            aria-label="Reload document"
-          >
-            <RefreshCw size={16} aria-hidden="true" />
-          </button>
+          {headerActions}
         </div>
       </header>
 
@@ -397,23 +472,18 @@ export default function DocumentViewer({ documentId }) {
         </section>
       )}
 
-      <section className="notebook-page-body document-viewer-body">
-        {doc.full_text ? (
-          <DocumentFormatter
-            text={doc.full_text}
-            onCreateTask={handleCreateTask}
-          />
-        ) : (
-          <div className="document-viewer-no-text">
-            <FileText size={52} aria-hidden="true" />
-            <h3>No readable text extracted</h3>
-            <p>
-              This file may be binary, image-based, encrypted, unsupported, or missing text
-              from the static extraction output.
-            </p>
-          </div>
-        )}
-      </section>
+      <section className="notebook-page-body document-viewer-body">{documentBody}</section>
     </article>
+
+    <DocumentViewerExpandPortal
+      expanded={viewerExpanded}
+      onClose={() => setViewerExpanded(false)}
+      title={displayTitle}
+      subtitle={relativePath}
+      headerActions={headerActions}
+    >
+      <div className="document-viewer-body document-viewer-body--expanded">{documentBody}</div>
+    </DocumentViewerExpandPortal>
+    </>
   );
 }

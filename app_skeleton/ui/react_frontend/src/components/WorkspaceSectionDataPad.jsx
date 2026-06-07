@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { HardDrive, Lock } from 'lucide-react';
-import DataPadEditor from './DataPadEditor.jsx';
+import LazyDataPadEditor from './LazyDataPadEditor.jsx';
 import {
   listWorkspaceTabEditableFiles,
   resolveWorkspaceTabPrimaryFile,
@@ -8,6 +8,7 @@ import {
 } from '../utils/workspaceDatapadUtils.js';
 import { getProjectLogContentFromTwin } from '../utils/projectLogContent.js';
 import { isProjectLogFile } from '../utils/projectLogUtils.js';
+import { isProjectReadmePath } from '../utils/projectReadmeUtils.js';
 import { useGuiT } from '../i18n/useGuiT.js';
 
 export default function WorkspaceSectionDataPad({
@@ -17,6 +18,7 @@ export default function WorkspaceSectionDataPad({
   workspaceTab,
   lockFile = false,
   preferredPath = null,
+  onReadmeSaved,
 }) {
   const { t } = useGuiT();
   const editableFiles = useMemo(
@@ -127,7 +129,7 @@ export default function WorkspaceSectionDataPad({
         )}
       </header>
 
-      <DataPadEditor
+      <LazyDataPadEditor
         key={`${projectCode}:${activeFile.path}:${twin?.processed_at || ''}`}
         projectCode={projectCode}
         relativePath={activeFile.path}
@@ -136,6 +138,11 @@ export default function WorkspaceSectionDataPad({
         initialContent={initialLogContent}
         defaultEditMode
         editorHeight="min(52vh, 520px)"
+        onSaved={
+          isProjectReadmePath(activeFile.path) && onReadmeSaved
+            ? onReadmeSaved
+            : undefined
+        }
       />
     </section>
   );

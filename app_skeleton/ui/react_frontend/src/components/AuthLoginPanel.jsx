@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { mapFirebaseAuthError, signInEmailPassword } from '../config/firebase.js';
 import { useApiContext } from '../api/ApiContext.jsx';
 

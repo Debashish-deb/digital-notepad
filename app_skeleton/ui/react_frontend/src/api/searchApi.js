@@ -18,6 +18,17 @@ export async function fetchUnifiedSearch({
   projectCode,
   sectionId,
   limit = 25,
+  category,
+  smartChip,
+  domainTab,
+  systemView,
+  fileType,
+  dateFrom,
+  dateTo,
+  indexedStatus,
+  filterProjectCodes,
+  filterSectionId,
+  sourceBuckets,
   signal,
 }) {
   const params = buildUnifiedSearchParams({
@@ -27,6 +38,17 @@ export async function fetchUnifiedSearch({
     projectCode,
     sectionId,
     limit,
+    category,
+    smartChip,
+    domainTab,
+    systemView,
+    fileType,
+    dateFrom,
+    dateTo,
+    indexedStatus,
+    filterProjectCodes,
+    filterSectionId,
+    sourceBuckets,
   });
   const { signal: mergedSignal, release } = unifiedSearchCoordinator.next(signal);
   try {

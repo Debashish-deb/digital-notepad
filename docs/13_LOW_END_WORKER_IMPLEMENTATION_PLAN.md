@@ -350,7 +350,7 @@
 ```bash
 cd farkki_ai_platform_blueprint
 .venv-local/bin/python -m unittest tests.test_lab_storage_api -v
-.venv-local/bin/python scripts/validate_platform.py http://127.0.0.1:8000
+.venv-local/bin/python scripts/ops/validate_platform.py http://127.0.0.1:8000
 ```
 
 ---

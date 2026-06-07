@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function MetricCard({ label, value, variant = 'primary' }) {
   let variantClass = '';

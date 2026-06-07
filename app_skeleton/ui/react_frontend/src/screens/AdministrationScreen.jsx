@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Activity, Shield } from 'lucide-react';
+import { Activity, Image, Shield } from 'lucide-react';
 import AuthLoginPanel from '../components/AuthLoginPanel.jsx';
 import { apiGet, apiPost } from '../api/client.js';
 import { useApiContext } from '../api/ApiContext.jsx';
@@ -163,6 +163,24 @@ export default function AdministrationScreen({ title, description, onNavigate })
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div>
+            <h4 className="text-title-3" style={{ borderBottom: '1px solid var(--color-border)', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
+              <Image size={16} style={{ verticalAlign: 'middle', marginRight: '0.25rem' }} /> Image streaming
+            </h4>
+            <p className="text-footnote muted" style={{ marginBottom: '0.5rem' }}>
+              TIFF/OME-TIFF readiness dashboard — inspect metadata, thumbnails, and tile API coverage.
+            </p>
+            {onNavigate ? (
+              <button
+                type="button"
+                className="btn btn-sm btn-secondary"
+                onClick={() => onNavigate('profile', 'image_streaming_admin')}
+              >
+                Open readiness dashboard
+              </button>
+            ) : null}
           </div>
 
           <div>

@@ -407,6 +407,278 @@ def _role_from_hint(hint: str) -> str:
     return hint[:120]
 
 
+def _clean_multiline(text: str) -> str:
+    text = re.sub(r"\[\[([^\]]+)\]\]\([^)]+\)", r"\1", text or "")
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"\*{1,2}([^*]+)\*{1,2}", r"\1", text)
+    lines: list[str] = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line or line.startswith("!["):
+            continue
+        lines.append(line)
+    return "\n\n".join(lines).strip()
+
+
+def _person_name_token(raw: str) -> str:
+    raw = _clean((raw or "").replace("**", ""))
+    if not raw:
+        return ""
+    base = raw.split("(")[0].split(",")[0].strip()
+    return _clean(base)
+
+
+_README_SECTION_STOP = (
+    r"(?:\n\s*(?:\*{0,2})?(?:Project\s+(?:lead|members?|leader)|External\s+collaborators?|Members\s+of\s+the\s+project)"
+    r"|\n\s*(?:\*{0,2})?(?:Project\s+Log|Logbook|Changelog|Updates?|Meeting\s+(?:notes?|log))"
+    r"|\n#{1,3}\s|\Z)"
+)
+
+_README_LOG_START = re.compile(
+    r"(?:^|\n)\s*(?:#{1,3}\s*)?\*{0,2}(?:Project\s+Log|Logbook|Changelog|Updates?|Meeting\s+(?:notes?|log))\*{0,2}\s*:?\s*(?:\n|$)",
+    re.I,
+)
+
+_PERSONNEL_LINE = re.compile(
+    r"^\s*(?:\*{0,2})?(?:Project\s+(?:lead|members?|leader)|Principal\s+investigator|PI|Members\s+of\s+the\s+project|External\s+collaborators?)\b",
+    re.I,
+)
+
+
+def _format_intro_prose(text: str) -> str:
+    """Collapse soft line wraps into paragraphs; keep intentional blank-line breaks."""
+    paragraphs: list[str] = []
+    current: list[str] = []
+    for raw in (text or "").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("!["):
+            if current:
+                paragraphs.append(" ".join(current))
+                current = []
+            continue
+        line = re.sub(r"\*{1,2}([^*]+)\*{1,2}", r"\1", line)
+        line = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", line)
+        if _PERSONNEL_LINE.match(line):
+            if current:
+                paragraphs.append(" ".join(current))
+                current = []
+            continue
+        current.append(line)
+    if current:
+        paragraphs.append(" ".join(current))
+    if not paragraphs:
+        return ""
+    if len(paragraphs) > 2 and (sum(len(p) for p in paragraphs) / len(paragraphs)) < 110:
+        return " ".join(paragraphs).strip()
+    return "\n\n".join(p for p in paragraphs if p).strip()
+
+
+def _dedupe_description_blocks(text: str) -> str:
+    """Drop repeated **Description:** tails that duplicate the opening narrative."""
+    if not text:
+        return ""
+    parts = re.split(r"\s*\*{0,2}Description\s*:\s*\*{0,2}\s*", text, flags=re.I)
+    if len(parts) <= 1:
+        return text.strip()
+    head = parts[0].strip()
+    for tail in parts[1:]:
+        tail = tail.strip()
+        if not tail:
+            continue
+        if head and tail.lower().startswith(head[: min(len(head), 120)].lower()):
+            continue
+        if len(tail) > len(head) + 40:
+            return head
+    return head
+
+
+def _strip_cover_tail_sections(text: str) -> str:
+    """Remove log, team, and heading blocks that belong outside the cover narrative."""
+    if not text:
+        return ""
+    cut = _README_LOG_START.search(text)
+    if cut:
+        text = text[: cut.start()].strip()
+    for marker in (
+        r"\n\s*(?:\*{0,2})?Project\s+(?:lead|members?|leader)\b",
+        r"\n\s*(?:\*{0,2})?Members\s+of\s+the\s+project\b",
+        r"\n\s*(?:\*{0,2})?External\s+collaborators?\b",
+        r"\n#{1,3}\s",
+    ):
+        m = re.search(marker, text, re.I)
+        if m:
+            text = text[: m.start()].strip()
+    return text
+
+
+def _sanitize_cover_summary(text: str) -> str:
+    text = _strip_cover_tail_sections(text)
+    text = _dedupe_description_blocks(text)
+    text = _format_intro_prose(text)
+    return text.strip()
+
+
+def _format_log_body(text: str) -> str:
+    lines: list[str] = []
+    for raw in (text or "").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("!["):
+            continue
+        line = re.sub(r"\*{1,2}([^*]+)\*{1,2}", r"\1", line)
+        lines.append(line)
+    return "\n".join(lines).strip()
+
+
+def _extract_readme_log(text: str) -> str:
+    if not text:
+        return ""
+    patterns = (
+        r"(?:^|\n)\s*#{1,3}\s*\*{0,2}Project\s+Log\*{0,2}[^\n]*\n+(.*?)(?:\n#{1,3}\s|\Z)",
+        r"(?:^|\n)\s*\*{0,2}Project\s+Log\*{0,2}\s*:?\s*\n+(.*?)(?:\n\s*(?:\*{0,2})?(?:Project\s+(?:lead|members?)|#{1,3}\s)|\Z)",
+        r"(?:^|\n)\s*#{1,3}\s*\*{0,2}(?:Logbook|Changelog|Updates?)\*{0,2}[^\n]*\n+(.*?)(?:\n#{1,3}\s|\Z)",
+    )
+    for pattern in patterns:
+        match = re.search(pattern, text, re.I | re.S)
+        if not match:
+            continue
+        body = _format_log_body(match.group(1))
+        if len(body) >= 20:
+            return body[:12000]
+    return ""
+
+
+def _extract_readme_intro(text: str) -> str:
+    if not text:
+        return ""
+    patterns = (
+        r"\*{0,2}Project\s+introduction\*{0,2}\s*:?\s*\n+(.*?)" + _README_SECTION_STOP,
+        r"(\*{0,2}Welcome to[^\n*]+?\*{0,2}\s*\n+.*?)" + _README_SECTION_STOP,
+        r"((?:The objective|The aim|This project|We aim)[^\n]{20,}.*?)" + _README_SECTION_STOP,
+    )
+    for pattern in patterns:
+        match = re.search(pattern, text, re.I | re.S)
+        if not match:
+            continue
+        intro = _sanitize_cover_summary(match.group(1))
+        if len(intro) >= 80:
+            return intro[:2200]
+    return ""
+
+
+def _catalog_summary_is_stub(summary: str) -> bool:
+    summary = (summary or "").strip()
+    if not summary or len(summary) < 60:
+        return True
+    low = summary.lower()
+    if low.startswith(("aim is to", "the aim is", "the aim of")) and len(summary) < 180:
+        return True
+    return False
+
+
+def _resolve_project_summary(
+    catalog: dict[str, Any],
+    priority_text: str,
+    combined_text: str,
+) -> tuple[str, str]:
+    catalog_summary = (catalog.get("project_summary") or "").strip()
+    catalog_rq = (catalog.get("research_question") or "").strip()
+    readme_intro = _extract_readme_intro(priority_text)
+    guessed = de._guess_project_summary(priority_text or combined_text)
+
+    summary = catalog_summary
+    if readme_intro and (
+        _catalog_summary_is_stub(catalog_summary) or len(readme_intro) > len(catalog_summary) + 40
+    ):
+        summary = readme_intro
+    elif not summary:
+        summary = _sanitize_cover_summary(guessed)
+    else:
+        summary = _sanitize_cover_summary(summary)
+
+    research_question = catalog_rq
+    if research_question and summary and research_question.lower() == summary.lower():
+        research_question = ""
+    elif research_question and len(research_question) < 24 and summary:
+        research_question = ""
+    return summary, research_question
+
+
+def _append_person(
+    personnel: list[dict[str, Any]],
+    name: str,
+    role: str,
+) -> None:
+    name = _person_name_token(name)
+    if not _is_valid_person_name(name):
+        return
+    role = _role_from_hint(role) if role else "Team member"
+    personnel.append({"name": name, "role": role, "focus": role})
+
+
+def _parse_comma_member_list(segment: str, default_role: str = "Team member") -> list[dict[str, Any]]:
+    personnel: list[dict[str, Any]] = []
+    for part in re.split(r",|\band\b", segment):
+        _append_person(personnel, part, default_role)
+    return personnel
+
+
+def _parse_project_lead_lines(text: str) -> list[dict[str, Any]]:
+    personnel: list[dict[str, Any]] = []
+    for match in re.finditer(
+        r"(?:^|\n)\s*\*{0,2}Project\s+lead(?:er)?\*{0,2}\s*:?\s*(.+?)\s*(?:\n|$)",
+        text,
+        re.I,
+    ):
+        raw = match.group(1).strip()
+        name = _person_name_token(raw)
+        role = "Project lead"
+        paren = re.search(r"\(([^)]+)\)", raw)
+        if paren:
+            role = _role_from_hint(paren.group(1)) or role
+        if _is_valid_person_name(name):
+            personnel.insert(0, {"name": name, "role": role, "focus": role})
+    return personnel
+
+
+def _parse_project_members_section(text: str) -> list[dict[str, Any]]:
+    personnel: list[dict[str, Any]] = []
+    inline = re.search(
+        r"(?:\*{0,2})?Project\s+members?\s*(?:\([^)]*\))?\s*:?\s*\*{0,2}\s*([^\n]+)",
+        text,
+        re.I,
+    )
+    if inline:
+        tail = inline.group(1).strip()
+        if tail and not tail.endswith(":"):
+            personnel.extend(_parse_comma_member_list(tail))
+
+    block = re.search(
+        r"(?:\*{0,2})?Project\s+members?\s*(?:\([^)]*\))?\s*:?\s*\*{0,2}\s*\n(.*?)"
+        + _README_SECTION_STOP,
+        text,
+        re.I | re.S,
+    )
+    if not block:
+        return personnel
+
+    for line in block.group(1).splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        bullet = re.match(r"^[-*]\s+\*?(.+?)\*?\s*$", line)
+        if bullet:
+            inner = bullet.group(1).strip()
+            name_m = re.match(r"^([^(]+?)(?:\s*\(([^)]+)\))?\s*$", inner)
+            if name_m:
+                _append_person(personnel, name_m.group(1), name_m.group(2) or "Team member")
+            continue
+        if ":" in line:
+            left, right = line.split(":", 1)
+            if _is_valid_person_name(_person_name_token(left)):
+                _append_person(personnel, left, right)
+    return personnel
+
+
 def _parse_members_of_project(text: str) -> list[dict[str, Any]]:
     personnel: list[dict[str, Any]] = []
     block = re.search(
@@ -446,6 +718,8 @@ def _parse_members_of_project(text: str) -> list[dict[str, Any]]:
 def _parse_personnel(text: str) -> list[dict[str, Any]]:
     personnel: list[dict[str, Any]] = []
 
+    personnel.extend(_parse_project_lead_lines(text))
+    personnel.extend(_parse_project_members_section(text))
     personnel.extend(_parse_members_of_project(text))
 
     personnel_section = re.search(
@@ -524,12 +798,6 @@ def _parse_personnel(text: str) -> list[dict[str, Any]]:
             part = _clean(part)
             if _is_valid_person_name(part):
                 personnel.append({"name": part, "role": "Owner", "focus": "Owner"})
-
-    lead = re.search(r"Project leader:?\s*(.+)", text, re.I)
-    if lead:
-        name = _clean(lead.group(1).split(",")[0])
-        if _is_valid_person_name(name):
-            personnel.insert(0, {"name": name, "role": "Project lead", "focus": "Project lead"})
 
     deduped: list[dict[str, Any]] = []
     seen: set[str] = set()
@@ -965,8 +1233,12 @@ def process_project(project_code: str, catalog_entry: dict | None = None) -> dic
 
     catalog_lead, catalog_collabs, catalog_personnel = _personnel_from_catalog(catalog)
     priority_text = _priority_doc_text(file_inventory, folder)
-    doc_lead, doc_collabs, doc_responsible = _extract_responsible_from_text(priority_text or combined_text)
-    parsed_personnel = _parse_personnel(priority_text + "\n" + combined_text)
+    doc_lead, doc_collabs, doc_responsible = _extract_responsible_from_text(priority_text or "")
+    if not doc_lead and not doc_collabs:
+        doc_lead, doc_collabs, doc_responsible = _extract_responsible_from_text(combined_text[:25000])
+    parsed_personnel = _parse_personnel(priority_text)
+    if len(parsed_personnel) < 2:
+        parsed_personnel = _merge_personnel(parsed_personnel, _parse_personnel(combined_text[:40000]))
 
     lead = doc_lead or catalog_lead
     collaborators = list(dict.fromkeys(
@@ -1019,17 +1291,21 @@ def process_project(project_code: str, catalog_entry: dict | None = None) -> dic
             if p["name"].lower() != (lead or "").lower()
             and p.get("role") != "Project lead"
         ][:20]
+    if doc_responsible and NON_PERSON_NAME_RE.search(doc_responsible):
+        doc_responsible = ""
     if doc_responsible and "(" not in doc_responsible and collaborators:
         responsible_display = _responsible_display(lead, collaborators)
     else:
         responsible_display = doc_responsible or _responsible_display(lead, collaborators)
     if not responsible_display and personnel:
-        responsible_display = personnel[0]["name"]
+        responsible_display = _responsible_display(lead, collaborators) or personnel[0]["name"]
 
     pi = (catalog.get("principal_investigator") or "").strip() or LAB_PI
     project_lead = lead or (personnel[0]["name"] if personnel else "")
     if project_lead.upper() == "TBD":
         project_lead = ""
+
+    project_summary, research_question = _resolve_project_summary(catalog, priority_text, combined_text)
 
     identity = {
         "project_code": project_code,
@@ -1042,10 +1318,8 @@ def process_project(project_code: str, catalog_entry: dict | None = None) -> dic
         "category": catalog.get("category", ""),
         "category_label": catalog.get("category_label", ""),
         "priority": catalog.get("priority", "medium"),
-        "research_question": (catalog.get("research_question") or "").strip()
-            or de._guess_project_summary(priority_text or combined_text)[:500],
-        "project_summary": (catalog.get("project_summary") or "").strip()
-            or de._guess_project_summary(priority_text or combined_text),
+        "research_question": research_question,
+        "project_summary": project_summary,
         "timeline": (catalog.get("timeline") or "").strip() or (timeline_range.group(0) if timeline_range else ""),
         "responsible": responsible_display,
     }
@@ -1270,9 +1544,17 @@ def normalize_twin(data: dict[str, Any]) -> dict[str, Any]:
 
 def sync_public_processed(project_code: str | None = None) -> int:
     """Copy processed JSON twins to React public/processed for offline fallback."""
+    from app_skeleton.api.data_layout import iter_lab_processed_files
+
     PUBLIC_PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     count = 0
-    sources = [PROCESSED_DIR / f"{project_code}.json"] if project_code else sorted(PROCESSED_DIR.glob("*.json"))
+    if project_code:
+        sources = [PROCESSED_DIR / f"{project_code}.json"]
+    else:
+        sources = list(iter_lab_processed_files()) + [
+            p for p in sorted(PROCESSED_DIR.glob("*.json"))
+            if not p.name.startswith("lab__")
+        ]
     for src in sources:
         if not src.exists():
             continue
@@ -1280,6 +1562,129 @@ def sync_public_processed(project_code: str | None = None) -> int:
         dest.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
         count += 1
     return count
+
+
+_PROJECT_LOG_RE = re.compile(r"project[_\s-]?log", re.I)
+
+
+def _find_project_log_rel_path(project_code: str, twin: dict[str, Any] | None = None) -> str | None:
+    twin = twin or load_processed(project_code)
+    candidates: list[tuple[int, str]] = []
+
+    def score(path: str) -> int:
+        ext = Path(path).suffix.lower()
+        if ext == ".md":
+            return 0
+        if ext == ".txt":
+            return 1
+        if ext in {".html", ".rtf"}:
+            return 2
+        return 3
+
+    def consider(path: str | None) -> None:
+        if not path:
+            return
+        norm = str(path).replace("\\", "/").lstrip("./")
+        base = norm.split("/")[-1]
+        if _PROJECT_LOG_RE.search(base):
+            candidates.append((score(norm), norm))
+
+    if twin:
+        for entry in twin.get("document_index") or []:
+            consider(entry.get("path") or entry.get("relative_path"))
+        for row in (twin.get("data_assets") or {}).get("folder_tree") or []:
+            consider(row.get("path") or row.get("relative_path") or row.get("name"))
+        for section in (twin.get("content_library") or {}).get("sections") or []:
+            for key in ("documents", "text_files", "data_files"):
+                for item in section.get(key) or []:
+                    consider(item.get("path"))
+
+    root = get_content_root(project_code)
+    if root and root.is_dir():
+        for hit in root.rglob("*"):
+            if not hit.is_file():
+                continue
+            if _PROJECT_LOG_RE.search(hit.name):
+                try:
+                    consider(str(hit.relative_to(root)).replace("\\", "/"))
+                except ValueError:
+                    continue
+
+    if not candidates:
+        return None
+    candidates.sort(key=lambda item: (item[0], len(item[1])))
+    return candidates[0][1]
+
+
+def sync_readme_log_to_file(project_code: str, readme_text: str, *, twin: dict[str, Any] | None = None) -> str | None:
+    """Move README log sections into the project log file; returns relative log path if written."""
+    log_body = _extract_readme_log(readme_text)
+    if not log_body:
+        return None
+    twin = twin or load_processed(project_code)
+    rel = _find_project_log_rel_path(project_code, twin)
+    root = get_content_root(project_code)
+    if not root or not root.is_dir():
+        return None
+    if not rel:
+        rel = "Project_log.md"
+    try:
+        abs_path = safe_relative_path(root, rel)
+    except ValueError:
+        return None
+    if abs_path.suffix.lower() not in TEXT_EXTENSIONS:
+        rel = "Project_log.md"
+        abs_path = safe_relative_path(root, rel)
+    abs_path.parent.mkdir(parents=True, exist_ok=True)
+    content = f"# Project Log\n\n{log_body.rstrip()}\n"
+    abs_path.write_text(content, encoding="utf-8")
+    return rel
+
+
+def sync_readme_identity_from_text(project_code: str, readme_text: str) -> dict[str, Any]:
+    """Refresh cover-board identity and team roster from README without a full reprocess."""
+    twin = load_processed(project_code)
+    if not twin:
+        twin = normalize_twin(process_project(project_code))
+    sync_readme_log_to_file(project_code, readme_text, twin=twin)
+    catalog = _load_catalog().get(project_code, {})
+    summary, research_question = _resolve_project_summary(catalog, readme_text, "")
+    parsed_personnel = _parse_personnel(readme_text)
+    doc_lead, doc_collabs, _doc_responsible = _extract_responsible_from_text(readme_text)
+    lead = doc_lead or (
+        (parsed_personnel[0]["name"] if parsed_personnel and parsed_personnel[0].get("role") == "Project lead" else "")
+    )
+    catalog_lead, catalog_collabs, catalog_personnel = _personnel_from_catalog(catalog)
+    if not lead:
+        lead = catalog_lead
+    collaborators = list(dict.fromkeys(
+        [c for c in catalog_collabs + doc_collabs if _is_valid_person_name(c)]
+    ))
+    personnel = _merge_personnel(catalog_personnel, parsed_personnel)
+    if lead:
+        personnel = _merge_personnel(
+            [{"name": lead, "role": "Project lead", "focus": "Project lead"}],
+            personnel,
+        )
+    for c in collaborators:
+        personnel = _merge_personnel(
+            [{"name": c, "role": "Collaborator", "focus": "Collaborator"}],
+            personnel,
+        )
+
+    identity = dict(twin.get("identity") or {})
+    identity["project_summary"] = summary
+    identity["research_question"] = research_question
+    if lead:
+        identity["project_lead"] = lead
+    identity["responsible"] = _responsible_display(lead, collaborators) or lead or identity.get("responsible", "")
+
+    twin["identity"] = identity
+    twin["personnel"] = personnel
+    twin["readme_synced_at"] = datetime.now(timezone.utc).isoformat()
+    normalized = normalize_twin(twin)
+    save_processed(project_code, normalized)
+    return normalized
 
 
 def save_processed(project_code: str, data: dict | None = None) -> Path:
@@ -1311,6 +1716,63 @@ def get_digital_twin(project_code: str, refresh: bool = False) -> dict[str, Any]
     data = normalize_twin(process_project(project_code))
     save_processed(project_code, data)
     return data
+
+
+README_DEFAULT_CONTENT = "Welcome to the project, start your readme file here."
+
+
+def _readme_exists_on_disk(root: Path) -> str | None:
+    for name in ("README.md", "readme.md", "README.txt", "readme.txt"):
+        if (root / name).is_file():
+            return name
+    return None
+
+
+def _twin_has_readme(twin: dict[str, Any] | None) -> bool:
+    for entry in (twin or {}).get("document_index") or []:
+        path = (entry.get("path") or entry.get("relative_path") or "").strip()
+        if not path:
+            continue
+        base = path.split("/")[-1].lower()
+        if base.startswith("readme."):
+            return True
+    return False
+
+
+def ensure_project_readme(project_code: str) -> dict[str, Any]:
+    """Create README.md at the project content root when no readme is indexed."""
+    root = get_content_root(project_code)
+    if not root or not root.is_dir():
+        raise FileNotFoundError("Project folder not found on disk.")
+
+    existing = _readme_exists_on_disk(root)
+    if existing:
+        return {
+            "created": False,
+            "project_code": project_code,
+            "relative_path": existing,
+            "reason": "exists_on_disk",
+        }
+
+    twin = load_processed(project_code)
+    if _twin_has_readme(twin):
+        return {
+            "created": False,
+            "project_code": project_code,
+            "reason": "exists_in_index",
+        }
+
+    rel = "README.md"
+    abs_path = root / rel
+    abs_path.write_text(f"{README_DEFAULT_CONTENT}\n", encoding="utf-8")
+    refreshed = get_digital_twin(project_code, refresh=True)
+    return {
+        "created": True,
+        "project_code": project_code,
+        "relative_path": rel,
+        "content": README_DEFAULT_CONTENT,
+        "twin": refreshed,
+    }
 
 
 def update_digital_twin(project_code: str, payload: dict[str, Any]) -> dict[str, Any]:

@@ -1,4 +1,3 @@
-import React from 'react';
 import { splitHighlightedText } from '../../utils/highlightText.js';
 
 export default function HighlightedSnippet({ text, query, className = 'search-item-body clamped' }) {

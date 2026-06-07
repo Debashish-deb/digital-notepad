@@ -24,7 +24,9 @@ import {
   saveDatapadDocument,
   suggestDatapadHeadings,
 } from '../api/datapad.js';
+import DocumentFormatter from './DocumentFormatter.jsx';
 import { inferExtension } from '../utils/fileTypeMeta.js';
+import { isProjectReadmePath } from '../utils/projectReadmeUtils.js';
 
 const EDITABLE_EXTS = new Set(['.md', '.txt', '.html', '.rtf']);
 
@@ -99,8 +101,14 @@ export default function DataPadEditor({
   const [headingPreview, setHeadingPreview] = useState(null);
   const editorRef = useRef(null);
 
-  const handleEditorDidMount = (editor, monaco) => {
+  const handleEditorDidMount = (editor) => {
     editorRef.current = editor;
+    const domNode = editor.getDomNode?.();
+    if (domNode) {
+      domNode.setAttribute('spellcheck', 'true');
+      const textarea = domNode.querySelector('textarea.inputarea, textarea');
+      if (textarea) textarea.setAttribute('spellcheck', 'true');
+    }
   };
 
   const dirty = draft !== saved;
@@ -170,6 +178,18 @@ export default function DataPadEditor({
           },
         })
       );
+      if (isProjectReadmePath(relativePath)) {
+        window.dispatchEvent(
+          new CustomEvent('project-readme-updated', {
+            detail: {
+              projectCode,
+              relativePath,
+              content: draft,
+              identitySynced: Boolean(res.identity_synced),
+            },
+          })
+        );
+      }
       await loadDocument();
     } catch (e) {
       if (e.status === 409) {
@@ -385,11 +405,19 @@ export default function DataPadEditor({
               lineNumbers: 'on',
               scrollBeyondLastLine: false,
               automaticLayout: true,
+              renderValidationDecorations: 'on',
+              quickSuggestions: false,
             }}
           />
         </div>
+      ) : ext === '.md' || ext === '.html' || ext === '.rtf' ? (
+        <div className="doc-preview-editor-scroll kindle-doc-scroll academic-manuscript datapad-readonly-formatted">
+          <DocumentFormatter text={draft} preferProse={ext !== '.md'} />
+        </div>
       ) : (
-        <pre className="pfb-preview-content markdown-body datapad-readonly">{draft}</pre>
+        <pre className="pfb-preview-content markdown-body datapad-readonly" spellCheck>
+          {draft}
+        </pre>
       )}
 
       {headingPreview && (

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ArrowLeft, Image as ImageIcon, Loader2 } from 'lucide-react';
+import { ArrowLeft, Image as ImageIcon, Loader2, RefreshCw } from 'lucide-react';
+import ImageTileViewer from '../components/ImageTileViewer.jsx';
 import {
   fetchImageManifest,
   fetchImageMetadata,
@@ -48,7 +49,9 @@ export default function ImageViewerPlaceholderScreen({ assetId, onClose }) {
           setThumbUrl(url);
         } else URL.revokeObjectURL(url);
       })
-      .catch(() => { if (alive) setThumbUrl(null); });
+      .catch(() => {
+        if (alive) setThumbUrl(null);
+      });
     return () => {
       alive = false;
       if (objectUrl) URL.revokeObjectURL(objectUrl);
@@ -64,6 +67,8 @@ export default function ImageViewerPlaceholderScreen({ assetId, onClose }) {
   }
 
   const imgMeta = metadata?.image_metadata || manifest || {};
+  const degraded = imgMeta.streaming_status === 'degraded' || manifest?.streaming_status === 'degraded';
+  const tileReady = manifest?.tile_ready || imgMeta.tile_ready;
 
   return (
     <div className="panel image-viewer-placeholder">
@@ -73,52 +78,71 @@ export default function ImageViewerPlaceholderScreen({ assetId, onClose }) {
         </button>
         <h3 className="panel-title" style={{ margin: 0 }}>
           <ImageIcon size={18} style={{ verticalAlign: 'middle', marginRight: '0.35rem' }} />
-          Image Viewer (preview)
+          Microscopy viewer
         </h3>
+        <button type="button" className="btn btn-sm btn-ghost" onClick={load} title="Refresh manifest">
+          <RefreshCw size={14} />
+        </button>
+        <span className="text-footnote muted">
+          Napari-style channels · Z-stack · tile zoom/pan
+        </span>
       </div>
 
       {loading ? (
-        <p className="text-footnote muted"><Loader2 className="spin-inline" size={16} /> Loading manifest…</p>
+        <p className="text-footnote muted">
+          <Loader2 className="spin-inline" size={16} /> Loading manifest…
+        </p>
       ) : null}
-      {error ? <p className="text-footnote" style={{ color: 'var(--color-danger)' }}>{error}</p> : null}
+      {error ? (
+        <p className="text-footnote" style={{ color: 'var(--color-danger)' }}>
+          {error}
+        </p>
+      ) : null}
 
       {!loading && !error ? (
-        <div className="grid-2col" style={{ gap: '1.5rem', alignItems: 'start' }}>
-          <div>
-            {thumbUrl ? (
-              <img
-                src={thumbUrl}
-                alt="Thumbnail preview"
-                className="sfe-preview-image"
-                style={{ maxWidth: '100%', borderRadius: '8px' }}
-              />
-            ) : (
-              <p className="text-footnote muted">Thumbnail loading…</p>
-            )}
-            <p className="text-footnote muted" style={{ marginTop: '0.75rem' }}>
-              Full interactive viewer is not built yet. This route validates manifest, metadata, and tile API readiness.
+        <div className="image-viewer-shell">
+          <ImageTileViewer
+            assetId={assetId}
+            manifest={manifest}
+            thumbUrl={thumbUrl}
+            degraded={degraded}
+          />
+          <aside className="image-viewer-shell__meta stack-sm">
+            <p className="text-footnote">
+              <strong>Asset:</strong> {assetId}
             </p>
-          </div>
-          <div className="stack-sm">
-            <p className="text-footnote"><strong>Asset:</strong> {assetId}</p>
-            <p className="text-footnote"><strong>Format:</strong> {imgMeta.format || manifest?.format || '—'}</p>
-            <p className="text-footnote"><strong>Status:</strong> {imgMeta.streaming_status || manifest?.streaming_status || 'unknown'}</p>
+            <p className="text-footnote">
+              <strong>Format:</strong> {imgMeta.format || manifest?.format || '—'}
+            </p>
+            <p className="text-footnote">
+              <strong>Status:</strong> {imgMeta.streaming_status || manifest?.streaming_status || 'unknown'}
+            </p>
             <p className="text-footnote">
               <strong>Dimensions:</strong>{' '}
               {manifest?.width && manifest?.height
                 ? `${manifest.width} × ${manifest.height}`
                 : imgMeta.dimensions?.shape?.join(' × ') || '—'}
             </p>
-            <p className="text-footnote"><strong>Channels:</strong> {manifest?.channels ?? imgMeta.channels ?? '—'}</p>
-            <p className="text-footnote"><strong>Pyramid levels:</strong> {manifest?.pyramid_levels ?? imgMeta.pyramid_levels ?? 0}</p>
-            <p className="text-footnote"><strong>OME-XML:</strong> {manifest?.ome_xml_present || imgMeta.ome_xml_present ? 'yes' : 'no'}</p>
             <p className="text-footnote">
-              <strong>Tile API:</strong>{' '}
-              {manifest?.tile_ready || imgMeta.tile_ready
-                ? `ready (${manifest?.tile_size || 256}px tiles)`
-                : 'pending inspection — run admin inspect job'}
+              <strong>Channels:</strong> {manifest?.channels ?? imgMeta.channels ?? '—'}
             </p>
-          </div>
+            <p className="text-footnote">
+              <strong>Z / T:</strong>{' '}
+              {manifest?.z_slices ?? manifest?.z ?? 1} / {manifest?.timepoints ?? manifest?.t ?? 1}
+            </p>
+            <p className="text-footnote">
+              <strong>Pyramid:</strong> {manifest?.pyramid_levels ?? imgMeta.pyramid_levels ?? 0} levels
+            </p>
+            <p className="text-footnote">
+              <strong>OME-XML:</strong> {manifest?.ome_xml_present || imgMeta.ome_xml_present ? 'yes' : 'no'}
+            </p>
+            <p className="text-footnote">
+              <strong>Tiles:</strong>{' '}
+              {tileReady
+                ? `ready (${manifest?.tile_size || 256}px)`
+                : 'pending — thumbnail fallback'}
+            </p>
+          </aside>
         </div>
       ) : null}
     </div>

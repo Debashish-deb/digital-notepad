@@ -1,0 +1,42 @@
+{
+  "source": "derived_tags",
+  "tags": {
+    "domain:project": 3913,
+    "section:unknown": 3913,
+    "type:figure_or_plot": 1703,
+    "type:document": 1187,
+    "domain:lab_operations": 483,
+    "section:wet_lab_files": 483,
+    "type:table_or_registry": 447,
+    "type:image": 360,
+    "type:other": 311,
+    "type:code_or_notebook": 286,
+    "type:presentation": 247,
+    "domain:social_memory": 222,
+    "section:social_misc": 222,
+    "type:analysis_binary_or_assay_artifact": 131,
+    "domain:administration": 112,
+    "type:unknown_no_extension": 99,
+    "domain:orders_procurement": 70,
+    "section:overview_documents": 54,
+    "section:orders_archive": 42,
+    "type:video": 29,
+    "section:orders_billing": 28,
+    "section:overview_personnel": 26,
+    "section:overview_guidelines": 18,
+    "section:overview_cleaning": 8,
+    "section:overview_onboarding": 6
+  },
+  "domain_section_combos": {
+    "project/unknown": 3913,
+    "lab_operations/wet_lab_files": 483,
+    "social_memory/social_misc": 222,
+    "administration/overview_documents": 54,
+    "orders_procurement/orders_archive": 42,
+    "orders_procurement/orders_billing": 28,
+    "administration/overview_personnel": 26,
+    "administration/overview_guidelines": 18,
+    "administration/overview_cleaning": 8,
+    "administration/overview_onboarding": 6
+  }
+}

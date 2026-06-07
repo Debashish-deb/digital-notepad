@@ -1,8 +1,10 @@
 """Client for Docker-hosted biomedical model FastAPI services."""
 from __future__ import annotations
 
+import json
 import logging
 import os
+from pathlib import Path
 from typing import Any
 
 try:
@@ -11,6 +13,21 @@ except Exception:  # pragma: no cover
     httpx = None  # type: ignore
 
 LOGGER = logging.getLogger(__name__)
+
+_REGISTRY_PATH = (
+    Path(__file__).resolve().parents[2] / "docker" / "biomedical-models" / "shared" / "model_registry.json"
+)
+
+
+def _static_catalog() -> dict[str, Any]:
+    if _REGISTRY_PATH.is_file():
+        reg = json.loads(_REGISTRY_PATH.read_text(encoding="utf-8"))
+        return {
+            "source": "bundled",
+            "skipped": reg.get("skip_already_dockerized", []),
+            "services": reg.get("services", {}),
+        }
+    return {"source": "bundled", "skipped": [], "services": {}}
 
 
 def _url(name: str, default: str) -> str:
@@ -29,10 +46,31 @@ class BiomedicalModelsClient:
         return httpx is not None
 
     def catalog(self) -> dict[str, Any]:
-        return self._get(f"{self.gateway_url}/catalog")
+        result = self._get(f"{self.gateway_url}/catalog")
+        if result.get("error") or not result.get("services"):
+            static = _static_catalog()
+            if result.get("error"):
+                static["gateway_error"] = result["error"]
+            return static
+        result["source"] = "live"
+        return result
 
     def status(self) -> dict[str, Any]:
-        return self._get(f"{self.gateway_url}/status")
+        result = self._get(f"{self.gateway_url}/status")
+        if result.get("error"):
+            return {
+                "gateway": "offline",
+                "gateway_error": result["error"],
+                "services": {
+                    name: {"healthy": False, "url": base}
+                    for name, base in {
+                        "embeddings": self.embeddings_url,
+                        "biogpt": self.biogpt_url,
+                        "txgemma": self.txgemma_url,
+                    }.items()
+                },
+            }
+        return result
 
     def embed(
         self,

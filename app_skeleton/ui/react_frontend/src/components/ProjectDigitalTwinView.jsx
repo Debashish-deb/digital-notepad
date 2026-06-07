@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Database, Users, FlaskConical, Calendar, FileText, GitBranch, FolderOpen } from 'lucide-react';
 import { categoryColor, formatSampleCount } from '../utils/digitalTwinUtils.js';
 

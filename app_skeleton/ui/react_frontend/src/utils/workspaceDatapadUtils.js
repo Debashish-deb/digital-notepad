@@ -1,5 +1,4 @@
 import { collectProjectDocuments } from './documentBrowserUtils.js';
-import { normalizeRelPath } from './folderBrowserUtils.js';
 import { getProjectTabDocumentConfig, projectDocumentTitle } from './projectDocumentCategories.js';
 import { findProjectLogFile, isProjectLogFile } from './projectLogUtils.js';
 import { inferExtension } from './fileTypeMeta.js';

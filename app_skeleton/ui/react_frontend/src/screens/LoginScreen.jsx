@@ -1,4 +1,5 @@
 import React, { Suspense, useState } from 'react';
+import { LazyViewFallback } from '../components/common/LazyViewFallback.jsx';
 import { Dna, Microscope, ShieldCheck } from 'lucide-react';
 import {
   mapFirebaseAuthError,
@@ -8,7 +9,7 @@ import {
 import { useApiContext } from '../api/ApiContext.jsx';
 import { apiPost } from '../api/client.js';
 import { saveUserProfile } from '../utils/userProfile.js';
-import LoginOvarianScene from '../components/auth/LoginOvarianScene.jsx';
+const LoginOvarianScene = React.lazy(() => import('../components/auth/LoginOvarianScene.jsx'));
 import './LoginScreen.css';
 
 const ORGANIZATIONS = [
@@ -152,7 +153,7 @@ export default function LoginScreen({ onAuthenticated }) {
   return (
     <div className="login-page">
       <div className="login-page__scene-wrap">
-        <Suspense fallback={<div className="login-scene-veil" />}>
+        <Suspense fallback={<LazyViewFallback variant="scene-3d" label="Loading scene…" showBars={false} />}>
           <LoginOvarianScene />
         </Suspense>
 

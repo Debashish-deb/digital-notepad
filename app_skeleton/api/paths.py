@@ -61,13 +61,16 @@ def projects_roots_for_scan() -> list[Path]:
     if PROJECTS_ROOT.is_dir() and (not lr or PROJECTS_ROOT.resolve() != lr):
         roots.append(PROJECTS_ROOT)
     return roots
+from app_skeleton.api import data_layout as _data_layout
+
 CATALOG_PATH = Path(os.environ.get(
     "PROJECTS_CATALOG_PATH",
-    str(BLUEPRINT_ROOT / "app_skeleton" / "data" / "projects_catalog.json"),
+    str(_data_layout.registry_path("projects_catalog.json")),
 )).expanduser().resolve()
+# Flat research project twins — Project Portfolio unchanged
 PROCESSED_DIR = Path(os.environ.get(
     "PROCESSED_PROJECTS_DIR",
-    str(BLUEPRINT_ROOT / "app_skeleton" / "data" / "processed_projects"),
+    str(_data_layout.LEGACY_PROCESSED_DIR),
 )).expanduser().resolve()
 PUBLIC_PROCESSED_DIR = Path(os.environ.get(
     "PUBLIC_PROCESSED_DIR",
@@ -174,13 +177,13 @@ def storage_roots_public_summary() -> list[dict[str, str | bool | None]]:
 
 
 CHECKER_SCRIPTS: dict[str, str] = {
-    "python_env": "check_python_env.sh",
-    "gpu": "check_gpu.sh",
-    "napari": "check_napari.sh",
-    "docker": "check_docker.sh",
-    "lumi_modules": "check_lumi_modules.sh",
-    "cylinter_inputs": "check_cylinter_inputs.py",
-    "project_structure": "check_tcycif_project_structure.py",
+    "python_env": "check/check_python_env.sh",
+    "gpu": "check/check_gpu.sh",
+    "napari": "check/check_napari.sh",
+    "docker": "check/check_docker.sh",
+    "lumi_modules": "check/check_lumi_modules.sh",
+    "cylinter_inputs": "check/check_cylinter_inputs.py",
+    "project_structure": "check/check_tcycif_project_structure.py",
 }
 
 

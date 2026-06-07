@@ -18,7 +18,9 @@ from app_skeleton.api.supabase_config import postgres_conn
 
 LOGGER = logging.getLogger(__name__)
 
-INGESTION_REPORTS_DIR = BLUEPRINT_ROOT / "app_skeleton" / "data" / "ingestion_reports"
+from app_skeleton.api.data_layout import ingestion_report_write_dir
+
+INGESTION_REPORTS_DIR = ingestion_report_write_dir()
 SYNC_REPORT_PATH = INGESTION_REPORTS_DIR / "sync_run_report.json"
 
 DOCUMENT_ASSET_TYPES = frozenset({

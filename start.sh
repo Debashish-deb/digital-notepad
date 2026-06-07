@@ -2,8 +2,11 @@
 # OMEIA / Farkki platform launcher (repo root)
 #
 # Starts FastAPI on :8000, waits until /health responds, then starts Vite on :5173.
-# To run Vite alone: cd app_skeleton/ui/react_frontend && npm run dev
-#   (backend must already be listening on http://127.0.0.1:8000)
+#
+# Split architecture (recommended for development):
+#   ./scripts/dev/start_backend.sh   # API only
+#   ./scripts/dev/start_frontend.sh  # UI only (backend must be up)
+# Tutorial: docs/FRONTEND_BACKEND_TUTORIAL.md
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$SCRIPT_DIR"
@@ -21,7 +24,7 @@ export PROJECTS_ROOT="${PROJECTS_ROOT:-$DATABASE_ROOT/projects}"
 # Load .env via python-dotenv (avoids shell executing bare URL/curl lines).
 if [ -f "$BACKEND_DIR/configs/.env" ]; then
   # shellcheck disable=SC1091
-  eval "$("$BACKEND_DIR/scripts/load_env.sh" "$BACKEND_DIR/configs/.env")"
+  eval "$("$BACKEND_DIR/scripts/dev/load_env.sh" "$BACKEND_DIR/configs/.env")"
 fi
 
 # Portable remote LLM (Tailscale Linux workstation) — overrides .env localhost URLs.
@@ -97,8 +100,8 @@ echo "  DATABASE: $DATABASE_ROOT"
 if [ "${DOCKER_LOCAL:-true}" = "false" ] || [ "${DOCKER_LOCAL:-true}" = "0" ]; then
   echo "DOCKER_LOCAL=false — API only on this machine (LLM/DB on remote host)."
 else
-  if [ -x "$PROJECT_ROOT/scripts/docker_bootstrap.sh" ]; then
-    "$PROJECT_ROOT/scripts/docker_bootstrap.sh" || echo "WARN: Docker bootstrap incomplete — API will use fallbacks."
+  if [ -x "$PROJECT_ROOT/scripts/dev/docker_bootstrap.sh" ]; then
+    "$PROJECT_ROOT/scripts/dev/docker_bootstrap.sh" || echo "WARN: Docker bootstrap incomplete — API will use fallbacks."
   fi
 fi
 

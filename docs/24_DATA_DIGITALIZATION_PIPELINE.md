@@ -38,7 +38,7 @@ All tables are in the `platform` schema:
 
 **Via CLI:**
 ```bash
-python scripts/run_digitalization.py --provider local --root ../OMEIA-database --max-files 100
+python scripts/digitalization/run_digitalization.py --provider local --root ../OMEIA-database --max-files 100
 ```
 
 **Via UI:**

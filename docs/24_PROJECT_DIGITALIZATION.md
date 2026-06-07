@@ -16,10 +16,10 @@ Falls back to `PROJECTS_ROOT` / `database/projects` when unset.
 
 ```bash
 cd farkki_ai_platform_blueprint
-.venv-local/bin/python scripts/project_digitalize.py --project MyProjectFolder
-.venv-local/bin/python scripts/project_digitalize.py --full --resume
-.venv-local/bin/python scripts/project_digitalize.py --dry-run --project MyProjectFolder
-.venv-local/bin/python scripts/project_digitalize.py --retry-failed --project MyProjectFolder
+.venv-local/bin/python scripts/digitalization/project_digitalize.py --project MyProjectFolder
+.venv-local/bin/python scripts/digitalization/project_digitalize.py --full --resume
+.venv-local/bin/python scripts/digitalization/project_digitalize.py --dry-run --project MyProjectFolder
+.venv-local/bin/python scripts/digitalization/project_digitalize.py --retry-failed --project MyProjectFolder
 ```
 
 ## API

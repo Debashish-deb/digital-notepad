@@ -1,0 +1,16 @@
+{
+  "run_id": "20260604T044328Z_80149104",
+  "checkpoint_id": "project:ORDERS",
+  "scan_root": "/Users/debashishdeb/Downloads/OMEIA-AI/database/ORDERS & RELATED INFORMATION",
+  "project_hint": "ORDERS",
+  "vectorization_enabled": false,
+  "finished_at": "2026-06-04T04:43:35.304707+00:00",
+  "counts": {
+    "scanned": 68,
+    "new": 0,
+    "updated": 68,
+    "failed": 0,
+    "skipped_large": 0,
+    "uncategorized": 0
+  }
+}

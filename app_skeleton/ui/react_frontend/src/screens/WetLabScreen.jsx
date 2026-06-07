@@ -20,9 +20,9 @@ export function WetLabInventoryPanel() {
   return (
     <SectionDocumentsScreen
       mainId="wet_lab"
-      subId="files"
-      title="Reagents, panels & wet-lab files"
-      description="Protocols, inventories, GeoMx/Xenium notes, and wet-lab spreadsheets from WET_LAB."
+      subId="inventory"
+      title="Reagents & panels"
+      description="Antibody panels, reagent inventories, GeoMx/Xenium registers, and chemical stock lists."
     />
   );
 }

@@ -1,0 +1,1136 @@
+2026-06-03 21:37:59,763 INFO Autonomous processor daemon started pid=81357
+2026-06-03 21:37:59,763 INFO Autonomous processor daemon started pid=81357
+2026-06-03 21:37:59,763 INFO Running step: vault
+2026-06-03 21:37:59,763 INFO Running step: vault
+2026-06-03 21:37:59,885 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=False
+2026-06-03 21:37:59,885 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=False
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (134558782 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100002668 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100009704 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100002668 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100009704 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100016740 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (90595414 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+2026-06-03 21:46:06,187 INFO Running step: digitalize
+2026-06-03 21:46:06,187 INFO Running step: digitalize
+2026-06-03 21:46:06,201 INFO Digitalization full scan resume=False
+2026-06-03 21:46:06,201 INFO Digitalization full scan resume=False
+2026-06-03 21:46:08,703 ERROR Digitalization failed
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 198, in _step_digitalize
+    result = run_digitalization(
+        mode="full",
+        resume=resume,
+        max_files=_max_files(),
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 480, in run_digitalization
+    if not retry_failed and _should_skip_unchanged(
+                            ~~~~~~~~~~~~~~~~~~~~~~^
+        cur, asset_id, checksum, stat.get("modified_at")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 111, in _should_skip_unchanged
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.DuplicatePreparedStatement: prepared statement "_pg3_0" already exists
+2026-06-03 21:46:08,703 ERROR Digitalization failed
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 198, in _step_digitalize
+    result = run_digitalization(
+        mode="full",
+        resume=resume,
+        max_files=_max_files(),
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 480, in run_digitalization
+    if not retry_failed and _should_skip_unchanged(
+                            ~~~~~~~~~~~~~~~~~~~~~~^
+        cur, asset_id, checksum, stat.get("modified_at")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 111, in _should_skip_unchanged
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.DuplicatePreparedStatement: prepared statement "_pg3_0" already exists
+2026-06-03 21:46:08,705 INFO Running step: supabase_sync
+2026-06-03 21:46:08,705 INFO Running step: supabase_sync
+2026-06-03 21:46:08,705 INFO Sleeping 3600 seconds until next cycle
+2026-06-03 21:46:08,705 INFO Sleeping 3600 seconds until next cycle
+2026-06-03 22:46:08,762 INFO Running step: vault
+2026-06-03 22:46:08,762 INFO Running step: vault
+2026-06-03 22:46:08,774 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-03 22:46:08,774 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (134558782 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100002668 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100009704 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100002668 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100009704 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100016740 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (90595414 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+2026-06-03 22:53:10,360 INFO Running step: digitalize
+2026-06-03 22:53:10,360 INFO Running step: digitalize
+2026-06-03 22:53:10,361 INFO Digitalization full scan resume=True
+2026-06-03 22:53:10,361 INFO Digitalization full scan resume=True
+2026-06-03 22:53:12,959 ERROR Digitalization failed
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 198, in _step_digitalize
+    result = run_digitalization(
+        mode="full",
+        resume=resume,
+        max_files=_max_files(),
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 480, in run_digitalization
+    if not retry_failed and _should_skip_unchanged(
+                            ~~~~~~~~~~~~~~~~~~~~~~^
+        cur, asset_id, checksum, stat.get("modified_at")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 111, in _should_skip_unchanged
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.DuplicatePreparedStatement: prepared statement "_pg3_0" already exists
+2026-06-03 22:53:12,959 ERROR Digitalization failed
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 198, in _step_digitalize
+    result = run_digitalization(
+        mode="full",
+        resume=resume,
+        max_files=_max_files(),
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 480, in run_digitalization
+    if not retry_failed and _should_skip_unchanged(
+                            ~~~~~~~~~~~~~~~~~~~~~~^
+        cur, asset_id, checksum, stat.get("modified_at")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 111, in _should_skip_unchanged
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.DuplicatePreparedStatement: prepared statement "_pg3_0" already exists
+2026-06-03 22:53:12,964 INFO Running step: supabase_sync
+2026-06-03 22:53:12,964 INFO Running step: supabase_sync
+2026-06-03 22:53:12,964 INFO Sleeping 3600 seconds until next cycle
+2026-06-03 22:53:12,964 INFO Sleeping 3600 seconds until next cycle
+2026-06-03 23:53:13,012 INFO Running step: vault
+2026-06-03 23:53:13,012 INFO Running step: vault
+2026-06-03 23:53:13,020 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-03 23:53:13,020 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (134558782 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100002668 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100009704 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100002668 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100009704 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100016740 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (90595414 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+2026-06-04 00:00:30,467 INFO Running step: digitalize
+2026-06-04 00:00:30,467 INFO Running step: digitalize
+2026-06-04 00:00:30,472 INFO Digitalization full scan resume=True
+2026-06-04 00:00:30,472 INFO Digitalization full scan resume=True
+2026-06-04 00:00:32,898 ERROR Digitalization failed
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 198, in _step_digitalize
+    result = run_digitalization(
+        mode="full",
+        resume=resume,
+        max_files=_max_files(),
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 480, in run_digitalization
+    if not retry_failed and _should_skip_unchanged(
+                            ~~~~~~~~~~~~~~~~~~~~~~^
+        cur, asset_id, checksum, stat.get("modified_at")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 111, in _should_skip_unchanged
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.DuplicatePreparedStatement: prepared statement "_pg3_0" already exists
+2026-06-04 00:00:32,898 ERROR Digitalization failed
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 198, in _step_digitalize
+    result = run_digitalization(
+        mode="full",
+        resume=resume,
+        max_files=_max_files(),
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 480, in run_digitalization
+    if not retry_failed and _should_skip_unchanged(
+                            ~~~~~~~~~~~~~~~~~~~~~~^
+        cur, asset_id, checksum, stat.get("modified_at")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 111, in _should_skip_unchanged
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.DuplicatePreparedStatement: prepared statement "_pg3_0" already exists
+2026-06-04 00:00:32,901 INFO Running step: supabase_sync
+2026-06-04 00:00:32,901 INFO Running step: supabase_sync
+2026-06-04 00:00:32,902 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 00:00:32,902 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 01:00:32,955 INFO Running step: vault
+2026-06-04 01:00:32,955 INFO Running step: vault
+2026-06-04 01:00:32,966 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-04 01:00:32,966 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (134558782 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100002668 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100009704 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100002668 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100009704 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100016740 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (90595414 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+2026-06-04 01:07:32,474 INFO Running step: digitalize
+2026-06-04 01:07:32,474 INFO Running step: digitalize
+2026-06-04 01:07:32,475 INFO Digitalization full scan resume=True
+2026-06-04 01:07:32,475 INFO Digitalization full scan resume=True
+2026-06-04 01:07:34,863 ERROR Digitalization failed
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 198, in _step_digitalize
+    result = run_digitalization(
+        mode="full",
+        resume=resume,
+        max_files=_max_files(),
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 480, in run_digitalization
+    if not retry_failed and _should_skip_unchanged(
+                            ~~~~~~~~~~~~~~~~~~~~~~^
+        cur, asset_id, checksum, stat.get("modified_at")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 111, in _should_skip_unchanged
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.DuplicatePreparedStatement: prepared statement "_pg3_0" already exists
+2026-06-04 01:07:34,863 ERROR Digitalization failed
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 198, in _step_digitalize
+    result = run_digitalization(
+        mode="full",
+        resume=resume,
+        max_files=_max_files(),
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 480, in run_digitalization
+    if not retry_failed and _should_skip_unchanged(
+                            ~~~~~~~~~~~~~~~~~~~~~~^
+        cur, asset_id, checksum, stat.get("modified_at")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 111, in _should_skip_unchanged
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<5 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.DuplicatePreparedStatement: prepared statement "_pg3_0" already exists
+2026-06-04 01:07:34,866 INFO Running step: supabase_sync
+2026-06-04 01:07:34,866 INFO Running step: supabase_sync
+2026-06-04 01:07:34,866 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 01:07:34,866 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 02:11:03,178 INFO Running step: vault
+2026-06-04 02:11:03,178 INFO Running step: vault
+2026-06-04 02:11:03,190 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-04 02:11:03,190 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-04 02:29:06,330 ERROR Vault scan failed for /Users/debashishdeb/Downloads/OMEIA-AI/database
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 177, in _step_vault
+    result = run_ingest_scan(
+        scan_root=scan_root,
+        resume=resume,
+        max_files=max_files,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 470, in run_ingest_scan
+    asset_id = upsert_vault_from_extraction(
+        cur,
+    ...<4 lines>...
+        counts=counts,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 236, in upsert_vault_from_extraction
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<3 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+2026-06-04 02:29:06,330 ERROR Vault scan failed for /Users/debashishdeb/Downloads/OMEIA-AI/database
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 177, in _step_vault
+    result = run_ingest_scan(
+        scan_root=scan_root,
+        resume=resume,
+        max_files=max_files,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 470, in run_ingest_scan
+    asset_id = upsert_vault_from_extraction(
+        cur,
+    ...<4 lines>...
+        counts=counts,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 236, in upsert_vault_from_extraction
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<3 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+2026-06-04 02:29:06,336 INFO Running step: digitalize
+2026-06-04 02:29:06,336 INFO Running step: digitalize
+2026-06-04 02:29:06,336 INFO Digitalization full scan resume=True
+2026-06-04 02:29:06,336 INFO Digitalization full scan resume=True
+2026-06-04 02:48:41,527 ERROR Digitalization failed
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 198, in _step_digitalize
+    result = run_digitalization(
+        mode="full",
+        resume=resume,
+        max_files=_max_files(),
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 500, in run_digitalization
+    _persist_sidecars(
+    ~~~~~~~~~~~~~~~~~^
+        cur,
+        ^^^^
+    ...<6 lines>...
+        relative_path=logical,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 150, in _persist_sidecars
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<43 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+2026-06-04 02:48:41,527 ERROR Digitalization failed
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 198, in _step_digitalize
+    result = run_digitalization(
+        mode="full",
+        resume=resume,
+        max_files=_max_files(),
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 500, in run_digitalization
+    _persist_sidecars(
+    ~~~~~~~~~~~~~~~~~^
+        cur,
+        ^^^^
+    ...<6 lines>...
+        relative_path=logical,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_digitalization_engine.py", line 150, in _persist_sidecars
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<43 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+2026-06-04 02:48:41,604 INFO Running step: supabase_sync
+2026-06-04 02:48:41,604 INFO Running step: supabase_sync
+2026-06-04 02:48:41,612 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 02:48:41,612 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 03:53:45,291 INFO Running step: vault
+2026-06-04 03:53:45,291 INFO Running step: vault
+2026-06-04 03:53:45,294 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-04 03:53:45,294 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (134558782 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+2026-06-04 04:05:56,407 ERROR Vault scan failed for /Users/debashishdeb/Downloads/OMEIA-AI/database
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 177, in _step_vault
+    result = run_ingest_scan(
+        scan_root=scan_root,
+        resume=resume,
+        max_files=max_files,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 470, in run_ingest_scan
+    asset_id = upsert_vault_from_extraction(
+        cur,
+    ...<4 lines>...
+        counts=counts,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 236, in upsert_vault_from_extraction
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<3 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+2026-06-04 04:05:56,407 ERROR Vault scan failed for /Users/debashishdeb/Downloads/OMEIA-AI/database
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 177, in _step_vault
+    result = run_ingest_scan(
+        scan_root=scan_root,
+        resume=resume,
+        max_files=max_files,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 470, in run_ingest_scan
+    asset_id = upsert_vault_from_extraction(
+        cur,
+    ...<4 lines>...
+        counts=counts,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 236, in upsert_vault_from_extraction
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<3 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+2026-06-04 04:05:56,423 INFO Running step: digitalize
+2026-06-04 04:05:56,423 INFO Running step: digitalize
+2026-06-04 04:05:56,423 INFO Digitalization full scan resume=True
+2026-06-04 04:05:56,423 INFO Digitalization full scan resume=True
+2026-06-04 04:06:00,622 INFO Running step: supabase_sync
+2026-06-04 04:06:00,622 INFO Running step: supabase_sync
+2026-06-04 04:06:00,623 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 04:06:00,623 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 05:06:14,891 INFO Running step: vault
+2026-06-04 05:06:14,891 INFO Running step: vault
+2026-06-04 05:06:14,895 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-04 05:06:14,895 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-04 05:23:00,378 ERROR Vault scan failed for /Users/debashishdeb/Downloads/OMEIA-AI/database
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 177, in _step_vault
+    result = run_ingest_scan(
+        scan_root=scan_root,
+        resume=resume,
+        max_files=max_files,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 484, in run_ingest_scan
+    _save_checkpoint(
+    ~~~~~~~~~~~~~~~~^
+        cur,
+        ^^^^
+    ...<7 lines>...
+        job_id=job_id,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 136, in _save_checkpoint
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<21 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+2026-06-04 05:23:00,378 ERROR Vault scan failed for /Users/debashishdeb/Downloads/OMEIA-AI/database
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 177, in _step_vault
+    result = run_ingest_scan(
+        scan_root=scan_root,
+        resume=resume,
+        max_files=max_files,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 484, in run_ingest_scan
+    _save_checkpoint(
+    ~~~~~~~~~~~~~~~~^
+        cur,
+        ^^^^
+    ...<7 lines>...
+        job_id=job_id,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 136, in _save_checkpoint
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<21 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+2026-06-04 05:23:00,395 INFO Running step: digitalize
+2026-06-04 05:23:00,395 INFO Running step: digitalize
+2026-06-04 05:23:00,395 INFO Digitalization full scan resume=True
+2026-06-04 05:23:00,395 INFO Digitalization full scan resume=True
+2026-06-04 05:23:04,529 INFO Running step: supabase_sync
+2026-06-04 05:23:04,529 INFO Running step: supabase_sync
+2026-06-04 05:23:04,530 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 05:23:04,530 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 06:37:37,554 INFO Running step: vault
+2026-06-04 06:37:37,554 INFO Running step: vault
+2026-06-04 06:37:37,556 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-04 06:37:37,556 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-04 06:55:00,325 ERROR Vault scan failed for /Users/debashishdeb/Downloads/OMEIA-AI/database
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 177, in _step_vault
+    result = run_ingest_scan(
+        scan_root=scan_root,
+        resume=resume,
+        max_files=max_files,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 470, in run_ingest_scan
+    asset_id = upsert_vault_from_extraction(
+        cur,
+    ...<4 lines>...
+        counts=counts,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 236, in upsert_vault_from_extraction
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<3 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+2026-06-04 06:55:00,325 ERROR Vault scan failed for /Users/debashishdeb/Downloads/OMEIA-AI/database
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 177, in _step_vault
+    result = run_ingest_scan(
+        scan_root=scan_root,
+        resume=resume,
+        max_files=max_files,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 470, in run_ingest_scan
+    asset_id = upsert_vault_from_extraction(
+        cur,
+    ...<4 lines>...
+        counts=counts,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 236, in upsert_vault_from_extraction
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<3 lines>...
+        (asset_id,),
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+2026-06-04 06:55:00,328 INFO Running step: digitalize
+2026-06-04 06:55:00,328 INFO Running step: digitalize
+2026-06-04 06:55:00,328 INFO Digitalization full scan resume=True
+2026-06-04 06:55:00,328 INFO Digitalization full scan resume=True
+2026-06-04 06:55:04,304 INFO Running step: supabase_sync
+2026-06-04 06:55:04,304 INFO Running step: supabase_sync
+2026-06-04 06:55:04,305 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 06:55:04,305 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 07:55:04,349 INFO Running step: vault
+2026-06-04 07:55:04,349 INFO Running step: vault
+2026-06-04 07:55:04,355 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+2026-06-04 07:55:04,355 INFO Vault ingest scan root=/Users/debashishdeb/Downloads/OMEIA-AI/database resume=True
+Ignoring wrong pointing object 14 0 (offset 0)
+Ignoring wrong pointing object 16 0 (offset 0)
+Ignoring wrong pointing object 18 0 (offset 0)
+Ignoring wrong pointing object 21 0 (offset 0)
+Ignoring wrong pointing object 23 0 (offset 0)
+Ignoring wrong pointing object 26 0 (offset 0)
+Ignoring wrong pointing object 28 0 (offset 0)
+Ignoring wrong pointing object 30 0 (offset 0)
+Ignoring wrong pointing object 33 0 (offset 0)
+Ignoring wrong pointing object 35 0 (offset 0)
+Ignoring wrong pointing object 37 0 (offset 0)
+Ignoring wrong pointing object 39 0 (offset 0)
+Ignoring wrong pointing object 42 0 (offset 0)
+Ignoring wrong pointing object 44 0 (offset 0)
+Ignoring wrong pointing object 49 0 (offset 0)
+Ignoring wrong pointing object 51 0 (offset 0)
+Ignoring wrong pointing object 58 0 (offset 0)
+Ignoring wrong pointing object 70 0 (offset 0)
+Ignoring wrong pointing object 11 0 (offset 0)
+Ignoring wrong pointing object 15 0 (offset 0)
+Ignoring wrong pointing object 21 0 (offset 0)
+Ignoring wrong pointing object 37 0 (offset 0)
+Ignoring wrong pointing object 39 0 (offset 0)
+Ignoring wrong pointing object 41 0 (offset 0)
+Ignoring wrong pointing object 6 0 (offset 0)
+Ignoring wrong pointing object 8 0 (offset 0)
+Ignoring wrong pointing object 10 0 (offset 0)
+Ignoring wrong pointing object 12 0 (offset 0)
+Ignoring wrong pointing object 14 0 (offset 0)
+Ignoring wrong pointing object 16 0 (offset 0)
+Ignoring wrong pointing object 22 0 (offset 0)
+Ignoring wrong pointing object 24 0 (offset 0)
+Ignoring wrong pointing object 115 0 (offset 0)
+Ignoring wrong pointing object 123 0 (offset 0)
+Ignoring wrong pointing object 128 0 (offset 0)
+Ignoring wrong pointing object 194 0 (offset 0)
+Ignoring wrong pointing object 255 0 (offset 0)
+Ignoring wrong pointing object 936 0 (offset 0)
+Ignoring wrong pointing object 21 0 (offset 0)
+Ignoring wrong pointing object 23 0 (offset 0)
+Ignoring wrong pointing object 31 0 (offset 0)
+Ignoring wrong pointing object 34 0 (offset 0)
+Ignoring wrong pointing object 39 0 (offset 0)
+Ignoring wrong pointing object 42 0 (offset 0)
+Ignoring wrong pointing object 51 0 (offset 0)
+Ignoring wrong pointing object 55 0 (offset 0)
+Ignoring wrong pointing object 61 0 (offset 0)
+Ignoring wrong pointing object 77 0 (offset 0)
+Ignoring wrong pointing object 79 0 (offset 0)
+Ignoring wrong pointing object 81 0 (offset 0)
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133091000 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (108507960 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (93228696 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (99676135 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156208225 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (133407204 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100002668 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100009704 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (156591068 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/PIL/Image.py:3574: DecompressionBombWarning: Image size (100016740 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+invalid pdf header: b'\x00\x05\x16\x07\x00'
+EOF marker not found
+2026-06-04 07:59:17,056 ERROR Vault scan failed for /Users/debashishdeb/Downloads/OMEIA-AI/database
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 177, in _step_vault
+    result = run_ingest_scan(
+        scan_root=scan_root,
+        resume=resume,
+        max_files=max_files,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 470, in run_ingest_scan
+    if max_files is not None and counts["scanned"] >= max_files:
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+            path=logical,
+    
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 246, in upsert_vault_from_extraction
+    vector_status = _vector_status_for_result(result, extraction_status)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<65 lines>...
+            "project_hint": project_hint or "",
+    
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UntranslatableCharacter: unsupported Unicode escape sequence
+DETAIL:  \u0000 cannot be converted to text.
+CONTEXT:  JSON data, line 1: ...00'", "Producer": "Adobe PSL 1.2e for Canon\u0000...
+unnamed portal parameter $25 = '...'
+2026-06-04 07:59:17,056 ERROR Vault scan failed for /Users/debashishdeb/Downloads/OMEIA-AI/database
+Traceback (most recent call last):
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/scripts/autonomous_processor.py", line 177, in _step_vault
+    result = run_ingest_scan(
+        scan_root=scan_root,
+        resume=resume,
+        max_files=max_files,
+    )
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 470, in run_ingest_scan
+    if max_files is not None and counts["scanned"] >= max_files:
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+            path=logical,
+    
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/vault_ingestion_engine.py", line 246, in upsert_vault_from_extraction
+    vector_status = _vector_status_for_result(result, extraction_status)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<65 lines>...
+            "project_hint": project_hint or "",
+    
+  File "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/.venv-local/lib/python3.13/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UntranslatableCharacter: unsupported Unicode escape sequence
+DETAIL:  \u0000 cannot be converted to text.
+CONTEXT:  JSON data, line 1: ...00'", "Producer": "Adobe PSL 1.2e for Canon\u0000...
+unnamed portal parameter $25 = '...'
+2026-06-04 07:59:17,061 INFO Running step: digitalize
+2026-06-04 07:59:17,061 INFO Running step: digitalize
+2026-06-04 07:59:17,061 INFO Digitalization full scan resume=True
+2026-06-04 07:59:17,061 INFO Digitalization full scan resume=True
+2026-06-04 07:59:21,023 INFO Running step: supabase_sync
+2026-06-04 07:59:21,023 INFO Running step: supabase_sync
+2026-06-04 07:59:21,024 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 07:59:21,024 INFO Sleeping 3600 seconds until next cycle
+2026-06-04 08:23:47,989 INFO Received SIGTERM — finishing current step then saving state
+2026-06-04 08:23:47,989 INFO Received SIGTERM — finishing current step then saving state
+2026-06-04 08:23:49,439 INFO Autonomous processor daemon stopped
+2026-06-04 08:23:49,439 INFO Autonomous processor daemon stopped

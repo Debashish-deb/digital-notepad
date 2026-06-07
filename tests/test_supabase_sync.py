@@ -116,8 +116,10 @@ class TestSyncGuards(unittest.TestCase):
 
 
 @unittest.skipUnless(
-    os.getenv("SUPABASE_DB_PASSWORD", "").strip() and os.getenv("SUPABASE_SYNC_INTEGRATION") == "1",
-    "Set SUPABASE_DB_PASSWORD and SUPABASE_SYNC_INTEGRATION=1 for live hosted sync test",
+    os.getenv("OMEIA_ALLOW_PRODUCTION_DB_TESTS", "").strip().lower() in ("1", "true", "yes")
+    and os.getenv("SUPABASE_DB_PASSWORD", "").strip()
+    and os.getenv("SUPABASE_SYNC_INTEGRATION") == "1",
+    "Set OMEIA_ALLOW_PRODUCTION_DB_TESTS=1, SUPABASE_DB_PASSWORD, and SUPABASE_SYNC_INTEGRATION=1",
 )
 class TestHostedIntegration(unittest.TestCase):
     def test_dry_run_against_hosted(self) -> None:

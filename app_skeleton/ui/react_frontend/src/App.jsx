@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import ModuleShell from './components/ModuleShell';
@@ -8,8 +8,7 @@ import LoginScreen from './screens/LoginScreen.jsx';
 import { getApiUrl, apiFetch } from './api/client.js';
 import { useApiContext } from './api/ApiContext.jsx';
 import { TaskpadProvider } from './contexts/TaskpadContext.jsx';
-import TaskpadSheet from './components/TaskpadSheet.jsx';
-import { CENTRAL_WORKER_ID, TASKPAD_SCOPES } from './utils/taskpadRegistry.js';
+import CentralTaskpadBackground from './components/CentralTaskpadBackground.jsx';
 import { getSectionDocumentsConfig } from './utils/sectionDocumentsConfig.js';
 import { projectsCatalog } from './data/projectsCatalog.js';
 import { teamDirectory } from './data/teamDirectory.js';
@@ -22,10 +21,13 @@ import {
   findSubNav,
   getDefaultSocialSub,
   parseNavFromStorage,
+  resolveCycifLegacyNav,
   resolveSectionSub,
   resolveSocialInnerSub,
   resolveSocialLegacyNav,
 } from './config/navigation';
+import { isDocumentExplorerRoute } from './utils/documentExplorerPresets.js';
+import { parseViewerHash } from './api/imageAssetsClient.js';
 import { useGuiT } from './i18n/useGuiT.js';
 import { initFirebaseAnalytics } from './config/firebase.js';
 import { stashOmniboxPrefill } from './utils/searchHits.js';
@@ -35,8 +37,6 @@ import './App.css';
 
 const GlobalSearchOverlay = lazy(() => import('./components/GlobalSearchOverlay'));
 const ProjectsScreen = lazy(() => import('./screens/ProjectsScreen'));
-const NotebookWikiScreen = lazy(() => import('./screens/NotebookWikiScreen'));
-const DecisionsScreen = lazy(() => import('./screens/DecisionsScreen'));
 const BioinformaticsHubScreen = lazy(() => import('./screens/BioinformaticsHubScreen'));
 const AiLabAssistantScreen = lazy(() => import('./screens/AiLabAssistantScreen'));
 const FeatureClinicalScreen = lazy(() => import('./screens/FeatureClinicalScreen'));
@@ -53,6 +53,9 @@ const LabCorpusBrowser = lazy(() => import('./components/LabCorpusBrowser.jsx'))
 const CycifScreen = lazy(() => import('./screens/CycifScreen'));
 const OverviewDocumentsScreen = lazy(() => import('./screens/OverviewDocumentsScreen.jsx'));
 const SectionDocumentsScreen = lazy(() => import('./screens/SectionDocumentsScreen.jsx'));
+const DocumentLibraryScreen = lazy(() => import('./screens/DocumentLibraryScreen.jsx'));
+const ImageViewerPlaceholderScreen = lazy(() => import('./screens/ImageViewerPlaceholderScreen.jsx'));
+const ImageStreamingAdminScreen = lazy(() => import('./screens/ImageStreamingAdminScreen.jsx'));
 const OrdersTasksPanel = lazy(() =>
   import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersTasksPanel })),
 );
@@ -94,6 +97,25 @@ const DEFAULT_STATS = Object.freeze({
 });
 
 const NAV_STORAGE_KEY = 'farkki_nav_v2';
+const PROJECT_STORAGE_KEY = 'farkki_selected_project';
+
+function readStoredProject() {
+  try {
+    const value = window.localStorage.getItem(PROJECT_STORAGE_KEY);
+    return value && value.trim() ? value.trim() : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeStoredProject(code) {
+  try {
+    if (code) window.localStorage.setItem(PROJECT_STORAGE_KEY, code);
+    else window.localStorage.removeItem(PROJECT_STORAGE_KEY);
+  } catch {
+    // ignore
+  }
+}
 
 const API_URL = getApiUrl();
 
@@ -113,7 +135,10 @@ function safeStorageSet(key, value) {
   }
 }
 
-function resolveComputationalNav(raw) {
+function resolveStoredNav(raw) {
+  if (raw.hubNested) {
+    return { main: raw.main, sub: raw.sub, hubNested: raw.hubNested };
+  }
   if (raw.main === 'computational' && raw.sub === 'utilities' && raw.hubNested === 'tools') {
     return { main: raw.main, sub: 'tools', hubNested: null };
   }
@@ -203,7 +228,7 @@ function App() {
   } = useApiContext();
   const { locale, t, nav } = useGuiT();
   const resolvedApiUrl = contextApiUrl || API_URL;
-  const initialResolved = resolveComputationalNav(migrateLegacyNav(safeStorageGet(NAV_STORAGE_KEY, '')));
+  const initialResolved = resolveStoredNav(migrateLegacyNav(safeStorageGet(NAV_STORAGE_KEY, '')));
   const [navMain, setNavMain] = useState(initialResolved.main);
   const [navSub, setNavSub] = useState(initialResolved.sub);
   const [sidebarExpandedMain, setSidebarExpandedMain] = useState(null);
@@ -211,15 +236,16 @@ function App() {
   const [overviewSocialSub, setOverviewSocialSub] = useState(
     initialResolved.socialSub || getDefaultSocialSub()
   );
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(readStoredProject);
   const [dbProjects, setDbProjects] = useState(() => mergeProjectsWithCatalog(projectsCatalog));
   const [projectCodes, setProjectCodesState] = useState(DEFAULT_PROJECT_CODES);
-  const [stats, setStats] = useState(platformStats || DEFAULT_STATS);
-  const [team, setTeam] = useState(teamDirectory || []);
-  const [auditLogs, setAuditLogs] = useState(activityLogs || []);
+  const stats = platformStats || DEFAULT_STATS;
+  const team = teamDirectory || [];
+  const auditLogs = activityLogs || [];
   const [loadState, setLoadState] = useState({ phase: 'idle' });
   const [apiHealth, setApiHealth] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [viewerAssetId, setViewerAssetId] = useState(() => parseViewerHash(window.location.hash));
 
   const handleOpenSearch = useCallback((query) => {
     if (query?.trim()) stashOmniboxPrefill(query);
@@ -262,7 +288,15 @@ function App() {
     });
   }, []);
 
-  const resetProject = useCallback(() => setSelectedProject(null), []);
+  const resetProject = useCallback(() => {
+    setSelectedProject(null);
+    writeStoredProject(null);
+  }, []);
+
+  const handleSelectProject = useCallback((code) => {
+    setSelectedProject(code);
+    writeStoredProject(code);
+  }, []);
 
   const handleNavChange = useCallback((main, sub, options = {}) => {
     const { fromMainNav = false } = options;
@@ -275,6 +309,16 @@ function App() {
       );
       setHubNestedSection(null);
       setSidebarExpandedMain('overview');
+      setSelectedProject(null);
+      return;
+    }
+
+    const cycifResolved = resolveCycifLegacyNav(main, sub);
+    if (cycifResolved) {
+      setNavMain(cycifResolved.main);
+      setNavSub(cycifResolved.sub);
+      setHubNestedSection(cycifResolved.hubNested);
+      setSidebarExpandedMain(cycifResolved.main);
       setSelectedProject(null);
       return;
     }
@@ -307,8 +351,16 @@ function App() {
       setOverviewSocialSub(getDefaultSocialSub());
     }
 
-    if (!mainItem.keepsProject) setSelectedProject(null);
+    if (!mainItem.keepsProject) {
+      setSelectedProject(null);
+      writeStoredProject(null);
+    }
   }, []);
+
+  const handleProfileClick = useCallback(() => {
+    handleNavChange('profile', 'user_profile');
+    setSidebarExpandedMain(null);
+  }, [handleNavChange]);
 
   const handleMainNavClick = useCallback((main) => {
     const mainItem = findMainNav(main);
@@ -332,8 +384,6 @@ function App() {
       /* ignore */
     }
   }, [handleNavChange]);
-
-  const handleSelectProject = useCallback((code) => setSelectedProject(code), []);
 
   const commonProps = useMemo(() => ({ dbProjects, API_URL: resolvedApiUrl }), [dbProjects, resolvedApiUrl]);
 
@@ -424,6 +474,14 @@ function App() {
             onNavigate={handleNavChange}
           />
         );
+      case 'document_library':
+        return (
+          <DocumentLibraryScreen
+            title={localizedSub.label}
+            description={localizedSub.description}
+            domainTab="all_files"
+          />
+        );
       case 'digitalization':
         return (
           <DigitalizationDashboard title={subNav.label} description={subNav.description} />
@@ -438,7 +496,7 @@ function App() {
             title={subNav.label}
             description={subNav.description}
             onNavigate={handleNavChange}
-            onSelectProject={(code) => setSelectedProject(code)}
+            onSelectProject={handleSelectProject}
           />
         );
       case 'research_knowledge':
@@ -453,6 +511,12 @@ function App() {
             title={localizedSub.label}
             description={localizedSub.description}
             onNavigate={handleNavChange}
+          />
+        );
+      case 'image_streaming_admin':
+        return (
+          <ImageStreamingAdminScreen
+            onBack={() => handleNavChange('profile', 'admin')}
           />
         );
       case 'user_profile':
@@ -484,15 +548,37 @@ function App() {
           <ProjectsScreen
             dbProjects={dbProjects}
             selectedProject={selectedProject}
-            setSelectedProject={setSelectedProject}
+            setSelectedProject={handleSelectProject}
             fetchProjects={() => refreshReferenceData(new AbortController().signal)}
-            API_URL={API_URL}
+            API_URL={resolvedApiUrl}
+            portfolioSub="portfolio"
+            onNavigate={handleNavChange}
           />
         );
       case 'notebook':
-        return <NotebookWikiScreen {...commonProps} hideHeader />;
+        return (
+          <ProjectsScreen
+            dbProjects={dbProjects}
+            selectedProject={selectedProject}
+            setSelectedProject={handleSelectProject}
+            fetchProjects={() => refreshReferenceData(new AbortController().signal)}
+            API_URL={resolvedApiUrl}
+            portfolioSub="notebook"
+            onNavigate={handleNavChange}
+          />
+        );
       case 'decisions':
-        return <DecisionsScreen {...commonProps} hideHeader />;
+        return (
+          <ProjectsScreen
+            dbProjects={dbProjects}
+            selectedProject={selectedProject}
+            setSelectedProject={handleSelectProject}
+            fetchProjects={() => refreshReferenceData(new AbortController().signal)}
+            API_URL={resolvedApiUrl}
+            portfolioSub="decisions"
+            onNavigate={handleNavChange}
+          />
+        );
       case 'features':
         return <FeatureClinicalScreen {...commonProps} hideHeader />;
       case 'wet_protocols':
@@ -502,11 +588,37 @@ function App() {
       case 'wet_inventory':
         return <WetLabInventoryPanel />;
       case 'cycif_pipeline':
-        return <CycifScreen {...commonProps} variant="pipeline" embedded />;
+        return (
+          <CycifScreen
+            {...commonProps}
+            variant="pipeline"
+            embedded
+            dbProjects={dbProjects}
+            API_URL={resolvedApiUrl}
+          />
+        );
       case 'cycif_install':
-        return <CycifScreen {...commonProps} variant="install" embedded />;
+        return (
+          <BioinformaticsHubScreen
+            key="bio-cycif-install-legacy"
+            {...commonProps}
+            activeSubTab="lumi"
+            hubNestedSection="install"
+            hideChrome
+            onNavigate={handleNavChange}
+          />
+        );
       case 'cycif_structure':
-        return <CycifScreen {...commonProps} variant="structure" embedded />;
+        return (
+          <BioinformaticsHubScreen
+            key="bio-cycif-structure-legacy"
+            {...commonProps}
+            activeSubTab="troubleshoot"
+            hubNestedSection="diagnostics"
+            hideChrome
+            onNavigate={handleNavChange}
+          />
+        );
       case 'cycif_knowledge':
         return <CycifScreen {...commonProps} variant="knowledge" embedded />;
       case 'bioinformatics':
@@ -536,7 +648,7 @@ function App() {
             activeSubTab="copilot"
             hideChrome
             onNavigate={handleNavChange}
-            onSelectProject={(code) => setSelectedProject(code)}
+            onSelectProject={handleSelectProject}
             onOpenSearch={handleOpenSearch}
           />
         );
@@ -547,7 +659,7 @@ function App() {
             activeSubTab={subNav.aiSub || navSub}
             hideChrome
             onNavigate={handleNavChange}
-            onSelectProject={(code) => setSelectedProject(code)}
+            onSelectProject={handleSelectProject}
             onOpenSearch={handleOpenSearch}
           />
         );
@@ -555,6 +667,13 @@ function App() {
         return null;
     }
   };
+
+  useEffect(() => {
+    const syncViewerFromHash = () => setViewerAssetId(parseViewerHash(window.location.hash));
+    syncViewerFromHash();
+    window.addEventListener('hashchange', syncViewerFromHash);
+    return () => window.removeEventListener('hashchange', syncViewerFromHash);
+  }, []);
 
   useEffect(() => {
     initFirebaseAnalytics();
@@ -627,8 +746,12 @@ function App() {
     (authUser?.email ? authUser.email.split('@')[0] : null) ||
     'Guest';
 
-  const useModuleShell = navMain !== 'projects_data' || navSub !== 'portfolio' || !selectedProject;
-  const useWideContentShell = navMain === 'data_storage' && navSub === 'documents';
+  const isProjectWorkspace =
+    navMain === 'projects_data' &&
+    selectedProject &&
+    ['portfolio', 'notebook', 'decisions'].includes(navSub);
+  const useModuleShell = !isProjectWorkspace;
+  const useWideContentShell = isDocumentExplorerRoute(navMain, navSub, subNav?.screen);
 
   const activeScreen = useModuleShell ? (
     <ModuleShell
@@ -666,6 +789,7 @@ function App() {
         userLabel={displayUser}
         userEmail={authUser?.email || userProfile?.email}
         onSignOut={requireLogin ? signOut : null}
+        onProfileClick={handleProfileClick}
       />
 
       <main
@@ -693,6 +817,20 @@ function App() {
           ) : null}
 
           <ErrorBoundary>{activeScreen}</ErrorBoundary>
+
+          {viewerAssetId ? (
+            <Suspense fallback={<ScreenFallback label="Loading image viewer…" />}>
+              <div className="image-viewer-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+                <ImageViewerPlaceholderScreen
+                  assetId={viewerAssetId}
+                  onClose={() => {
+                    window.location.hash = '';
+                    setViewerAssetId(null);
+                  }}
+                />
+              </div>
+            </Suspense>
+          ) : null}
         </div>
       </main>
 
@@ -713,9 +851,7 @@ function App() {
           </Suspense>
         ) : null}
 
-        <div className="app-central-taskpad-host" aria-live="polite">
-          <TaskpadSheet scope={TASKPAD_SCOPES.CENTRAL} workerId={CENTRAL_WORKER_ID} />
-        </div>
+        <CentralTaskpadBackground />
       </div>
     </TaskpadProvider>
   );

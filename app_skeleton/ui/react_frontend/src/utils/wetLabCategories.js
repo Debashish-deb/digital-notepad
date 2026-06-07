@@ -5,6 +5,7 @@
  */
 
 import { humanizeFilenameLabel } from './textCleanup.js';
+import { smartDocumentTitle } from './smartDocumentTitle.js';
 import { isCycifDocumentPath } from './cycifCategories.js';
 import {
   categorizeWetLabProtocolPath,
@@ -74,6 +75,9 @@ export function categorizeWetLabPath(path) {
 }
 
 export function wetLabDocumentTitle(doc) {
+  if (doc?.display_title || doc?.title) {
+    return smartDocumentTitle(doc);
+  }
   const fileName = (doc?.path || '').split('/').pop() || '';
   return humanizeFilenameLabel(fileName);
 }

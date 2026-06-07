@@ -36,7 +36,9 @@ def _jsonb_dumps(payload: Any) -> str:
     return json.dumps(_scrub_null_chars(payload), ensure_ascii=False)
 
 
-INGESTION_REPORTS_DIR = BLUEPRINT_ROOT / "app_skeleton" / "data" / "ingestion_reports"
+from app_skeleton.api.data_layout import ingestion_report_write_dir, iter_ingestion_report_files
+
+INGESTION_REPORTS_DIR = ingestion_report_write_dir()
 STORAGE_PROVIDER = "local_database_mirror"
 SKIP_PARTS = de.SKIP_PARTS
 
@@ -400,8 +402,8 @@ def _maybe_vectorize(cur, asset_id: str, result: de.ExtractionResult) -> None:
 
 
 def _write_report(run_id: str, payload: dict[str, Any]) -> Path:
-    INGESTION_REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    path = INGESTION_REPORTS_DIR / f"ingestion_{run_id}.json"
+    report_dir = ingestion_report_write_dir(failed="fail" in run_id.lower() or "error" in run_id.lower())
+    path = report_dir / f"ingestion_{run_id}.json"
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     return path
 

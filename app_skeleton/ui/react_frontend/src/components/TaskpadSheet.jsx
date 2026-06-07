@@ -1,6 +1,6 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useState } from 'react';
 import { BookOpen, ChevronDown, ChevronUp, GitBranch, Plus } from 'lucide-react';
-import DataPadEditor from './DataPadEditor.jsx';
+import LazyDataPadEditor from './LazyDataPadEditor.jsx';
 import {
   useTaskpad,
   useTaskpadWorkerRegistration,
@@ -8,8 +8,6 @@ import {
 import { useGuiT } from '../i18n/useGuiT.js';
 import { inferExtension } from '../utils/fileTypeMeta.js';
 import {
-  CENTRAL_WORKER_ID,
-  PROJECTS_HUB_WORKER_ID,
   TASKPAD_SCOPES,
   centralMenuItems,
   isManagerScope,
@@ -353,7 +351,7 @@ export default function TaskpadSheet({
                   <span> · {projectLogFile.path}</span>
                 </p>
                 {logEditable ? (
-                  <DataPadEditor
+                  <LazyDataPadEditor
                     projectCode={projectLogFile.projectCode}
                     relativePath={projectLogFile.path}
                     fileName={projectLogFile.name}

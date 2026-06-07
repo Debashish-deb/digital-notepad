@@ -176,7 +176,7 @@ flowchart TB
 
 | File | Role |
 |------|------|
-| `scripts/run_ai_lab_assistant_eval.py` | Gold-set scorer + release gates |
+| `scripts/search/run_ai_lab_assistant_eval.py` | Gold-set scorer + release gates |
 | `tests/ai_eval_gold_set.json` | 56–57 question gold set |
 | `tests/search_qa_ai_last_run.json` | Latest eval (post Phase 9) |
 | `tests/search_qa_ai_baseline.json` | Pre-ingestion baseline |

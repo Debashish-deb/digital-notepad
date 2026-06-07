@@ -525,6 +525,19 @@ def vault_manifest(
 ) -> dict:
     return vault_manifest_page(offset=offset, limit=limit)
 
+@router.get("/api/vault/scheduled-scan/status", dependencies=_FIREBASE_PROTECTED)
+def vault_scheduled_scan_status(user: dict = Depends(require_platform_user)) -> dict:
+    from app_skeleton.api.scheduled_directory_scanner import scheduled_directory_scanner
+    return scheduled_directory_scanner.status()
+
+@router.post("/api/vault/scheduled-scan/run", dependencies=_FIREBASE_PROTECTED)
+def vault_scheduled_scan_run(user: dict = Depends(require_platform_user)) -> dict:
+    require_role(user, ["editor", "admin"])
+    from app_skeleton.api.scheduled_directory_scanner import scheduled_directory_scanner
+    if scheduled_directory_scanner.is_running:
+        raise HTTPException(status_code=409, detail="Scheduled scan already running")
+    return scheduled_directory_scanner.run_scan(reason="api")
+
 @router.get("/api/supabase/sync/status")
 def supabase_sync_status_endpoint() -> dict:
     """Last Supabase document sync report (no secrets)."""

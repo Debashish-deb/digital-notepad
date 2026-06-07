@@ -1,0 +1,248 @@
+{
+  "source": "combined",
+  "official": {
+    "main_tabs": {
+      "overview": {
+        "sub_tabs": [
+          "onboarding",
+          "guidelines",
+          "documents_permits",
+          "cleaning",
+          "personnel",
+          "research"
+        ],
+        "total_categories": 27
+      },
+      "wet_lab": {
+        "sub_tabs": [
+          "files"
+        ],
+        "total_categories": 11
+      },
+      "orders": {
+        "sub_tabs": [
+          "billing"
+        ],
+        "total_categories": 8
+      },
+      "projects": {
+        "sub_tabs": [
+          "overview",
+          "plan",
+          "methods",
+          "data",
+          "writing",
+          "log",
+          "archive"
+        ],
+        "total_categories": 29
+      }
+    },
+    "domain_file_counts": {
+      "project": 3913,
+      "lab_operations": 483,
+      "social_memory": 222,
+      "administration": 112,
+      "orders_procurement": 70
+    }
+  },
+  "folder_roots": [
+    {
+      "path": "ORDERS & RELATED INFORMATION",
+      "label": "ORDERS & RELATED INFORMATION",
+      "file_count": 70
+    },
+    {
+      "path": "Overview",
+      "label": "Overview",
+      "file_count": 112
+    },
+    {
+      "path": "SOCIAL & MISCELLANEOUS",
+      "label": "SOCIAL & MISCELLANEOUS",
+      "file_count": 222
+    },
+    {
+      "path": "WET_LAB",
+      "label": "WET_LAB",
+      "file_count": 483
+    },
+    {
+      "path": "projects",
+      "label": "projects",
+      "file_count": 3913
+    }
+  ],
+  "top_tags": {
+    "domain:project": 3913,
+    "section:unknown": 3913,
+    "type:figure_or_plot": 1703,
+    "type:document": 1187,
+    "domain:lab_operations": 483,
+    "section:wet_lab_files": 483,
+    "type:table_or_registry": 447,
+    "type:image": 360,
+    "type:other": 311,
+    "type:code_or_notebook": 286,
+    "type:presentation": 247,
+    "domain:social_memory": 222,
+    "section:social_misc": 222,
+    "type:analysis_binary_or_assay_artifact": 131,
+    "domain:administration": 112,
+    "type:unknown_no_extension": 99,
+    "domain:orders_procurement": 70,
+    "section:overview_documents": 54,
+    "section:orders_archive": 42,
+    "type:video": 29,
+    "section:orders_billing": 28,
+    "section:overview_personnel": 26,
+    "section:overview_guidelines": 18,
+    "section:overview_cleaning": 8,
+    "section:overview_onboarding": 6
+  },
+  "scientific_categories": {
+    "protocol": {
+      "label": "Protocol",
+      "file_count": 342
+    },
+    "sop": {
+      "label": "Sop",
+      "file_count": 7
+    },
+    "wet_lab_operation": {
+      "label": "Wet Lab Operation",
+      "file_count": 488
+    },
+    "inventory": {
+      "label": "Inventory",
+      "file_count": 78
+    },
+    "antibody_panel": {
+      "label": "Antibody Panel",
+      "file_count": 105
+    },
+    "marker_panel": {
+      "label": "Marker Panel",
+      "file_count": 327
+    },
+    "ffpe": {
+      "label": "Ffpe",
+      "file_count": 30
+    },
+    "frozen_tissue": {
+      "label": "Frozen Tissue",
+      "file_count": 4
+    },
+    "patient_sample": {
+      "label": "Patient Sample",
+      "file_count": 200
+    },
+    "cycif": {
+      "label": "Cycif",
+      "file_count": 929
+    },
+    "tcycif": {
+      "label": "Tcycif",
+      "file_count": 743
+    },
+    "order_forms": {
+      "label": "Order Forms",
+      "file_count": 160
+    },
+    "scrna_seq": {
+      "label": "Scrna Seq",
+      "file_count": 56
+    },
+    "sequencing": {
+      "label": "Sequencing",
+      "file_count": 121
+    },
+    "spreadsheet_tracker": {
+      "label": "Spreadsheet Tracker",
+      "file_count": 354
+    },
+    "unknown": {
+      "label": "Unknown",
+      "file_count": 2870
+    }
+  },
+  "category_summary": [
+    {
+      "domain": "orders_procurement",
+      "section_hint": "orders_archive",
+      "file_count": "42",
+      "total_size_bytes": "10679617",
+      "avg_size_bytes": "254276",
+      "asset_types": "{\"unknown_no_extension\": 1, \"table_or_registry\": 13, \"document\": 28}"
+    },
+    {
+      "domain": "orders_procurement",
+      "section_hint": "orders_billing",
+      "file_count": "28",
+      "total_size_bytes": "3863625",
+      "avg_size_bytes": "137986",
+      "asset_types": "{\"unknown_no_extension\": 1, \"document\": 21, \"table_or_registry\": 2, \"image\": 4}"
+    },
+    {
+      "domain": "administration",
+      "section_hint": "overview_documents",
+      "file_count": "54",
+      "total_size_bytes": "28324954",
+      "avg_size_bytes": "524536",
+      "asset_types": "{\"document\": 47, \"image\": 5, \"table_or_registry\": 2}"
+    },
+    {
+      "domain": "administration",
+      "section_hint": "overview_guidelines",
+      "file_count": "18",
+      "total_size_bytes": "305645",
+      "avg_size_bytes": "16980",
+      "asset_types": "{\"document\": 17, \"presentation\": 1}"
+    },
+    {
+      "domain": "administration",
+      "section_hint": "overview_cleaning",
+      "file_count": "8",
+      "total_size_bytes": "1196932",
+      "avg_size_bytes": "149616",
+      "asset_types": "{\"table_or_registry\": 5, \"document\": 3}"
+    },
+    {
+      "domain": "administration",
+      "section_hint": "overview_onboarding",
+      "file_count": "6",
+      "total_size_bytes": "20124937",
+      "avg_size_bytes": "3354156",
+      "asset_types": "{\"document\": 4, \"presentation\": 2}"
+    },
+    {
+      "domain": "administration",
+      "section_hint": "overview_personnel",
+      "file_count": "26",
+      "total_size_bytes": "4261965",
+      "avg_size_bytes": "163921",
+      "asset_types": "{\"unknown_no_extension\": 2, \"document\": 19, \"table_or_registry\": 3, \"presentation\": 2}"
+    },
+    {
+      "domain": "social_memory",
+      "section_hint": "social_misc",
+      "file_count": "222",
+      "total_size_bytes": "2135644941",
+      "avg_size_bytes": "9620022",
+      "asset_types": "{\"image\": 178, \"table_or_registry\": 8, \"document\": 9, \"video\": 26, \"other\": 1}"
+    },
+    {
+      "domain": "lab_operations",
+      "section_hint": "wet_lab_files",
+      "file_count": "483",
+      "total_size_bytes": "290008144",
+      "avg_size_bytes": "600430",
+      "asset_types": "{\"table_or_registry\": 139, \"document\": 334, \"image\": 9, \"other\": 1}"
+    }
+  ],
+  "totals": {
+    "files": 4800,
+    "domains": 5,
+    "sections": 10
+  }
+}

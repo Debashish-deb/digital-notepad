@@ -42,7 +42,7 @@ import { projectAssetUrl } from '../utils/digitalTwinUtils.js';
 import FileTypeBadge from './FileTypeBadge.jsx';
 import CopyPathButton from './CopyPathButton.jsx';
 import SmartLink from './SmartLink.jsx';
-import DataPadEditor from './DataPadEditor.jsx';
+import LazyDataPadEditor from './LazyDataPadEditor.jsx';
 import DocumentFormatter from './DocumentFormatter.jsx';
 import { useTaskpad } from '../contexts/TaskpadContext.jsx';
 import { fetchDatapadSectionSummary } from '../api/datapad.js';
@@ -717,7 +717,7 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
                 <p className="text-callout pfb-preview-error">{previewError}</p>
               )}
               {['.md', '.txt', '.html', '.rtf'].includes(selectedExt) && preview != null && !previewLoading && (
-                <DataPadEditor
+                <LazyDataPadEditor
                   projectCode={projectCode}
                   relativePath={normalizeRelPath(selectedFile.path)}
                   fileName={selectedFile.name}

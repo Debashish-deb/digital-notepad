@@ -43,7 +43,7 @@ from app_skeleton.api.llm_client import LLMClient
 from app_skeleton.api.project_processor import (
     get_digital_twin, process_project, PROCESSED_DIR, update_digital_twin, get_content_root,
     save_processed, sync_public_processed, get_project_file_preview_text,
-    PROJECT_EXTRACTABLE_EXTENSIONS,
+    PROJECT_EXTRACTABLE_EXTENSIONS, ensure_project_readme,
 )
 
 from app_skeleton.api.paths import (
@@ -180,7 +180,17 @@ async def _app_lifespan(application: FastAPI):
         docker_services.start_background_watcher()
     except Exception as exc:
         LOGGER.warning("Docker bootstrap skipped or failed: %s", exc)
+    try:
+        from app_skeleton.api.scheduled_directory_scanner import scheduled_directory_scanner
+        scheduled_directory_scanner.start()
+    except Exception as exc:
+        LOGGER.warning("Scheduled directory scanner skipped or failed: %s", exc)
     yield
+    try:
+        from app_skeleton.api.scheduled_directory_scanner import scheduled_directory_scanner
+        scheduled_directory_scanner.stop()
+    except Exception:
+        pass
     docker_services.stop_background_watcher()
 
 _cors_origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "*").split(",") if o.strip()]

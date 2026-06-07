@@ -76,6 +76,14 @@ export async function streamChatMessage({
     const detail = await response.text().catch(() => response.statusText);
     const err = new Error(detail || `${response.status} ${response.statusText}`);
     err.status = response.status;
+    if (response.status === 429) {
+      err.rateLimit = {
+        limit: response.headers.get('X-RateLimit-Limit'),
+        remaining: response.headers.get('X-RateLimit-Remaining'),
+        reset: response.headers.get('X-RateLimit-Reset'),
+      };
+      err.message = 'Rate limit reached — please wait a moment before asking again.';
+    }
     onError?.(err);
     throw err;
   }

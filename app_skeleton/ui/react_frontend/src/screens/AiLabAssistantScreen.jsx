@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   AlertTriangle,
   BookOpen,
@@ -21,6 +21,9 @@ function SceneFallback() {
   return <div className="ai3d-hero-skeleton" role="presentation" aria-hidden />;
 }
 import { apiFetch } from '../api/client.js';
+import { fetchAgentCategories } from '../api/agentCategoryClient.js';
+import { fetchBiomedicalModelsForUi } from '../api/biomedicalModelsClient.js';
+import { FALLBACK_AGENT_CATEGORIES } from '../data/agentCategoryFallback.js';
 
 const FALLBACK_PROJECTS = ['SPACE', 'EyeMT', 'KRAS'];
 
@@ -54,6 +57,9 @@ export default function AiLabAssistantScreen({
 }) {
   const [subTab, setSubTab] = useState(activeSubTab || 'copilot');
   const [models, setModels] = useState([]);
+  const [agentTeams, setAgentTeams] = useState(FALLBACK_AGENT_CATEGORIES);
+  const [biomedicalModels, setBiomedicalModels] = useState([]);
+  const [biomedicalSource, setBiomedicalSource] = useState('bundled');
   const [loadingModels, setLoadingModels] = useState(false);
   const [modelsError, setModelsError] = useState('');
 
@@ -80,14 +86,24 @@ export default function AiLabAssistantScreen({
     setModelsError('');
 
     try {
-      const data = await apiFetch('/ai-models');
-      setModels(Array.isArray(data) ? data : data?.models || []);
+      const [dbModels, categoriesPayload, biomedicalPayload] = await Promise.all([
+        apiFetch('/ai-models').catch(() => []),
+        fetchAgentCategories().catch(() => ({ categories: FALLBACK_AGENT_CATEGORIES })),
+        fetchBiomedicalModelsForUi(),
+      ]);
+
+      setModels(Array.isArray(dbModels) ? dbModels : dbModels?.models || []);
+      const liveTeams = categoriesPayload?.categories || [];
+      setAgentTeams(liveTeams.length ? liveTeams : FALLBACK_AGENT_CATEGORIES);
+      setBiomedicalModels(biomedicalPayload?.models || []);
+      setBiomedicalSource(biomedicalPayload?.catalog?.source || 'bundled');
     } catch (error) {
       console.error('[AiLabAssistantScreen] Failed to fetch model registry:', error);
+      setAgentTeams(FALLBACK_AGENT_CATEGORIES);
       setModelsError(
         error?.status === 401 || error?.status === 403
           ? 'Your session expired or you do not have permission to view model records.'
-          : error?.message || 'Could not load model registry.',
+          : error?.message || 'Could not load full model registry.',
       );
     } finally {
       setLoadingModels(false);
@@ -177,8 +193,8 @@ export default function AiLabAssistantScreen({
     },
     {
       id: 'models',
-      label: 'Model Registry',
-      desc: 'AI tools and hardware',
+      label: 'Intelligence Registry',
+      desc: 'Agent teams & biomedical models',
       icon: Cpu,
     },
     {
@@ -393,17 +409,16 @@ export default function AiLabAssistantScreen({
                 <Cpu size={14} aria-hidden="true" />
                 Registry
               </span>
-              <h2>Deep learning model registry</h2>
-              <p>Overview of neural network models active on local workstations, servers, and regional cluster environments.</p>
+              <h2>Research intelligence & model registry</h2>
+              <p>Coordinated agent teams for chat, Docker-hosted biomedical models, and PostgreSQL model records.</p>
             </div>
 
             <div className="panel ai-models-panel">
               <div className="ai-panel-title-row">
                 <h3 className="panel-title">
-                  <Cpu size={18} aria-hidden="true" />
-                  Active models
+                  <Sparkles size={18} aria-hidden="true" />
+                  Research intelligence teams
                 </h3>
-
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm"
@@ -414,13 +429,85 @@ export default function AiLabAssistantScreen({
                   Refresh
                 </button>
               </div>
+              <p className="text-footnote muted" style={{ marginBottom: '0.75rem' }}>
+                Select these modes in Chat Copilot. Internal models route automatically — raw model names stay hidden.
+              </p>
+              <div className="ai-model-card-grid">
+                {agentTeams.map((team) => (
+                  <article key={team.id} className="ai-model-card ai-model-card--team">
+                    <div className="ai-model-card__header">
+                      <div>
+                        <h4>{team.label}</h4>
+                        <p>{team.id}</p>
+                      </div>
+                      <span>Agent team</span>
+                    </div>
+                    <p className="ai-model-card__desc">{team.description}</p>
+                    <div className="ai-model-card__meta">
+                      <div className="ai-model-card__chips">
+                        {(team.team_preview || []).map((role) => (
+                          <span key={role} className="ai-model-card__chip">{role}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
 
+            <div className="panel ai-models-panel" style={{ marginTop: '1rem' }}>
+              <div className="ai-panel-title-row">
+                <h3 className="panel-title">
+                  <Microscope size={18} aria-hidden="true" />
+                  Biomedical model services
+                </h3>
+                <span className="ai-status-pill">
+                  {biomedicalSource === 'live' ? 'Docker live' : 'Catalog ready'}
+                </span>
+              </div>
+              <p className="text-footnote muted" style={{ marginBottom: '0.75rem' }}>
+                Geneformer, scGPT, scPRINT, TxGemma, BioGPT, PubMedBERT, BioBERT, and MedCPT — served from Linux Docker stack.
+              </p>
               {loadingModels ? (
                 <div className="ai-empty-state">
                   <Loader2 size={26} className="spin" aria-hidden="true" />
-                  <p>Loading registry records…</p>
+                  <p>Loading biomedical services…</p>
                 </div>
-              ) : modelsError ? (
+              ) : biomedicalModels.length === 0 ? (
+                <div className="ai-empty-state">
+                  <FileText size={28} aria-hidden="true" />
+                  <p>No biomedical models in catalog.</p>
+                </div>
+              ) : (
+                <div className="ai-model-card-grid">
+                  {biomedicalModels.map((model) => (
+                    <article key={model.id} className="ai-model-card">
+                      <div className="ai-model-card__header">
+                        <div>
+                          <h4>{model.label}</h4>
+                          <p>{model.serviceLabel}</p>
+                        </div>
+                        <span className={model.healthy ? 'ai-model-card__status--live' : 'ai-model-card__status--offline'}>
+                          {model.healthy ? 'Online' : 'Offline'}
+                        </span>
+                      </div>
+                      <p className="ai-model-card__desc">
+                        {model.task.replace(/-/g, ' ')} · port {model.port}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="panel ai-models-panel" style={{ marginTop: '1rem' }}>
+              <div className="ai-panel-title-row">
+                <h3 className="panel-title">
+                  <Cpu size={18} aria-hidden="true" />
+                  PostgreSQL model records
+                </h3>
+              </div>
+              {modelsError ? (
                 <div className="ai-empty-state ai-empty-state--danger">
                   <AlertTriangle size={26} aria-hidden="true" />
                   <p>{modelsError}</p>
@@ -428,26 +515,22 @@ export default function AiLabAssistantScreen({
               ) : models.length === 0 ? (
                 <div className="ai-empty-state">
                   <FileText size={28} aria-hidden="true" />
-                  <p>No AI models registered in PostgreSQL schemas.</p>
+                  <p>No extra models registered in PostgreSQL yet.</p>
                 </div>
               ) : (
                 <div className="ai-model-card-grid">
                   {models.map((model) => (
-                    <article key={model.model_id || `${model.model_name}-${model.version}`} className="ai-model-card">
+                    <article key={model.model_id || model.name} className="ai-model-card">
                       <div className="ai-model-card__header">
                         <div>
-                          <h4>🤖 {model.model_name}</h4>
-                          <p>v{model.version || 'unknown'}</p>
+                          <h4>{model.name || model.model_name}</h4>
+                          <p>{model.model_type || model.version || 'record'}</p>
                         </div>
-                        <span>{model.framework || 'framework n/a'}</span>
+                        <span>{model.source || 'postgres'}</span>
                       </div>
-
-                      <p className="ai-model-card__desc">{model.description || 'No description recorded.'}</p>
-
-                      <div className="ai-model-card__meta">
-                        <div>Task area: <strong>{model.task_type || 'unknown'}</strong></div>
-                        <div>Target environment: <code>{model.target_hardware || 'not specified'}</code></div>
-                      </div>
+                      <p className="ai-model-card__desc">
+                        {(model.use_cases || model.description || 'No description recorded.').slice(0, 180)}
+                      </p>
                     </article>
                   ))}
                 </div>

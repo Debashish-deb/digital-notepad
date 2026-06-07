@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "agents": {
+    "task_planner": {
+      "role": "planner",
+      "label": "Task planner",
+      "specialty": "Decompose the user question into specialist subtasks.",
+      "preferred_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "fallback_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "temperature": 0.2,
+      "max_tokens": 800,
+      "use_rag": false,
+      "runs_in_modes": ["balanced", "deep"]
+    },
+    "lab_reasoner": {
+      "role": "specialist",
+      "label": "Lab reasoning",
+      "specialty": "General Färkkilä lab research reasoning and project context.",
+      "preferred_model": { "provider": "ollama", "model": "llama3.1:8b" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.4,
+      "max_tokens": 1200,
+      "use_rag": true
+    },
+    "oncology_reasoner": {
+      "role": "specialist",
+      "label": "Oncology reasoning",
+      "specialty": "HGSC, TME, immunotherapy, biomarkers, ovarian cancer biology.",
+      "preferred_model": { "provider": "ollama", "model": "medllama2:7b" },
+      "fallback_model": { "provider": "ollama", "model": "meditron:7b" },
+      "temperature": 0.35,
+      "max_tokens": 1400,
+      "use_rag": true,
+      "safety": "biomedical"
+    },
+    "mechanism_interpreter": {
+      "role": "specialist",
+      "label": "Mechanism interpreter",
+      "specialty": "Pathways, signaling, and biological mechanism hypotheses.",
+      "preferred_model": { "provider": "ollama", "model": "medgemma:4b" },
+      "fallback_model": { "provider": "ollama", "model": "meditron:7b" },
+      "temperature": 0.4,
+      "max_tokens": 1200,
+      "use_rag": true,
+      "safety": "biomedical"
+    },
+    "spatial_reasoner": {
+      "role": "specialist",
+      "label": "Spatial reasoning",
+      "specialty": "Spatial statistics, neighborhoods, TLS, Visium/GeoMx/tCyCIF interpretation.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:7b-instruct" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.35,
+      "max_tokens": 1400,
+      "use_rag": true
+    },
+    "marker_panel_agent": {
+      "role": "specialist",
+      "label": "Marker panel",
+      "specialty": "Multiplex panels, CycIF markers, and cell-type marker reasoning.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:7b-instruct" },
+      "fallback_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "temperature": 0.3,
+      "max_tokens": 1000,
+      "use_rag": true
+    },
+    "image_metadata_agent": {
+      "role": "specialist",
+      "label": "Image metadata",
+      "specialty": "OME-TIFF, tiling, microscopy asset metadata and viewer readiness.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.25,
+      "max_tokens": 900,
+      "use_rag": true
+    },
+    "protocol_guide": {
+      "role": "specialist",
+      "label": "Protocol guide",
+      "specialty": "Wet-lab protocols, sample handling, and SOP guidance.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.25,
+      "max_tokens": 1200,
+      "use_rag": true
+    },
+    "cycif_workflow": {
+      "role": "specialist",
+      "label": "CycIF workflow",
+      "specialty": "CycIF/tCyCIF staining, gating, Ashlar, StarDist, and pipeline steps.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:7b-instruct" },
+      "fallback_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "temperature": 0.3,
+      "max_tokens": 1200,
+      "use_rag": true
+    },
+    "bioinformatics_planner": {
+      "role": "specialist",
+      "label": "Bioinformatics planner",
+      "specialty": "Omics pipelines, single-cell workflow design, and reproducibility.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:7b-instruct" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.35,
+      "max_tokens": 1400,
+      "use_rag": true
+    },
+    "single_cell_agent": {
+      "role": "specialist",
+      "label": "Single-cell",
+      "specialty": "scRNA-seq, scGPT/Geneformer-style analysis planning (no raw model names to user).",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:7b-instruct" },
+      "fallback_model": { "provider": "ollama", "model": "meditron:7b" },
+      "temperature": 0.35,
+      "max_tokens": 1200,
+      "use_rag": true
+    },
+    "statistics_agent": {
+      "role": "specialist",
+      "label": "Statistics",
+      "specialty": "Study design, statistical tests, and result interpretation.",
+      "preferred_model": { "provider": "ollama", "model": "llama3.1:8b" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.3,
+      "max_tokens": 1000,
+      "use_rag": false
+    },
+    "validation_agent": {
+      "role": "specialist",
+      "label": "Validation",
+      "specialty": "QC checks, reproducibility, and validation plans.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.25,
+      "max_tokens": 800,
+      "use_rag": false
+    },
+    "knowledge_retrieval": {
+      "role": "specialist",
+      "label": "Knowledge retrieval",
+      "specialty": "Retrieve and summarize indexed lab documents and publications.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.2,
+      "max_tokens": 1200,
+      "use_rag": true
+    },
+    "biomedical_literature": {
+      "role": "specialist",
+      "label": "Biomedical literature",
+      "specialty": "Oncology and biomedical paper synthesis with caution on citations.",
+      "preferred_model": { "provider": "ollama", "model": "meditron:7b" },
+      "fallback_model": { "provider": "ollama", "model": "medllama2:7b" },
+      "temperature": 0.3,
+      "max_tokens": 1400,
+      "use_rag": true,
+      "safety": "biomedical"
+    },
+    "paper_summarizer": {
+      "role": "specialist",
+      "label": "Paper summarizer",
+      "specialty": "Structured literature summaries.",
+      "preferred_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "fallback_model": { "provider": "ollama", "model": "mistral-nemo:12b" },
+      "temperature": 0.3,
+      "max_tokens": 1400,
+      "use_rag": true
+    },
+    "comparison_agent": {
+      "role": "specialist",
+      "label": "Comparison",
+      "specialty": "Compare methods, papers, or experimental approaches.",
+      "preferred_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "fallback_model": { "provider": "ollama", "model": "llama3.1:8b" },
+      "temperature": 0.35,
+      "max_tokens": 1200,
+      "use_rag": true
+    },
+    "software_architect": {
+      "role": "specialist",
+      "label": "Software architect",
+      "specialty": "Architecture, debugging strategy, and system design.",
+      "preferred_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "fallback_model": { "provider": "ollama", "model": "qwen2.5:7b-instruct" },
+      "temperature": 0.25,
+      "max_tokens": 1400,
+      "use_rag": false
+    },
+    "backend_agent": {
+      "role": "specialist",
+      "label": "Backend",
+      "specialty": "FastAPI, Python, Postgres, Qdrant, and API design.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:7b-instruct" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.25,
+      "max_tokens": 1400,
+      "use_rag": false
+    },
+    "frontend_agent": {
+      "role": "specialist",
+      "label": "Frontend",
+      "specialty": "React, UX, and client integration.",
+      "preferred_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "fallback_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "temperature": 0.25,
+      "max_tokens": 1200,
+      "use_rag": false
+    },
+    "devops_agent": {
+      "role": "specialist",
+      "label": "DevOps",
+      "specialty": "Docker, Linux workstation, Tailscale, and deployment.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.2,
+      "max_tokens": 1200,
+      "use_rag": false
+    },
+    "fast_local_reasoner": {
+      "role": "specialist",
+      "label": "Fast local",
+      "specialty": "Quick local-only answers.",
+      "preferred_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "fallback_model": { "provider": "ollama", "model": "phi3:mini" },
+      "temperature": 0.4,
+      "max_tokens": 900,
+      "use_rag": false
+    },
+    "evidence_checker": {
+      "role": "critic",
+      "label": "Evidence checker",
+      "specialty": "Validate claims, mark uncertainty, distinguish fact vs hypothesis.",
+      "preferred_model": { "provider": "ollama", "model": "meditron:7b" },
+      "fallback_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "temperature": 0.15,
+      "max_tokens": 900,
+      "use_rag": true,
+      "safety": "biomedical"
+    },
+    "citation_checker": {
+      "role": "critic",
+      "label": "Citation checker",
+      "specialty": "Ensure citations are not invented; flag missing sources.",
+      "preferred_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "fallback_model": { "provider": "ollama", "model": "qwen2.5:3b" },
+      "temperature": 0.1,
+      "max_tokens": 700,
+      "use_rag": true
+    },
+    "critique_agent": {
+      "role": "critic",
+      "label": "Critique",
+      "specialty": "Challenge assumptions and identify gaps.",
+      "preferred_model": { "provider": "gemini", "model": "gemini-2.5-pro" },
+      "fallback_model": { "provider": "ollama", "model": "llama3.1:8b" },
+      "temperature": 0.3,
+      "max_tokens": 900,
+      "use_rag": false
+    },
+    "synthesizer": {
+      "role": "synthesizer",
+      "label": "Synthesis",
+      "specialty": "Merge specialist outputs into one coherent user-facing answer.",
+      "preferred_model": { "provider": "gemini", "model": "gemini-2.5-flash" },
+      "fallback_model": { "provider": "ollama", "model": "qwen2.5:7b-instruct" },
+      "temperature": 0.35,
+      "max_tokens": 2000,
+      "use_rag": false
+    }
+  }
+}

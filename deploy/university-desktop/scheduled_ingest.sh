@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Cross-platform wrapper for scripts/scheduled_ingest.py (cron, launchd, systemd).
+# Cross-platform wrapper for scripts/ops/scheduled_ingest.py (cron, launchd, systemd).
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -34,4 +34,4 @@ fi
 
 MAX_ENTRIES="${INGEST_SCHEDULE_MAX_ENTRIES:-500}"
 cd "${REPO_ROOT}"
-exec "${PYTHON}" scripts/scheduled_ingest.py --max-entries "${MAX_ENTRIES}" "$@"
+exec "${PYTHON}" scripts/ops/scheduled_ingest.py --max-entries "${MAX_ENTRIES}" "$@"

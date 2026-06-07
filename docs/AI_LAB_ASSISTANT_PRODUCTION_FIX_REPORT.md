@@ -72,10 +72,10 @@ Report saved: `tests/search_qa_ai_last_run_mock.json`
 ./start.sh
 
 # Mock eval (deterministic retrieval gate)
-LLM_PROVIDER=mock CHAT_LLM_PROVIDER=mock .venv/bin/python3 scripts/run_ai_lab_assistant_eval.py
+LLM_PROVIDER=mock CHAT_LLM_PROVIDER=mock .venv/bin/python3 scripts/search/run_ai_lab_assistant_eval.py
 
 # Live Gemini eval (server-side key only; watch rate limits)
-LLM_PROVIDER=gemini CHAT_LLM_PROVIDER=gemini .venv/bin/python3 scripts/run_ai_lab_assistant_eval.py
+LLM_PROVIDER=gemini CHAT_LLM_PROVIDER=gemini .venv/bin/python3 scripts/search/run_ai_lab_assistant_eval.py
 
 # Unit tests
 python3 -m unittest tests.test_chat_intent -v
@@ -94,7 +94,7 @@ cd app_skeleton/ui/react_frontend && npm run build
 
 ## Ingestion / expansion (next steps)
 
-1. **Research KB:** `scripts/setup_research_knowledge.sh` — target more PubMed/GEO accessions from publications
+1. **Research KB:** `scripts/document-library/setup_research_knowledge.sh` — target more PubMed/GEO accessions from publications
 2. **People:** edit `configs/lab_people_index.json` (sync from `teamDirectory.js` / `userProfilesData.js`)
 3. **Datasets:** extend `dataset_fetcher.py` accession extraction from publication metadata
 4. **Lab protocols:** ingest Ashlar/BaSiC/StarDist SOPs into lab Qdrant for protocol bucket gate
@@ -108,7 +108,7 @@ cd app_skeleton/ui/react_frontend && npm run build
 
 ## Local Ollama research models (Färkkilä / OMEIA)
 
-Docker service `omeia-ollama` stores weights in volume `omeia-ollama-data` (not host `~/.ollama`). On Mac thin client (`DOCKER_LOCAL=false`), run Docker on a Linux workstation and tunnel with `scripts/ollama_ssh_tunnel.sh` — see `docs/DOCKER_SECURITY_AND_CONNECTION.md`.
+Docker service `omeia-ollama` stores weights in volume `omeia-ollama-data` (not host `~/.ollama`). On Mac thin client (`DOCKER_LOCAL=false`), run Docker on a Linux workstation and tunnel with `scripts/llm/ollama_ssh_tunnel.sh` — see `docs/DOCKER_SECURITY_AND_CONNECTION.md`.
 
 | Tag | Tier | Specialty | OMEIA use |
 |-----|------|-----------|-----------|
@@ -121,5 +121,5 @@ Docker service `omeia-ollama` stores weights in volume `omeia-ollama-data` (not 
 | `llama3.1:8b-instruct` | medium | lab_assistant | General scientific summarization |
 | `mistral-nemo:12b` | large | spatial_biology, synthesis | Long-form multi-source synthesis |
 
-Catalog source: `configs/ollama_research_models.json`. Setup: `scripts/setup_ollama_local_llm.sh` (logs: `logs/ollama_setup.log`, `logs/ollama_model_pulls.log`). BioMistral is not on the Ollama registry; use Meditron/MedLlama2 instead.
+Catalog source: `configs/ollama_research_models.json`. Setup: `scripts/llm/setup_ollama_local_llm.sh` (logs: `logs/ollama_setup.log`, `logs/ollama_model_pulls.log`). BioMistral is not on the Ollama registry; use Meditron/MedLlama2 instead.
 

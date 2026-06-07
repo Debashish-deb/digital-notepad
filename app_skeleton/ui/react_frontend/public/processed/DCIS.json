@@ -1,155 +1,254 @@
 {
   "project_code": "DCIS",
-  "processed_at": "2026-06-05T07:16:08.811417+00:00",
-  "folder_path": null,
-  "content_root": null,
-  "source_files_count": 0,
-  "total_assets_count": 0,
+  "processed_at": "2026-06-06T22:50:22.333022+00:00",
+  "folder_path": "28_DCIS-20260602T172041Z-3-001",
+  "content_root": "28_DCIS-20260602T172041Z-3-001/28_DCIS",
+  "source_files_count": 10,
+  "total_assets_count": 10,
   "content_library": {
     "sections": [
       {
-        "id": "28_DCIS",
-        "label": "28_DCIS",
-        "total_files": 2,
-        "documents": [
-          {
-            "path": "28_DCIS/28_DCIS_Project_log.docx",
-            "name": "28_DCIS_Project_log.docx",
-            "asset_type": "document",
-            "extension": ".docx",
-            "previewable": true,
-            "excerpt": "28_DCIS_Project_log"
-          },
-          {
-            "path": "28_DCIS/README.txt",
-            "name": "README.txt",
-            "asset_type": "document",
-            "extension": ".txt",
-            "previewable": true,
-            "excerpt": "# 28_DCIS_project\n\n## Members\nSilja Kauppila, Inga-Maria Launonen, Anniina Färkkilä, Johanna Englund"
-          }
-        ],
+        "id": "methods",
+        "label": "Methods & Experiments",
         "figures": [],
-        "data_files": [],
-        "code_scripts": []
-      },
-      {
-        "id": "28_DCIS/Data & Figures",
-        "label": "28_DCIS/Data & Figures",
-        "total_files": 3,
-        "documents": [
+        "documents": [],
+        "presentations": [],
+        "data_files": [
           {
-            "path": "28_DCIS/Data & Figures/Cohort DCIS.xlsx",
-            "name": "Cohort DCIS.xlsx",
-            "asset_type": "document",
-            "extension": ".xlsx",
-            "previewable": true,
-            "excerpt": "R5: | | | Exp 2 | | | | Exp1\nR6: | | | Grade 1 | 5.0 | | | Grade 1 | 3.0\nR7: | | | Grade 2 | 10.0 | | | Grade 2 | 2.0\nR8: | | | Grade 3 | 9.0 | | | Grade 3 | 7.0\nR9: | | | | | | | Hyperplastic | 1.0\nR11: | | | | yht. 24 näytettä | | | yht. 13 näytettä\nR15: | | | | yht. kaikki 37 näytettä\nR34: | | | | yht. 37 samplea\nR40: | | Yht\nR41: | | Grade 1 | 8.0\nR42: | | Grade 2 | 12.0\nR43: | | Grade 3 | 16."
-          },
-          {
-            "path": "28_DCIS/Data & Figures/Data directories.docx",
-            "name": "Data directories.docx",
-            "asset_type": "document",
-            "extension": ".docx",
-            "previewable": true,
-            "excerpt": "Hard drive"
-          },
-          {
-            "path": "28_DCIS/Data & Figures/Phenotype logic table DCIS.xlsx",
-            "name": "Phenotype logic table DCIS.xlsx",
-            "asset_type": "document",
-            "extension": ".xlsx",
-            "previewable": true,
-            "excerpt": "R1: | | CD68 | Cyclin.D1 | CD206 | Iba1 | TIM.3 | PanCK | CD31 | Vimentin | CD4 | PSTAT1 | CD8a | CD163 | FOXP3 | NKG2A | Ki.67 | CD11c | HLA.DPB1\nR2: all | Tumor | | | | | | allpos\nR3: all | Stroma | allneg | | allneg | allneg | | allneg | anypos | anypos | allneg | | allneg | allneg | allneg | allneg | | allneg\nR4: all | Immune | anypos | | anypos | anypos | | | | | anypos | | anypos | anypos | "
-          }
-        ],
-        "figures": [],
-        "data_files": [],
-        "code_scripts": []
-      },
-      {
-        "id": "28_DCIS/Meetings & Updates/Meeting notes",
-        "label": "28_DCIS/Meetings & Updates/Meeting notes",
-        "total_files": 1,
-        "documents": [
-          {
-            "path": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-            "name": "Meeting notes DCIS.docx",
-            "asset_type": "document",
-            "extension": ".docx",
-            "previewable": true,
-            "excerpt": "22.5.26 - Silja, Anniina, Inga-maria, Johanna"
-          }
-        ],
-        "figures": [],
-        "data_files": [],
-        "code_scripts": []
-      },
-      {
-        "id": "28_DCIS/Methods & Experiments",
-        "label": "28_DCIS/Methods & Experiments",
-        "total_files": 2,
-        "documents": [
-          {
-            "path": "28_DCIS/Methods & Experiments/CycIF image processing report template DCIS project_.xlsx",
+            "path": "Methods & Experiments/CycIF image processing report template DCIS project_.xlsx",
             "name": "CycIF image processing report template DCIS project_.xlsx",
-            "asset_type": "document",
             "extension": ".xlsx",
+            "size_bytes": 7123,
+            "modified_at": "2026-05-25T21:49:48+00:00",
+            "asset_type": "data",
+            "document_kind": "spreadsheet",
             "previewable": true,
-            "excerpt": "R1: Category | Variable | Output | Comments\nR2: Samples | Number of samples | 13.0\nR3: | Section thickness (um) | 5.0\nR4: | Spacer use (yes/no) | no\nR5: | Spacer start cycle | -\nR6: Experiment\nR7: | Number of cycles | 6.0\nR8: | Total number of antibody channels | 19.0\nR9: | Total number of failed antibodies | - | We dropped two samples (BNS24, BTS24), because after an entire cycle, they were overe"
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
           },
           {
-            "path": "28_DCIS/Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx",
+            "path": "Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx",
             "name": "Project_28_DCIS_Englundlab11.8.2025.xlsx",
-            "asset_type": "document",
             "extension": ".xlsx",
+            "size_bytes": 175462,
+            "modified_at": "2025-12-04T23:14:08+00:00",
+            "asset_type": "data",
+            "document_kind": "spreadsheet",
             "previewable": true,
-            "excerpt": "R1: Project | Sample_Name | Sectioning_Time | Slide number | Experiment | Panel | Unique_Section_Id | Raw_Data_Location | Ometiff_Location | Results_Location | Note\nR2: 28.0 | PS_25 | 0325 | 3.0 | 2.0 | a | 28_PS_25_0325_3_2a\nR3: 28.0 | PS_17 | 0325 | 3.0 | 2.0 | a | 28_PS_17_0325_3_2a\nR4: 28.0 | PS_37 | 0325 | 3.0 | 2.0 | a | 28_PS_37_0325_3_2a\nR5: 28.0 | PS_35 | 0325 | 3.0 | 2.0 | a | 28_PS_35_0"
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
           }
         ],
-        "figures": [],
-        "data_files": [],
-        "code_scripts": []
+        "text_files": [],
+        "videos": [],
+        "code_files": [],
+        "counts": {
+          "data": 2
+        },
+        "total_files": 2
       },
       {
-        "id": "28_DCIS/Writing & Dissemination/Abstracts",
-        "label": "28_DCIS/Writing & Dissemination/Abstracts",
-        "total_files": 1,
+        "id": "data_figures",
+        "label": "Data & Figures",
+        "figures": [],
         "documents": [
           {
-            "path": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-            "name": " ESSB_2026_Silja_Kauppila.docx",
-            "asset_type": "document",
+            "path": "Data & Figures/Data directories.docx",
+            "name": "Data directories.docx",
             "extension": ".docx",
+            "size_bytes": 7071,
+            "modified_at": "2026-05-25T22:07:12+00:00",
+            "asset_type": "document",
+            "document_kind": "word_document",
             "previewable": true,
-            "excerpt": "Spatial single-cell profiling reveals grade-dependent immune organization in ductal carcinoma in situ"
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
           }
         ],
-        "figures": [],
-        "data_files": [],
-        "code_scripts": []
+        "presentations": [],
+        "data_files": [
+          {
+            "path": "Data & Figures/Cohort DCIS.xlsx",
+            "name": "Cohort DCIS.xlsx",
+            "extension": ".xlsx",
+            "size_bytes": 8606,
+            "modified_at": "2026-05-25T21:49:48+00:00",
+            "asset_type": "data",
+            "document_kind": "spreadsheet",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          },
+          {
+            "path": "Data & Figures/Phenotype logic table DCIS.xlsx",
+            "name": "Phenotype logic table DCIS.xlsx",
+            "extension": ".xlsx",
+            "size_bytes": 6641,
+            "modified_at": "2026-05-25T21:49:48+00:00",
+            "asset_type": "data",
+            "document_kind": "spreadsheet",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          }
+        ],
+        "text_files": [],
+        "videos": [],
+        "code_files": [],
+        "counts": {
+          "data": 2,
+          "document": 1
+        },
+        "total_files": 3
       },
       {
-        "id": "28_DCIS/Meetings & Updates/Meeting presentations",
-        "label": "28_DCIS/Meetings & Updates/Meeting presentations",
-        "total_files": 1,
+        "id": "meetings",
+        "label": "Meetings & Updates",
+        "figures": [],
         "documents": [
           {
-            "path": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-            "name": "DCIS-project_celltype_exploration.pdf",
+            "path": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
+            "name": "Meeting notes DCIS.docx",
+            "extension": ".docx",
+            "size_bytes": 377101,
+            "modified_at": "2026-05-25T21:49:48+00:00",
             "asset_type": "document",
-            "extension": ".pdf",
+            "document_kind": "word_document",
             "previewable": true,
-            "excerpt": "DCIS -project\nExploratory analyses"
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          },
+          {
+            "path": "Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
+            "name": "DCIS-project_celltype_exploration.pdf",
+            "extension": ".pdf",
+            "size_bytes": 776305,
+            "modified_at": "2025-12-03T12:23:20+00:00",
+            "asset_type": "document",
+            "document_kind": "pdf",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
           }
         ],
-        "figures": [],
+        "presentations": [],
         "data_files": [],
-        "code_scripts": []
+        "text_files": [],
+        "videos": [],
+        "code_files": [],
+        "counts": {
+          "document": 2
+        },
+        "total_files": 2
+      },
+      {
+        "id": "writing",
+        "label": "Writing & Dissemination",
+        "figures": [],
+        "documents": [
+          {
+            "path": "Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
+            "name": " ESSB_2026_Silja_Kauppila.docx",
+            "extension": ".docx",
+            "size_bytes": 8833,
+            "modified_at": "2026-05-25T21:41:18+00:00",
+            "asset_type": "document",
+            "document_kind": "word_document",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          }
+        ],
+        "presentations": [],
+        "data_files": [],
+        "text_files": [],
+        "videos": [],
+        "code_files": [],
+        "counts": {
+          "document": 1
+        },
+        "total_files": 1
+      },
+      {
+        "id": "root",
+        "label": "Project Root",
+        "figures": [],
+        "documents": [
+          {
+            "path": "28_DCIS_Project_log.docx",
+            "name": "28_DCIS_Project_log.docx",
+            "extension": ".docx",
+            "size_bytes": 10036,
+            "modified_at": "2026-05-11T00:06:12+00:00",
+            "asset_type": "document",
+            "document_kind": "word_document",
+            "previewable": true,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          }
+        ],
+        "presentations": [],
+        "data_files": [],
+        "text_files": [
+          {
+            "path": "README.txt",
+            "name": "README.txt",
+            "extension": ".txt",
+            "size_bytes": 109,
+            "modified_at": "2026-05-25T22:10:30+00:00",
+            "asset_type": "text",
+            "document_kind": "plain_text",
+            "previewable": false,
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
+          }
+        ],
+        "videos": [],
+        "code_files": [],
+        "counts": {
+          "document": 1,
+          "text": 1
+        },
+        "total_files": 2
       }
     ],
     "figures_gallery": [],
-    "totals": {},
+    "totals": {
+      "document": 5,
+      "all": 10,
+      "data": 4,
+      "text": 1
+    },
     "figure_count": 0
   },
   "identity": {
@@ -178,6 +277,11 @@
       "name": "Saudaryah Shah",
       "role": "Project lead",
       "focus": "Project lead"
+    },
+    {
+      "name": "Sample ID",
+      "role": "t Johannalta heti kun mahdollista ja täytä taulukkoon ENNEN 15pv!!",
+      "focus": "t Johannalta heti kun mahdollista ja täytä taulukkoon ENNEN 15pv!!"
     }
   ],
   "modalities": [],
@@ -187,53 +291,88 @@
     "repositories": [],
     "folder_tree": [
       {
-        "path": "28_DCIS",
+        "path": ".",
         "file_count": 2,
         "categories": [
-          "document"
+          "document",
+          "overview"
         ]
       },
       {
-        "path": "28_DCIS/Data & Figures",
+        "path": "Data & Figures",
         "file_count": 3,
         "categories": [
-          "document"
+          "figure"
         ]
       },
       {
-        "path": "28_DCIS/Meetings & Updates/Meeting notes",
+        "path": "Meetings & Updates/Meeting notes",
         "file_count": 1,
         "categories": [
-          "document"
+          "activity"
         ]
       },
       {
-        "path": "28_DCIS/Meetings & Updates/Meeting presentations",
+        "path": "Meetings & Updates/Meeting presentations",
         "file_count": 1,
         "categories": [
-          "document"
+          "activity"
         ]
       },
       {
-        "path": "28_DCIS/Methods & Experiments",
+        "path": "Methods & Experiments",
         "file_count": 2,
         "categories": [
-          "document"
+          "protocol"
         ]
       },
       {
-        "path": "28_DCIS/Writing & Dissemination/Abstracts",
+        "path": "Writing & Dissemination/Abstracts",
         "file_count": 1,
         "categories": [
-          "document"
+          "dissemination"
         ]
       }
     ]
   },
-  "timeline": [],
+  "timeline": [
+    {
+      "date": "Undated",
+      "title": "Project update",
+      "category": "update",
+      "summary": "28_DCIS_Project_log Project overview The aim of the project is to study 13 DCIS WSI samples of grade 1/2/3 focusing on tumor-immune, specifically tumor-macrophage, interactions. Many of the slides have both normal and DCIS ducts. One sample has only hyperplasia. Additionally, Englund lab has performed RNAscope for Laminin 5 from the adjacent tissue section. Initially we will however focus on the cycif data and immune interactions. Input files used Ome-tiff-images: DCIS hard drive/cylinter/tif Me",
+      "source_file": "28_DCIS_Project_log.docx"
+    }
+  ],
   "meetings": [],
-  "protocols": [],
-  "dissemination": [],
+  "protocols": [
+    {
+      "title": "## Sheet: Taulukko1",
+      "category": "Methods & Experiments",
+      "steps": [],
+      "source_file": "Methods & Experiments/CycIF image processing report template DCIS project_.xlsx"
+    },
+    {
+      "title": "## Sheet: sample_ids_2",
+      "category": "Methods & Experiments",
+      "steps": [
+        "1.0 Folate receptor 2 FOLR2 membrane Unconjugated Invitrogen Thermofisher MA5-26933 OTI4G6 100 -20°C 5.0 L7-L8 Avg Ab volume per section 120.0 uL 0.0 rabbit 0.0 #DIV/0!",
+        "DAPI 1.0 Macrophage Nectin2 membrane Unconjugated Abcam ab135246 EPR6717 100 -20°C 5.0 E1-E5 Total Volume 1200 uL 0.0 rat 0.0 #DIV/0!"
+      ],
+      "source_file": "Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx"
+    }
+  ],
+  "dissemination": [
+    {
+      "title": "Spatial single-cell profiling reveals grade-dependent immune organization in ductal carcinoma in situ",
+      "author": "",
+      "conference": "ESSB",
+      "year": 2026,
+      "doi": null,
+      "type": "abstract",
+      "source_file": "Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx"
+    }
+  ],
   "publications": [],
   "derived_knowledge": {
     "methods": [],
@@ -242,2018 +381,560 @@
   },
   "document_index": [
     {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "path": "28_DCIS/28_DCIS_Project_log.docx",
-      "title": "28_DCIS_Project_log.docx",
-      "has_text": true,
-      "excerpt": "28_DCIS_Project_log",
+      "path": "28_DCIS_Project_log.docx",
+      "name": "28_DCIS_Project_log.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 10036,
+      "modified_at": "2026-05-11T00:06:12+00:00",
+      "sha256": "922319a5c852bb1ef26623e221cf07388a8a5e1882b737f505799de290cdd33e",
+      "status": "extracted",
+      "extractor": "python-docx",
+      "title": "28_DCIS_Project_log",
+      "excerpt": "The aim of the project is to study 13 DCIS WSI samples of grade 1/2/3 focusing on tumor-immune, specifically tumor-macrophage, interactions. Many of the slides have both normal and DCIS ducts. One sample has only hyperplasia. Additionally, Englund lab has performed RNAscope for Laminin 5 from the adjacent tissue section. Initially we will however focus on the cycif data and immune interactions. Ome-tiff-images: DCIS hard drive/cylinter/tif Mesmer segmentation: DCIS hard drive/cylinter/seg Channels: DCIS hard drive/cylinter/markers.csv Quantified csvs: DCIS hard drive/cylinter/csv Cylinter outputs: DCIS hard drive/cylinter/output/checkpoints Cylinter quality controlled data: DCIS hard drive/scimap_analysis/qc_data.h5ad Results and analysis files Phenotype logic tale: DCIS hard drive/scimap_",
+      "char_count": 3012,
+      "word_count": 463,
       "metadata": {
-        "source": {
-          "filename": "28_DCIS_Project_log.docx",
-          "stem": "28_DCIS_Project_log",
-          "extension": ".docx",
-          "relative_path": "28_DCIS/28_DCIS_Project_log.docx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/28_DCIS-20260602T172041Z-3-001/28_DCIS/28_DCIS_Project_log.docx",
-          "size_bytes": 10036,
-          "size_human": "9.80 KB",
-          "modified": "2026-05-11T03:06:12",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "hashes": {
-            "md5": "125a2ca8056879d4900cfde8ef6cfe9b"
-          }
-        },
-        "classification": {
-          "family": "word",
-          "extension": ".docx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "extractor": "python-docx",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "paragraph_count": 47,
-          "table_count": 0,
-          "core_properties": {
-            "title": "Word Document",
-            "subject": "",
-            "author": "",
-            "keywords": "",
-            "created": null,
-            "modified": "2026-06-05T12:28:17+00:00",
-            "last_modified_by": "python-docx"
-          }
-        },
-        "converted_at": "2026-06-05T15:28:17"
-      }
+        "paragraph_count": 57,
+        "table_count": 0,
+        "author": "",
+        "title": "Word Document",
+        "subject": "",
+        "created": null,
+        "modified": "2026-06-06T22:50:22+00:00"
+      },
+      "warnings": [],
+      "errors": []
     },
     {
-      "document_id": "f07783938f415f59082315499fdd7e7c",
-      "path": "28_DCIS/Data & Figures/Cohort DCIS.xlsx",
-      "title": "Cohort DCIS.xlsx",
-      "has_text": true,
-      "excerpt": "R5: | | | Exp 2 | | | | Exp1\nR6: | | | Grade 1 | 5.0 | | | Grade 1 | 3.0\nR7: | | | Grade 2 | 10.0 | | | Grade 2 | 2.0\nR8: | | | Grade 3 | 9.0 | | | Grade 3 | 7.0\nR9: | | | | | | | Hyperplastic | 1.0\nR11: | | | | yht. 24 näytettä | | | yht. 13 näytettä\nR15: | | | | yht. kaikki 37 näytettä\nR34: | | | | yht. 37 samplea\nR40: | | Yht\nR41: | | Grade 1 | 8.0\nR42: | | Grade 2 | 12.0\nR43: | | Grade 3 | 16.",
+      "path": "Data & Figures/Cohort DCIS.xlsx",
+      "name": "Cohort DCIS.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 8606,
+      "modified_at": "2026-05-25T21:49:48+00:00",
+      "sha256": "62790fff2eb3d574b798584397aeb779b938cb4752d96c8db06d7fe207d45c09",
+      "status": "extracted",
+      "extractor": "openpyxl",
+      "title": "## Sheet: Taulukko1",
+      "excerpt": "Grade 2 10.0 Grade 2 2.0 yht. 24 näytettä yht. 13 näytettä",
+      "char_count": 253,
+      "word_count": 61,
       "metadata": {
-        "source": {
-          "filename": "Cohort DCIS.xlsx",
-          "stem": "Cohort DCIS",
-          "extension": ".xlsx",
-          "relative_path": "28_DCIS/Data & Figures/Cohort DCIS.xlsx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/28_DCIS-20260602T172041Z-3-001/28_DCIS/Data & Figures/Cohort DCIS.xlsx",
-          "size_bytes": 8606,
-          "size_human": "8.40 KB",
-          "modified": "2026-05-26T00:49:48",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "hashes": {
-            "md5": "7add82ead315b64b1a0f6dfda19134ff"
-          }
-        },
-        "classification": {
-          "family": "spreadsheet",
-          "extension": ".xlsx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "extractor": "openpyxl",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "sheet_names": [
-            "Taulukko1"
-          ],
-          "sheet_count": 1
-        },
-        "converted_at": "2026-06-05T15:28:17"
-      }
+        "sheet_names": [
+          "Taulukko1"
+        ],
+        "sheet_count": 1
+      },
+      "warnings": [],
+      "errors": []
     },
     {
-      "document_id": "d0216f5285c1534d290e7842b3c11ae5",
-      "path": "28_DCIS/Data & Figures/Data directories.docx",
-      "title": "Data directories.docx",
-      "has_text": true,
-      "excerpt": "Hard drive",
+      "path": "Data & Figures/Data directories.docx",
+      "name": "Data directories.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 7071,
+      "modified_at": "2026-05-25T22:07:12+00:00",
+      "sha256": "0ba207697ed95ecf4ec7ef6756b8bdcfb7c0624fe9f4cce466fab5a92eef8c0d",
+      "status": "extracted",
+      "extractor": "python-docx",
+      "title": "Hard drive",
+      "excerpt": "Exp 1: protocol, phenotype data, data analyses raw data, pre processing Exp 2: protocol, phenotype data, data analyses raw data, pre processing Project methods, notes, figures",
+      "char_count": 228,
+      "word_count": 36,
       "metadata": {
-        "source": {
-          "filename": "Data directories.docx",
-          "stem": "Data directories",
-          "extension": ".docx",
-          "relative_path": "28_DCIS/Data & Figures/Data directories.docx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/28_DCIS-20260602T172041Z-3-001/28_DCIS/Data & Figures/Data directories.docx",
-          "size_bytes": 7071,
-          "size_human": "6.91 KB",
-          "modified": "2026-05-26T01:07:12",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "hashes": {
-            "md5": "689018a0fd85d6ebf372a89b75544039"
-          }
-        },
-        "classification": {
-          "family": "word",
-          "extension": ".docx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "extractor": "python-docx",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "paragraph_count": 8,
-          "table_count": 0,
-          "core_properties": {
-            "title": "Word Document",
-            "subject": "",
-            "author": "",
-            "keywords": "",
-            "created": null,
-            "modified": "2026-06-05T12:28:17+00:00",
-            "last_modified_by": "python-docx"
-          }
-        },
-        "converted_at": "2026-06-05T15:28:17"
-      }
+        "paragraph_count": 16,
+        "table_count": 0,
+        "author": "",
+        "title": "Word Document",
+        "subject": "",
+        "created": null,
+        "modified": "2026-06-06T22:50:22+00:00"
+      },
+      "warnings": [],
+      "errors": []
     },
     {
-      "document_id": "14f40b772171e15cd4e07fe9850ce1c7",
-      "path": "28_DCIS/Data & Figures/Phenotype logic table DCIS.xlsx",
-      "title": "Phenotype logic table DCIS.xlsx",
-      "has_text": true,
-      "excerpt": "R1: | | CD68 | Cyclin.D1 | CD206 | Iba1 | TIM.3 | PanCK | CD31 | Vimentin | CD4 | PSTAT1 | CD8a | CD163 | FOXP3 | NKG2A | Ki.67 | CD11c | HLA.DPB1\nR2: all | Tumor | | | | | | allpos\nR3: all | Stroma | allneg | | allneg | allneg | | allneg | anypos | anypos | allneg | | allneg | allneg | allneg | allneg | | allneg\nR4: all | Immune | anypos | | anypos | anypos | | | | | anypos | | anypos | anypos | ",
+      "path": "Data & Figures/Phenotype logic table DCIS.xlsx",
+      "name": "Phenotype logic table DCIS.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 6641,
+      "modified_at": "2026-05-25T21:49:48+00:00",
+      "sha256": "9c2cb1613c8cabe7c4d46614d3b69951c08737262e66ee298eef9af3ba172516",
+      "status": "extracted",
+      "extractor": "openpyxl",
+      "title": "## Sheet: Taulukko1",
+      "excerpt": "CD68 Cyclin.D1 CD206 Iba1 TIM.3 PanCK CD31 Vimentin CD4 PSTAT1 CD8a CD163 FOXP3 NKG2A Ki.67 CD11c HLA.DPB1 all Stroma allneg allneg allneg allneg anypos anypos allneg allneg allneg allneg allneg allneg all Immune anypos anypos anypos anypos anypos anypos anypos anypos anypos Immune Myeloid pos anypos anypos anypos anypos Immune CD8.T.cells allpos Immune CD4.T.cells allpos Immune FOXP3.CD4.Tregs pos allpos Immune NK.cells neg allpos Tumor Non.proliferative.epithelial allneg allneg Tumor Ki67.pos.epithelial allneg allpos Tumor CyclinD1.pos.epithelial allpos allneg Tumor Ki67.CyclinD1.pos.epithelial allpos allpos Stroma Endothelial.cells allpos Stroma Fibroblasts neg allpos CD8.T.cells NKG2A.CD8.T.cells allpos \"allpos\" = kaikkien pitää olla positiivisia \"anypos\" = riittää et on positiivinen j",
+      "char_count": 959,
+      "word_count": 144,
       "metadata": {
-        "source": {
-          "filename": "Phenotype logic table DCIS.xlsx",
-          "stem": "Phenotype logic table DCIS",
-          "extension": ".xlsx",
-          "relative_path": "28_DCIS/Data & Figures/Phenotype logic table DCIS.xlsx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/28_DCIS-20260602T172041Z-3-001/28_DCIS/Data & Figures/Phenotype logic table DCIS.xlsx",
-          "size_bytes": 6641,
-          "size_human": "6.49 KB",
-          "modified": "2026-05-26T00:49:48",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "hashes": {
-            "md5": "c1dc510927a71c0b4e7b0ac93b61deff"
-          }
-        },
-        "classification": {
-          "family": "spreadsheet",
-          "extension": ".xlsx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "extractor": "openpyxl",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "sheet_names": [
-            "Taulukko1"
-          ],
-          "sheet_count": 1
-        },
-        "converted_at": "2026-06-05T15:28:17"
-      }
+        "sheet_names": [
+          "Taulukko1"
+        ],
+        "sheet_count": 1
+      },
+      "warnings": [],
+      "errors": []
     },
     {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "path": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "title": "Meeting notes DCIS.docx",
-      "has_text": true,
-      "excerpt": "22.5.26 - Silja, Anniina, Inga-maria, Johanna",
+      "path": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
+      "name": "Meeting notes DCIS.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 377101,
+      "modified_at": "2026-05-25T21:49:48+00:00",
+      "sha256": "740f8b7db4a3705a51e7e107757845cc0c68047614721364dc89acda8d78d4d8",
+      "status": "extracted",
+      "extractor": "python-docx",
+      "title": "22.5.26 - Silja, Anniina, Inga-maria, Johanna",
+      "excerpt": "22.5.26 - Silja, Anniina, Inga-maria, Johanna Biopankista 30 potilasta per kohortti eli 30 potilasta DCIS kehittynyt IDC:ksi ja 30 potilasta DCIS ja ei kehittynyt (yli 10 v seurannassa) Ekat 10 haettu biopankista molemmista kohorteista (yht n. 30 näytettä) Anders kattonut, että on oikean näköiset & kattonut missä blokeissa parhaat näytteet Johanna dippaa yhden leikkeen FFPE:hen jolloin se säilyy paremmin eikä hapetu Halutaan tutkia soluvälinainetta ja tuuumoriympäristöä Silja ja Inga-Maria suunnittelee paneelin T-soluista lisää markkereita Vanha paneeli pysyy, siihen lisätään Haluttaisiin myös värjätä meidän jo värjätyistä näytteistä ER ja HER2 värjäykset ! Andreas tyypittäisi ne, värjäysautomaateilla tehdään, kliinikko olis kiva saada tekemään jotta luetettavaa, siksi patologilta kysytään",
+      "char_count": 10123,
+      "word_count": 1395,
       "metadata": {
-        "source": {
-          "filename": "Meeting notes DCIS.docx",
-          "stem": "Meeting notes DCIS",
-          "extension": ".docx",
-          "relative_path": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/28_DCIS-20260602T172041Z-3-001/28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-          "size_bytes": 377101,
-          "size_human": "368.26 KB",
-          "modified": "2026-05-26T00:49:48",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "hashes": {
-            "md5": "a32ce9c165a67b38c521ae0720171e1b"
-          }
-        },
-        "classification": {
-          "family": "word",
-          "extension": ".docx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "extractor": "python-docx",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "paragraph_count": 171,
-          "table_count": 0,
-          "core_properties": {
-            "title": "Word Document",
-            "subject": "",
-            "author": "",
-            "keywords": "",
-            "created": null,
-            "modified": "2026-06-05T12:28:17+00:00",
-            "last_modified_by": "python-docx"
-          }
-        },
-        "converted_at": "2026-06-05T15:28:17"
-      }
+        "paragraph_count": 280,
+        "table_count": 0,
+        "author": "",
+        "title": "Word Document",
+        "subject": "",
+        "created": null,
+        "modified": "2026-06-06T22:50:22+00:00"
+      },
+      "warnings": [],
+      "errors": []
     },
     {
-      "document_id": "1811a79b0154ee05d0ab2f4fd8779a8f",
-      "path": "28_DCIS/Methods & Experiments/CycIF image processing report template DCIS project_.xlsx",
-      "title": "CycIF image processing report template DCIS project_.xlsx",
-      "has_text": true,
-      "excerpt": "R1: Category | Variable | Output | Comments\nR2: Samples | Number of samples | 13.0\nR3: | Section thickness (um) | 5.0\nR4: | Spacer use (yes/no) | no\nR5: | Spacer start cycle | -\nR6: Experiment\nR7: | Number of cycles | 6.0\nR8: | Total number of antibody channels | 19.0\nR9: | Total number of failed antibodies | - | We dropped two samples (BNS24, BTS24), because after an entire cycle, they were overe",
+      "path": "Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
+      "name": "DCIS-project_celltype_exploration.pdf",
+      "extension": ".pdf",
+      "document_kind": "pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 776305,
+      "modified_at": "2025-12-03T12:23:20+00:00",
+      "sha256": "ba063d14a03c890a5e0640d3fc8cbe2d29b0a97ada30481d669775c7151b2144",
+      "status": "extracted",
+      "extractor": "PyPDF2",
+      "title": "DCIS -project",
+      "excerpt": "•We ran segmentation again using mesmer instead ofstardist , which markedly improved cell segmentation •→2 682 504 cells after quality control •Each marker was gated and rescaled using Naparigater and rescale functions in scimap •Using aprior knowledge logic table ,the cells were phenotyped using phenotype_cells function in scimap Antibody panel–allmarkers had good staining although TIM3 was sligthly unclear in some samples Comparisons across grades–global celltypes Pairwise wilcox tests and overall Kruskal -Wallis p -value Comparisons across grades – immune celltypes out of all immune Correlations (spearman ) of markers in myeloid cells show positive correlation between FOLR2, CD162 and CD206. CD11c correlates negatively with these markers . CD11c and HLA.DPB1 correlate positively UMAPs s",
+      "char_count": 1583,
+      "word_count": 240,
       "metadata": {
-        "source": {
-          "filename": "CycIF image processing report template DCIS project_.xlsx",
-          "stem": "CycIF image processing report template DCIS project_",
-          "extension": ".xlsx",
-          "relative_path": "28_DCIS/Methods & Experiments/CycIF image processing report template DCIS project_.xlsx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/28_DCIS-20260602T172041Z-3-001/28_DCIS/Methods & Experiments/CycIF image processing report template DCIS project_.xlsx",
-          "size_bytes": 7123,
-          "size_human": "6.96 KB",
-          "modified": "2026-05-26T00:49:48",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "hashes": {
-            "md5": "b4206aa8450c85eb359f02795f19e720"
-          }
-        },
-        "classification": {
-          "family": "spreadsheet",
-          "extension": ".xlsx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "extractor": "openpyxl",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "sheet_names": [
-            "Taulukko1"
-          ],
-          "sheet_count": 1
-        },
-        "converted_at": "2026-06-05T15:28:17"
-      }
+        "page_count": 13,
+        "Title": "",
+        "Author": "Launonen, Inga-Maria P",
+        "CreationDate": "D:20251204002319+02'00'",
+        "ModDate": "D:20251204002319+02'00'",
+        "Producer": "Microsoft® PowerPoint® for Microsoft 365",
+        "Creator": "Microsoft® PowerPoint® for Microsoft 365",
+        "tabular_line_count_guess": 0,
+        "probably_contains_tables": false
+      },
+      "warnings": [
+        "pypdf unavailable/failed: No module named 'pypdf'"
+      ],
+      "errors": []
     },
     {
-      "document_id": "22ec87edfc74d2e63938775b25ab84e7",
-      "path": "28_DCIS/README.txt",
-      "title": "README.txt",
-      "has_text": true,
-      "excerpt": "# 28_DCIS_project\n\n## Members\nSilja Kauppila, Inga-Maria Launonen, Anniina Färkkilä, Johanna Englund",
+      "path": "Methods & Experiments/CycIF image processing report template DCIS project_.xlsx",
+      "name": "CycIF image processing report template DCIS project_.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 7123,
+      "modified_at": "2026-05-25T21:49:48+00:00",
+      "sha256": "1153b7f0ecfb1c549117b3ea2656b2c056b4f2b1435efbacc4a6fd9d881afb53",
+      "status": "extracted",
+      "extractor": "openpyxl",
+      "title": "## Sheet: Taulukko1",
+      "excerpt": "Category Variable Output Comments Samples Number of samples 13.0 Section thickness (um) 5.0 Total number of antibody channels 19.0 Total number of failed antibodies - We dropped two samples (BNS24, BTS24), because after an entire cycle, they were overexposed for all markers, and according to anu, they were \"extra slides\" anyhow List of failed antibodies/markers (separated by commas) - Pixel scale (pixels per um) 65.0 Magnification (in x) 20.0 Workstation/service used Igas linux / old office Illumination correction tool BaSiC tool script in Github (image-processing protocol pipeline) Stitching and registration Stitching and registration tool, including version Ashlar 1.17 Stitching verification - all tiles are present in all cycles in all images (date of completion) 2025-08-25 00:00:00 Mark",
+      "char_count": 2003,
+      "word_count": 315,
       "metadata": {
-        "source": {
-          "filename": "README.txt",
-          "stem": "README",
-          "extension": ".txt",
-          "relative_path": "28_DCIS/README.txt",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/28_DCIS-20260602T172041Z-3-001/28_DCIS/README.txt",
-          "size_bytes": 109,
-          "size_human": "109.00 B",
-          "modified": "2026-05-26T01:10:30",
-          "mime_type": "text/plain",
-          "hashes": {
-            "md5": "c9d34b032b54b5bcc79210e428da810d"
-          }
-        },
-        "classification": {
-          "family": "text",
-          "extension": ".txt",
-          "mime_type": "text/plain",
-          "extractor": "text",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "encoding": "utf_8",
-          "line_count": 4
-        },
-        "converted_at": "2026-06-05T15:28:17"
-      }
+        "sheet_names": [
+          "Taulukko1"
+        ],
+        "sheet_count": 1
+      },
+      "warnings": [],
+      "errors": []
     },
     {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "path": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "title": " ESSB_2026_Silja_Kauppila.docx",
-      "has_text": true,
-      "excerpt": "Spatial single-cell profiling reveals grade-dependent immune organization in ductal carcinoma in situ",
+      "path": "Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx",
+      "name": "Project_28_DCIS_Englundlab11.8.2025.xlsx",
+      "extension": ".xlsx",
+      "document_kind": "spreadsheet",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 175462,
+      "modified_at": "2025-12-04T23:14:08+00:00",
+      "sha256": "5aa0c9f762ea1b82d4cd9592cec504cfa91ced3c2b999e917a9ded858f042993",
+      "status": "extracted",
+      "extractor": "openpyxl",
+      "title": "## Sheet: sample_ids_2",
+      "excerpt": "Project Sample_Name Sectioning_Time Slide number Experiment Panel Unique_Section_Id Raw_Data_Location Ometiff_Location Results_Location Note 28.0 PS_25 0325 3.0 2.0 a 28_PS_25_0325_3_2a 28.0 PS_17 0325 3.0 2.0 a 28_PS_17_0325_3_2a 28.0 PS_37 0325 3.0 2.0 a 28_PS_37_0325_3_2a 28.0 PS_35 0325 3.0 2.0 a 28_PS_35_0325_3_2a 28.0 PS_15 1124.0 3.0 2.0 a 28_PS_15_1124_3_2a 28.0 PS_47 0325 3.0 2.0 a 28_PS_47_0325_3_2a 28.0 PS_50 0325 3.0 2.0 a 28_PS_50_0325_3_2a 28.0 PS_52 0325 3.0 2.0 a 28_PS_52_0325_3_2a 28.0 PS_53 0325 3.0 2.0 a 28_PS_53_0325_3_2a cycle Target Cell antibody_id Antibody Location within cell fluorochrome Company Cat number Clone Dilution LOCATION, temp LOCATION, box LOCATION, slot Calculator Cycle Antibody Dilution Volume Odyssey Buffer Volume please double check your calculation ",
+      "char_count": 4553,
+      "word_count": 1042,
       "metadata": {
-        "source": {
-          "filename": " ESSB_2026_Silja_Kauppila.docx",
-          "stem": " ESSB_2026_Silja_Kauppila",
-          "extension": ".docx",
-          "relative_path": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/28_DCIS-20260602T172041Z-3-001/28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-          "size_bytes": 8833,
-          "size_human": "8.63 KB",
-          "modified": "2026-05-26T00:41:18",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "hashes": {
-            "md5": "d9a5100b9d466c48c5b07b167b9a2d9e"
-          }
-        },
-        "classification": {
-          "family": "word",
-          "extension": ".docx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "extractor": "python-docx",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "paragraph_count": 18,
-          "table_count": 0,
-          "core_properties": {
-            "title": "Word Document",
-            "subject": "",
-            "author": "",
-            "keywords": "",
-            "created": null,
-            "modified": "2026-06-05T12:28:17+00:00",
-            "last_modified_by": "python-docx"
-          }
-        },
-        "converted_at": "2026-06-05T15:28:17"
-      }
+        "sheet_names": [
+          "sample_ids_2",
+          "exp_2_panel_A",
+          "Scanning plan",
+          "Slides_for_sectioning",
+          "Experimental_Assessments",
+          "Notes",
+          "Computational_steps",
+          "Schedule"
+        ],
+        "sheet_count": 8
+      },
+      "warnings": [],
+      "errors": []
     },
     {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "path": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "title": "DCIS-project_celltype_exploration.pdf",
-      "has_text": true,
-      "excerpt": "DCIS -project\nExploratory analyses",
-      "metadata": {
-        "source": {
-          "filename": "DCIS-project_celltype_exploration.pdf",
-          "stem": "DCIS-project_celltype_exploration",
-          "extension": ".pdf",
-          "relative_path": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/28_DCIS-20260602T172041Z-3-001/28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-          "size_bytes": 776305,
-          "size_human": "758.11 KB",
-          "modified": "2025-12-03T14:23:20",
-          "mime_type": "application/pdf",
-          "hashes": {
-            "md5": "830af8a3aaf03bc9a48cbb929bd1b211"
-          }
-        },
-        "classification": {
-          "family": "pdf",
-          "extension": ".pdf",
-          "mime_type": "application/pdf",
-          "extractor": "PyMuPDF/pypdf/PyPDF2",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "page_count": 13
-        },
-        "converted_at": "2026-06-05T15:28:17"
-      }
+      "path": "README.txt",
+      "name": "README.txt",
+      "extension": ".txt",
+      "document_kind": "plain_text",
+      "mime_type": "text/plain",
+      "size_bytes": 109,
+      "modified_at": "2026-05-25T22:10:30+00:00",
+      "sha256": "d717a46bc727aa23bf97353df4ad49d9a5b11e2ad52f569cdf352644d7704431",
+      "status": "extracted",
+      "extractor": "text:utf-8",
+      "title": "# 28_DCIS_project",
+      "excerpt": "Silja Kauppila, Inga-Maria Launonen, Anniina Färkkilä, Johanna Englund",
+      "char_count": 100,
+      "word_count": 13,
+      "metadata": {},
+      "warnings": [],
+      "errors": []
     },
     {
-      "document_id": "d6bab3c2a4914516911992f112875508",
-      "path": "28_DCIS/Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx",
-      "title": "Project_28_DCIS_Englundlab11.8.2025.xlsx",
-      "has_text": true,
-      "excerpt": "R1: Project | Sample_Name | Sectioning_Time | Slide number | Experiment | Panel | Unique_Section_Id | Raw_Data_Location | Ometiff_Location | Results_Location | Note\nR2: 28.0 | PS_25 | 0325 | 3.0 | 2.0 | a | 28_PS_25_0325_3_2a\nR3: 28.0 | PS_17 | 0325 | 3.0 | 2.0 | a | 28_PS_17_0325_3_2a\nR4: 28.0 | PS_37 | 0325 | 3.0 | 2.0 | a | 28_PS_37_0325_3_2a\nR5: 28.0 | PS_35 | 0325 | 3.0 | 2.0 | a | 28_PS_35_0",
+      "path": "Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
+      "name": " ESSB_2026_Silja_Kauppila.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 8833,
+      "modified_at": "2026-05-25T21:41:18+00:00",
+      "sha256": "1e1e50662a4fd2579a199cec3df92346af2aef92f59e004579269e0848663f5b",
+      "status": "extracted",
+      "extractor": "python-docx",
+      "title": "Spatial single-cell profiling reveals grade-dependent immune organization in ductal carcinoma in situ",
+      "excerpt": "Spatial single-cell profiling reveals grade-dependent immune organization in ductal carcinoma in situ Silja Kauppila1, Inga-Maria Launonen1, Anu Prakash2, Saundarya Shah1, Anders Ståhls3, Tuomo Meretoja4, Peeter Karihtala5, Johanna Englund2, Anniina Färkkilä1,6,2,73 1. Research Program in Systems Oncology, Faculty of Medicine, University of Helsinki 2. Institute of Biotechnology, Helsinki Institute of Life Sciences, University of Helsinki, Finland 3. Department of Pathology, HUS Diagnostic Center, Helsinki University Hospital, Finland 4. Division of Breast Surgery, Helsinki University Hospital Comprehensive Cancer Center and University of Helsinki, Finland 5. Department of Oncology, Helsinki University Hospital Comprehensive Cancer Center and University of Helsinki, Finland 6. Institute fo",
+      "char_count": 3445,
+      "word_count": 489,
       "metadata": {
-        "source": {
-          "filename": "Project_28_DCIS_Englundlab11.8.2025.xlsx",
-          "stem": "Project_28_DCIS_Englundlab11.8.2025",
-          "extension": ".xlsx",
-          "relative_path": "28_DCIS/Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/28_DCIS-20260602T172041Z-3-001/28_DCIS/Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx",
-          "size_bytes": 175462,
-          "size_human": "171.35 KB",
-          "modified": "2025-12-05T01:14:08",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "hashes": {
-            "md5": "9f6a8a092c5c798820843cf0b59b0b3a"
-          }
-        },
-        "classification": {
-          "family": "spreadsheet",
-          "extension": ".xlsx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "extractor": "openpyxl",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "sheet_names": [
-            "sample_ids_2",
-            "exp_2_panel_A",
-            "Scanning plan",
-            "Slides_for_sectioning",
-            "Experimental_Assessments",
-            "Notes",
-            "Computational_steps",
-            "Schedule"
-          ],
-          "sheet_count": 8
-        },
-        "converted_at": "2026-06-05T15:28:17"
-      }
+        "paragraph_count": 31,
+        "table_count": 0,
+        "author": "",
+        "title": "Word Document",
+        "subject": "",
+        "created": null,
+        "modified": "2026-06-06T22:50:22+00:00"
+      },
+      "warnings": [],
+      "errors": []
     }
   ],
   "vector_chunks": [
     {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
+      "chunk_id": "28_DCIS_Project_log.docx::chunk_0000",
+      "source_file": "28_DCIS_Project_log.docx",
       "chunk_index": 0,
-      "text": "28_DCIS_Project_log"
+      "start_char": 0,
+      "end_char": 1771,
+      "char_count": 1771,
+      "word_count": 262,
+      "text": "28_DCIS_Project_log\nProject overview\nThe aim of the project is to study 13 DCIS WSI samples of grade 1/2/3 focusing on tumor-immune, specifically tumor-macrophage, interactions. Many of the slides have both normal and DCIS ducts. One sample has only hyperplasia.\nAdditionally, Englund lab has performed RNAscope for Laminin 5 from the adjacent tissue section. Initially we will however focus on the cycif data and immune interactions.\nInput files used\nOme-tiff-images: DCIS hard drive/cylinter/tif\nMesmer segmentation: DCIS hard drive/cylinter/seg\nChannels: DCIS hard drive/cylinter/markers.csv\nQuantified csvs: DCIS hard drive/cylinter/csv\nCylinter outputs: DCIS hard drive/cylinter/output/checkpoints\nCylinter quality controlled data: DCIS hard drive/scimap_analysis/qc_data.h5ad\nResults and analysis files\nCell type calling:\nPhenotype logic tale: DCIS hard drive/scimap_analysis/phenotype_workflow.csv\nPhenotyped cells with rescaled data: DCIS hard drive/scimap_analysis/phenotype_data.h5ad \nDeveloped code or analysis utils\nExperiment plans\nAnu Prakash performed the t-cycif stainings: https://docs.google.com/spreadsheets/d/1YHOtHe3Bs9PEI2FhgPPCe9ZRG-jDSSV6/edit?usp=drive_link&ouid=111196439271889054570&rtpof=true&sd=true\nComputational storage & resources\nDCIS hard drive from Englund lab\nRaw data is backed up in Englund lab L-drive\nAdditional key relevant files\nSample metadata: DCIS hard drive/ CycIF cohort\nMembers of the project\nSilja, Inga-Maria, Anniina, Saun\nEnglund lab: Johanna Englund, Anu Prakash\nProject log\n11/2025\nInga-Maria:\nRerunning segmentation using mesmer\nQuantification\nQuality control using cylinter modules aggregateData, selectROIS, intensityFilter, areaFilter, cycleCorrelation\nNote: IntensityFilter cutoff:s were not applied in cylinter."
     },
     {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
+      "chunk_id": "28_DCIS_Project_log.docx::chunk_0001",
+      "source_file": "28_DCIS_Project_log.docx",
       "chunk_index": 1,
-      "text": "Project overview"
+      "start_char": 1521,
+      "end_char": 3012,
+      "char_count": 1491,
+      "word_count": 231,
+      "text": "ct log\n11/2025\nInga-Maria:\nRerunning segmentation using mesmer\nQuantification\nQuality control using cylinter modules aggregateData, selectROIS, intensityFilter, areaFilter, cycleCorrelation\nNote: IntensityFilter cutoff:s were not applied in cylinter. The cutoffs were saved in the cylinter/output/cylinter_report.yml file and applied to the data in R\n12/2025\nInga-Maria\nAll markers were gated using Naparigater function in scimap\nThe gates are stored in anndata.uns[“gates”] in DCIS hard drive/scimap_analysis/phenotype_data.h5ad\nThe phenotype logic table was used to phenotype the cells using phenotype_cells function\nPreliminary cell type exploration was performed: https://drive.google.com/file/d/16S-hVG6Pqf38VBwlpRaBnNsCVFOUorGz/view?usp=drive_link\nJohanna gave annotations for normal tissue (6 samples had normal tissue)- this was transferred to quantified and cell typed cycif data using scimap addROI_image function\n11.5/2026\nSilja\nDCIS experiment 2 done by Saun a week ago \nDeb done with the pre-processing protocol and moved all data to hard drive 10.5.26 (illumination correction, stitching with Ashlar, segmentation with mesmer, quantification and filter images)\nI have not checked marker expressions, illumination correction, stitching or masks yet \nI cleaned the hard drive and moved the folder structures, because it was very messy and unclear, also some double files were deleted\nNext steps: check the expressions and tifs, QC left for lola-lii in july (and cell phenotyping)"
     },
     {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
+      "chunk_id": "Data & Figures/Cohort DCIS.xlsx::chunk_0000",
+      "source_file": "Data & Figures/Cohort DCIS.xlsx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 253,
+      "char_count": 253,
+      "word_count": 61,
+      "text": "## Sheet: Taulukko1\nExp 2 Exp1\nGrade 1 5.0 Grade 1 3.0\nGrade 2 10.0 Grade 2 2.0\nGrade 3 9.0 Grade 3 7.0\nHyperplastic 1.0\nyht. 24 näytettä yht. 13 näytettä\nyht. kaikki 37 näytettä\nyht. 37 samplea\nYht\nGrade 1 8.0\nGrade 2 12.0\nGrade 3 16.0\nHyperplastic 1.0"
+    },
+    {
+      "chunk_id": "Data & Figures/Data directories.docx::chunk_0000",
+      "source_file": "Data & Figures/Data directories.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 228,
+      "char_count": 228,
+      "word_count": 36,
+      "text": "Hard drive\nExp 1: protocol, phenotype data, data analyses raw data, pre processing\nExp 2: protocol, phenotype data, data analyses raw data, pre processing\nAllas: backups \nExp 1\nExp 2\nGoogle drive:\nProject methods, notes, figures"
+    },
+    {
+      "chunk_id": "Data & Figures/Phenotype logic table DCIS.xlsx::chunk_0000",
+      "source_file": "Data & Figures/Phenotype logic table DCIS.xlsx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 959,
+      "char_count": 959,
+      "word_count": 144,
+      "text": "## Sheet: Taulukko1\nCD68 Cyclin.D1 CD206 Iba1 TIM.3 PanCK CD31 Vimentin CD4 PSTAT1 CD8a CD163 FOXP3 NKG2A Ki.67 CD11c HLA.DPB1\nall Tumor allpos\nall Stroma allneg allneg allneg allneg anypos anypos allneg allneg allneg allneg allneg allneg\nall Immune anypos anypos anypos anypos anypos anypos anypos anypos anypos\nImmune Myeloid pos anypos anypos anypos anypos\nImmune CD8.T.cells allpos\nImmune CD4.T.cells allpos\nImmune FOXP3.CD4.Tregs pos allpos\nImmune NK.cells neg allpos\nTumor Non.proliferative.epithelial allneg allneg\nTumor Ki67.pos.epithelial allneg allpos\nTumor CyclinD1.pos.epithelial allpos allneg\nTumor Ki67.CyclinD1.pos.epithelial allpos allpos\nStroma Endothelial.cells allpos\nStroma Fibroblasts neg allpos\nCD8.T.cells NKG2A.CD8.T.cells allpos\n\"allpos\" = kaikkien pitää olla positiivisia\n\"anypos\" = riittää et on positiivinen jollekin markkerille\n\"allneg\" = kaikkien pitää olla negatiivisia\n\"anyneg\" = riittää et on negatiivinen jollekin markkerille"
+    },
+    {
+      "chunk_id": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx::chunk_0000",
+      "source_file": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1738,
+      "char_count": 1736,
+      "word_count": 235,
+      "text": "22.5.26 - Silja, Anniina, Inga-maria, Johanna\nBiopankkinäytteet: \nBiopankista 30 potilasta per kohortti\neli 30 potilasta DCIS kehittynyt IDC:ksi ja 30 potilasta DCIS ja ei kehittynyt (yli 10 v seurannassa)\nN. 90 näytettä yht\nEkat 10 haettu biopankista molemmista kohorteista (yht n. 30 näytettä) \nAnders kattonut, että on oikean näköiset & kattonut missä blokeissa parhaat näytteet\nJohanna dippaa yhden leikkeen FFPE:hen jolloin se säilyy paremmin eikä hapetu \nPaneeli: \nHalutaan tutkia soluvälinainetta ja tuuumoriympäristöä\nSilja ja Inga-Maria suunnittelee paneelin \nT-soluista lisää markkereita \nHLA-E?\nSMA\nER? HER2?\nYhteensä 8-10 sykliä \nVanha paneeli pysyy, siihen lisätään\nHaluttaisiin myös värjätä meidän jo värjätyistä näytteistä ER ja HER2 värjäykset !\nAndreas tyypittäisi ne, värjäysautomaateilla tehdään, kliinikko olis kiva saada tekemään jotta luetettavaa, siksi patologilta kysytään\nVärjäys aikataulu: \nSaun tulee juhannuksen jälkeen takaisin \nHeinäkuussa ajatellaan että voidaan värjätä\nLuettavaa: \nhttps://pubmed.ncbi.nlm.nih.gov/35063072/\nhttps://pubmed.ncbi.nlm.nih.gov/36400020/\nKirjallisuudesta etsi tärkeitä markereita mitä voisi lisätä paneeliin \nDCIS immuuniympäristöä ei juurikaan ole tutkittu, ihan pari artikkelia\nMyoepiteelisolut ympäröi DCIS:ää, leesiot jotka ei progresoneet oli paksumpi myoepiteaali leesio ympärillä\nEpiteliaali stroma interaktio leviämisen kannalta me ajatellaan että on merkittävää & mikä on makrfoagi ja T-solu kommunikaation merkitys\nMuu aikataulu: \nSuunnitellaan experimentti Heinäkuulle \nKesäkuun aikana suunnitellaan paneeli \nJohanna labralla testataan ER ja HER2\nZahid Heinäkuussa tekemään joko DCIS exp2 tai exp3 QC:ta, Lola-lii vois tehdä siinä tapauksessa finproven QC:ta\nMuuta:"
+    },
+    {
+      "chunk_id": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx::chunk_0001",
+      "source_file": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
+      "chunk_index": 1,
+      "start_char": 1488,
+      "end_char": 3286,
+      "char_count": 1795,
+      "word_count": 263,
+      "text": "aikataulu: \nSuunnitellaan experimentti Heinäkuulle \nKesäkuun aikana suunnitellaan paneeli \nJohanna labralla testataan ER ja HER2\nZahid Heinäkuussa tekemään joko DCIS exp2 tai exp3 QC:ta, Lola-lii vois tehdä siinä tapauksessa finproven QC:ta\nMuuta: \nHypoteesi onko oikeaan suuntaan, mikä kirjallisuus kertoo? Lue. \nEi ole tiedossa biomarkkeria etenemiselle\nDCIS.ää ei subtypata molekulaarisesti ER, HR ja ER-HR- mukaan !!! ei siis tiedetä mitä ne on! Siksi värjätään \nei oo aiemmin huomattu että molekulaaritsten luokitusten väleillä DCIS:ssä olis eroja etenemisen suhteen tho\nTietokone: \nAnniina ja Johanna ostaa puoliksi koneen mulle mahd. heinäkuussa -> thinkpad superkone XD\nWorkstationit ja CyLinter: \nkesätyöntekijöille lola-liille varaan lolan koko heinäkuu\nzhadid joko jos vapaata (ada ja alexandran koneilla CyLinter) tai sitten hän käyttää mitä vaan workstationia ja tekee naparilla QC:n -> alexandralla koodi githubissa mutta voit vielä kysyä uudelleen, nika osaa auttaa, avaat kuvat naparissa, maskit päälle, kolmiomainen näppäin -> lasso polygans -> lopuksi talenna polygons -> saat ne csv failina -> lopuksi yhdistä? \n7.4.26 - Silja, Anniina, Inga-maria \nAgendat: \nJohannan updatet\nSaunin aikataulu\nESSB abstrakti dedis + mitä siinä halutaan sanoa\nVäikkärihaku lähetän tänään & haluan kommentit ens ma \nJohanna: \nuudet (lisä) DCIS näytteet on vihdoin kerätty ja nyt leikattavana: Grade 1 on 10 kpl, Grade 2 on 9 kpl (-1 koska yksi katosi) , Grade 3 on 10 kpl\neli tokan batchin jälkeen yhteensä: \ngrade 1 = 13\ngrade 2 = 10 \ngrade 3 = 17 \nhyperplasia = 1\nyht. = 41\ntehdään näistä HE:t meillä heti kun on leikattu, mutta nämä pitäisi saada loppuviikosta teille\nSaunin pyytämät vasta-aineet on tilattu ja tulleet, tuon ne lasien kanssa samalla samoin kuin lisä FOLR2 vasta-ainetta\nSaun:"
+    },
+    {
+      "chunk_id": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx::chunk_0002",
+      "source_file": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
       "chunk_index": 2,
-      "text": "The aim of the project is to study 13 DCIS WSI samples of grade 1/2/3 focusing on tumor-immune, specifically tumor-macrophage, interactions. Many of the slides have both normal and DCIS ducts. One sample has only hyperplasia."
+      "start_char": 3036,
+      "end_char": 4832,
+      "char_count": 1794,
+      "word_count": 280,
+      "text": "7 \nhyperplasia = 1\nyht. = 41\ntehdään näistä HE:t meillä heti kun on leikattu, mutta nämä pitäisi saada loppuviikosta teille\nSaunin pyytämät vasta-aineet on tilattu ja tulleet, tuon ne lasien kanssa samalla samoin kuin lisä FOLR2 vasta-ainetta\nSaun: \nUpdate on the timeline for DCIS project tcycif experiment: \nI can begin the experiment on 16th April instead of 20th April.\nPlease remind Johanna to bring the antibodies (10420S – Iba1 in 750 channel , 69227S – Vimentin in 750 channel ) that I had requested from her along with the slides latest by 15th April \nSaun haluaa Inga-marialta levyn 15. pv viimeistään \nSaun haluaa tietää kenen vastuulla siirtää allakseen? Inga-maria? \nAbout allas, cycberduck method of uploading is not working, rclone which uses linux command should be used for uploading data to Allas.\nSo maybe the best will be to involve Deb, so that he can help with the uploads or ask Anniina what to do.\nAbstakti dedis 30.pv: \nmitä halutaan sanoa, kirjottaa, kopioinko osan väikkärihausta\nVäikkärihaku: \nlähetän tänään kommentoitavaksi + haluan kommentit maanantaiksi \nDebiltä kysy kaikki back upiksi asap allakseen -> FINPROVE molemmat batchit ja DCIS molemmat batchit \nSample ID:t Johannalta heti kun mahdollista ja täytä taulukkoon ENNEN 15pv!!\n16.3.26 - Silja, Johanna, Saun\nKokouksen agendat: KÄYTÄNNÖN ASIAT \nNäytteiden määrä nyt: on löydetty, ne pitää vielä käydä läpi ja sitten leikata -> ehkä 20-22 slaidia \npyydettiin grade 1: 6-8 kpl, grade 2: 6-8 kpl, grade 3: 4-5kpl\nehkä myöhemmissä analyyseissä lisätään 1 ja 2 grade yhdeksi ryhmäksi -> kysyään patologislta (johanna)\njohanna annotate before the experiment \nDedline näytteiden saamiselle saunille: 10.april \nKatotaan loppujen näytteiden neliöt\njohanna katsoo näytteet -> merkkaa saunille \nH&E kuvat saadaan myös"
     },
     {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
+      "chunk_id": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx::chunk_0003",
+      "source_file": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
       "chunk_index": 3,
-      "text": "Additionally, Englund lab has performed RNAscope for Laminin 5 from the adjacent tissue section. Initially we will however focus on the cycif data and immune interactions."
+      "start_char": 4582,
+      "end_char": 6331,
+      "char_count": 1747,
+      "word_count": 235,
+      "text": "ade yhdeksi ryhmäksi -> kysyään patologislta (johanna)\njohanna annotate before the experiment \nDedline näytteiden saamiselle saunille: 10.april \nKatotaan loppujen näytteiden neliöt\njohanna katsoo näytteet -> merkkaa saunille \nH&E kuvat saadaan myös \nPidetään paneeli samana!!!\nER/PR muista saman näytteen slaideista voi myöhemmin tsekata eli nyt ei oteta mukaan \nsaun checks the nectin2 antibody & others too if we have enough \nJohanna tilaa FOLR2 antibodyn \nVarsinaisen experiment meetti sovitaan \nPlan: \n20. april -> huhtikuussa edelleen pläni värjätä (puolessa välissä kuuta)-> valmistuu huhtikuun loppuun mennessä ish \nToukokuussa mä teen Finprovea, mutta jos Inga-maria on viikon labralla niin hän voi edistää DCIS:ää -> puhuttiin että lola tekee pre-processingin sillon heinäkuussa, vai tekiskö vaan QC:n tms?\ntästä tulee sopia ja keskustella, ehkä mielummin pre-processing protokolla hänelle \nMahdollista mennä esittään barcelonaan esbb? \nabstraktin dedikset tarkista \nheinäkuussa tekisin tätä, posteria ja abstraktia \nAnalyysit: \nnyt terveet ja DCIS on samoissa analyyseissä, pitää miettiä erotellaanko ne jatkossa analyyseissä ?\nTO DO:\nannotations käydään läpi johannan kanssa?\nexperiment sheet saunin kanssa -> meeting sovi tälle \nreport template minä teen \npyydä Inga-marialta kovalevy ajoissa \nfolder kovalevylle ja allakseen !!!!!!!!!!!!!\nAgenda for next meeting: \nseuraavalle kokoukselle : varmistetaan että kaikki on, aikataulu selvillä, kesän aikataulut, toinen projekti -> näytteet valmiina mitä tehdään?\n19.1.26 - Anniina, Silja, Inga-maria, Johanna \nNäytteet ja värjäykset: \nlisänäytteet onnistuu: gradus 1 ja 2 tuplasti \ngradus 3 lisää myös \nyli 20 näytettä ois hyvä \nei värjätä koko näytettä vaan annotoidaan siitä sopiva alue"
     },
     {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
+      "chunk_id": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx::chunk_0004",
+      "source_file": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
       "chunk_index": 4,
-      "text": "Input files used"
+      "start_char": 6081,
+      "end_char": 7867,
+      "char_count": 1786,
+      "word_count": 223,
+      "text": "valmiina mitä tehdään?\n19.1.26 - Anniina, Silja, Inga-maria, Johanna \nNäytteet ja värjäykset: \nlisänäytteet onnistuu: gradus 1 ja 2 tuplasti \ngradus 3 lisää myös \nyli 20 näytettä ois hyvä \nei värjätä koko näytettä vaan annotoidaan siitä sopiva alue \nsama paneeli värjäykseen -> kysytään patologialta kannattaako tehdä ER/PR värjäystä ja HER2 värjäystä - alatyypistys voisi olla ihan hyvä kyllä \nInga-marian esitys: \nNormaalikudos alueet on merkattu esitykseen vihreellä\nDCIS on merkattuna sinisellä esitykseen \npixeli 30 micron käytettiin ja spatial_count, kmeans = 18 -> oli arvot joita käytettiin alkeellisessa neighborhood analyyseissä \nyhdistetään NORMAALIT epiteelit yhdeksi ryhmäksi ja vasta myöhemmin erotellaan fenotyypit -> helpottaa naapurustojen visualisointia \nekana katotaan solukompositiot analyyseissä, seuraavaksi katotaan nämä naapurustot, sitten mietitään verrataanko näytteiden sisällä vai näytteiden välillä -> ehkä gradejen välillä vois vertailla naapurustoja \npatologin näkemys on että grade 3 on paljon enemmän immuunisoluja kuin grade 1 \nFOLR2 rinkulat + Iba1 rinkulat katotaan kans seuraavissa analyyseissä \nmiten voidaan verrata graduksien välillä naapurustoanalyysejä kun tällä hetkellä ne naapurustot tehdään kaikkien solujen pohjalta -> per sample oma RCN jaottelu\nSeuraavassa kokouksessa: \nvasta-aineet katsotaan maaliskuun alussa ja sillon siis meetti!!!\nsaattaa aikaistua värjäys-aikataulu -> varaudu tähän\nvarsinaisen experiment meetti sovitaan seuraavassa meetissä \nkatotaan loppujen näytteiden neliöt\njohanna katsoo näytteet \nER / PR värjätäänkö -> paneeli \ninga-marialta jos lisää analyysejä \n9.12.25 - Anniina, Silja, Inga-maria, Johanna \nSuunnitelma ja aikataulu: \nKarakterisoidaan mikroympäristöä dcis:ssä \nUudet näytteet värjätään keväällä (mahd."
     },
     {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
+      "chunk_id": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx::chunk_0005",
+      "source_file": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
       "chunk_index": 5,
-      "text": "Ome-tiff-images: DCIS hard drive/cylinter/tif"
+      "start_char": 7617,
+      "end_char": 9399,
+      "char_count": 1780,
+      "word_count": 238,
+      "text": "johanna katsoo näytteet \nER / PR värjätäänkö -> paneeli \ninga-marialta jos lisää analyysejä \n9.12.25 - Anniina, Silja, Inga-maria, Johanna \nSuunnitelma ja aikataulu: \nKarakterisoidaan mikroympäristöä dcis:ssä \nUudet näytteet värjätään keväällä (mahd. huhtikuussa by saun)\nSilja cycif analyysejä miten koulun ohella ehtii keväällä & toukokuussa kokoaikaisesti data pre-processing & analyses\nTranscriptomikkaa joku tekis keväällä tästä projektista (Inga-maria vois mahdollisesti analysoida sen tai joku johannan labralta)\nEnsi syksynä mahdollisesti aloitetaan kirjoittamaan (saattaa venyä siljan koulun takia)\nAlustavat analyysit Inga-maria: \nMesmer masks paremmat kuin stardist (etenkin epiteelisoluissa)\nMarkkereista: TIM ja PSTAT vähän epäselviä \nGrade 3:ssa enemmän CD4 soluja ja lymphoid soluja\nGrade 3:ssa vähemmän myeloid soluja\nCD206 ja CD163 korreloi myeloidisoluissa ja CD11 ja HLA-DPB1\nIba 1 (M1?) muodostaa “sisärenkaan” ja FOLR2 (M2?) “ulkorenkaan” \nCD68 ja CD163 infiltro Iba 1 kanssa\nFOLR2 esiintyi macrophageissa jotka ei inflitroi -> tissue resident - kudosspesifi\nCD206 menee foolihapporeseptori 2 kanssa ulkopuolella \npaperissa sanottiin, että FOLR2 associate with CSD206/CD163 anti-inflammatory macrophages and they have been linked with CD8 T cell infiltration -> hyvään ja huonoon prognoosiin linkitetty eri papereissa\nEpiteelisolujen funktionaaliset markkerit ovat cyclin D1 ja Ki67\nCyclin D mahdollisesti enemmän pre-maligneissa soluissa -> RCN:ssä cyclin D epiteelisolut vs terveet solut\nJatko-analyyseihin: \n1 ja 2 grade voidaan ehkä muuttaa yhdeksi porukaksi \nH&E kuviin Johanna merkkaa leesiot meille \nQpathissa näytä missä leesiot on -> piirtää rajat missä leesiot on -> valitse leesio alueen maskit -> niille RCN:t -> analyysit onko etäisyyksillä eroja"
     },
     {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
+      "chunk_id": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx::chunk_0006",
+      "source_file": "Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
       "chunk_index": 6,
-      "text": "Mesmer segmentation: DCIS hard drive/cylinter/seg"
+      "start_char": 9149,
+      "end_char": 10123,
+      "char_count": 974,
+      "word_count": 134,
+      "text": "1 ja 2 grade voidaan ehkä muuttaa yhdeksi porukaksi \nH&E kuviin Johanna merkkaa leesiot meille \nQpathissa näytä missä leesiot on -> piirtää rajat missä leesiot on -> valitse leesio alueen maskit -> niille RCN:t -> analyysit onko etäisyyksillä eroja \nKoko leikkeet vs alueelliset analyysit ?\nRCN, tumor stroma boundary -> SpaceSTAT in python \nvoidaan laskea infiltraatio indexi \nTo do’s for next meeting: \nSeuraava kokous enemmän koordinointia:\nmitä näytteitä saisi lisää\nhaluttais gradus 1 ja 2 lisää tuplasti tämän hetkiseen kohorttiin (yli vuoden vanhoja ei värjätä, alle 6 kk olisi kiva)\nmilloin voidaan värjätä cycif näytteitä lisää?\nhalutaanko lisää markkereita? self-konjugaatio mahdollinen -> rintasyöpämarkkereita esim. ER? -> on herkkiä näytteen iälle ja kunnolle\nmitä tehdään seuraavaksi?\nspatiaalinen transcriptomiikka -> Xenium vai GeoMx\n(mahdollisia Inga-marian analyysejä katsotaan)\nekan batchin näytemäärät:\ngrade 1 = 3\ngrade 2 = 2\ngrade 3 = 7\nhyperplasia = 1"
     },
     {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 7,
-      "text": "Channels: DCIS hard drive/cylinter/markers.csv"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 8,
-      "text": "Quantified csvs: DCIS hard drive/cylinter/csv"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 9,
-      "text": "Cylinter outputs: DCIS hard drive/cylinter/output/checkpoints"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 10,
-      "text": "Cylinter quality controlled data: DCIS hard drive/scimap_analysis/qc_data.h5ad"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 11,
-      "text": "Results and analysis files"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 12,
-      "text": "Cell type calling:"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 13,
-      "text": "Phenotype logic tale: DCIS hard drive/scimap_analysis/phenotype_workflow.csv"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 14,
-      "text": "Phenotyped cells with rescaled data: DCIS hard drive/scimap_analysis/phenotype_data.h5ad"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 15,
-      "text": "Developed code or analysis utils"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 16,
-      "text": "Experiment plans"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 17,
-      "text": "Anu Prakash performed the t-cycif stainings: https://docs.google.com/spreadsheets/d/1YHOtHe3Bs9PEI2FhgPPCe9ZRG-jDSSV6/edit?usp=drive_link&ouid=111196439271889054570&rtpof=true&sd=true"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 18,
-      "text": "Computational storage & resources"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 19,
-      "text": "DCIS hard drive from Englund lab"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 20,
-      "text": "Raw data is backed up in Englund lab L-drive"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 21,
-      "text": "Additional key relevant files"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 22,
-      "text": "Sample metadata: DCIS hard drive/ CycIF cohort"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 23,
-      "text": "Members of the project"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 24,
-      "text": "Silja, Inga-Maria, Anniina, Saun"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 25,
-      "text": "Englund lab: Johanna Englund, Anu Prakash"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 26,
-      "text": "Project log"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 27,
-      "text": "11/2025"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 28,
-      "text": "Inga-Maria:"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 29,
-      "text": "Rerunning segmentation using mesmer"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 30,
-      "text": "Quantification"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 31,
-      "text": "Quality control using cylinter modules aggregateData, selectROIS, intensityFilter, areaFilter, cycleCorrelation"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 32,
-      "text": "Note: IntensityFilter cutoff:s were not applied in cylinter. The cutoffs were saved in the cylinter/output/cylinter_report.yml file and applied to the data in R"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 33,
-      "text": "12/2025"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 34,
-      "text": "Inga-Maria"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 35,
-      "text": "All markers were gated using Naparigater function in scimap"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 36,
-      "text": "The gates are stored in anndata.uns[“gates”] in DCIS hard drive/scimap_analysis/phenotype_data.h5ad"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 37,
-      "text": "The phenotype logic table was used to phenotype the cells using phenotype_cells function"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 38,
-      "text": "Preliminary cell type exploration was performed: https://drive.google.com/file/d/16S-hVG6Pqf38VBwlpRaBnNsCVFOUorGz/view?usp=drive_link"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 39,
-      "text": "Johanna gave annotations for normal tissue (6 samples had normal tissue)- this was transferred to quantified and cell typed cycif data using scimap addROI_image function"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 40,
-      "text": "11.5/2026"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 41,
-      "text": "Silja"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 42,
-      "text": "DCIS experiment 2 done by Saun a week ago"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 43,
-      "text": "Deb done with the pre-processing protocol and moved all data to hard drive 10.5.26 (illumination correction, stitching with Ashlar, segmentation with mesmer, quantification and filter images)"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 44,
-      "text": "I have not checked marker expressions, illumination correction, stitching or masks yet"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 45,
-      "text": "I cleaned the hard drive and moved the folder structures, because it was very messy and unclear, also some double files were deleted"
-    },
-    {
-      "document_id": "9ef21c539fc83307416159586ac4ebce",
-      "source_file": "28_DCIS/28_DCIS_Project_log.docx",
-      "chunk_index": 46,
-      "text": "Next steps: check the expressions and tifs, QC left for lola-lii in july (and cell phenotyping)"
-    },
-    {
-      "document_id": "f07783938f415f59082315499fdd7e7c",
-      "source_file": "28_DCIS/Data & Figures/Cohort DCIS.xlsx",
+      "chunk_id": "Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf::chunk_0000",
+      "source_file": "Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
       "chunk_index": 0,
-      "text": "R5: | | | Exp 2 | | | | Exp1\nR6: | | | Grade 1 | 5.0 | | | Grade 1 | 3.0\nR7: | | | Grade 2 | 10.0 | | | Grade 2 | 2.0\nR8: | | | Grade 3 | 9.0 | | | Grade 3 | 7.0\nR9: | | | | | | | Hyperplastic | 1.0\nR11: | | | | yht. 24 näytettä | | | yht. 13 näytettä\nR15: | | | | yht. kaikki 37 näytettä\nR34: | | | | yht. 37 samplea\nR40: | | Yht\nR41: | | Grade 1 | 8.0\nR42: | | Grade 2 | 12.0\nR43: | | Grade 3 | 16.0\nR44: | | Hyperplastic | 1.0"
+      "start_char": 0,
+      "end_char": 1583,
+      "char_count": 1583,
+      "word_count": 240,
+      "text": "## Page 1\nDCIS -project\nExploratory analyses\n\n## Page 2\nData processing\n•We ran segmentation again using mesmer instead ofstardist ,\nwhich markedly improved cell segmentation\n•→2 682 504 cells after quality control\n•Each marker was gated and rescaled using Naparigater and\nrescale functions in scimap\n•Using aprior knowledge logic table ,the cells were phenotyped\nusing phenotype_cells function in scimap\n\n## Page 3\nAntibody panel–allmarkers had\ngood staining although TIM3 was\nsligthly unclear in some samples\n\n\n## Page 4\nPhenotype logic table\n\n\n## Page 5\nGlobal celltypes\n\n\n## Page 6\nImmune cells\n\n\n## Page 7\nComparisons across grades–global celltypes\nPairwise wilcox tests and overall \nKruskal -Wallis p -value\n\n## Page 8\nComparisons across grades – immune \ncelltypes out of all immune\n\n\n## Page 9\nMyeloid cell markers\nCorrelations (spearman ) of markers in myeloid cells \nshow positive correlation between FOLR2, CD162 \nand CD206. CD11c correlates negatively with these \nmarkers . CD11c and HLA.DPB1 correlate positively \nwith each other .\n\n## Page 10\nUMAPs showing marker expression per cell in \nmyeloid cells\n\n\n## Page 11\nComparison of myeloid cell markers across \ngrades\n\n\n## Page 12\nInterestingly , FOLR2 is expressed in macrophages \nlocated outside of the tumor mass\nFOLR2\nPanC KIba1\nPanC K\n\n## Page 13\nSummary\n•Higher proportion of lymphoid cells overall in grade 3 vs grade 1\n•Higher proportion of CD4+T -cells and NK-cells out of immune \ncells in grade 3 vs grade 1\n•Higher expression of HLA -DBP1 in myeloid cells in grade 3 vs \ngrade 1\n•Next: sybtyping of myeloid cells"
     },
     {
-      "document_id": "d0216f5285c1534d290e7842b3c11ae5",
-      "source_file": "28_DCIS/Data & Figures/Data directories.docx",
+      "chunk_id": "Methods & Experiments/CycIF image processing report template DCIS project_.xlsx::chunk_0000",
+      "source_file": "Methods & Experiments/CycIF image processing report template DCIS project_.xlsx",
       "chunk_index": 0,
-      "text": "Hard drive"
+      "start_char": 0,
+      "end_char": 1776,
+      "char_count": 1775,
+      "word_count": 274,
+      "text": "## Sheet: Taulukko1\nCategory Variable Output Comments\nSamples Number of samples 13.0\nSection thickness (um) 5.0\nSpacer use (yes/no) no\nSpacer start cycle -\nExperiment\nNumber of cycles 6.0\nTotal number of antibody channels 19.0\nTotal number of failed antibodies - We dropped two samples (BNS24, BTS24), because after an entire cycle, they were overexposed for all markers, and according to anu, they were \"extra slides\" anyhow\nList of failed antibodies/markers (separated by commas) -\nMetadata\nPixel scale (pixels per um) 65.0\nBinning (1/2) 2.0\nMagnification (in x) 20.0\nScanner Lola\nImage Processing\nWorkstation/service used Igas linux / old office\nOperating System Linux\nIllumination correction tool BaSiC tool script in Github (image-processing protocol pipeline)\nStitching and registration Stitching and registration tool, including version Ashlar 1.17\nStitching verification - all tiles are present in all cycles in all images (date of completion) 2025-08-25 00:00:00\nMarker order verification in registration - signal matches marker (date of completion) 2025-08-25 00:00:00\nRegistration verification - DAPI alignment verification across 1st and last cycle (date of completion) 2025-08-25 00:00:00\nImage augmentation tools -\nSegmentation Segmentation tool Mesmer Stardist segmentation done 27.8.25, masks were not good (especially the normal ducts), next tried with Mesmer\nDAPI channel number used for segmentation 0.0\nSegmentation verification through mask-image overlay (date of completion) 2025-11-26 00:00:00\nQuantification - total cell count preQC in dataset 3308561 cells, done in 26.11.25 In addition plot bar graph of cell numbers per sample\nQC (cylinter) List of modules used AggregateData, selectROIs, intensityFilter, areaFilter, cycleCorrelation, logTransform"
     },
     {
-      "document_id": "d0216f5285c1534d290e7842b3c11ae5",
-      "source_file": "28_DCIS/Data & Figures/Data directories.docx",
+      "chunk_id": "Methods & Experiments/CycIF image processing report template DCIS project_.xlsx::chunk_0001",
+      "source_file": "Methods & Experiments/CycIF image processing report template DCIS project_.xlsx",
       "chunk_index": 1,
-      "text": "Exp 1: protocol, phenotype data, data analyses raw data, pre processing"
+      "start_char": 1526,
+      "end_char": 2003,
+      "char_count": 477,
+      "word_count": 77,
+      "text": "ation - total cell count preQC in dataset 3308561 cells, done in 26.11.25 In addition plot bar graph of cell numbers per sample\nQC (cylinter) List of modules used AggregateData, selectROIs, intensityFilter, areaFilter, cycleCorrelation, logTransform\nTotal cell count after QC 2692351.0\nFraction of lost during QC in total dataset (%) 18.6%\nVisual verification of lost cells (date of completion) 2025-11-26 00:00:00\nMost common reason for lost cells (ROIs, Intensity, Area) ROIs"
     },
     {
-      "document_id": "d0216f5285c1534d290e7842b3c11ae5",
-      "source_file": "28_DCIS/Data & Figures/Data directories.docx",
+      "chunk_id": "Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx::chunk_0000",
+      "source_file": "Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx",
+      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 1730,
+      "char_count": 1729,
+      "word_count": 417,
+      "text": "## Sheet: sample_ids_2\nProject Sample_Name Sectioning_Time Slide number Experiment Panel Unique_Section_Id Raw_Data_Location Ometiff_Location Results_Location Note\n28.0 PS_25 0325 3.0 2.0 a 28_PS_25_0325_3_2a\n28.0 PS_17 0325 3.0 2.0 a 28_PS_17_0325_3_2a\n28.0 PS_37 0325 3.0 2.0 a 28_PS_37_0325_3_2a\n28.0 PS_35 0325 3.0 2.0 a 28_PS_35_0325_3_2a\n28.0 PS_15 1124.0 3.0 2.0 a 28_PS_15_1124_3_2a\n28.0 PS_47 0325 3.0 2.0 a 28_PS_47_0325_3_2a\n28.0 PS_50 0325 3.0 2.0 a 28_PS_50_0325_3_2a\n28.0 PS_52 0325 3.0 2.0 a 28_PS_52_0325_3_2a\n28.0 PS_53 0325 3.0 2.0 a 28_PS_53_0325_3_2a\n## Sheet: exp_2_panel_A\ncycle Target Cell antibody_id Antibody Location within cell fluorochrome Company Cat number Clone Dilution LOCATION, temp LOCATION, box LOCATION, slot Calculator Cycle Antibody Dilution Volume Odyssey Buffer Volume please double check your calculation formulas\n1.0 Nucleus DAPI1 Number of Slides 10.0 slides 0.0 Hoechst_0 0.0 #DIV/0! #DIV/0!\n1.0 Folate receptor 2 FOLR2 membrane Unconjugated Invitrogen Thermofisher MA5-26933 OTI4G6 100 -20°C 5.0 L7-L8 Avg Ab volume per section 120.0 uL 0.0 rabbit 0.0 #DIV/0! DAPI\n1.0 Macrophage Nectin2 membrane Unconjugated Abcam ab135246 EPR6717 100 -20°C 5.0 E1-E5 Total Volume 1200 uL 0.0 rat 0.0 #DIV/0! 488.0\nDAPI\n2.0 Nucleus DAPI2 1.0 Hoechst_1 100.0 12 1164 647.0\n2.0 Pan Macrophage CD68 intracellular 488.0 CST 24850S D4B9C 500 +4°C 3.0 B9 1.0 FOLR2 100.0 12 555.0\n2.0 Cell cycle Cyclin D1 intracellular 555.0 Abcam ab203448 EPR2241 200 -20°C 2.0 A8-A9 1.0 Nectin2 100.0 12\n2.0 Macrophage CD206 membrane 647.0 sc-376108 D-1 200.0 +4 °C 3.0 A4\n2.0 Macrophage Iba1 membrane 750.0 CST 10420S E4O4W 200.0 +4°C 1.0 F7 488.0 2.0 Hoechst_2 100.0 12 1155.6\n3.0 Nucleus DAPI3 555.0 2.0 CD68 500 2.4"
+    },
+    {
+      "chunk_id": "Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx::chunk_0001",
+      "source_file": "Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx",
+      "chunk_index": 1,
+      "start_char": 1480,
+      "end_char": 3276,
+      "char_count": 1795,
+      "word_count": 449,
+      "text": "°C 2.0 A8-A9 1.0 Nectin2 100.0 12\n2.0 Macrophage CD206 membrane 647.0 sc-376108 D-1 200.0 +4 °C 3.0 A4\n2.0 Macrophage Iba1 membrane 750.0 CST 10420S E4O4W 200.0 +4°C 1.0 F7 488.0 2.0 Hoechst_2 100.0 12 1155.6\n3.0 Nucleus DAPI3 555.0 2.0 CD68 500 2.4\n3.0 Exhausted T cells TIM-3 membrane 488.0 CST 54669S D5D5R 200.0 +4°C 3.0 A9 647.0 2.0 Cyclin D1 200 6\n3.0 Cancer cells PanCK membrane 555.0 eBioscience-Invitrogen 41-9003-82 AE1-AE3 800 +4°C 1.0 A8 750.0 2.0 CD206 200.0 6\n3.0 Endothelail CD31 membrane 647.0 Abcam ab218582 EPR3094 500.0 -20 °C 5.0 B1 2.0 Iba1 200.0 6\n3.0 Stroma Vimentin intracellular 750.0 CST 69227S D21H3 100.0 +4°C 4.0 A3-4 3.0 DAPI3 100.0 12 1166.1\n4.0 Nucleus DAPI4 3.0 TIM-3 200.0 6\n4.0 Helper T cells CD4 membrane 488.0 RnD systems FAB8165G 150.0 +4°C 3.0 F4 3.0 PanCK 800 1.5\n4.0 Cancer and stromal cells (active IFNy signaling) PSTAT1 membrane 555.0 CST 8183S 58D6 100 +4°C 1.0 C9 3.0 CD31 500.0 2.4\n4.0 Cytotoxic T cells CD8a membrane 647.0 eBioscience-Invitrogen 50-0008-82 AMC908 200 +4 °C 3.0 H1 3.0 Vimentin 100.0 12\n4.0 DAPI4 100 12 1162\n5.0 Nucleus DAPI5 4.0 CD4 150.0 8\n5.0 Macrophages type 2 CD163 membrane 488.0 Abcam ab218293 EPR14643-36 500.0 -20°C 5.0 A1-A5 4.0 PSTAT1 100 12\n5.0 Tegulatory T cells (Tregs) FOXP3 intracellular 555.0 eBioscience-Invitrogen 41-4777-80 236A-E7 200.0 +4 °C 3 G3 4.0 CD8a 200 6\n5.0 NK cells NKG2A membrane 647.0 Abcam ab300745 EPR23737-127 100 -20°C 5.0 H1-H5\n5.0 DAPI5 100 12 1167.6\n6.0 Nucleus DAPI6 5.0 CD163 500.0 2.4\n6.0 Proliferating cells Ki-67 nuclear 488.0 CST 11882S D3B5 300.0 +4°C 1.0 A6 5.0 FOXP3 200.0 6\n6.0 Dendritic cells CD11c membrane 555.0 CST 77882BC D3V1E 200 +4°C 1.0 G5 5.0 NKG2A 100 12\n6.0 Cells with MHC II HLA-DPB1 membrane 647.0 Abcam ab201347 EPR11226 1000 -20°C 2.0 G1-G8\n6.0 DAPI6 100 12 1176.8"
+    },
+    {
+      "chunk_id": "Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx::chunk_0002",
+      "source_file": "Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx",
       "chunk_index": 2,
-      "text": "Exp 2: protocol, phenotype data, data analyses raw data, pre processing"
+      "start_char": 3026,
+      "end_char": 4553,
+      "char_count": 1527,
+      "word_count": 310,
+      "text": "S D3B5 300.0 +4°C 1.0 A6 5.0 FOXP3 200.0 6\n6.0 Dendritic cells CD11c membrane 555.0 CST 77882BC D3V1E 200 +4°C 1.0 G5 5.0 NKG2A 100 12\n6.0 Cells with MHC II HLA-DPB1 membrane 647.0 Abcam ab201347 EPR11226 1000 -20°C 2.0 G1-G8\n6.0 DAPI6 100 12 1176.8\n6.0 Ki-67 300.0 4\n6.0 CD11c 200 6\n6.0 HLA-DPB1 1000 1.2\n## Sheet: Scanning plan\nSample ID Holder Size(S,M,L) Scanning time Coverslipped Scanned Checked Sample Exposure Time\n28_PS_25_0325_3_2a left 7.29\n28_PS_17_0325_3_2a right 6.33\n28_PS_37_0325_3_2a left 7.04\n28_PS_35_0325_3_2a right 7.35\n28_PS_15_1124_3_2a left 8.31\n28_PS_47_0325_3_2a right 6.4\n28_PS_50_0325_3_2a left 4.02\n28_PS_52_0325_3_2a right 6.26\n28_PS_53_0325_3_2a left 5.17\n## Sheet: Slides_for_sectioning\nProject Experiment (Panel) Sample name Slide ID\n## Sheet: Experimental_Assessments\nSlides Channel1 Channel2 Channel3 Channel4 Channel5 Channel6\n## Sheet: Notes\nNotes: To do:\nVimentin expression was found quite high during QC\nTIM3 expression looked unusual, localised in side the lumen space TIM3 could be excluded was not showing good btu introduced lot of particles\nPatient 37 CD8a channel had hallow or hazy kind appearance\nFOXP3 and PSTAT1 expresssion was very low PASTAT1 can be excluded\nMost of the normal looking duct are not segmented well\nThe DSCI and immune cells segmented well\nSample 50 -the sample looked very unstable and tisse seems came off\n## Sheet: Computational_steps\nSample name Stitched Segmented Quantified QC Gated Phenotyped\n## Sheet: Schedule\nDate Day Task Approx. Time Notes Scanning"
     },
     {
-      "document_id": "d0216f5285c1534d290e7842b3c11ae5",
-      "source_file": "28_DCIS/Data & Figures/Data directories.docx",
-      "chunk_index": 3,
-      "text": "Allas: backups"
-    },
-    {
-      "document_id": "d0216f5285c1534d290e7842b3c11ae5",
-      "source_file": "28_DCIS/Data & Figures/Data directories.docx",
-      "chunk_index": 4,
-      "text": "Exp 1"
-    },
-    {
-      "document_id": "d0216f5285c1534d290e7842b3c11ae5",
-      "source_file": "28_DCIS/Data & Figures/Data directories.docx",
-      "chunk_index": 5,
-      "text": "Exp 2"
-    },
-    {
-      "document_id": "d0216f5285c1534d290e7842b3c11ae5",
-      "source_file": "28_DCIS/Data & Figures/Data directories.docx",
-      "chunk_index": 6,
-      "text": "Google drive:"
-    },
-    {
-      "document_id": "d0216f5285c1534d290e7842b3c11ae5",
-      "source_file": "28_DCIS/Data & Figures/Data directories.docx",
-      "chunk_index": 7,
-      "text": "Project methods, notes, figures"
-    },
-    {
-      "document_id": "14f40b772171e15cd4e07fe9850ce1c7",
-      "source_file": "28_DCIS/Data & Figures/Phenotype logic table DCIS.xlsx",
+      "chunk_id": "README.txt::chunk_0000",
+      "source_file": "README.txt",
       "chunk_index": 0,
-      "text": "R1: | | CD68 | Cyclin.D1 | CD206 | Iba1 | TIM.3 | PanCK | CD31 | Vimentin | CD4 | PSTAT1 | CD8a | CD163 | FOXP3 | NKG2A | Ki.67 | CD11c | HLA.DPB1\nR2: all | Tumor | | | | | | allpos\nR3: all | Stroma | allneg | | allneg | allneg | | allneg | anypos | anypos | allneg | | allneg | allneg | allneg | allneg | | allneg\nR4: all | Immune | anypos | | anypos | anypos | | | | | anypos | | anypos | anypos | anypos | anypos | | anypos\nR5: Immune | Myeloid | pos | | anypos | anypos | | | | | | | | anypos | | | | anypos\nR6: Immune | CD8.T.cells | | | | | | | | | | | allpos\nR7: Immune | CD4.T.cells | | | | | | | | | allpos\nR8: Immune | FOXP3.CD4.Tregs | | | | | | | | | pos | | | | allpos\nR9: Immune | NK.cells | | | | | | | | | | | neg | | | allpos\nR10: Tumor | Non.proliferative.epithelial | | allneg | | | | | | | | | | | | | allneg\nR11: Tumor | Ki67.pos.epithelial | | allneg | | | | | | | | | | | | | allpos\nR12: Tumor | CyclinD1.pos.epithelial | | allpos | | | | | | | | | | | | | allneg\nR13: Tumor | Ki67.CyclinD1.pos.epithelial | | allpos | | | | | | | | | | | | | allpos\nR14: Stroma | Endothelial.cells | | | | | | | allpos\nR15: Stroma | Fibroblasts | | | | | | | neg | allpos\nR16: CD8.T.cells | NKG2A.CD8.T.cells | | | | | | | | | | | | | | allpos\nR20: \"allpos\" = kaikkien pitää olla positiivisia\nR21: \"anypos\" = riittää et on positiivinen jollekin markkerille"
-    },
-    {
-      "document_id": "14f40b772171e15cd4e07fe9850ce1c7",
-      "source_file": "28_DCIS/Data & Figures/Phenotype logic table DCIS.xlsx",
-      "chunk_index": 1,
-      "text": "CD8.T.cells | NKG2A.CD8.T.cells | | | | | | | | | | | | | | allpos\nR20: \"allpos\" = kaikkien pitää olla positiivisia\nR21: \"anypos\" = riittää et on positiivinen jollekin markkerille\nR22: \"allneg\" = kaikkien pitää olla negatiivisia\nR23: \"anyneg\" = riittää et on negatiivinen jollekin markkerille"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 0,
-      "text": "22.5.26 - Silja, Anniina, Inga-maria, Johanna"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 1,
-      "text": "Biopankkinäytteet:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 2,
-      "text": "Biopankista 30 potilasta per kohortti"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 3,
-      "text": "eli 30 potilasta DCIS kehittynyt IDC:ksi ja 30 potilasta DCIS ja ei kehittynyt (yli 10 v seurannassa)"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 4,
-      "text": "N. 90 näytettä yht"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 5,
-      "text": "Ekat 10 haettu biopankista molemmista kohorteista (yht n. 30 näytettä)"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 6,
-      "text": "Anders kattonut, että on oikean näköiset & kattonut missä blokeissa parhaat näytteet"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 7,
-      "text": "Johanna dippaa yhden leikkeen FFPE:hen jolloin se säilyy paremmin eikä hapetu"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 8,
-      "text": "Paneeli:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 9,
-      "text": "Halutaan tutkia soluvälinainetta ja tuuumoriympäristöä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 10,
-      "text": "Silja ja Inga-Maria suunnittelee paneelin"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 11,
-      "text": "T-soluista lisää markkereita"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 12,
-      "text": "HLA-E?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 13,
-      "text": "SMA"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 14,
-      "text": "ER? HER2?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 15,
-      "text": "Yhteensä 8-10 sykliä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 16,
-      "text": "Vanha paneeli pysyy, siihen lisätään"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 17,
-      "text": "Haluttaisiin myös värjätä meidän jo värjätyistä näytteistä ER ja HER2 värjäykset !"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 18,
-      "text": "Andreas tyypittäisi ne, värjäysautomaateilla tehdään, kliinikko olis kiva saada tekemään jotta luetettavaa, siksi patologilta kysytään"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 19,
-      "text": "Värjäys aikataulu:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 20,
-      "text": "Saun tulee juhannuksen jälkeen takaisin"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 21,
-      "text": "Heinäkuussa ajatellaan että voidaan värjätä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 22,
-      "text": "Luettavaa:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 23,
-      "text": "https://pubmed.ncbi.nlm.nih.gov/35063072/"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 24,
-      "text": "https://pubmed.ncbi.nlm.nih.gov/36400020/"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 25,
-      "text": "Kirjallisuudesta etsi tärkeitä markereita mitä voisi lisätä paneeliin"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 26,
-      "text": "DCIS immuuniympäristöä ei juurikaan ole tutkittu, ihan pari artikkelia"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 27,
-      "text": "Myoepiteelisolut ympäröi DCIS:ää, leesiot jotka ei progresoneet oli paksumpi myoepiteaali leesio ympärillä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 28,
-      "text": "Epiteliaali stroma interaktio leviämisen kannalta me ajatellaan että on merkittävää & mikä on makrfoagi ja T-solu kommunikaation merkitys"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 29,
-      "text": "Muu aikataulu:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 30,
-      "text": "Suunnitellaan experimentti Heinäkuulle"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 31,
-      "text": "Kesäkuun aikana suunnitellaan paneeli"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 32,
-      "text": "Johanna labralla testataan ER ja HER2"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 33,
-      "text": "Zahid Heinäkuussa tekemään joko DCIS exp2 tai exp3 QC:ta, Lola-lii vois tehdä siinä tapauksessa finproven QC:ta"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 34,
-      "text": "Muuta:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 35,
-      "text": "Hypoteesi onko oikeaan suuntaan, mikä kirjallisuus kertoo? Lue."
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 36,
-      "text": "Ei ole tiedossa biomarkkeria etenemiselle"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 37,
-      "text": "DCIS.ää ei subtypata molekulaarisesti ER, HR ja ER-HR- mukaan !!! ei siis tiedetä mitä ne on! Siksi värjätään"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 38,
-      "text": "ei oo aiemmin huomattu että molekulaaritsten luokitusten väleillä DCIS:ssä olis eroja etenemisen suhteen tho"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 39,
-      "text": "Tietokone:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 40,
-      "text": "Anniina ja Johanna ostaa puoliksi koneen mulle mahd. heinäkuussa -> thinkpad superkone XD"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 41,
-      "text": "Workstationit ja CyLinter:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 42,
-      "text": "kesätyöntekijöille lola-liille varaan lolan koko heinäkuu"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 43,
-      "text": "zhadid joko jos vapaata (ada ja alexandran koneilla CyLinter) tai sitten hän käyttää mitä vaan workstationia ja tekee naparilla QC:n -> alexandralla koodi githubissa mutta voit vielä kysyä uudelleen, nika osaa auttaa, avaat kuvat naparissa, maskit päälle, kolmiomainen näppäin -> lasso polygans -> lopuksi talenna polygons -> saat ne csv failina -> lopuksi yhdistä?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 44,
-      "text": "7.4.26 - Silja, Anniina, Inga-maria"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 45,
-      "text": "Agendat:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 46,
-      "text": "Johannan updatet"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 47,
-      "text": "Saunin aikataulu"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 48,
-      "text": "ESSB abstrakti dedis + mitä siinä halutaan sanoa"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 49,
-      "text": "Väikkärihaku lähetän tänään & haluan kommentit ens ma"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 50,
-      "text": "Johanna:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 51,
-      "text": "uudet (lisä) DCIS näytteet on vihdoin kerätty ja nyt leikattavana: Grade 1 on 10 kpl, Grade 2 on 9 kpl (-1 koska yksi katosi) , Grade 3 on 10 kpl"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 52,
-      "text": "eli tokan batchin jälkeen yhteensä:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 53,
-      "text": "grade 1 = 13"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 54,
-      "text": "grade 2 = 10"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 55,
-      "text": "grade 3 = 17"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 56,
-      "text": "hyperplasia = 1"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 57,
-      "text": "yht. = 41"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 58,
-      "text": "tehdään näistä HE:t meillä heti kun on leikattu, mutta nämä pitäisi saada loppuviikosta teille"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 59,
-      "text": "Saunin pyytämät vasta-aineet on tilattu ja tulleet, tuon ne lasien kanssa samalla samoin kuin lisä FOLR2 vasta-ainetta"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 60,
-      "text": "Saun:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 61,
-      "text": "Update on the timeline for DCIS project tcycif experiment:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 62,
-      "text": "I can begin the experiment on 16th April instead of 20th April."
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 63,
-      "text": "Please remind Johanna to bring the antibodies (10420S – Iba1 in 750 channel , 69227S – Vimentin in 750 channel ) that I had requested from her along with the slides latest by 15th April"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 64,
-      "text": "Saun haluaa Inga-marialta levyn 15. pv viimeistään"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 65,
-      "text": "Saun haluaa tietää kenen vastuulla siirtää allakseen? Inga-maria?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 66,
-      "text": "About allas, cycberduck method of uploading is not working, rclone which uses linux command should be used for uploading data to Allas."
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 67,
-      "text": "So maybe the best will be to involve Deb, so that he can help with the uploads or ask Anniina what to do."
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 68,
-      "text": "Abstakti dedis 30.pv:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 69,
-      "text": "mitä halutaan sanoa, kirjottaa, kopioinko osan väikkärihausta"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 70,
-      "text": "Väikkärihaku:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 71,
-      "text": "lähetän tänään kommentoitavaksi + haluan kommentit maanantaiksi"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 72,
-      "text": "Debiltä kysy kaikki back upiksi asap allakseen -> FINPROVE molemmat batchit ja DCIS molemmat batchit"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 73,
-      "text": "Sample ID:t Johannalta heti kun mahdollista ja täytä taulukkoon ENNEN 15pv!!"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 74,
-      "text": "16.3.26 - Silja, Johanna, Saun"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 75,
-      "text": "Kokouksen agendat: KÄYTÄNNÖN ASIAT"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 76,
-      "text": "Näytteiden määrä nyt: on löydetty, ne pitää vielä käydä läpi ja sitten leikata -> ehkä 20-22 slaidia"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 77,
-      "text": "pyydettiin grade 1: 6-8 kpl, grade 2: 6-8 kpl, grade 3: 4-5kpl"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 78,
-      "text": "ehkä myöhemmissä analyyseissä lisätään 1 ja 2 grade yhdeksi ryhmäksi -> kysyään patologislta (johanna)"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 79,
-      "text": "johanna annotate before the experiment"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 80,
-      "text": "Dedline näytteiden saamiselle saunille: 10.april"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 81,
-      "text": "Katotaan loppujen näytteiden neliöt"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 82,
-      "text": "johanna katsoo näytteet -> merkkaa saunille"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 83,
-      "text": "H&E kuvat saadaan myös"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 84,
-      "text": "Pidetään paneeli samana!!!"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 85,
-      "text": "ER/PR muista saman näytteen slaideista voi myöhemmin tsekata eli nyt ei oteta mukaan"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 86,
-      "text": "saun checks the nectin2 antibody & others too if we have enough"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 87,
-      "text": "Johanna tilaa FOLR2 antibodyn"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 88,
-      "text": "Varsinaisen experiment meetti sovitaan"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 89,
-      "text": "Plan:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 90,
-      "text": "20. april -> huhtikuussa edelleen pläni värjätä (puolessa välissä kuuta)-> valmistuu huhtikuun loppuun mennessä ish"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 91,
-      "text": "Toukokuussa mä teen Finprovea, mutta jos Inga-maria on viikon labralla niin hän voi edistää DCIS:ää -> puhuttiin että lola tekee pre-processingin sillon heinäkuussa, vai tekiskö vaan QC:n tms?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 92,
-      "text": "tästä tulee sopia ja keskustella, ehkä mielummin pre-processing protokolla hänelle"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 93,
-      "text": "Mahdollista mennä esittään barcelonaan esbb?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 94,
-      "text": "abstraktin dedikset tarkista"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 95,
-      "text": "heinäkuussa tekisin tätä, posteria ja abstraktia"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 96,
-      "text": "Analyysit:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 97,
-      "text": "nyt terveet ja DCIS on samoissa analyyseissä, pitää miettiä erotellaanko ne jatkossa analyyseissä ?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 98,
-      "text": "TO DO:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 99,
-      "text": "annotations käydään läpi johannan kanssa?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 100,
-      "text": "experiment sheet saunin kanssa -> meeting sovi tälle"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 101,
-      "text": "report template minä teen"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 102,
-      "text": "pyydä Inga-marialta kovalevy ajoissa"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 103,
-      "text": "folder kovalevylle ja allakseen !!!!!!!!!!!!!"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 104,
-      "text": "Agenda for next meeting:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 105,
-      "text": "seuraavalle kokoukselle : varmistetaan että kaikki on, aikataulu selvillä, kesän aikataulut, toinen projekti -> näytteet valmiina mitä tehdään?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 106,
-      "text": "19.1.26 - Anniina, Silja, Inga-maria, Johanna"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 107,
-      "text": "Näytteet ja värjäykset:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 108,
-      "text": "lisänäytteet onnistuu: gradus 1 ja 2 tuplasti"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 109,
-      "text": "gradus 3 lisää myös"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 110,
-      "text": "yli 20 näytettä ois hyvä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 111,
-      "text": "ei värjätä koko näytettä vaan annotoidaan siitä sopiva alue"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 112,
-      "text": "sama paneeli värjäykseen -> kysytään patologialta kannattaako tehdä ER/PR värjäystä ja HER2 värjäystä - alatyypistys voisi olla ihan hyvä kyllä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 113,
-      "text": "Inga-marian esitys:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 114,
-      "text": "Normaalikudos alueet on merkattu esitykseen vihreellä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 115,
-      "text": "DCIS on merkattuna sinisellä esitykseen"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 116,
-      "text": "pixeli 30 micron käytettiin ja spatial_count, kmeans = 18 -> oli arvot joita käytettiin alkeellisessa neighborhood analyyseissä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 117,
-      "text": "yhdistetään NORMAALIT epiteelit yhdeksi ryhmäksi ja vasta myöhemmin erotellaan fenotyypit -> helpottaa naapurustojen visualisointia"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 118,
-      "text": "ekana katotaan solukompositiot analyyseissä, seuraavaksi katotaan nämä naapurustot, sitten mietitään verrataanko näytteiden sisällä vai näytteiden välillä -> ehkä gradejen välillä vois vertailla naapurustoja"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 119,
-      "text": "patologin näkemys on että grade 3 on paljon enemmän immuunisoluja kuin grade 1"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 120,
-      "text": "FOLR2 rinkulat + Iba1 rinkulat katotaan kans seuraavissa analyyseissä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 121,
-      "text": "miten voidaan verrata graduksien välillä naapurustoanalyysejä kun tällä hetkellä ne naapurustot tehdään kaikkien solujen pohjalta -> per sample oma RCN jaottelu"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 122,
-      "text": "Seuraavassa kokouksessa:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 123,
-      "text": "vasta-aineet katsotaan maaliskuun alussa ja sillon siis meetti!!!"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 124,
-      "text": "saattaa aikaistua värjäys-aikataulu -> varaudu tähän"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 125,
-      "text": "varsinaisen experiment meetti sovitaan seuraavassa meetissä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 126,
-      "text": "katotaan loppujen näytteiden neliöt"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 127,
-      "text": "johanna katsoo näytteet"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 128,
-      "text": "ER / PR värjätäänkö -> paneeli"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 129,
-      "text": "inga-marialta jos lisää analyysejä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 130,
-      "text": "9.12.25 - Anniina, Silja, Inga-maria, Johanna"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 131,
-      "text": "Suunnitelma ja aikataulu:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 132,
-      "text": "Karakterisoidaan mikroympäristöä dcis:ssä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 133,
-      "text": "Uudet näytteet värjätään keväällä (mahd. huhtikuussa by saun)"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 134,
-      "text": "Silja cycif analyysejä miten koulun ohella ehtii keväällä & toukokuussa kokoaikaisesti data pre-processing & analyses"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 135,
-      "text": "Transcriptomikkaa joku tekis keväällä tästä projektista (Inga-maria vois mahdollisesti analysoida sen tai joku johannan labralta)"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 136,
-      "text": "Ensi syksynä mahdollisesti aloitetaan kirjoittamaan (saattaa venyä siljan koulun takia)"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 137,
-      "text": "Alustavat analyysit Inga-maria:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 138,
-      "text": "Mesmer masks paremmat kuin stardist (etenkin epiteelisoluissa)"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 139,
-      "text": "Markkereista: TIM ja PSTAT vähän epäselviä"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 140,
-      "text": "Grade 3:ssa enemmän CD4 soluja ja lymphoid soluja"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 141,
-      "text": "Grade 3:ssa vähemmän myeloid soluja"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 142,
-      "text": "CD206 ja CD163 korreloi myeloidisoluissa ja CD11 ja HLA-DPB1"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 143,
-      "text": "Iba 1 (M1?) muodostaa “sisärenkaan” ja FOLR2 (M2?) “ulkorenkaan”"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 144,
-      "text": "CD68 ja CD163 infiltro Iba 1 kanssa"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 145,
-      "text": "FOLR2 esiintyi macrophageissa jotka ei inflitroi -> tissue resident - kudosspesifi"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 146,
-      "text": "CD206 menee foolihapporeseptori 2 kanssa ulkopuolella"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 147,
-      "text": "paperissa sanottiin, että FOLR2 associate with CSD206/CD163 anti-inflammatory macrophages and they have been linked with CD8 T cell infiltration -> hyvään ja huonoon prognoosiin linkitetty eri papereissa"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 148,
-      "text": "Epiteelisolujen funktionaaliset markkerit ovat cyclin D1 ja Ki67"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 149,
-      "text": "Cyclin D mahdollisesti enemmän pre-maligneissa soluissa -> RCN:ssä cyclin D epiteelisolut vs terveet solut"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 150,
-      "text": "Jatko-analyyseihin:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 151,
-      "text": "1 ja 2 grade voidaan ehkä muuttaa yhdeksi porukaksi"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 152,
-      "text": "H&E kuviin Johanna merkkaa leesiot meille"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 153,
-      "text": "Qpathissa näytä missä leesiot on -> piirtää rajat missä leesiot on -> valitse leesio alueen maskit -> niille RCN:t -> analyysit onko etäisyyksillä eroja"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 154,
-      "text": "Koko leikkeet vs alueelliset analyysit ?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 155,
-      "text": "RCN, tumor stroma boundary -> SpaceSTAT in python"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 156,
-      "text": "voidaan laskea infiltraatio indexi"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 157,
-      "text": "To do’s for next meeting:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 158,
-      "text": "Seuraava kokous enemmän koordinointia:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 159,
-      "text": "mitä näytteitä saisi lisää"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 160,
-      "text": "haluttais gradus 1 ja 2 lisää tuplasti tämän hetkiseen kohorttiin (yli vuoden vanhoja ei värjätä, alle 6 kk olisi kiva)"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 161,
-      "text": "milloin voidaan värjätä cycif näytteitä lisää?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 162,
-      "text": "halutaanko lisää markkereita? self-konjugaatio mahdollinen -> rintasyöpämarkkereita esim. ER? -> on herkkiä näytteen iälle ja kunnolle"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 163,
-      "text": "mitä tehdään seuraavaksi?"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 164,
-      "text": "spatiaalinen transcriptomiikka -> Xenium vai GeoMx"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 165,
-      "text": "(mahdollisia Inga-marian analyysejä katsotaan)"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 166,
-      "text": "ekan batchin näytemäärät:"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 167,
-      "text": "grade 1 = 3"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 168,
-      "text": "grade 2 = 2"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 169,
-      "text": "grade 3 = 7"
-    },
-    {
-      "document_id": "7b665878e6af5f1c6e366c8a55261ca0",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting notes/Meeting notes DCIS.docx",
-      "chunk_index": 170,
-      "text": "hyperplasia = 1"
-    },
-    {
-      "document_id": "1811a79b0154ee05d0ab2f4fd8779a8f",
-      "source_file": "28_DCIS/Methods & Experiments/CycIF image processing report template DCIS project_.xlsx",
-      "chunk_index": 0,
-      "text": "R1: Category | Variable | Output | Comments\nR2: Samples | Number of samples | 13.0\nR3: | Section thickness (um) | 5.0\nR4: | Spacer use (yes/no) | no\nR5: | Spacer start cycle | -\nR6: Experiment\nR7: | Number of cycles | 6.0\nR8: | Total number of antibody channels | 19.0\nR9: | Total number of failed antibodies | - | We dropped two samples (BNS24, BTS24), because after an entire cycle, they were overexposed for all markers, and according to anu, they were \"extra slides\" anyhow\nR10: | List of failed antibodies/markers (separated by commas) | -\nR11: Metadata\nR12: | Pixel scale (pixels per um) | 65.0\nR13: | Binning (1/2) | 2.0\nR14: | Magnification (in x) | 20.0\nR15: | Scanner | Lola\nR16: Image Processing\nR17: | Workstation/service used | Igas linux / old office\nR18: | Operating System | Linux\nR19: | Illumination correction tool | BaSiC tool | script in Github (image-processing protocol pipeline)\nR20: Stitching and registration | Stitching and registration tool, including version | Ashlar 1.17\nR21: | Stitching verification - all tiles are present in all cycles in all images (date of completion) | 2025-08-25T00:00:00\nR22: | Marker order verification in registration - signal matches marker (date of completion) | 2025-08-25T00:00:00\nR23: | Registration verification - DAPI alignment verification across 1st and last cycle (date of completion) | 2025-08-25T00:00:00"
-    },
-    {
-      "document_id": "1811a79b0154ee05d0ab2f4fd8779a8f",
-      "source_file": "28_DCIS/Methods & Experiments/CycIF image processing report template DCIS project_.xlsx",
-      "chunk_index": 1,
-      "text": "rker (date of completion) | 2025-08-25T00:00:00\nR23: | Registration verification - DAPI alignment verification across 1st and last cycle (date of completion) | 2025-08-25T00:00:00\nR24: | Image augmentation tools | -\nR25: Segmentation | Segmentation tool | Mesmer | Stardist segmentation done 27.8.25, masks were not good (especially the normal ducts), next tried with Mesmer\nR26: | DAPI channel number used for segmentation | 0.0\nR27: | Segmentation verification through mask-image overlay (date of completion) | 2025-11-26T00:00:00\nR28: | Quantification - total cell count preQC in dataset | 3308561 cells, done in 26.11.25 | In addition plot bar graph of cell numbers per sample\nR29: QC (cylinter) | List of modules used | AggregateData, selectROIs, intensityFilter, areaFilter, cycleCorrelation, logTransform\nR30: | Total cell count after QC | 2692351.0\nR31: | Fraction of lost during QC in total dataset (%) | 18.6%\nR32: | Visual verification of lost cells (date of completion) | 2025-11-26T00:00:00\nR33: | Most common reason for lost cells (ROIs, Intensity, Area) | ROIs"
-    },
-    {
-      "document_id": "22ec87edfc74d2e63938775b25ab84e7",
-      "source_file": "28_DCIS/README.txt",
-      "chunk_index": 0,
+      "start_char": 0,
+      "end_char": 100,
+      "char_count": 100,
+      "word_count": 13,
       "text": "# 28_DCIS_project\n\n## Members\nSilja Kauppila, Inga-Maria Launonen, Anniina Färkkilä, Johanna Englund"
     },
     {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
+      "chunk_id": "Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx::chunk_0000",
+      "source_file": "Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
       "chunk_index": 0,
-      "text": "Spatial single-cell profiling reveals grade-dependent immune organization in ductal carcinoma in situ"
+      "start_char": 0,
+      "end_char": 1684,
+      "char_count": 1684,
+      "word_count": 233,
+      "text": "Spatial single-cell profiling reveals grade-dependent immune organization in ductal carcinoma in situ\nSilja Kauppila1, Inga-Maria Launonen1, Anu Prakash2, Saundarya Shah1, Anders Ståhls3, Tuomo Meretoja4, Peeter Karihtala5, Johanna Englund2, Anniina Färkkilä1,6,2,73\n1. Research Program in Systems Oncology, Faculty of Medicine, University of Helsinki\n2. Institute of Biotechnology, Helsinki Institute of Life Sciences, University of Helsinki, Finland\n3. Department of Pathology, HUS Diagnostic Center, Helsinki University Hospital, Finland\n4. Division of Breast Surgery, Helsinki University Hospital Comprehensive Cancer Center and University of Helsinki, Finland\n5. Department of Oncology, Helsinki University Hospital Comprehensive Cancer Center and University of Helsinki, Finland\n6. Institute for Molecular Medicine Finland, Helsinki Institute of Life Sciences, University of Helsinki, Finland\n7. Department of Obstetrics and Gynecology, and Clinical Trials Unit, Comprehensive Cancer Centre, Helsinki University Hospital\nBackground:\nDuctal carcinoma in situ (DCIS) is a pre-invasive lesion and a non-obligate precursor to invasive breast cancer (IBC). DCIS are classified into grade I (low-grade), grade II (intermediate-grade), and grade III (high-grade)[EJ1] lesions. Grade III lesions are more likely to progress to IDC than grade I.[LI2] However, the immune composition and spatial architecture of the DCIS tumor microenvironment (TME), including the distribution and potential roles of tissue-resident and monocyte-derived macrophages, remain poorly defined across histological grades.\nMethods:\nThe cohort comprised 41 samples, including 1 hyperplastic and 40 DCIS samples."
     },
     {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
+      "chunk_id": "Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx::chunk_0001",
+      "source_file": "Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
       "chunk_index": 1,
-      "text": "Silja Kauppila1, Inga-Maria Launonen1, Anu Prakash2, Saundarya Shah1, Anders Ståhls3, Tuomo Meretoja4, Peeter Karihtala5, Johanna Englund2, Anniina Färkkilä1,6,2,73"
+      "start_char": 1434,
+      "end_char": 3200,
+      "char_count": 1766,
+      "word_count": 257,
+      "text": "nment (TME), including the distribution and potential roles of tissue-resident and monocyte-derived macrophages, remain poorly defined across histological grades.\nMethods:\nThe cohort comprised 41 samples, including 1 hyperplastic and 40 DCIS samples. We analyzed formalin-fixed paraffin-embedded (FFPE) whole slide samples using the cyclic immunofluorescence (t-CycIF) method. The samples were stained with a panel of 19 validated antibodies to identify single cells and their functional states. Imaging was performed using the RareCyte CyteFinder scanner. Quality control was conducted manually using CyLinter. Cell type classification was performed using the Scimap package in Python and spatial interaction analysis using the Scimap and SpaceSTAT packages.\nResults:\nWe were able to identify six distinct immune cell lineages: CD4+T cells, CD8+T cells, FOXP3+ CD4+T regulatory cells, NK cells, NKG2A+ CD8+T cells and myeloid cells. Myeloid cells were further characterized by the expression of IBA1, CD206, CD163, FOLR2, CD11c, CD68, pSTAT1 and HLA.DPB1. Additionally, we identified tumor and stromal cells with distinct proliferative states.\nWe found increased infiltration of lymphoid cells and specifically CD4+ T cells in grade 3 DCIS compared to grade 1 lesions suggesting a more inflamed TME. Grade 3 lesions contained less myeloid cells compared to grade 1, specifically M1-like IBA1+ macrophages. IBA1 expressing M1-like macrophages were in close proximity to the epithelial cells, closely surrounding and infiltrating the ducts. However, FOLR2 expressing M2-like tissue resident macrophages were positioned several cell layers further.\nConclusions:\nOur findings suggest grade-dependent differences in DCIS immune cell composition and spatial organization."
     },
     {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
+      "chunk_id": "Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx::chunk_0002",
+      "source_file": "Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
       "chunk_index": 2,
-      "text": "1. Research Program in Systems Oncology, Faculty of Medicine, University of Helsinki"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 3,
-      "text": "2. Institute of Biotechnology, Helsinki Institute of Life Sciences, University of Helsinki, Finland"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 4,
-      "text": "3. Department of Pathology, HUS Diagnostic Center, Helsinki University Hospital, Finland"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 5,
-      "text": "4. Division of Breast Surgery, Helsinki University Hospital Comprehensive Cancer Center and University of Helsinki, Finland"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 6,
-      "text": "5. Department of Oncology, Helsinki University Hospital Comprehensive Cancer Center and University of Helsinki, Finland"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 7,
-      "text": "6. Institute for Molecular Medicine Finland, Helsinki Institute of Life Sciences, University of Helsinki, Finland"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 8,
-      "text": "7. Department of Obstetrics and Gynecology, and Clinical Trials Unit, Comprehensive Cancer Centre, Helsinki University Hospital"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 9,
-      "text": "Background:"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 10,
-      "text": "Ductal carcinoma in situ (DCIS) is a pre-invasive lesion and a non-obligate precursor to invasive breast cancer (IBC). DCIS are classified into grade I (low-grade), grade II (intermediate-grade), and grade III (high-grade)[EJ1] lesions. Grade III lesions are more likely to progress to IDC than grade I.[LI2] However, the immune composition and spatial architecture of the DCIS tumor microenvironment (TME), including the distribution and potential roles of tissue-resident and monocyte-derived macrophages, remain poorly defined across histological grades."
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 11,
-      "text": "Methods:"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 12,
-      "text": "The cohort comprised 41 samples, including 1 hyperplastic and 40 DCIS samples. We analyzed formalin-fixed paraffin-embedded (FFPE) whole slide samples using the cyclic immunofluorescence (t-CycIF) method. The samples were stained with a panel of 19 validated antibodies to identify single cells and their functional states. Imaging was performed using the RareCyte CyteFinder scanner. Quality control was conducted manually using CyLinter. Cell type classification was performed using the Scimap package in Python and spatial interaction analysis using the Scimap and SpaceSTAT packages."
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 13,
-      "text": "Results:"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 14,
-      "text": "We were able to identify six distinct immune cell lineages: CD4+T cells, CD8+T cells, FOXP3+ CD4+T regulatory cells, NK cells, NKG2A+ CD8+T cells and myeloid cells. Myeloid cells were further characterized by the expression of IBA1, CD206, CD163, FOLR2, CD11c, CD68, pSTAT1 and HLA.DPB1. Additionally, we identified tumor and stromal cells with distinct proliferative states."
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 15,
-      "text": "We found increased infiltration of lymphoid cells and specifically CD4+ T cells in grade 3 DCIS compared to grade 1 lesions suggesting a more inflamed TME. Grade 3 lesions contained less myeloid cells compared to grade 1, specifically M1-like IBA1+ macrophages. IBA1 expressing M1-like macrophages were in close proximity to the epithelial cells, closely surrounding and infiltrating the ducts. However, FOLR2 expressing M2-like tissue resident macrophages were positioned several cell layers further."
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 16,
-      "text": "Conclusions:"
-    },
-    {
-      "document_id": "cff78cd55abf420526de75557bcdb13d",
-      "source_file": "28_DCIS/Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx",
-      "chunk_index": 17,
-      "text": "Our findings suggest grade-dependent differences in DCIS immune cell composition and spatial organization. Ongoing work focuses on defining recurrent cellular neighborhoods, network features, and interaction hubs, with particular emphasis on macrophage subtypes and their spatial relationships with DCIS epithelial cells as well as other immune cells."
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 0,
-      "text": "DCIS -project\nExploratory analyses"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 1,
-      "text": "Data processing\n•We ran segmentation again using mesmer instead ofstardist ,\nwhich markedly improved cell segmentation\n•→2 682 504 cells after quality control\n•Each marker was gated and rescaled using Naparigater and\nrescale functions in scimap\n•Using aprior knowledge logic table ,the cells were phenotyped\nusing phenotype_cells function in scimap"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 2,
-      "text": "Antibody panel–allmarkers had\ngood staining although TIM3 was\nsligthly unclear in some samples"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 3,
-      "text": "Phenotype logic table"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 4,
-      "text": "Global celltypes"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 5,
-      "text": "Immune cells"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 6,
-      "text": "Comparisons across grades–global celltypes\nPairwise wilcox tests and overall \nKruskal -Wallis p -value"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 7,
-      "text": "Comparisons across grades – immune \ncelltypes out of all immune"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 8,
-      "text": "Myeloid cell markers\nCorrelations (spearman ) of markers in myeloid cells \nshow positive correlation between FOLR2, CD162 \nand CD206. CD11c correlates negatively with these \nmarkers . CD11c and HLA.DPB1 correlate positively \nwith each other ."
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 9,
-      "text": "UMAPs showing marker expression per cell in \nmyeloid cells"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 10,
-      "text": "Comparison of myeloid cell markers across \ngrades"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 11,
-      "text": "Interestingly , FOLR2 is expressed in macrophages \nlocated outside of the tumor mass\nFOLR2\nPanC KIba1\nPanC K"
-    },
-    {
-      "document_id": "4d0f8bb86f3af0d3f58a5283c48db65d",
-      "source_file": "28_DCIS/Meetings & Updates/Meeting presentations/DCIS-project_celltype_exploration.pdf",
-      "chunk_index": 12,
-      "text": "Summary\n•Higher proportion of lymphoid cells overall in grade 3 vs grade 1\n•Higher proportion of CD4+T -cells and NK-cells out of immune \ncells in grade 3 vs grade 1\n•Higher expression of HLA -DBP1 in myeloid cells in grade 3 vs \ngrade 1\n•Next: sybtyping of myeloid cells"
-    },
-    {
-      "document_id": "d6bab3c2a4914516911992f112875508",
-      "source_file": "28_DCIS/Methods & Experiments/Project_28_DCIS_Englundlab11.8.2025.xlsx",
-      "chunk_index": 0,
-      "text": "R1: Project | Sample_Name | Sectioning_Time | Slide number | Experiment | Panel | Unique_Section_Id | Raw_Data_Location | Ometiff_Location | Results_Location | Note\nR2: 28.0 | PS_25 | 0325 | 3.0 | 2.0 | a | 28_PS_25_0325_3_2a\nR3: 28.0 | PS_17 | 0325 | 3.0 | 2.0 | a | 28_PS_17_0325_3_2a\nR4: 28.0 | PS_37 | 0325 | 3.0 | 2.0 | a | 28_PS_37_0325_3_2a\nR5: 28.0 | PS_35 | 0325 | 3.0 | 2.0 | a | 28_PS_35_0325_3_2a\nR6: 28.0 | PS_15 | 1124.0 | 3.0 | 2.0 | a | 28_PS_15_1124_3_2a\nR7: 28.0 | PS_47 | 0325 | 3.0 | 2.0 | a | 28_PS_47_0325_3_2a\nR8: 28.0 | PS_50 | 0325 | 3.0 | 2.0 | a | 28_PS_50_0325_3_2a\nR9: 28.0 | PS_52 | 0325 | 3.0 | 2.0 | a | 28_PS_52_0325_3_2a\nR10: 28.0 | PS_53 | 0325 | 3.0 | 2.0 | a | 28_PS_53_0325_3_2a"
+      "start_char": 2950,
+      "end_char": 3445,
+      "char_count": 495,
+      "word_count": 65,
+      "text": "infiltrating the ducts. However, FOLR2 expressing M2-like tissue resident macrophages were positioned several cell layers further.\nConclusions:\nOur findings suggest grade-dependent differences in DCIS immune cell composition and spatial organization. Ongoing work focuses on defining recurrent cellular neighborhoods, network features, and interaction hubs, with particular emphasis on macrophage subtypes and their spatial relationships with DCIS epithelial cells as well as other immune cells."
     }
   ],
   "extraction": {
-    "total_scannable_assets": 0,
-    "extracted_records": 0,
-    "chunk_count": 0,
-    "status_counts": {},
-    "extractor_counts": {},
-    "extension_counts": {},
-    "errors": []
+    "total_scannable_assets": 10,
+    "extracted_records": 10,
+    "chunk_count": 22,
+    "status_counts": {
+      "extracted": 10
+    },
+    "extractor_counts": {
+      "python-docx": 4,
+      "openpyxl": 4,
+      "PyPDF2": 1,
+      "text:utf-8": 1
+    },
+    "extension_counts": {
+      ".docx": 4,
+      ".xlsx": 4,
+      ".pdf": 1,
+      ".txt": 1
+    },
+    "errors": [],
+    "limits": {
+      "max_text_chars_per_file": 250000,
+      "chunk_chars": 1800,
+      "chunk_overlap": 250,
+      "max_pdf_pages": 120,
+      "max_pptx_slides": 180,
+      "max_xlsx_sheets": 20,
+      "max_xlsx_rows": 200,
+      "max_file_bytes": 536870912
+    },
+    "optional_extractors_detected": {
+      "pypdf": false,
+      "PyPDF2": true,
+      "python_docx": true,
+      "python_pptx": true,
+      "openpyxl": true,
+      "beautifulsoup4": true,
+      "Pillow": true,
+      "tifffile": false,
+      "pdftotext_cli": true,
+      "libreoffice_cli": true,
+      "textutil_cli": true
+    }
   },
   "metrics": {
-    "document_count": 0,
-    "total_assets": 0,
+    "document_count": 10,
+    "total_assets": 10,
     "figure_count": 0,
-    "timeline_entries": 0,
+    "timeline_entries": 1,
     "meeting_count": 0,
-    "protocol_count": 0,
+    "protocol_count": 2,
     "cohort_count": 0,
     "estimated_sample_count": null,
     "repository_count": 0,
     "storage_path_count": 0,
     "presentation_count": 0,
-    "data_file_count": 0,
+    "data_file_count": 4,
     "extracted_document_count": 10,
-    "knowledge_chunk_count": 264,
+    "knowledge_chunk_count": 22,
     "extraction_error_count": 0,
-    "output_count": 0
+    "output_count": 1
   },
-  "outputs": []
+  "outputs": [
+    {
+      "title": "Spatial single-cell profiling reveals grade-dependent immune organization in ductal carcinoma in situ",
+      "author": "",
+      "conference": "ESSB",
+      "year": 2026,
+      "doi": null,
+      "type": "abstract",
+      "source_file": "Writing & Dissemination/Abstracts/ ESSB_2026_Silja_Kauppila.docx"
+    }
+  ]
 }

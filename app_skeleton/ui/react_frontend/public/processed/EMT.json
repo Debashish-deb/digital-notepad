@@ -1,37 +1,48 @@
 {
   "project_code": "EMT",
-  "processed_at": "2026-06-05T07:15:53.069178+00:00",
-  "folder_path": "9_EyeMT",
-  "content_root": "9_EyeMT",
-  "source_files_count": 41,
-  "total_assets_count": 41,
+  "processed_at": "2026-06-06T22:33:47.764538+00:00",
+  "folder_path": "5_EMT-20260602T171604Z-3-001",
+  "content_root": "5_EMT-20260602T171604Z-3-001/5_EMT",
+  "source_files_count": 1,
+  "total_assets_count": 1,
   "content_library": {
     "sections": [
       {
-        "id": "5_EMT",
-        "label": "5_EMT",
-        "total_files": 1,
+        "id": "root",
+        "label": "Project Root",
+        "figures": [],
         "documents": [
           {
-            "path": "5_EMT/5_Project_Log.docx",
+            "path": "5_Project_Log.docx",
             "name": "5_Project_Log.docx",
-            "asset_type": "document",
             "extension": ".docx",
+            "size_bytes": 8110,
+            "modified_at": "2025-03-05T01:59:00+00:00",
+            "asset_type": "document",
+            "document_kind": "word_document",
             "previewable": true,
-            "excerpt": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued"
+            "excerpt": "",
+            "title": "",
+            "extraction_status": null,
+            "extractor": null,
+            "word_count": 0
           }
         ],
-        "figures": [],
+        "presentations": [],
         "data_files": [],
-        "code_scripts": []
+        "text_files": [],
+        "videos": [],
+        "code_files": [],
+        "counts": {
+          "document": 1
+        },
+        "total_files": 1
       }
     ],
     "figures_gallery": [],
     "totals": {
-      "data": 7,
-      "all": 41,
-      "document": 17,
-      "presentation": 17
+      "document": 1,
+      "all": 1
     },
     "figure_count": 0
   },
@@ -46,9 +57,9 @@
     "category": "spatial_omics",
     "category_label": "Spatial & Multi-Omics Studies",
     "priority": "low",
-    "research_question": "",
-    "project_summary": "Profiling of EMT through tcycif and geomx **Description:** Profiling of EMT through tcycif and geomx",
-    "timeline": "1093-2025",
+    "research_question": "Profiling of EMT through tcycif and geomx **Description:** Profiling of EMT through tcycif and geomx",
+    "project_summary": "Profiling of EMT through tcycif and geomx",
+    "timeline": "",
     "responsible": "Zhihan Liang (Aleksandra Shabanova)"
   },
   "personnel": [
@@ -63,70 +74,14 @@
       "focus": "Project lead"
     }
   ],
-  "modalities": [
-    {
-      "name": "tCycIF",
-      "type": "assay",
-      "description": "Referenced in modality section"
-    },
-    {
-      "name": "GeoMx",
-      "type": "assay",
-      "description": "Referenced in modality section"
-    },
-    {
-      "name": "WES",
-      "type": "assay",
-      "description": "Referenced in modality section"
-    },
-    {
-      "name": "CycIF",
-      "type": "assay",
-      "description": "Referenced in modality section"
-    }
-  ],
-  "cohorts": [
-    {
-      "batch_id": "Batch 1",
-      "sample_count": 10,
-      "description": "tegration Batch 1+2: 10 ROIs/sample Batch 3: 15-25 ROIs/sample ROI AOI AOI ## Slide 12 ROI selection - immune ‘hubs’ identification HLA-I and HLA-II CD20 in batch3 TLS subset Patients: 7 HRD 35 HRP 2 ? Samples: 12 PDS 16",
-      "exclusions": []
-    },
-    {
-      "batch_id": "Batch 3",
-      "sample_count": 15,
-      "description": "Is/sample Batch 3: 15-25 ROIs/sample ROI AOI AOI ## Slide 12 ROI selection - immune ‘hubs’ identification HLA-I and HLA-II CD20 in batch3 TLS subset Patients: 7 HRD 35 HRP 2 ? Samples: 12 PDS 16 IDS ## Slide 13 Semi-aut",
-      "exclusions": []
-    },
-    {
-      "batch_id": "Batch 2",
-      "sample_count": 14,
-      "description": "ancer\"). Batch 2 (Autumn 2024): 14 samples for tCycIF / 13 for GeoMx (4 paired, remaining post- chemotherapy unpaired). ⚠️ Exclusion: S188-iOme removed from GeoMx due to severe tissue folding on the slide. Batch 3 (Sprin",
-      "exclusions": [
-        "S188-iOme removed from GeoMx due to severe tissue folding on the slide.",
-        "S027_pOme and S027_iOme pair removed from GeoMx due to poor quality."
-      ]
-    }
-  ],
+  "modalities": [],
+  "cohorts": [],
   "data_assets": {
-    "storage_paths": [
-      "h30492/farkkilab2",
-      "h30492/farkkilab2/Data/cycif/batch",
-      "h30492/farkkilab2/Data/extra_datasets/ican",
-      "h30492/farkkilab2/Data/geomx/dcc",
-      "h30492/farkkilab2/Data_analysis"
-    ],
-    "repositories": [
-      "https://github.com/Kkkzq/SPACEstat",
-      "https://github.com/farkkilab/eyeMT/tree/aleksandra",
-      "https://github.com/farkkilab/geomx-processing.git.",
-      "https://github.com/farkkilab/geomx-processing/tree/main",
-      "https://github.com/farkkilab/image_processing/tree/main",
-      "https://github.com/farkkilab/roi_selection_quantification/tree/5e95420124bc555c5f480d226440854e693b0f0f/01_ROI_selection"
-    ],
+    "storage_paths": [],
+    "repositories": [],
     "folder_tree": [
       {
-        "path": "5_EMT",
+        "path": ".",
         "file_count": 1,
         "categories": [
           "document"
@@ -139,662 +94,72 @@
       "date": "Undated",
       "title": "Project update",
       "category": "update",
-      "summary": "### word/document.xml 11.6.2024 Discussion with Iga about Filling the Experimental Planning sheet: Sample ID slide will be the first sheet. It should be machine readable , eg: no spaces, no extra characters no Capital letters.It will have information about the experiment panel that worked : eg: Experiment_1 or Experiment_2 or whichever is the final document. Experimental Panel sheet named Experiment_X in which all the antibodies worked or the final one should always be the second sheet in our ex",
-      "source_file": "2. Methods and experiments/Discussion about experiment document and panel with Iga_11.6.2024.docx"
-    },
-    {
-      "date": "Undated",
-      "title": "- compare with network communities",
-      "category": "action",
-      "summary": "- compare with network communities",
-      "source_file": "combined"
+      "summary": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued Goals: EMT profiling through tcycif and geomx Estimated timeline: December: tCycIF January: GeoMx #2401 Validation of Mariana's and other antibodies #2402 First pilot experiment #2403 Order and validation of the new antibodies #2404 Selection of the samples for the second round of experiments #2405 ROI selection #2406 GeoMx training Set priorities, which tasks are interdepende",
+      "source_file": "5_Project_Log.docx"
     }
   ],
   "meetings": [],
-  "protocols": [
-    {
-      "title": "Discussion with Iga about Filling the Experimental Planning sheet:",
-      "category": "2. Methods and experiments",
-      "steps": [
-        "### word/document.xml 11.6.2024 Discussion with Iga about Filling the Experimental Planning sheet: Sample ID slide will be the first sheet.",
-        "It should be machine readable , eg: no spaces, no extra characters no Capital letters.It will have information about the experiment panel that worked : eg: Experiment_1 or Experiment_2 or whichever is the final document.",
-        "Experimental Panel sheet named Experiment_X in which all the antibodies worked or the final one should always be the second sheet in our experimental planning.",
-        "Experiment_1 is the default name .If we repeat the experiment in case staining fails, we will have subsequent sheets with naming Experiment_2 , Experiment_3 etc.",
-        "The antibodies in experiment Panel will have the antibodies unique ID.",
-        "Unique antibody ID is given to each new vial even if the catalog number is the same.",
-        "However, if catolog number and lot number both are same then even different vial antibodies will have the same unique ID.",
-        "Column A named cycle Column C named antibody_id and column E named fluorochrome in Experiment panel sheet must be machine readable.",
-        "Information should be uniform, and no extra texts can be written in these columns.",
-        "It is researchers responsibility to fill all the columns in Experiment_1 sheet."
-      ],
-      "source_file": "2. Methods and experiments/Discussion about experiment document and panel with Iga_11.6.2024.docx"
-    },
-    {
-      "title": "GeoMx experiments",
-      "category": "2. Methods and experiments",
-      "steps": [
-        "Ashlar registration",
-        "Segmentation by Stardist & quantification",
-        "QC with Cylinter",
-        "Ashlar registration",
-        "Segmentation by Stardist & quantification",
-        "QC with Cylinter"
-      ],
-      "source_file": "2. Methods and experiments/GeoMx & tCycIF Experiments Methodology.docx"
-    },
-    {
-      "title": "Slide Names taken for CellCycle CyCIF experiment (Ada Nika)",
-      "category": "2. Methods and experiments",
-      "steps": [],
-      "source_file": "2. Methods and experiments/Slide Names taken for CellCycle CyCIF experiment (Ada_Nika).xlsx"
-    },
-    {
-      "title": "Image processing progress",
-      "category": "2. Methods and experiments/cycif",
-      "steps": [],
-      "source_file": "2. Methods and experiments/cycif/Image_processing_progress.xlsx"
-    },
-    {
-      "title": "tCycIF processing",
-      "category": "2. Methods and experiments/cycif/Processing_results",
-      "steps": [
-        "as it includes all 5 cyle DAPIs"
-      ],
-      "source_file": "2. Methods and experiments/cycif/Processing_results/tCycIF processing results.pptx"
-    },
-    {
-      "title": "Batch1 CycIF experimental file",
-      "category": "2. Methods and experiments",
-      "steps": [],
-      "source_file": "2. Methods and experiments/experimental files.docx"
-    },
-    {
-      "title": "High Sensitivity D5000 ScreenTape® Page 1",
-      "category": "2. Methods and experiments/geomx/EyeMT_Batch3_QC",
-      "steps": [
-        "High Sensitivity D5000 ScreenTape® Page 1 Filename: 25-1093-2025-03-05 - 12.54.15.HSD5000 Default image (Contrast 100%) Sample Info Well Conc.",
-        "[pg/µl] Sample Description Alert Observations A1 2970 Ladder Ladder C1 66.1 NTC D1 463 S1B E1 790 S2D F1 451 S3A TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-05T13:05:19+02:00 High Sensitivity D5000 ScreenTape® Page 2 A1: Ladder Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations A1 2970 Ladder Ladder Peak Table Size [bp] Calibrated Conc.",
-        "2023 Generated: 2025-03-05T13:05:19+02:00 High Sensitivity D5000 ScreenTape® Page 3 C1: NTC Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations C1 66.1 NTC Peak Table Size [bp] Calibrated Conc.",
-        "Peak Molarity % Integrated Area Peak Comment Observations [pg/µl] [pg/µl] [pmol/l] 15 488 - 50000 - Lower Marker 112 46.2 - 637 69.92 170 19.9 - 180 30.08 10000 180 180 27.7 - Upper Marker TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-05T13:05:19+02:00 High Sensitivity D5000 ScreenTape® Page 4 D1: S1B Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations D1 463 S1B Peak Table Size [bp] Calibrated Conc.",
-        "Peak Molarity % Integrated Area Peak Comment Observations [pg/µl] [pg/µl] [pmol/l] 15 423 - 43400 - Lower Marker 143 463 - 4980 100.00 10000 180 180 27.7 - Upper Marker TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-05T13:05:19+02:00 High Sensitivity D5000 ScreenTape® Page 5 E1: S2D Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations E1 790 S2D Peak Table Size [bp] Calibrated Conc."
-      ],
-      "source_file": "2. Methods and experiments/geomx/EyeMT_Batch3_QC/Batch3_1_Batch3_2_QC_FuGU-25-1093_25-1093-2025-03-05_-_12.54.15.pdf"
-    },
-    {
-      "title": "High Sensitivity D5000 ScreenTape® Page 1",
-      "category": "2. Methods and experiments/geomx/EyeMT_Batch3_QC",
-      "steps": [
-        "High Sensitivity D5000 ScreenTape® Page 1 Filename: Comparison_5_Lanes_ef44.cHSD5000 Default image (Contrast 100%) Sample Info Well Conc.",
-        "[pg/µl] Sample Description Alert Observations A1 2820 Ladder Ladder Sample concentration outside B1 3.48 NTC2 recommended range C1 641 S4C D1 503 S5E E1 720 S6F TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-10T12:50:09+02:00 High Sensitivity D5000 ScreenTape® Page 2 A1: Ladder Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations A1 2820 Ladder Ladder Peak Table Size [bp] Calibrated Conc.",
-        "2023 Generated: 2025-03-10T12:50:09+02:00 High Sensitivity D5000 ScreenTape® Page 3 B1: NTC2 Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations Sample concentration outside B1 3.48 NTC2 recommended range Peak Table Size [bp] Calibrated Conc.",
-        "Peak Molarity % Integrated Area Peak Comment Observations [pg/µl] [pg/µl] [pmol/l] 15 523 - 53600 - Lower Marker 114 3.48 - 46.9 100.00 10000 180 180 27.7 - Upper Marker TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-10T12:50:09+02:00 High Sensitivity D5000 ScreenTape® Page 4 C1: S4C Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations C1 641 S4C Peak Table Size [bp] Calibrated Conc.",
-        "Peak Molarity % Integrated Area Peak Comment Observations [pg/µl] [pg/µl] [pmol/l] 15 478 - 49100 - Lower Marker 144 641 - 6870 100.00 10000 180 180 27.7 - Upper Marker TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-10T12:50:09+02:00 High Sensitivity D5000 ScreenTape® Page 5 D1: S5E Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations D1 503 S5E Peak Table Size [bp] Calibrated Conc."
-      ],
-      "source_file": "2. Methods and experiments/geomx/EyeMT_Batch3_QC/Batch3_3_Batch3_4_QC_FuGU-25-1097_2025-03-10_HS_D5000_TapeStation_QC.pdf"
-    },
-    {
-      "title": "High Sensitivity D5000 ScreenTape® Page 1",
-      "category": "2. Methods and experiments/geomx/EyeMT_Batch3_QC",
-      "steps": [
-        "High Sensitivity D5000 ScreenTape® Page 1 Filename: Zhihan 2025-03-17 - 16.03.34.HSD5000 Default image (Contrast 100%) Sample Info Well Conc.",
-        "[pg/µl] Sample Description Alert Observations A1 2780 Ladder Ladder B1 40.3 NTC3 C1 466 S7G D1 270 S8H E1 250 S9A TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-17T16:24:41+02:00 High Sensitivity D5000 ScreenTape® Page 2 A1: Ladder Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations A1 2780 Ladder Ladder Peak Table Size [bp] Calibrated Conc.",
-        "2023 Generated: 2025-03-17T16:24:41+02:00 High Sensitivity D5000 ScreenTape® Page 3 B1: NTC3 Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations B1 40.3 NTC3 Peak Table Size [bp] Calibrated Conc.",
-        "Peak Molarity % Integrated Area Peak Comment Observations [pg/µl] [pg/µl] [pmol/l] 15 509 - 52200 - Lower Marker 111 25.3 - 351 62.73 170 15.0 - 136 37.27 10000 180 180 27.7 - Upper Marker TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-17T16:24:41+02:00 High Sensitivity D5000 ScreenTape® Page 4 C1: S7G Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations C1 466 S7G Peak Table Size [bp] Calibrated Conc.",
-        "Peak Molarity % Integrated Area Peak Comment Observations [pg/µl] [pg/µl] [pmol/l] 15 431 - 44200 - Lower Marker 144 466 - 4990 100.00 10000 180 180 27.7 - Upper Marker TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-17T16:24:41+02:00 High Sensitivity D5000 ScreenTape® Page 5 D1: S8H Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations D1 270 S8H Peak Table Size [bp] Calibrated Conc."
-      ],
-      "source_file": "2. Methods and experiments/geomx/EyeMT_Batch3_QC/Batch3_5_Batch3_6_QC_FuGU-25-1103_Zhihan_TapeStation_HS_D5000_QC_2025-03-17_-_16.03.34.pdf"
-    },
-    {
-      "title": "High Sensitivity D5000 ScreenTape® Page 1",
-      "category": "2. Methods and experiments/geomx/EyeMT_Batch3_QC",
-      "steps": [
-        "High Sensitivity D5000 ScreenTape® Page 1 Filename: 2025-03-24 - 12.45.47.HSD5000 Default image (Contrast 100%) Sample Info Well Conc.",
-        "[pg/µl] Sample Description Alert Observations A1 2800 Ladder Ladder B1 13.7 NTC4 C1 388 S10B D1 168 S11C E1 284 S12D F1 149 S13A TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-24T13:39:01+02:00 High Sensitivity D5000 ScreenTape® Page 2 A1: Ladder Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations A1 2800 Ladder Ladder Peak Table Size [bp] Calibrated Conc.",
-        "2023 Generated: 2025-03-24T13:39:01+02:00 High Sensitivity D5000 ScreenTape® Page 3 B1: NTC4 Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations B1 13.7 NTC4 Peak Table Size [bp] Calibrated Conc.",
-        "Peak Molarity % Integrated Area Peak Comment Observations [pg/µl] [pg/µl] [pmol/l] 15 510 - 52300 - Lower Marker 108 8.95 - 127 65.23 161 4.77 - 45.5 34.77 10000 180 180 27.7 - Upper Marker TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-24T13:39:01+02:00 High Sensitivity D5000 ScreenTape® Page 4 C1: S10B Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations C1 388 S10B Peak Table Size [bp] Calibrated Conc.",
-        "Peak Molarity % Integrated Area Peak Comment Observations [pg/µl] [pg/µl] [pmol/l] 15 462 - 47400 - Lower Marker 145 388 - 4120 100.00 10000 180 180 27.7 - Upper Marker TapeStation Analysis Software 5.1 © Agilent Technologies, Inc.",
-        "2023 Generated: 2025-03-24T13:39:01+02:00 High Sensitivity D5000 ScreenTape® Page 5 D1: S11C Sample Table Well Conc.",
-        "[pg/µl] Sample Description Alert Observations D1 168 S11C Peak Table Size [bp] Calibrated Conc."
-      ],
-      "source_file": "2. Methods and experiments/geomx/EyeMT_Batch3_QC/Batch3_7_QC_FuGU-25-1109_2025-03-24_-_12.45.47.pdf"
-    },
-    {
-      "title": "Batch3 sequencing samples",
-      "category": "2. Methods and experiments/geomx/EyeMT_Batch3_QC",
-      "steps": [],
-      "source_file": "2. Methods and experiments/geomx/EyeMT_Batch3_QC/Batch3_sequencing_samples.xlsx"
-    },
-    {
-      "title": "GeoMx ROI selection with lowplex t-CyCIF crop overlay",
-      "category": "2. Methods and experiments",
-      "steps": [
-        "designed for deconvolution of bulk RNAseq data, but validated on various spatial transcriptomics data, which apart from the fraction of cell types is able to compute the cell-type specific transcriptomics profiles. Since this method is based on reference scRNA data, we utilized the annotated ovarian cancer scRNA-seq dataset published under"
-      ],
-      "source_file": "2. Methods and experiments/geomx_methods_updated.docx"
-    },
-    {
-      "title": "QC of ROIs for GeoMx",
-      "category": "2. Methods and experiments/tcycif_guided_roi_selection",
-      "steps": [],
-      "source_file": "2. Methods and experiments/tcycif_guided_roi_selection/QC_of_ROIs_for_GeoMx.xlsx"
-    }
-  ],
-  "dissemination": [
-    {
-      "title": "Abstract EACR 2024, Cancer Genomics, Multiomics and Computational Biology",
-      "author": "",
-      "conference": "EACR",
-      "year": 2024,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/Abstract_EACR_2024_Iga_Niemiec.docx"
-    },
-    {
-      "title": "Abstract EMBO Spatial Omics Workshop 2024,",
-      "author": "",
-      "conference": "EMBO",
-      "year": 2024,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/Abstract_EMBO_spatial_omics_2024_Iga_Niemiec.docx"
-    },
-    {
-      "title": "# title - 30 words",
-      "author": "",
-      "conference": "SCSO",
-      "year": 2025,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/Abstract_SCSO_september_2025_Iga_Niemiec.docx"
-    },
-    {
-      "title": "Spatial multi-omic integration reveals molecular programs of chemotherapy-remodeled immune communities in ovarian cancer",
-      "author": "",
-      "conference": "ESSB",
-      "year": 2026,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/ESSB-2026-EyeMT_by_Aleksandra_Shabanova.docx"
-    },
-    {
-      "title": "Integrated spatial and multi-",
-      "author": "",
-      "conference": "ESSB",
-      "year": 2025,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/ESSB_Heidelberg_Oct2025_EyeMT_by_Aleksandra_Shabanova.docx"
-    },
-    {
-      "title": "###################################################",
-      "author": "",
-      "conference": "AACR",
-      "year": 2023,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/conference_abstracts_AACR2023_abstract_AF_EPE_2023-07-03.docx"
-    }
-  ],
-  "publications": [
-    {
-      "title": "DOI 10.1016/j.physrep.2018.06.007.",
-      "author": "",
-      "conference": "document",
-      "year": null,
-      "doi": "10.1016/j.physrep.2018.06.007.",
-      "type": "publication",
-      "source_file": ""
-    },
-    {
-      "title": "DOI 10.7303/syn53283672",
-      "author": "",
-      "conference": "document",
-      "year": null,
-      "doi": "10.7303/syn53283672",
-      "type": "publication",
-      "source_file": ""
-    }
-  ],
+  "protocols": [],
+  "dissemination": [],
+  "publications": [],
   "derived_knowledge": {
-    "methods": [
-      "# Source: 2. Methods and experiments/Discussion about experiment document and panel with Iga_11.6.2024.docx",
-      "# Source: 2. Methods and experiments/GeoMx & tCycIF Experiments Methodology.docx",
-      "The brief description of ROI selection pipeline:",
-      "https://github.com/farkkilab/roi_selection_quantification/tree/5e95420124bc555c5f480d226440854e693b0f0f/01_ROI_selection",
-      "METHODOLOGY (full text can be found here: https://helsinkifi-my.sharepoint.com/:w:/g/personal/iganiemi_ad_helsinki_fi/IQCQxpG3OufkQalmJWVMjXvkARDaN546GYy0JwyqHaGUzSA?e=grDX4i)",
-      "3. Segmentation by Stardist & quantification",
-      "# Source: 2. Methods and experiments/Slide Names taken for CellCycle CyCIF experiment (Ada_Nika).xlsx",
-      "# Source: 2. Methods and experiments/cycif/Image_processing_progress.xlsx",
-      "# Source: 2. Methods and experiments/cycif/Processing_results/tCycIF processing results.pptx",
-      "Overview of pipeline",
-      "# Source: 2. Methods and experiments/experimental files.docx",
-      "# Source: 2. Methods and experiments/geomx/EyeMT_Batch3_QC/Batch3_1_Batch3_2_QC_FuGU-25-1093_25-1093-2025-03-05_-_12.54.15.pdf",
-      "TapeStation Analysis Software 5.1 © Agilent Technologies, Inc. 2023 Generated: 2025-03-05T13:05:19+02:00",
-      "# Source: 2. Methods and experiments/geomx/EyeMT_Batch3_QC/Batch3_3_Batch3_4_QC_FuGU-25-1097_2025-03-10_HS_D5000_TapeStation_QC.pdf",
-      "TapeStation Analysis Software 5.1 © Agilent Technologies, Inc. 2023 Generated: 2025-03-10T12:50:09+02:00",
-      "# Source: 2. Methods and experiments/geomx/EyeMT_Batch3_QC/Batch3_5_Batch3_6_QC_FuGU-25-1103_Zhihan_TapeStation_HS_D5000_QC_2025-03-17_-_16.03.34.pdf",
-      "TapeStation Analysis Software 5.1 © Agilent Technologies, Inc. 2023 Generated: 2025-03-17T16:24:41+02:00",
-      "# Source: 2. Methods and experiments/geomx/EyeMT_Batch3_QC/Batch3_7_QC_FuGU-25-1109_2025-03-24_-_12.45.47.pdf",
-      "TapeStation Analysis Software 5.1 © Agilent Technologies, Inc. 2023 Generated: 2025-03-24T13:39:01+02:00",
-      "# Source: 2. Methods and experiments/geomx/EyeMT_Batch3_QC/Batch3_sequencing_samples.xlsx",
-      "# Source: 2. Methods and experiments/geomx_methods_updated.docx",
-      ", provided by Nanostring. Segment (AOI) and probe level QC as well as LOQ (limit of quantification) filtering were performed as described in the package vignette. Overall,",
-      "GeoMx signal deconvolution",
-      "Since GeoMx data for each AOI contains a mixture of signals derived from each cell type within TME, we performed deconvolution of the signal to obtain the cell-type specific transcriptional profiles. To do that, we utilized BayesPrism",
-      "For BayesPrism method we performed deconvolution according to their vignette (",
-      "GeoMx MHC-II pathway activity analysis and linear modelling",
-      "# Source: 2. Methods and experiments/tcycif_guided_roi_selection/QC_of_ROIs_for_GeoMx.xlsx",
-      "Spatial analysis of tCycIF samples",
-      "Brief overview of pipeline",
-      "Overview of SPACEstat workflow",
-      "Example of clique enrichment analysis results",
-      "Validation of network method (collaboration with LUKE)",
-      "Patient pairwise analysis",
-      "Deconvolution sanity check",
-      "GeoMx deconvolution - new cleaned scRNAseq reference",
-      "GeoMx deconvolution - tumor",
-      "GeoMx deconvolution - Fibroblasts",
-      "GeoMx deconvolution - Macrophages",
-      "GeoMx deconvolution - CD8 Tcells",
-      "GeoMx deconvolution - CD4 Tcells",
-      "GeoMx deconvolution - NKs",
-      "GeoMx deconvolution - DCs",
-      "TODO: systematic analysis of predicted LR + pathways",
-      "TODO: downstream GSEA analysis",
-      "GeoMx GSEA pathway analysis (for SCSO, preliminary)",
-      "TODO: Additional analysis (eg downstream GSEA) needed to check for any systematic differences",
-      "Run ct calling with Tribus (current params + CD20 label) to get the quick&dirty/good enough for preliminary downstream analysis (Iga)",
-      "Geomx-CycIF integration: cycif cell counts vs deconvolution (b2)",
-      "(new mesmer segmentation in progress)",
-      "Finalise phenotyping & test spatially aware reduction method Banksy for subsets’",
-      "BANKSY is a method for clustering spatial omics data by augmenting the features of each cell with both an average of the features of its spatial neighbors along with neighborhood feature gradients. By incorporating neighborhood information for clustering, BANKSY is able to",
-      "tCycIF + SPACEstat downstream analysis",
-      "GeoMx downstream analysis",
-      "GeoMx deconvolution-based:",
-      "based on deconvolution ct fractions",
-      "No labelling at all and regression analysis",
-      "tCycIF + SPACEstat downstream analysis: results",
-      "Principal component analysis based on immune composition & its association with HRP status",
-      "tCycIF + SPACEstat downstream analysis: next steps",
-      "GeoMX downstream analysis: next steps",
-      "LR analysis of identified ROI groups",
-      "GRN analysis and key TF identification for identified ROI groups/pathways",
-      "ROI labelling based on deconvolution ct fractions",
-      "Standard analysis assumes tissue is a blank, uniform canvas.",
-      "ROI labelling - deconvolution ct fractions",
-      "GeoMx downstream analysis - ssGSEA",
-      "GeoMx downstream analysis - ssGSEA pathways corr",
-      "DEGs computed on geomx full-signal are partially reflecting just different ct composition - need to rerun analysis for deconvoluted ct specific profiles",
-      "GeoMx downstream analysis - next steps",
-      "GO + KEGG enrichment analysis (which signatures are enriched in DEGs)",
-      "Clustering methods comparisons",
-      "2. Two-step spatial phenotyping (Factor Analysis + GAMM):",
-      "Exploratory Data Analysis (EDA):",
-      "Analysis of variables behaviour across dataset",
-      "GeoMX downstream analysis results:",
-      "Results summary from other ssGSEA analysis",
-      "Clinical data analysis",
-      "Clinical data analysis - SNVs across cohort",
-      "Macrophages downstream analysis",
-      "Familiarisation with methods, biological problems, project goals"
-    ],
-    "findings": [
-      "Correlation with ratios (Monday)",
-      "similarly to post_NACT, upon tumor infiltration some stress reaction but little nr of DGE and no significant GO terms",
-      "GeoMx results GSEA ct fraction correlation",
-      "Activity of key immune related pathways in Macrophages are correlated with fractions of other immune cell types in stromal compartments of post-NACT samples",
-      "spearman correlation between normalised ssGSEA pathway activity score and fraction of immune cells in given ROI",
-      "correlation between ROI immune fraction and Macrophages ssGSEA scores",
-      "Macrophages activity is (weakly) negatively correlated with fraction of other cell types",
-      "inflammatory response negatively correlates with nr of B-cells",
-      "migration, APP via MHCII, apoptosis, IL2, TGFb signatures correlates negatively with nr of other T-cells (Tregs and Th17)",
-      "Is it correlated with patient OS/PFS/other clinical characteristics?",
-      "Can we observe switching on specific IEMs? Is it correlated with patient OS/PFS/other clinical characteristics?",
-      "Are there any consistent NACT-induced differences in immune cell transcriptomics profiles (tumor/stroma separately)? Is it correlated with patient OS/PFS/other clinical characteristics?",
-      "No significant DEGs between combined pre vs post (for paired samples)",
-      "Significant DEGs only on patient level.",
-      "2 best solutions identified",
-      "Deconvoluted cell fractions (SpatialDecon vs BayesPrism) are highly correlated for most reliable cell types)",
-      "Cycif cell fraction does not correlate so well..",
-      "One of two approaches outside of BANKCY package - Leiden clustering based on modularity – compares graph to a random version of itself, only grouping cells if they are significantly",
-      "To perform pair correlation test, we need to test what is the controlled structure to ensure that the distance we pick up to build the networks catches the true spatial organisation",
-      "Identification of correlated signatures",
-      "Correlating signatures with ct fraction of other cell types",
-      "DGE between identified ROI groups with distinct transcriptomics profile",
-      "LR analysis of identified ROI groups",
-      "GRN analysis and key TF identification for identified ROI groups/pathways",
-      "air correlation function",
-      "of pair correlation value with controlled heterogeneity case",
-      "Solution - inhomogeneous pair correlation function -weighting factor",
-      "Pathways correlations to each other in deconv signal",
-      "Pathways correlations to immune cells fraction in ROI",
-      "Correlation between pathway scores and ct fractions",
-      "Correlation between pathways scores (within 1 type of signal)",
-      "Correlation between pathway scores (between deconv signal of 2 ct)",
-      "Multiple significant genes (incl. many immune related) in post-NACT samples (mostly stroma) - both whole and deconvoluted signal",
-      "No correlation between PFS/OS and age at diagnosis and TMB",
-      "High correlation between numerous pathways and ct fractions",
-      "Many pathways correlated with 1 cell types fractions - will be explored further based on AOI labels",
-      "Preliminary Findings:",
-      "Cluster 7 negatively correlate with HRD scores",
-      "Correlation with HRD scores, tumor mutational burden and relative abundance of each cluster",
-      "Spearman correlation",
-      "finding ROI coordinates on corresponding CycIF slide",
-      "identification of pathways/roi clusters with correlated pathway activities",
-      "finding pathways which activity correlates with other immune cells frequencies",
-      "GO and KEGG enrichment analysis (finding pathways enriched with DEGs)",
-      "In conclusion, this study delivers precise spatial immunophenotyping, illuminating the context of immune cell interactions and their molecular programs. Our findings identify actionable targets and establish a foundation for precision immunotherapies in the post-chemotherapy landscape of HGSC.",
-      "toolkit for spatial point pattern and network analysis, we identified highly patient-specific immune hubs shaped by diverse microenvironments. These findings highlight the heterogeneity of the tumor immune microenvironment and the need for integrated, multi-modal analyses.",
-      "Diverse Immune interaction hubs revealed by",
-      "Quantification of global cell distances revealed",
-      "Spatial analysis revealed close",
-      "Spatial proximity of cells in whole slide tCycIF revealed",
-      "revealed spatial interaction and exclusion patterns across samples",
-      "TSI identification (C) showed",
-      "TSI identification (C) showed global and",
-      "enes positively correlated with deconvolution scores",
-      "(0.7) have been identified across all groups and filtered to those unique for zone and response.",
-      "correlated with deconvolution scores",
-      "which overall suggest",
-      "Pairwise correlations between GSVA scores of key immune-related pathways,",
-      "The results suggest contact-dependent activation of both CD8 T-cells and macrophages. Identification of key pathways upregulated specifically in this regions in the patients with short PFS, further strengthen the importance of this interaction for HGSC patients outcome.",
-      "significantly enriched (p adj < 0.01)",
-      "Fig 2. Significant differences in GSVA scores between",
-      "Significant GSVA scores correlations of selected pathways in CD8+IBA1+ AOIs",
-      "analysing correlations between immune cell abundance and activity of key processes of macrophage and T-cell immunity",
-      "fractions are highly correlated and",
-      "correlates negatively with the activity of macrophages MHC-I/II antigen presentation pathway",
-      "correlate positively with both T-cells fraction and their immune functions",
-      "correlate positively",
-      "fractions are highly correlated.",
-      "DCs correlates positively with all T-cells immune functions only after NACT treatment",
-      "pearson correlation coefficient",
-      "Fig. 3: correlations between immune cell type fractions, separately for each segment and NACT status",
-      "Fig. 4: correlations between immune cell type fractions and key pathways related to the immune functions of (a) macrophages and (b) T-cells, separately for each segment and NACT status",
-      "Multiple key cancer signatures are correlated with immune cell types abundance",
-      "cell type fraction is highly correlated with",
-      "fraction is correlated with",
-      "tumor-growth promoting signatures - DNA repair and MYC targets, and negatively correlated with immune response signature",
-      ", which may suggest their",
-      "within TME. Although mild negative correlation with TNFa is also visible.",
-      "Proximity to other cell types can change the activity of the identified pathways within cell-type specific deconvoluted transcriptional signal.",
-      "Macrophages pro-inflammatory signatures are significantly elevated in the presence of both CD8 T-cells (IFNg) and DCs (IFNg, IL6-JAK-STAT3)"
-    ],
-    "risks_or_open_items": [
-      "tissue morphogenesis",
-      "TODO: select only immune pathways and rerun clustering",
-      "TODO: systematic analysis of predicted LR + pathways",
-      "TODO: downstream GSEA analysis",
-      "TODO: rerun for new deconv + IEMs pathways + new hub labels",
-      "TODO: Additional analysis (eg downstream GSEA) needed to check for any systematic differences",
-      "EyeMT: GeoMx updates & tumor-stroma problems",
-      "Problem: gene which is expressed mostly by tumor, drives overall expression in both tumor and stroma segments —our stromal segments are contaminated with tumor",
-      "Problem 1: immune cells on top of tumor masked as stromal region",
-      "Problem 1: immune cells on top of tumor (possibly??) masked as stromal region",
-      "Problem 2: immune cells on top of tumor masked as stromal region + low PanCK expression",
-      "Problem 3: really tiny",
-      "Rerun for DGE when top 20% of tumor-in-stroma AOIs removed gives very similar results → tumor-in-stroma problem is probably not affecting current results (unless we start to analyse eg tumor specific signal)",
-      "TODO represent that as fraction of immune cells rather than all",
-      "Based on cross-labels table challenging categories will be resolved (eg. CD4 from manual gating which are counted as stroma_cd4 by tribus will be retained, otherwise excluded) by making a logic function for problematic gates",
-      "Healthy omentum tissue - controlled heterogeneity asked by Tuomas",
-      "Standard analysis assumes tissue is a blank, uniform canvas.",
-      "But there is a natural structure of tissue - natural spread of immune cells in benign/borderline omentum, for instance.",
-      "High risk of non-convergence or overfitting (capturing ROI noise instead of patient biology). A student can spend the time necessary to tune the smoothing parameters and random effects.",
-      "Risks information loss if two metrics with opposite biological effects are collapsed. The student can validate these factors against known biology to ensure we aren’t losing the signal.",
-      "- TODO - compare with network communities",
-      "Familiarisation with methods, biological problems, project goals",
-      "Clinical data - missing info discussion",
-      "Step 1: Defining the tissue",
-      "rotating/pulling with the usage of tissue landmarks",
-      "FFPE tumor tissues—1",
-      "Whole transcriptome information for selected tissue",
-      "Tissue Interface detection & spatial relationships",
-      "spatial transcriptomics of corresponding regions on adjacent tissue slide",
-      "Fig. 1: tCycIF guided selection of ROIs for spatial transcriptomics on adjacent tissue slide",
-      "Fig. 1: Experimental design: (a) tCycIF guided selection of ROIs for spatial transcriptomics on adjacent tissue slide and (b) integration with scRNAseq dataset to perform cell type deconvolution",
-      "Fig. 1: Experimental design: a) tCycIF guided selection of spatial transcriptomics ROIs on adjacent tissue slide and",
-      "ing transcriptomics information linked to the specific spatial coordinates of a tissue",
-      "tissue ecosystems such as TME. Among different ST methods, GeoMx is particularly",
-      "to protect normal tissues from immune-mediated damage. The first immune checkpoint",
-      "by linking gene expression profiles to their tissue and cellular locations. This spa-",
-      "within complex tissue environments, insights that cannot be fully captured by single-",
-      "terests (ROIs) within the tissue [9]. Importantly, it achieves this with minimal tissue",
-      "compatible with both Formalin-Fixed, Paraffin Embedded (FFPE) and frozen tissue",
-      "The NanoString GeoMx DSP is a tissue-based platform developed for high-plex",
-      "The profiling workflow presented in Figure 2.1 follows a five-step process: (1) Tissue",
-      "additional information of tissue location and cell composition.",
-      "unfortunately discard the critical spatial context provided by GeoMx. This limitation",
-      "The tissues are sampled from patients with varying clinical outcomes, including five",
-      "*Recommended for Geomx: DEGs calculated using a linear mixed model (tissue_ID as a random effect)",
-      "also distinct activity in immune signaling patterns across these tissue microenviron-",
-      "sample ID was included as a fixed effect covariate to control for tissue specific variabil-",
-      "of interest (ROIs) within tissue sections, but it lacks single-cell resolution. Instead,",
-      "analyses such as LR inference. Despite these limitations, GeoMx gives an unprece-",
-      "for scRNAseq data), to GeoMx data, compare the results, identify their limitations",
-      "! ROI labels may be missing some cells which are present in SPACEStat community labels",
-      "Two ROIs missing coordinates ?",
-      "Spatial Transcriptomics: GeoMx (performed on adjacent tissue slides)",
-      "⚠️ Exclusion: S188-iOme removed from GeoMx due to severe tissue folding on the slide."
-    ]
+    "methods": [],
+    "findings": [],
+    "risks_or_open_items": []
   },
   "document_index": [
     {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "path": "5_EMT/5_Project_Log.docx",
-      "title": "5_Project_Log.docx",
-      "has_text": true,
-      "excerpt": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued",
+      "path": "5_Project_Log.docx",
+      "name": "5_Project_Log.docx",
+      "extension": ".docx",
+      "document_kind": "word_document",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 8110,
+      "modified_at": "2025-03-05T01:59:00+00:00",
+      "sha256": "83cd2a9ca170d751da3c3b70a9f15de038a06ae4a71db4e6bed553e0e4470c52",
+      "status": "extracted",
+      "extractor": "python-docx",
+      "title": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued",
+      "excerpt": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued Goals: EMT profiling through tcycif and geomx Validation of Mariana's and other antibodies Order and validation of the new antibodies Selection of the samples for the second round of experiments Set priorities, which tasks are interdependent? I will keep progressing on the computational part while the rest of the projects are ongoing Cycif Data: Adas antibody validations in cold storage 1.",
+      "char_count": 667,
+      "word_count": 102,
       "metadata": {
-        "source": {
-          "filename": "5_Project_Log.docx",
-          "stem": "5_Project_Log",
-          "extension": ".docx",
-          "relative_path": "5_EMT/5_Project_Log.docx",
-          "absolute_path": "/Users/debashishdeb/Downloads/OMEIA-database/projects/5_EMT-20260602T171604Z-3-001/5_EMT/5_Project_Log.docx",
-          "size_bytes": 8110,
-          "size_human": "7.92 KB",
-          "modified": "2025-03-05T03:59:00",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "hashes": {
-            "md5": "18d8302b7cdea06a80ffddd32779261c"
-          }
-        },
-        "classification": {
-          "family": "word",
-          "extension": ".docx",
-          "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "extractor": "python-docx",
-          "status": "ok"
-        },
-        "extraction_metadata": {
-          "paragraph_count": 21,
-          "table_count": 0,
-          "core_properties": {
-            "title": "Word Document",
-            "subject": "",
-            "author": "",
-            "keywords": "",
-            "created": null,
-            "modified": "2026-06-05T12:28:48+00:00",
-            "last_modified_by": "python-docx"
-          }
-        },
-        "converted_at": "2026-06-05T15:28:48"
-      }
+        "paragraph_count": 21,
+        "table_count": 0,
+        "author": "",
+        "title": "Word Document",
+        "subject": "",
+        "created": null,
+        "modified": "2026-06-06T22:33:47+00:00"
+      },
+      "warnings": [],
+      "errors": []
     }
   ],
   "vector_chunks": [
     {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
+      "chunk_id": "5_Project_Log.docx::chunk_0000",
+      "source_file": "5_Project_Log.docx",
       "chunk_index": 0,
-      "text": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 1,
-      "text": "Goals: EMT profiling through tcycif and geomx"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 2,
-      "text": "Estimated timeline:"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 3,
-      "text": "December: tCycIF"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 4,
-      "text": "January: GeoMx"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 5,
-      "text": "#2401"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 6,
-      "text": "Validation of Mariana's and other antibodies"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 7,
-      "text": "#2402"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 8,
-      "text": "First pilot experiment"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 9,
-      "text": "#2403"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 10,
-      "text": "Order and validation of the new antibodies"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 11,
-      "text": "#2404"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 12,
-      "text": "Selection of the samples for the second round of experiments"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 13,
-      "text": "#2405"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 14,
-      "text": "ROI selection"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 15,
-      "text": "#2406"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 16,
-      "text": "GeoMx training"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 17,
-      "text": "Set priorities, which tasks are interdependent?"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 18,
-      "text": "I will keep progressing on the computational part while the rest of the projects are ongoing"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 19,
-      "text": "Geomx data?"
-    },
-    {
-      "document_id": "e25acaf86e885f115e45c4d36940f7a3",
-      "source_file": "5_EMT/5_Project_Log.docx",
-      "chunk_index": 20,
-      "text": "Cycif Data: Adas antibody validations in cold storage 1."
+      "start_char": 0,
+      "end_char": 667,
+      "char_count": 667,
+      "word_count": 102,
+      "text": "Zhihan Aleksandra: At least include here where the potential data is (if any) and indicate that project was discontinued \nGoals: EMT profiling through tcycif and geomx\nEstimated timeline:\nDecember: tCycIF\nJanuary: GeoMx\n#2401\nValidation of Mariana's and other antibodies\n#2402\nFirst pilot experiment\n#2403\nOrder and validation of the new antibodies\n#2404\nSelection of the samples for the second round of experiments\n#2405\nROI selection \n#2406\nGeoMx training\nSet priorities, which tasks are interdependent?\nI will keep progressing on the computational part while the rest of the projects are ongoing\nGeomx data?\nCycif Data: Adas antibody validations in cold storage 1."
     }
   ],
   "extraction": {
-    "total_scannable_assets": 41,
-    "extracted_records": 41,
-    "chunk_count": 229,
+    "total_scannable_assets": 1,
+    "extracted_records": 1,
+    "chunk_count": 1,
     "status_counts": {
-      "extracted": 41
+      "extracted": 1
     },
     "extractor_counts": {
-      "xlsx-zip-xml": 7,
-      "docx-zip-xml": 11,
-      "pptx-slide-xml": 17,
-      "pdftotext": 6
+      "python-docx": 1
     },
     "extension_counts": {
-      ".xlsx": 7,
-      ".docx": 11,
-      ".pptx": 17,
-      ".pdf": 6
+      ".docx": 1
     },
     "errors": [],
     "limits": {
@@ -809,108 +174,35 @@
     },
     "optional_extractors_detected": {
       "pypdf": false,
-      "PyPDF2": false,
-      "python_docx": false,
-      "python_pptx": false,
-      "openpyxl": false,
-      "beautifulsoup4": false,
+      "PyPDF2": true,
+      "python_docx": true,
+      "python_pptx": true,
+      "openpyxl": true,
+      "beautifulsoup4": true,
       "Pillow": true,
       "tifffile": false,
       "pdftotext_cli": true,
       "libreoffice_cli": true,
-      "textutil_cli": false
+      "textutil_cli": true
     }
   },
   "metrics": {
-    "document_count": 41,
-    "total_assets": 41,
+    "document_count": 1,
+    "total_assets": 1,
     "figure_count": 0,
-    "timeline_entries": 2,
+    "timeline_entries": 1,
     "meeting_count": 0,
-    "protocol_count": 13,
-    "cohort_count": 3,
-    "estimated_sample_count": 39,
-    "repository_count": 6,
-    "storage_path_count": 5,
-    "presentation_count": 17,
-    "data_file_count": 7,
+    "protocol_count": 0,
+    "cohort_count": 0,
+    "estimated_sample_count": null,
+    "repository_count": 0,
+    "storage_path_count": 0,
+    "presentation_count": 0,
+    "data_file_count": 0,
     "extracted_document_count": 1,
-    "knowledge_chunk_count": 21,
+    "knowledge_chunk_count": 1,
     "extraction_error_count": 0,
-    "output_count": 8
+    "output_count": 0
   },
-  "outputs": [
-    {
-      "title": "Abstract EACR 2024, Cancer Genomics, Multiomics and Computational Biology",
-      "author": "",
-      "conference": "EACR",
-      "year": 2024,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/Abstract_EACR_2024_Iga_Niemiec.docx"
-    },
-    {
-      "title": "Abstract EMBO Spatial Omics Workshop 2024,",
-      "author": "",
-      "conference": "EMBO",
-      "year": 2024,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/Abstract_EMBO_spatial_omics_2024_Iga_Niemiec.docx"
-    },
-    {
-      "title": "# title - 30 words",
-      "author": "",
-      "conference": "SCSO",
-      "year": 2025,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/Abstract_SCSO_september_2025_Iga_Niemiec.docx"
-    },
-    {
-      "title": "Spatial multi-omic integration reveals molecular programs of chemotherapy-remodeled immune communities in ovarian cancer",
-      "author": "",
-      "conference": "ESSB",
-      "year": 2026,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/ESSB-2026-EyeMT_by_Aleksandra_Shabanova.docx"
-    },
-    {
-      "title": "Integrated spatial and multi-",
-      "author": "",
-      "conference": "ESSB",
-      "year": 2025,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/ESSB_Heidelberg_Oct2025_EyeMT_by_Aleksandra_Shabanova.docx"
-    },
-    {
-      "title": "###################################################",
-      "author": "",
-      "conference": "AACR",
-      "year": 2023,
-      "doi": null,
-      "type": "abstract",
-      "source_file": "5. Writing and dissemination/Abstracts/conference_abstracts_AACR2023_abstract_AF_EPE_2023-07-03.docx"
-    },
-    {
-      "title": "DOI 10.1016/j.physrep.2018.06.007.",
-      "author": "",
-      "conference": "document",
-      "year": null,
-      "doi": "10.1016/j.physrep.2018.06.007.",
-      "type": "publication",
-      "source_file": ""
-    },
-    {
-      "title": "DOI 10.7303/syn53283672",
-      "author": "",
-      "conference": "document",
-      "year": null,
-      "doi": "10.7303/syn53283672",
-      "type": "publication",
-      "source_file": ""
-    }
-  ]
+  "outputs": []
 }

@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "default_category": "general_research",
+  "default_mode": "balanced",
+  "modes": [
+    { "id": "fast", "label": "Fast", "description": "Primary specialist only — quick answers." },
+    { "id": "balanced", "label": "Balanced", "description": "Coordinated team — default for research." },
+    { "id": "deep", "label": "Deep", "description": "Full team + critique + synthesis — best quality." }
+  ],
+  "categories": {
+    "general_research": {
+      "label": "Lab Research Assistant",
+      "description": "Broad lab reasoning, project notes, methods, and cross-domain help.",
+      "icon": "flask",
+      "visible": true,
+      "default_mode": "balanced",
+      "team_preview": ["Reasoning", "Lab knowledge", "Synthesis"],
+      "agents": {
+        "fast": ["lab_reasoner"],
+        "balanced": ["lab_reasoner", "knowledge_retrieval", "synthesizer"],
+        "deep": ["task_planner", "lab_reasoner", "knowledge_retrieval", "evidence_checker", "synthesizer"]
+      }
+    },
+    "cancer_oncology": {
+      "label": "Oncology & Tumor Microenvironment",
+      "description": "HGSC, immune infiltration, biomarkers, pathways, and oncology literature.",
+      "icon": "dna",
+      "visible": true,
+      "default_mode": "balanced",
+      "team_preview": ["Oncology reasoning", "Biomedical literature", "Evidence check", "Synthesis"],
+      "agents": {
+        "fast": ["oncology_reasoner"],
+        "balanced": ["oncology_reasoner", "biomedical_literature", "evidence_checker", "synthesizer"],
+        "deep": ["task_planner", "oncology_reasoner", "mechanism_interpreter", "biomedical_literature", "evidence_checker", "synthesizer"]
+      }
+    },
+    "spatial_multiplex": {
+      "label": "Spatial & Multiplex Imaging",
+      "description": "tCyCIF, GeoMx, Visium, cell neighborhoods, TLS, and spatial biomarkers.",
+      "icon": "grid",
+      "visible": true,
+      "default_mode": "balanced",
+      "team_preview": ["Spatial reasoning", "Marker panels", "Evidence", "Synthesis"],
+      "agents": {
+        "fast": ["spatial_reasoner"],
+        "balanced": ["spatial_reasoner", "marker_panel_agent", "evidence_checker", "synthesizer"],
+        "deep": ["task_planner", "spatial_reasoner", "image_metadata_agent", "marker_panel_agent", "evidence_checker", "synthesizer"]
+      }
+    },
+    "wet_lab_cycif": {
+      "label": "Wet Lab & CycIF Operations",
+      "description": "Protocols, staining, gating, sample prep, and CycIF workflow troubleshooting.",
+      "icon": "beaker",
+      "visible": true,
+      "default_mode": "balanced",
+      "team_preview": ["Protocol guide", "CycIF workflow", "Synthesis"],
+      "agents": {
+        "fast": ["protocol_guide"],
+        "balanced": ["protocol_guide", "cycif_workflow", "synthesizer"],
+        "deep": ["task_planner", "protocol_guide", "cycif_workflow", "evidence_checker", "synthesizer"]
+      }
+    },
+    "bioinformatics_omics": {
+      "label": "Bioinformatics & Omics",
+      "description": "Single-cell, pipelines, statistics, reproducibility, and omics analysis planning.",
+      "icon": "chart",
+      "visible": true,
+      "default_mode": "balanced",
+      "team_preview": ["Bioinformatics planner", "Statistics", "Validation", "Synthesis"],
+      "agents": {
+        "fast": ["bioinformatics_planner"],
+        "balanced": ["bioinformatics_planner", "statistics_agent", "validation_agent", "synthesizer"],
+        "deep": ["task_planner", "bioinformatics_planner", "single_cell_agent", "statistics_agent", "validation_agent", "synthesizer"]
+      }
+    },
+    "literature_evidence": {
+      "label": "Literature & Evidence Synthesis",
+      "description": "Paper search, citation-backed summaries, and comparative reviews.",
+      "icon": "book",
+      "visible": true,
+      "default_mode": "balanced",
+      "team_preview": ["Retrieval", "Summarizer", "Citation check", "Synthesis"],
+      "agents": {
+        "fast": ["paper_summarizer"],
+        "balanced": ["knowledge_retrieval", "paper_summarizer", "citation_checker", "synthesizer"],
+        "deep": ["task_planner", "knowledge_retrieval", "paper_summarizer", "comparison_agent", "citation_checker", "synthesizer"]
+      }
+    },
+    "platform_engineering": {
+      "label": "Platform & Pipeline Engineering",
+      "description": "FastAPI, React, Docker, Linux workstation, imaging APIs, and debugging.",
+      "icon": "code",
+      "visible": true,
+      "default_mode": "balanced",
+      "team_preview": ["Software architect", "Backend", "DevOps", "Synthesis"],
+      "agents": {
+        "fast": ["software_architect"],
+        "balanced": ["software_architect", "backend_agent", "devops_agent", "synthesizer"],
+        "deep": ["task_planner", "software_architect", "backend_agent", "frontend_agent", "devops_agent", "synthesizer"]
+      }
+    },
+    "scientific_imaging": {
+      "label": "Scientific Imaging Intelligence",
+      "description": "OME-TIFF readiness, metadata, tiling, and microscopy asset workflows.",
+      "icon": "image",
+      "visible": true,
+      "default_mode": "balanced",
+      "team_preview": ["Image metadata", "Streaming readiness", "Synthesis"],
+      "agents": {
+        "fast": ["image_metadata_agent"],
+        "balanced": ["image_metadata_agent", "spatial_reasoner", "synthesizer"],
+        "deep": ["task_planner", "image_metadata_agent", "spatial_reasoner", "evidence_checker", "synthesizer"]
+      }
+    },
+    "fast_local": {
+      "label": "Fast Local Assistant",
+      "description": "Low-latency answers using local Linux models only.",
+      "icon": "zap",
+      "visible": true,
+      "default_mode": "fast",
+      "team_preview": ["Fast local reasoning"],
+      "agents": {
+        "fast": ["fast_local_reasoner"],
+        "balanced": ["fast_local_reasoner", "synthesizer"],
+        "deep": ["fast_local_reasoner", "knowledge_retrieval", "synthesizer"]
+      }
+    },
+    "deep_research": {
+      "label": "Deep Research Analysis",
+      "description": "Multi-step critique, retrieval, and synthesis for complex questions.",
+      "icon": "brain",
+      "visible": true,
+      "default_mode": "deep",
+      "team_preview": ["Planner", "Reasoning", "Evidence", "Critique", "Synthesis"],
+      "agents": {
+        "fast": ["lab_reasoner"],
+        "balanced": ["task_planner", "lab_reasoner", "knowledge_retrieval", "evidence_checker", "synthesizer"],
+        "deep": ["task_planner", "lab_reasoner", "knowledge_retrieval", "mechanism_interpreter", "evidence_checker", "critique_agent", "synthesizer"]
+      }
+    }
+  }
+}

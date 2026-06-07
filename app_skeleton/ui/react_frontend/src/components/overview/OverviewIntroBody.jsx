@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   BookOpen,
   Brush,
   ClipboardList,
@@ -16,6 +15,8 @@ import { useGuiT } from '../../i18n/useGuiT.js';
 import { overviewIntroCopy } from '../../data/overviewIntroTranslations.js';
 import { labMembers } from '../../data/labMembers.js';
 import LabTeamRoster from '../LabTeamRoster.jsx';
+import GlassCardStack, { GlassMiniCard } from '../GlassCardStack.jsx';
+import '../GlassCardStack.css';
 
 const SECTION_META = [
   { id: 'onboarding', icon: ClipboardList, highlight: true },
@@ -66,24 +67,33 @@ export default function OverviewIntroBody({ onSubChange, onNavigate }) {
         <p className="overview-intro-prose">{t.aboutBody}</p>
       </article>
 
-      <section className="overview-intro-panel">
-        <div className="overview-intro-panel-head">
-          <Microscope size={18} className="overview-intro-panel-icon" aria-hidden />
-          <h2 className="overview-intro-panel-title">{t.topicsTitle}</h2>
-        </div>
-        <div className="overview-intro-topic-grid">
-          {(Array.isArray(t.topics) ? t.topics : overviewIntroCopy.en.topics).map((topic) => {
-            const Icon = TOPIC_ICONS[topic.id] || Sparkles;
-            return (
-              <article key={topic.id} className="overview-intro-topic-card">
-                <span className="overview-intro-topic-icon" aria-hidden>
-                  <Icon size={20} />
-                </span>
-                <h3 className="overview-intro-topic-title">{topic.title}</h3>
-                <p className="overview-intro-topic-desc">{topic.description}</p>
-              </article>
-            );
-          })}
+      <section className="overview-intro-panel overview-intro-panel--cards">
+        <div className="overview-intro-card-band">
+          <div className="overview-intro-card-band__head">
+            <div className="overview-intro-panel-head">
+              <Microscope size={18} className="overview-intro-panel-icon" aria-hidden />
+              <h2 className="overview-intro-panel-title">{t.topicsTitle}</h2>
+            </div>
+            <p className="overview-intro-prose overview-intro-prose--compact">
+              {t.topicsLead || 'Spatial multi-omics, precision medicine, and translational pipelines across the lab portfolio.'}
+            </p>
+          </div>
+          <GlassCardStack columns={3} rows={1} meta className="overview-intro-focus-stack">
+            {(Array.isArray(t.topics) ? t.topics : overviewIntroCopy.en.topics).map((topic, index) => {
+              const Icon = TOPIC_ICONS[topic.id] || Sparkles;
+              return (
+                <GlassMiniCard
+                  key={topic.id}
+                  label={topic.title}
+                  value={topic.description}
+                  icon={Icon}
+                  tone="#0ea5e9"
+                  delay={index * 85}
+                  title={`${topic.title} — ${topic.description}`}
+                />
+              );
+            })}
+          </GlassCardStack>
         </div>
       </section>
 
@@ -95,65 +105,64 @@ export default function OverviewIntroBody({ onSubChange, onNavigate }) {
         <LabTeamRoster members={labMembers} className="overview-intro-team-roster" />
       </section>
 
-      <section className="overview-intro-panel">
-        <div className="overview-intro-panel-head">
-          <FolderOpen size={18} className="overview-intro-panel-icon" aria-hidden />
-          <div>
-            <h2 className="overview-intro-panel-title">{t.platformTitle}</h2>
-            <p className="overview-intro-panel-hint">{t.platformLead}</p>
-          </div>
-        </div>
-        <div className="overview-intro-nav-grid">
-          {QUICK_LINKS.map(({ id, main, sub, icon: Icon, labelKey, descKey }) => (
-            <button
-              key={id}
-              type="button"
-              className="overview-intro-nav-card"
-              onClick={() => onNavigate?.(main, sub)}
-            >
-              <div className="overview-intro-nav-card-head">
-                <span className="overview-intro-nav-icon" aria-hidden>
-                  <Icon size={18} />
-                </span>
-                <span className="overview-intro-nav-label">{t.quickLinks?.[labelKey] || labelKey}</span>
-                <ArrowRight size={15} className="overview-intro-nav-arrow" aria-hidden />
+      <section className="overview-intro-panel overview-intro-panel--cards">
+        <div className="overview-intro-card-band">
+          <div className="overview-intro-card-band__head">
+            <div className="overview-intro-panel-head">
+              <FolderOpen size={18} className="overview-intro-panel-icon" aria-hidden />
+              <div>
+                <h2 className="overview-intro-panel-title">{t.platformTitle}</h2>
+                <p className="overview-intro-panel-hint">{t.platformLead}</p>
               </div>
-              <p className="overview-intro-nav-desc">{t.quickLinks?.[descKey] || ''}</p>
-            </button>
-          ))}
+            </div>
+          </div>
+          <GlassCardStack columns={2} rows={1} meta className="overview-intro-platform-stack">
+            {QUICK_LINKS.map(({ id, main, sub, icon: Icon, labelKey, descKey }, index) => (
+              <GlassMiniCard
+                key={id}
+                label={t.quickLinks?.[labelKey] || labelKey}
+                value={t.quickLinks?.[descKey] || ''}
+                icon={Icon}
+                tone="#2563eb"
+                delay={index * 90}
+                onClick={() => onNavigate?.(main, sub)}
+                title={`${t.quickLinks?.[labelKey] || labelKey} — ${t.quickLinks?.[descKey] || ''}`}
+              />
+            ))}
+          </GlassCardStack>
         </div>
       </section>
 
-      <section className="overview-intro-panel overview-intro-panel--docs">
-        <div className="overview-intro-panel-head">
-          <FileText size={18} className="overview-intro-panel-icon" aria-hidden />
-          <div>
-            <h2 className="overview-intro-panel-title">{t.docsTitle}</h2>
-            <p className="overview-intro-panel-hint">{t.docsLead}</p>
+      <section className="overview-intro-panel overview-intro-panel--docs overview-intro-panel--cards">
+        <div className="overview-intro-card-band">
+          <div className="overview-intro-card-band__head">
+            <div className="overview-intro-panel-head">
+              <FileText size={18} className="overview-intro-panel-icon" aria-hidden />
+              <div>
+                <h2 className="overview-intro-panel-title">{t.docsTitle}</h2>
+                <p className="overview-intro-panel-hint">{t.docsLead}</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="overview-intro-nav-grid">
-          {SECTION_META.map(({ id, icon: Icon, highlight }) => {
-            const section = t.sections?.[id] ?? FALLBACK_SECTIONS[id];
-            if (!section) return null;
-            return (
-              <button
-                key={id}
-                type="button"
-                className={`overview-intro-nav-card${highlight ? ' overview-intro-nav-card--primary' : ''}`}
-                onClick={() => onSubChange?.(id)}
-              >
-                <div className="overview-intro-nav-card-head">
-                  <span className="overview-intro-nav-icon" aria-hidden>
-                    <Icon size={18} />
-                  </span>
-                  <span className="overview-intro-nav-label">{section.label}</span>
-                  <ArrowRight size={15} className="overview-intro-nav-arrow" aria-hidden />
-                </div>
-                <p className="overview-intro-nav-desc">{section.description}</p>
-              </button>
-            );
-          })}
+          <GlassCardStack columns={3} rows={2} meta className="overview-intro-docs-stack">
+            {SECTION_META.map(({ id, icon: Icon, highlight }, index) => {
+              const section = t.sections?.[id] ?? FALLBACK_SECTIONS[id];
+              if (!section) return null;
+              return (
+                <GlassMiniCard
+                  key={id}
+                  label={section.label}
+                  value={section.description}
+                  icon={Icon}
+                  tone={highlight ? '#d97706' : '#64748b'}
+                  highlight={highlight}
+                  delay={index * 75}
+                  onClick={() => onSubChange?.(id)}
+                  title={`${section.label} — ${section.description}`}
+                />
+              );
+            })}
+          </GlassCardStack>
         </div>
       </section>
     </div>

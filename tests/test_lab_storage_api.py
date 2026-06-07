@@ -10,6 +10,7 @@ from app_skeleton.api.database_sections import list_sections, assert_all_section
 from app_skeleton.api.raw_vault_store import search_vault, _public_row, deduplication_report
 from app_skeleton.api.main import app
 from app_skeleton.api.paths import storage_roots_public_summary
+from tests.db_safety import SKIP_REASON_NO_DB, postgres_reachable
 
 
 class TestStorageRoots(unittest.TestCase):
@@ -158,10 +159,14 @@ class TestLabApiEndpoints(unittest.TestCase):
         self.assertIn("sections", body)
 
     def test_documents_registry_endpoint(self):
+        if not postgres_reachable():
+            self.skipTest(SKIP_REASON_NO_DB)
         res = self.client.get("/api/documents/registry", params={"limit": 5})
         self.assertEqual(res.status_code, 200)
 
     def test_admin_ingestion_jobs_endpoint(self):
+        if not postgres_reachable():
+            self.skipTest(SKIP_REASON_NO_DB)
         res = self.client.get("/api/admin/ingestion-jobs")
         self.assertEqual(res.status_code, 200)
 
@@ -207,7 +212,17 @@ class TestLabApiEndpoints(unittest.TestCase):
 
 class TestVectorizationQueue(unittest.TestCase):
     def test_ome_tiff_not_eligible_for_vectorize(self):
-        from scripts.build_raw_asset_inventory import vector_status
+        import importlib.util
+        from pathlib import Path
+
+        _inv_path = (
+            Path(__file__).resolve().parents[1]
+            / "scripts/digitalization/build_raw_asset_inventory.py"
+        )
+        _spec = importlib.util.spec_from_file_location("build_raw_asset_inventory", _inv_path)
+        _mod = importlib.util.module_from_spec(_spec)
+        _spec.loader.exec_module(_mod)
+        vector_status = _mod.vector_status
 
         self.assertEqual(vector_status(".tif", "image"), "metadata_summary_only")
         self.assertEqual(vector_status(".ome.tiff", "image"), "metadata_summary_only")

@@ -6,10 +6,10 @@ import os
 from pathlib import Path
 from typing import Any
 
-from app_skeleton.api.paths import BLUEPRINT_ROOT
+from app_skeleton.api.data_layout import processor_pid_path, processor_state_path
 
-STATE_PATH = BLUEPRINT_ROOT / "app_skeleton" / "data" / "processor_state.json"
-PID_PATH = BLUEPRINT_ROOT / "app_skeleton" / "data" / "processor.pid"
+STATE_PATH = processor_state_path()
+PID_PATH = processor_pid_path()
 
 
 def _pid_alive(pid: int) -> bool:

@@ -35,14 +35,14 @@ Connect to Helsinki VPN so SSH to the workstation works.
 
 ```bash
 cd /Users/debashishdeb/Downloads/OMEIA-AI
-./scripts/mac_connect_linux.sh
+./scripts/network/mac_connect_linux.sh
 ```
 
 ### Terminal 2 — test + start app
 
 ```bash
 cd /Users/debashishdeb/Downloads/OMEIA-AI
-./scripts/mac_test_linux.sh
+./scripts/network/mac_test_linux.sh
 ./start.sh
 ```
 

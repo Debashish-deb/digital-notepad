@@ -1,8 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import CompactCornerSearch from './CompactCornerSearch.jsx';
 import { RefreshCw } from 'lucide-react';
 import TaskpadSheet from './TaskpadSheet.jsx';
 import { useTaskpad } from '../contexts/TaskpadContext.jsx';
 import ModuleCoverHero from './ModuleCoverHero.jsx';
+import SubsectionCoverCard from './SubsectionCoverCard.jsx';
 import { useGuiT } from '../i18n/useGuiT.js';
 import { moduleHasCover } from '../data/moduleCoverContent.js';
 import { ModuleShellHeaderSlotContext } from '../contexts/ModuleShellHeaderSlotContext.jsx';
@@ -35,11 +37,24 @@ function ModuleShell({
   const showModuleCover = useCover && !isAiCopilot;
   const showSubnav = false;
   const [headerSlot, setHeaderSlot] = useState(null);
+  const [subsectionSearch, setSubsectionSearch] = useState(null);
   const setHeaderSlotStable = useCallback((node) => setHeaderSlot(node), []);
+  const setSubsectionSearchStable = useCallback((config) => setSubsectionSearch(config), []);
   const coverContext = useMemo(
-    () => ({ mainId, subId, onRefresh, isRefreshing }),
-    [mainId, subId, onRefresh, isRefreshing],
+    () => ({
+      mainId,
+      subId,
+      showModuleCover,
+      onRefresh,
+      isRefreshing,
+      setSubsectionSearch: setSubsectionSearchStable,
+    }),
+    [mainId, subId, showModuleCover, onRefresh, isRefreshing, setSubsectionSearchStable],
   );
+
+  useEffect(() => {
+    if (!showModuleCover) setSubsectionSearch(null);
+  }, [mainId, subId, showModuleCover]);
 
   return (
     <ModuleShellCoverContext.Provider value={coverContext}>
@@ -105,6 +120,22 @@ function ModuleShell({
             onSubChange={onSubChange}
             onRefresh={onRefresh}
             isRefreshing={isRefreshing}
+          />
+        ) : null}
+        {showModuleCover ? (
+          <SubsectionCoverCard
+            mainId={mainId}
+            subId={subId}
+            title={sub.label}
+            description={sub.description}
+            actions={subsectionSearch ? (
+              <CompactCornerSearch
+                value={subsectionSearch.value ?? ''}
+                onChange={subsectionSearch.onChange}
+                placeholder={subsectionSearch.placeholder}
+                ariaLabel={subsectionSearch.ariaLabel}
+              />
+            ) : null}
           />
         ) : null}
         <div className="module-shell-page">{children}</div>

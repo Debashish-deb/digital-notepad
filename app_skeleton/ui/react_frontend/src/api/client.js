@@ -93,7 +93,25 @@ export async function apiFetch(path, options = {}) {
       const err = new Error(typeof detail === 'string' ? detail : `${response.status} ${response.statusText}`);
       err.status = response.status;
       err.data = data;
+      if (response.status === 429) {
+        err.rateLimit = {
+          limit: response.headers.get('X-RateLimit-Limit'),
+          remaining: response.headers.get('X-RateLimit-Remaining'),
+          reset: response.headers.get('X-RateLimit-Reset'),
+        };
+        if (!err.message || err.message === 'Too Many Requests') {
+          err.message = 'Rate limit reached — please wait a moment before asking again.';
+        }
+      }
       throw err;
+    }
+    const rateLimit = {
+      limit: response.headers.get('X-RateLimit-Limit'),
+      remaining: response.headers.get('X-RateLimit-Remaining'),
+      reset: response.headers.get('X-RateLimit-Reset'),
+    };
+    if (rateLimit.limit != null && data && typeof data === 'object' && !Array.isArray(data)) {
+      data._rateLimit = rateLimit;
     }
     return data;
   } finally {

@@ -5,7 +5,9 @@ import './fonts.css';   /* Source Sans 3, Source Serif 4, JetBrains Mono */
 import './index.css';
 import './typography.css';
 import './theme/themeManager.css';
+import './theme/navGlass.css';
 import './theme/consistency.css';
+import './theme/superGlass.css';
 
 import { ApiProvider } from './api/ApiContext.jsx';
 import { LocaleProvider } from './contexts/LocaleContext.jsx';

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Image, FileText, Presentation, Table, Film, FolderOpen, X, ImageOff } from 'lucide-react';
 import { projectAssetUrl } from '../utils/digitalTwinUtils.js';
 import FileTypeBadge from './FileTypeBadge.jsx';

@@ -1,5 +1,4 @@
-
-import React, {
+import {
   useCallback,
   useEffect,
   useMemo,
@@ -16,6 +15,7 @@ import {
   FolderCheck,
   FolderOpen,
   GitBranch,
+  ArrowDownAZ,
   LayoutGrid,
   List,
   RefreshCw,
@@ -23,9 +23,15 @@ import {
   Users,
   X,
 } from 'lucide-react';
+import './ProjectsScreen.css';
 import ProjectBrandMark from '../components/ProjectBrandMark.jsx';
+import { useModuleShellCover } from '../contexts/ModuleShellCoverContext.jsx';
 
 import WorkspaceScreen from './WorkspaceScreen';
+import NotebookWikiScreen from './NotebookWikiScreen';
+import DecisionsScreen from './DecisionsScreen';
+import ProjectPortfolioContextBar from '../components/projectPortfolio/ProjectPortfolioContextBar.jsx';
+import '../components/projectPortfolio/ProjectPortfolioIntegrated.css';
 import { PROJECT_CATEGORIES } from '../data/projectsCatalog.js';
 
 const STATUS_STYLES = {
@@ -85,6 +91,95 @@ const VIEW_MODES = {
   GROUPED: 'grouped',
   FLAT: 'flat',
 };
+
+const SORT_MODES = {
+  NAME_ASC: 'name_asc',
+  NAME_DESC: 'name_desc',
+  CATALOG: 'catalog',
+  STATUS: 'status',
+  PRIORITY: 'priority',
+};
+
+const SORT_OPTIONS = [
+  { id: SORT_MODES.NAME_ASC, label: 'A → Z' },
+  { id: SORT_MODES.NAME_DESC, label: 'Z → A' },
+  { id: SORT_MODES.CATALOG, label: 'Catalog index' },
+  { id: SORT_MODES.STATUS, label: 'Status' },
+  { id: SORT_MODES.PRIORITY, label: 'Priority' },
+];
+
+const PORTFOLIO_PREFS_KEY = 'omeia_project_portfolio_prefs';
+
+const STATUS_SORT_ORDER = {
+  active: 0,
+  completed: 1,
+  discontinued: 2,
+  archived: 3,
+};
+
+const PRIORITY_SORT_ORDER = {
+  critical: 0,
+  high: 1,
+  medium: 2,
+  low: 3,
+};
+
+function loadPortfolioPrefs() {
+  try {
+    const raw = window.localStorage.getItem(PORTFOLIO_PREFS_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function savePortfolioPrefs(prefs) {
+  try {
+    window.localStorage.setItem(PORTFOLIO_PREFS_KEY, JSON.stringify(prefs));
+  } catch {
+    // ignore quota / private mode
+  }
+}
+
+function compareProjectNames(a, b, direction = 1) {
+  return direction * a.project_name.localeCompare(b.project_name, undefined, {
+    sensitivity: 'base',
+    numeric: true,
+  });
+}
+
+function sortProjects(projects, sortMode) {
+  const list = [...projects];
+
+  list.sort((a, b) => {
+    switch (sortMode) {
+      case SORT_MODES.NAME_DESC:
+        return compareProjectNames(a, b, -1);
+      case SORT_MODES.CATALOG: {
+        const indexDiff = (a.project_index || 9999) - (b.project_index || 9999);
+        if (indexDiff !== 0) return indexDiff;
+        return compareProjectNames(a, b);
+      }
+      case SORT_MODES.STATUS: {
+        const statusDiff =
+          (STATUS_SORT_ORDER[a.status] ?? 99) - (STATUS_SORT_ORDER[b.status] ?? 99);
+        if (statusDiff !== 0) return statusDiff;
+        return compareProjectNames(a, b);
+      }
+      case SORT_MODES.PRIORITY: {
+        const priorityDiff =
+          (PRIORITY_SORT_ORDER[a.priority] ?? 99) - (PRIORITY_SORT_ORDER[b.priority] ?? 99);
+        if (priorityDiff !== 0) return priorityDiff;
+        return compareProjectNames(a, b);
+      }
+      case SORT_MODES.NAME_ASC:
+      default:
+        return compareProjectNames(a, b);
+    }
+  });
+
+  return list;
+}
 
 function asArray(value) {
   return Array.isArray(value) ? value : [];
@@ -240,16 +335,6 @@ function flattenSearchable(value, depth = 0) {
   return '';
 }
 
-function compareProjects(a, b) {
-  const indexDiff = (a.project_index || 9999) - (b.project_index || 9999);
-  if (indexDiff !== 0) return indexDiff;
-
-  return a.project_name.localeCompare(b.project_name, undefined, {
-    sensitivity: 'base',
-    numeric: true,
-  });
-}
-
 function normalizeProject(rawProject, index) {
   const project = isObject(rawProject) ? rawProject : {};
   const projectCode = getProjectCode(project, index);
@@ -319,17 +404,19 @@ function normalizeProject(rawProject, index) {
   return normalized;
 }
 
-function StatCard({ icon: Icon, value, label, helper }) {
+function MetricItem({ icon: Icon, value, label, helper, accent }) {
   return (
-    <div className="projects-stat">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.1rem' }}>
-        <span className="projects-stat-icon" aria-hidden="true" style={{ display: 'flex', alignItems: 'center', color: 'var(--color-primary)' }}>
-          {Icon ? <Icon size={18} /> : null}
+    <div className="projects-metric-item" title={helper || undefined}>
+      {Icon ? (
+        <span className="projects-metric-icon" aria-hidden="true">
+          <Icon size={14} strokeWidth={2} />
         </span>
-        <span className="projects-stat-value">{value}</span>
-      </div>
-      <span className="projects-stat-label">{label}</span>
-      {helper ? <span className="projects-stat-helper">{helper}</span> : null}
+      ) : null}
+      <span className="projects-metric-value" style={accent ? { color: accent } : undefined}>{value}</span>
+      <span className="projects-metric-label">
+        {label}
+        {helper ? <span className="projects-metric-helper"> · {helper}</span> : null}
+      </span>
     </div>
   );
 }
@@ -387,8 +474,22 @@ function ProjectCard({ project, onOpen }) {
   const priorityLabel = PRIORITY_LABEL[project.priority] || titleCaseFromKey(project.priority || 'Medium');
   const hasFolder = Boolean(project.folder_path);
 
+  const openWorkspace = () => onOpen(project.project_code);
+
   return (
-    <article className="project-card" aria-labelledby={`project-title-${project.project_code}`}>
+    <article
+      className="project-card project-card--clickable"
+      aria-labelledby={`project-title-${project.project_code}`}
+      role="button"
+      tabIndex={0}
+      onClick={openWorkspace}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openWorkspace();
+        }
+      }}
+    >
       <div className="project-card-header">
         <ProjectBrandMark
           code={project.project_code}
@@ -495,14 +596,9 @@ function ProjectCard({ project, onOpen }) {
         ) : null}
       </div>
 
-      <button
-        type="button"
-        className="btn btn-primary project-card-action"
-        onClick={() => onOpen(project.project_code)}
-        aria-label={`Open workspace for ${project.project_name}`}
-      >
-        Open Workspace <ChevronRight size={14} aria-hidden="true" />
-      </button>
+      <span className="btn btn-primary project-card-action" aria-hidden="true">
+        Open Workspace <ChevronRight size={14} />
+      </span>
     </article>
   );
 }
@@ -513,15 +609,50 @@ export default function ProjectsScreen({
   setSelectedProject,
   fetchProjects,
   API_URL,
+  portfolioSub = 'portfolio',
+  onNavigate,
 }) {
   const mountedRef = useRef(false);
 
+  const savedPrefs = useMemo(() => loadPortfolioPrefs(), []);
+
   const [search, setSearch] = useState('');
+  const [focusProject, setFocusProject] = useState('');
   const [filterStatus, setFilterStatus] = useState('All');
   const [filterCategory, setFilterCategory] = useState('All');
-  const [viewMode, setViewMode] = useState(VIEW_MODES.GROUPED);
+  const [viewMode, setViewMode] = useState(
+    savedPrefs?.viewMode === VIEW_MODES.GROUPED ? VIEW_MODES.GROUPED : VIEW_MODES.FLAT,
+  );
+  const [sortMode, setSortMode] = useState(
+    SORT_OPTIONS.some((option) => option.id === savedPrefs?.sortMode)
+      ? savedPrefs.sortMode
+      : SORT_MODES.NAME_ASC,
+  );
   const [processing, setProcessing] = useState(false);
   const [processMsg, setProcessMsg] = useState(null);
+  const coverCtx = useModuleShellCover();
+  const useSubsectionSearch = Boolean(coverCtx?.showModuleCover);
+
+  useEffect(() => {
+    const register = coverCtx?.setSubsectionSearch;
+    if (!register) return undefined;
+    if (!useSubsectionSearch) {
+      register(null);
+      return undefined;
+    }
+    return () => register(null);
+  }, [coverCtx?.setSubsectionSearch, useSubsectionSearch]);
+
+  useEffect(() => {
+    const register = coverCtx?.setSubsectionSearch;
+    if (!useSubsectionSearch || !register) return;
+    register({
+      value: search,
+      onChange: setSearch,
+      placeholder: 'Search projects…',
+      ariaLabel: 'Search projects',
+    });
+  }, [coverCtx?.setSubsectionSearch, useSubsectionSearch, search]);
 
   const processEndpoint = useMemo(
     () => buildApiUrl(API_URL || '', '/api/projects/process-all'),
@@ -592,8 +723,8 @@ export default function ProjectsScreen({
   }, [projects, searchTokens, filterStatus, filterCategory]);
 
   const sortedFiltered = useMemo(
-    () => [...filtered].sort(compareProjects),
-    [filtered],
+    () => sortProjects(filtered, sortMode),
+    [filtered, sortMode],
   );
 
   const stats = useMemo(() => {
@@ -735,6 +866,10 @@ export default function ProjectsScreen({
   }, []);
 
   useEffect(() => {
+    savePortfolioPrefs({ viewMode, sortMode });
+  }, [viewMode, sortMode]);
+
+  useEffect(() => {
     if (!processMsg) return undefined;
 
     const timer = window.setTimeout(() => {
@@ -744,6 +879,9 @@ export default function ProjectsScreen({
     return () => window.clearTimeout(timer);
   }, [processMsg]);
 
+  const workspaceInitialTab =
+    portfolioSub === 'notebook' ? 'notebook' : portfolioSub === 'decisions' ? 'decisions' : 'overview';
+
   if (selectedProject) {
     return (
       <WorkspaceScreen
@@ -751,141 +889,215 @@ export default function ProjectsScreen({
         onBack={handleBackFromWorkspace}
         API_URL={API_URL}
         dbProjects={dbProjects}
+        initialTab={workspaceInitialTab}
+        onNavigate={onNavigate}
+        onSelectProject={handleOpenProject}
       />
+    );
+  }
+
+  if (portfolioSub === 'notebook') {
+    return (
+      <div className="projects-integrated-view">
+        <ProjectPortfolioContextBar
+          viewLabel="Living notebook"
+          dbProjects={dbProjects}
+          focusProject={focusProject}
+          onFocusProjectChange={setFocusProject}
+          onOpenWorkspace={handleOpenProject}
+          onBrowsePortfolio={() => onNavigate?.('projects_data', 'portfolio')}
+        />
+        <NotebookWikiScreen
+          dbProjects={dbProjects}
+          API_URL={API_URL}
+          hideHeader
+          projectCode={focusProject || null}
+          onNavigate={onNavigate}
+          onSelectProject={handleOpenProject}
+        />
+      </div>
+    );
+  }
+
+  if (portfolioSub === 'decisions') {
+    return (
+      <div className="projects-integrated-view">
+        <ProjectPortfolioContextBar
+          viewLabel="Research decisions"
+          dbProjects={dbProjects}
+          focusProject={focusProject}
+          onFocusProjectChange={setFocusProject}
+          onOpenWorkspace={handleOpenProject}
+          onBrowsePortfolio={() => onNavigate?.('projects_data', 'portfolio')}
+        />
+        <DecisionsScreen
+          dbProjects={dbProjects}
+          API_URL={API_URL}
+          hideHeader
+          projectCode={focusProject || null}
+          onOpenProject={handleOpenProject}
+          onNavigate={onNavigate}
+          onSelectProject={handleOpenProject}
+        />
+      </div>
     );
   }
 
   return (
     <div className="projects-page">
-      <section className="projects-stats-bar" aria-label="Project portfolio statistics">
-        <StatCard
+      <section className="projects-metrics-rail" aria-label="Project portfolio statistics">
+        <MetricItem
           icon={LayoutGrid}
           value={stats.total}
-          label="Total Projects"
-          helper={`${stats.visible} visible`}
+          label="projects"
+          helper={`${stats.visible} shown`}
         />
-        <StatCard
+        <MetricItem
           icon={Activity}
           value={stats.active}
-          label="Active"
+          label="active"
+          accent="var(--color-success)"
         />
-        <StatCard
+        <MetricItem
           icon={CheckCircle2}
           value={stats.completed}
-          label="Completed"
+          label="completed"
+          accent="#60a5fa"
         />
-        <StatCard
+        <MetricItem
           icon={FolderCheck}
           value={stats.withFolder}
-          label="With Workspace"
+          label="with workspace"
         />
-        <StatCard
+        <MetricItem
           icon={GitBranch}
           value={stats.withRepo}
-          label="With Repository"
+          label="with repository"
         />
       </section>
 
-      <section className="projects-toolbar" aria-label="Project filters and controls">
-        <div className="projects-search-wrap">
-          <Search size={18} className="projects-search-icon" aria-hidden="true" />
+      <section className="projects-control-bar" aria-label="Project filters and controls">
+        {!useSubsectionSearch ? (
+          <div className="projects-control-search">
+            <Search size={16} className="projects-search-icon" aria-hidden="true" />
+            <label className="sr-only" htmlFor="projects-search-input">
+              Search projects
+            </label>
+            <input
+              id="projects-search-input"
+              type="search"
+              placeholder="Search code, title, lead, disease, modality…"
+              className="projects-control-input"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              autoComplete="off"
+            />
+            {search ? (
+              <button
+                type="button"
+                className="projects-search-clear"
+                onClick={() => setSearch('')}
+                aria-label="Clear project search"
+              >
+                <X size={14} aria-hidden="true" />
+              </button>
+            ) : null}
+          </div>
+        ) : null}
 
-          <label className="sr-only" htmlFor="projects-search-input">
-            Search projects
+        <div className="projects-control-filters">
+          <Filter size={14} aria-hidden="true" className="projects-control-filter-icon" />
+          <label className="sr-only" htmlFor="projects-status-filter">
+            Filter by status
           </label>
+          <select
+            id="projects-status-filter"
+            className="projects-control-select"
+            value={filterStatus}
+            onChange={(event) => setFilterStatus(event.target.value)}
+          >
+            <option value="All">All statuses</option>
+            {availableStatuses.map((status) => (
+              <option key={status} value={status}>
+                {getStatusMeta(status).label}
+              </option>
+            ))}
+          </select>
 
-          <input
-            id="projects-search-input"
-            type="search"
-            placeholder="Search by code, title, lead, disease, modality, PI, folder..."
-            className="form-input"
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            autoComplete="off"
-          />
-
-          {search ? (
-            <button
-              type="button"
-              className="projects-search-clear"
-              onClick={() => setSearch('')}
-              aria-label="Clear project search"
-            >
-              <X size={15} aria-hidden="true" />
-            </button>
-          ) : null}
+          <label className="sr-only" htmlFor="projects-category-filter">
+            Filter by category
+          </label>
+          <select
+            id="projects-category-filter"
+            className="projects-control-select"
+            value={filterCategory}
+            onChange={(event) => setFilterCategory(event.target.value)}
+          >
+            <option value="All">All categories</option>
+            {availableCategories.map((categoryKey) => (
+              <option key={categoryKey} value={categoryKey}>
+                {getCategoryLabel(categoryKey)}
+              </option>
+            ))}
+          </select>
         </div>
 
-        <label className="sr-only" htmlFor="projects-status-filter">
-          Filter by status
-        </label>
-        <select
-          id="projects-status-filter"
-          className="form-select projects-filter"
-          value={filterStatus}
-          onChange={(event) => setFilterStatus(event.target.value)}
-        >
-          <option value="All">All Statuses</option>
-          {availableStatuses.map((status) => (
-            <option key={status} value={status}>
-              {getStatusMeta(status).label}
-            </option>
-          ))}
-        </select>
-
-        <label className="sr-only" htmlFor="projects-category-filter">
-          Filter by category
-        </label>
-        <select
-          id="projects-category-filter"
-          className="form-select projects-filter"
-          value={filterCategory}
-          onChange={(event) => setFilterCategory(event.target.value)}
-        >
-          <option value="All">All Categories</option>
-          {availableCategories.map((categoryKey) => (
-            <option key={categoryKey} value={categoryKey}>
-              {getCategoryLabel(categoryKey)}
-            </option>
-          ))}
-        </select>
-
-        <div className="projects-view-toggle" role="group" aria-label="Project view mode">
-          <button
-            type="button"
-            className={`btn ${viewMode === VIEW_MODES.GROUPED ? 'btn-primary' : 'btn-secondary'}`}
-            onClick={() => setViewMode(VIEW_MODES.GROUPED)}
-            aria-pressed={viewMode === VIEW_MODES.GROUPED}
+        <div className="projects-control-sort">
+          <ArrowDownAZ size={14} aria-hidden="true" className="projects-control-filter-icon" />
+          <label className="sr-only" htmlFor="projects-sort-mode">
+            Sort projects
+          </label>
+          <select
+            id="projects-sort-mode"
+            className="projects-control-select"
+            value={sortMode}
+            onChange={(event) => setSortMode(event.target.value)}
           >
-            <LayoutGrid size={15} aria-hidden="true" />
-            Grouped
-          </button>
+            {SORT_OPTIONS.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
 
+        <div className="projects-view-segment" role="group" aria-label="Project view mode">
           <button
             type="button"
-            className={`btn ${viewMode === VIEW_MODES.FLAT ? 'btn-primary' : 'btn-secondary'}`}
+            className={`projects-view-segment-btn${viewMode === VIEW_MODES.FLAT ? ' is-active' : ''}`}
             onClick={() => setViewMode(VIEW_MODES.FLAT)}
             aria-pressed={viewMode === VIEW_MODES.FLAT}
+            title="Alphabetical list of all visible projects"
           >
-            <List size={15} aria-hidden="true" />
-            Flat List
+            <List size={14} aria-hidden="true" />
+            A–Z list
+          </button>
+          <button
+            type="button"
+            className={`projects-view-segment-btn${viewMode === VIEW_MODES.GROUPED ? ' is-active' : ''}`}
+            onClick={() => setViewMode(VIEW_MODES.GROUPED)}
+            aria-pressed={viewMode === VIEW_MODES.GROUPED}
+            title="Group projects by research category"
+          >
+            <LayoutGrid size={14} aria-hidden="true" />
+            By category
           </button>
         </div>
 
         <button
           type="button"
-          className="btn btn-secondary"
+          className="projects-control-action"
           onClick={handleProcessAll}
           disabled={processing}
           aria-busy={processing ? 'true' : 'false'}
-          style={{ marginLeft: 'auto' }}
+          title="Reprocess all project twins"
         >
           <RefreshCw
-            size={15}
+            size={14}
             aria-hidden="true"
             className={processing ? 'projects-spin' : undefined}
           />
-          {processing ? 'Processing twins…' : 'Reprocess all twins'}
+          <span>{processing ? 'Processing…' : 'Reprocess twins'}</span>
         </button>
       </section>
 
@@ -925,8 +1137,10 @@ export default function ProjectsScreen({
         <section className="projects-category-section">
           <div className="projects-category-header">
             <div>
-              <p className="text-caption">Flat portfolio view</p>
-              <h2 className="projects-category-title">All Visible Projects</h2>
+              <p className="text-caption">Portfolio list</p>
+              <h2 className="projects-category-title">
+                {SORT_OPTIONS.find((option) => option.id === sortMode)?.label || 'Projects'}
+              </h2>
             </div>
 
             <span className="projects-category-count">

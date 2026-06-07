@@ -2,10 +2,13 @@
 
 /* --- TOKENS --- */
 :root, html[data-theme="dark"] {
-  --bg-app: #1a1d21;
-  --bg-surface: #22262c;
-  --bg-surface-hover: #262b32;
-  --border-color: rgba(255, 255, 255, 0.1);
+  --bg-app: #14171c;
+  --bg-page: #161a20;
+  --bg-surface: rgba(34, 38, 46, 0.68);
+  --bg-surface-hover: rgba(42, 47, 56, 0.82);
+  --bg-elevated: rgba(48, 54, 64, 0.88);
+  --bg-panel: rgba(34, 38, 46, 0.72);
+  --border-color: rgba(255, 255, 255, 0.12);
   --border-focus: #2dd4bf;
 
   --text-primary: #f5f5f7;
@@ -18,19 +21,25 @@
   --color-warning: #fbbf24;
   --color-danger: #f87171;
 
-  /* Research-grade font stack (from academic.css) */
-  --font-sans: 'Source Sans 3', 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-display: 'Source Serif 4', 'Libre Baskerville', Georgia, serif;
-  --font-serif: 'Source Serif 4', 'EB Garamond', Georgia, serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
 
-  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.25);
-  --shadow-card-hover: 0 6px 24px rgba(0, 0, 0, 0.35);
-  --bg-input: #15181c;
-  --bg-inset: #15181c;
-  --bg-table-hover: rgba(255, 255, 255, 0.02);
+  --shadow-card:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 18px 44px rgba(0, 0, 0, 0.32);
+  --shadow-card-hover:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 24px 56px rgba(0, 0, 0, 0.4);
+  --shadow-glass:
+    0 18px 48px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --bg-input: rgba(18, 21, 26, 0.78);
+  --bg-inset: rgba(18, 21, 26, 0.72);
+  --bg-table-hover: rgba(255, 255, 255, 0.04);
   --bg-badge: rgba(45, 212, 191, 0.15);
-  --theme-transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  --theme-transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 
   /* Legacy aliases — map old --mac-* usages to semantic tokens */
   --mac-ink: var(--text-primary);
@@ -41,46 +50,6 @@
   --mac-bg-primary: var(--bg-inset);
   --mac-bg-0: var(--bg-surface);
   --mac-border: var(--border-color);
-}
-
-html[data-theme="light"] {
-  /* Academic paper palette — warm navy on warm paper, from academic.css */
-  --bg-app: #eae5d8;              /* warm paper background */
-  --bg-surface: #fffdf8;          /* warm white panels */
-  --bg-surface-hover: #f5f0e4;    /* warm paper hover */
-  --bg-page: #fbf8f1;
-  --bg-inset: #f3edde;
-  --border-color: rgba(30, 58, 95, 0.16);   /* navy border */
-  --border-focus: #1e3a5f;
-
-  --text-primary: #0a0a0a;        /* pitch black ink */
-  --text-secondary: #111111;      /* near-black — keeps hierarchy without going gray */
-  --text-muted: #333333;          /* dark gray — still clearly readable */
-  --text-faint: #555555;          /* subtler — footnotes, captions */
-
-  /* Navy accent hierarchy instead of teal (far better contrast on warm paper) */
-  --color-primary: #1e3a5f;
-  --color-primary-strong: #132842;
-  --color-primary-soft: rgba(30, 58, 95, 0.12);
-  --color-success: #2f6f4e;
-  --color-accent: #496a8f;
-  --color-warning: #a55d08;
-  --color-danger: #983232;
-  --color-citation: #5b4f9a;
-  --color-highlight: #fff1b8;
-
-  /* Same research-grade font stack */
-  --font-sans: 'Source Sans 3', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-display: 'Source Serif 4', 'Libre Baskerville', Georgia, serif;
-  --font-serif: 'Source Serif 4', 'EB Garamond', Georgia, serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, 'Cascadia Code', Menlo, monospace;
-
-  --shadow-card: 0 1px 2px rgba(30, 58, 95, 0.06), 0 12px 32px rgba(30, 58, 95, 0.085);
-  --shadow-card-hover: 0 2px 4px rgba(30, 58, 95, 0.08), 0 18px 48px rgba(30, 58, 95, 0.12);
-  --shadow-inset-paper: inset 0 1px 0 rgba(255, 255, 255, 0.72), inset 0 -1px 0 rgba(30, 58, 95, 0.035);
-  --bg-input: #fffefa;
-  --bg-table-hover: rgba(30, 58, 95, 0.055);
-  --bg-badge: rgba(30, 58, 95, 0.095);
 }
 
 html[data-theme='academic'] {
@@ -155,13 +124,13 @@ html[data-theme='academic'] {
     0 0 0 1px rgba(30, 58, 95, 0.28);
 
   --font-sans:
-    var(--font-ui, 'Source Sans 3', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif);
+    var(--font-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Source Sans 3', 'Segoe UI', system-ui, sans-serif);
   --font-display:
-    var(--font-heading, 'Source Serif 4', 'Iowan Old Style', Georgia, serif);
+    var(--font-heading, 'Source Serif 4', 'Iowan Old Style', 'New York', Georgia, serif);
   --font-serif:
-    var(--font-manuscript, 'Source Serif 4', 'Iowan Old Style', Georgia, serif);
+    var(--font-manuscript, 'Source Serif 4', 'Iowan Old Style', 'New York', Georgia, serif);
   --font-mono:
-    var(--font-code, 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace);
+    var(--font-code, 'SF Mono', 'JetBrains Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace);
 
   --radius-xs: 6px;
   --radius-sm: 9px;
@@ -274,7 +243,6 @@ html[data-theme='academic'] {
     --mx-success-glow: rgba(45, 212, 191, .16);
   }
 
-  html[data-theme="light"],
   html[data-theme="academic"] {
     --mx-surface-tint: rgba(255,255,255,.46);
     --mx-surface-tint-strong: rgba(255,255,255,.72);
@@ -309,7 +277,6 @@ html[data-theme='academic'] {
     background-attachment: fixed;
   }
 
-  html[data-theme="light"] body,
   html[data-theme="academic"] body {
     background:
       radial-gradient(circle at 16% -6%, rgba(255,255,255,.9), transparent 24rem),
@@ -410,7 +377,7 @@ html[data-theme='academic'] {
     padding-right: .2rem;
   }
 
-  .sidebar-item {
+  .sidebar-item:not(.sidebar-item-main):not(.sidebar-item-sub) {
     position: relative;
     border: 1px solid transparent;
     border-radius: 8px !important;
@@ -427,7 +394,7 @@ html[data-theme='academic'] {
       box-shadow 180ms var(--mx-ease);
   }
 
-  .sidebar-item::before {
+  .sidebar-item:not(.sidebar-item-main):not(.sidebar-item-sub)::before {
     content: '';
     position: absolute;
     inset: 0 auto 0 0;
@@ -437,14 +404,14 @@ html[data-theme='academic'] {
     transition: opacity 180ms var(--mx-ease);
   }
 
-  .sidebar-item:hover {
+  .sidebar-item:not(.sidebar-item-main):not(.sidebar-item-sub):hover {
     transform: translateX(2px);
     border-color: color-mix(in srgb, var(--color-primary) 22%, var(--border-color));
     background: color-mix(in srgb, var(--bg-surface-hover) 72%, transparent);
   }
 
-  .sidebar-item.active,
-  .sidebar-item[aria-current="page"] {
+  .sidebar-item:not(.sidebar-item-main):not(.sidebar-item-sub).active,
+  .sidebar-item:not(.sidebar-item-main):not(.sidebar-item-sub)[aria-current="page"] {
     color: var(--text-primary) !important;
     border-color: color-mix(in srgb, var(--color-primary) 28%, transparent);
     background:
@@ -453,8 +420,8 @@ html[data-theme='academic'] {
     box-shadow: var(--mx-shadow-soft);
   }
 
-  .sidebar-item.active::before,
-  .sidebar-item[aria-current="page"]::before {
+  .sidebar-item:not(.sidebar-item-main):not(.sidebar-item-sub).active::before,
+  .sidebar-item:not(.sidebar-item-main):not(.sidebar-item-sub)[aria-current="page"]::before {
     opacity: 1;
   }
 
@@ -565,8 +532,6 @@ html[data-theme='academic'] {
     color: transparent !important;
   }
 
-  html[data-theme="light"] .page-title-gradient,
-  html[data-theme="light"] .text-title-1,
   html[data-theme="academic"] .page-title-gradient,
   html[data-theme="academic"] .text-title-1 {
     background:
@@ -704,6 +669,32 @@ html[data-theme='academic'] {
     backdrop-filter: blur(var(--mx-blur-md)) saturate(1.1);
   }
 
+  .projects-metrics-rail {
+    border: 1px solid var(--mx-border) !important;
+    border-radius: 6px !important;
+    background: color-mix(in srgb, var(--bg-inset) 88%, transparent) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  .projects-metric-item {
+    border-radius: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0.42rem 1rem !important;
+  }
+
+  .projects-control-bar {
+    border: 1px solid var(--mx-border) !important;
+    border-radius: 8px !important;
+    background: color-mix(in srgb, var(--bg-surface) 92%, transparent) !important;
+    box-shadow: var(--mx-shadow-soft) !important;
+    backdrop-filter: blur(var(--mx-blur-sm)) saturate(1.05);
+  }
+
   .tab-button.active,
   .report-nav-btn.active,
   .workspace-nav-item.active,
@@ -796,6 +787,10 @@ html[data-theme='academic'] {
   .ingestion-metrics-grid,
   .tasks-stats-grid {
     gap: clamp(.75rem, 1.2vw, 1.15rem) !important;
+  }
+
+  .projects-metrics-rail {
+    gap: 0 !important;
   }
 
   .dashboard-stat-tile,
@@ -1424,13 +1419,11 @@ html[data-theme='academic'] {
   border-radius: 0;
 }
 
-html[data-theme='light'] .btn-primary,
 html[data-theme='academic'] .btn-primary {
   color: #fff;
   border-color: color-mix(in srgb, var(--color-primary) 70%, #000);
 }
 
-html[data-theme='light'] .btn-primary:hover,
 html[data-theme='academic'] .btn-primary:hover {
   background: color-mix(in srgb, var(--color-primary) 92%, #000);
 }

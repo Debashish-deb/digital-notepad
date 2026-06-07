@@ -58,3 +58,8 @@ export function restoreDatapadBackup({ projectCode, relativePath, backupPath }) 
     },
   });
 }
+
+export function ensureProjectReadme(projectCode) {
+  const code = encodeURIComponent(projectCode);
+  return apiPost(`/api/projects/${code}/ensure-readme`);
+}

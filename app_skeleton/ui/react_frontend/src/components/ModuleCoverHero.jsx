@@ -1,6 +1,5 @@
 import { ExternalLink, Globe2, RefreshCw } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher.jsx';
-import TaskpadSheet from './TaskpadSheet.jsx';
 import { useGuiT } from '../i18n/useGuiT.js';
 import { getModuleCover } from '../data/moduleCoverContent.js';
 
@@ -51,27 +50,13 @@ export default function ModuleCoverHero({
         />
       ) : null}
       <div className="module-cover-hero__inner">
-        <div className="module-cover-hero__toolbar">
-          <div className="module-cover-hero__meta">
-            <p className="module-cover-hero__eyebrow">
-              {MainIcon ? <MainIcon size={14} aria-hidden /> : null}
-              <span className="module-cover-hero__eyebrow-text">{eyebrow}</span>
-            </p>
-            {tags.length > 0 ? (
-              <ul className="module-cover-hero__tags" aria-label="Research focus areas">
-                {tags.map((tag) => (
-                  <li key={tag} className="module-cover-hero__tag">
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </div>
+        <div className="module-cover-hero__top-bar">
+          <p className="module-cover-hero__eyebrow">
+            {MainIcon ? <MainIcon size={14} aria-hidden /> : null}
+            <span className="module-cover-hero__eyebrow-text">{eyebrow}</span>
+          </p>
           <div className="module-cover-hero__actions">
-            <LanguageSwitcher variant="pills" showLabel={false} className="module-cover-hero__lang" />
-            <div className="module-cover-hero__taskpad">
-              <TaskpadSheet mainId={mainId} subId={subId} />
-            </div>
+            <LanguageSwitcher variant="select" showLabel={false} className="module-cover-hero__lang" />
             {onRefresh ? (
               <button
                 type="button"
@@ -100,13 +85,28 @@ export default function ModuleCoverHero({
           </div>
         </div>
 
-        <div className="module-cover-hero__headline">
-          <h1 className="module-cover-hero__title">{title}</h1>
-          {cover.tagline ? (
-            <p className="module-cover-hero__tagline">{cover.tagline}</p>
-          ) : null}
+        <div className="module-cover-hero__main">
+          <div className="module-cover-hero__headline">
+            <h1 className="module-cover-hero__title">{title}</h1>
+            {cover.tagline ? (
+              <p className="module-cover-hero__tagline">{cover.tagline}</p>
+            ) : null}
+          </div>
+          <p className="module-cover-hero__lead">{lead}</p>
         </div>
-        <p className="module-cover-hero__lead">{lead}</p>
+
+        {tags.length > 0 ? (
+          <div className="module-cover-hero__focus">
+            <span className="module-cover-hero__focus-label">Research focus</span>
+            <ul className="module-cover-hero__tags" aria-label="Research focus areas">
+              {tags.map((tag) => (
+                <li key={tag} className="module-cover-hero__tag">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
     </header>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useApiContext } from '../api/ApiContext.jsx';
 import { User, Mail, Award, BookOpen, Code, Link, ExternalLink, Briefcase } from 'lucide-react';
 import { userProfilesData } from '../data/userProfilesData.js';

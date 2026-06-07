@@ -3501,7 +3501,7 @@ export function findBillingCategoryMeta(categoryId) {
 
 ## 3.1 Database Ingestion
 
-### File: `scripts/ingest_database.py`
+### File: `scripts/database/ingest_database.py`
 
 ```python
 #!/usr/bin/env python3
@@ -3625,7 +3625,7 @@ if __name__ == "__main__":
 
 ## 3.2 Vector Database Setup
 
-### File: `scripts/create_qdrant_collections.py`
+### File: `scripts/ingest/create_qdrant_collections.py`
 
 ```python
 #!/usr/bin/env python3
@@ -3684,7 +3684,7 @@ if __name__ == "__main__":
 
 ## 3.3 Document Processing
 
-### File: `scripts/ingest_documents_demo.py`
+### File: `scripts/ingest/ingest_documents_demo.py`
 
 ```python
 #!/usr/bin/env python3

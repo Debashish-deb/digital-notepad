@@ -10,7 +10,7 @@ Group=omeia
 WorkingDirectory=/opt/omeia/digital-notepad
 EnvironmentFile=/opt/omeia/deploy/university-desktop/.env
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/opt/omeia/venv/bin/python scripts/autonomous_processor.py --daemon
+ExecStart=/opt/omeia/venv/bin/python scripts/ops/autonomous_processor.py --daemon
 Restart=on-failure
 RestartSec=30
 Nice=10

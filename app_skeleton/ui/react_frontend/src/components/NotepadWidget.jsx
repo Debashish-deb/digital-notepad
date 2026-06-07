@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Edit, Save } from 'lucide-react';
 
 export default function NotepadWidget({ projectCode, fileList, fetchReport, API_URL }) {

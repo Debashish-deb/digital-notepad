@@ -1,4 +1,3 @@
-import React from 'react';
 
 /** Logo-style project code with superscript catalog index (workspace + portfolio). */
 export default function ProjectBrandMark({
