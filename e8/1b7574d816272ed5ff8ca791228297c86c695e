@@ -1,0 +1,275 @@
+app_skeleton/ui/react_frontend/src/contexts/TaskpadContext.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 10,25
+app_skeleton/ui/react_frontend/ARCHITECTURE.md
+  s_d8ca0dcf385045::t_a9b14103436589 1-77
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectDigitalTwinView.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectModalityPills.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 1
+app_skeleton/ui/react_frontend/src/features/ai-assistant/components/AiAssistant3DScene.jsx
+  s_d8ca0dcf385045::t_d976db748acdf8 21
+app_skeleton/ui/react_frontend/src/features/projects/components/portfolio/DecisionsPanel.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3
+app_skeleton/ui/react_frontend/src/features/ai-assistant/components/AgentCategorySelector.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 14
+app_skeleton/ui/react_frontend/src/features/lab/components/LabCorpusBrowser.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3
+app_skeleton/ui/react_frontend/src/features/projects/components/DataPadEditor.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 26,28-29
+  s_d8ca0dcf385045::t_ead6f9bdb77420 27
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentViewer.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 20
+  ai_agent 19,22
+app_skeleton/ui/react_frontend/src/features/taskpad/components/TaskpadSheet.jsx
+  s_d8ca0dcf385045::t_c3c996a6607b7e 3
+  s_d8ca0dcf385045::t_5e0c2479a3c724 9,17
+app_skeleton/ui/react_frontend/src/features/orders/components/OrdersArchiveBrowser.jsx
+  s_d8ca0dcf385045::t_c0a7ebe1138d74 1
+app_skeleton/ui/react_frontend/src/pages/WetLabScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 4
+app_skeleton/ui/react_frontend/src/shared/hooks/useRawFilePreview.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2-3
+app_skeleton/ui/react_frontend/src/pages/WorkspaceScreen.jsx
+  s_d8ca0dcf385045::t_658e7fa69f056b 28
+  s_d8ca0dcf385045::t_5e0c2479a3c724 17-21,23-27
+  ai_agent 3,22
+app_skeleton/ui/react_frontend/src/main.jsx
+  s_d8ca0dcf385045::t_10db9abc7dfa5c 7-10
+  s_d8ca0dcf385045::t_5e0c2479a3c724 12
+app_skeleton/ui/react_frontend/src/services/client.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 8
+app_skeleton/ui/react_frontend/src/features/computational/components/hub/OnboardingRoadmap.jsx
+  s_d8ca0dcf385045::t_a859de1080e581 14
+app_skeleton/ui/react_frontend/src/pages/DashboardScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 25-28
+app_skeleton/ui/react_frontend/src/features/documents/components/LabDocumentExplorer.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+app_skeleton/ui/react_frontend/src/shared/layout/CentralTaskpadBackground.jsx
+  ai_agent 1
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+app_skeleton/ui/react_frontend/src/features/lab/components/WetLabProtocolsBrowser.jsx
+  s_d8ca0dcf385045::t_00e66c3b9e4074 1
+app_skeleton/ui/react_frontend/src/pages/DecisionsScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 1
+  s_d8ca0dcf385045::t_fd325bfcf15c28 2
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectDocumentsBrowser.jsx
+  ai_agent 14-16,32,50-51
+  s_d8ca0dcf385045::t_5e0c2479a3c724 21-31,37,42-43,47,52,59-61
+app_skeleton/ui/react_frontend/src/config/firebase.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 16
+app_skeleton/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx
+  s_d8ca0dcf385045::t_b62dff16230b5c 9
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3-8
+app_skeleton/ui/react_frontend/src/features/search/components/HighlightedSnippet.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 1
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectFolderBrowser.jsx
+  ai_agent 21,42-44
+  s_d8ca0dcf385045::t_ac1d327bc75e64 46
+  s_d8ca0dcf385045::t_5e0c2479a3c724 22,39-41,48-49
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectLogPanel.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3-6
+  s_d8ca0dcf385045::t_57db5dcbd40cb0 7
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentProofreadPanel.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3
+app_skeleton/ui/react_frontend/src/shared/hooks/useCatalogDocumentPreview.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+app_skeleton/ui/react_frontend/src/pages/DocumentLibraryScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 1
+app_skeleton/ui/react_frontend/src/shared/hooks/useDigitalTwin.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectCoverNarrative.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3
+scripts/frontend/fix_moved_imports.py
+  s_d8ca0dcf385045::t_09cab7f352d430 1-3,5-49,82-107,109-119,121-127
+  s_d8ca0dcf385045::t_7ebb1c17bdbfdb 50-81
+app_skeleton/ui/react_frontend/src/pages/AiLabAssistantScreen.jsx
+  ai_agent 26
+  s_d8ca0dcf385045::t_5e0c2479a3c724 17-18,23-25,267
+app_skeleton/ui/react_frontend/src/pages/ResearchKnowledgeAdminScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 9
+app_skeleton/ui/react_frontend/src/features/overview/components/OverviewSocialPanel.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 5-6
+  s_d8ca0dcf385045::t_cb8bd9ba8aec05 2
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentPreviewPane.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 16
+  s_d8ca0dcf385045::t_f285687c2a5253 4
+  s_d8ca0dcf385045::t_00695d84bffa3f 23
+app_skeleton/ui/react_frontend/src/pages/ImageViewerPlaceholderScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3,8
+app_skeleton/ui/react_frontend/src/shared/hooks/useChatAutoScroll.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 1-2,4-8,10-21,24-33,36,38-51,53
+app_skeleton/ui/react_frontend/src/pages/IngestionDashboard.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 4
+app_skeleton/ui/react_frontend/src/pages/OverviewDocumentsScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2-4,6
+  ai_agent 5,7
+app_skeleton/ui/react_frontend/src/App.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3-9,11-12,17,29-30,33,35
+  s_d8ca0dcf385045::t_01118628c4d2c7 1
+  s_d8ca0dcf385045::t_404250f3e01b3f 37-67
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectResourceCorner.jsx
+  ai_agent 3
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+app_skeleton/ui/react_frontend/src/pages/DigitalizationDashboard.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3-4
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectContentLibrary.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3
+  ai_agent 4-6
+app_skeleton/ui/react_frontend/src/features/lab/components/LabSectionTwinPanel.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 18
+  s_d8ca0dcf385045::t_a5dedefa7e20e3 9-10
+app_skeleton/ui/react_frontend/src/features/search/components/AssistantSearchHits.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3,21
+app_skeleton/ui/react_frontend/src/pages/LoginScreen.jsx
+  ai_agent 8
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2,9-12
+app_skeleton/ui/react_frontend/src/features/overview/components/OverviewIntroBody.jsx
+  s_d8ca0dcf385045::t_1aecfb5a0928fe 17-19
+app_skeleton/ui/react_frontend/src/features/documents/components/LabDocumentsBrowser.jsx
+  ai_agent 3-5,20,30,36-37
+  s_d8ca0dcf385045::t_5e0c2479a3c724 11-19,26-27,35,38,44
+app_skeleton/ui/react_frontend/src/services/documentExportClient.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+app_skeleton/ui/react_frontend/src/shared/ui/SmartLink.jsx
+  ai_agent 3
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+app_skeleton/ui/react_frontend/src/features/imaging/components/ImageTileViewer.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentFormatter.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 11-12,16-18
+app_skeleton/ui/react_frontend/src/services/imageAssetsClient.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 5
+app_skeleton/ui/react_frontend/src/shared/ui/FileTypeBadge.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 1
+app_skeleton/ui/react_frontend/src/pages/BioinformaticsHubScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 25-28
+  ai_agent 32
+app_skeleton/ui/react_frontend/src/shared/hooks/useImageTileLoader.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+app_skeleton/ui/react_frontend/src/pages/ImageStreamingAdminScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 7
+app_skeleton/ui/react_frontend/src/features/projects/components/DigitalTwinPanel.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 6
+  s_d8ca0dcf385045::t_a026cc2e4d5ab4 10
+  ai_agent 8-9
+app_skeleton/ui/react_frontend/src/shared/hooks/useSpreadsheetPreview.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+  s_d8ca0dcf385045::t_cf1610b926c250 22
+app_skeleton/ui/react_frontend/src/app/screenRegistry.js
+  s_d8ca0dcf385045::t_845b4d5e42d30c 1-66
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectIntroHeader.jsx
+  ai_agent 2,8
+  s_d8ca0dcf385045::t_5e0c2479a3c724 5-6
+app_skeleton/ui/react_frontend/src/pages/DataStorageScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 37-38
+  ai_agent 26,36
+app_skeleton/ui/react_frontend/src/features/documents/components/LabDocumentMapPanel.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 8
+app_skeleton/ui/react_frontend/src/features/documents/components/CopyableCodeBlock.jsx
+  s_d8ca0dcf385045::t_b57abe98291f39 1
+app_skeleton/ui/react_frontend/src/pages/ProjectsScreen.jsx
+  ai_agent 28,35
+  s_d8ca0dcf385045::t_b232d82acd693f 34
+  s_d8ca0dcf385045::t_5e0c2479a3c724 27,33
+app_skeleton/ui/react_frontend/src/pages/SectionDocumentsScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 1-2
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentMediaGallery.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 5-8
+  ai_agent 3-4
+app_skeleton/ui/react_frontend/jsconfig.json
+  s_d8ca0dcf385045::t_226bf33b472c02 1-15,17-24
+  s_d8ca0dcf385045::t_4e44c04178667a 16
+app_skeleton/ui/react_frontend/src/pages/LabKnowledgeScreen.jsx
+  ai_agent 5-6,8
+  s_d8ca0dcf385045::t_5e0c2479a3c724 4,7
+app_skeleton/ui/react_frontend/vite.config.js
+  s_d8ca0dcf385045::t_d9d7683dc84f98 153-169
+app_skeleton/ui/react_frontend/src/features/auth/components/AuthLoginPanel.jsx
+  ai_agent 2
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentExportMenu.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 9
+app_skeleton/ui/react_frontend/src/pages/AdministrationScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3-5
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectCohortStrip.jsx
+  ai_agent 3
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+app_skeleton/ui/react_frontend/src/services/researchKnowledgeClient.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 1
+app_skeleton/ui/react_frontend/src/features/orders/components/OrdersBillingBrowser.jsx
+  s_d8ca0dcf385045::t_4d70e1ca722e06 1
+app_skeleton/ui/react_frontend/src/shared/hooks/useEnsureProjectReadme.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2-4
+app_skeleton/ui/react_frontend/src/services/searchApi.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+app_skeleton/ui/react_frontend/src/features/projects/components/WorkspaceSectionDataPad.jsx
+  ai_agent 12
+  s_d8ca0dcf385045::t_5e0c2479a3c724 8-11
+app_skeleton/ui/react_frontend/src/features/lab/components/LabTeamRoster.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 14
+app_skeleton/ui/react_frontend/src/lib/projectLogContent.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 4
+app_skeleton/ui/react_frontend/src/pages/OrdersHubScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 10-13
+  ai_agent 15
+app_skeleton/ui/react_frontend/src/features/projects/components/portfolio/ResearchAssistPanel.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3,5,12
+  s_d8ca0dcf385045::t_d2addf48d4ab64 4
+app_skeleton/ui/react_frontend/src/pages/NotebookWikiScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 1
+  s_d8ca0dcf385045::t_9641f2ca0d785b 2
+scripts/frontend/restructure_src.py
+  s_d8ca0dcf385045::t_945ea4b618dec9 255-275,277,281
+  s_d8ca0dcf385045::t_0edac004151963 1-254,276,278-280,282-322
+app_skeleton/ui/react_frontend/src/features/ai-assistant/components/ChatWidget.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 12-13,23,25,27-28,34,391,393,404-408,411-414,1143
+  s_d8ca0dcf385045::t_7873fde811d192 35
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectCoverTeamStrip.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 1
+app_skeleton/ui/react_frontend/src/features/storage/components/StorageTabDocuments.jsx
+  s_d8ca0dcf385045::t_20482e651bbaa3 3-4
+  s_d8ca0dcf385045::t_5e0c2479a3c724 5
+app_skeleton/ui/react_frontend/src/features/lab/components/LabDocumentsHub.jsx
+  s_d8ca0dcf385045::t_10b381a80132b4 4
+  s_d8ca0dcf385045::t_5e0c2479a3c724 10-11
+app_skeleton/ui/react_frontend/src/services/ApiContext.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 9,14
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentCategoryFileList.jsx
+  ai_agent 18
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3-4,11,15
+app_skeleton/ui/react_frontend/src/features/search/components/GlobalSearchOverlay.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 3,12
+  ai_agent 13-18
+app_skeleton/ui/react_frontend/src/pages/UserProfileScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+  ai_agent 4
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectTwinStats.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+  ai_agent 3
+app_skeleton/ui/react_frontend/src/services/chatClient.js
+  s_d8ca0dcf385045::t_5e0c2479a3c724 5
+app_skeleton/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 33-40,54-55
+  ai_agent 44,53,57
+app_skeleton/ui/react_frontend/src/pages/ImageProcessingPipelineScreen.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 16-17,20,22
+  ai_agent 31
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectTeamRoster.jsx
+  s_d8ca0dcf385045::t_5e0c2479a3c724 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "e81b7574d816272ed5ff8ca791228297c86c695e",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
