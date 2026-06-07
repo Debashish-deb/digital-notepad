@@ -13,7 +13,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { getApiUrl } from '../api/client.js';
+import { getApiUrl } from '@/services/client.js';
 
 const DEFAULTS = {
   authDomain: 'farkki-digital-notebook.firebaseapp.com',

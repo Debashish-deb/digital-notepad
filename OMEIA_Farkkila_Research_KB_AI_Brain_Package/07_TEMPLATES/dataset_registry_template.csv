@@ -1,3 +1,0 @@
-accession,source_database,title,disease,modality,technology,url,access_level,usable_for,limitations
-GSE211956,GEO,HGSOC Visium and scRNA-seq,HGSOC,spatial transcriptomics;single-cell RNA-seq,10x Visium;10x Chromium,https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE211956,public,spatial transcriptomics reference;assistant evaluation,verify processing and sample metadata
-phs002262,EGA,HGSOC scRNA-seq metadata,HGSOC,single-cell RNA-seq,10x Genomics,https://ega-archive.org/studies/phs002262,controlled/public metadata,single-cell reference metadata,controlled access may apply

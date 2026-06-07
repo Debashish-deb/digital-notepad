@@ -1,20 +1,20 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
-import Sidebar from './components/Sidebar';
-import ModuleShell from './components/ModuleShell';
-import ErrorBoundary from './components/ErrorBoundary';
-import DashboardScreen from './screens/DashboardScreen';
-import LoginScreen from './screens/LoginScreen.jsx';
-import { getApiUrl, apiFetch } from './api/client.js';
-import { useApiContext } from './api/ApiContext.jsx';
+import Sidebar from '@/shared/layout/Sidebar';
+import ModuleShell from '@/shared/layout/ModuleShell';
+import ErrorBoundary from '@/shared/layout/ErrorBoundary';
+import DashboardScreen from '@/pages/DashboardScreen';
+import LoginScreen from '@/pages/LoginScreen.jsx';
+import { getApiUrl, apiFetch } from '@/services/client.js';
+import { useApiContext } from '@/services/ApiContext.jsx';
 import { TaskpadProvider } from './contexts/TaskpadContext.jsx';
-import CentralTaskpadBackground from './components/CentralTaskpadBackground.jsx';
-import { getSectionDocumentsConfig } from './utils/sectionDocumentsConfig.js';
+import CentralTaskpadBackground from '@/shared/layout/CentralTaskpadBackground.jsx';
+import { getSectionDocumentsConfig } from '@/lib/sectionDocumentsConfig.js';
 import { projectsCatalog } from './data/projectsCatalog.js';
 import { teamDirectory } from './data/teamDirectory.js';
 import { activityLogs } from './data/activityLogs.js';
 import { platformStats } from './data/platformStats.js';
-import { mergeProjectRecord } from './utils/projectUtils.js';
+import { mergeProjectRecord } from '@/lib/projectUtils.js';
 import {
   COMPUTATIONAL_LEGACY_NESTED,
   findMainNav,
@@ -26,60 +26,45 @@ import {
   resolveSocialInnerSub,
   resolveSocialLegacyNav,
 } from './config/navigation';
-import { isDocumentExplorerRoute } from './utils/documentExplorerPresets.js';
-import { parseViewerHash } from './api/imageAssetsClient.js';
+import { isDocumentExplorerRoute } from '@/lib/documentExplorerPresets.js';
+import { parseViewerHash } from '@/services/imageAssetsClient.js';
 import { useGuiT } from './i18n/useGuiT.js';
 import { initFirebaseAnalytics } from './config/firebase.js';
-import { stashOmniboxPrefill } from './utils/searchHits.js';
+import { stashOmniboxPrefill } from '@/lib/searchHits.js';
 import { getModulePageMeta } from './data/moduleCoverContent.js';
-import { applyPageMeta } from './utils/pageMeta.js';
+import { applyPageMeta } from '@/lib/pageMeta.js';
 import './App.css';
-
-const GlobalSearchOverlay = lazy(() => import('./components/GlobalSearchOverlay'));
-const ProjectsScreen = lazy(() => import('./screens/ProjectsScreen'));
-const BioinformaticsHubScreen = lazy(() => import('./screens/BioinformaticsHubScreen'));
-const AiLabAssistantScreen = lazy(() => import('./screens/AiLabAssistantScreen'));
-const FeatureClinicalScreen = lazy(() => import('./screens/FeatureClinicalScreen'));
-const LabKnowledgeScreen = lazy(() => import('./screens/LabKnowledgeScreen'));
-const DataStorageScreen = lazy(() => import('./screens/DataStorageScreen'));
-const AdministrationScreen = lazy(() => import('./screens/AdministrationScreen'));
-const UserProfileScreen = lazy(() => import('./screens/UserProfileScreen'));
-const MeetingScreen = lazy(() => import('./screens/MeetingScreen'));
-const IngestionDashboard = lazy(() => import('./screens/IngestionDashboard'));
-const DigitalizationDashboard = lazy(() => import('./screens/DigitalizationDashboard'));
-const KnowledgeSearchScreen = lazy(() => import('./screens/KnowledgeSearchScreen'));
-const ResearchKnowledgeAdminScreen = lazy(() => import('./screens/ResearchKnowledgeAdminScreen'));
-const LabCorpusBrowser = lazy(() => import('./components/LabCorpusBrowser.jsx'));
-const CycifScreen = lazy(() => import('./screens/CycifScreen'));
-const OverviewDocumentsScreen = lazy(() => import('./screens/OverviewDocumentsScreen.jsx'));
-const SectionDocumentsScreen = lazy(() => import('./screens/SectionDocumentsScreen.jsx'));
-const DocumentLibraryScreen = lazy(() => import('./screens/DocumentLibraryScreen.jsx'));
-const ImageViewerPlaceholderScreen = lazy(() => import('./screens/ImageViewerPlaceholderScreen.jsx'));
-const ImageStreamingAdminScreen = lazy(() => import('./screens/ImageStreamingAdminScreen.jsx'));
-const OrdersTasksPanel = lazy(() =>
-  import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersTasksPanel })),
-);
-const OrdersRegisterPanel = lazy(() =>
-  import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersRegisterPanel })),
-);
-const OrdersRelatedPanel = lazy(() =>
-  import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersRelatedPanel })),
-);
-const OrdersBillingPanel = lazy(() =>
-  import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersBillingPanel })),
-);
-const OrdersArchivePanel = lazy(() =>
-  import('./screens/OrdersHubScreen').then((m) => ({ default: m.OrdersArchivePanel })),
-);
-const WetLabProtocolsPanel = lazy(() =>
-  import('./screens/WetLabScreen').then((m) => ({ default: m.WetLabProtocolsPanel })),
-);
-const WetLabTasksPanel = lazy(() =>
-  import('./screens/WetLabScreen').then((m) => ({ default: m.WetLabTasksPanel })),
-);
-const WetLabInventoryPanel = lazy(() =>
-  import('./screens/WetLabScreen').then((m) => ({ default: m.WetLabInventoryPanel })),
-);
+import {
+  AdministrationScreen,
+  AiLabAssistantScreen,
+  BioinformaticsHubScreen,
+  CycifScreen,
+  DataStorageScreen,
+  DigitalizationDashboard,
+  DocumentLibraryScreen,
+  FeatureClinicalScreen,
+  GlobalSearchOverlay,
+  ImageStreamingAdminScreen,
+  ImageViewerPlaceholderScreen,
+  IngestionDashboard,
+  KnowledgeSearchScreen,
+  LabCorpusBrowser,
+  LabKnowledgeScreen,
+  MeetingScreen,
+  OrdersArchivePanel,
+  OrdersBillingPanel,
+  OrdersRegisterPanel,
+  OrdersRelatedPanel,
+  OrdersTasksPanel,
+  OverviewDocumentsScreen,
+  ProjectsScreen,
+  ResearchKnowledgeAdminScreen,
+  SectionDocumentsScreen,
+  UserProfileScreen,
+  WetLabInventoryPanel,
+  WetLabProtocolsPanel,
+  WetLabTasksPanel,
+} from '@/app/screenRegistry.js';
 
 function ScreenFallback({ label = 'Loading workspace…' }) {
   return (

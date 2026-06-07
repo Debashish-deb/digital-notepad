@@ -150,6 +150,23 @@ function projectsStaticPlugin() {
 
 export default defineConfig({
   plugins: [react(), databaseStaticPlugin(), projectsStaticPlugin()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@/app': path.resolve(__dirname, 'src/app'),
+      '@/pages': path.resolve(__dirname, 'src/pages'),
+      '@/features': path.resolve(__dirname, 'src/features'),
+      '@/shared': path.resolve(__dirname, 'src/shared'),
+      '@/services': path.resolve(__dirname, 'src/services'),
+      '@/lib': path.resolve(__dirname, 'src/lib'),
+      '@/config': path.resolve(__dirname, 'src/config'),
+      '@/contexts': path.resolve(__dirname, 'src/contexts'),
+      '@/data': path.resolve(__dirname, 'src/data'),
+      '@/i18n': path.resolve(__dirname, 'src/i18n'),
+      '@/styles': path.resolve(__dirname, 'src/styles'),
+      '@/hooks': path.resolve(__dirname, 'src/shared/hooks'),
+    },
+  },
   build: {
     target: 'es2020',
     chunkSizeWarningLimit: 700,

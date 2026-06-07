@@ -4,12 +4,12 @@ import App from './App.jsx';
 import './fonts.css';   /* Source Sans 3, Source Serif 4, JetBrains Mono */
 import './index.css';
 import './typography.css';
-import './theme/themeManager.css';
-import './theme/navGlass.css';
-import './theme/consistency.css';
-import './theme/superGlass.css';
+import '@/styles/theme/themeManager.css';
+import '@/styles/theme/navGlass.css';
+import '@/styles/theme/consistency.css';
+import '@/styles/theme/superGlass.css';
 
-import { ApiProvider } from './api/ApiContext.jsx';
+import { ApiProvider } from '@/services/ApiContext.jsx';
 import { LocaleProvider } from './contexts/LocaleContext.jsx';
 import { ThemeProvider } from './contexts/ThemeContext.jsx';
 

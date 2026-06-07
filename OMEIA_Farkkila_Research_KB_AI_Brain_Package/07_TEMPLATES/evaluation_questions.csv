@@ -1,3 +1,0 @@
-category,query,expected_terms,expected_sources,notes
-publication,What is the evidence for MHC class II in HGSC spatial ecosystems?,MHC class II;HGSC;spatial;clinical outcomes,Cancer Discovery;PubMed,Should cite priority paper.
-dataset,Which public datasets can support HGSOC spatial transcriptomics analysis?,GSE211956;Visium;HGSOC,GEO,Should identify dataset limitations.

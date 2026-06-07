@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 import { MAIN_NAV } from '../config/navigation.js';
-import { mergeTaskMeta, normalizeTaskMeta } from '../utils/taskpadUtils.js';
+import { mergeTaskMeta, normalizeTaskMeta } from '@/lib/taskpadUtils.js';
 import {
   CENTRAL_WORKER_ID,
   PROJECTS_HUB_WORKER_ID,
@@ -22,7 +22,7 @@ import {
   resolveWorkerIdFromContext,
   saveWorkersToStorage,
   upsertWorker,
-} from '../utils/taskpadRegistry.js';
+} from '@/lib/taskpadRegistry.js';
 
 const TaskpadContext = createContext(null);
 
