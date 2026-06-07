@@ -1,112 +1,14 @@
 {
   "project_code": "HGSC_scRNAseq",
-  "processed_at": "2026-06-06T22:50:15.915628+00:00",
-  "folder_path": "24_HGSC_scRNAseq_collab_AVlab-20260602T172014Z-3-001",
-  "content_root": "24_HGSC_scRNAseq_collab_AVlab-20260602T172014Z-3-001/24_HGSC_scRNAseq_collab_AVlab",
-  "source_files_count": 5,
-  "total_assets_count": 5,
+  "processed_at": "2026-06-07T17:14:54.996224+00:00",
+  "folder_path": null,
+  "content_root": null,
+  "source_files_count": 0,
+  "total_assets_count": 0,
   "content_library": {
-    "sections": [
-      {
-        "id": "root",
-        "label": "Project Root",
-        "figures": [],
-        "documents": [
-          {
-            "path": "24_Project log.docx",
-            "name": "24_Project log.docx",
-            "extension": ".docx",
-            "size_bytes": 6999,
-            "modified_at": "2025-03-05T04:10:18+00:00",
-            "asset_type": "document",
-            "document_kind": "word_document",
-            "previewable": true,
-            "excerpt": "",
-            "title": "",
-            "extraction_status": null,
-            "extractor": null,
-            "word_count": 0
-          }
-        ],
-        "presentations": [],
-        "data_files": [
-          {
-            "path": "Copy of ONCOSYS-OVA Samples processed, Nov2024 -.xlsx",
-            "name": "Copy of ONCOSYS-OVA Samples processed, Nov2024 -.xlsx",
-            "extension": ".xlsx",
-            "size_bytes": 80658,
-            "modified_at": "2025-08-24T21:05:44+00:00",
-            "asset_type": "data",
-            "document_kind": "spreadsheet",
-            "previewable": true,
-            "excerpt": "",
-            "title": "",
-            "extraction_status": null,
-            "extractor": null,
-            "word_count": 0
-          },
-          {
-            "path": "SNP_ONCOSYS_scRNAseq_28_05_2025AL.xlsx",
-            "name": "SNP_ONCOSYS_scRNAseq_28_05_2025AL.xlsx",
-            "extension": ".xlsx",
-            "size_bytes": 20180,
-            "modified_at": "2025-08-07T23:30:24+00:00",
-            "asset_type": "data",
-            "document_kind": "spreadsheet",
-            "previewable": true,
-            "excerpt": "",
-            "title": "",
-            "extraction_status": null,
-            "extractor": null,
-            "word_count": 0
-          },
-          {
-            "path": "scRNAseq Sample Table_Joonas.xlsx",
-            "name": "scRNAseq Sample Table_Joonas.xlsx",
-            "extension": ".xlsx",
-            "size_bytes": 26458,
-            "modified_at": "2025-09-28T22:10:02+00:00",
-            "asset_type": "data",
-            "document_kind": "spreadsheet",
-            "previewable": true,
-            "excerpt": "",
-            "title": "",
-            "extraction_status": null,
-            "extractor": null,
-            "word_count": 0
-          },
-          {
-            "path": "scRNAseq sample list.xlsx",
-            "name": "scRNAseq sample list.xlsx",
-            "extension": ".xlsx",
-            "size_bytes": 8579,
-            "modified_at": "2026-05-26T23:25:22+00:00",
-            "asset_type": "data",
-            "document_kind": "spreadsheet",
-            "previewable": true,
-            "excerpt": "",
-            "title": "",
-            "extraction_status": null,
-            "extractor": null,
-            "word_count": 0
-          }
-        ],
-        "text_files": [],
-        "videos": [],
-        "code_files": [],
-        "counts": {
-          "document": 1,
-          "data": 4
-        },
-        "total_files": 5
-      }
-    ],
+    "sections": [],
     "figures_gallery": [],
-    "totals": {
-      "document": 1,
-      "all": 5,
-      "data": 4
-    },
+    "totals": {},
     "figure_count": 0
   },
   "identity": {
@@ -147,304 +49,34 @@
   "data_assets": {
     "storage_paths": [],
     "repositories": [],
-    "folder_tree": [
-      {
-        "path": ".",
-        "file_count": 5,
-        "categories": [
-          "data",
-          "document"
-        ]
-      }
-    ]
+    "folder_tree": []
   },
-  "timeline": [
-    {
-      "date": "Undated",
-      "title": "Project update",
-      "category": "update",
-      "summary": "Project log Project is done in collaboration with Vähärautio lab, Jun Dai. scRNAseq List of sequenced samples: on Vähärautio G-Drive, ask for access, if you need to access it! https://docs.google.com/spreadsheets/d/11IwUyO7gnwPl7iqqpiLAwdK4ufKJgA6FmYdG1ZzZkbk/edit?gid=0#gid=0 https://docs.google.com/spreadsheets/d/1_hQXNsr-ixmD-Slexe5pnJ1aZLghsFQjUJMhvjk-epA/edit?gid=0#gid=0",
-      "source_file": "24_Project log.docx"
-    }
-  ],
+  "timeline": [],
   "meetings": [],
   "protocols": [],
   "dissemination": [],
   "publications": [],
   "derived_knowledge": {
-    "methods": [
-      "ONCOSYS S-code C-code in Nagaraj et al ATRi response FACS data? (1 = yes, 0 = no) TP from flow cytometry (% of EpCAM+ out of all live cells) HRDscar/BRCAmut status TP from PathData (%) IF data (1 = yes, 0 = no) Location Stage Dissociation method Vials Cells per vial"
-    ],
+    "methods": [],
     "findings": [],
     "risks_or_open_items": []
   },
-  "document_index": [
-    {
-      "path": "24_Project log.docx",
-      "name": "24_Project log.docx",
-      "extension": ".docx",
-      "document_kind": "word_document",
-      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      "size_bytes": 6999,
-      "modified_at": "2025-03-05T04:10:18+00:00",
-      "sha256": "eb9b040ff30168f7968c5c039e7e3204fa75e0ca77211b49da8c0e3f72923882",
-      "status": "extracted",
-      "extractor": "python-docx",
-      "title": "Project log",
-      "excerpt": "Project is done in collaboration with Vähärautio lab, Jun Dai. List of sequenced samples: on Vähärautio G-Drive, ask for access, if you need to access it! https://docs.google.com/spreadsheets/d/11IwUyO7gnwPl7iqqpiLAwdK4ufKJgA6FmYdG1ZzZkbk/edit?gid=0#gid=0 https://docs.google.com/spreadsheets/d/1_hQXNsr-ixmD-Slexe5pnJ1aZLghsFQjUJMhvjk-epA/edit?gid=0#gid=0",
-      "char_count": 378,
-      "word_count": 58,
-      "metadata": {
-        "paragraph_count": 12,
-        "table_count": 0,
-        "author": "",
-        "title": "Word Document",
-        "subject": "",
-        "created": null,
-        "modified": "2026-06-06T22:50:15+00:00"
-      },
-      "warnings": [],
-      "errors": []
-    },
-    {
-      "path": "Copy of ONCOSYS-OVA Samples processed, Nov2024 -.xlsx",
-      "name": "Copy of ONCOSYS-OVA Samples processed, Nov2024 -.xlsx",
-      "extension": ".xlsx",
-      "document_kind": "spreadsheet",
-      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "size_bytes": 80658,
-      "modified_at": "2025-08-24T21:05:44+00:00",
-      "sha256": "ad9a5d0ac19c145e1038300f7263c672cf02f96b801a9e094ea88e289fc49504",
-      "status": "extracted",
-      "extractor": "openpyxl",
-      "title": "## Sheet: Samples scRNAseq processed",
-      "excerpt": "## Sheet: Samples scRNAseq processed Date started Set 10X version Library_name Patient ID Sample ID Written on the vial Dissociated cells (DS) / Organoids(O) Cell count in original vial/live organoids cells count Time in TrypLE, min Viability, % Number of cells taken for processing Target_cell_number cDNA_ampl_cycles cDNA conc, ng/ul (TapeStation) Library_ampl_cycles Index_ID Library_conc. (nM) via TapeStation Library_size (bp) via TapeStation Library_conc. (nM) via qPCR 7.11.2024 1.0 v3.1 ONCOSYS-OVA_Set1 S051 S051_pOme S051_pOme Dispase_sc 8x10E6 30 10.2020 AN DS 8x106 10.0 55.5 7000.0 20000.0 11.0 30.0 11.0 SI-TT-A12 160.0 440.0 1.0 S333 S333_pOme S0333_pOme Dispase 7.6 E6 17.10.23 AN DS 7.7x106 10.0 64.8 7000.0 1.0 S388 S388_pOme S388_pOme Dispase 10E6 02.04.2024 AK DS 10x106 5.0 86.5 ",
-      "char_count": 4657,
-      "word_count": 1159,
-      "metadata": {
-        "sheet_names": [
-          "Samples scRNAseq processed",
-          "SNP array, June25, Tartu",
-          "ovaHRDscar by Fer, June25"
-        ],
-        "sheet_count": 3
-      },
-      "warnings": [],
-      "errors": []
-    },
-    {
-      "path": "SNP_ONCOSYS_scRNAseq_28_05_2025AL.xlsx",
-      "name": "SNP_ONCOSYS_scRNAseq_28_05_2025AL.xlsx",
-      "extension": ".xlsx",
-      "document_kind": "spreadsheet",
-      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "size_bytes": 20180,
-      "modified_at": "2025-08-07T23:30:24+00:00",
-      "sha256": "b92056bf9f264b210abf4889db9dbd49e5591cdd0181c4c76dbd4e9ecbe2dd55",
-      "status": "extracted",
-      "extractor": "openpyxl",
-      "title": "## Sheet: Sheet1",
-      "excerpt": "Well marked Well on 96-wellplate Sample name DNA conc., Nanodrop, ng/ul Elution volume, TE, ul DNA conc., Qubit ovaHRDscar, Fernando and AnniH HRDstatus, HUSLAB 1.0 A1 S051_pOme 66.8 70.0 28.3 28.0 HRP, FINNPROVE 2.0 A2 S051_pOme_Org_p11 29.4 40.0 15.6 23.0 HRP, FINNPROVE 3.0 A3 S051_pOme_Org_p19 82.7 70.0 28.6 29.0 HRP, FINNPROVE 4.0 A4 S333_pOme 82.0 70.0 34.8 44.0 HRP, score 45 5.0 A5 S388_pOme 60.5 70.0 34.4 42.0 HRP, score 44 6.0 A6 S388_pOme_Org_p8 37.9 70.0 19.5 45.0 HRP, score 45 7.0 A7 S263_pOme 274.3 40.0 117.0 40.0 HRP, score 35 8.0 A8 S398_pOme 57.8 70.0 25.8 31.0 HRD, score 64 not matching 9.0 A9 S482_iOme 47.6 70.0 21.0 22.0 done 2x, HRP (score 37 and 23) 10.0 A10 S482_iOme_Org_p8 30.0 70.0 13.8 31.0 done 2x, HRP (score 37 and 23) Genotyping unit Contact information Core Faci",
-      "char_count": 2928,
-      "word_count": 758,
-      "metadata": {
-        "sheet_names": [
-          "Sheet1",
-          "Sheet2",
-          "Sheet3"
-        ],
-        "sheet_count": 3
-      },
-      "warnings": [],
-      "errors": []
-    },
-    {
-      "path": "scRNAseq Sample Table_Joonas.xlsx",
-      "name": "scRNAseq Sample Table_Joonas.xlsx",
-      "extension": ".xlsx",
-      "document_kind": "spreadsheet",
-      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "size_bytes": 26458,
-      "modified_at": "2025-09-28T22:10:02+00:00",
-      "sha256": "8c4d5d3d122fcb51f9b7b729b6f5a9ff6ce9eb90222f89714afe27e0ab359ef2",
-      "status": "extracted",
-      "extractor": "openpyxl",
-      "title": "## Sheet: Sheet1",
-      "excerpt": "S-code Sample-code C-code in Nagaraj et al ATRi response p/i Tissue Tumor purity (%), based on H&E, Anni V. Tumor purity, FACS (% of EpCAM+ out of all live cells) IF data (1 = yes, 0 = no) FACS data? (1 = yes, 0 = no) HRDscar/BRCAmut status Dissociation method Vials Cells per vial scRNAseqPROCESSED, date NOTES S147 S147_pOvaR C564 Resistant P Ovary 50.0 0.0 HRDscar positive, score unknown Dispase 2 (LN) 2340000.0 S156 S156 C105_O Resistant P Omentum 25.0 0.0 HRDscar positive, score unknown Dispase 3 (LN) 4240000.0 S156 S156_AdnR C105_A Resistant P Adnex Right 70.0 17.0 1.0 HRDscar positive, score unknown Dispase 5 (LN) 5600000.0 S203 S203_pOme C494 Sensitive P Omentum 40.0 0.0 HRDscar negative, score unknown Dispase 1.0 10300000.0 S245 S245 Adn or Adn2 C634 Sensitive P Adnex 60.0 0.0 HRDsc",
-      "char_count": 2602,
-      "word_count": 518,
-      "metadata": {
-        "sheet_names": [
-          "Sheet1"
-        ],
-        "sheet_count": 1
-      },
-      "warnings": [],
-      "errors": []
-    },
-    {
-      "path": "scRNAseq sample list.xlsx",
-      "name": "scRNAseq sample list.xlsx",
-      "extension": ".xlsx",
-      "document_kind": "spreadsheet",
-      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "size_bytes": 8579,
-      "modified_at": "2026-05-26T23:25:22+00:00",
-      "sha256": "4cfbb575fd4c5c020edd7eb16c5f713a9a0765c03ee1749ff58672c08086d215",
-      "status": "extracted",
-      "extractor": "openpyxl",
-      "title": "## Sheet: List from iPDC preprint Fig4",
-      "excerpt": "## Sheet: List from iPDC preprint Fig4 ONCOSYS S-code C-code in Nagaraj et al ATRi response FACS data? (1 = yes, 0 = no) TP from flow cytometry (% of EpCAM+ out of all live cells) HRDscar/BRCAmut status TP from PathData (%) IF data (1 = yes, 0 = no) Location Stage Dissociation method Vials Cells per vial s147 C564 Resistant 0.0 HRDscar positive, score unknown 50.0 Ova P Dispase 2 (LN) 2340000.0 s156 C105_O Resistant 0.0 HRDscar positive, score unknown 25.0 Ova P Dispase 3 (LN) 4240000.0 s156 C105_A Resistant 1.0 17.0 HRDscar positive, score unknown 70.0 Adn P Dispase 5 (LN) 5600000.0 s203 C494 Sensitive 0.0 HRDscar negative, score unknown 40.0 Ome P Dispase 1.0 10300000.0 s245 C634 Sensitive 0.0 HRDscar positive, score 62 60.0 Adn P Dispase 2.0 10000000.0 s255 C238 Resistant 0.0 HRDscar ne",
-      "char_count": 1682,
-      "word_count": 333,
-      "metadata": {
-        "sheet_names": [
-          "List from iPDC preprint Fig4",
-          "list for HRDscar inquiry"
-        ],
-        "sheet_count": 2
-      },
-      "warnings": [],
-      "errors": []
-    }
-  ],
-  "vector_chunks": [
-    {
-      "chunk_id": "24_Project log.docx::chunk_0000",
-      "source_file": "24_Project log.docx",
-      "chunk_index": 0,
-      "start_char": 0,
-      "end_char": 378,
-      "char_count": 378,
-      "word_count": 58,
-      "text": "Project log\nProject is done in collaboration with Vähärautio lab, Jun Dai.\nscRNAseq \nList of sequenced samples: on Vähärautio G-Drive, ask for access, if you need to access it!\nhttps://docs.google.com/spreadsheets/d/11IwUyO7gnwPl7iqqpiLAwdK4ufKJgA6FmYdG1ZzZkbk/edit?gid=0#gid=0\nhttps://docs.google.com/spreadsheets/d/1_hQXNsr-ixmD-Slexe5pnJ1aZLghsFQjUJMhvjk-epA/edit?gid=0#gid=0"
-    },
-    {
-      "chunk_id": "Copy of ONCOSYS-OVA Samples processed, Nov2024 -.xlsx::chunk_0000",
-      "source_file": "Copy of ONCOSYS-OVA Samples processed, Nov2024 -.xlsx",
-      "chunk_index": 0,
-      "start_char": 0,
-      "end_char": 1757,
-      "char_count": 1756,
-      "word_count": 404,
-      "text": "## Sheet: Samples scRNAseq processed\nDate started Set 10X version Library_name Patient ID Sample ID Written on the vial Dissociated cells (DS) / Organoids(O) Cell count in original vial/live organoids cells count Time in TrypLE, min Viability, % Number of cells taken for processing Target_cell_number cDNA_ampl_cycles cDNA conc, ng/ul (TapeStation) Library_ampl_cycles Index_ID Library_conc. (nM) via TapeStation Library_size (bp) via TapeStation Library_conc. (nM) via qPCR\n7.11.2024 1.0 v3.1 ONCOSYS-OVA_Set1 S051 S051_pOme S051_pOme Dispase_sc 8x10E6 30 10.2020 AN DS 8x106 10.0 55.5 7000.0 20000.0 11.0 30.0 11.0 SI-TT-A12 160.0 440.0\n1.0 S333 S333_pOme S0333_pOme Dispase 7.6 E6 17.10.23 AN DS 7.7x106 10.0 64.8 7000.0\n1.0 S388 S388_pOme S388_pOme Dispase 10E6 02.04.2024 AK DS 10x106 5.0 86.5 7000.0\n27.12.2024 2.0 v.3.1 ONCOSYS-OVA_Set2 S263 S263_pOme S263_pOme dispase 6 E6 29.01.2014AN DS 6x106 10.0 83.2 7000.0 20000.0 11.0 40.0 11.0 SI-TT-B12 130.0 420.0\n2.0 S398 S398_pOme S398_pOme dispase 30.04.2024 AK 9 E6 cells DS 9x106 10.0 78.2 7000.0\n2.0 S051 S051_pOme_Org_p11 - from culture, 2 wells of 6-well plate O 1.59x106 cells/ml 30.0 87.1 7000.0\n24.1.2025 3.0 v.3.1 ONCOSYS-OVA_Set3 S482 S482_iOme S482_iOme 5E6 cells Dispase 27.08.2024AE DS 5x106 10.0 did not check, JJ- 72% 7000.0 20000.0 11.0 75.0 9.0 SI-TT-C12 93.0 390.0\n3.0 S388 S388_pOme_Org_p8 -from culture, 1 well of 6-well plate 15.1.25NM O 1.4x106 cells/ml 30.0 did not check 7000.0 20000.0 11.0\n3.0 S051 S051_pOme_Org_p19 -from culture,1 well of 6-well plate O 2.62x106 cells/ml 30.0 did not check 7000.0 20000.0 11.0\nNEXT Set4\nS482_iOme_Org S482_iOme_Org\nS527_iOme S537_iOme\nS527_iOme_Org S527_iOme to be confirmed w Jun\nS537_iOme\nS537_iOme_Org\n## Sheet: SNP array, June25, Tartu"
-    },
-    {
-      "chunk_id": "Copy of ONCOSYS-OVA Samples processed, Nov2024 -.xlsx::chunk_0001",
-      "source_file": "Copy of ONCOSYS-OVA Samples processed, Nov2024 -.xlsx",
-      "chunk_index": 1,
-      "start_char": 1507,
-      "end_char": 3287,
-      "char_count": 1780,
-      "word_count": 411,
-      "text": "ture,1 well of 6-well plate O 2.62x106 cells/ml 30.0 did not check 7000.0 20000.0 11.0\nNEXT Set4\nS482_iOme_Org S482_iOme_Org\nS527_iOme S537_iOme\nS527_iOme_Org S527_iOme to be confirmed w Jun\nS537_iOme\nS537_iOme_Org\n## Sheet: SNP array, June25, Tartu\nWell marked Well on 96-wellplate Sample name DNA conc., Nanodrop, ng/ul Elution volume, TE, ul DNA conc., Qubit ovaHRDscar, Fernando and AnniH HRDstatus, HUSLAB\n1.0 A1 S051_pOme 66.8 70.0 28.3 28.0 HRP, FINNPROVE\n2.0 A2 S051_pOme_Org_p11 29.4 40.0 15.6 23.0 HRP, FINNPROVE\n3.0 A3 S051_pOme_Org_p19 82.7 70.0 28.6 29.0 HRP, FINNPROVE\n4.0 A4 S333_pOme 82.0 70.0 34.8 44.0 HRP, score 45\n5.0 A5 S388_pOme 60.5 70.0 34.4 42.0 HRP, score 44\n6.0 A6 S388_pOme_Org_p8 37.9 70.0 19.5 45.0 HRP, score 45\n7.0 A7 S263_pOme 274.3 40.0 117.0 40.0 HRP, score 35\n8.0 A8 S398_pOme 57.8 70.0 25.8 31.0 HRD, score 64\n9.0 A9 S482_iOme 47.6 70.0 21.0 22.0 done 2x, HRP (score 37 and 23)\n10.0 A10 S482_iOme_Org_p8 30.0 70.0 13.8 31.0 done 2x, HRP (score 37 and 23)\nall HRP\nPLATE 1\nSample submission form\nGenotyping unit Contact information\nCore Facility of Genomics Name Anastasia Lundgren Order nr\nInstitute of Genomics, University of Tartu E-mail anastasiya.chernenko@helsinki.fi Date 2025-02-06 00:00:00\nTube Well (in case of plate) Sample name Sample type Conc (ng/ul) Volume (ul) (min volume 12ul) 260/280 260/230 Gender Array type Storage of samples Comments\n1.0 A01 1.0 DNA 28.3 approx. 60 1.87 female Illumina GSA, custom GSAv3 array no SpeedVac?\n2.0 A02 2.0 DNA 15.6 approx. 40 1.87 female Illumina GSA, custom GSAv3 array no SpeedVac?\n3.0 A03 3.0 DNA 28.6 approx. 60 1.93 female Illumina GSA, custom GSAv3 array no SpeedVac?\n4.0 A04 4.0 DNA 34.8 approx. 30 1.88 female Illumina GSA, custom GSAv3 array no SpeedVac?\n5.0 A05 5.0 DNA 34.4 approx."
-    },
-    {
-      "chunk_id": "Copy of ONCOSYS-OVA Samples processed, Nov2024 -.xlsx::chunk_0002",
-      "source_file": "Copy of ONCOSYS-OVA Samples processed, Nov2024 -.xlsx",
-      "chunk_index": 2,
-      "start_char": 3037,
-      "end_char": 4657,
-      "char_count": 1620,
-      "word_count": 455,
-      "text": "mina GSA, custom GSAv3 array no SpeedVac?\n3.0 A03 3.0 DNA 28.6 approx. 60 1.93 female Illumina GSA, custom GSAv3 array no SpeedVac?\n4.0 A04 4.0 DNA 34.8 approx. 30 1.88 female Illumina GSA, custom GSAv3 array no SpeedVac?\n5.0 A05 5.0 DNA 34.4 approx. 30 1.92 female Illumina GSA, custom GSAv3 array no SpeedVac?\n6.0 A06 6.0 DNA 19.5 approx. 60 1.84 female Illumina GSA, custom GSAv3 array no SpeedVac?\n7.0 A07 7.0 DNA 58.5 approx. 20 1.88 female Illumina GSA, custom GSAv3 array no\n8.0 A08 8.0 DNA 25.8 approx. 60 1.83 female Illumina GSA, custom GSAv3 array no SpeedVac?\n9.0 A09 9.0 DNA 21.0 approx. 60 1.84 female Illumina GSA, custom GSAv3 array no SpeedVac?\n10.0 A10 10.0 DNA 13.8 approx. 60 1.81 female Illumina GSA, custom GSAv3 array no SpeedVac?\n## Sheet: ovaHRDscar by Fer, June25\nname MAPD Sample_Name Call.Rate nLOH LSTs nTAIs ovaHRDscar Telli.LOH Telli.LSTs Telli.nTAIs Telli.HRDsum ASCAT.ploidy ASCAT.purity\nA1 0.152 NA 0.9683919 3.0 10.0 15.0 28.0 2.0 13.0 15.0 30.0 3.66 0.6\nA2 0.15 NA 0.9600497 3.0 6.0 14.0 23.0 3.0 10.0 14.0 27.0 3.5 0.84\nA3 0.15 NA 0.958311 3.0 9.0 17.0 29.0 3.0 10.0 17.0 30.0 3.37 0.87\nA4 0.15 NA 0.9426241 18.0 8.0 18.0 44.0 24.0 11.0 18.0 53.0 2.27 0.75\nA5 0.14 NA 0.9469895 13.0 14.0 15.0 42.0 16.0 16.0 15.0 47.0 1.83 0.57\nA6 0.141 NA 0.9680689 13.0 12.0 20.0 45.0 15.0 17.0 20.0 52.0 2.8 0.76\nA7 0.157 NA 0.95149 11.0 10.0 19.0 40.0 16.0 12.0 19.0 47.0 3.29 0.33\nA8 0.141 NA 0.9654911 0.0 11.0 20.0 31.0 0.0 15.0 20.0 35.0 2.87 1.0\nA9 0.144 NA 0.9600871 4.0 2.0 16.0 22.0 5.0 4.0 16.0 25.0 3.23 0.75\nA10 0.138 NA 0.9569378 6.0 9.0 16.0 31.0 5.0 13.0 16.0 34.0 3.29 0.76\nall HRP"
-    },
-    {
-      "chunk_id": "SNP_ONCOSYS_scRNAseq_28_05_2025AL.xlsx::chunk_0000",
-      "source_file": "SNP_ONCOSYS_scRNAseq_28_05_2025AL.xlsx",
-      "chunk_index": 0,
-      "start_char": 0,
-      "end_char": 1757,
-      "char_count": 1757,
-      "word_count": 402,
-      "text": "## Sheet: Sheet1\nWell marked Well on 96-wellplate Sample name DNA conc., Nanodrop, ng/ul Elution volume, TE, ul DNA conc., Qubit ovaHRDscar, Fernando and AnniH HRDstatus, HUSLAB\n1.0 A1 S051_pOme 66.8 70.0 28.3 28.0 HRP, FINNPROVE\n2.0 A2 S051_pOme_Org_p11 29.4 40.0 15.6 23.0 HRP, FINNPROVE\n3.0 A3 S051_pOme_Org_p19 82.7 70.0 28.6 29.0 HRP, FINNPROVE\n4.0 A4 S333_pOme 82.0 70.0 34.8 44.0 HRP, score 45\n5.0 A5 S388_pOme 60.5 70.0 34.4 42.0 HRP, score 44\n6.0 A6 S388_pOme_Org_p8 37.9 70.0 19.5 45.0 HRP, score 45\n7.0 A7 S263_pOme 274.3 40.0 117.0 40.0 HRP, score 35\n8.0 A8 S398_pOme 57.8 70.0 25.8 31.0 HRD, score 64 not matching\n9.0 A9 S482_iOme 47.6 70.0 21.0 22.0 done 2x, HRP (score 37 and 23)\n10.0 A10 S482_iOme_Org_p8 30.0 70.0 13.8 31.0 done 2x, HRP (score 37 and 23)\nall HRP\n## Sheet: Sheet2\nPLATE 1\nSample submission form\nGenotyping unit Contact information\nCore Facility of Genomics Name Anastasia Lundgren Order nr\nInstitute of Genomics, University of Tartu E-mail anastasiya.chernenko@helsinki.fi Date 2025-02-06 00:00:00\nTube Well (in case of plate) Sample name Sample type Conc (ng/ul) Volume (ul) (min volume 12ul) 260/280 260/230 Gender Array type Storage of samples Comments\n1.0 A01 1.0 DNA 28.3 approx. 60 1.87 female Illumina GSA, custom GSAv3 array no SpeedVac?\n2.0 A02 2.0 DNA 15.6 approx. 40 1.87 female Illumina GSA, custom GSAv3 array no SpeedVac?\n3.0 A03 3.0 DNA 28.6 approx. 60 1.93 female Illumina GSA, custom GSAv3 array no SpeedVac?\n4.0 A04 4.0 DNA 34.8 approx. 30 1.88 female Illumina GSA, custom GSAv3 array no SpeedVac?\n5.0 A05 5.0 DNA 34.4 approx. 30 1.92 female Illumina GSA, custom GSAv3 array no SpeedVac?\n6.0 A06 6.0 DNA 19.5 approx. 60 1.84 female Illumina GSA, custom GSAv3 array no SpeedVac?\n7.0 A07 7.0 DNA 58.5 approx."
-    },
-    {
-      "chunk_id": "SNP_ONCOSYS_scRNAseq_28_05_2025AL.xlsx::chunk_0001",
-      "source_file": "SNP_ONCOSYS_scRNAseq_28_05_2025AL.xlsx",
-      "chunk_index": 1,
-      "start_char": 1507,
-      "end_char": 2928,
-      "char_count": 1421,
-      "word_count": 412,
-      "text": "mina GSA, custom GSAv3 array no SpeedVac?\n5.0 A05 5.0 DNA 34.4 approx. 30 1.92 female Illumina GSA, custom GSAv3 array no SpeedVac?\n6.0 A06 6.0 DNA 19.5 approx. 60 1.84 female Illumina GSA, custom GSAv3 array no SpeedVac?\n7.0 A07 7.0 DNA 58.5 approx. 20 1.88 female Illumina GSA, custom GSAv3 array no\n8.0 A08 8.0 DNA 25.8 approx. 60 1.83 female Illumina GSA, custom GSAv3 array no SpeedVac?\n9.0 A09 9.0 DNA 21.0 approx. 60 1.84 female Illumina GSA, custom GSAv3 array no SpeedVac?\n10.0 A10 10.0 DNA 13.8 approx. 60 1.81 female Illumina GSA, custom GSAv3 array no SpeedVac?\n## Sheet: Sheet3\nname MAPD Sample_Name Call.Rate nLOH LSTs nTAIs ovaHRDscar Telli.LOH Telli.LSTs Telli.nTAIs Telli.HRDsum ASCAT.ploidy ASCAT.purity\nA1 0.152 NA 0.9683919 3.0 10.0 15.0 28.0 2.0 13.0 15.0 30.0 3.66 0.6\nA2 0.15 NA 0.9600497 3.0 6.0 14.0 23.0 3.0 10.0 14.0 27.0 3.5 0.84\nA3 0.15 NA 0.958311 3.0 9.0 17.0 29.0 3.0 10.0 17.0 30.0 3.37 0.87\nA4 0.15 NA 0.9426241 18.0 8.0 18.0 44.0 24.0 11.0 18.0 53.0 2.27 0.75\nA5 0.14 NA 0.9469895 13.0 14.0 15.0 42.0 16.0 16.0 15.0 47.0 1.83 0.57\nA6 0.141 NA 0.9680689 13.0 12.0 20.0 45.0 15.0 17.0 20.0 52.0 2.8 0.76\nA7 0.157 NA 0.95149 11.0 10.0 19.0 40.0 16.0 12.0 19.0 47.0 3.29 0.33\nA8 0.141 NA 0.9654911 0.0 11.0 20.0 31.0 0.0 15.0 20.0 35.0 2.87 1.0\nA9 0.144 NA 0.9600871 4.0 2.0 16.0 22.0 5.0 4.0 16.0 25.0 3.23 0.75\nA10 0.138 NA 0.9569378 6.0 9.0 16.0 31.0 5.0 13.0 16.0 34.0 3.29 0.76\nall HRP"
-    },
-    {
-      "chunk_id": "scRNAseq Sample Table_Joonas.xlsx::chunk_0000",
-      "source_file": "scRNAseq Sample Table_Joonas.xlsx",
-      "chunk_index": 0,
-      "start_char": 0,
-      "end_char": 1739,
-      "char_count": 1738,
-      "word_count": 345,
-      "text": "## Sheet: Sheet1\nS-code Sample-code C-code in Nagaraj et al ATRi response p/i Tissue Tumor purity (%), based on H&E, Anni V. Tumor purity, FACS (% of EpCAM+ out of all live cells) IF data (1 = yes, 0 = no) FACS data? (1 = yes, 0 = no) HRDscar/BRCAmut status Dissociation method Vials Cells per vial scRNAseqPROCESSED, date NOTES\nS147 S147_pOvaR C564 Resistant P Ovary 50.0 0.0 HRDscar positive, score unknown Dispase 2 (LN) 2340000.0\nS147 S147_pOvaR_Org\nS156 S156 C105_O Resistant P Omentum 25.0 0.0 HRDscar positive, score unknown Dispase 3 (LN) 4240000.0\nS156 S156_pOme_Org\nS156 S156_AdnR C105_A Resistant P Adnex Right 70.0 17.0 1.0 HRDscar positive, score unknown Dispase 5 (LN) 5600000.0\nS156 S156_pAdnR_Org\nS203 S203_pOme C494 Sensitive P Omentum 40.0 0.0 HRDscar negative, score unknown Dispase 1.0 10300000.0\nS203 S203_pOme_Org\nS245 S245 Adn or Adn2 C634 Sensitive P Adnex 60.0 0.0 HRDscar positive, score 62 Dispase 2.0 10000000.0 JJ needs to ensure which is taken for QC -> match organoid\nS245 S245_pAdn2 _Org\nS255 S255_pOme C238 Resistant P Omentum 35.0 0.0 HRDscar negative, score 4 Dispase 1.0 ?\nS255 S255_pOme_Org\nS263 S263_pOme C817 Sensitive P Omentum 70.0 5.3 1.0 HRDscar negative, score 35 Dispase 4.0 6000000.0 Set2, 27.12.2024, JD&AL\nS263 S263_pOme_Org\nS290 S290_pOme C053 Sensitive P Omentum 20? 0.0 HRDscar negative, score 40 Dispase 1.0 2000000.0\nS290 S290_pOme_Org\nS321 S321_pOme C537 Sensitive P Omentum 15.0 0.0 HRDscar positive, score 56 Dispase 5.0 10000000.0\nS321 S321_pOme_Org\nS333 S333_pOme-pOme2 C897 Resistant P Omentum 40.0 21.6 1.0 HRDscar negative, score 45 Dispase 3.0 7600000.0 Set1, 7.11.2024, JD&AL JJ needs to check whether organoids are from Ome1 or Ome2 - no marking in excel\nS333 S333_pOme2_Org"
-    },
-    {
-      "chunk_id": "scRNAseq Sample Table_Joonas.xlsx::chunk_0001",
-      "source_file": "scRNAseq Sample Table_Joonas.xlsx",
-      "chunk_index": 1,
-      "start_char": 1489,
-      "end_char": 2602,
-      "char_count": 1113,
-      "word_count": 225,
-      "text": "321 S321_pOme_Org\nS333 S333_pOme-pOme2 C897 Resistant P Omentum 40.0 21.6 1.0 HRDscar negative, score 45 Dispase 3.0 7600000.0 Set1, 7.11.2024, JD&AL JJ needs to check whether organoids are from Ome1 or Ome2 - no marking in excel\nS333 S333_pOme2_Org\nS388 S388_pOme C944 Sensitive P Omentum 40.0 5.96 1.0 HRDscar negative, score 44 Dispase 10.0 10000000.0 Set1, 7.11.2024, JD&AL\nS388 S388_pOme_Org\nS398 S398_pOme C871 Sensitive P Omentum 50.0 0.0 HRDscar positive, score 64 Dispase 3.0 9000000.0 Set2, 27.12.2024, JD&AL\nS398 S398_pOme_Org\nS051 S051_pOme not tested? P Omentum 25.0 0.0 HRDscar negative, score 31 Dispase 8.0 8/3E+06 Set1, 7.11.2024, JD&AL\nS051 S051_pOme_Org_p11 Set2, 27.12.2024, JD&AL ! There are CD45-positive cells on IF\nS051 S051_pOme_Org_p..\nflow cytometry-based TP = EpCAM positive fraction of large cells\nIF data = drug treatment experiment control wells\nTo be lifted first for organoid cultures + some for initial QC/TP screening for scRNAseq Xenium samples not scRNAseq'd so far\nS493_iOme\nS548_iOme\nS505_iAdnL\nS553_pOme\nS514_pOme\nS494_pOme\nS537_iOme\nS527_iOme\nS535_iOme\nS484_iOme\nS491_pOme"
-    },
-    {
-      "chunk_id": "scRNAseq sample list.xlsx::chunk_0000",
-      "source_file": "scRNAseq sample list.xlsx",
-      "chunk_index": 0,
-      "start_char": 0,
-      "end_char": 1682,
-      "char_count": 1682,
-      "word_count": 333,
-      "text": "## Sheet: List from iPDC preprint Fig4\nONCOSYS S-code C-code in Nagaraj et al ATRi response FACS data? (1 = yes, 0 = no) TP from flow cytometry (% of EpCAM+ out of all live cells) HRDscar/BRCAmut status TP from PathData (%) IF data (1 = yes, 0 = no) Location Stage Dissociation method Vials Cells per vial\ns147 C564 Resistant 0.0 HRDscar positive, score unknown 50.0 Ova P Dispase 2 (LN) 2340000.0\ns156 C105_O Resistant 0.0 HRDscar positive, score unknown 25.0 Ova P Dispase 3 (LN) 4240000.0\ns156 C105_A Resistant 1.0 17.0 HRDscar positive, score unknown 70.0 Adn P Dispase 5 (LN) 5600000.0\ns203 C494 Sensitive 0.0 HRDscar negative, score unknown 40.0 Ome P Dispase 1.0 10300000.0\ns245 C634 Sensitive 0.0 HRDscar positive, score 62 60.0 Adn P Dispase 2.0 10000000.0\ns255 C238 Resistant 0.0 HRDscar negative, score 4 35.0 Ome P Dispase 1.0 ?\ns263 C817 Sensitive 1.0 5.3 HRDscar negative, score 35 70.0 Ome P Dispase 4.0 6000000.0\ns290 C053 Sensitive 0.0 HRDscar negative, score 40 20? Ome P Dispase 1.0 2000000.0\ns321 C537 Sensitive 0.0 HRDscar positive, score 56 <1 Ome P Dispase 5.0 10000000.0\ns333 C897 Resistant 1.0 21.6 HRDscar negative, score 45 40.0 Ome P Dispase 3.0 7600000.0\ns388 C944 Sensitive 1.0 5.96 HRDscar negative, score 44 70.0 Ome P Dispase 10.0 10000000.0\ns398 C871 Sensitive 0.0 HRDscar positive, score 64 50.0 Ome P Dispase 3.0 9000000.0\nS051 HRDscar negative, score 31 25.0 Ome P Dispase 8.0 8/3E+06\nTP = Tumor Purity\nTo be lifted first for organoid cultures + some for initial QC/TP screening for scRNAseq\nflow cytometry-based TP = EpCAM positive fraction of large cells 0\n0\nIF data = drug treatment experiment control wells\n## Sheet: list for HRDscar inquiry"
-    }
-  ],
+  "document_index": [],
+  "vector_chunks": [],
   "extraction": {
-    "total_scannable_assets": 5,
-    "extracted_records": 5,
-    "chunk_count": 9,
-    "status_counts": {
-      "extracted": 5
-    },
-    "extractor_counts": {
-      "python-docx": 1,
-      "openpyxl": 4
-    },
-    "extension_counts": {
-      ".docx": 1,
-      ".xlsx": 4
-    },
-    "errors": [],
-    "limits": {
-      "max_text_chars_per_file": 250000,
-      "chunk_chars": 1800,
-      "chunk_overlap": 250,
-      "max_pdf_pages": 120,
-      "max_pptx_slides": 180,
-      "max_xlsx_sheets": 20,
-      "max_xlsx_rows": 200,
-      "max_file_bytes": 536870912
-    },
-    "optional_extractors_detected": {
-      "pypdf": false,
-      "PyPDF2": true,
-      "python_docx": true,
-      "python_pptx": true,
-      "openpyxl": true,
-      "beautifulsoup4": true,
-      "Pillow": true,
-      "tifffile": false,
-      "pdftotext_cli": true,
-      "libreoffice_cli": true,
-      "textutil_cli": true
-    }
+    "total_scannable_assets": 0,
+    "extracted_records": 0,
+    "chunk_count": 0,
+    "status_counts": {},
+    "extractor_counts": {},
+    "extension_counts": {},
+    "errors": []
   },
   "metrics": {
-    "document_count": 5,
-    "total_assets": 5,
+    "document_count": 0,
+    "total_assets": 0,
     "figure_count": 0,
-    "timeline_entries": 1,
+    "timeline_entries": 0,
     "meeting_count": 0,
     "protocol_count": 0,
     "cohort_count": 0,
@@ -452,9 +84,9 @@
     "repository_count": 0,
     "storage_path_count": 0,
     "presentation_count": 0,
-    "data_file_count": 4,
-    "extracted_document_count": 5,
-    "knowledge_chunk_count": 9,
+    "data_file_count": 0,
+    "extracted_document_count": 0,
+    "knowledge_chunk_count": 0,
     "extraction_error_count": 0,
     "output_count": 0
   },

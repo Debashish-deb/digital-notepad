@@ -1,82 +1,14 @@
 {
   "project_code": "HaikalaCollab",
-  "processed_at": "2026-06-06T22:33:27.277118+00:00",
-  "folder_path": "2. Methods and experiments-20260602T110526Z-3-001",
-  "content_root": "2. Methods and experiments-20260602T110526Z-3-001/2. Methods and experiments",
-  "source_files_count": 3,
-  "total_assets_count": 3,
+  "processed_at": "2026-06-07T17:14:22.230577+00:00",
+  "folder_path": null,
+  "content_root": null,
+  "source_files_count": 0,
+  "total_assets_count": 0,
   "content_library": {
-    "sections": [
-      {
-        "id": "root",
-        "label": "Project Root",
-        "figures": [],
-        "documents": [
-          {
-            "path": "Immunopeptidomics/Note immuno peptidomics 20241216.docx",
-            "name": "Note immuno peptidomics 20241216.docx",
-            "extension": ".docx",
-            "size_bytes": 7916,
-            "modified_at": "2024-12-16T02:42:42+00:00",
-            "asset_type": "document",
-            "document_kind": "word_document",
-            "previewable": true,
-            "excerpt": "",
-            "title": "",
-            "extraction_status": null,
-            "extractor": null,
-            "word_count": 0
-          },
-          {
-            "path": "NKI_validation_WSI_2024/README.docx",
-            "name": "README.docx",
-            "extension": ".docx",
-            "size_bytes": 7328,
-            "modified_at": "2024-05-06T22:12:44+00:00",
-            "asset_type": "document",
-            "document_kind": "word_document",
-            "previewable": true,
-            "excerpt": "",
-            "title": "",
-            "extraction_status": null,
-            "extractor": null,
-            "word_count": 0
-          }
-        ],
-        "presentations": [],
-        "data_files": [
-          {
-            "path": "Immunopeptidomics/Cerullo_Immunopeptidomics_samples.xlsx",
-            "name": "Cerullo_Immunopeptidomics_samples.xlsx",
-            "extension": ".xlsx",
-            "size_bytes": 16786,
-            "modified_at": "2026-05-25T22:23:42+00:00",
-            "asset_type": "data",
-            "document_kind": "spreadsheet",
-            "previewable": true,
-            "excerpt": "",
-            "title": "",
-            "extraction_status": null,
-            "extractor": null,
-            "word_count": 0
-          }
-        ],
-        "text_files": [],
-        "videos": [],
-        "code_files": [],
-        "counts": {
-          "data": 1,
-          "document": 2
-        },
-        "total_files": 3
-      }
-    ],
+    "sections": [],
     "figures_gallery": [],
-    "totals": {
-      "data": 1,
-      "all": 3,
-      "document": 2
-    },
+    "totals": {},
     "figure_count": 0
   },
   "identity": {
@@ -92,7 +24,7 @@
     "priority": "medium",
     "research_question": "",
     "project_summary": "Check the position of a potential target for check where the target is in these patient's blocks",
-    "timeline": "3049-1109",
+    "timeline": "",
     "responsible": "Ada junquera"
   },
   "personnel": [],
@@ -100,255 +32,45 @@
   "cohorts": [],
   "data_assets": {
     "storage_paths": [],
-    "repositories": [
-      "https://github.com/farkkilab/devNKI-scripts"
-    ],
-    "folder_tree": [
-      {
-        "path": "Immunopeptidomics",
-        "file_count": 2,
-        "categories": [
-          "data",
-          "document"
-        ]
-      },
-      {
-        "path": "NKI_validation_WSI_2024",
-        "file_count": 1,
-        "categories": [
-          "overview"
-        ]
-      }
-    ]
+    "repositories": [],
+    "folder_tree": []
   },
-  "timeline": [
-    {
-      "date": "Undated",
-      "title": "Project update",
-      "category": "update",
-      "summary": "Dec 16th 2024 First we started discussion about if it would be possible to get results by April. The collaborators do not have enough experience with MHCII With the company (Valo therapeutics) the results take a bit longer, but they have experience with MHCII. We need to make a collaboration agreement. Viccenzo lab can do the contract. We could get results maybe by the end of March. Cell suspension or frozen tissue is good. The gold standard is 1g of tissue. Funding discussion Jacopo could also ",
-      "source_file": "Immunopeptidomics/Note immuno peptidomics 20241216.docx"
-    }
-  ],
+  "timeline": [],
   "meetings": [],
   "protocols": [],
   "dissemination": [],
   "publications": [],
   "derived_knowledge": {
-    "methods": [
-      "Where are the analysis scripts",
-      "The analysis scripts are in the repository https://github.com/farkkilab/devNKI-scripts"
-    ],
-    "findings": [
-      "## Sheet: Suggested samples"
-    ],
-    "risks_or_open_items": [
-      "Samples Estimated tumor purity on H&E Number of snap frozen tissue samples Tumor percentage tCycif MHCII positives CCs prop Weight Count.MHCII.pos",
-      "Samples Estimated tumor purity on H&E Number of snap frozen tissue samples Revco Box Slots in the box FF samples weight Total weight given, g Number of tubes",
-      "Cell suspension or frozen tissue is good. The gold standard is 1g of tissue.",
-      "This folder contains files related with the whole slide tissue tCycif staining for the validation of NKI project results and for the TRIBUS validation set"
-    ]
+    "methods": [],
+    "findings": [],
+    "risks_or_open_items": []
   },
-  "document_index": [
-    {
-      "path": "Immunopeptidomics/Cerullo_Immunopeptidomics_samples.xlsx",
-      "name": "Cerullo_Immunopeptidomics_samples.xlsx",
-      "extension": ".xlsx",
-      "document_kind": "spreadsheet",
-      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "size_bytes": 16786,
-      "modified_at": "2026-05-25T22:23:42+00:00",
-      "sha256": "fd11633d8f832b2c0900eb1eff631b78c1d59c96625632f26bc5ad89db4b458d",
-      "status": "extracted",
-      "extractor": "openpyxl",
-      "title": "## Sheet: Suggested samples",
-      "excerpt": "## Sheet: Suggested samples Samples Estimated tumor purity on H&E Number of snap frozen tissue samples Tumor percentage tCycif MHCII positives CCs prop Weight Count.MHCII.pos S050_iAdn 0.05 2xDNA, 1xRNA, 1xProtein 7.541219 14.17275893 too little 4517.0 S057_iOme 0.35 2xRNA, 2xDNA, 4xProtein 26.80006 0.031581607 1g 40.0 S065_iOme 0.1 1xRNA, 1xDNA, 1xProtein 14.55885 4.815343314 too little 1991.0 S091_iOme1 0.3 2xRNA, 2xDNA, 2xProtein 72.4848 3.054669367 less than 1g 7028.0 S098_iOme 0.2 2xRNA, 2xDNA, 2xProtein 32.12207 2.293644996 less than 1g 471.0 S100_iOme 0.15 2xRNA, 2xDNA, 2xProtein 58.88277 1.607897588 1g 5269.0 S107_iOme 0.15 2xRNA, 2xDNA, 2xProtein 24.6096 0.363306085 1g 292.0 S110_iTubR 0.1 2xRNA, 2xDNA, 2xProtein 77.85789 0.026042731 1g 223.0 S112_iOme 0.05 2xRNA, 2xDNA, 2xProtein",
-      "char_count": 5005,
-      "word_count": 1163,
-      "metadata": {
-        "sheet_names": [
-          "Suggested samples",
-          "Count",
-          "Proportion",
-          "Locations of FF samples"
-        ],
-        "sheet_count": 4
-      },
-      "warnings": [],
-      "errors": []
-    },
-    {
-      "path": "Immunopeptidomics/Note immuno peptidomics 20241216.docx",
-      "name": "Note immuno peptidomics 20241216.docx",
-      "extension": ".docx",
-      "document_kind": "word_document",
-      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      "size_bytes": 7916,
-      "modified_at": "2024-12-16T02:42:42+00:00",
-      "sha256": "322c6b0ec3324c0acc90585daca9c753aca6f4dd795992a7668db51cb731d4ba",
-      "status": "extracted",
-      "extractor": "python-docx",
-      "title": "Dec 16th 2024",
-      "excerpt": "First we started discussion about if it would be possible to get results by April. The collaborators do not have enough experience with MHCII With the company (Valo therapeutics) the results take a bit longer, but they have experience with MHCII. We need to make a collaboration agreement. Viccenzo lab can do the contract. We could get results maybe by the end of March. Cell suspension or frozen tissue is good. The gold standard is 1g of tissue. Jacopo could also do exploration of MHCI Please contact Valio therapeutics",
-      "char_count": 565,
-      "word_count": 95,
-      "metadata": {
-        "paragraph_count": 12,
-        "table_count": 0,
-        "author": "",
-        "title": "Word Document",
-        "subject": "",
-        "created": null,
-        "modified": "2026-06-06T22:33:27+00:00"
-      },
-      "warnings": [],
-      "errors": []
-    },
-    {
-      "path": "NKI_validation_WSI_2024/README.docx",
-      "name": "README.docx",
-      "extension": ".docx",
-      "document_kind": "word_document",
-      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      "size_bytes": 7328,
-      "modified_at": "2024-05-06T22:12:44+00:00",
-      "sha256": "85a2707c798cd4c28c1821ebd40071f384d134614289c670548c2e0a05a15e24",
-      "status": "extracted",
-      "extractor": "python-docx",
-      "title": "Brief description",
-      "excerpt": "This folder contains files related with the whole slide tissue tCycif staining for the validation of NKI project results and for the TRIBUS validation set The samples correspond to the Oncosys-ova cohort and were selected by Ada and Anniina. The description of the panel used is in the file ‘Copy of 4_2_NKI_exp.xlsx’ Any questions about this files ask: Copy of 4_2_NKI_exp.xlsx - File that describes the panel used and the list of samples used. Logic_table_Ada_Fernando_tribus.xlsx - Logic table to annotate cells using TRIBUS. The data is in the workstation DH9-3049-11090 Where are the analysis scripts The analysis scripts are in the repository https://github.com/farkkilab/devNKI-scripts",
-      "char_count": 822,
-      "word_count": 143,
-      "metadata": {
-        "paragraph_count": 29,
-        "table_count": 0,
-        "author": "",
-        "title": "Word Document",
-        "subject": "",
-        "created": null,
-        "modified": "2026-06-06T22:33:27+00:00"
-      },
-      "warnings": [],
-      "errors": []
-    }
-  ],
-  "vector_chunks": [
-    {
-      "chunk_id": "Immunopeptidomics/Cerullo_Immunopeptidomics_samples.xlsx::chunk_0000",
-      "source_file": "Immunopeptidomics/Cerullo_Immunopeptidomics_samples.xlsx",
-      "chunk_index": 0,
-      "start_char": 0,
-      "end_char": 1775,
-      "char_count": 1774,
-      "word_count": 366,
-      "text": "## Sheet: Suggested samples\nSamples Estimated tumor purity on H&E Number of snap frozen tissue samples Tumor percentage tCycif MHCII positives CCs prop Weight Count.MHCII.pos\nS050_iAdn 0.05 2xDNA, 1xRNA, 1xProtein 7.541219 14.17275893 too little 4517.0\nS057_iOme 0.35 2xRNA, 2xDNA, 4xProtein 26.80006 0.031581607 1g 40.0\nS065_iOme 0.1 1xRNA, 1xDNA, 1xProtein 14.55885 4.815343314 too little 1991.0\nS091_iOme1 0.3 2xRNA, 2xDNA, 2xProtein 72.4848 3.054669367 less than 1g 7028.0\nS098_iOme 0.2 2xRNA, 2xDNA, 2xProtein 32.12207 2.293644996 less than 1g 471.0\nS100_iOme 0.15 2xRNA, 2xDNA, 2xProtein 58.88277 1.607897588 1g 5269.0\nS107_iOme 0.15 2xRNA, 2xDNA, 2xProtein 24.6096 0.363306085 1g 292.0\nS110_iTubR 0.1 2xRNA, 2xDNA, 2xProtein 77.85789 0.026042731 1g 223.0\nS112_iOme 0.05 2xRNA, 2xDNA, 2xProtein 31.946 3.271174735 too little 521.0\nS113_iOme 0.05 2xRNA, 2xDNA, 2xProtein 7.071506 10.74438202 too little 1989.0\nS118_iOme 0.1 2xRNA, 2xDNA, 2xProtein 31.53061 3.432720028 less than 1g 3584.0\nS121_iOme 0.1 2xRNA, 2xDNA, 2xProtein 29.86498 0.607694252 less than 1g 1515.0\nS123_iOme 0.1 2xRNA, 2xDNA, 2xProtein 19.4418 2.663442173 less than 1g 3293.0\nS130_iOme 0.5 2xRNA, 2xDNA, 2xProtein 60.75331 7.000901776 less than 1g 8074.0\nS131_iOme 0.6 2xRNA, 2xDNA, 2xProtein 49.72201 7.827735167 1g 26637.0\nS188_iOme 0.3 2xRNA, 2xDNA 28.03994 4.696001138 too little 9572.0\nS197_iOme 0.3 2xRNA, 2xDNA, 2xprotein 38.21938 4.577217521 too little 3976.0\n## Sheet: Count\nPatient Count Count_status Filename\nS057_iOme 40.0 low 7_41\nS110_iTubR 223.0 low 7_69\nS107_iOme 292.0 low 7_67\nS098_iOme 471.0 low 7_62\nS112_iOme 521.0 low 7_71\nS121_iOme 1515.0 mid 7_77\nS113_iOme 1989.0 mid 9_1\nS065_iOme 1991.0 mid 7_43\nS123_iOme 3293.0 mid 7_79\nS118_iOme 3584.0 mid 7_75\nS197_iOme 3976.0 mid 9_11"
-    },
-    {
-      "chunk_id": "Immunopeptidomics/Cerullo_Immunopeptidomics_samples.xlsx::chunk_0001",
-      "source_file": "Immunopeptidomics/Cerullo_Immunopeptidomics_samples.xlsx",
-      "chunk_index": 1,
-      "start_char": 1525,
-      "end_char": 3302,
-      "char_count": 1776,
-      "word_count": 450,
-      "text": "TubR 223.0 low 7_69\nS107_iOme 292.0 low 7_67\nS098_iOme 471.0 low 7_62\nS112_iOme 521.0 low 7_71\nS121_iOme 1515.0 mid 7_77\nS113_iOme 1989.0 mid 9_1\nS065_iOme 1991.0 mid 7_43\nS123_iOme 3293.0 mid 7_79\nS118_iOme 3584.0 mid 7_75\nS197_iOme 3976.0 mid 9_11\nS050_iAdn 4517.0 mid 11_1\nS100_iOme 5269.0 high 7_63\nS091_iOme1 7028.0 high 7_56\nS130_iOme 8074.0 high 7_81\nS188_iOme 9572.0 high 9_9\nS131_iOme 26637.0 high 7_82\n## Sheet: Proportion\n2.0 S057_iOme 0.031581607 low 41.0\n3.0 S091_iOme1 3.054669367 mid 56.0\n4.0 S098_iOme 2.293644996 mid 62.0 low\n5.0 S100_iOme 1.607897588 mid 63.0 low\n6.0 S107_iOme low 67.0\n7.0 S110_iTubR low 69.0\n8.0 S118_iOme high 75.0 mid\n9.0 S121_iOme low 77.0\n10.0 S123_iOme mid 79.0\n11.0 S130_iOme high 81.0\n12.0 S131_iOme high 82.0\n1.0 S050_iAdn high 1.0\n7_69 S110_iTubR low S057_iOme 0.031581607 0.0 41.0 low\n7_41 S057_iOme low S065_iOme 4.815343314 1.0 43.0 high\nS107_iOme low S091_iOme1 3.054669367 0.0 56.0 mid\nS121_iOme low S098_iOme 2.293644996 0.0 62.0 low\nS100_iOme low S100_iOme 1.607897588 0.0 63.0 low\nS098_iOme low S107_iOme 0.0 67.0 low\nS123_iOme mid S110_iTubR 0.0 69.0 low\nS091_iOme1 mid S112_iOme 0.0 71.0 mid\nS112_iOme mid S118_iOme 1.0 75.0 mid\nS118_iOme mid S121_iOme 0.0 77.0 low\nS197_iOme high S123_iOme 0.0 79.0 mid\nS188_iOme high S130_iOme 1.0 81.0 high\nS065_iOme high S131_iOme 1.0 82.0 high\nS130_iOme high S113_iOme 1.0 1.0 high\nS131_iOme high S188_iOme 1.0 9.0 high\nS113_iOme high S197_iOme 1.0 11.0 high\nS050_iAdn high S050_iAdn 1.0 1.0 high\n## Sheet: Locations of FF samples\nSamples Estimated tumor purity on H&E Number of snap frozen tissue samples Revco Box Slots in the box FF samples weight Total weight given, g Number of tubes\n1.0 S050_iAdn 0.05 2xDNA, 1xRNA, 1xProtein Box3 E5-E8 0.23, 0.19, 0.16g.. too little 0.47 2.0"
-    },
-    {
-      "chunk_id": "Immunopeptidomics/Cerullo_Immunopeptidomics_samples.xlsx::chunk_0002",
-      "source_file": "Immunopeptidomics/Cerullo_Immunopeptidomics_samples.xlsx",
-      "chunk_index": 2,
-      "start_char": 3052,
-      "end_char": 4799,
-      "char_count": 1746,
-      "word_count": 427,
-      "text": "mples Estimated tumor purity on H&E Number of snap frozen tissue samples Revco Box Slots in the box FF samples weight Total weight given, g Number of tubes\n1.0 S050_iAdn 0.05 2xDNA, 1xRNA, 1xProtein Box3 E5-E8 0.23, 0.19, 0.16g.. too little 0.47 2.0\n2.0 S057_iOme 0.35 2xRNA, 2xDNA, 4xProtein Box4 A8-B6 0.25 x8 a lot 0.94 1.0\n- S065_iOme 0.1 1xRNA, 1xDNA, 1xProtein Box4 G3-G5 0.19x3 too little\n3.0 S091_iOme1 0.3 2xRNA, 2xDNA, 2xProtein Box6 I6-I9 and Box7, A1-A2 0.27, 0.44.. OK 0.9 3.0\n4.0 S098_iOme 0.2 2xRNA, 2xDNA, 2xProtein Box7 F6-G2 0.17, 0.43.. OK 1.04 3.0\n5.0 S100_iOme 0.15 2xRNA, 2xDNA, 2xProtein Box7 G9-H5 0.33, 0.61, 0.67.. a lot 1.23 2.0\n6.0 S107_iOme 0.15 2xRNA, 2xDNA, 2xProtein Box8 C2-C7 0.6, 0.62, 0.28, 0.27.. a lot 0.77 2.0\n7.0 S110_iTubR 0.1 2xRNA, 2xDNA, 2xProtein Box8 D7-E3 0.94, 1.14, 0.51.. a lot 1.15 1.0\n- S112_iOme 0.05 2xRNA, 2xDNA, 2xProtein Box8 G6-H2 0.1, 0.09, 0.07.. too little\n- S113_iOme 0.05 2xRNA, 2xDNA, 2xProtein Box8 H3-H8 0.18, 0.2, 013.. too little\n8.0 S118_iOme 0.1 2xRNA, 2xDNA, 2xProtein Box9 C7-D3 0.64, 0.77, 0.7.. OK 1.0 1.0\n9.0 S121_iOme 0.1 2xRNA, 2xDNA, 2xProtein Box9 E7-E3 0.4, 0.51, 0.64.. OK 0.94 2.0\n10.0 S123_iOme 0.1 2xRNA, 2xDNA, 2xProtein Box9 G1-G6 0.23, 0.51, 0.45.. OK 0.94 2.0\n11.0 S130_iOme 0.5 2xRNA, 2xDNA, 2xProtein Box10 B7-C3 0.43, 0.66, 0.58.. OK 0.97 1.0\n12.0 S131_iOme 0.6 2xRNA, 2xDNA, 2xProtein Box10 C4-C9 0.89, 0.8, 1g.. a lot 1.0 1.0\nS188_iOme 0.3 1xRNA, 2xDNA Box13 B2-B4 0.15, 0.09, 0.29.. too little\n- S197_iOme 0.3 2xRNA, 2xDNA, 2xProtein Box13 E2-E7 0.06, 0.1, 0.06, 0.16 too little\nInstructions:\n1) Please select 12 samples labeled in blue ! It is okay to take around 0.5-1g (higher weight for lower purity if possible). For S050_iAdn, please select ~0.3g"
-    },
-    {
-      "chunk_id": "Immunopeptidomics/Cerullo_Immunopeptidomics_samples.xlsx::chunk_0003",
-      "source_file": "Immunopeptidomics/Cerullo_Immunopeptidomics_samples.xlsx",
-      "chunk_index": 3,
-      "start_char": 4549,
-      "end_char": 5005,
-      "char_count": 456,
-      "word_count": 93,
-      "text": "me 0.3 2xRNA, 2xDNA, 2xProtein Box13 E2-E7 0.06, 0.1, 0.06, 0.16 too little\nInstructions:\n1) Please select 12 samples labeled in blue ! It is okay to take around 0.5-1g (higher weight for lower purity if possible). For S050_iAdn, please select ~0.3g\n2) Please label tubes and collect tubes per each sample seperately and place them on dry ice for transportation\n3) Pick-up will be done by Cerrulo's lab on 8/1/2025 at 11 am (event is added to Lab calendar)"
-    },
-    {
-      "chunk_id": "Immunopeptidomics/Note immuno peptidomics 20241216.docx::chunk_0000",
-      "source_file": "Immunopeptidomics/Note immuno peptidomics 20241216.docx",
-      "chunk_index": 0,
-      "start_char": 0,
-      "end_char": 565,
-      "char_count": 565,
-      "word_count": 95,
-      "text": "Dec 16th 2024\nFirst we started discussion about if it would be possible to get results by April.\nThe collaborators do not have enough experience with MHCII\nWith the company (Valo therapeutics) the results take a bit longer, but they have experience with MHCII. We need to make a collaboration agreement. Viccenzo lab can do the contract.\nWe could get results maybe by the end of March.\nCell suspension or frozen tissue is good. The gold standard is 1g of tissue.\nFunding discussion\nJacopo could also do exploration of MHCI\nPlease contact Valio therapeutics\nEspectra"
-    },
-    {
-      "chunk_id": "NKI_validation_WSI_2024/README.docx::chunk_0000",
-      "source_file": "NKI_validation_WSI_2024/README.docx",
-      "chunk_index": 0,
-      "start_char": 0,
-      "end_char": 822,
-      "char_count": 822,
-      "word_count": 143,
-      "text": "Brief description\nThis folder contains files related with the whole slide tissue tCycif staining for the validation of NKI project results and for the TRIBUS validation set\nThe samples correspond to the Oncosys-ova cohort and were selected by Ada and Anniina. The description of the panel used is in the file ‘Copy of 4_2_NKI_exp.xlsx’\nAny questions about this files ask:\nFernando Perez\nAda Junquera\nZiqi Kang\nFile description\nCopy of 4_2_NKI_exp.xlsx - File that describes the panel used and the list of samples used. \n\nLogic_table_Ada_Fernando_tribus.xlsx - Logic table to annotate cells using TRIBUS.\nWhere is the data\nThe data is in the workstation DH9-3049-11090\nIn the folder: \nWhere are the analysis scripts\nThe analysis scripts are in the repository https://github.com/farkkilab/devNKI-scripts\nAnd the scripts are:"
-    }
-  ],
+  "document_index": [],
+  "vector_chunks": [],
   "extraction": {
-    "total_scannable_assets": 3,
-    "extracted_records": 3,
-    "chunk_count": 6,
-    "status_counts": {
-      "extracted": 3
-    },
-    "extractor_counts": {
-      "openpyxl": 1,
-      "python-docx": 2
-    },
-    "extension_counts": {
-      ".xlsx": 1,
-      ".docx": 2
-    },
-    "errors": [],
-    "limits": {
-      "max_text_chars_per_file": 250000,
-      "chunk_chars": 1800,
-      "chunk_overlap": 250,
-      "max_pdf_pages": 120,
-      "max_pptx_slides": 180,
-      "max_xlsx_sheets": 20,
-      "max_xlsx_rows": 200,
-      "max_file_bytes": 536870912
-    },
-    "optional_extractors_detected": {
-      "pypdf": false,
-      "PyPDF2": true,
-      "python_docx": true,
-      "python_pptx": true,
-      "openpyxl": true,
-      "beautifulsoup4": true,
-      "Pillow": true,
-      "tifffile": false,
-      "pdftotext_cli": true,
-      "libreoffice_cli": true,
-      "textutil_cli": true
-    }
+    "total_scannable_assets": 0,
+    "extracted_records": 0,
+    "chunk_count": 0,
+    "status_counts": {},
+    "extractor_counts": {},
+    "extension_counts": {},
+    "errors": []
   },
   "metrics": {
-    "document_count": 3,
-    "total_assets": 3,
+    "document_count": 0,
+    "total_assets": 0,
     "figure_count": 0,
-    "timeline_entries": 1,
+    "timeline_entries": 0,
     "meeting_count": 0,
     "protocol_count": 0,
     "cohort_count": 0,
     "estimated_sample_count": null,
-    "repository_count": 1,
+    "repository_count": 0,
     "storage_path_count": 0,
     "presentation_count": 0,
-    "data_file_count": 1,
-    "extracted_document_count": 3,
-    "knowledge_chunk_count": 6,
+    "data_file_count": 0,
+    "extracted_document_count": 0,
+    "knowledge_chunk_count": 0,
     "extraction_error_count": 0,
     "output_count": 0
   },
