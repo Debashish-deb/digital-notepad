@@ -1,0 +1,54 @@
+app_skeleton/ui/react_frontend/src/components/ProjectDocumentsBrowser.jsx
+  s_d8ca0dcf385045::t_81191592b5ee70 378-389
+  s_d8ca0dcf385045::t_395dd3d7a4cc7f 96-98
+  s_d8ca0dcf385045::t_afaa88aa2fca1e 185-190,195
+  s_d8ca0dcf385045::t_7f370cfa0eada1 60,62
+app_skeleton/api/paths.py
+  s_d8ca0dcf385045::t_510667e0f91696 46-47,49
+app_skeleton/ui/react_frontend/src/utils/projectReadmeUtils.js
+  s_d8ca0dcf385045::t_b4c2ffa4fd5329 7-22,24-44
+app_skeleton/ui/react_frontend/src/components/ProjectReadmeSetupPanel.jsx
+  s_d8ca0dcf385045::t_91377458c540ca 1-44
+tests/test_ensure_project_readme.py
+  s_d8ca0dcf385045::t_549fbcf9f219c8 1-87
+app_skeleton/data/00_registry/projects_catalog.json
+  s_d8ca0dcf385045::t_e2b2dde90f7c29 193-198
+app_skeleton/ui/react_frontend/src/hooks/useEnsureProjectReadme.js
+  s_d8ca0dcf385045::t_c6c3afa32886b0 1-35,37-52
+  s_d8ca0dcf385045::t_7b5a443cf573d5 36
+app_skeleton/ui/react_frontend/src/components/projectPortfolio/ProjectPortfolioIntegrated.css
+  s_d8ca0dcf385045::t_e49c8c6ea6a48a 148-167
+app_skeleton/ui/react_frontend/src/screens/WorkspaceScreen.jsx
+  s_d8ca0dcf385045::t_12383415576b3c 25
+  s_d8ca0dcf385045::t_83cd34afbf3aa3 58-61
+  s_d8ca0dcf385045::t_4edac73194e85e 182-184
+app_skeleton/ui/react_frontend/src/screens/ProjectsScreen.jsx
+  s_d8ca0dcf385045::t_c5124951597520 144-150,152-154
+tests/test_find_project_folder.py
+  s_d8ca0dcf385045::t_40e99a027514b6 1-48
+app_skeleton/ui/react_frontend/public/processed/EMT.json
+  ai_agent 3,6-7,33-49,53-54,56,62-63,103,105-106,116,140,142-144,146,148-168,179-192,196-198,200,203-204,207-208,223-226,229,236-237,248-249
+app_skeleton/api/project_processor.py
+  s_d8ca0dcf385045::t_f508379c2d4be2 1851,1854-1862,1871,1876,1879-1887,1903,1905,1911
+  s_d8ca0dcf385045::t_3db25d91c909fe 1156-1198,1201-1203,1206-1227,1229-1243,1247
+  s_d8ca0dcf385045::t_4fc6575870a34e 21
+  s_d8ca0dcf385045::t_9fcf24c49d3145 17
+  s_d8ca0dcf385045::t_48d5bcce9d0e43 1798-1842
+  s_d8ca0dcf385045::t_74b6c6afa7c44e 1781,1786-1790
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "50141d854fc42ab44a8c632ca61af268fe00a22a",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
