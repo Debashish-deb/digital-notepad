@@ -381,6 +381,181 @@
   font-style: italic;
 }
 
+/* Filter metadata + advanced filters */
+.search-filter-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem 0.55rem;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.search-filter-metadata--compact {
+  padding-top: 0;
+}
+
+.search-filter-metadata__applied,
+.search-filter-metadata__unsupported {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.search-filter-metadata__label {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.search-filter-metadata__chip {
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-inset);
+}
+
+.search-filter-metadata__chip--applied {
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 35%, var(--border-color));
+}
+
+.search-filter-metadata__chip--unsupported {
+  color: var(--color-warning, #d97706);
+  border-color: color-mix(in srgb, var(--color-warning) 35%, var(--border-color));
+}
+
+.search-filter-metadata__cache {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--text-secondary);
+}
+
+.search-advanced-filters {
+  padding: 0 0.85rem 0.45rem;
+}
+
+.search-advanced-filters--compact {
+  padding-bottom: 0.25rem;
+}
+
+.search-advanced-filters__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  cursor: pointer;
+  padding: 0.15rem 0;
+}
+
+.search-advanced-filters__toggle.has-active {
+  color: var(--color-primary);
+}
+
+.search-advanced-filters__badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1rem;
+  height: 1rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 14%, var(--bg-inset));
+  color: var(--color-primary);
+  font-size: 0.62rem;
+  font-weight: 650;
+}
+
+.search-advanced-filters__panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.45rem;
+  padding: 0.55rem;
+  border: 1px dashed color-mix(in srgb, var(--border-color) 80%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--bg-inset) 35%, transparent);
+}
+
+.search-advanced-filters__field {
+  display: grid;
+  gap: 0.15rem;
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+
+.search-advanced-filters__field input,
+.search-advanced-filters__field select {
+  width: 100%;
+  padding: 0.25rem 0.4rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.72rem;
+}
+
+.search-advanced-filters__clear {
+  grid-column: 1 / -1;
+  justify-self: start;
+  border: none;
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 0.68rem;
+  cursor: pointer;
+  padding: 0.15rem 0;
+}
+
+.search-bucket-chip--document_library {
+  color: #0d9488;
+  border-color: color-mix(in srgb, #0d9488 35%, var(--border-color));
+}
+
+.search-bucket-chip--vault_review {
+  color: #b45309;
+  border-color: color-mix(in srgb, #b45309 35%, var(--border-color));
+}
+
+.chat-source-bucket--document_library {
+  color: #0f766e;
+  background: color-mix(in srgb, #14b8a6 12%, var(--bg-inset));
+  border: 1px solid color-mix(in srgb, #14b8a6 28%, transparent);
+}
+
+.chat-source-bucket--vault_review {
+  color: #b45309;
+  background: color-mix(in srgb, #f59e0b 12%, var(--bg-inset));
+  border: 1px solid color-mix(in srgb, #f59e0b 28%, transparent);
+}
+
+.chat-source-bucket--meta {
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--bg-inset));
+}
+
+.chat-source-bucket--suggestion {
+  color: var(--color-warning, #d97706);
+  background: color-mix(in srgb, var(--color-warning) 10%, var(--bg-inset));
+}
+
+.chat-source-bucket--lab {
+  color: #2563eb;
+  background: color-mix(in srgb, #3b82f6 10%, var(--bg-inset));
+}
+
+.chat-source-bucket--research {
+  color: #7c3aed;
+  background: color-mix(in srgb, #8b5cf6 10%, var(--bg-inset));
+}
+
+.chat-source-bucket--vault {
+  color: #64748b;
+  background: color-mix(in srgb, #94a3b8 12%, var(--bg-inset));
+}
+
 /* Assistant citation panel */
 .assistant-search-hits__list {
   list-style: none;

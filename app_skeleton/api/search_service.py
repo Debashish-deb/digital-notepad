@@ -477,7 +477,7 @@ def search_document_library(
                 section_id=item.get("section_hint"),
                 relative_path=logical_path,
                 highlights=_highlight_tokens(query, snippet),
-                nav=SearchNavAction(main="data_storage", sub="documents", relative_path=logical_path, query=query),
+                nav=nav_for_bucket("document_library", relative_path=logical_path or None),
                 metadata={
                     "smart_chip": item.get("smart_chip"),
                     "domain_tab": filters.domain_tab or item.get("domain"),
@@ -537,7 +537,7 @@ def search_vault_review(
                     section_id=row.get("section_hint"),
                     relative_path=logical_path or None,
                     highlights=_highlight_tokens(query, snippet),
-                    nav=SearchNavAction(main="data_storage", sub="documents", relative_path=logical_path, query=query),
+                    nav=nav_for_bucket("vault_review", relative_path=logical_path or None),
                     metadata={
                         "review_reason": review_reason,
                         "suggestion": suggestion,

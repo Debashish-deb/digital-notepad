@@ -1,5 +1,6 @@
 import { Database, ExternalLink, Search, Sparkles } from 'lucide-react';
 import HighlightedSnippet from './HighlightedSnippet.jsx';
+import { BUCKET_LABELS } from '../../utils/searchHits.js';
 
 function hitPreview(hit) {
   return hit?.text_preview || hit?.snippet || hit?.highlights?.[0] || '';
@@ -58,7 +59,7 @@ export default function AssistantSearchHits({
                 ) : null}
                 {hit.source || hit.bucket || hit.source_type ? (
                   <span className={`chat-source-bucket chat-source-bucket--${hit.bucket || hit.source_type}`}>
-                    {hit.source || hit.bucket || hit.source_type}
+                    {BUCKET_LABELS[hit.bucket] || hit.source || hit.bucket || hit.source_type}
                   </span>
                 ) : null}
                 {chipLabel ? (

@@ -51,6 +51,7 @@ import {
   DocumentViewerToolbar,
 } from './DocumentViewerToolbar.jsx';
 import { useModuleShellCover } from '../contexts/ModuleShellCoverContext.jsx';
+import { consumeSearchNavigation } from '../utils/searchHits.js';
 import { useResizableGridColumns } from '../utils/useResizableGridColumns.js';
 import './ScientificFileExplorer.css';
 import './OverviewReadingPage.css';
@@ -1466,6 +1467,32 @@ export default function ScientificFileExplorer({
       .finally(() => { if (alive) setLoading(false); });
     return () => { alive = false; };
   }, [searchParams, systemView]);
+
+  useEffect(() => {
+    if (loading || !items.length) return;
+    const pending = consumeSearchNavigation();
+    if (!pending) return;
+    const targetPath = String(pending.relative_path || pending.query || '')
+      .trim()
+      .replace(/^\/+/, '');
+    if (targetPath) {
+      const basename = targetPath.split('/').pop();
+      if (basename && basename !== targetPath) {
+        setQuery(basename);
+      } else if (pending.query && pending.main !== 'document_library') {
+        setQuery(String(pending.query));
+      }
+      const match = items.find((item) => {
+        const logical = String(item.logical_path || '').replace(/^\/+/, '');
+        return logical === targetPath
+          || logical.endsWith(`/${targetPath}`)
+          || targetPath.endsWith(logical);
+      });
+      if (match) setSelected(match);
+    } else if (pending.query) {
+      setQuery(String(pending.query));
+    }
+  }, [loading, items]);
 
   const handleSelect = useCallback((item) => {
     setSelected(item);

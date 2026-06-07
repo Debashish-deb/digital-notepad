@@ -10,7 +10,9 @@ import {
   stashSearchQuery,
   consumeOmniboxPrefill,
 } from '../utils/searchHits.js';
+import SearchAdvancedFilters, { advancedFiltersToSearchParams, emptyAdvancedFilters } from './search/SearchAdvancedFilters.jsx';
 import SearchBucketGroup from './search/SearchBucketGroup.jsx';
+import SearchFilterMetadata from './search/SearchFilterMetadata.jsx';
 import SearchFilters, { SCOPE_OPTIONS } from './search/SearchFilters.jsx';
 import SearchSuggestions from './search/SearchSuggestions.jsx';
 import './search/UnifiedSearch.css';
@@ -34,6 +36,10 @@ export default function GlobalSearchOverlay({
   const [error, setError] = useState(null);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [recentQueries, setRecentQueries] = useState(() => readRecentSearchQueries());
+  const [advancedFilters, setAdvancedFilters] = useState(emptyAdvancedFilters);
+  const [filtersApplied, setFiltersApplied] = useState({});
+  const [unsupportedFilters, setUnsupportedFilters] = useState([]);
+  const [cacheHit, setCacheHit] = useState(false);
   const inputRef = useRef(null);
   const abortRef = useRef(null);
   const suggestAbortRef = useRef(null);
@@ -53,6 +59,9 @@ export default function GlobalSearchOverlay({
       setSynonymHints([]);
       setError(null);
       setActiveIndex(-1);
+      setFiltersApplied({});
+      setUnsupportedFilters([]);
+      setCacheHit(false);
       setRecentQueries(readRecentSearchQueries());
     }
   }, [isOpen]);
@@ -142,12 +151,16 @@ export default function GlobalSearchOverlay({
           projectCode,
           limit: 30,
           signal: controller.signal,
+          ...advancedFiltersToSearchParams(advancedFilters),
         });
         if (controller.signal.aborted) return;
         setHits(Array.isArray(data?.hits) ? data.hits : []);
         setBuckets(data?.buckets || {});
         setSuggestions(Array.isArray(data?.suggestions) ? data.suggestions : []);
         setSynonymHints(Array.isArray(data?.synonym_hints) ? data.synonym_hints : []);
+        setFiltersApplied(data?.filters_applied || {});
+        setUnsupportedFilters(Array.isArray(data?.unsupported_filters) ? data.unsupported_filters : []);
+        setCacheHit(Boolean(data?.metadata?.cache_hit));
         setActiveIndex(data?.hits?.length ? 0 : -1);
         pushRecentSearchQuery(query);
         setRecentQueries(readRecentSearchQueries());
@@ -164,7 +177,7 @@ export default function GlobalSearchOverlay({
       clearTimeout(timer);
       abortRef.current?.abort();
     };
-  }, [query, mode, scopesParam, projectCode]);
+  }, [query, mode, scopesParam, projectCode, advancedFilters]);
 
   const handleAskAi = useCallback(
     (text) => {
@@ -226,6 +239,15 @@ export default function GlobalSearchOverlay({
           showModes={false}
         />
 
+        <SearchAdvancedFilters value={advancedFilters} onChange={setAdvancedFilters} compact />
+
+        <SearchFilterMetadata
+          filtersApplied={filtersApplied}
+          unsupportedFilters={unsupportedFilters}
+          cacheHit={cacheHit}
+          compact
+        />
+
         <div className="search-toolbar">
           <span className="search-toolbar-hint">
             <kbd>↑</kbd><kbd>↓</kbd> navigate · <kbd>Enter</kbd> open · <kbd>Esc</kbd> close
@@ -272,7 +294,7 @@ export default function GlobalSearchOverlay({
             <>
               <div className="search-bucket-summary">
                 {Object.entries(buckets).map(([bucket, count]) => (
-                  <span key={bucket} className="search-bucket-chip">
+                  <span key={bucket} className={`search-bucket-chip search-bucket-chip--${bucket}`}>
                     {BUCKET_LABELS[bucket] || bucket}: {count}
                   </span>
                 ))}

@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 
 from app_skeleton.api.search_models import SearchFilters
-from app_skeleton.api.search_nav import hit_source_label
+from app_skeleton.api.search_nav import hit_source_label, nav_for_bucket
 from app_skeleton.api.search_service import (
     BUCKET_WEIGHTS,
     INTENT_SCOPES,
@@ -27,6 +27,11 @@ class TestDocumentLibraryIntegration(unittest.TestCase):
         self.assertEqual(hit_source_label("vault"), "Vault Asset")
         self.assertEqual(hit_source_label("lab"), "Lab Knowledge")
         self.assertEqual(hit_source_label("research"), "Research KB")
+
+    def test_nav_for_document_library(self) -> None:
+        nav = nav_for_bucket("document_library", relative_path="lab/wet_lab/protocol.pdf")
+        self.assertEqual(nav.main, "document_library")
+        self.assertEqual(nav.relative_path, "lab/wet_lab/protocol.pdf")
 
     def test_search_document_library_safe_metadata_no_original_path(self) -> None:
         rows = {
@@ -58,6 +63,9 @@ class TestDocumentLibraryIntegration(unittest.TestCase):
         hit = hits[0]
         self.assertEqual(hit.bucket, "document_library")
         self.assertEqual(hit.relative_path, "lab_operations/wet_lab/protocol.pdf")
+        self.assertIsNotNone(hit.nav)
+        self.assertEqual(hit.nav.main, "document_library")
+        self.assertEqual(hit.nav.relative_path, "lab_operations/wet_lab/protocol.pdf")
         self.assertNotIn("original_path", hit.metadata)
         self.assertEqual(hit.metadata.get("smart_chip"), "protocol")
         self.assertEqual(hit.metadata.get("indexed_status"), "indexed")

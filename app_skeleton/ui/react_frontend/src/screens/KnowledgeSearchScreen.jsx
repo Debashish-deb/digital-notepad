@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { BookOpen, Search } from 'lucide-react';
 import { fetchUnifiedSearch } from '../api/searchApi.js';
 import { groupHitsByBucket, navigateFromSearchHit } from '../utils/searchHits.js';
+import SearchAdvancedFilters, { advancedFiltersToSearchParams, emptyAdvancedFilters } from '../components/search/SearchAdvancedFilters.jsx';
 import SearchBucketGroup from '../components/search/SearchBucketGroup.jsx';
+import SearchFilterMetadata from '../components/search/SearchFilterMetadata.jsx';
 import SearchFilters, { SCOPE_OPTIONS } from '../components/search/SearchFilters.jsx';
 import '../components/search/UnifiedSearch.css';
 
@@ -13,6 +15,10 @@ export default function KnowledgeSearchScreen({ title, description, onNavigate, 
   const [hits, setHits] = useState([]);
   const [error, setError] = useState(null);
   const [busy, setBusy] = useState(false);
+  const [advancedFilters, setAdvancedFilters] = useState(emptyAdvancedFilters);
+  const [filtersApplied, setFiltersApplied] = useState({});
+  const [unsupportedFilters, setUnsupportedFilters] = useState([]);
+  const [cacheHit, setCacheHit] = useState(false);
 
   const runSearch = async () => {
     const q = query.trim();
@@ -25,8 +31,12 @@ export default function KnowledgeSearchScreen({ title, description, onNavigate, 
         mode,
         scopes: scopes.join(','),
         limit: 30,
+        ...advancedFiltersToSearchParams(advancedFilters),
       });
       setHits(Array.isArray(data?.hits) ? data.hits : []);
+      setFiltersApplied(data?.filters_applied || {});
+      setUnsupportedFilters(Array.isArray(data?.unsupported_filters) ? data.unsupported_filters : []);
+      setCacheHit(Boolean(data?.metadata?.cache_hit));
     } catch (e) {
       setError(String(e.message || e));
       setHits([]);
@@ -60,6 +70,12 @@ export default function KnowledgeSearchScreen({ title, description, onNavigate, 
           </button>
         </div>
         <SearchFilters mode={mode} onModeChange={setMode} scopes={scopes} onScopesChange={setScopes} />
+        <SearchAdvancedFilters value={advancedFilters} onChange={setAdvancedFilters} />
+        <SearchFilterMetadata
+          filtersApplied={filtersApplied}
+          unsupportedFilters={unsupportedFilters}
+          cacheHit={cacheHit}
+        />
         {error && <p className="text-footnote citation-footnote" style={{ color: 'var(--color-danger)' }}>{error}</p>}
       </div>
 
