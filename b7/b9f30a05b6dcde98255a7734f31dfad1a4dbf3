@@ -1,0 +1,51 @@
+app_skeleton/ui/react_frontend/src/components/search/SearchFilterMetadata.jsx
+  s_1b14680cacccf9::t_667e9275de53a8 1-67
+app_skeleton/ui/react_frontend/src/components/search/AssistantSearchHits.jsx
+  s_1b14680cacccf9::t_0c3b5245c57b87 62
+  s_1b14680cacccf9::t_81dd9e9e13825e 3
+app_skeleton/ui/react_frontend/src/components/search/UnifiedSearch.css
+  s_1b14680cacccf9::t_aa6cb43f3cf6a1 384-558
+app_skeleton/api/search_service.py
+  s_1b14680cacccf9::t_513e4a882ee9cc 480
+  s_1b14680cacccf9::t_67d6c3395aa157 540
+app_skeleton/ui/react_frontend/src/components/ScientificFileExplorer.jsx
+  s_1b14680cacccf9::t_7a8ac76be5025c 54
+  s_1b14680cacccf9::t_d4d3bcda482dfc 1471-1496
+tests/test_document_library_search_integration.py
+  s_1b14680cacccf9::t_539006d603671c 8
+  s_1b14680cacccf9::t_dd35ce90e4ee14 31-35
+  s_1b14680cacccf9::t_4fd47cf9792a75 66-68
+scripts/database/apply_sql_migrations.py
+  s_1b14680cacccf9::t_49950154ca30b6 2-9,13-19
+app_skeleton/ui/react_frontend/src/components/search/SearchAdvancedFilters.jsx
+  s_1b14680cacccf9::t_b5458e2da42705 1-128
+app_skeleton/ui/react_frontend/src/components/GlobalSearchOverlay.jsx
+  s_1b14680cacccf9::t_e190b669630b6b 154,161-163
+  s_1b14680cacccf9::t_26bd0b2e0f62ca 180
+  s_1b14680cacccf9::t_4f74ae3621acf1 242-250
+  s_1b14680cacccf9::t_4e9818e9a1c134 39-42
+  s_1b14680cacccf9::t_60353224de597e 62-64
+  s_1b14680cacccf9::t_e066d0032c2a03 13,15
+  s_1b14680cacccf9::t_61cecf2c4b1b57 297
+app_skeleton/ui/react_frontend/src/screens/KnowledgeSearchScreen.jsx
+  s_1b14680cacccf9::t_e9fbb775b5dfc3 5,7
+  s_1b14680cacccf9::t_14d2a40da58955 73-78
+  s_1b14680cacccf9::t_fe44f9e3f4a5e8 18-21
+  s_1b14680cacccf9::t_64f44990e9f56e 34,37-39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "b7b9f30a05b6dcde98255a7734f31dfad1a4dbf3",
+  "prompts": {},
+  "sessions": {
+    "s_1b14680cacccf9": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "ee0ff700-4edd-495f-a90d-d5442f0ab708",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
