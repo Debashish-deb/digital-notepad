@@ -1,0 +1,10 @@
+[project]
+name = "omeia-platform"
+version = "0.0.0"
+description = "OMEIA lab platform (FastAPI + React)"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["apps/api/src", "."]
+testpaths = ["tests"]

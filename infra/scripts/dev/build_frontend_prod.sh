@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
-FRONTEND="$ROOT/omeia/ui/react_frontend"
+FRONTEND="$ROOT/apps/web"
 
 if [[ -f "$ROOT/configs/.env" ]]; then
   # shellcheck disable=SC1091

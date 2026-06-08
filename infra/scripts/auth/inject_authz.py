@@ -20,9 +20,9 @@ def inject_authz():
             content = f.read()
             
         # Add imports if missing
-        if "from omeia.security.permissions import require_role" not in content:
+        if "from app_skeleton.security.permissions import require_role" not in content:
             # find first import
-            content = re.sub(r'^(import|from)', r'from omeia.security.permissions import require_role\nfrom omeia.security.auth import require_platform_user\n\1', content, count=1)
+            content = re.sub(r'^(import|from)', r'from app_skeleton.security.permissions import require_role\nfrom app_skeleton.security.auth import require_platform_user\n\1', content, count=1)
             
         # Find all defs under @router.(post|put|patch|delete)
         pattern = r'(@router\.(?:post|put|patch|delete)\(.*?\)\s+def\s+\w+\()([^)]*)(\)\s*(?:->\s*[^:]+)?:)'

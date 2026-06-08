@@ -26,7 +26,7 @@ load_dotenv(ROOT / "configs" / ".env")
 load_dotenv(ROOT / "deploy" / "university-desktop" / ".env")
 load_dotenv()
 
-from omeia.api.data_layout import (  # noqa: E402
+from app_skeleton.api.data_layout import (  # noqa: E402
     processor_pid_path,
     processor_state_path,
     runtime_log_write_path,
@@ -153,7 +153,7 @@ def _max_files() -> int | None:
 
 
 def _vault_roots() -> list[Path]:
-    from omeia.api.paths import DATABASE_ROOT, lab_storage_root
+    from app_skeleton.api.paths import DATABASE_ROOT, lab_storage_root
 
     roots: list[Path] = []
     for candidate in (DATABASE_ROOT, lab_storage_root()):
@@ -166,7 +166,7 @@ def _vault_roots() -> list[Path]:
 
 
 def _step_vault(*, resume: bool, state: dict[str, Any]) -> dict[str, Any]:
-    from omeia.api.vault_ingestion_engine import run_ingest_scan
+    from app_skeleton.api.vault_ingestion_engine import run_ingest_scan
 
     logger = _LOGGER or logging.getLogger("autonomous_processor")
     results: list[dict[str, Any]] = []
@@ -196,7 +196,7 @@ def _step_vault(*, resume: bool, state: dict[str, Any]) -> dict[str, Any]:
 
 
 def _step_digitalize(*, resume: bool, state: dict[str, Any]) -> dict[str, Any]:
-    from omeia.api.project_digitalization_engine import run_digitalization
+    from app_skeleton.api.project_digitalization_engine import run_digitalization
 
     logger = _LOGGER or logging.getLogger("autonomous_processor")
     logger.info("Digitalization full scan resume=%s", resume)
@@ -214,7 +214,7 @@ def _step_digitalize(*, resume: bool, state: dict[str, Any]) -> dict[str, Any]:
 
 
 def _step_supabase_sync() -> dict[str, Any]:
-    from omeia.api.supabase_sync import (
+    from app_skeleton.api.supabase_sync import (
         supabase_hosted_password_set,
         supabase_sync_enabled,
         sync_documents_to_supabase,

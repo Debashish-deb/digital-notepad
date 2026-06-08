@@ -514,9 +514,9 @@ flowchart TB
 
 | File | Why |
 |------|-----|
-| `omeia/ui/react_frontend/src/features/imaging/components/ImageTileViewer.jsx` | Error UX; loading skeleton; tile retry |
-| `omeia/ui/react_frontend/src/shared/hooks/useImageTileLoader.js` | In-flight dedup exists; add abort on unmount race |
-| `omeia/ui/react_frontend/src/pages/ImageStreamingAdminScreen.jsx` | Show GPU probe; bulk inspect progress |
+| `apps/web/src/features/imaging/components/ImageTileViewer.jsx` | Error UX; loading skeleton; tile retry |
+| `apps/web/src/shared/hooks/useImageTileLoader.js` | In-flight dedup exists; add abort on unmount race |
+| `apps/web/src/pages/ImageStreamingAdminScreen.jsx` | Show GPU probe; bulk inspect progress |
 
 ### Priority 5 — offline pipelines
 

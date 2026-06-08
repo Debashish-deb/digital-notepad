@@ -93,7 +93,7 @@ Copy from `configs/.env.backend.example` (or `configs/.env.example` **without** 
 
 **Never** put `VITE_*` in the backend `.env` on a production server.
 
-### Frontend — `omeia/ui/react_frontend/.env.local` (dev)
+### Frontend — `apps/web/.env.local` (dev)
 
 Copy from `.env.local.example`:
 
@@ -157,7 +157,7 @@ cd OMEIA-AI
 ./deploy/university-desktop/run_api_dev.sh
 
 # Frontend
-cd omeia/ui/react_frontend
+cd apps/web
 cp .env.local.example .env.local
 npm ci && npm run dev
 ```
@@ -193,7 +193,7 @@ curl -s http://127.0.0.1:8000/health | python3 -m json.tool
 
 | Host | What runs | Docs |
 |------|-----------|------|
-| **Hostinger** (or any static host) | `npm run build` → upload `dist/` | `omeia/ui/react_frontend/README.md` |
+| **Hostinger** (or any static host) | `npm run build` → upload `dist/` | `apps/web/README.md` |
 | **University Linux desktop** | uvicorn + Caddy/nginx TLS | `deploy/university-desktop/README.md` |
 
 Checklist: `configs/DEPLOYMENT_ENV.md`  
@@ -228,8 +228,8 @@ Future cleanup: normalize under `/api/v1/` (not required for split deployment to
 Some screens read **processed JSON** directly:
 
 ```text
-omeia/ui/react_frontend/public/processed/lab__*.json
-omeia/ui/react_frontend/public/processed/{project}__*.json
+apps/web/public/processed/lab__*.json
+apps/web/public/processed/{project}__*.json
 ```
 
 Fetched as `/processed/{code}.json` from the Vite/static host. The backend also writes these during ingestion. For a **hard** repo split, move this to `GET /api/twins/{code}` only.
@@ -278,7 +278,7 @@ Use this when extracting frontend and backend into separate Git repositories.
 
 ## 11. Related docs
 
-- `omeia/ui/react_frontend/README.md` — React dev & Hostinger build
+- `apps/web/README.md` — React dev & Hostinger build
 - `configs/DEPLOYMENT_ENV.md` — env checklist
 - `docs/26_PRODUCTION_DEPLOYMENT.md` — production topology
 - `deploy/university-desktop/README.md` — desktop API install
@@ -299,6 +299,6 @@ Use this when extracting frontend and backend into separate Git repositories.
 ./start.sh
 
 # Production frontend build
-cd omeia/ui/react_frontend
+cd apps/web
 npm run build   # upload dist/
 ```

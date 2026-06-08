@@ -1,8 +1,8 @@
 """Strategy answers must not invent citations."""
 from __future__ import annotations
 
-from omeia.api.evidence_orchestrator import EvidenceItem, EvidencePackage
-from omeia.api.research_strategy_engine import _references_from_package
+from app_skeleton.api.evidence_orchestrator import EvidenceItem, EvidencePackage
+from app_skeleton.api.research_strategy_engine import _references_from_package
 
 
 def test_references_only_from_package_items() -> None:

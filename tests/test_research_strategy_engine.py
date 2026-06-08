@@ -5,9 +5,9 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from omeia.api.chat_conversation import classify_and_enrich
-from omeia.api.evidence_orchestrator import EvidenceItem, EvidencePackage
-from omeia.api.research_strategy_engine import (
+from app_skeleton.api.chat_conversation import classify_and_enrich
+from app_skeleton.api.evidence_orchestrator import EvidenceItem, EvidencePackage
+from app_skeleton.api.research_strategy_engine import (
     INSUFFICIENT_MESSAGE,
     ResearchStrategyEngine,
     is_strategy_question,
@@ -40,7 +40,7 @@ def test_engine_insufficient_evidence_message(monkeypatch: pytest.MonkeyPatch) -
         return EvidencePackage(items=[], confidence="insufficient")
 
     monkeypatch.setattr(
-        "omeia.api.research_strategy_engine.package_evidence",
+        "app_skeleton.api.research_strategy_engine.package_evidence",
         _fake_package,
     )
 
@@ -80,10 +80,10 @@ def test_engine_produces_directions_with_hits(monkeypatch: pytest.MonkeyPatch) -
     search_svc = MagicMock()
     search_svc.hits_for_copilot.return_value = hits
 
-    from omeia.api.evidence_orchestrator import package_evidence as real_package
+    from app_skeleton.api.evidence_orchestrator import package_evidence as real_package
 
     monkeypatch.setattr(
-        "omeia.api.research_strategy_engine.package_evidence",
+        "app_skeleton.api.research_strategy_engine.package_evidence",
         real_package,
     )
 

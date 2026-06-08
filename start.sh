@@ -129,9 +129,9 @@ fi
 echo "FastAPI backend http://localhost:8000"
 cd "$BACKEND_DIR" || exit 1
 if [ "$OMEIA_FRONTEND_MODE" = "prod" ]; then
-  "$VENV_UVICORN" omeia.api.main:app --host 0.0.0.0 --port 8000 &
+  "$VENV_UVICORN" app_skeleton.api.main:app --host 0.0.0.0 --port 8000 &
 else
-  "$VENV_UVICORN" omeia.api.main:app --host 0.0.0.0 --port 8000 --reload &
+  "$VENV_UVICORN" app_skeleton.api.main:app --host 0.0.0.0 --port 8000 --reload &
 fi
 BACKEND_PID=$!
 

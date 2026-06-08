@@ -1,7 +1,0 @@
-# Heavy imaging — install on Linux workstation or Docker imaging container only.
-# System libs required (apt): libvips-dev, openslide-tools, libopenslide-dev, libtiff-dev, libjpeg-dev
--r requirements-imaging-extended.txt
-pyvips>=2.2.0
-openslide-python>=1.3.0
-aicsimageio>=4.14
-# bioformats / JVM readers: use conda-forge in Docker (see docker/imaging-worker/environment.yml)

@@ -8,9 +8,11 @@ import sys
 from pathlib import Path
 from typing import Any
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
+REPO_ROOT = Path(__file__).resolve().parents[3]
+_API_SRC = REPO_ROOT / "apps" / "api" / "src"
+for entry in (str(_API_SRC), str(REPO_ROOT)):
+    if entry not in sys.path:
+        sys.path.insert(0, entry)
 
 
 def _check_path(path: Path, *, must_be_dir: bool = True) -> dict[str, Any]:
@@ -45,7 +47,7 @@ def _sample_readable_file(root: Path, *, limit: int = 3) -> dict[str, Any]:
 
 def _runtime_roots() -> tuple[Path, Path, Path, Path]:
     """Resolve roots at call time so DATABASE_ROOT/PROJECTS_ROOT env overrides apply."""
-    from omeia.api.paths import (
+    from app_skeleton.api.paths import (
         CSC_MEDIA_DIR,
         PUBLIC_PROCESSED_DIR,
         _default_database_root,
@@ -56,7 +58,7 @@ def _runtime_roots() -> tuple[Path, Path, Path, Path]:
 
 
 def run_checks() -> dict[str, Any]:
-    from omeia.api.data_layout import LEGACY_PROCESSED_DIR, inventory_json
+    from app_skeleton.api.data_layout import LEGACY_PROCESSED_DIR, inventory_json
 
     DATABASE_ROOT, PROJECTS_ROOT, PUBLIC_PROCESSED_DIR, CSC_MEDIA_DIR = _runtime_roots()
 

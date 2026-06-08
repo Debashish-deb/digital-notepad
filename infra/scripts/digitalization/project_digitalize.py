@@ -14,8 +14,8 @@ from dotenv import load_dotenv
 load_dotenv(BLUEPRINT / "configs" / ".env")
 load_dotenv()
 
-from omeia.api.project_digitalization_engine import run_digitalization
-from omeia.api.vault_ingestion_engine import retry_failed_extractions
+from app_skeleton.api.project_digitalization_engine import run_digitalization
+from app_skeleton.api.vault_ingestion_engine import retry_failed_extractions
 
 
 def main() -> int:

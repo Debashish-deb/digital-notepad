@@ -1,6 +1,6 @@
 import pytest
 from fastapi import HTTPException
-from omeia.security.permissions import has_role, require_role, can_write_project, can_delete_project
+from app_skeleton.security.permissions import has_role, require_role, can_write_project, can_delete_project
 
 def test_has_role():
     user = {"email": "test@test.com", "role": "admin"}

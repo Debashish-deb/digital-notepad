@@ -9,8 +9,8 @@ from __future__ import annotations
 from contextlib import contextmanager
 from typing import Any, Generator, Literal
 
-from omeia.api.main import app
-from omeia.security.auth import require_platform_user
+from app_skeleton.api.main import app
+from app_skeleton.security.auth import require_platform_user
 
 TestRole = Literal["researcher", "viewer", "editor", "admin"]
 _VALID_ROLES: frozenset[str] = frozenset({"researcher", "viewer", "editor", "admin"})

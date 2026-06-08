@@ -1,7 +1,7 @@
 import pytest
 from fastapi import Request, HTTPException
-from omeia.security.auth import require_platform_user, require_admin_user
-import omeia.security.auth as auth
+from app_skeleton.security.auth import require_platform_user, require_admin_user
+import app_skeleton.security.auth as auth
 import os
 
 class MockRequest:

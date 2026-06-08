@@ -120,7 +120,7 @@ fi
 echo "--- Frontend packages ---"
 if command -v npm >/dev/null 2>&1; then
   echo "  node: $(node -v)  npm: $(npm -v)"
-  (cd "$ROOT/omeia/ui/react_frontend" && npm install)
+  (cd "$ROOT/apps/web" && npm install)
 else
   echo "WARN: npm not found — install Node.js 22 via nvm"
 fi

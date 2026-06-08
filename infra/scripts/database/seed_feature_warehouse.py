@@ -8,8 +8,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from omeia.api.feature_warehouse import seed_feature_warehouse
-from omeia.api.clinical_tools import _load_patients
+from app_skeleton.api.feature_warehouse import seed_feature_warehouse
+from app_skeleton.api.clinical_tools import _load_patients
 import os
 import csv
 import psycopg

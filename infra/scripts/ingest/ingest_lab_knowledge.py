@@ -10,7 +10,7 @@ ROOT = os.environ.get("OMEIA_REPO_ROOT", str(Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 os.environ.setdefault("OMEIA_REPO_ROOT", ROOT)
 
-from omeia.api.lab_knowledge_store import _cli  # noqa: E402
+from app_skeleton.api.lab_knowledge_store import _cli  # noqa: E402
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:

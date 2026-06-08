@@ -47,7 +47,7 @@ fi
 echo "==> Building lab processed twins (if DATABASE_ROOT exists)"
 export DATABASE_ROOT="${DATABASE_ROOT:-$ROOT/../OMEIA-database}"
 if [[ -d "$DATABASE_ROOT" ]]; then
-  python3 -m omeia.api.database_processor --all --refresh 2>/dev/null || \
+  python3 -m app_skeleton.api.database_processor --all --refresh 2>/dev/null || \
     python3 "$ROOT/omeia/api/database_processor.py" --all --refresh 2>/dev/null || \
     echo "    (processor skipped — use API POST /api/database/process-all when API is up)"
 else
@@ -56,7 +56,7 @@ fi
 
 echo "==> Lab knowledge ingest (Qdrant + Postgres, best effort)"
 python3 -c "
-from omeia.api.lab_knowledge_store import ingest_all_lab_sections
+from app_skeleton.api.lab_knowledge_store import ingest_all_lab_sections
 try:
     print(ingest_all_lab_sections(refresh_extract=False))
 except Exception as e:

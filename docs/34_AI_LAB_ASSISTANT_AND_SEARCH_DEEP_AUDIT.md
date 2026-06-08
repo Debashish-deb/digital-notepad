@@ -162,15 +162,15 @@ flowchart TB
 
 | File | Role |
 |------|------|
-| `omeia/ui/react_frontend/src/components/ChatWidget.jsx` | Chat UI, streaming, project scope, source cards, omnibox handoff |
-| `omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx` | ⌘K omnibox, unified search, Ask AI |
-| `omeia/ui/react_frontend/src/components/search/AssistantSearchHits.jsx` | Source/hit cards with Open / follow-up / omnibox |
-| `omeia/ui/react_frontend/src/components/search/SearchFilters.jsx` | Mode + scope chips (**no research scope**) |
-| `omeia/ui/react_frontend/src/utils/searchHits.js` | Nav stash, bucket labels (**research not in BUCKET_ORDER**) |
-| `omeia/ui/react_frontend/src/api/chatClient.js` | `/api/chat` JSON + SSE |
-| `omeia/ui/react_frontend/src/api/searchApi.js` | Unified search client |
-| `omeia/ui/react_frontend/src/screens/ResearchKnowledgeAdminScreen.jsx` | Research KB admin UI |
-| `omeia/ui/react_frontend/src/screens/KnowledgeSearchScreen.jsx` | Legacy advanced search (orphan route) |
+| `apps/web/src/components/ChatWidget.jsx` | Chat UI, streaming, project scope, source cards, omnibox handoff |
+| `apps/web/src/components/GlobalSearchOverlay.jsx` | ⌘K omnibox, unified search, Ask AI |
+| `apps/web/src/components/search/AssistantSearchHits.jsx` | Source/hit cards with Open / follow-up / omnibox |
+| `apps/web/src/components/search/SearchFilters.jsx` | Mode + scope chips (**no research scope**) |
+| `apps/web/src/utils/searchHits.js` | Nav stash, bucket labels (**research not in BUCKET_ORDER**) |
+| `apps/web/src/api/chatClient.js` | `/api/chat` JSON + SSE |
+| `apps/web/src/api/searchApi.js` | Unified search client |
+| `apps/web/src/screens/ResearchKnowledgeAdminScreen.jsx` | Research KB admin UI |
+| `apps/web/src/screens/KnowledgeSearchScreen.jsx` | Legacy advanced search (orphan route) |
 
 ### Tests & eval
 

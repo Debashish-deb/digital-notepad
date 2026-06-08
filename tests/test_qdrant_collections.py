@@ -1,7 +1,7 @@
 """Phase 1 qdrant_collections single source of truth."""
 from __future__ import annotations
 
-from omeia.api.qdrant_collections import (
+from app_skeleton.api.qdrant_collections import (
     DOC_CHUNKS,
     RESEARCH_KB,
     VAULT_CHUNKS,

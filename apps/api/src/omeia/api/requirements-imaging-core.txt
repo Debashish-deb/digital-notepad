@@ -1,6 +1,0 @@
-# Lightweight imaging — install on Mac dev OR Linux API host (~30–80 MB wheels).
-# Enables TIFF/OME-TIFF metadata, thumbnails, and tile streaming.
-tifffile>=2024.1.0
-imagecodecs>=2024.1.0
-numpy>=1.24
-Pillow>=10.0

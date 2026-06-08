@@ -1,12 +1,12 @@
 """Phase 2 — chunking facade and normalize_chunks_for_indexer."""
 from __future__ import annotations
 
-from omeia.api.chunking import (
+from app_skeleton.api.chunking import (
     chunk_text,
     estimate_token_count,
     normalize_chunks_for_indexer,
 )
-from omeia.api.platform_flags import canonical_chunk_pipeline_enabled
+from app_skeleton.api.platform_flags import canonical_chunk_pipeline_enabled
 
 
 def test_chunk_text_returns_indexer_compatible_dicts() -> None:

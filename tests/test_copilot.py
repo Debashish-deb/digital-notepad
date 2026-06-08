@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
-from omeia.api.main import app
+from app_skeleton.api.main import app
 from tests.auth_fixtures import apply_auth_override, clear_auth_override
 
 
@@ -24,7 +24,7 @@ class TestCopilotPlatform(unittest.TestCase):
         data = response.json()
         self.assertIn("database_connected", data)
 
-    @patch("omeia.api.routers.copilot.require_role")
+    @patch("app_skeleton.api.routers.copilot.require_role")
     def test_ask_documentation_mode(self, _role_patch) -> None:
         response = self.client.post(
             "/ask",
@@ -39,7 +39,7 @@ class TestCopilotPlatform(unittest.TestCase):
         self.assertTrue(res.get("is_safe"))
         self.assertTrue(len(res.get("answer") or "") > 20)
 
-    @patch("omeia.api.routers.copilot.require_role")
+    @patch("app_skeleton.api.routers.copilot.require_role")
     def test_ask_search_only(self, _role_patch) -> None:
         response = self.client.post(
             "/ask",
@@ -55,7 +55,7 @@ class TestCopilotPlatform(unittest.TestCase):
         self.assertIsInstance(res.get("sources"), list)
         self.assertIn("intent", res)
 
-    @patch("omeia.api.routers.copilot.require_role")
+    @patch("app_skeleton.api.routers.copilot.require_role")
     def test_chat_ask_intent_parity(self, _role_patch) -> None:
         question = "What does Färkkilä Lab study?"
         chat_r = self.client.post(
@@ -73,7 +73,7 @@ class TestCopilotPlatform(unittest.TestCase):
         self.assertEqual(chat_j.get("intent"), ask_j.get("intent"))
         self.assertEqual(chat_j.get("use_rag"), ask_j.get("use_rag"))
 
-    @patch("omeia.api.routers.copilot.require_role")
+    @patch("app_skeleton.api.routers.copilot.require_role")
     def test_install_recipes(self, _role_patch) -> None:
         response = self.client.post(
             "/install_guide",
@@ -84,7 +84,7 @@ class TestCopilotPlatform(unittest.TestCase):
         self.assertEqual(data["status"], "success")
         self.assertIn("mamba", data["script"].lower())
 
-    @patch("omeia.api.routers.copilot.require_role")
+    @patch("app_skeleton.api.routers.copilot.require_role")
     def test_lumi_script_builder(self, _role_patch) -> None:
         response = self.client.post(
             "/lumi_job",
@@ -99,7 +99,7 @@ class TestCopilotPlatform(unittest.TestCase):
         self.assertEqual(data["status"], "success")
         self.assertIn("#SBATCH --job-name=test_job", data["script"])
 
-    @patch("omeia.api.routers.copilot.require_role")
+    @patch("app_skeleton.api.routers.copilot.require_role")
     def test_log_parser(self, _role_patch) -> None:
         response = self.client.post(
             "/parse_log",
@@ -110,7 +110,7 @@ class TestCopilotPlatform(unittest.TestCase):
         self.assertEqual(data["status"], "success")
         self.assertTrue(data["cause"])
 
-    @patch("omeia.api.routers.copilot.require_role")
+    @patch("app_skeleton.api.routers.copilot.require_role")
     def test_environment_checkers(self, _role_patch) -> None:
         response = self.client.post(
             "/run_checker",

@@ -30,8 +30,8 @@ def main() -> int:
     parser.add_argument("--force", action="store_true", help="Run even when OMEIA_CONTINUOUS_EVAL_ENABLED=false")
     args = parser.parse_args()
 
-    from omeia.api.platform_flags import continuous_eval_enabled
-    from omeia.api.quality_eval_service import run_continuous_eval
+    from app_skeleton.api.platform_flags import continuous_eval_enabled
+    from app_skeleton.api.quality_eval_service import run_continuous_eval
 
     if not args.force and not continuous_eval_enabled():
         print("Continuous eval disabled (OMEIA_CONTINUOUS_EVAL_ENABLED=false). Use --force to override.")

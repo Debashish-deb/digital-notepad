@@ -6,7 +6,7 @@ from unittest.mock import patch
 import pytest
 from fastapi.testclient import TestClient
 
-from omeia.api.main import app
+from app_skeleton.api.main import app
 
 
 @pytest.fixture
@@ -28,8 +28,8 @@ def test_index_health_requires_admin(client: TestClient) -> None:
 
 def test_index_health_structure_with_mocks(client: TestClient) -> None:
     with patch.dict("os.environ", {"APP_ENV": "development", "PLATFORM_AUTH_DISABLED": "true"}):
-        with patch("omeia.api.routers.admin_index.postgres_conn", return_value=""):
-            with patch("omeia.api.routers.admin_index.ping_qdrant", return_value=False):
+        with patch("app_skeleton.api.routers.admin_index.postgres_conn", return_value=""):
+            with patch("app_skeleton.api.routers.admin_index.ping_qdrant", return_value=False):
                 resp = client.get("/api/admin/index-health")
                 assert resp.status_code == 200
                 body = resp.json()

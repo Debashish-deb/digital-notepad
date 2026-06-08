@@ -606,10 +606,10 @@ Each migration ships behind env flags with documented rollback (§11).
 - `omeia/security/permissions.py` (new)
 - `omeia/api/ocr/*`
 - `omeia/api/document_library_service.py`
-- `omeia/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx`
-- `omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx`
-- `omeia/ui/react_frontend/src/pages/WorkspaceScreen.jsx`
-- `omeia/ui/react_frontend/src/App.jsx`
+- `apps/web/src/features/documents/components/ScientificFileExplorer.jsx`
+- `apps/web/src/components/GlobalSearchOverlay.jsx`
+- `apps/web/src/pages/WorkspaceScreen.jsx`
+- `apps/web/src/App.jsx`
 
 ### LOW — Phase 8
 
@@ -626,7 +626,7 @@ Each migration ships behind env flags with documented rollback (§11).
 |------|--------|
 | `omeia/api/docker_service_client.py` | Good pattern; working circuit breaker |
 | `omeia/api/embedding_service.py` | Recent unified embed path |
-| `omeia/ui/react_frontend/src/components/AuthLoginPanel.jsx` | Login UX stable |
+| `apps/web/src/components/AuthLoginPanel.jsx` | Login UX stable |
 | `omeia/api/routers/health.py` | Contract frozen for probes |
 | `omeia/api/routers/image_assets.py` | Recently hardened |
 | `omeia/api/image_streaming/image_streaming_service.py` | Recent tile fixes |

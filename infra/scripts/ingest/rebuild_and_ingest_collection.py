@@ -8,9 +8,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
-from omeia.api.llm_client import LLMClient
-from omeia.api.supabase_config import postgres_conn
-from omeia.api.supabase_sync import sync_documents_to_supabase
+from app_skeleton.api.llm_client import LLMClient
+from app_skeleton.api.supabase_config import postgres_conn
+from app_skeleton.api.supabase_sync import sync_documents_to_supabase
 
 JSON_PATH = Path("/home/debdeba/data4TB/digital-notepad-main/docs/omeia_lab_documents_complete_collection.json")
 DB_CONN = postgres_conn()

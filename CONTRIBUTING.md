@@ -28,8 +28,9 @@ Historical commits may display under this identity via `.mailmap`; we do not rew
 After `git pull` on the primary Linux host:
 
 ```bash
-./scripts/ops/linux_post_pull.sh
-./scripts/start_linux.sh
+./infra/scripts/ops/linux_post_pull.sh   # or ./scripts/ops/linux_post_pull.sh
+make install   # when dependencies changed
+make start
 ```
 
 ## Tests
@@ -37,5 +38,6 @@ After `git pull` on the primary Linux host:
 Run targeted suites before opening a PR:
 
 ```bash
-python -m pytest tests/ -q
+make test
+# or: python -m pytest tests/ -q
 ```

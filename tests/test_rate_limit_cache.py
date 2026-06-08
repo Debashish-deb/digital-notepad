@@ -4,8 +4,8 @@ from __future__ import annotations
 import os
 import unittest
 
-from omeia.api.rate_limit import check_rate_limit
-from omeia.api.retrieval_cache import (
+from app_skeleton.api.rate_limit import check_rate_limit
+from app_skeleton.api.retrieval_cache import (
     clear_cache,
     make_cache_key,
     set_cached,
@@ -81,7 +81,7 @@ class TestRateLimitAndCache(unittest.TestCase):
             include_restricted=False,
         )
         set_cached(key, {"query": "test query", "total": 0, "hits": []})
-        from omeia.api.retrieval_cache import get_cached
+        from app_skeleton.api.retrieval_cache import get_cached
 
         cached = get_cached(key)
         self.assertIsNotNone(cached)

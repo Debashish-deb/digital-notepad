@@ -14,12 +14,12 @@ _SCRIPT = Path(__file__).resolve()
 ROOT = _SCRIPT.parents[2]
 sys.path.insert(0, str(ROOT))
 
-from omeia.api.document_classification import (  # noqa: E402
+from app_skeleton.api.document_classification import (  # noqa: E402
     APP_PAGES,
     apply_duplicate_canonicalization,
     apply_standard_classification,
 )
-from omeia.api.document_library_service import (  # noqa: E402
+from app_skeleton.api.document_library_service import (  # noqa: E402
     AUDIT_INVENTORY_JSON,
     INVENTORY_JSON,
     invalidate_cache,

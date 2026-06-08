@@ -6,7 +6,7 @@ from unittest.mock import MagicMock
 import pytest
 from fastapi import HTTPException
 
-from omeia.security.auth import (
+from app_skeleton.security.auth import (
     ResolvedResearcher,
     _username_from_user,
     resolve_researcher,
@@ -58,7 +58,7 @@ def test_resolve_researcher_creates_on_miss() -> None:
 
 
 def test_decision_create_model_no_hardcoded_debdeba() -> None:
-    from omeia.api.common import DecisionCreate
+    from app_skeleton.api.common import DecisionCreate
 
     req = DecisionCreate(
         project_code="SPACE",

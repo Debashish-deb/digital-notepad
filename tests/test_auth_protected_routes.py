@@ -6,20 +6,20 @@ from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
-from omeia.api.main import app
+from app_skeleton.api.main import app
 
 
 class TestAuthProtectedRoutes(unittest.TestCase):
-    @patch("omeia.security.auth.AUTH_DISABLED", False)
-    @patch("omeia.security.auth.APP_ENV", "production")
+    @patch("app_skeleton.security.auth.AUTH_DISABLED", False)
+    @patch("app_skeleton.security.auth.APP_ENV", "production")
     def test_storage_roots_without_token_returns_401(self) -> None:
         client = TestClient(app)
         response = client.get("/api/storage/roots")
         self.assertEqual(response.status_code, 401)
         self.assertIn("Bearer", response.json().get("detail", ""))
 
-    @patch("omeia.security.auth.AUTH_DISABLED", False)
-    @patch("omeia.security.auth.APP_ENV", "production")
+    @patch("app_skeleton.security.auth.AUTH_DISABLED", False)
+    @patch("app_skeleton.security.auth.APP_ENV", "production")
     def test_vault_summary_without_token_returns_401(self) -> None:
         client = TestClient(app)
         response = client.get("/api/vault/summary")
@@ -30,8 +30,8 @@ class TestAuthProtectedRoutes(unittest.TestCase):
         response = client.get("/health")
         self.assertEqual(response.status_code, 200)
 
-    @patch("omeia.security.auth.AUTH_DISABLED", False)
-    @patch("omeia.security.auth.APP_ENV", "production")
+    @patch("app_skeleton.security.auth.AUTH_DISABLED", False)
+    @patch("app_skeleton.security.auth.APP_ENV", "production")
     def test_auth_config_reports_auth_enabled(self) -> None:
         client = TestClient(app)
         response = client.get("/api/auth/config")

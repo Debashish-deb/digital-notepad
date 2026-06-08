@@ -466,19 +466,19 @@ BACKEND_FILES = [
 ]
 
 FRONTEND_FILES = [
-    "omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx",
-    "omeia/ui/react_frontend/src/screens/KnowledgeSearchScreen.jsx",
-    "omeia/ui/react_frontend/src/components/DocumentFileSearch.jsx",
-    "omeia/ui/react_frontend/src/utils/documentBrowserUtils.js",
-    "omeia/ui/react_frontend/src/components/ChatWidget.jsx",
-    "omeia/ui/react_frontend/src/api/client.js",
-    "omeia/ui/react_frontend/src/App.jsx",
-    "omeia/ui/react_frontend/src/components/Sidebar.jsx",
-    "omeia/ui/react_frontend/src/components/ProjectFolderBrowser.jsx",
-    "omeia/ui/react_frontend/src/components/LabDocumentsBrowser.jsx",
-    "omeia/ui/react_frontend/src/screens/AiLabAssistantScreen.jsx",
-    "omeia/ui/react_frontend/src/screens/LabKnowledgeScreen.jsx",
-    "omeia/ui/react_frontend/src/components/ProjectDocumentsBrowser.jsx",
+    "apps/web/src/components/GlobalSearchOverlay.jsx",
+    "apps/web/src/screens/KnowledgeSearchScreen.jsx",
+    "apps/web/src/components/DocumentFileSearch.jsx",
+    "apps/web/src/utils/documentBrowserUtils.js",
+    "apps/web/src/components/ChatWidget.jsx",
+    "apps/web/src/api/client.js",
+    "apps/web/src/App.jsx",
+    "apps/web/src/components/Sidebar.jsx",
+    "apps/web/src/components/ProjectFolderBrowser.jsx",
+    "apps/web/src/components/LabDocumentsBrowser.jsx",
+    "apps/web/src/screens/AiLabAssistantScreen.jsx",
+    "apps/web/src/screens/LabKnowledgeScreen.jsx",
+    "apps/web/src/components/ProjectDocumentsBrowser.jsx",
 ]
 
 

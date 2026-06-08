@@ -8,7 +8,7 @@
 # Safe by default: never prints or copies raw secret values from configs/.env.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 DRY_RUN=false
 OUTPUT=""
 

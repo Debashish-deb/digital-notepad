@@ -5,7 +5,7 @@ from unittest.mock import patch
 
 import pytest
 
-from omeia.api.quality_eval_service import (
+from app_skeleton.api.quality_eval_service import (
     _compute_composite_score,
     _detect_regressions,
     _resolve_status,
@@ -77,12 +77,12 @@ def test_run_continuous_eval_skip_copilot(monkeypatch: pytest.MonkeyPatch) -> No
     feedback_report = {"total": 0, "positive_rate": 0}
 
     with (
-        patch("omeia.api.quality_eval_service._run_search_qa", return_value=search_report),
-        patch("omeia.api.quality_eval_service._run_retrieval_eval", return_value=retrieval_report),
-        patch("omeia.api.quality_eval_service._run_strategy_engine_sample", return_value=strategy_report),
-        patch("omeia.api.quality_eval_service._feedback_summary", return_value=feedback_report),
-        patch("omeia.api.quality_eval_service.save_eval_run", return_value=None),
-        patch("omeia.api.quality_eval_service.fetch_latest_eval_run", return_value=None),
+        patch("app_skeleton.api.quality_eval_service._run_search_qa", return_value=search_report),
+        patch("app_skeleton.api.quality_eval_service._run_retrieval_eval", return_value=retrieval_report),
+        patch("app_skeleton.api.quality_eval_service._run_strategy_engine_sample", return_value=strategy_report),
+        patch("app_skeleton.api.quality_eval_service._feedback_summary", return_value=feedback_report),
+        patch("app_skeleton.api.quality_eval_service.save_eval_run", return_value=None),
+        patch("app_skeleton.api.quality_eval_service.fetch_latest_eval_run", return_value=None),
     ):
         report = run_continuous_eval(trigger_source="test", skip_copilot=True, persist=False)
 

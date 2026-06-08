@@ -27,8 +27,8 @@ ROOT = Path(__file__).resolve().parents[2]
 APP_CODE_ROOTS: tuple[str, ...] = (
     "omeia/api",
     "omeia/security",
-    "omeia/ui/react_frontend/src",
-    "omeia/ui/react_frontend/scripts",
+    "apps/web/src",
+    "apps/web/scripts",
     "omeia/ui/streamlit_app.py",
     "configs",
     "sql",
@@ -74,9 +74,9 @@ EXCLUDE_DIR_NAMES: frozenset[str] = frozenset({
 
 EXCLUDE_PATH_PREFIXES: tuple[str, ...] = (
     "omeia/data/",
-    "omeia/ui/react_frontend/public/processed/",
-    "omeia/ui/react_frontend/public/database/",
-    "omeia/ui/react_frontend/node_modules/",
+    "apps/web/public/processed/",
+    "apps/web/public/database/",
+    "apps/web/node_modules/",
     "configs/.env",
     "configs/secrets/",
 )

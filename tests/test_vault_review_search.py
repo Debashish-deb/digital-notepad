@@ -5,8 +5,8 @@ import json
 import unittest
 from unittest.mock import patch
 
-from omeia.api.search_models import SearchFilters
-from omeia.api.search_service import search_vault_review
+from app_skeleton.api.search_models import SearchFilters
+from app_skeleton.api.search_service import search_vault_review
 
 
 class TestVaultReviewSearch(unittest.TestCase):
@@ -25,14 +25,14 @@ class TestVaultReviewSearch(unittest.TestCase):
         }
 
     def test_no_original_path_in_hits(self) -> None:
-        with patch("omeia.api.search_service.review_queue", return_value=[self._sample_row()]):
+        with patch("app_skeleton.api.search_service.review_queue", return_value=[self._sample_row()]):
             hits = search_vault_review("doc", filters=SearchFilters(), limit=5)
         self.assertGreaterEqual(len(hits), 1)
         payload = json.dumps([h.model_dump() for h in hits])
         self.assertNotIn("original_path", payload)
 
     def test_suggestions_only_metadata(self) -> None:
-        with patch("omeia.api.search_service.review_queue", return_value=[self._sample_row()]):
+        with patch("app_skeleton.api.search_service.review_queue", return_value=[self._sample_row()]):
             hits = search_vault_review("doc", filters=SearchFilters(), limit=5)
         hit = hits[0]
         self.assertEqual(hit.metadata.get("action"), "review_suggested")
@@ -51,8 +51,8 @@ class TestVaultReviewSearch(unittest.TestCase):
                 }
             ]
         }
-        with patch("omeia.api.search_service.review_queue", return_value=[]), patch(
-            "omeia.api.search_service.deduplication_report",
+        with patch("app_skeleton.api.search_service.review_queue", return_value=[]), patch(
+            "app_skeleton.api.search_service.deduplication_report",
             return_value=dup_report,
         ):
             hits = search_vault_review("file", filters=SearchFilters(), limit=5)

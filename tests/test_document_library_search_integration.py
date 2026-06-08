@@ -4,9 +4,9 @@ from __future__ import annotations
 import unittest
 from unittest.mock import patch
 
-from omeia.api.search_models import SearchFilters
-from omeia.api.search_nav import hit_source_label, nav_for_bucket
-from omeia.api.search_service import (
+from app_skeleton.api.search_models import SearchFilters
+from app_skeleton.api.search_nav import hit_source_label, nav_for_bucket
+from app_skeleton.api.search_service import (
     BUCKET_WEIGHTS,
     INTENT_SCOPES,
     SearchService,
@@ -51,7 +51,7 @@ class TestDocumentLibraryIntegration(unittest.TestCase):
                 }
             ]
         }
-        with patch("omeia.api.search_service.search_document_library_rows", return_value=rows):
+        with patch("app_skeleton.api.search_service.search_document_library_rows", return_value=rows):
             hits = search_document_library(
                 "CycIF",
                 filters=SearchFilters(),
@@ -81,7 +81,7 @@ class TestDocumentLibraryIntegration(unittest.TestCase):
                 }
             ]
         }
-        with patch("omeia.api.search_service.search_document_library_rows", return_value=rows):
+        with patch("app_skeleton.api.search_service.search_document_library_rows", return_value=rows):
             hits = search_document_library(
                 "path",
                 filters=SearchFilters(),
@@ -94,7 +94,7 @@ class TestDocumentLibraryIntegration(unittest.TestCase):
     def test_unified_search_includes_document_library_scope(self) -> None:
         svc = SearchService(db_conn="postgresql://invalid:5432/nodb")
         with patch.object(svc, "_log_query"), patch(
-            "omeia.api.search_service.search_document_library",
+            "app_skeleton.api.search_service.search_document_library",
             return_value=[],
         ) as mock_dl:
             svc.unified_search("protocol", scopes="document_library", limit=3)

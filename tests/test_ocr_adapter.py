@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import pytest
 
-from omeia.api.ocr.adapter import get_ocr_backend, ocr_enabled
-from omeia.api.ocr.tesseract_backend import TesseractBackend
+from app_skeleton.api.ocr.adapter import get_ocr_backend, ocr_enabled
+from app_skeleton.api.ocr.tesseract_backend import TesseractBackend
 
 
 def test_ocr_disabled_by_default(monkeypatch: pytest.MonkeyPatch) -> None:

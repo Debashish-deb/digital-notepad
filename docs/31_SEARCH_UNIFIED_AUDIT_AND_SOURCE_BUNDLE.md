@@ -84,7 +84,7 @@ The platform has **six partially overlapping search systems**, not one. Each use
 
 | Property | Value |
 |----------|-------|
-| **Component** | `omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx` |
+| **Component** | `apps/web/src/components/GlobalSearchOverlay.jsx` |
 | **Trigger** | Sidebar search button → `App.jsx` `isSearchOpen` |
 | **API** | `GET /platform/search?q={query}` |
 | **Debounce** | 300 ms |
@@ -7180,7 +7180,7 @@ def patch_asset_review(
 
 Full file copies as of audit date. Paths relative to repository root.
 
-### `omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx`
+### `apps/web/src/components/GlobalSearchOverlay.jsx`
 
 ```javascript
 import React, { useState, useEffect, useRef } from 'react';
@@ -7398,7 +7398,7 @@ export default function GlobalSearchOverlay({ isOpen, onClose, API_URL }) {
 
 ```
 
-### `omeia/ui/react_frontend/src/screens/KnowledgeSearchScreen.jsx`
+### `apps/web/src/screens/KnowledgeSearchScreen.jsx`
 
 ```javascript
 
@@ -7506,7 +7506,7 @@ export default function KnowledgeSearchScreen({ title, description }) {
 
 ```
 
-### `omeia/ui/react_frontend/src/components/DocumentFileSearch.jsx`
+### `apps/web/src/components/DocumentFileSearch.jsx`
 
 ```javascript
 import { Search } from 'lucide-react';
@@ -7543,7 +7543,7 @@ export default function DocumentFileSearch({
 
 ```
 
-### `omeia/ui/react_frontend/src/utils/documentBrowserUtils.js`
+### `apps/web/src/utils/documentBrowserUtils.js`
 
 ```javascript
 /** Shared helpers for lab document browsers (billing, overview, etc.). */
@@ -7902,7 +7902,7 @@ export function filterFilesBySubfolder(files, subfolderId) {
 
 ```
 
-### `omeia/ui/react_frontend/src/components/ChatWidget.jsx`
+### `apps/web/src/components/ChatWidget.jsx`
 
 ```javascript
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -8276,7 +8276,7 @@ export default function ChatWidget({ dbProjects = [], API_URL }) {
 
 ```
 
-### `omeia/ui/react_frontend/src/api/client.js`
+### `apps/web/src/api/client.js`
 
 ```javascript
 /**
@@ -8405,7 +8405,7 @@ export async function apiDelete(path, options = {}) {
 
 ```
 
-### `omeia/ui/react_frontend/src/App.jsx`
+### `apps/web/src/App.jsx`
 
 ```javascript
 import React, { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
@@ -8992,7 +8992,7 @@ export default App;
 
 ```
 
-### `omeia/ui/react_frontend/src/components/Sidebar.jsx`
+### `apps/web/src/components/Sidebar.jsx`
 
 ```javascript
 import React, { useMemo } from 'react';
@@ -9235,7 +9235,7 @@ export default function Sidebar({
 
 ```
 
-### `omeia/ui/react_frontend/src/components/ProjectFolderBrowser.jsx`
+### `apps/web/src/components/ProjectFolderBrowser.jsx`
 
 ```javascript
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
@@ -10030,7 +10030,7 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
 
 ```
 
-### `omeia/ui/react_frontend/src/components/LabDocumentsBrowser.jsx`
+### `apps/web/src/components/LabDocumentsBrowser.jsx`
 
 ```javascript
 import { useEffect, useMemo, useState } from 'react';
@@ -10532,7 +10532,7 @@ export default function LabDocumentsBrowser({
 
 ```
 
-### `omeia/ui/react_frontend/src/screens/AiLabAssistantScreen.jsx`
+### `apps/web/src/screens/AiLabAssistantScreen.jsx`
 
 ```javascript
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -11044,7 +11044,7 @@ function PromptsLibraryTab() {
 
 ```
 
-### `omeia/ui/react_frontend/src/screens/LabKnowledgeScreen.jsx`
+### `apps/web/src/screens/LabKnowledgeScreen.jsx`
 
 ```javascript
 
@@ -11271,7 +11271,7 @@ export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, desc
 
 ```
 
-### `omeia/ui/react_frontend/src/components/ProjectDocumentsBrowser.jsx`
+### `apps/web/src/components/ProjectDocumentsBrowser.jsx`
 
 ```javascript
 import { useEffect, useMemo, useState } from 'react';

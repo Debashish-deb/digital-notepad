@@ -7,10 +7,10 @@ from unittest.mock import MagicMock, patch
 
 from fastapi.testclient import TestClient
 
-from omeia.api.answer_grounding_service import enforce_citations, validate_answer_sources
-from omeia.api.llm_client import LLMClient
-from omeia.api.main import app
-from omeia.api.privacy_guardrails import audit_message, guard_for_llm
+from app_skeleton.api.answer_grounding_service import enforce_citations, validate_answer_sources
+from app_skeleton.api.llm_client import LLMClient
+from app_skeleton.api.main import app
+from app_skeleton.api.privacy_guardrails import audit_message, guard_for_llm
 from tests.auth_fixtures import apply_auth_override, clear_auth_override
 
 
@@ -41,7 +41,7 @@ class TestChatApi(unittest.TestCase):
         self.assertIn("llm", data)
         self.assertIn("provider", data["llm"])
 
-    @patch("omeia.api.routers.chat.require_role")
+    @patch("app_skeleton.api.routers.chat.require_role")
     def test_chat_message_mock_mode(self, _role_patch) -> None:
         response = self.client.post(
             "/api/chat",
@@ -56,7 +56,7 @@ class TestChatApi(unittest.TestCase):
         self.assertIn("provider", data)
         self.assertTrue(data.get("is_safe"))
 
-    @patch("omeia.api.routers.chat.require_role")
+    @patch("app_skeleton.api.routers.chat.require_role")
     def test_chat_greeting_skips_rag_and_sources(self, _role_patch) -> None:
         response = self.client.post(
             "/api/chat",
@@ -75,8 +75,8 @@ class TestChatApi(unittest.TestCase):
         self.assertEqual(data.get("search_hits"), [])
         self.assertEqual(data.get("limitations"), [])
 
-    @patch("omeia.api.routers.chat.require_role")
-    @patch("omeia.api.routers.chat._chat_llm")
+    @patch("app_skeleton.api.routers.chat.require_role")
+    @patch("app_skeleton.api.routers.chat._chat_llm")
     def test_mock_fallback_reports_honest_provenance(self, chat_llm_patch, _role_patch) -> None:
         forced = LLMClient()
         forced.provider = "gemini"
@@ -107,7 +107,7 @@ class TestChatApi(unittest.TestCase):
         self.assertEqual(data.get("effective_provider"), "mock")
         self.assertNotEqual(data.get("provider"), "gemini")
 
-    @patch("omeia.api.routers.chat.require_role")
+    @patch("app_skeleton.api.routers.chat.require_role")
     def test_off_topic_returns_labeled_refusal(self, _role_patch) -> None:
         response = self.client.post(
             "/api/chat",
@@ -125,16 +125,16 @@ class TestChatApi(unittest.TestCase):
         )
         self.assertTrue(any("off-topic" in (n or "").lower() for n in data.get("limitations") or []))
 
-    @patch("omeia.api.routers.chat.require_role")
-    @patch("omeia.api.routers.chat.rag_agent")
-    @patch("omeia.api.routers.chat._chat_llm")
+    @patch("app_skeleton.api.routers.chat.require_role")
+    @patch("app_skeleton.api.routers.chat.rag_agent")
+    @patch("app_skeleton.api.routers.chat._chat_llm")
     def test_empty_corpus_honest_answer(self, chat_llm_patch, rag_patch, _role_patch) -> None:
         mock_llm = LLMClient()
         mock_llm.provider = "mock"
         chat_llm_patch.return_value = mock_llm
         rag_patch.retrieve.return_value = []
 
-        with patch("omeia.api.routers.chat.SearchService") as search_cls:
+        with patch("app_skeleton.api.routers.chat.SearchService") as search_cls:
             search_instance = MagicMock()
             search_instance.hits_for_copilot.return_value = []
             search_cls.return_value = search_instance

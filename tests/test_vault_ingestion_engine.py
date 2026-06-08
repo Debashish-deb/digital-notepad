@@ -7,8 +7,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from omeia.api import document_extraction as de
-from omeia.api.vault_ingestion_engine import (
+from app_skeleton.api import document_extraction as de
+from app_skeleton.api.vault_ingestion_engine import (
     iter_scan_files,
     run_ingest_scan,
     stable_asset_id,
@@ -90,8 +90,8 @@ class TestVaultIngestionEngine(unittest.TestCase):
         self.assertEqual(a, b)
         self.assertTrue(a.startswith("asset_"))
 
-    @patch("omeia.api.vault_ingestion_engine._db_conn")
-    @patch("omeia.api.vault_ingestion_engine.psycopg.connect")
+    @patch("app_skeleton.api.vault_ingestion_engine._db_conn")
+    @patch("app_skeleton.api.vault_ingestion_engine.psycopg.connect")
     def test_run_ingest_scan_writes_report(self, mock_connect, mock_conn):
         mock_conn.return_value = "postgresql://mock"
         conn = MagicMock()
@@ -108,8 +108,8 @@ class TestVaultIngestionEngine(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / "note.txt").write_text("hello vault", encoding="utf-8")
-            with patch("omeia.api.vault_ingestion_engine.INGESTION_REPORTS_DIR", root / "reports"):
-                with patch("omeia.api.vault_ingestion_engine.ensure_vault_schema"):
+            with patch("app_skeleton.api.vault_ingestion_engine.INGESTION_REPORTS_DIR", root / "reports"):
+                with patch("app_skeleton.api.vault_ingestion_engine.ensure_vault_schema"):
                     result = run_ingest_scan(scan_root=root, max_files=10)
         self.assertIn("counts", result)
         self.assertGreaterEqual(result["counts"]["scanned"], 1)
@@ -158,7 +158,7 @@ class TestVaultIngestionEngine(unittest.TestCase):
 class TestVaultIngestApi(unittest.TestCase):
     def setUp(self):
         from fastapi.testclient import TestClient
-        from omeia.api.main import app
+        from app_skeleton.api.main import app
 
         self.client = TestClient(app)
 

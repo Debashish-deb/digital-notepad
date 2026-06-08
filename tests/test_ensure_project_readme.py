@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from omeia.api import paths
-from omeia.api.project_processor import (
+from app_skeleton.api import paths
+from app_skeleton.api.project_processor import (
     _readme_template,
     _twin_has_readme,
     ensure_project_readme,
@@ -51,7 +51,7 @@ def project_with_root(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setattr(paths, "PROJECTS_ROOT", tmp_path / "projects")
     monkeypatch.setenv("PROJECTS_ROOT", str(tmp_path / "projects"))
     monkeypatch.setattr(
-        "omeia.api.project_processor._load_catalog",
+        "app_skeleton.api.project_processor._load_catalog",
         lambda: {
             "SampleProj": {
                 "project_code": "SampleProj",
@@ -61,19 +61,19 @@ def project_with_root(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
         },
     )
     monkeypatch.setattr(
-        "omeia.api.project_processor.get_content_root",
+        "app_skeleton.api.project_processor.get_content_root",
         lambda code: root if code == "SampleProj" else None,
     )
     monkeypatch.setattr(
-        "omeia.api.project_processor.load_processed",
+        "app_skeleton.api.project_processor.load_processed",
         lambda code: None,
     )
     monkeypatch.setattr(
-        "omeia.api.project_processor.get_digital_twin",
+        "app_skeleton.api.project_processor.get_digital_twin",
         lambda code, refresh=False: {"project_code": code, "document_index": [{"path": "README.md"}]},
     )
     monkeypatch.setattr(
-        "omeia.api.project_processor.save_processed",
+        "app_skeleton.api.project_processor.save_processed",
         lambda code, data: None,
     )
     return root

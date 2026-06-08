@@ -54,4 +54,4 @@ PYEOF
 echo "Created $ROOT/omeia/api/imaging_capabilities.py"
 cd "$ROOT"
 source .venv/bin/activate
-PYTHONPATH="$ROOT" python -c "from omeia.api.imaging_capabilities import probe_imaging_stack; import json; print(json.dumps(probe_imaging_stack(), indent=2))"
+PYTHONPATH="$ROOT" python -c "from app_skeleton.api.imaging_capabilities import probe_imaging_stack; import json; print(json.dumps(probe_imaging_stack(), indent=2))"

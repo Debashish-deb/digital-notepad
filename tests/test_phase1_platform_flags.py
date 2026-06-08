@@ -5,7 +5,7 @@ import os
 
 import pytest
 
-from omeia.api.platform_flags import (
+from app_skeleton.api.platform_flags import (
     canonical_chunk_pipeline_enabled,
     knowledge_indexer_enabled,
     platform_chunk_write_enabled,

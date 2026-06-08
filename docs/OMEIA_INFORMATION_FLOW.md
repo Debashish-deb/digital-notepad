@@ -70,10 +70,10 @@ flowchart LR
 
 - The whole app runtime is on Linux: Docker services, FastAPI, Vite, Postgres, Qdrant, Ollama/LLM models, and `DATABASE_ROOT` / `PROJECTS_ROOT`
 - Development is controlled from the Mac via SSH/editor/terminal, but processes are started and served on Linux
-- One command: `./scripts/start_linux.sh` → `scripts/dev/start_linux_desktop.sh` → `start.sh`
-- Default Docker stack (`docker-compose.yml`): **postgres** (`127.0.0.1:5432`), **qdrant** (`127.0.0.1:6333`), **ollama** (internal), **ollama-proxy** (`127.0.0.1:11434` with bearer auth)
+- One command: `make start` or `./start_linux.sh` → `infra/scripts/start_linux.sh` → `infra/scripts/dev/start_linux_desktop.sh` → `start.sh`
+- Default Docker stack (`infra/compose/docker-compose.yml`, root symlink): **postgres** (`127.0.0.1:5432`), **qdrant** (`127.0.0.1:6333`), **ollama** (internal), **ollama-proxy** (`127.0.0.1:11434` with bearer auth)
 - Optional biomedical model services: `docker-compose.biomodels.yml` + `/api/biomedical-models/*`
-- API: `uvicorn omeia.api.main:app --host 0.0.0.0 --port 8000`
+- API: `uvicorn app_skeleton.api.main:app --host 0.0.0.0 --port 8000`
 - Dev UI: Vite `0.0.0.0:5173` (proxies API paths to `:8000`)
 - Typical URLs: `http://<tailscale-ip>:5173/`, campus LAN as configured
 
@@ -161,7 +161,7 @@ sequenceDiagram
     API-->>Browser: 200 project list
 ```
 
-**Client:** Firebase web SDK (`omeia/ui/react_frontend/src/config/firebase.js`) — **email/password only** (no Google Sign-In). Token key: **`farkki_id_token`** in `localStorage`, attached by `omeia/ui/react_frontend/src/services/client.js`.
+**Client:** Firebase web SDK (`apps/web/src/config/firebase.js`) — **email/password only** (no Google Sign-In). Token key: **`farkki_id_token`** in `localStorage`, attached by `apps/web/src/services/client.js`.
 
 **Server:** `require_platform_user` (`apps/api/src/omeia/security/auth.py`):
 
@@ -635,11 +635,11 @@ Global `require_platform_user` on most routers unless noted. Write/admin handler
 - `bash -n scripts/start_linux.sh`, `bash -n scripts/dev/start_linux_desktop.sh`, `bash -n start.sh` - passed.
 - `.venv/bin/python -c "import omeia.api.main; print('IMPORT_OK')"` - passed, but emitted a Qdrant compatibility warning when local Qdrant was unavailable.
 - `python3 scripts/ops/check_linux_sync_health.py` - local data roots and processed twins readable; `csc_media_readable` failed in the Mac workspace because no CSC media samples were present.
-- `npm run build` in `omeia/ui/react_frontend` - passed in about 2 s; Vite warned about a >700 kB chunk (`three-vendor`, about 973 kB minified). Build output was about 89 MB because `public/` is about 77 MB.
+- `npm run build` in `apps/web` - passed in about 2 s; Vite warned about a >700 kB chunk (`three-vendor`, about 973 kB minified). Build output was about 89 MB because `public/` is about 77 MB.
 
 ### High priority findings
 
-1. **Public static extracted-document exposure** - `omeia/ui/react_frontend/public/database/docs/*.json` and `public/processed/*.json` are copied into `dist/` by Vite. Some files are multi-MB extracted document payloads. If a future Hostinger/Cloudflare deployment serves `dist/` publicly, those JSON files are public static content, bypassing Firebase and `/api/files/*`.
+1. **Public static extracted-document exposure** - `apps/web/public/database/docs/*.json` and `public/processed/*.json` are copied into `dist/` by Vite. Some files are multi-MB extracted document payloads. If a future Hostinger/Cloudflare deployment serves `dist/` publicly, those JSON files are public static content, bypassing Firebase and `/api/files/*`.
 
    **Fix:** remove extracted lab document payloads from frontend `public/`; serve previews/downloads through authenticated API routes (`secure_files` or document-library preview/export) with `REQUIRE_AUTH_STATIC=true` for originals. Add a CI/build guard that fails when `public/database/docs/*.json` or large full-text JSON appears in the frontend public folder. Purge any deployed static copy/CDN cache after removal.
 
@@ -651,7 +651,7 @@ Global `require_platform_user` on most routers unless noted. Write/admin handler
 
    **Fix:** split `/live` from `/ready`. Keep `/live` cheap and always process-level. Make `/ready` fail with 503 until required dependencies (Postgres, Qdrant when indexing/search needs it, LLM when configured as required) pass. Change launchers and monitoring to wait on `/ready`.
 
-4. **Direct `uvicorn` env-ordering hazard** - `main.py` imports auth and runs `validate_environment()` before `common.py` loads `configs/.env`; `auth.py` freezes `APP_ENV`, `AUTH_DISABLED`, and `AUTH_ALLOW_SKIP` at import time. Launchers load `.env` first, but direct `uvicorn omeia.api.main:app` can validate/auth against process defaults instead of `configs/.env`.
+4. **Direct `uvicorn` env-ordering hazard** - `main.py` imports auth and runs `validate_environment()` before `common.py` loads `configs/.env`; `auth.py` freezes `APP_ENV`, `AUTH_DISABLED`, and `AUTH_ALLOW_SKIP` at import time. Launchers load `.env` first, but direct `uvicorn app_skeleton.api.main:app` can validate/auth against process defaults instead of `configs/.env`.
 
    **Fix:** centralize settings loading before importing auth/security modules. Make `validate_environment()` and auth config read from one settings object, not module-level constants. Also document that production must start through the launcher or a service file that exports the same env.
 
@@ -733,7 +733,7 @@ These are **implemented today** — not gaps:
 
 3. **Readiness/liveness mismatch** — `/health` returns 200 + `"status": "ok"` even when dependency checks are degraded; launcher waits on liveness rather than readiness.
 
-4. **Env/auth import ordering** — launchers load env correctly, but direct `uvicorn omeia.api.main:app` can evaluate `validate_environment()` and auth constants before `configs/.env` is loaded.
+4. **Env/auth import ordering** — launchers load env correctly, but direct `uvicorn app_skeleton.api.main:app` can evaluate `validate_environment()` and auth constants before `configs/.env` is loaded.
 
 5. **Broken agent-category duplicate route** — `/api/agent-categories/{category_id}/run` calls `chat_category(req, user)` with the wrong function signature.
 
@@ -840,9 +840,9 @@ These are **implemented today** — not gaps:
 | Qdrant blueprint | `configs/qdrant_collections.yaml` |
 | Auth | `apps/api/src/omeia/security/auth.py` |
 | Static + secure files | `apps/api/src/omeia/api/routers/lab_static.py`, `apps/api/src/omeia/security/secure_files.py` |
-| Frontend shell | `omeia/ui/react_frontend/src/App.jsx` |
-| Screen cache | `omeia/ui/react_frontend/src/shared/layout/ScreenCache.jsx` |
-| Linux start | `scripts/dev/start_linux_desktop.sh`, `start.sh` |
+| Frontend shell | `apps/web/src/App.jsx` |
+| Screen cache | `apps/web/src/shared/layout/ScreenCache.jsx` |
+| Linux start | `infra/scripts/dev/start_linux_desktop.sh`, `start_linux.sh`, `Makefile` |
 | Env template | `configs/.env.example`, `configs/linux-workstation.env.template` |
 
 ---

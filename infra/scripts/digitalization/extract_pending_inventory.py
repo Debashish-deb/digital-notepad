@@ -13,15 +13,15 @@ _SCRIPT = Path(__file__).resolve()
 ROOT = _SCRIPT.parents[2]
 sys.path.insert(0, str(ROOT))
 
-from omeia.api import document_extraction as de  # noqa: E402
-from omeia.api.document_library_service import (  # noqa: E402
+from app_skeleton.api import document_extraction as de  # noqa: E402
+from app_skeleton.api.document_library_service import (  # noqa: E402
     AUDIT_INVENTORY_JSON,
     INVENTORY_JSON,
     _row_has_extracted_text,
     invalidate_cache,
     reconcile_vector_status,
 )
-from omeia.api.paths import DATABASE_ROOT  # noqa: E402
+from app_skeleton.api.paths import DATABASE_ROOT  # noqa: E402
 
 LOGGER = logging.getLogger(__name__)
 

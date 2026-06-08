@@ -25,7 +25,7 @@ chmod +x scripts/search/setup_search_portable.sh
 
 # 4. Run API + frontend (existing dev flow)
 ./deploy/university-desktop/run_api_dev.sh
-cd omeia/ui/react_frontend && npm run dev
+cd apps/web && npm run dev
 ```
 
 Open app → **⌘K** omnibox or **AI Lab Assistant → Advanced search**.

@@ -1,8 +1,8 @@
 """Strategy agent unit tests."""
 from __future__ import annotations
 
-from omeia.api.evidence_orchestrator import EvidenceItem, EvidencePackage
-from omeia.api.strategy_agents import (
+from app_skeleton.api.evidence_orchestrator import EvidenceItem, EvidencePackage
+from app_skeleton.api.strategy_agents import (
     BiomarkerAgent,
     ExperimentalDesignAgent,
     LiteratureAgent,

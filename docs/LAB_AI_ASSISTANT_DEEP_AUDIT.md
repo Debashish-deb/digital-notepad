@@ -42,8 +42,8 @@ While the architecture is well-designed with proper separation of concerns, seve
 | **Specialist Agents** | `omeia/api/agents.py` | RAG, installation, troubleshooting agents |
 | **Lab Knowledge Store** | `omeia/api/lab_knowledge_store.py` | Lab document indexing (PostgreSQL + Qdrant) |
 | **Database Processor** | `omeia/api/database_processor.py` | Lab section extraction and chunking |
-| **Frontend Chat Widget** | `omeia/ui/react_frontend/src/components/ChatWidget.jsx` | React chat interface |
-| **AI Assistant Screen** | `omeia/ui/react_frontend/src/screens/AiLabAssistantScreen.jsx` | Main AI assistant UI |
+| **Frontend Chat Widget** | `apps/web/src/components/ChatWidget.jsx` | React chat interface |
+| **AI Assistant Screen** | `apps/web/src/screens/AiLabAssistantScreen.jsx` | Main AI assistant UI |
 | **Agent Orchestrator** | `omeia/api/agent_orchestrator/orchestrator.py` | Multi-agent category-based routing |
 | **Agent RAG Context** | `omeia/api/agent_orchestrator/rag_context.py` | Shared retrieval context for agents |
 | **Agent Registry** | `omeia/api/agent_orchestrator/registry.py` | Agent and category configuration |
@@ -534,7 +534,7 @@ The assistant generates responses in different styles based on intent:
 4. **No figure references:** Cannot reference figures or images
 5. **Limited markdown:** Only basic markdown (bold, headers, code blocks, lists)
 
-**Code Reference:** `omeia/ui/react_frontend/src/components/ChatWidget.jsx:141-189`
+**Code Reference:** `apps/web/src/components/ChatWidget.jsx:141-189`
 
 ```jsx
 function MarkdownLite({ text }) {
@@ -1493,7 +1493,7 @@ This section outlines the safe implementation plan to integrate existing interna
 - Backward compatible with existing markdown
 
 **Files to Modify:**
-- `omeia/ui/react_frontend/src/components/ChatWidget.jsx` - Improve markdown rendering
+- `apps/web/src/components/ChatWidget.jsx` - Improve markdown rendering
 - `package.json` - May need to add markdown library if not present
 
 **API Contract Changes:**

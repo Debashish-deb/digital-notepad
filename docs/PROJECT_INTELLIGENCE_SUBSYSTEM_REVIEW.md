@@ -64,7 +64,7 @@ The subsystem is **functionally rich for a single-lab dev twin** and demonstrate
 
 ## 2. Project Architecture Diagram
 
-Navigation maps to implementation (`omeia/ui/react_frontend/src/config/navigation.js`):
+Navigation maps to implementation (`apps/web/src/config/navigation.js`):
 
 | UI area | Screen / component | Backend |
 |---------|-------------------|---------|
@@ -217,9 +217,9 @@ flowchart LR
 | Twin builder | `omeia/api/project_processor.py` — `process_project()`, `get_digital_twin()`, `save_processed()` |
 | Lifecycle → workspace tab mapping | `LIFECYCLE_RULES` in `project_processor.py` (management → plan, methods → methods, etc.) |
 | API | `omeia/api/routers/datapad.py` — `GET/PUT /api/projects/{code}/digital-twin` |
-| Frontend hook | `omeia/ui/react_frontend/src/shared/hooks/useDigitalTwin.js` |
-| Static fallback | `omeia/ui/react_frontend/public/processed/{code}.json` |
-| Normalization | `omeia/ui/react_frontend/src/lib/digitalTwinUtils.js` |
+| Frontend hook | `apps/web/src/shared/hooks/useDigitalTwin.js` |
+| Static fallback | `apps/web/public/processed/{code}.json` |
+| Normalization | `apps/web/src/lib/digitalTwinUtils.js` |
 
 ### Twin refresh semantics
 
@@ -598,7 +598,7 @@ Prioritized by remediation phase:
 | `omeia/api/routers/research.py` | Firebase user → researcher; project ACL on reads |
 | `omeia/security/permissions.py` | Wire `can_read_project` into route helpers |
 | `omeia/api/common.py` | `fetch_projects_unified()` — expose coverage flags |
-| `omeia/ui/react_frontend/src/pages/ProjectsScreen.jsx` | Needs-confirmation badges |
+| `apps/web/src/pages/ProjectsScreen.jsx` | Needs-confirmation badges |
 | `omeia/api/project_knowledge_extractor.py` | Shared chunker; checksum skip |
 | `omeia/api/datapad_service.py` | Post-save re-index hook (optional flag) |
 
@@ -609,8 +609,8 @@ Prioritized by remediation phase:
 | `omeia/api/project_processor.py` | Incremental scan; split parsers module |
 | `omeia/api/routers/datapad.py` | Async `process-all`; twin-status endpoint |
 | `scripts/ops/autonomous_processor.py` | Schedule twin + ingest pipeline |
-| `omeia/ui/react_frontend/src/shared/hooks/useDigitalTwin.js` | Stale indicator UX |
-| `omeia/ui/react_frontend/src/features/projects/components/DigitalTwinPanel.jsx` | Scan progress / error surfacing |
+| `apps/web/src/shared/hooks/useDigitalTwin.js` | Stale indicator UX |
+| `apps/web/src/features/projects/components/DigitalTwinPanel.jsx` | Scan progress / error surfacing |
 
 ### P1 — Knowledge plane alignment
 
@@ -625,11 +625,11 @@ Prioritized by remediation phase:
 
 | File | Change |
 |------|--------|
-| `omeia/ui/react_frontend/src/pages/LabKnowledgeScreen.jsx` | API-first catalog |
-| `omeia/ui/react_frontend/src/pages/WorkspaceScreen.jsx` | Ingest freshness banner |
-| `omeia/ui/react_frontend/src/contexts/TaskpadContext.jsx` | Server-backed persistence option |
-| `omeia/ui/react_frontend/src/pages/MeetingScreen.jsx` | Backend or remove from nav |
-| `omeia/ui/react_frontend/src/features/projects/components/portfolio/ResearchAssistPanel.jsx` | Ground on `search_project_knowledge()` |
+| `apps/web/src/pages/LabKnowledgeScreen.jsx` | API-first catalog |
+| `apps/web/src/pages/WorkspaceScreen.jsx` | Ingest freshness banner |
+| `apps/web/src/contexts/TaskpadContext.jsx` | Server-backed persistence option |
+| `apps/web/src/pages/MeetingScreen.jsx` | Backend or remove from nav |
+| `apps/web/src/features/projects/components/portfolio/ResearchAssistPanel.jsx` | Ground on `search_project_knowledge()` |
 
 ### P2 — Schema & SQL
 

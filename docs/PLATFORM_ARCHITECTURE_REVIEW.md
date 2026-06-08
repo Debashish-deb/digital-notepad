@@ -1183,12 +1183,12 @@ Priority-ordered. **Do not start refactors without tests** for `search_service`,
 
 | File | Why |
 |------|-----|
-| `omeia/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx` | 1200+ lines; extract metadata panel |
-| `omeia/ui/react_frontend/src/pages/WorkspaceScreen.jsx` | Tab shell vs data hooks |
-| `omeia/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx` | Consolidate into `GlobalSearchOverlay` |
-| `omeia/ui/react_frontend/src/services/ApiContext.jsx` | Split auth vs API config |
-| `omeia/ui/react_frontend/src/App.jsx` | Screen registry vs routes |
-| `omeia/ui/react_frontend/src/pages/LabKnowledgeScreen.jsx` | API-first catalog vs static JSON |
+| `apps/web/src/features/documents/components/ScientificFileExplorer.jsx` | 1200+ lines; extract metadata panel |
+| `apps/web/src/pages/WorkspaceScreen.jsx` | Tab shell vs data hooks |
+| `apps/web/src/pages/KnowledgeSearchScreen.jsx` | Consolidate into `GlobalSearchOverlay` |
+| `apps/web/src/services/ApiContext.jsx` | Split auth vs API config |
+| `apps/web/src/App.jsx` | Screen registry vs routes |
+| `apps/web/src/pages/LabKnowledgeScreen.jsx` | API-first catalog vs static JSON |
 
 ### P3 — Config & deploy
 

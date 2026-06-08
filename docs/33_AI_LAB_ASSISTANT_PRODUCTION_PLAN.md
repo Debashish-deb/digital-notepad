@@ -18,7 +18,7 @@
   ```bash
   python -m compileall omeia/api
   python -m unittest discover -s tests -p 'test_*.py'
-  cd omeia/ui/react_frontend && npm run build
+  cd apps/web && npm run build
   ```
 - **Never claim a phase is done without pasting the actual command output.**
 
@@ -240,9 +240,9 @@
 5. **Multilingual:** detect the user's language (Finnish and other supported locales) and answer in that language while still retrieving from English docs.
 
 ### Files
-- `omeia/ui/react_frontend/src/components/ChatWidget.jsx`
-- `omeia/ui/react_frontend/src/components/AssistantSearchHits` (or equivalent)
-- `omeia/ui/react_frontend/src/api/chatClient.js`
+- `apps/web/src/components/ChatWidget.jsx`
+- `apps/web/src/components/AssistantSearchHits` (or equivalent)
+- `apps/web/src/api/chatClient.js`
 - `omeia/api/chat_service.py` (language-detection → response-language instruction)
 
 ### Gate

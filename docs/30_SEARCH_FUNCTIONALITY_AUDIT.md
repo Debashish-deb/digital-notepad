@@ -65,7 +65,7 @@ The platform has **six partially overlapping search systems**, not one. Each use
 
 | Property | Value |
 |----------|-------|
-| **Component** | `omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx` |
+| **Component** | `apps/web/src/components/GlobalSearchOverlay.jsx` |
 | **Trigger** | Sidebar search button → `App.jsx` `isSearchOpen` |
 | **API** | `GET /platform/search?q={query}` |
 | **Debounce** | 300 ms |

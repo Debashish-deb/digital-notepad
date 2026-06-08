@@ -5,14 +5,14 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from omeia.api.ocr.queue import (
+from app_skeleton.api.ocr.queue import (
     apply_ocr_result,
     enqueue_ocr_job,
     ocr_badge_for_manifest,
     requeue_ocr_for_document,
 )
-from omeia.digitalization.extractors import extract_file
-from omeia.digitalization.models import SourceFileManifest
+from app_skeleton.digitalization.extractors import extract_file
+from app_skeleton.digitalization.models import SourceFileManifest
 
 
 def test_enqueue_always_creates_job_even_when_ocr_disabled(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -71,7 +71,7 @@ def test_requeue_existing_failed_job(monkeypatch: pytest.MonkeyPatch) -> None:
     conn = MagicMock()
     conn.cursor.return_value.__enter__.return_value = cur
 
-    with patch("omeia.api.ocr.queue.resolve_ocr_source_path", return_value="/data/scans/a.pdf"):
+    with patch("app_skeleton.api.ocr.queue.resolve_ocr_source_path", return_value="/data/scans/a.pdf"):
         result = requeue_ocr_for_document(conn, "doc-abc")
 
     assert result["action"] == "requeued"
@@ -112,7 +112,7 @@ def test_scanned_image_manifest_needs_ocr(tmp_path) -> None:
 
 def test_process_queue_applies_backend_when_enabled(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ENABLE_OCR", "true")
-    from omeia.api.ocr.adapter import OcrResult
+    from app_skeleton.api.ocr.adapter import OcrResult
     from scripts.ops import run_ocr_queue
 
     fake_backend = MagicMock()

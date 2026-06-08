@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from omeia.api.knowledge_indexer import (
+from app_skeleton.api.knowledge_indexer import (
     index_document_text,
     index_extraction_chunks,
     index_section_twin,
@@ -27,7 +27,7 @@ def test_write_chunks_disabled_when_flag_off(monkeypatch: pytest.MonkeyPatch) ->
     assert result["chunks_written"] == 0
 
 
-@patch("omeia.api.knowledge_indexer.write_chunks")
+@patch("app_skeleton.api.knowledge_indexer.write_chunks")
 def test_index_extraction_chunks_delegates(mock_write: MagicMock) -> None:
     mock_write.return_value = {"enabled": True, "chunks_written": 1}
     out = index_extraction_chunks(
@@ -41,8 +41,8 @@ def test_index_extraction_chunks_delegates(mock_write: MagicMock) -> None:
     assert out["chunks_written"] == 1
 
 
-@patch("omeia.api.knowledge_indexer.index_extraction_chunks")
-@patch("omeia.api.knowledge_indexer.chunk_text")
+@patch("app_skeleton.api.knowledge_indexer.index_extraction_chunks")
+@patch("app_skeleton.api.knowledge_indexer.chunk_text")
 def test_index_document_text_chunks_then_indexes(
     mock_chunk: MagicMock,
     mock_index: MagicMock,
@@ -65,7 +65,7 @@ def test_index_document_text_chunks_then_indexes(
 
 def test_index_vault_extraction_uses_stable_code(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("KNOWLEDGE_INDEXER_ENABLED", "false")
-    with patch("omeia.api.knowledge_indexer.index_extraction_chunks") as mock_index:
+    with patch("app_skeleton.api.knowledge_indexer.index_extraction_chunks") as mock_index:
         index_vault_extraction(
             asset_id="asset-42",
             filename="paper.pdf",

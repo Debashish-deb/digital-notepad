@@ -153,7 +153,7 @@ echo "--- OMEIA llm_client test ---"
   PY_BIN="${ROOT}/.venv-local/bin/python3"
   if [[ ! -x "$PY_BIN" ]]; then PY_BIN="${ROOT}/.venv/bin/python3"; fi
   "$PY_BIN" - <<'PY'
-from omeia.api.llm_client import LLMClient
+from app_skeleton.api.llm_client import LLMClient
 llm = LLMClient()
 print("provider:", llm.provider, "model:", llm.model, "healthy:", llm.healthCheck())
 out = llm.generate("What is HGSC in one sentence?", "You are a concise research assistant.")

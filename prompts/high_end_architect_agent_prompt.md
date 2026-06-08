@@ -191,8 +191,8 @@ Then inspect implementation code:
 25. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/feature_warehouse.py
 26. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/clinical_tools.py
 27. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/agents.py
-28. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/ui/react_frontend/src/App.jsx
-29. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/ui/react_frontend/src/config/navigation.js
+28. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/apps/web/src/App.jsx
+29. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/apps/web/src/config/navigation.js
 30. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/data/projects_catalog.json
 
 Then inspect SQL:

@@ -143,7 +143,7 @@ Must match the exact Hostinger origin. Restart `omeia-api.service` after changes
 ## Hostinger static deploy
 
 ```bash
-cd omeia/ui/react_frontend
+cd apps/web
 # VITE_API_URL=https://api.example.fi in .env.production
 npm ci && npm run build
 ```

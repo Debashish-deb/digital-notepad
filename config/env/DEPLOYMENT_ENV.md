@@ -8,7 +8,7 @@ Copy values into the right host **before** go-live. Full topology: `docs/26_PROD
 
 ## 1. Hostinger — React build (`.env.production` in `react_frontend/`)
 
-Create `omeia/ui/react_frontend/.env.production` (gitignored). Build with `npm run build`; upload `dist/` to the app subdomain.
+Create `apps/web/.env.production` (gitignored). Build with `npm run build`; upload `dist/` to the app subdomain.
 
 ```bash
 # --- API (required in production) ---
@@ -24,7 +24,7 @@ VITE_FIREBASE_APP_ID=1:570069536455:web:4c4623a81262e6c4eef8e2
 VITE_FIREBASE_MEASUREMENT_ID=G-24JLFQYRTG
 ```
 
-**Cross-check:** `configs/FIREBASE_WEB_SETUP.md`, `omeia/ui/react_frontend/README.md`.
+**Cross-check:** `configs/FIREBASE_WEB_SETUP.md`, `apps/web/README.md`.
 
 **Never add to Hostinger / Vite:**
 

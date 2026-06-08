@@ -4,7 +4,7 @@
 **Status:** Read-only migration analysis (no code changes)  
 **Date:** 2026-06-06  
 **Reference:** [VAST Data — AI 3D Website Animation (Dribbble #27282113)](https://dribbble.com/shots/27282113-VAST-Data-AI-3D-Website-Animation) by JK Mahbub  
-**Baseline repo:** `omeia/ui/react_frontend`  
+**Baseline repo:** `apps/web`  
 **Related audits:** `docs/34_AI_LAB_ASSISTANT_AND_SEARCH_DEEP_AUDIT.md`, `docs/33_AI_LAB_ASSISTANT_PRODUCTION_PLAN.md`
 
 ---
@@ -345,7 +345,7 @@ flowchart TB
 ### 6.1 Cheap local dev path
 
 ```bash
-cd omeia/ui/react_frontend
+cd apps/web
 npm install
 # Optional: disable WebGL hero during backend work
 echo "VITE_ENABLE_WEBGL_HERO=false" >> .env.local
@@ -475,4 +475,4 @@ OMEIA already has **70% of the non-WebGL VAST aesthetic** in `ModuleCoverHero`, 
 
 ---
 
-*Report generated from live inspection of `omeia/ui/react_frontend` and best-effort reference research. Dribbble shot content was not directly renderable due to bot protection.*
+*Report generated from live inspection of `apps/web` and best-effort reference research. Dribbble shot content was not directly renderable due to bot protection.*

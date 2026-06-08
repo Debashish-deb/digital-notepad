@@ -3,11 +3,11 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 
-from omeia.api.chat_service import _needs_evidence_regen
-from omeia.api.embedding_service import embed_text, hash_embed, embedding_dim
-from omeia.api.evidence_orchestrator import ClaimValidation, EvidencePackage, EvidenceItem
-from omeia.api.rerank_service import rerank_hits, _pair_score
-from omeia.api.search_models import SearchHit
+from app_skeleton.api.chat_service import _needs_evidence_regen
+from app_skeleton.api.embedding_service import embed_text, hash_embed, embedding_dim
+from app_skeleton.api.evidence_orchestrator import ClaimValidation, EvidencePackage, EvidenceItem
+from app_skeleton.api.rerank_service import rerank_hits, _pair_score
+from app_skeleton.api.search_models import SearchHit
 
 
 def test_hash_embed_normalized():
@@ -69,7 +69,7 @@ def test_needs_evidence_regen_ok():
 
 
 def test_format_memory_block():
-    from omeia.api.chat_session_store import SessionContext, format_memory_block
+    from app_skeleton.api.chat_session_store import SessionContext, format_memory_block
 
     ctx = SessionContext(
         session_id="abc",

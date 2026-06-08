@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import unittest
 
-from omeia.api.privacy_guardrails import allow_external_llm, audit_message, guard_for_llm
+from app_skeleton.api.privacy_guardrails import allow_external_llm, audit_message, guard_for_llm
 
 
 class TestScientificIdentifierAllowlist(unittest.TestCase):

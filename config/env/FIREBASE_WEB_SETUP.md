@@ -1,6 +1,6 @@
 # Firebase web app — OMEIA.AI (console reference)
 
-**Production deploy:** set `VITE_API_URL` and `VITE_FIREBASE_*` in `react_frontend/.env.production` before `npm run build` — see `configs/DEPLOYMENT_ENV.md` and `docs/26_PRODUCTION_DEPLOYMENT.md`. The SPA calls the FastAPI host at `VITE_API_URL` (`omeia/ui/react_frontend/src/App.jsx`).
+**Production deploy:** set `VITE_API_URL` and `VITE_FIREBASE_*` in `react_frontend/.env.production` before `npm run build` — see `configs/DEPLOYMENT_ENV.md` and `docs/26_PRODUCTION_DEPLOYMENT.md`. The SPA calls the FastAPI host at `VITE_API_URL` (`apps/web/src/App.jsx`).
 
 **Project:** `farkki-digital-notebook` (570069536455)  
 **Web app nickname:** OMEIA.AI  
@@ -43,7 +43,7 @@ const analytics = getAnalytics(app); // optional — see initFirebaseAnalytics()
 const auth = getAuth(app);
 ```
 
-**Repo:** `omeia/ui/react_frontend/src/config/firebase.js`
+**Repo:** `apps/web/src/config/firebase.js`
 
 ---
 

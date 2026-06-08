@@ -79,7 +79,7 @@ LLM_PROVIDER=gemini CHAT_LLM_PROVIDER=gemini .venv/bin/python3 scripts/search/ru
 
 # Unit tests
 python3 -m unittest tests.test_chat_intent -v
-cd omeia/ui/react_frontend && npm run build
+cd apps/web && npm run build
 ```
 
 ## Environment variables

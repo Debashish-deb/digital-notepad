@@ -735,9 +735,9 @@ Cleanup script: `scripts/document-library/delete_duplicate_files.py`
 
 | File | Why |
 |------|-----|
-| `omeia/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx` | 1200+ lines; extract metadata panel |
-| `omeia/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx` | Consolidate into `GlobalSearchOverlay` |
-| `omeia/ui/react_frontend/src/config/navigation.js` | Legacy sub redirects |
+| `apps/web/src/features/documents/components/ScientificFileExplorer.jsx` | 1200+ lines; extract metadata panel |
+| `apps/web/src/pages/KnowledgeSearchScreen.jsx` | Consolidate into `GlobalSearchOverlay` |
+| `apps/web/src/config/navigation.js` | Legacy sub redirects |
 
 ---
 

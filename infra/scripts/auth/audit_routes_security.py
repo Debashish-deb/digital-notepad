@@ -5,7 +5,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 from fastapi.routing import APIRoute
-from omeia.api.main import app
+from app_skeleton.api.main import app
 
 def generate_audit():
     with open("docs/25_SECURITY_ROUTE_AUDIT.md", "w") as f:

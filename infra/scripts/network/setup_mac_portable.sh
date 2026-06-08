@@ -15,9 +15,9 @@ if [[ ! -x "$ROOT/.venv/bin/python3" ]]; then
 fi
 
 # Frontend deps
-if [[ ! -d "$ROOT/omeia/ui/react_frontend/node_modules" ]]; then
+if [[ ! -d "$ROOT/apps/web/node_modules" ]]; then
   echo "=== npm install (frontend) ==="
-  (cd "$ROOT/omeia/ui/react_frontend" && npm install)
+  (cd "$ROOT/apps/web" && npm install)
 fi
 
 # Env file

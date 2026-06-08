@@ -107,7 +107,7 @@ nvm use 22
 node -v   # expect v22.x
 ```
 
-Then `npm install` in `omeia/ui/react_frontend` and `./scripts/start_linux.sh`.
+Then `npm install` in `apps/web` and `./scripts/start_linux.sh`.
 
 ## One-shot Linux bootstrap (after git pull)
 

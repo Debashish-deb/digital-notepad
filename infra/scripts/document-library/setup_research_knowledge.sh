@@ -30,7 +30,7 @@ echo "==> Applying sql/142_research_knowledge.sql (psycopg)"
 from pathlib import Path
 import psycopg
 
-from omeia.api.supabase_config import postgres_conn
+from app_skeleton.api.supabase_config import postgres_conn
 
 sql_path = Path("sql/142_research_knowledge.sql")
 conn_str = postgres_conn()
@@ -44,8 +44,8 @@ PY
 
 echo "==> Ensuring Qdrant research_knowledge collection"
 "$PYTHON" -c "
-from omeia.api.common import qdrant_client
-from omeia.api.qdrant_research_indexer import ensure_research_collection
+from app_skeleton.api.common import qdrant_client
+from app_skeleton.api.qdrant_research_indexer import ensure_research_collection
 try:
     print(ensure_research_collection(qdrant_client))
 except Exception as e:
@@ -54,8 +54,8 @@ except Exception as e:
 
 echo "==> Seeding datasets"
 "$PYTHON" -c "
-from omeia.api.common import qdrant_client, llm_client
-from omeia.api.research_knowledge_store import seed_datasets
+from app_skeleton.api.common import qdrant_client, llm_client
+from app_skeleton.api.research_knowledge_store import seed_datasets
 try:
     print(seed_datasets(qdrant=qdrant_client, llm=llm_client))
 except Exception as e:
@@ -66,8 +66,8 @@ if [[ "${RESEARCH_KB_RUN_CRAWL:-true}" == "true" ]]; then
   MAX_PAGES="${RESEARCH_KB_SEED_MAX_PAGES:-${RESEARCH_KB_MAX_PUBLIC_PAGES:-100}}"
   echo "==> Crawling farkkilab.org (max ${MAX_PAGES} pages, best effort)"
   "$PYTHON" -c "
-from omeia.api.common import qdrant_client, llm_client
-from omeia.api.research_knowledge_store import crawl_farkkila_seeds
+from app_skeleton.api.common import qdrant_client, llm_client
+from app_skeleton.api.research_knowledge_store import crawl_farkkila_seeds
 try:
     print(crawl_farkkila_seeds(max_pages=${MAX_PAGES}, qdrant=qdrant_client, llm=llm_client))
 except Exception as e:
@@ -78,9 +78,9 @@ fi
 if [[ "${RESEARCH_KB_RUN_PUBLICATIONS:-true}" == "true" ]]; then
   echo "==> Discovering + ingesting publication metadata (best effort)"
   "$PYTHON" -c "
-from omeia.api.common import qdrant_client, llm_client
-from omeia.api.publication_fetcher import discover_priority_publications
-from omeia.api.research_knowledge_store import ingest_publications
+from app_skeleton.api.common import qdrant_client, llm_client
+from app_skeleton.api.publication_fetcher import discover_priority_publications
+from app_skeleton.api.research_knowledge_store import ingest_publications
 try:
     records = discover_priority_publications()
     print(ingest_publications(records, qdrant=qdrant_client, llm=llm_client))
@@ -91,8 +91,8 @@ fi
 
 echo "==> Status"
 "$PYTHON" -c "
-from omeia.api.common import qdrant_client
-from omeia.api.research_knowledge_store import get_status
+from app_skeleton.api.common import qdrant_client
+from app_skeleton.api.research_knowledge_store import get_status
 import json
 print(json.dumps(get_status(qdrant=qdrant_client).model_dump(), indent=2))
 " 2>/dev/null || true

@@ -14,9 +14,9 @@ import psycopg
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from omeia.api.ocr.adapter import get_ocr_backend, ocr_enabled  # noqa: E402
-from omeia.api.ocr.queue import apply_ocr_result, resolve_ocr_source_path  # noqa: E402
-from omeia.api.sql_migrations import apply_pending_migrations, db_conn  # noqa: E402
+from app_skeleton.api.ocr.adapter import get_ocr_backend, ocr_enabled  # noqa: E402
+from app_skeleton.api.ocr.queue import apply_ocr_result, resolve_ocr_source_path  # noqa: E402
+from app_skeleton.api.sql_migrations import apply_pending_migrations, db_conn  # noqa: E402
 
 LOGGER = logging.getLogger(__name__)
 

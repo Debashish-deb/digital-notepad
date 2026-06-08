@@ -60,6 +60,6 @@ Supabase document sync on free tier: **`docs/25_SUPABASE_SYNC_POLICY.md`**.
 - `configs/.env.example` — all variable names
 - `configs/FIREBASE_WEB_SETUP.md` — full Console SDK snippet + what OMEIA uses
 - `omeia/api/firebase_app.py` — Firebase Admin init
-- `omeia/ui/react_frontend/src/config/firebase.js` — web config + optional Analytics
+- `apps/web/src/config/firebase.js` — web config + optional Analytics
 - `omeia/api/connector_status.py` — readiness summary
 - `omeia/data/lab_personnel_roster.json` — members + admin emails

@@ -203,7 +203,7 @@ Public: `/health`, `/api/auth/config`, `/api/platform/connectors`.
 ## Hostinger frontend
 
 ```bash
-cd omeia/ui/react_frontend
+cd apps/web
 # .env.production: VITE_API_URL=https://<desktop-public-host>
 npm ci && npm run build
 ```

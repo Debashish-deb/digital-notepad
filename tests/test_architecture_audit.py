@@ -15,12 +15,12 @@ def _catalog_client(monkeypatch: pytest.MonkeyPatch) -> TestClient:
     monkeypatch.setenv("APP_ENV", "development")
     monkeypatch.setenv("PLATFORM_AUTH_DISABLED", "false")
     monkeypatch.setenv("PLATFORM_AUTH_ALLOW_SKIP", "true")
-    from omeia.security import auth
+    from app_skeleton.security import auth
 
     monkeypatch.setattr(auth, "APP_ENV", "development")
     monkeypatch.setattr(auth, "AUTH_DISABLED", False)
     monkeypatch.setattr(auth, "AUTH_ALLOW_SKIP", True)
-    from omeia.api.main import app
+    from app_skeleton.api.main import app
 
     return TestClient(app)
 
@@ -28,7 +28,7 @@ def _catalog_client(monkeypatch: pytest.MonkeyPatch) -> TestClient:
 def test_db_pool_init_and_close(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("POSTGRES_POOL_MIN", "1")
     monkeypatch.setenv("POSTGRES_POOL_MAX", "2")
-    from omeia.api import db_pool
+    from app_skeleton.api import db_pool
 
     db_pool.close_pool()
     assert db_pool.pool_available() is False
@@ -41,7 +41,7 @@ def test_db_pool_init_and_close(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_db_pool_accepts_size_suffix_env(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("POSTGRES_POOL_MIN_SIZE", "2")
     monkeypatch.setenv("POSTGRES_POOL_MAX_SIZE", "8")
-    from omeia.api import db_pool
+    from app_skeleton.api import db_pool
 
     min_size, max_size = db_pool._pool_bounds()
     assert min_size == 2
@@ -50,17 +50,17 @@ def test_db_pool_accepts_size_suffix_env(monkeypatch: pytest.MonkeyPatch) -> Non
 
 def test_lazy_clients_warm_on_demand(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("QDRANT_URL", "http://127.0.0.1:6333")
-    from omeia.api import service_clients as sc
+    from app_skeleton.api import service_clients as sc
 
     sc._ServiceHolder.qdrant = None
     sc._ServiceHolder.llm = None
     sc._ServiceHolder.rag = None
     assert sc._ServiceHolder.qdrant is None
-    with patch("omeia.api.service_clients.QdrantClient") as mock_qdrant:
+    with patch("app_skeleton.api.service_clients.QdrantClient") as mock_qdrant:
         mock_qdrant.return_value = MagicMock(name="qdrant")
-        with patch("omeia.api.service_clients.LLMClient") as mock_llm:
+        with patch("app_skeleton.api.service_clients.LLMClient") as mock_llm:
             mock_llm.return_value = MagicMock(name="llm")
-            with patch("omeia.api.service_clients.RAGAgent") as mock_rag:
+            with patch("app_skeleton.api.service_clients.RAGAgent") as mock_rag:
                 mock_rag.return_value = MagicMock(name="rag")
                 sc.warm_clients()
     assert sc._ServiceHolder.qdrant is not None
@@ -69,7 +69,7 @@ def test_lazy_clients_warm_on_demand(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_readiness_requires_qdrant_when_indexing_enabled(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("KNOWLEDGE_INDEXER_ENABLED", "true")
     monkeypatch.setenv("VECTORIZATION_ENABLED", "false")
-    from omeia.api.readiness import check_readiness
+    from app_skeleton.api.readiness import check_readiness
 
     bad_client = MagicMock()
     bad_client.get_collections.side_effect = RuntimeError("connection refused")
@@ -80,7 +80,7 @@ def test_readiness_requires_qdrant_when_indexing_enabled(monkeypatch: pytest.Mon
 
 def test_scheduled_scanner_status_endpoint(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ENABLE_REQUEST_METRICS", "false")
-    from omeia.api.main import app
+    from app_skeleton.api.main import app
 
     client = TestClient(app)
     resp = client.get("/api/platform/scheduled-scanner/status")

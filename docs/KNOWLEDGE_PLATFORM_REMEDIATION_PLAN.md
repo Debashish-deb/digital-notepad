@@ -620,8 +620,8 @@ def legacy_search(q: str, ...):
 |------|--------|
 | `omeia/api/routers/knowledge.py` | Proxy + Deprecation header |
 | `omeia/api/routers/research.py` | Proxy `/platform/search` |
-| `omeia/ui/react_frontend/src/services/searchClient.js` | Consolidate clients |
-| `omeia/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx` | Use unified client |
+| `apps/web/src/services/searchClient.js` | Consolidate clients |
+| `apps/web/src/pages/KnowledgeSearchScreen.jsx` | Use unified client |
 
 ### Phase 7 (LOW–MEDIUM, ongoing)
 
@@ -642,12 +642,12 @@ def legacy_search(q: str, ...):
 | `omeia/api/evidence_orchestrator.py` | Copilot logic stable; consumes `SearchService` |
 | `omeia/api/chat_service.py` | Category chat path production-tested |
 | `omeia/api/routers/chat.py` | API contract frozen |
-| `omeia/ui/react_frontend/src/features/ai-assistant/components/ChatWidget.jsx` | User-facing; change only via API |
+| `apps/web/src/features/ai-assistant/components/ChatWidget.jsx` | User-facing; change only via API |
 | `omeia/security/auth.py` | Security hardened recently |
 | `sql/040_rag_audit_security_schema.sql` | Legacy schema; migrate data, don't alter |
 | `sql/111_raw_asset_vault.sql` | Vault schema stable; additive only |
 | `configs/document_library/smart_taxonomy.json` | Phase 4 reads as-is |
-| `omeia/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx` | Phase 7 split only |
+| `apps/web/src/features/documents/components/ScientificFileExplorer.jsx` | Phase 7 split only |
 | `docker-compose.yml` | Infra stable |
 | `scripts/dev/start_linux_desktop.sh` | Deployment scripts |
 | Digital twin JSON **read** paths in UI | Until Phase 2 dual-write proven |

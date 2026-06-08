@@ -6,7 +6,7 @@ import os
 import unittest
 from unittest.mock import MagicMock, patch
 
-from omeia.api import supabase_sync as ss
+from app_skeleton.api import supabase_sync as ss
 
 
 class TestTruncateAndEligibility(unittest.TestCase):
