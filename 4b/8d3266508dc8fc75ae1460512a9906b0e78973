@@ -1,0 +1,492 @@
+omeia/api/strategy_agents/experimental_design_agent.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6
+omeia/api/env_bootstrap.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11
+omeia/security/auth.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6,16-17,40
+omeia/api/image_streaming/storage_adapter.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-10
+omeia/api/vault_ingestion_engine.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16-20,40,50,349,353,373,390,394,419-420
+tests/test_architecture_audit.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 18,23,31,44,53,59,61,63,72,83
+omeia/api/database_sections.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7
+infra/scripts/ingest/ingest_complete_collection.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11-13
+omeia/api/platform_admin.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 13,19
+tests/test_db_safety_unit.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 38
+infra/scripts/sync/sync_documents_to_supabase.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 18
+omeia/api/routers/storage.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 1-2,4,14-15
+infra/scripts/auth/audit_routes_security.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8
+tests/test_admin_index_health.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9,31-32
+infra/scripts/digitalization/reprocess_lab_database.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 14
+tests/test_phase1_platform_flags.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8
+omeia/api/thumbnail_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11
+infra/scripts/database/apply_sql_migrations.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 21
+omeia/api/document_registry.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 13
+omeia/api/routers/knowledge.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 1-2,4,14,21,36,46,140
+docs/architecture/REPOSITORY_LAYOUT.md
+  s_1ea27e45361584::t_b85630beed8edc 7-13,21-22,36-37
+omeia/api/strategy_agents/spatial_biology_agent.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8
+tests/test_datapad_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10,27-29,54-56,66-68
+infra/scripts/digitalization/project_digitalize.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 17-18
+tests/test_ocr_adapter.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6-7
+infra/scripts/digitalization/process_inventory_pipeline.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 17,22
+omeia/api/service_clients.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10-11
+omeia/api/qdrant_collections.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7
+infra/scripts/ops/check_linux_sync_health.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 50,61
+omeia/api/research_strategy_engine.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-9,15,20-21,29-30,235
+infra/scripts/ops/check_frontend_public_lab_data.sh
+  s_1ea27e45361584::t_0d881e1d6c86a1 36
+  s_1ea27e45361584::t_c679752c4c28c4 6
+omeia/api/library_taxonomy.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10
+tests/test_audit_implementations.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 12,19,28,39,41,48
+omeia/digitalization/validators.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6-7
+tests/test_vault_semantic_search.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11-13,18,50,90,93,131,146-147,167,179,182,185
+omeia/api/ocr/tesseract_backend.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11
+infra/scripts/sync/sync_allowlist.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-9
+omeia/api/chunk_fts.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 15
+README.md
+  s_1ea27e45361584::t_0d881e1d6c86a1 21,34
+tests/test_strategy_agents.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 4-5
+tests/test_ensure_project_readme.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-9,54,64,68,72,76
+omeia/api/image_streaming/job_queue.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11
+omeia/api/page_registry.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 35
+omeia/api/chat_session_store.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 25
+omeia/api/routers/vault.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 1-2,4,59,270-271,377,391,409,419,428,439,450,564,570
+omeia/api/agent_orchestrator/orchestrator.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7,13,203
+omeia/api/datapad_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 13-15,22,251
+omeia/api/routers/digitalization.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11-13,21,100,123,352
+omeia/api/startup_validation.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 81
+infra/scripts/dev/docker_bootstrap.sh
+  s_1ea27e45361584::t_0d881e1d6c86a1 43
+omeia/api/routers/admin_index.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11,18-21,96,137,159,171
+omeia/api/search_nav.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6
+omeia/api/sql_migrations.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 17
+omeia/security/secure_files.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-10
+deploy/university-desktop/install_desktop_backend.sh
+  s_1ea27e45361584::t_0d881e1d6c86a1 100-101,118
+omeia/api/metadata_engine/enricher.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8,14,19-22
+omeia/api/project_digitalization_engine.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16-19,62,426,512,543
+tests/test_chat_intent.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6
+tests/test_document_library_search_integration.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-9,54,84,97
+infra/scripts/ops/autonomous_processor.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 29,156,169,199,217
+docs/10_COMPLETE_SETUP_STEP_BY_STEP.md
+  s_1ea27e45361584::t_0d881e1d6c86a1 62
+infra/scripts/ingest/ingest_lab_knowledge.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 13
+omeia/storage/pdrive_smb.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9
+tests/test_research_strategy_engine.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-10,43,83,86
+infra/scripts/deploy/linux_bootstrap_all.sh
+  s_1ea27e45361584::t_c679752c4c28c4 123
+tests/test_strategy_citation_grounding.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 4-5
+tests/test_audit_logging.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8,13,51
+tests/test_privacy_guardrails.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6
+omeia/api/copilot_feedback_store.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16
+omeia/api/document_extraction.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 374-375,383
+tests/test_copilot.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9,27,42,58,76,87,102,113
+infra/scripts/ingest/rebuild_and_ingest_collection.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11-13
+omeia/api/routers/chat.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 12-20,159,181,193,229
+infra/scripts/search/run_ai_lab_assistant_eval.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 273,280-281,476-477
+omeia/api/readiness.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 20,41
+omeia/api/strategy_agents/biomarker_agent.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8
+infra/scripts/docker/linux_post_stack_setup.sh
+  s_1ea27e45361584::t_0d881e1d6c86a1 84,95
+omeia/api/image_streaming/permissions.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6
+tests/test_vault_ingestion_engine.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10-11,93-94,111-112,161
+tests/test_chat_conversation.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6,15,38
+tests/test_ocr_queue.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8,14-15,74,115
+tests/test_cycif_wet_lab_separation.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6
+infra/scripts/ingest/reindex_vectors.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 24-26,39
+start.sh
+  s_1ea27e45361584::t_0d881e1d6c86a1 132,134
+  s_1ea27e45361584::t_a8f0a102e10b05 14
+  s_1ea27e45361584::t_80fc8dad18c183 21
+infra/scripts/ops/run_ocr_queue.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 17-19
+omeia/api/project_knowledge_store.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 15-17,23,32
+infra/scripts/ops/run_continuous_eval.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 33-34
+omeia/api/processor_status.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9
+omeia/api/routers/lab_static.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 14-16
+infra/scripts/digitalization/run_metadata_enrichment.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 17,22,26-27
+omeia/api/embedding_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16
+omeia/api/project_knowledge_extractor.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8,60-61,222,225,299
+infra/scripts/digitalization/reconcile_inventory_status.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 14
+tests/test_embedding_dim_contract.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6-9,35
+omeia/api/routers/image_assets.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11-15,170
+omeia/api/lab_knowledge_store.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 23-25,30-34,45,242,245,606
+omeia/api/metadata_engine/duplicates.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9
+omeia/api/scientific_document_parser.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 47-48
+tests/test_find_project_folder.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-9,35
+tests/test_project_permissions.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9-11,42,56,77
+tests/test_vault_review_search.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-9,28,35,54-55
+infra/scripts/debug_rag_wiring.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 31-34
+infra/scripts/dev/build_frontend_prod.sh
+  s_1ea27e45361584::t_c679752c4c28c4 6
+infra/scripts/search/run_search_qa.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 34,48-49,131-132
+tests/test_document_digitalization_pipeline.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8,66
+omeia/api/rag_diagnostics.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 75-78,87
+omeia/api/routers/datapad.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 1-3,5,9
+omeia/api/llm_client.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 40,694,701,714
+tests/test_deployment_ops.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9-10,20,35,46,56,71
+omeia/api/routers/research_knowledge.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-11,18-19
+omeia/api/agent_orchestrator/registry.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8
+omeia/api/ocr/adapter.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11,35
+tests/test_evidence_orchestrator.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6-7,24
+omeia/api/register_projects.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 3-4
+tests/test_security_environment.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 3-4
+tests/db_safety.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 63
+infra/scripts/dev/start_frontend.sh
+  s_1ea27e45361584::t_c679752c4c28c4 8
+tests/test_vault_json_fallback.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8,13-14,22,24,28
+infra/scripts/ingest/vault_ingest.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 13-14
+omeia/api/agent_orchestrator/trace_store.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 57
+omeia/api/main.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 1,8-12,17-20
+omeia/security/permissions.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-9,71,98
+omeia/api/qdrant_research_indexer.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10-12
+omeia/digitalization/registry_writer.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11,22,203
+infra/scripts/search/setup_search_portable.sh
+  s_1ea27e45361584::t_0d881e1d6c86a1 50,59
+tests/test_agent_categories.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8,72
+omeia/storage/ingestion.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9,25
+omeia/_repo.py
+  s_1ea27e45361584::t_286c590001ef1b 13,15
+omeia/api/knowledge_indexer.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 13-17,23
+omeia/api/feature_warehouse.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 32
+tests/test_project_digitalization.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 30,35-36,51-52,71,80-81,89
+tests/auth_fixtures.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 12-13
+omeia/digitalization/manifest.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 12-13
+infra/scripts/document-library/setup_research_knowledge.sh
+  s_1ea27e45361584::t_0d881e1d6c86a1 33,47-48,57-58,69-70,81-83,94-95
+omeia/api/frontend_static.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 12
+  s_1ea27e45361584::t_79b9244cf50dbf 45
+tests/test_security_authentication.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 3-4
+infra/scripts/ops/scheduled_ingest.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 30,47-48,65,87-88
+omeia/api/qdrant_vectors.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 13-14
+tests/test_search_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6-7
+infra/scripts/dev/ensure_node_for_vite.sh
+  s_1ea27e45361584::t_c679752c4c28c4 42
+tests/test_knowledge_indexer_pipeline.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8,30,44-45,68
+infra/scripts/digitalization/run_digitalization.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 48
+tests/test_production_rag_fixes.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6-7,13,17,23,49
+omeia/api/database_processor.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 13-15,20-21,187-188,260
+tests/test_vector_indexer.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6,10,25,36-37
+tests/test_security_files.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 3,6
+omeia/api/quality_eval_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16-17,33,85-86,143-144
+omeia/api/people_index.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9
+tests/test_image_streaming.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 13-17,79,89,94,167,180,183,196,199,202,210,220
+omeia/api/image_streaming/image_metadata_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10-11
+tests/test_ocr_queue_flag.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-9,68
+omeia/api/routers/research.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 1,7,12,14,730
+pytest.ini
+  s_1ea27e45361584::t_1d859800bae7ac 2
+omeia/api/image_streaming/image_streaming_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 12,17,22-24,378,381,388,414
+omeia/storage/datacloud_webdav.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9
+tests/test_wet_lab_document_filters.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6-7
+tests/test_lab_storage_api.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-12
+omeia/api/search_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 14-23,32-33,40-44,1011-1012
+omeia/api/taxonomy_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 14
+omeia/api/strategy_agents/research_gap_agent.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6-7
+infra/scripts/imaging/linux_minimal_imaging_capabilities.sh
+  s_1ea27e45361584::t_0d881e1d6c86a1 57
+omeia/digitalization/ingestion_job.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 12,20-21,27,213,272-273
+omeia/api/raw_vault_store.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16-18,61,112,304,670,763
+infra/scripts/auth/inject_authz.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 23,25
+omeia/api/ocr/queue.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10-11,40,162-163,214-215
+infra/scripts/database/seed_feature_warehouse.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11-12
+omeia/api/vault_vector_search.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10-14
+omeia/digitalization/canonicalizer.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9,15
+infra/scripts/digitalization/extract_pending_inventory.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16-17,24
+infra/scripts/llm/test_gemini_chat.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 38-39,47
+omeia/api/strategy_agents/_base.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8
+omeia/api/ingest_all.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 2-3
+omeia/api/chat_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9,18,26-28,38,44-47,418
+tests/test_supabase_sync.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9
+omeia/api/chat_model_catalog.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8
+omeia/api/clinical_tools.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 31
+omeia/api/research_knowledge_store.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 17-18,23,31-33,37,45,883
+infra/scripts/network/setup_mac_portable.sh
+  s_1ea27e45361584::t_c679752c4c28c4 18,20
+tests/test_researcher_resolver.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9,61
+infra/scripts/digitalization/import_top_class_metadata.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16
+omeia/digitalization/chunker.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8
+tests/test_quality_eval_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8,80-85
+omeia/api/metadata_engine/__init__.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 2-3
+omeia/api/evidence_orchestrator.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-9
+omeia/api/chat_conversation.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10
+infra/scripts/dev/start_mac_thin_client.sh
+  s_1ea27e45361584::t_c679752c4c28c4 34
+omeia/digitalization/extractors.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-9,18
+infra/scripts/digitalization/build_raw_asset_inventory.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 23
+omeia/api/common.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 39,45,55,62,73,79,81,83,85,87,89,95,97,101,116,124,126,134,142,144,154,166-171,193,199,208,766
+pyproject.toml
+  s_1ea27e45361584::t_f7296b2ed322b6 9
+omeia/api/document_library_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16-18,48,87,249-250,1221,1280,1288-1289,1429,1546
+tests/test_copilot_enhancements.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6-10,72
+infra/scripts/document-library/delete_duplicate_files.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 18,23
+omeia/api/routers/health.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 2,7,14-16,35,45-47,66,73,84,111-112
+omeia/api/agent_orchestrator/rag_context.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8
+infra/scripts/database/migrate_data_layout.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 15
+omeia/api/routers/document_library.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9-11,108,178
+omeia/api/project_processor.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11-12,1616
+tests/test_auth_protected_routes.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9,13-14,21-22,33-34
+infra/scripts/digitalization/finalize_empty_extractions.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16,22
+tests/test_rate_limit_cache.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8,84
+omeia/security/audit_log.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 4
+omeia/api/storage_stub.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11-13,40
+tests/test_security_authorization.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 3
+infra/scripts/ops/run_vectorization_queue.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 19
+tests/test_strategy_answer_schema.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 4
+omeia/api/strategy_agents/literature_agent.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8
+tests/test_search_advanced_filters.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8
+omeia/api/paths.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7,14,64,143
+omeia/api/strategy_agents/bioinformatics_agent.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 7-8
+tests/test_chat_api.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10-13,44,59,78-79,110,128-130,137
+omeia/api/routers/copilot.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 1-2,4,65,87,90,128-129
+omeia/api/routers/biomedical_models.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 9-10
+infra/scripts/llm/setup_ollama_local_llm.sh
+  s_1ea27e45361584::t_0d881e1d6c86a1 156
+tests/test_qdrant_collections.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 4
+infra/scripts/ops/migrate_lab_catalog_off_public.sh
+  s_1ea27e45361584::t_c679752c4c28c4 6
+Makefile
+  s_1ea27e45361584::t_d1674ad22e5d8d 6,9-10
+  s_1ea27e45361584::t_0d881e1d6c86a1 17
+omeia/api/privacy_guardrails.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 16
+omeia/api/scheduled_directory_scanner.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 13,56,141
+docs/OMEIA_INFORMATION_FLOW.md
+  s_1ea27e45361584::t_0d881e1d6c86a1 76,654,736
+omeia/api/chunking.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8
+deploy/university-desktop/run_api_dev.sh
+  s_1ea27e45361584::t_820140f08157ef 43
+  s_1ea27e45361584::t_0d881e1d6c86a1 56
+  s_1ea27e45361584::t_c2e9c9668054ce 37
+omeia/api/vector_indexer.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10-11,19
+omeia/api/db_pool.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 71
+omeia/api/supabase_sync.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 15-17,21
+omeia/api/connector_status.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6-8,12,18
+tests/test_chunking_normalize.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 4,9
+infra/scripts/digitalization/reprocess_all_twins.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 20
+omeia/api/strategy_agents/__init__.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 2-7
+omeia/api/routers/agent_categories.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 10-13,18-22,68,83
+omeia/api/routers/search.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 8-11
+tests/test_vector_indexer_vault.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 6,12
+omeia/api/lab_catalog_service.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 11-12,17
+infra/scripts/ingest/reindex_research_vectors.py
+  s_1ea27e45361584::t_0d881e1d6c86a1 21-25,31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "4b8d3266508dc8fc75ae1460512a9906b0e78973",
+  "prompts": {},
+  "sessions": {
+    "s_1ea27e45361584": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "ff359545-5be8-4767-8102-6b5207e4c78c",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
