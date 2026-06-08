@@ -727,6 +727,7 @@ function App() {
     hubNestedSection,
     overviewSocialSub,
     selectedProject,
+    dbProjects,
     subNav?.screen,
     subNav?.bioSub,
     subNav?.aiSub,

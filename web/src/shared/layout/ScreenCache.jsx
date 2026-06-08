@@ -1,32 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
- * Keeps visited screens mounted (hidden via display:none) so revisiting a nav
- * section does not remount lazy-loaded panes or replay Suspense fallbacks.
+ * Keeps visited screens mounted (hidden via display:none).
+ * The active route always renders live `children` so props refresh without remounting.
+ * Inactive routes keep their last frozen tree.
  */
 export default function ScreenCache({ cacheKey, isActive, children }) {
-  const [screens, setScreens] = useState({});
+  const [mountedKeys, setMountedKeys] = useState(() => (cacheKey ? [cacheKey] : []));
+  const frozenRef = useRef({});
 
-  if (
-    isActive
-    && children != null
-    && !Object.prototype.hasOwnProperty.call(screens, cacheKey)
-  ) {
-    setScreens({ ...screens, [cacheKey]: children });
+  useEffect(() => {
+    if (!cacheKey) return;
+    setMountedKeys((keys) => (keys.includes(cacheKey) ? keys : [...keys, cacheKey]));
+  }, [cacheKey]);
+
+  useEffect(() => {
+    if (!isActive || children == null || !cacheKey) return;
+    frozenRef.current[cacheKey] = children;
+  }, [cacheKey, isActive, children]);
+
+  if (!cacheKey) {
+    return children;
   }
 
   return (
     <>
-      {Object.entries(screens).map(([key, screen]) => (
-        <div
-          key={key}
-          className="screen-cache-pane"
-          style={{ display: isActive && key === cacheKey ? 'contents' : 'none' }}
-          aria-hidden={!(isActive && key === cacheKey)}
-        >
-          {screen}
-        </div>
-      ))}
+      {mountedKeys.map((key) => {
+        const show = isActive && key === cacheKey;
+        const content = show ? children : frozenRef.current[key];
+        if (!content) return null;
+        return (
+          <div
+            key={key}
+            className={`screen-cache-pane${show ? ' screen-cache-pane--active' : ''}`}
+            style={{ display: show ? 'block' : 'none' }}
+            aria-hidden={!show}
+          >
+            {content}
+          </div>
+        );
+      })}
     </>
   );
 }

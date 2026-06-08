@@ -1065,11 +1065,6 @@
   width: 100%;
 }
 
-.sfe-row:not(.sfe-row--header) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 52px;
-}
-
 .sfe-row {
   display: grid;
   gap: 0.5rem;

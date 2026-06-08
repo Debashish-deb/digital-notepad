@@ -756,7 +756,6 @@ html[data-theme='academic'] {
 @layer maxgrade.screens {
   /* Dashboard */
   .dashboard-page,
-  .projects-page,
   .lab-knowledge-screen,
   .tasks-screen,
   .obp-shell {

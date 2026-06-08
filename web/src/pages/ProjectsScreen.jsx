@@ -1,6 +1,7 @@
 import {
   Suspense,
   lazy,
+  memo,
   useCallback,
   useEffect,
   useMemo,
@@ -486,7 +487,7 @@ function ProcessMessage({ message }) {
   );
 }
 
-function ProjectCard({ project, onOpen }) {
+const ProjectCard = memo(function ProjectCard({ project, onOpen }) {
   const statusStyle = getStatusMeta(project.status);
   const StatusIcon = statusStyle.icon;
   const priorityColor = PRIORITY_DOT[project.priority] || PRIORITY_DOT.medium;
@@ -620,7 +621,7 @@ function ProjectCard({ project, onOpen }) {
       </span>
     </article>
   );
-}
+});
 
 export default function ProjectsScreen({
   dbProjects = [],

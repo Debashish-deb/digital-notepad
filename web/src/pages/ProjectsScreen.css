@@ -1,6 +1,22 @@
 /* ── Projects Portfolio Page ── */
 .projects-page {
   max-width: 1400px;
+  /* Avoid mxFadeSlide replay on remount — looks like cards unloading */
+  animation: none !important;
+}
+
+.projects-grid,
+.project-card,
+.projects-category-section {
+  content-visibility: visible;
+  contain: none;
+}
+
+.projects-reveal-sentinel {
+  width: 100%;
+  height: 1px;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 /* Thin metrics rail — not card boxes */
