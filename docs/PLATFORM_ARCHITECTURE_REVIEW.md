@@ -3,7 +3,7 @@
 **Scope:** Entire digital-notepad / OMEIA-AI platform — frontend, backend, data, search, RAG, AI, projects, documents, imaging, storage, auth, deployment, networking, observability, scalability  
 **Perspective:** CTO · Principal Architect · Security Architect · Platform Architect · Staff Frontend · Staff Backend  
 **Codebase:** `app_skeleton/` (FastAPI + React) on branch `cursor/unified-search-ai-lab-assistant`  
-**Date:** 2026-06-08  
+**Date:** 2026-06-08 (re-scored 2026-06-08 after Phases 1–3 merge)  
 **Cross-references:** `docs/KNOWLEDGE_DOCUMENT_SUBSYSTEM_REVIEW.md`, `docs/PROJECT_INTELLIGENCE_SUBSYSTEM_REVIEW.md`, `docs/IMAGING_SUBSYSTEM_REVIEW.md`, `docs/YOUR_SETUP.md`, `docs/LINUX_PRIMARY_DEPLOYMENT.md`
 
 ---
@@ -82,7 +82,7 @@ The platform is organized into five cooperating planes:
 
 OMEIA is an **ambitious, domain-rich research platform** that successfully demonstrates end-to-end lab workflows on a **single Linux workstation** with Tailscale remote access. It is **not yet production-grade** for a full lab corpus at scale: knowledge planes are duplicated, vector indexes are thin or misaligned, collaboration/RBAC is audit-only, observability is minimal, and data sync between Mac and Linux remains manual.
 
-**Platform production readiness: 52%** (see §18).
+**Platform production readiness: 58%** (see §18; was 52% before Phases 1–3 remediation merge).
 
 ---
 
@@ -827,15 +827,15 @@ Configured in `.env.example` (`NEO4J_URI`) but **no active graph queries** in ap
 
 | ID | Debt item | Severity | Location | Effort |
 |----|-----------|----------|----------|--------|
-| TD-01 | **Triple+ chunking implementations** (700 vs 1800 vs 4200 char windows) | Critical | `chunking.py`, `document_extraction.py`, `project_knowledge_extractor.py`, `scientific_document_parser.py` | High |
+| TD-01 | **Triple+ chunking implementations** (700 vs 1800 vs 4200 char windows) | Medium | `chunking.py` facade + `CANONICAL_CHUNK_PIPELINE`; legacy paths remain when flag off | Medium |
 | TD-02 | **Dual digitalization schemas** (`sql/119` vs `sql/140`) | Critical | Migrations + engines | High |
 | TD-03 | **JSON inventory as fallback authority** | High | `raw_asset_inventory.json`, `load_processed` | Medium |
 | TD-04 | **Legacy search API duplication** | Medium | `knowledge.py`, `research.py` | Medium |
 | TD-05 | **`common.py` god-module** (890+ lines, star-imported in main) | High | `common.py`, `main.py` | High |
 | TD-06 | **`search_service.py` monolith** (1800+ lines) | High | `search_service.py` | High |
-| TD-07 | **Hardcoded researcher identity** (`debdeba`) | High | `research.py` notebook/wiki writes | Low |
+| TD-07 | **Hardcoded researcher identity** (`debdeba`) | Low | `security/auth.py` `resolve_researcher_id()`; notebook/wiki use resolver (Phase 1) | Low |
 | TD-08 | **RBAC schema unused** | High | `security.*` tables vs Firebase-only auth | Medium |
-| TD-09 | **OCR stub** (`ENABLE_OCR=false`, flags only) | High | `ocr/`, `project_digitalization_engine.py` | High |
+| TD-09 | **OCR queue skeleton** (`platform.ocr_job`, worker idle when `ENABLE_OCR=false`) | Medium | `sql/145_ocr_jobs.sql`, `ocr/adapter.py`, `run_ocr_queue.py` | Medium |
 | TD-10 | **Imaging worker disconnected** from API | Medium | Docker `imaging-worker` | Medium |
 | TD-11 | **File-backed job queues** | Medium | `image_streaming_jobs.json`, vault checkpoints | Medium |
 | TD-12 | **Frontend search fragmentation** | Medium | `KnowledgeSearchScreen` vs `GlobalSearchOverlay` | Medium |
@@ -848,7 +848,7 @@ Configured in `.env.example` (`NEO4J_URI`) but **no active graph queries** in ap
 | TD-19 | **Neo4j configured but unused** | Low | `.env.example` | Medium |
 | TD-20 | **Test coverage gaps** (~39 test files, many modules untested) | Medium | `tests/` | Ongoing |
 
-**Debt score: 6.8 / 10** (10 = highest debt). Consolidation of knowledge pipelines and decomposition of god-modules are the highest-leverage remediation targets.
+**Debt score: 6.2 / 10** (10 = highest debt; was 6.8). Knowledge pipeline consolidation (Phases 1–2) reduced chunk/index duplication; god-modules and dual-schema debt remain highest leverage.
 
 ---
 
@@ -1017,34 +1017,34 @@ Configured in `.env.example` (`NEO4J_URI`) but **no active graph queries** in ap
 
 ## 18. Production Readiness Score
 
-### Composite score: **52%**
+### Composite score: **58%** (post Phases 1–3 merge; flags default off until Linux reindex)
 
 | Category | Weight | Score | Weighted | Rationale |
 |----------|--------|-------|----------|-----------|
-| Deployment & ops | 15% | 68% | 10.2% | Linux-primary works; YOUR_SETUP clear; no HA/backups |
-| Auth & security | 15% | 55% | 8.3% | Firebase solid; RBAC unused; lab_static gap |
-| API stability | 10% | 60% | 6.0% | Routers modular; legacy duplicates; no versioning |
-| Frontend UX | 10% | 65% | 6.5% | Rich UI; dev Vite in prod path; no TS |
-| Knowledge & search | 20% | 48% | 9.6% | Unified search yes; index thin; pipeline duplication |
-| Project intelligence | 10% | 54% | 5.4% | Per subsystem review |
-| Imaging | 8% | 57% | 4.6% | Per subsystem review |
-| AI / copilot | 12% | 50% | 6.0% | Grounding good; local model small; external guarded |
-| Observability | 5% | 25% | 1.3% | Logs only; no metrics/tracing |
-| Data sync & integrity | 5% | 40% | 2.0% | Manual Mac→Linux; JSON fallbacks |
+| Deployment & ops | 15% | 70% | 10.5% | Linux-primary works; `GET /api/admin/index-health`; no HA/backups |
+| Auth & security | 15% | 58% | 8.7% | Firebase solid; researcher resolver (Phase 1); RBAC still unused |
+| API stability | 10% | 63% | 6.3% | Feature-flagged index path; legacy routes retained |
+| Frontend UX | 10% | 65% | 6.5% | Unchanged |
+| Knowledge & search | 20% | 56% | 11.2% | `knowledge_indexer` + `chunking.py` facade wired (Phase 2); reindex pending |
+| Project intelligence | 10% | 56% | 5.6% | Project ingest can use canonical indexer when enabled |
+| Imaging | 8% | 57% | 4.6% | Unchanged |
+| AI / copilot | 12% | 52% | 6.2% | Shared embed path improved; corpus still thin until reindex |
+| Observability | 5% | 32% | 1.6% | Index-health endpoint; still no metrics/tracing |
+| Data sync & integrity | 5% | 42% | 2.1% | Manual Mac→Linux; `VAULT_JSON_FALLBACK` gated |
 
-**Weighted total ≈ 52%**
+**Weighted total ≈ 58%**
 
 ### Readiness by deployment target
 
 | Target | Score | Notes |
 |--------|-------|-------|
-| **Single-lab Linux workstation (Tailscale)** | **65%** | Current intended production |
+| **Single-lab Linux workstation (Tailscale)** | **72%** | Phases 1–3 merged; enable flags + reindex on Linux |
 | **Mac thin-client dev** | **70%** | Code edit + browser only |
-| **Full corpus semantic search** | **38%** | Needs reindex + OCR + pipeline merge |
+| **Full corpus semantic search** | **44%** | Pipeline unified in code; needs `KNOWLEDGE_INDEXER_ENABLED` + reindex + OCR enable |
 | **Internet-public SaaS** | **25%** | RBAC, WAF, HA, compliance not met |
 | **Multi-site collaboration** | **30%** | No real-time collab; audit-only notebook |
 
-### What “52%” means in practice
+### What “58%” means in practice
 
 The platform is **usable daily** for a small lab team browsing documents, editing datapads, running copilot against indexed subsets, and viewing TIFFs on Linux — matching `docs/YOUR_SETUP.md`. It is **not ready** to promise accurate AI answers over the **entire** OMEIA-database corpus, unattended batch ingest, or compliance-grade multi-user audit without further investment.
 
@@ -1057,8 +1057,8 @@ The platform is **usable daily** for a small lab team browsing documents, editin
 | Week | Initiative | Deliverables |
 |------|------------|--------------|
 | 1–2 | **Index reconciliation** | Run `reindex_vectors.py` + `reindex_research_vectors.py` on Linux; `KNOWLEDGE_INDEXER_ENABLED=true`; admin dashboard shows Qdrant point counts |
-| 2–3 | **Single write path MVP** | `PLATFORM_CHUNK_WRITE=true`; deprecate one chunker; document in `configs/.env.example` |
-| 3–4 | **Auth binding** | Map Firebase email → `platform.researcher`; remove hardcoded `debdeba` on notebook/wiki POST |
+| 2–3 | ~~**Single write path MVP**~~ | **Done (code)** — `knowledge_indexer` + `chunking.py` facade (Phase 2); enable on Linux after reindex |
+| 3–4 | ~~**Auth binding**~~ | **Done (code)** — `resolve_researcher_id()` (Phase 1); verify notebook/wiki on Linux |
 | 4–5 | **Production frontend** | `npm run build`; Caddy serves `dist/` on `:5173`; document in LINUX_PRIMARY_DEPLOYMENT |
 | 5–6 | **Data sync runbook** | Automate `mac_push_to_linux.sh --data-only` checklist; admin shows `DATABASE_ROOT` mount health |
 | 6–8 | **Async process-all** | Background job + `/api/projects/process-all/status` |
@@ -1075,7 +1075,7 @@ The platform is **usable daily** for a small lab team browsing documents, editin
 
 | Month | Initiative |
 |-------|------------|
-| 4 | **OCR pipeline** — Tesseract backend wired to `platform.ocr_job`; `ENABLE_OCR=true` on Linux |
+| 4 | **OCR pipeline** — schema + adapter + worker skeleton merged (Phase 3); apply `sql/145_ocr_jobs.sql`; `ENABLE_OCR=true` when Tesseract ready |
 | 4–5 | **Vault semantic search** — populate `vault_asset_chunks`; enable in `SearchService` |
 | 5 | **Project RBAC phase 1** — enforce `allowed_project_codes` on `/projects`, notebook, datapad reads |
 | 5–6 | **Observability stack** — Prometheus node exporter + API request metrics + Grafana dashboard |
@@ -1267,4 +1267,4 @@ Priority-ordered. **Do not start refactors without tests** for `search_service`,
 
 ---
 
-*Review grounded in repository state 2026-06-08 on branch `cursor/unified-search-ai-lab-assistant`. Re-verify after remediation Phase 1–2 and production frontend cutover.*
+*Review grounded in repository state 2026-06-08 on branch `cursor/unified-search-ai-lab-assistant`. Phases 1–3 merged (commits `4bf61d6`, `9941a95`, `77cabec` + `sql/145_ocr_jobs.sql`). Re-verify after Linux flag enablement, reindex, and production frontend cutover.*
