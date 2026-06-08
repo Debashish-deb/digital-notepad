@@ -2,7 +2,7 @@
 # Copy imaging-worker bundle to Linux when plain scp to 100.x times out.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 BUNDLE="$ROOT/omeia-imaging-worker-bundle.tar.gz"
 LINUX_NODE="${LINUX_TAILSCALE_NODE:-dx9-3049-11090}"
 LINUX_USER="${LINUX_SSH_USER:-debdeba}"

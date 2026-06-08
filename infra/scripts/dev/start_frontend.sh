@@ -4,7 +4,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
 FRONTEND_DIR="${PROJECT_ROOT}/omeia/ui/react_frontend"
 API_URL="${VITE_API_URL:-http://127.0.0.1:8000}"
 

@@ -8,7 +8,7 @@
 #   ./scripts/deploy/linux_bootstrap_all.sh --with-biomodels
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 SKIP_DOCKER=false

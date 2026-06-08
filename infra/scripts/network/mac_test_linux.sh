@@ -2,7 +2,7 @@
 # Quick check: tunnels + Ollama token + Qdrant reachable from Mac.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 if [[ -f "$ROOT/configs/.env" ]]; then

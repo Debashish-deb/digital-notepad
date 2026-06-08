@@ -157,7 +157,7 @@ PYEOF
 cat > scripts/docker/build_imaging_worker.sh <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 docker compose -f docker-compose.imaging.yml build imaging-worker
 docker compose -f docker-compose.imaging.yml run --rm imaging-worker

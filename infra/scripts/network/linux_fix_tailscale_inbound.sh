@@ -3,7 +3,7 @@
 # Run on Linux workstation when Mac curl to 100.x:11434 times out but local curl works.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 echo "=== Linux Tailscale inbound fix ==="

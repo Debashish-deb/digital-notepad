@@ -3,7 +3,7 @@
 # Uses local Docker Postgres + Qdrant when available; falls back to processed JSON stubs.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
 cd "$ROOT"
 
 ENV_FILE="${OMEIA_ENV_FILE:-$ROOT/configs/.env}"

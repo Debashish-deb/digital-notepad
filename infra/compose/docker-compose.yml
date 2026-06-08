@@ -1,6 +1,5 @@
-# OMEIA local stack — hardened for dev (localhost bind, internal network, auth proxy).
-# Only ollama-proxy exposes :11434 on 127.0.0.1; Ollama itself is internal-only.
-# Generate token once: scripts/llm/generate_ollama_token.sh
+# OMEIA local stack — run from repo root: docker compose up -d (via root symlink)
+# Generate token: infra/scripts/llm/generate_ollama_token.sh
 
 networks:
   omeia-internal:
@@ -19,7 +18,7 @@ services:
       - "127.0.0.1:5432:5432"
     volumes:
       - omeia-pg-data:/var/lib/postgresql/data
-      - ./sql:/docker-entrypoint-initdb.d:ro
+      - ../../sql:/docker-entrypoint-initdb.d:ro
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U farkki -d farkki_ai"]
@@ -49,7 +48,6 @@ services:
     security_opt:
       - no-new-privileges:true
 
-  # Local LLM — internal only; API reaches it via ollama-proxy (bearer auth).
   ollama:
     image: ollama/ollama:latest
     container_name: omeia-ollama
@@ -73,11 +71,11 @@ services:
     ports:
       - "127.0.0.1:11434:11434"
     env_file:
-      - configs/.env
+      - ../../config/env/.env
     environment:
       OLLAMA_INTERNAL_TOKEN: ${OLLAMA_INTERNAL_TOKEN:-}
     volumes:
-      - ./configs/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ../../config/env/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
     depends_on:
       ollama:
         condition: service_healthy
@@ -96,12 +94,6 @@ services:
       retries: 5
       start_period: 10s
 
-  # Optional full imaging stack (Linux workstation). Not needed for basic tifffile streaming.
-  # docker compose --profile imaging build imaging-worker
-  # docker compose --profile imaging run --rm imaging-worker
-  # Optional production UI on :5173 (dist/) with API reverse proxy to host :8000.
-  #   bash scripts/dev/build_frontend_prod.sh
-  #   docker compose --profile platform up -d caddy-platform
   caddy-platform:
     profiles: [platform]
     image: caddy:2-alpine
@@ -110,8 +102,8 @@ services:
     ports:
       - "127.0.0.1:5173:5173"
     volumes:
-      - ./configs/caddy/Caddyfile.platform:/etc/caddy/Caddyfile:ro
-      - ./omeia/ui/react_frontend/dist:/srv/frontend:ro
+      - ../../config/env/caddy/Caddyfile.platform:/etc/caddy/Caddyfile:ro
+      - ../../apps/web/dist:/srv/frontend:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
@@ -126,14 +118,14 @@ services:
   imaging-worker:
     profiles: [imaging]
     build:
-      context: .
-      dockerfile: docker/imaging-worker/Dockerfile
+      context: ../..
+      dockerfile: infra/docker/imaging-worker/Dockerfile
       args:
         IMAGING_INCLUDE_NAPARI: ${IMAGING_INCLUDE_NAPARI:-1}
     container_name: omeia-imaging-worker
     networks: [omeia-internal]
     volumes:
-      - ${DATABASE_ROOT:-../OMEIA-database}:/data/database:ro
+      - ${DATABASE_ROOT:-../../OMEIA-database}:/data/database:ro
     environment:
       DATABASE_ROOT: /data/database
     restart: "no"

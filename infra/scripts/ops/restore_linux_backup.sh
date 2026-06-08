@@ -9,7 +9,7 @@
 # Stop the API and ingestion jobs before restoring.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 BACKUP_DIR=""
 CONFIRM=false
 

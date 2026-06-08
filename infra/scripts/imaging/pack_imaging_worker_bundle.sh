@@ -2,7 +2,7 @@
 # Pack imaging-worker files into a tarball for copying to Linux workstation.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 OUT="$ROOT/omeia-imaging-worker-bundle.tar.gz"
 
 cd "$ROOT"

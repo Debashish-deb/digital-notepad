@@ -2,7 +2,7 @@
 # Build and start biomedical model FastAPI services on Linux workstation.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 PROFILES="${BIOMODEL_PROFILES:-biomodels}"

@@ -2,7 +2,7 @@
 # Pull OMEIA research models into omeia-ollama Docker volume. Safe to re-run (skips existing).
 # Run on the Linux Docker host (scripts/docker/start_linux_docker_stack.sh), not on Mac thin client.
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 CONTAINER="${OLLAMA_CONTAINER:-omeia-ollama}"
 LOG="${ROOT}/logs/ollama_model_pulls.log"
 mkdir -p "${ROOT}/logs"

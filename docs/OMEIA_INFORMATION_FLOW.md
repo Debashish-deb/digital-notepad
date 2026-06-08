@@ -107,9 +107,9 @@ flowchart LR
 
 ### Import time (before FastAPI lifespan)
 
-`validate_environment()` runs at **`omeia/api/main.py` import time** (line 11), **before** the FastAPI app object is fully wired and **before** `_app_lifespan` runs. It blocks unsafe production combinations (auth disabled outside dev, `CORS_ORIGINS=*`, missing Firebase in prod).
+`validate_environment()` runs at **`apps/api/src/omeia/api/main.py` import time** (line 11), **before** the FastAPI app object is fully wired and **before** `_app_lifespan` runs. It blocks unsafe production combinations (auth disabled outside dev, `CORS_ORIGINS=*`, missing Firebase in prod).
 
-### Lifespan (`omeia/api/common.py` `_app_lifespan`)
+### Lifespan (`apps/api/src/omeia/api/common.py` `_app_lifespan`)
 
 Order on API boot:
 
@@ -163,7 +163,7 @@ sequenceDiagram
 
 **Client:** Firebase web SDK (`omeia/ui/react_frontend/src/config/firebase.js`) — **email/password only** (no Google Sign-In). Token key: **`farkki_id_token`** in `localStorage`, attached by `omeia/ui/react_frontend/src/services/client.js`.
 
-**Server:** `require_platform_user` (`omeia/security/auth.py`):
+**Server:** `require_platform_user` (`apps/api/src/omeia/security/auth.py`):
 
 - If `PLATFORM_AUTH_DISABLED=true` **and** `APP_ENV=development` → synthetic dev user
 - Else → `Authorization: Bearer <Firebase ID token>`, verify via Admin SDK, check `platform.allowed_email` (approved) or platform admin
@@ -317,7 +317,7 @@ flowchart TB
 
 **Operational content (notebook, wiki, decisions, tasks):** stored in **Postgres** (`platform.notebook_entry`, `platform.research_wiki`, `platform.decision_registry`, `platform.task`) — **not** in processed JSON twins.
 
-**Processed JSON twins:** project portfolio/workspace search uses `omeia/data/processed_projects/` (+ `public/processed/`); lab section twins live under `omeia/data/02_processed_projects/lab_operations/...` with legacy fallback to `processed_projects/`.
+**Processed JSON twins:** project portfolio/workspace search uses `apps/api/src/omeia/data/processed_projects/` (+ `public/processed/`); lab section twins live under `apps/api/src/omeia/data/02_processed_projects/lab_operations/...` with legacy fallback to `processed_projects/`.
 
 **Storage:** Authoritative metadata in Postgres; semantic search in Qdrant when indexing flags are on; large binary assets on disk; denormalized inventories in JSON for document library and vault fallbacks.
 
@@ -829,17 +829,17 @@ These are **implemented today** — not gaps:
 
 | Topic | Path |
 |-------|------|
-| API entry + import-time validation | `omeia/api/main.py` |
-| Lifespan / projects cache | `omeia/api/common.py` |
-| Environment validation | `omeia/security/environment.py` |
-| Unified search | `omeia/api/search_service.py` |
-| Chat RAG | `omeia/api/chat_service.py` |
-| Document library | `omeia/api/document_library_service.py` |
-| Scheduled scanner | `omeia/api/scheduled_directory_scanner.py` |
-| Processed path layout | `omeia/api/data_layout.py`, `omeia/api/paths.py` |
+| API entry + import-time validation | `apps/api/src/omeia/api/main.py` |
+| Lifespan / projects cache | `apps/api/src/omeia/api/common.py` |
+| Environment validation | `apps/api/src/omeia/security/environment.py` |
+| Unified search | `apps/api/src/omeia/api/search_service.py` |
+| Chat RAG | `apps/api/src/omeia/api/chat_service.py` |
+| Document library | `apps/api/src/omeia/api/document_library_service.py` |
+| Scheduled scanner | `apps/api/src/omeia/api/scheduled_directory_scanner.py` |
+| Processed path layout | `apps/api/src/omeia/api/data_layout.py`, `apps/api/src/omeia/api/paths.py` |
 | Qdrant blueprint | `configs/qdrant_collections.yaml` |
-| Auth | `omeia/security/auth.py` |
-| Static + secure files | `omeia/api/routers/lab_static.py`, `omeia/security/secure_files.py` |
+| Auth | `apps/api/src/omeia/security/auth.py` |
+| Static + secure files | `apps/api/src/omeia/api/routers/lab_static.py`, `apps/api/src/omeia/security/secure_files.py` |
 | Frontend shell | `omeia/ui/react_frontend/src/App.jsx` |
 | Screen cache | `omeia/ui/react_frontend/src/shared/layout/ScreenCache.jsx` |
 | Linux start | `scripts/dev/start_linux_desktop.sh`, `start.sh` |

@@ -2,7 +2,7 @@
 # Test Ollama on Linux via Tailscale IP from Mac.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 if [[ -f "$ROOT/configs/.env" ]]; then

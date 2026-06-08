@@ -3,7 +3,7 @@
 # Usage: ./scripts/network/sync_mac_repo_to_usb.sh /Volumes/YOUR_USB/OMEIA-AI-sync
 set -euo pipefail
 DEST="${1:?Usage: $0 /path/to/usb/OMEIA-AI-sync}"
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 
 rsync -av --delete \
   --exclude '.venv' --exclude 'node_modules' --exclude '.git' \

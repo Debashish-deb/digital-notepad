@@ -2,7 +2,7 @@
 # Build Vite frontend for production (same-origin API when served from FastAPI :8000).
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 FRONTEND="$ROOT/omeia/ui/react_frontend"
 
 if [[ -f "$ROOT/configs/.env" ]]; then

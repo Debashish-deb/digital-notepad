@@ -2,7 +2,7 @@
 # Bootstrap Docker stack for OMEIA API — health probes + optional auto-start.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 export OMEIA_REPO_ROOT="$ROOT"

@@ -2,7 +2,7 @@
 # Research Knowledge Base setup — SQL migration, dataset seed, optional crawl + publications.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
 cd "$ROOT"
 
 PYTHON="${ROOT}/.venv/bin/python3"

@@ -2,7 +2,7 @@
 # Mac thin client: SSH tunnels to Linux Docker (Ollama + Qdrant). No Docker on Mac.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 if [[ -f "$ROOT/configs/.env" ]]; then

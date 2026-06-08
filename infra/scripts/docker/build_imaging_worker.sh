@@ -2,7 +2,7 @@
 # Build and run the OMEIA imaging-worker Docker image (Mac or Linux workstation).
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 COMPOSE_FILE="docker-compose.imaging.yml"

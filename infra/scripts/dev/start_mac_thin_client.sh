@@ -8,7 +8,7 @@
 #   ./scripts/dev/start_mac_thin_client.sh --api-only
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 API_ONLY=false

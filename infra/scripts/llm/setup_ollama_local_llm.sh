@@ -3,7 +3,7 @@
 # Models live in the omeia-ollama-data Docker volume (not ~/.ollama on the host).
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 if [[ -f "$ROOT/configs/.env" ]]; then

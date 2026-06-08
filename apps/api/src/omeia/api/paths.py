@@ -11,8 +11,10 @@ from omeia.storage.env import (
     pdrive_mount_path,
 )
 
-# Platform application root (repository root after flatten)
-BLUEPRINT_ROOT = Path(__file__).resolve().parents[2]
+from omeia.api.env_bootstrap import repo_root as _repo_root
+
+# Platform application root (repository root)
+BLUEPRINT_ROOT = _repo_root()
 
 # Same as BLUEPRINT_ROOT unless OMEIA_REPO_ROOT is set explicitly
 REPO_ROOT = Path(os.environ.get("OMEIA_REPO_ROOT", str(BLUEPRINT_ROOT))).expanduser().resolve()
@@ -72,9 +74,12 @@ PROCESSED_DIR = Path(os.environ.get(
 )).expanduser().resolve()
 PUBLIC_PROCESSED_DIR = Path(os.environ.get(
     "PUBLIC_PROCESSED_DIR",
-    str(BLUEPRINT_ROOT / "omeia" / "ui" / "react_frontend" / "public" / "processed"),
+    str(BLUEPRINT_ROOT / "apps" / "web" / "public" / "processed"),
 )).expanduser().resolve()
-SCRIPTS_DIR = Path(os.environ.get("PLATFORM_SCRIPTS_DIR", str(BLUEPRINT_ROOT / "scripts"))).expanduser().resolve()
+_SCRIPTS_DEFAULT = BLUEPRINT_ROOT / "infra" / "scripts"
+if not _SCRIPTS_DEFAULT.is_dir() and (BLUEPRINT_ROOT / "scripts").is_dir():
+    _SCRIPTS_DEFAULT = BLUEPRINT_ROOT / "scripts"
+SCRIPTS_DIR = Path(os.environ.get("PLATFORM_SCRIPTS_DIR", str(_SCRIPTS_DEFAULT))).expanduser().resolve()
 CSC_MEDIA_DIR = Path(os.environ.get("CSC_MEDIA_DIR", str(REPO_ROOT / "CSC"))).expanduser().resolve()
 
 # Phase 1 — storage roots (server-side only; never expose raw connector paths to the frontend).

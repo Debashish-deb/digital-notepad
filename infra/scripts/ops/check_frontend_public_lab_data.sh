@@ -2,7 +2,7 @@
 # Fail CI/build when sensitive lab document payloads are bundled in frontend public/.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
 PUBLIC="$ROOT/omeia/ui/react_frontend/public"
 MAX_JSON_KB="${OMEIA_PUBLIC_JSON_MAX_KB:-512}"
 FAIL=0

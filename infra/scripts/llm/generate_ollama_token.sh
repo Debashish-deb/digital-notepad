@@ -2,7 +2,7 @@
 # Generate a one-time Ollama proxy bearer token and append to configs/.env
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 ENV_FILE="${ROOT}/configs/.env"
 TOKEN="$(openssl rand -hex 32)"
 

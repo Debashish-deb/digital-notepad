@@ -2,7 +2,7 @@
 # One-time Mac portable setup — no Docker Desktop. Ready to move repo to Linux later.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 echo "=== OMEIA Mac portable setup ==="

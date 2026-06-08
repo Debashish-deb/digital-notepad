@@ -2,7 +2,7 @@
 # Stop all OMEIA containers on this machine and optionally quit Docker Desktop (Mac).
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 if ! command -v docker >/dev/null 2>&1; then

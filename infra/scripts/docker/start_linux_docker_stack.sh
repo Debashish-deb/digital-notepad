@@ -2,7 +2,7 @@
 # Run on Linux workstation — starts OMEIA Docker stack (Ollama, Postgres, Qdrant).
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 if ! command -v docker >/dev/null 2>&1; then

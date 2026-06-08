@@ -8,7 +8,7 @@
 #   ./scripts/deploy/mac_push_to_linux.sh --code-only
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 if [[ -f "$ROOT/configs/.env" ]]; then

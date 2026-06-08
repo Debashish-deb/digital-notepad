@@ -3,7 +3,7 @@
 # Sources configs/.env and applies Tailscale remote LLM URLs when configured.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 export OMEIA_REPO_ROOT="$ROOT"
 
 ENV_FILE="${OMEIA_ENV_FILE:-$ROOT/configs/.env}"

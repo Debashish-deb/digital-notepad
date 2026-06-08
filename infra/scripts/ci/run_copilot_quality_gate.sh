@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copilot / RAG quality gate — run before release or after production fixes.
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 cd "$ROOT"
 
 echo "== Pytest: copilot + search + evidence =="

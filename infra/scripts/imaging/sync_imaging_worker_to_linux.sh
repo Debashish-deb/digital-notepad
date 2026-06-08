@@ -10,7 +10,7 @@ if [[ $# -lt 1 ]]; then
 fi
 
 DEST="$1"
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 
 rsync -avz \
   "$ROOT/docker/imaging-worker" \

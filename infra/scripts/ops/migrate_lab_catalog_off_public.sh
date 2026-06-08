@@ -2,7 +2,7 @@
 # Move lab catalog payloads from frontend public/ to server-side data/lab_catalog/.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
 SRC="$ROOT/omeia/ui/react_frontend/public/database"
 DEST="$ROOT/omeia/data/lab_catalog"
 

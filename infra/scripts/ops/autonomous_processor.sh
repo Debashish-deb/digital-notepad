@@ -3,7 +3,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
 DATA_DIR="${REPO_ROOT}/omeia/data"
 PID_FILE="${DATA_DIR}/00_registry/processor.pid"
 STATE_FILE="${DATA_DIR}/00_registry/processor_state.json"
