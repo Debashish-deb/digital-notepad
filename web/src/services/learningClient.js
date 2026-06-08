@@ -28,3 +28,38 @@ export async function saveToKnowledgeBase({ response_id, comment = '' } = {}) {
     comment,
   });
 }
+
+export async function createLearningThread({
+  title,
+  hypothesis = '',
+  initial_query = '',
+  initial_answer = '',
+  response_id = null,
+} = {}) {
+  return apiFetch('/api/learning/threads', {
+    method: 'POST',
+    body: {
+      title,
+      hypothesis,
+      initial_query,
+      initial_answer,
+      response_id,
+    },
+  });
+}
+
+export async function challengeLearningThread({
+  thread_id,
+  challenge_text,
+  project_codes = [],
+  agent_category = null,
+} = {}) {
+  return apiFetch(`/api/learning/threads/${thread_id}/challenge`, {
+    method: 'POST',
+    body: {
+      challenge_text,
+      project_codes,
+      agent_category,
+    },
+  });
+}

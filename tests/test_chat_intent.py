@@ -86,6 +86,21 @@ class TestChatIntent(unittest.TestCase):
         self.assertEqual(decision.intent, "smalltalk")
         self.assertFalse(decision.use_rag)
 
+    def test_how_are_doing_today_is_smalltalk(self) -> None:
+        decision = classify_chat_intent("how are doing today?")
+        self.assertEqual(decision.intent, "smalltalk")
+        self.assertFalse(decision.use_rag)
+
+    def test_hows_it_going_is_smalltalk(self) -> None:
+        decision = classify_chat_intent("how's it going")
+        self.assertEqual(decision.intent, "smalltalk")
+        self.assertFalse(decision.use_rag)
+
+    def test_how_are_you_doing_is_smalltalk(self) -> None:
+        decision = classify_chat_intent("how are you doing today?")
+        self.assertEqual(decision.intent, "smalltalk")
+        self.assertFalse(decision.use_rag)
+
     def test_patient_id_sensitive(self) -> None:
         decision = classify_chat_intent("Patient #ABC123 needs review")
         self.assertEqual(decision.intent, "sensitive_private")

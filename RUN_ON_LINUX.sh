@@ -27,8 +27,19 @@ git fetch origin
 git checkout "$BRANCH"
 git pull --ff-only origin "$BRANCH" || git pull origin "$BRANCH"
 
+echo "--- Ensure Ollama LLM env (not mock) ---"
+ENSURE_OLLAMA="$ROOT/infra/scripts/llm/ensure_linux_ollama.sh"
+if [[ -x "$ENSURE_OLLAMA" ]]; then
+  "$ENSURE_OLLAMA"
+else
+  echo "WARN: $ENSURE_OLLAMA missing or not executable — skip Ollama env ensure"
+fi
+
 ENV_FILE="$ROOT/configs/.env"
-TEMPLATE="$ROOT/configs/linux-workstation.env.template"
+TEMPLATE="$ROOT/config/env/linux-workstation.env.template"
+if [[ ! -f "$TEMPLATE" ]]; then
+  TEMPLATE="$ROOT/configs/linux-workstation.env.template"
+fi
 if [[ ! -f "$ENV_FILE" ]]; then
   if [[ -f "$TEMPLATE" ]]; then
     cp "$TEMPLATE" "$ENV_FILE"

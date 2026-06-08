@@ -584,10 +584,38 @@ class LLMClient:
         match = re.search(rf"{re.escape(label)}:\s*(\d+)", prompt or "", re.I)
         return int(match.group(1)) if match else 0
 
+    @staticmethod
+    def _is_conversational_system_prompt(system_prompt: str) -> bool:
+        sp = (system_prompt or "").lower()
+        return (
+            "senior research colleague" in sp
+            or "sound like a helpful scientist" in sp
+            or "brief_conversational" in sp
+        )
+
+    def _mock_conversational_reply(self, question: str, system_prompt: str = "") -> str | None:
+        """Friendly offline reply for smalltalk/general chat when no RAG context is present."""
+        if not self._is_conversational_system_prompt(system_prompt):
+            return None
+        text = (question or "").strip()
+        if not text:
+            return "Hi there. What would you like to explore today?"
+        lower = text.lower()
+        if re.match(
+            r"^\s*(how(?:'s|\s+is|\s+are)|how\s+goes\s+it|what'?s\s+up|how\s+are\s+doing)",
+            lower,
+        ):
+            return "Doing well — thanks for asking. What are you working on today?"
+        if re.match(r"^\s*(hi|hello|hey|yo|hiya|howdy|good\s+(morning|afternoon|evening))", lower):
+            return "Hi there. What would you like to explore — a project, a paper, or an analysis question?"
+        if re.match(r"^\s*(thanks|thank you|thx|ok|okay|great|nice|cool)", lower):
+            return "You're welcome. What should we look at next?"
+        return "Happy to help — what should we dig into: literature, a project workspace, or an image-analysis question?"
+
     def _mock_generate(self, prompt: str, system_prompt: str = "") -> str:
         """Dynamic offline synthesizer for local development, demos, and CI."""
         q_match = re.search(r"Question:\s*(.*)", prompt or "", re.DOTALL | re.IGNORECASE)
-        question = q_match.group(1).strip() if q_match else "General query"
+        question = q_match.group(1).strip() if q_match else (prompt or "").strip() or "General query"
         lower_q = question.lower()
         patients_cnt = self._extract_database_count(prompt, "Patient total")
         samples_cnt = self._extract_database_count(prompt, "Sample total")
@@ -639,6 +667,9 @@ class LLMClient:
             )
 
         if not sources:
+            conversational = self._mock_conversational_reply(question, system_prompt)
+            if conversational is not None:
+                return conversational
             if "gemini" in lower_q:
                 return (
                     "### OMEIA platform guide (mock)\n\n"

@@ -42,6 +42,7 @@ def storage_status_from_confidence(
     *,
     has_citation: bool,
     feedback_signals: list[str] | None = None,
+    from_pipeline: bool = False,
 ) -> StorageStatus:
     """Map confidence + citation rules to storage class."""
     signals = set(feedback_signals or [])
@@ -58,6 +59,16 @@ def storage_status_from_confidence(
         if confidence >= 70.0:
             return StorageStatus.LOW_CONFIDENCE
         return StorageStatus.LOW_CONFIDENCE
+
+    if FeedbackType.THUMBS_UP.value in signals and confidence >= 70.0:
+        return StorageStatus.VERIFIED
+
+    if from_pipeline:
+        if confidence >= 70.0:
+            return StorageStatus.DRAFT
+        if confidence >= 50.0:
+            return StorageStatus.LOW_CONFIDENCE
+        return StorageStatus.REJECTED
 
     if confidence >= 90.0:
         return StorageStatus.VERIFIED
@@ -84,6 +95,8 @@ def apply_feedback_adjustment(
         if not has_citation:
             warnings.append("Thumbs up without citation — user-approved note, not verified scientific fact.")
             return StorageStatus.DRAFT, adjusted, warnings
+        if adjusted >= 70.0:
+            return StorageStatus.VERIFIED, adjusted, warnings
     elif feedback_type == FeedbackType.MARK_USEFUL.value:
         adjusted = min(100.0, confidence + 5.0)
     elif feedback_type == FeedbackType.THUMBS_DOWN.value:

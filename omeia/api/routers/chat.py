@@ -193,8 +193,21 @@ def chat_status(user: dict = Depends(require_platform_user)) -> dict[str, Any]:
     import os
 
     from omeia.api.docker_service_client import docker_services
+    from omeia.api.platform_flags import (
+        continuous_learning_enabled,
+        expert_routing_enabled,
+        external_cancer_evidence_enabled,
+        lab_knowledge_threads_enabled,
+        learning_retrieval_boost_enabled,
+        project_intelligence_briefs_enabled,
+        research_strategy_assistant_enabled,
+    )
 
     active = _chat_llm()
+    ollama_probe = _chat_llm("ollama", None)
+    ollama_reachable = ollama_probe.healthCheck() if active.provider != "mock" or os.getenv("CHAT_LLM_PROVIDER", os.getenv("LLM_PROVIDER", "")).lower() == "ollama" else False
+    llm_status = active.public_status()
+    last_synth = llm_status.get("last_synthesis") or {}
     catalog = build_chat_model_catalog()
     infra = {
         "docker_local": docker_services.local_docker,
@@ -206,6 +219,24 @@ def chat_status(user: dict = Depends(require_platform_user)) -> dict[str, Any]:
     return {
         "chat_provider": active.provider,
         "chat_model": active.model,
+        "ollama_reachable": ollama_reachable,
+        "fallback_state": {
+            "fallback_used": bool(last_synth.get("fallback_used")),
+            "effective_provider": last_synth.get("effective_provider") or active.provider,
+            "synthesis_mode": last_synth.get("synthesis_mode") or "unknown",
+            "last_provider_errors": llm_status.get("last_provider_errors") or [],
+        },
+        "layers": {
+            "conversation_default": os.getenv("CHAT_CONVERSATION_MODEL", "qwen2.5:7b-instruct"),
+            "greeting_default": os.getenv("CHAT_GREETING_MODEL", "qwen2.5:3b"),
+            "expert_routing_enabled": expert_routing_enabled(),
+            "continuous_learning_enabled": continuous_learning_enabled(),
+            "learning_retrieval_boost_enabled": learning_retrieval_boost_enabled(),
+            "research_strategy_assistant_enabled": research_strategy_assistant_enabled(),
+            "lab_knowledge_threads_enabled": lab_knowledge_threads_enabled(),
+            "project_intelligence_briefs_enabled": project_intelligence_briefs_enabled(),
+            "external_cancer_evidence_enabled": external_cancer_evidence_enabled(),
+        },
         "infra": infra,
         "default_key": catalog.get("default_key"),
         "stream_enabled": os.getenv("CHAT_STREAM_ENABLED", "true").strip().lower() in {"1", "true", "yes", "on"},
@@ -214,7 +245,7 @@ def chat_status(user: dict = Depends(require_platform_user)) -> dict[str, Any]:
         "embedding_model": os.getenv("TEXT_EMBEDDING_MODEL", "nomic-embed-text"),
         "rerank_enabled": os.getenv("RERANK_ENABLED", "true"),
         "session_memory": os.getenv("CHAT_SESSION_MEMORY", "true"),
-        "llm": active.public_status(),
+        "llm": llm_status,
         "model_catalog": catalog,
         "agent_categories": list_visible_categories(),
         "default_agent_category": load_categories_config().get("default_category", "general_research"),

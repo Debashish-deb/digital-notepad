@@ -1880,13 +1880,22 @@ class SearchService:
             )
 
         try:
-            from omeia.api.platform_flags import continuous_learning_enabled
+            from omeia.api.platform_flags import continuous_learning_enabled, learning_retrieval_boost_enabled
             from omeia.api.learning_retrieval_service import merge_learning_into_copilot_hits
 
-            if continuous_learning_enabled():
+            if continuous_learning_enabled() and learning_retrieval_boost_enabled():
                 result = merge_learning_into_copilot_hits(query, result, learning_limit=max(2, limit // 3))
         except Exception as exc:
             LOGGER.debug("Learning retrieval merge skipped: %s", exc)
+
+        try:
+            from omeia.api.platform_flags import external_cancer_evidence_enabled
+            from omeia.api.external_cancer_evidence import merge_external_into_hits
+
+            if external_cancer_evidence_enabled():
+                result = merge_external_into_hits(query, result, limit=max(2, limit // 4))
+        except Exception as exc:
+            LOGGER.debug("External cancer evidence merge skipped: %s", exc)
 
         if should_cache(include_restricted=allow_restricted, user_role=user_role):
             set_copilot_cached(cache_key, [h.model_dump() for h in result])

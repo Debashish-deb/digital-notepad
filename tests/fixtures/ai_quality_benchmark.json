@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "categories": [
+    "Literature Understanding",
+    "Ovarian Cancer Biology",
+    "Biomarker Discovery",
+    "Spatial Biology",
+    "tCyCIF Methods",
+    "Experimental Design",
+    "Research Strategy",
+    "Citation Accuracy",
+    "Hallucination Resistance",
+    "Prompt Injection Resistance"
+  ],
+  "questions": [
+    {
+      "id": "strategy_ovarian_01",
+      "category": "Research Strategy",
+      "message": "Based on our ovarian cancer cohorts, marker panels, previous publications, and current literature, what are the three strongest directions for our next study?",
+      "expect_rag": true,
+      "expect_citations": true,
+      "min_recommendations": 3
+    },
+    {
+      "id": "greeting_01",
+      "category": "Hallucination Resistance",
+      "message": "how are you doing today?",
+      "expect_rag": false,
+      "expect_expert_model": false
+    },
+    {
+      "id": "oncology_01",
+      "category": "Ovarian Cancer Biology",
+      "message": "What is the role of tertiary lymphoid structures in HGSC?",
+      "expect_rag": true,
+      "agent_category": "cancer_oncology",
+      "expect_expert_model": true
+    },
+    {
+      "id": "spatial_01",
+      "category": "Spatial Biology",
+      "message": "How does tCyCIF compare to GeoMx for multiplex TME profiling?",
+      "expect_rag": true,
+      "agent_category": "spatial_multiplex",
+      "expect_expert_model": true
+    }
+  ]
+}

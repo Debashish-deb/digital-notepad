@@ -13,6 +13,7 @@ import {
   ThumbsUp,
   User,
   XCircle,
+  MessageSquareQuote,
 } from 'lucide-react';
 import { apiFetch } from '@/services/client.js';
 import { getChatStatus, sendChatMessage, streamChatMessage } from '@/services/chatClient.js';
@@ -29,7 +30,11 @@ import {
   writeStoredCategory,
   writeStoredMode,
 } from '@/services/agentCategoryClient.js';
-import { sendLearningFeedback } from '@/services/learningClient.js';
+import {
+  challengeLearningThread,
+  createLearningThread,
+  sendLearningFeedback,
+} from '@/services/learningClient.js';
 import { FALLBACK_AGENT_CATEGORIES } from '@/data/agentCategoryFallback.js';
 import { getLibraryScopeContext } from '@/lib/documentExplorerPresets.js';
 import AgentCategorySelector from './AgentCategorySelector.jsx';
@@ -150,6 +155,9 @@ function formatAssistantPayload(data) {
     strategyReport: data?.strategy_report || null,
     aiResponseId: data?.ai_response_id || null,
     continuousLearningEnabled: Boolean(data?.continuous_learning_enabled),
+    threadId: data?.thread_id || null,
+    expertModel: data?.expert_model || null,
+    expertRouteReason: data?.expert_route_reason || null,
   };
 }
 
@@ -449,6 +457,10 @@ export default function ChatWidget({
   const [selectedCategory, setSelectedCategory] = useState(() => readStoredCategory());
   const [selectedMode, setSelectedMode] = useState(() => readStoredMode());
   const [debugModels, setDebugModels] = useState(() => isDebugModelsEnabled());
+  const [labThreadsEnabled, setLabThreadsEnabled] = useState(false);
+  const [challengeMessageId, setChallengeMessageId] = useState(null);
+  const [challengeText, setChallengeText] = useState('');
+  const [challengeLoading, setChallengeLoading] = useState(false);
 
   const textareaRef = useRef(null);
   const revealAbortRef = useRef(null);
@@ -500,6 +512,72 @@ export default function ChatWidget({
     textareaRef.current?.focus();
   }, []);
 
+  const submitChallenge = useCallback(
+    async (message) => {
+      const text = challengeText.trim();
+      if (!text || challengeLoading) return;
+      setChallengeLoading(true);
+      try {
+        let threadId = message.threadId;
+        if (!threadId) {
+          const created = await createLearningThread({
+            title: (message.queryContext || 'Lab knowledge thread').slice(0, 120),
+            initial_query: message.queryContext || '',
+            initial_answer: message.content || '',
+            response_id: message.aiResponseId,
+          });
+          threadId = created?.thread_id;
+          if (threadId) {
+            setMessages((prev) =>
+              prev.map((m) => (m.id === message.id ? { ...m, threadId } : m)),
+            );
+          }
+        }
+        if (!threadId) return;
+
+        const outcome = await challengeLearningThread({
+          thread_id: threadId,
+          challenge_text: text,
+          project_codes: selProjs,
+          agent_category: selectedCategory,
+        });
+        const revised = outcome?.revised || {};
+        const revisionId = `revision-${Date.now()}`;
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: revisionId,
+            role: 'assistant',
+            content: revised.answer || 'No revised answer returned.',
+            queryContext: message.queryContext,
+            sources: revised.sources || [],
+            searchHits: revised.search_hits || [],
+            limitations: [
+              ...(revised.limitations || []),
+              'Revised after your challenge — compare with the prior answer above.',
+            ],
+            intent: revised.intent || message.intent,
+            showSources: true,
+            isRevision: true,
+            threadId,
+            parentMessageId: message.id,
+            aiResponseId: revised.ai_response_id || null,
+            provider: revised.provider || message.provider,
+            model: revised.model || message.model,
+            synthesisMode: revised.synthesis_mode,
+          },
+        ]);
+        setChallengeMessageId(null);
+        setChallengeText('');
+      } catch {
+        /* ignore — user can retry */
+      } finally {
+        setChallengeLoading(false);
+      }
+    },
+    [challengeLoading, challengeText, selProjs, selectedCategory],
+  );
+
   const handleSearchOmnibox = useCallback(
     (term) => {
       const q = String(term || '').trim();
@@ -519,6 +597,7 @@ export default function ChatWidget({
         setChatProvider(provider);
         setChatModel(status?.chat_model || status?.llm?.model || '');
         setChatHealthy(status?.llm?.healthy ?? null);
+        setLabThreadsEnabled(Boolean(status?.layers?.lab_knowledge_threads_enabled));
         setStreamEnabled(status?.stream_enabled !== false);
         const catalog = status?.model_catalog || {};
         setModelCatalog(catalog);
@@ -1336,7 +1415,63 @@ export default function ChatWidget({
                         </button>
                       </>
                     ) : null}
+                    {labThreadsEnabled && message.sources?.length > 0 ? (
+                      <button
+                        type="button"
+                        className={`chat-feedback-btn${challengeMessageId === message.id ? ' is-active' : ''}`}
+                        title="Challenge this answer"
+                        disabled={challengeLoading}
+                        onClick={() => {
+                          setChallengeMessageId((current) => (current === message.id ? null : message.id));
+                          setChallengeText('');
+                        }}
+                      >
+                        <MessageSquareQuote size={14} aria-hidden="true" />
+                      </button>
+                    ) : null}
                   </div>
+                ) : null}
+
+                {challengeMessageId === message.id ? (
+                  <div className="chat-challenge-panel">
+                    <label className="chat-challenge-label" htmlFor={`challenge-${message.id}`}>
+                      Challenge this answer — what should be corrected or re-checked?
+                    </label>
+                    <textarea
+                      id={`challenge-${message.id}`}
+                      className="chat-challenge-input"
+                      rows={3}
+                      value={challengeText}
+                      placeholder="e.g. The TLS claim conflicts with our EyeMT cohort data — please re-check internal sources."
+                      onChange={(e) => setChallengeText(e.target.value)}
+                      disabled={challengeLoading}
+                    />
+                    <div className="chat-challenge-actions">
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-primary"
+                        disabled={!challengeText.trim() || challengeLoading}
+                        onClick={() => submitChallenge(message)}
+                      >
+                        {challengeLoading ? 'Re-retrieving…' : 'Re-retrieve & revise'}
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-secondary"
+                        disabled={challengeLoading}
+                        onClick={() => {
+                          setChallengeMessageId(null);
+                          setChallengeText('');
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
+
+                {message.isRevision ? (
+                  <p className="chat-revision-note">Revised answer (challenge response)</p>
                 ) : null}
 
                 {message.isError && message.originalQuestion ? (

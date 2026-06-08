@@ -85,3 +85,28 @@ def quality_gate_strict_enabled() -> bool:
 def continuous_learning_enabled() -> bool:
     """When true, record AI responses, run learning pipeline, and expose feedback API."""
     return _env_bool("OMEIA_CONTINUOUS_LEARNING_ENABLED", "false")
+
+
+def expert_routing_enabled() -> bool:
+    """When true, route specialist intents/categories to Layer 3 Ollama expert models."""
+    return _env_bool("OMEIA_EXPERT_ROUTING_ENABLED", "false")
+
+
+def learning_retrieval_boost_enabled() -> bool:
+    """When true, verified lab knowledge items boost copilot retrieval ranking."""
+    return _env_bool("OMEIA_LEARNING_RETRIEVAL_BOOST", "false")
+
+
+def project_intelligence_briefs_enabled() -> bool:
+    """When true, expose Project Intelligence Brief generation API."""
+    return _env_bool("OMEIA_PROJECT_INTELLIGENCE_BRIEFS", "false")
+
+
+def external_cancer_evidence_enabled() -> bool:
+    """When true, merge external cancer evidence connectors into retrieval."""
+    return _env_bool("OMEIA_EXTERNAL_CANCER_EVIDENCE", "false")
+
+
+def lab_knowledge_threads_enabled() -> bool:
+    """When true, expose Lab Knowledge Threads challenge/correct API."""
+    return _env_bool("OMEIA_LAB_KNOWLEDGE_THREADS", "false")

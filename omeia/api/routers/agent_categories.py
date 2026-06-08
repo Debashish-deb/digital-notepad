@@ -113,6 +113,7 @@ def _execute_category_chat(
             req.message,
             project_codes=req.project_codes,
             session_id=req.session_id,
+            agent_category=req.category,
             user=user,
             llm=unified_llm,
             search_svc=search_svc,

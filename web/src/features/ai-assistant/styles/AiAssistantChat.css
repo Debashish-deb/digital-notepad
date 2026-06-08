@@ -1571,3 +1571,42 @@
   opacity: 0.55;
   cursor: default;
 }
+
+.chat-challenge-panel {
+  margin-top: 0.65rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--color-border-subtle, rgba(255, 255, 255, 0.12));
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.chat-challenge-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--color-text-muted, #94a3b8);
+  margin-bottom: 0.4rem;
+}
+
+.chat-challenge-input {
+  width: 100%;
+  resize: vertical;
+  min-height: 4.5rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-subtle, rgba(255, 255, 255, 0.12));
+  background: rgba(2, 6, 23, 0.45);
+  color: var(--color-text, #e2e8f0);
+  font: inherit;
+}
+
+.chat-challenge-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.chat-revision-note {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  color: var(--color-accent, #38bdf8);
+}

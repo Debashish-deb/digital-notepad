@@ -44,7 +44,8 @@ from omeia.api.chat_session_store import (
 from omeia.api.common import SourceInfo, _clinical_context_for_question, query_postgres_metadata
 from omeia.api.privacy_guardrails import allow_external_llm, guard_for_llm, is_external_provider
 from omeia.api.search_service import SearchService
-from omeia.api.platform_flags import continuous_learning_enabled, research_strategy_assistant_enabled
+from omeia.api.expert_model_router import is_conversation_only_intent, resolve_expert_model, route_metadata
+from omeia.api.platform_flags import continuous_learning_enabled, expert_routing_enabled, research_strategy_assistant_enabled
 
 LOGGER = logging.getLogger(__name__)
 
@@ -282,13 +283,19 @@ def _route_llm_for_intent(
     llm: Any,
     intent_decision: IntentDecision,
     *,
+    message: str = "",
+    agent_category: str | None = None,
     user_provider: str | None = None,
     user_model: str | None = None,
 ) -> Any:
-    """Fast local models for greetings/chat; keep user-selected or premium models for research."""
+    """Fast local models for greetings/chat; expert models for specialist research."""
     if user_provider or user_model:
         return llm
-    provider, model = resolve_route_model(intent_decision)
+    provider, model = resolve_route_model(
+        intent_decision,
+        message,
+        agent_category=agent_category,
+    )
     if not provider:
         return llm
     return make_chat_llm(provider, model, default_llm=llm)
@@ -321,6 +328,7 @@ def answer_chat(
     project_codes: list[str] | None = None,
     user: dict[str, Any] | None = None,
     session_id: str | None = None,
+    agent_category: str | None = None,
     llm: Any,
     search_svc: SearchService,
     rag_agent: Any,
@@ -411,8 +419,45 @@ def answer_chat(
             **intent_meta,
         }
 
-    llm = _route_llm_for_intent(llm, intent_decision)
+    expert_route = resolve_expert_model(intent_decision, safe_message, agent_category=agent_category)
+    llm = _route_llm_for_intent(
+        llm,
+        intent_decision,
+        message=safe_message,
+        agent_category=agent_category,
+    )
     provider = getattr(llm, "provider", provider) or provider
+    route_meta = route_metadata(expert_route)
+
+    if is_conversation_only_intent(intent_decision):
+        system_prompt = conversational_system_prompt(intent_decision, user_name=user_name, lang=response_lang)
+        user_content = (memory_block or "") + safe_message
+        answer = llm.generate(user_content, system_prompt)
+        provenance = _llm_provenance(llm, configured_provider=provider)
+        if active_session and user_email:
+            append_turn(active_session, user_email=user_email, role="user", content=safe_message, intent=intent_decision.intent)
+            append_turn(
+                active_session,
+                user_email=user_email,
+                role="assistant",
+                content=answer[:8000],
+                intent=intent_decision.intent,
+            )
+        return {
+            "answer": answer,
+            "limitations": limitations,
+            "sources": [],
+            "database_counts": {},
+            "is_safe": True,
+            "search_hits": [],
+            "blocked_by_guardrail": False,
+            "session_id": active_session or None,
+            "continuous_learning_enabled": continuous_learning_enabled(),
+            "expert_routing_enabled": expert_routing_enabled(),
+            **provenance,
+            **route_meta,
+            **intent_meta,
+        }
 
     if research_strategy_assistant_enabled() and intent_decision.use_rag:
         from omeia.api.research_strategy_engine import (
@@ -448,6 +493,8 @@ def answer_chat(
                     metadata={"research_strategy": True},
                 )
             strategy_payload["session_id"] = active_session or None
+            strategy_payload.update(route_meta)
+            strategy_payload["expert_routing_enabled"] = expert_routing_enabled()
             return strategy_payload
 
     db_data = query_postgres_metadata(project_codes) if intent_decision.use_rag else {}
@@ -505,7 +552,9 @@ def answer_chat(
                 "search_hits": [],
                 "provider": provider,
                 "blocked_by_guardrail": False,
+                "expert_routing_enabled": expert_routing_enabled(),
                 **_llm_provenance(llm, configured_provider=provider),
+                **route_meta,
                 **intent_meta,
             }
 
@@ -606,6 +655,8 @@ def answer_chat(
                 intent=intent_decision.intent,
                 project_codes=project_codes,
                 sources=retrieved_sources,
+                route_metadata=route_meta,
+                evidence_confidence=response_meta.get("evidence_confidence"),
             )
         except Exception as exc:
             LOGGER.warning("Continuous learning record failed: %s", exc)
@@ -622,6 +673,8 @@ def answer_chat(
         "answer_regenerated": regenerated,
         "ai_response_id": ai_response_id,
         "continuous_learning_enabled": continuous_learning_enabled(),
+        "expert_routing_enabled": expert_routing_enabled(),
+        **route_meta,
         **provenance,
         "audit": {
             "redaction_count": audit.get("redaction_count", 0),

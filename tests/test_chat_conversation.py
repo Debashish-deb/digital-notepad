@@ -59,6 +59,16 @@ class TestChatConversation(unittest.TestCase):
         decision = classify_and_enrich("hi")
         self.assertTrue(should_use_instant_greeting(decision, "hi"))
 
+    def test_should_use_instant_for_how_are_doing_today(self) -> None:
+        decision = classify_and_enrich("how are doing today?")
+        self.assertEqual(decision.intent, "smalltalk")
+        self.assertTrue(should_use_instant_greeting(decision, "how are doing today?"))
+
+    def test_instant_greeting_how_are_doing(self) -> None:
+        reply = instant_greeting_response("how are doing today?", UserChatContext())
+        self.assertIn("Doing well", reply)
+        self.assertNotIn("mock synthesis", reply.lower())
+
     def test_answer_chat_greeting_uses_template(self) -> None:
         from unittest.mock import MagicMock
 

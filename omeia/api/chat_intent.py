@@ -35,6 +35,12 @@ SMALLTALK_PATTERNS = [
     r"^\s*(morning|afternoon|evening)\s*[!.,]*\s*$",
     r"^\s*(thanks|thank you|thx|ok|okay|great|nice|cool|good)\s*[!.]*\s*$",
     r"^\s*(how are you|who are you|what can you do|what do you do)\s*[?!.]*\s*$",
+    r"^\s*how(?:'s|\s+is|\s+are)\s+(?:you|it|things|everything)(?:\s+doing|\s+going)?(?:\s+today)?\s*[?!.]*\s*$",
+    r"^\s*how(?:'s|\s+is)\s+it\s+going(?:\s+today)?\s*[?!.]*\s*$",
+    r"^\s*how\s+are\s+(?:you\s+)?doing(?:\s+today)?\s*[?!.]*\s*$",
+    r"^\s*how\s+are\s+doing(?:\s+today)?\s*[?!.]*\s*$",
+    r"^\s*how\s+goes\s+it(?:\s+today)?\s*[?!.]*\s*$",
+    r"^\s*what'?s\s+up(?:\s+today)?\s*[?!.]*\s*$",
 ]
 
 RESEARCH_TERMS = {

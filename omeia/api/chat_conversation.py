@@ -30,6 +30,15 @@ PURE_GREETING_PATTERNS = [
 
 GREETING_PATTERNS = PURE_GREETING_PATTERNS + [
     re.compile(r"^\s*how\s+are\s+you\s*[?!.]*\s*$", re.I),
+    re.compile(
+        r"^\s*how(?:'s|\s+is|\s+are)\s+(?:you|it|things|everything)(?:\s+doing|\s+going)?(?:\s+today)?\s*[?!.]*\s*$",
+        re.I,
+    ),
+    re.compile(r"^\s*how(?:'s|\s+is)\s+it\s+going(?:\s+today)?\s*[?!.]*\s*$", re.I),
+    re.compile(r"^\s*how\s+are\s+(?:you\s+)?doing(?:\s+today)?\s*[?!.]*\s*$", re.I),
+    re.compile(r"^\s*how\s+are\s+doing(?:\s+today)?\s*[?!.]*\s*$", re.I),
+    re.compile(r"^\s*how\s+goes\s+it(?:\s+today)?\s*[?!.]*\s*$", re.I),
+    re.compile(r"^\s*what'?s\s+up(?:\s+today)?\s*[?!.]*\s*$", re.I),
 ]
 
 CAPABILITY_ASK_PATTERNS = [
@@ -117,7 +126,7 @@ def should_use_instant_greeting(decision: IntentDecision, message: str) -> bool:
     """Template greetings — no RAG, no expensive LLM pipeline."""
     if decision.intent != "smalltalk":
         return False
-    return is_pure_greeting(message) or is_capability_question(message)
+    return is_greeting_message(message) or is_capability_question(message)
 
 
 def _time_greeting() -> str:
@@ -163,7 +172,10 @@ def instant_greeting_response(message: str, ctx: UserChatContext) -> str:
             "pipelines, or image analysis. What are you working on today?"
         )
 
-    if re.match(r"^\s*how\s+are\s+you", text):
+    if re.match(
+        r"^\s*(how(?:'s|\s+is|\s+are)|how\s+goes\s+it|what'?s\s+up)",
+        text,
+    ):
         return f"Doing well{name_bit} — thanks. What are you working on today?"
 
     if projects:
@@ -232,19 +244,30 @@ def conversational_system_prompt(
     return COLLEAGUE_RESEARCH_PROMPT + name_hint + lang_hint
 
 
-def resolve_route_model(decision: IntentDecision) -> tuple[str | None, str | None]:
+def resolve_route_model(
+    decision: IntentDecision,
+    message: str = "",
+    *,
+    agent_category: str | None = None,
+) -> tuple[str | None, str | None]:
     """
     Return (provider, model) override for fast/local routing.
     None means keep the request default.
     """
+    from omeia.api.expert_model_router import resolve_expert_model
+
+    expert = resolve_expert_model(decision, message, agent_category=agent_category)
+    if expert is not None:
+        return expert.provider, expert.model
+
     if decision.intent == "smalltalk":
-        return "ollama", os.getenv("CHAT_GREETING_MODEL", "qwen3:8b").strip() or "qwen2.5:3b"
+        return "ollama", os.getenv("CHAT_GREETING_MODEL", "qwen2.5:3b").strip() or "qwen2.5:3b"
     if decision.intent == "general_chat" and not decision.use_rag:
-        return "ollama", os.getenv("CHAT_CONVERSATION_MODEL", "qwen3:14b").strip() or "qwen2.5:7b-instruct"
+        return "ollama", os.getenv("CHAT_CONVERSATION_MODEL", "qwen2.5:7b-instruct").strip() or "qwen2.5:7b-instruct"
     if decision.answer_style == "search_summary":
-        return "ollama", os.getenv("CHAT_SUMMARY_MODEL", "qwen3:14b").strip() or "qwen2.5:7b-instruct"
+        return "ollama", os.getenv("CHAT_SUMMARY_MODEL", "qwen2.5:7b-instruct").strip() or "qwen2.5:7b-instruct"
     if decision.intent in {"coding_request", "app_help", "document_ingestion_help"}:
-        return "ollama", os.getenv("CHAT_CONVERSATION_MODEL", "qwen3:14b").strip() or "qwen2.5:7b-instruct"
+        return "ollama", os.getenv("CHAT_CONVERSATION_MODEL", "qwen2.5:7b-instruct").strip() or "qwen2.5:7b-instruct"
     # research / protocol / search with citations — keep configured primary (gemini etc.)
     return None, None
 

@@ -133,6 +133,7 @@ def run_pipeline_for_response(
         status = storage_status_from_confidence(
             confidence,
             has_citation=bool(claim.get("has_citation")),
+            from_pipeline=True,
         )
 
         claim_id = insert_claim(
@@ -277,6 +278,8 @@ def record_chat_response(
     intent: str | None,
     project_codes: list[str] | None,
     sources: list[dict[str, Any]] | None,
+    route_metadata: dict[str, Any] | None = None,
+    evidence_confidence: str | None = None,
 ) -> str | None:
     """Lightweight hook from chat_service — record student response + pipeline."""
     req = RecordResponseRequest(
@@ -298,7 +301,11 @@ def record_chat_response(
             for s in (sources or [])
         ],
         run_pipeline=True,
-        metadata={"origin": "chat_service"},
+        metadata={
+            "origin": "chat_service",
+            "route": route_metadata or {},
+            "evidence_confidence": evidence_confidence,
+        },
     )
     result = record_and_run_pipeline(req, user_email=user_email)
     return str(result.response_id) if result else None
