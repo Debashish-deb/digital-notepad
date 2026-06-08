@@ -1,0 +1,25 @@
+app_skeleton/api/document_library_service.py
+  s_d8ca0dcf385045::t_4fce671b2efdea 1209,1217-1224
+app_skeleton/api/image_streaming/storage_adapter.py
+  s_d8ca0dcf385045::t_73c10ac27ac10d 49-53,55-59,64,69,71
+  s_d8ca0dcf385045::t_2a7a899c100d65 82
+app_skeleton/api/image_streaming/image_streaming_service.py
+  s_d8ca0dcf385045::t_6fb6da4781402f 135
+  s_d8ca0dcf385045::t_9fa3a9e05ba8d9 130,132-134,136-145
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9bcf80c28efe029f4c5dc8aac1dd62db30a62ecb",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
