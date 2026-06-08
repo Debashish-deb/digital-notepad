@@ -14,8 +14,8 @@
 
 .sfe-root--reading .sfe-body--reading {
   display: grid;
-  /* File list 15% · PDF / reader pane 85% */
-  grid-template-columns: minmax(8rem, 15%) minmax(0, 85%);
+  /* Get Started reader — list inside viewer 15% · content 85% */
+  grid-template-columns: minmax(11rem, 15%) minmax(0, 85%);
   gap: 0.5rem;
   flex: 1;
   min-height: 0;
