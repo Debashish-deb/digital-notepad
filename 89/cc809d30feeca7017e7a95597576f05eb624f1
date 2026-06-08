@@ -1,0 +1,563 @@
+apps/api/src/app_skeleton/api/common.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 39,45,55,62,73,79,81,83,85,87,89,95,97,101,116,124,126,134,142,144,154,166-171,193,199,208,766
+tests/test_ocr_adapter.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6-7
+apps/api/src/app_skeleton/api/clinical_tools.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 31
+infra/scripts/digitalization/reconcile_inventory_status.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 14
+infra/scripts/digitalization/reprocess_all_twins.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 20
+config/env/README.md
+  s_eaa6f401e95506::t_c7d175d294517d 1,3,6-8,11
+infra/scripts/digitalization/project_digitalize.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 17-18
+apps/api/src/app_skeleton/api/datapad_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 13-15,22,251
+apps/api/src/app_skeleton/api/strategy_agents/experimental_design_agent.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6
+config/env/DEPLOYMENT_ENV.md
+  s_eaa6f401e95506::t_895e3f7235c547 11,27
+apps/api/src/app_skeleton/api/raw_vault_store.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16-18,61,112,304,670,763
+apps/api/src/app_skeleton/api/strategy_agents/bioinformatics_agent.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8
+infra/scripts/imaging/linux_minimal_imaging_capabilities.sh
+  s_eaa6f401e95506::t_ba0a54b44aaef0 57
+infra/scripts/dev/docker_bootstrap.sh
+  s_eaa6f401e95506::t_ba0a54b44aaef0 43
+deploy/university-desktop/run_api_dev.sh
+  s_eaa6f401e95506::t_ba0a54b44aaef0 56
+  s_eaa6f401e95506::t_5e48ed37dc97d3 37
+apps/api/src/app_skeleton/api/copilot_feedback_store.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16
+README.md
+  s_eaa6f401e95506::t_817bc82520e0ce 1,3,5,8-13,16,18-22,25-27,30,32,34,36,38,40,42-44
+infra/scripts/ingest/reindex_research_vectors.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 21-25,31
+docs/PLATFORM_REMEDIATION_MASTER_PLAN.md
+  s_eaa6f401e95506::t_895e3f7235c547 609-612,629
+infra/scripts/ingest/ingest_lab_knowledge.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 13
+apps/api/src/app_skeleton/security/auth.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6,16-17,40
+docs/26_PRODUCTION_DEPLOYMENT.md
+  s_eaa6f401e95506::t_895e3f7235c547 146
+apps/api/src/app_skeleton/api/supabase_sync.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 15-17,21
+apps/api/src/app_skeleton/api/taxonomy_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 14
+apps/api/src/app_skeleton/api/chat_session_store.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 25
+apps/api/src/app_skeleton/digitalization/canonicalizer.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9,15
+tests/test_audit_logging.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8,13,51
+docs/AI_LAB_ASSISTANT_PRODUCTION_FIX_REPORT.md
+  s_eaa6f401e95506::t_895e3f7235c547 82
+apps/api/src/app_skeleton/api/routers/research.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 1,7,12,14,730
+infra/scripts/ops/scheduled_ingest.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 30,47-48,65,87-88
+apps/api/src/app_skeleton/security/audit_log.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 4
+apps/api/src/app_skeleton/api/db_pool.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 71
+apps/api/src/app_skeleton/api/agent_orchestrator/registry.py
+  s_eaa6f401e95506::t_acf6020b133517 8-10
+apps/api/src/app_skeleton/storage/datacloud_webdav.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9
+apps/api/src/app_skeleton/api/startup_validation.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 81
+  s_eaa6f401e95506::t_46a8c2f3841724 83
+apps/api/src/app_skeleton/api/llm_client.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 40,694,701,714
+infra/scripts/ops/run_vectorization_queue.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 19
+apps/api/src/app_skeleton/api/strategy_agents/biomarker_agent.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8
+tests/test_cycif_wet_lab_separation.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6
+apps/api/src/app_skeleton/api/database_processor.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 13-15,20-21,187-188,260
+tests/test_knowledge_indexer_pipeline.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8,30,44-45,68
+apps/api/src/app_skeleton/api/vault_ingestion_engine.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16-20,40,50,349,353,373,390,394,419-420
+apps/api/src/app_skeleton/api/routers/chat.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 12-20,159,181,193,229
+infra/scripts/document-library/delete_duplicate_files.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 18,23
+tests/test_project_digitalization.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 30,35-36,51-52,71,80-81,89
+infra/scripts/digitalization/reprocess_lab_database.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 14
+tests/test_datapad_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10,27-29,54-56,66-68
+apps/api/src/app_skeleton/api/research_strategy_engine.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-9,15,20-21,29-30,235
+tests/test_auth_protected_routes.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9,13-14,21-22,33-34
+tests/test_phase1_platform_flags.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8
+tests/test_search_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6-7
+apps/api/src/app_skeleton/api/image_streaming/permissions.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6
+apps/api/src/app_skeleton/api/env_bootstrap.py
+  s_eaa6f401e95506::t_860876801bdc4e 11-13
+app_skeleton/README.md
+  s_eaa6f401e95506::t_016cd75dab7332 1,3,5-11,13
+tests/test_admin_index_health.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9,31-32
+tests/test_vault_review_search.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-9,28,35,54-55
+infra/scripts/auth/inject_authz.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 23,25
+infra/scripts/dev/ensure_node_for_vite.sh
+  s_eaa6f401e95506::t_895e3f7235c547 42
+docs/IMAGE_VIEWER_CONTRACT.md
+  s_eaa6f401e95506::t_895e3f7235c547 3
+tests/test_image_streaming.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 13-17,79,89,94,167,180,183,196,199,202,210,220
+docs/KNOWLEDGE_DOCUMENT_SUBSYSTEM_REVIEW.md
+  s_eaa6f401e95506::t_895e3f7235c547 738-740
+apps/api/src/app_skeleton/api/search_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 14-23,32-33,40-44,1011-1012
+infra/scripts/ops/collect_app_code_bundle.py
+  s_eaa6f401e95506::t_895e3f7235c547 30-31,77-79
+apps/api/src/app_skeleton/api/page_registry.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 35
+docs/29_INTELLIGENT_DATAPAD.md
+  s_eaa6f401e95506::t_895e3f7235c547 31,64
+infra/scripts/dev/build_frontend_prod.sh
+  s_eaa6f401e95506::t_895e3f7235c547 6
+infra/scripts/ops/run_continuous_eval.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 33-34
+apps/api/src/app_skeleton/api/research_knowledge_store.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 17-18,23,31-33,37,45,883
+apps/api/src/app_skeleton/api/vector_indexer.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10-11,19
+infra/scripts/search/run_search_qa.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 34,48-49,131-132
+apps/api/src/app_skeleton/digitalization/ingestion_job.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 12,20-21,27,213,272-273
+apps/api/src/app_skeleton/api/lab_catalog_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11-12,17
+infra/scripts/sync/sync_documents_to_supabase.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 18
+docs/PLATFORM_ARCHITECTURE_REVIEW.md
+  s_eaa6f401e95506::t_895e3f7235c547 1186-1191
+tests/test_chat_conversation.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6,15,38
+tests/test_document_library_search_integration.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-9,54,84,97
+tests/test_document_digitalization_pipeline.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8,66
+apps/api/src/app_skeleton/api/search_nav.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6
+infra/scripts/ingest/vault_ingest.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 13-14
+docs/architecture/REPOSITORY_LAYOUT.md
+  s_eaa6f401e95506::t_9bac7a1c44370d 1,3,6-19,22,24-26,28,31
+apps/api/src/app_skeleton/security/secure_files.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-10
+tests/test_vault_ingestion_engine.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10-11,93-94,111-112,161
+apps/api/src/app_skeleton/api/routers/storage.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 1-2,4,14-15
+tests/auth_fixtures.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 12-13
+apps/api/src/app_skeleton/api/README.md
+  s_eaa6f401e95506::t_895e3f7235c547 3
+apps/api/src/app_skeleton/api/thumbnail_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11
+tests/test_strategy_citation_grounding.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 4-5
+apps/api/src/app_skeleton/api/metadata_engine/duplicates.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9
+tests/test_deployment_ops.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9-10,20,35,46,56,71
+apps/api/src/app_skeleton/storage/ingestion.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9,25
+apps/api/src/app_skeleton/api/routers/datapad.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 1-3,5,9
+apps/api/src/app_skeleton/api/routers/biomedical_models.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9-10
+apps/api/src/app_skeleton/digitalization/validators.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6-7
+apps/api/src/app_skeleton/api/rag_diagnostics.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 75-78,87
+apps/api/src/app_skeleton/api/evidence_orchestrator.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-9
+apps/api/src/app_skeleton/api/scientific_document_parser.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 47-48
+apps/api/src/app_skeleton/api/project_processor.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11-12,1616
+apps/api/src/app_skeleton/api/qdrant_vectors.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 13-14
+apps/api/src/app_skeleton/api/chat_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9,18,26-28,38,44-47,418
+docs/33_AI_LAB_ASSISTANT_PRODUCTION_PLAN.md
+  s_eaa6f401e95506::t_895e3f7235c547 21,243-245
+apps/api/src/app_skeleton/digitalization/chunker.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8
+infra/scripts/digitalization/finalize_empty_extractions.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16,22
+apps/api/src/app_skeleton/api/routers/vault.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 1-2,4,59,270-271,377,391,409,419,428,439,450,564,570
+docs/32_SEARCH_PORTABLE_SETUP.md
+  s_eaa6f401e95506::t_895e3f7235c547 28
+tests/test_security_files.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 3,6
+infra/scripts/digitalization/run_digitalization.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 48
+apps/api/src/app_skeleton/digitalization/manifest.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 12-13
+config/env/FIREBASE_WEB_SETUP.md
+  s_eaa6f401e95506::t_895e3f7235c547 3,46
+infra/scripts/auth/audit_routes_security.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8
+tests/test_copilot.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9,27,42,58,76,87,102,113
+tests/test_quality_eval_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8,80-85
+infra/scripts/ops/backup_linux.sh
+  s_eaa6f401e95506::t_830a34d27fcf30 11
+apps/api/src/app_skeleton/digitalization/extractors.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-9,18
+deploy/university-desktop/install_desktop_backend.sh
+  s_eaa6f401e95506::t_ba0a54b44aaef0 100-101,118
+apps/api/src/app_skeleton/api/routers/document_library.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9-11,108,178
+start.sh
+  s_eaa6f401e95506::t_ba0a54b44aaef0 132,134
+infra/scripts/dev/start_frontend.sh
+  s_eaa6f401e95506::t_895e3f7235c547 8
+deploy/university-desktop/README.md
+  s_eaa6f401e95506::t_895e3f7235c547 206
+apps/api/src/app_skeleton/api/strategy_agents/_base.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8
+apps/api/src/app_skeleton/api/service_clients.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10-11
+apps/api/src/app_skeleton/api/image_streaming/storage_adapter.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-10
+docs/35_VAST_STYLE_UI_MIGRATION_REPORT.md
+  s_eaa6f401e95506::t_895e3f7235c547 7,348,478
+apps/api/src/app_skeleton/api/sql_migrations.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 17
+infra/scripts/document-library/setup_research_knowledge.sh
+  s_eaa6f401e95506::t_ba0a54b44aaef0 33,47-48,57-58,69-70,81-83,94-95
+docs/IMAGING_SUBSYSTEM_REVIEW.md
+  s_eaa6f401e95506::t_895e3f7235c547 517-519
+apps/api/src/app_skeleton/api/readiness.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 20,41
+apps/api/src/app_skeleton/api/main.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 1,8-12,17-20
+apps/api/src/app_skeleton/api/routers/agent_categories.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10-13,18-22,68,83
+docs/34_AI_LAB_ASSISTANT_AND_SEARCH_DEEP_AUDIT.md
+  s_eaa6f401e95506::t_895e3f7235c547 165-173
+apps/api/src/app_skeleton/api/strategy_agents/spatial_biology_agent.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8
+tests/test_db_safety_unit.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 38
+infra/scripts/deploy/linux_bootstrap_all.sh
+  s_eaa6f401e95506::t_895e3f7235c547 123
+docs/KNOWLEDGE_PLATFORM_REMEDIATION_PLAN.md
+  s_eaa6f401e95506::t_895e3f7235c547 623-624,645,650
+tests/test_vault_semantic_search.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11-13,18,50,90,93,131,146-147,167,179,182,185
+infra/scripts/ops/migrate_lab_catalog_off_public.sh
+  s_eaa6f401e95506::t_895e3f7235c547 6
+apps/api/src/app_skeleton/api/storage_stub.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11-13,40
+tests/test_production_rag_fixes.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6-7,13,17,23,49
+apps/api/src/app_skeleton/api/embedding_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16
+infra/scripts/digitalization/import_top_class_metadata.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16
+tests/test_project_permissions.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9-11,42,56,77
+infra/scripts/ingest/ingest_complete_collection.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11-13
+tests/platform_validation_last_run.json
+  s_eaa6f401e95506::t_895e3f7235c547 68,128,176
+docs/YOUR_SETUP.md
+  s_eaa6f401e95506::t_895e3f7235c547 110
+infra/scripts/ingest/reindex_vectors.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 24-26,39
+infra/scripts/digitalization/build_raw_asset_inventory.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 23
+apps/api/src/app_skeleton/api/project_digitalization_engine.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16-19,62,426,512,543
+tests/test_audit_implementations.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 12,19,28,39,41,48
+apps/api/src/app_skeleton/api/chunking.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8
+infra/scripts/ops/check_frontend_public_lab_data.sh
+  s_eaa6f401e95506::t_895e3f7235c547 6
+  s_eaa6f401e95506::t_ba0a54b44aaef0 36
+apps/api/src/app_skeleton/api/metadata_engine/__init__.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 2-3
+apps/api/src/app_skeleton/api/agent_orchestrator/rag_context.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8
+tests/test_security_environment.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 3-4
+infra/scripts/digitalization/process_inventory_pipeline.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 17,22
+tests/test_chat_intent.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6
+infra/scripts/search/setup_search_portable.sh
+  s_eaa6f401e95506::t_ba0a54b44aaef0 50,59
+infra/scripts/sync/sync_allowlist.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-9
+apps/web/README.md
+  s_eaa6f401e95506::t_895e3f7235c547 41
+apps/api/src/app_skeleton/api/routers/health.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 2,7,14-16,35,45-47,66,73,84,111-112
+apps/api/src/app_skeleton/api/chat_model_catalog.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8
+apps/web/vite.config.js
+  s_eaa6f401e95506::t_97e5c45325c2c9 8
+infra/scripts/llm/setup_ollama_local_llm.sh
+  s_eaa6f401e95506::t_ba0a54b44aaef0 156
+tests/test_ocr_queue.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8,14-15,74,115
+tests/test_copilot_enhancements.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6-10,72
+apps/api/src/app_skeleton/api/routers/digitalization.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11-13,21,100,123,352
+apps/api/src/app_skeleton/api/ocr/queue.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10-11,40,162-163,214-215
+apps/api/src/app_skeleton/api/qdrant_research_indexer.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10-12
+infra/scripts/network/setup_mac_portable.sh
+  s_eaa6f401e95506::t_895e3f7235c547 18,20
+apps/api/src/app_skeleton/api/project_knowledge_store.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 15-17,23,32
+infra/scripts/digitalization/run_metadata_enrichment.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 17,22,26-27
+tests/test_qdrant_collections.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 4
+tests/test_ensure_project_readme.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-9,54,64,68,72,76
+infra/scripts/debug_rag_wiring.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 31-34
+tests/test_privacy_guardrails.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6
+apps/api/src/app_skeleton/api/agent_orchestrator/orchestrator.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7,13,203
+tests/test_architecture_audit.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 18,23,31,44,53,59,61,63,72,83
+tests/test_chunking_normalize.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 4,9
+apps/api/src/app_skeleton/api/paths.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7,14,64,143
+apps/api/src/app_skeleton/api/processor_status.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9
+infra/scripts/search/build_search_audit_bundle.py
+  s_eaa6f401e95506::t_895e3f7235c547 469-481
+apps/api/src/app_skeleton/api/strategy_agents/literature_agent.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8
+tests/test_embedding_dim_contract.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6-9,35
+apps/api/src/app_skeleton/storage/pdrive_smb.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9
+infra/scripts/llm/test_gemini_chat.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 38-39,47
+apps/api/src/app_skeleton/api/ingest_all.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 2-3
+apps/api/README.md
+  s_eaa6f401e95506::t_dfb1ef888e1eb6 1,3,6-9,12
+tests/test_vault_json_fallback.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8,13-14,22,24,28
+apps/api/src/app_skeleton/_repo.py
+  s_eaa6f401e95506::t_ddee2fb9e775c1 10-13
+apps/api/src/app_skeleton/api/people_index.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9
+docs/PRODUCTION_READINESS_REPORT.md
+  s_eaa6f401e95506::t_895e3f7235c547 134,234
+apps/api/src/app_skeleton/api/quality_eval_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16-17,33,85-86,143-144
+apps/api/src/app_skeleton/api/lab_knowledge_store.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 23-25,30-34,45,242,245,606
+pyproject.toml
+  s_eaa6f401e95506::t_7bd23940cff31e 1-10
+apps/api/src/app_skeleton/api/ocr/adapter.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11,35
+apps/api/src/app_skeleton/security/permissions.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-9,71,98
+apps/api/src/app_skeleton/api/routers/knowledge.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 1-2,4,14,21,36,46,140
+tests/test_research_strategy_engine.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-10,43,83,86
+apps/api/src/app_skeleton/api/platform_admin.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 13,19
+apps/api/src/app_skeleton/api/scheduled_directory_scanner.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 13,56,141
+infra/scripts/search/run_ai_lab_assistant_eval.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 273,280-281,476-477
+apps/api/src/app_skeleton/api/strategy_agents/__init__.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 2-7
+tests/test_security_authorization.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 3
+apps/api/src/app_skeleton/api/privacy_guardrails.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16
+apps/api/src/app_skeleton/api/agent_orchestrator/trace_store.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 57
+apps/api/src/app_skeleton/api/document_library_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16-18,48,87,249-250,1221,1280,1288-1289,1429,1546
+apps/api/src/app_skeleton/api/project_knowledge_extractor.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8,60-61,222,225,299
+docs/LAB_AI_ASSISTANT_DEEP_AUDIT.md
+  s_eaa6f401e95506::t_895e3f7235c547 45-46,537,1496
+apps/api/src/app_skeleton/api/knowledge_indexer.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 13-17,23
+tests/db_safety.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 63
+docs/OMEIA_INFORMATION_FLOW.md
+  s_eaa6f401e95506::t_895e3f7235c547 76,164,638,642,654,736,843-844
+  s_eaa6f401e95506::t_e58557703301aa 845
+  s_eaa6f401e95506::t_d338ec47a7517a 73-74
+infra/scripts/docker/linux_post_stack_setup.sh
+  s_eaa6f401e95506::t_ba0a54b44aaef0 84,95
+apps/api/src/app_skeleton/api/frontend_static.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 12
+infra/scripts/ingest/rebuild_and_ingest_collection.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11-13
+infra/scripts/database/apply_sql_migrations.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 21
+tests/test_search_advanced_filters.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8
+apps/api/src/app_skeleton/api/ocr/tesseract_backend.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11
+apps/api/src/app_skeleton/api/library_taxonomy.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10
+tests/test_chat_api.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10-13,44,59,78-79,110,128-130,137
+docs/TESTING.md
+  s_eaa6f401e95506::t_895e3f7235c547 10,85
+infra/scripts/digitalization/extract_pending_inventory.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 16-17,24
+infra/scripts/ops/check_linux_sync_health.py
+  s_eaa6f401e95506::t_211ce1ab2db0ea 11-15
+  s_eaa6f401e95506::t_ba0a54b44aaef0 50,61
+apps/api/src/app_skeleton/api/strategy_agents/research_gap_agent.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6-7
+tests/test_vector_indexer.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6,10,25,36-37
+infra/scripts/ops/run_ocr_queue.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 17-19
+docs/14_PRODUCTION_DECISIONS.md
+  s_eaa6f401e95506::t_895e3f7235c547 63
+tests/test_wet_lab_document_filters.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6-7
+tests/test_lab_storage_api.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-12
+apps/api/src/app_skeleton/api/routers/image_assets.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11-15,170
+tests/test_agent_categories.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8,72
+tests/test_strategy_answer_schema.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 4
+CONTRIBUTING.md
+  s_eaa6f401e95506::t_23ff9b00bc3026 31-33,41-42
+Makefile
+  s_eaa6f401e95506::t_2c8c28974922f6 1-27
+tests/test_vector_indexer_vault.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6,12
+apps/api/src/app_skeleton/api/routers/copilot.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 1-2,4,65,87,90,128-129
+docs/31_SEARCH_UNIFIED_AUDIT_AND_SOURCE_BUNDLE.md
+  s_eaa6f401e95506::t_895e3f7235c547 87,7183,7401,7509,7546,7905,8279,8408,8995,9238,10033,10535,11047,11274
+apps/api/src/app_skeleton/api/image_streaming/job_queue.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11
+tests/test_evidence_orchestrator.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6-7,24
+apps/api/src/app_skeleton/api/connector_status.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 6-8,12,18
+tests/test_find_project_folder.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-9,35
+apps/api/src/app_skeleton/api/vault_vector_search.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10-14
+apps/api/src/app_skeleton/api/routers/lab_static.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 14-16
+apps/api/src/app_skeleton/api/feature_warehouse.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 32
+tests/test_rate_limit_cache.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7-8,84
+docs/FRONTEND_BACKEND_TUTORIAL.md
+  s_eaa6f401e95506::t_895e3f7235c547 96,160,196,231-232,281,302
+apps/api/src/app_skeleton/api/image_streaming/image_metadata_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10-11
+apps/api/src/app_skeleton/api/database_sections.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7
+infra/scripts/database/migrate_data_layout.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 15
+tests/test_security_authentication.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 3-4
+tests/test_researcher_resolver.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9,61
+apps/api/src/app_skeleton/api/metadata_engine/enricher.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8,14,19-22
+docs/30_SEARCH_FUNCTIONALITY_AUDIT.md
+  s_eaa6f401e95506::t_895e3f7235c547 68
+apps/api/src/app_skeleton/api/routers/admin_index.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11,18-21,96,137,159,171
+apps/api/src/app_skeleton/api/chat_conversation.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 10
+apps/api/src/app_skeleton/api/chunk_fts.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 15
+apps/api/src/app_skeleton/api/image_streaming/image_streaming_service.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 12,17,22-24,378,381,388,414
+infra/scripts/ops/autonomous_processor.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 29,156,169,199,217
+tests/test_supabase_sync.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 9
+apps/api/src/app_skeleton/api/document_extraction.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 374-375,383
+prompts/high_end_architect_agent_prompt.md
+  s_eaa6f401e95506::t_895e3f7235c547 194-195
+tests/test_ocr_queue_flag.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-9,68
+apps/api/src/app_skeleton/api/qdrant_collections.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 7
+tests/test_strategy_agents.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 4-5
+apps/api/src/app_skeleton/api/document_registry.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 13
+infra/scripts/database/seed_feature_warehouse.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11-12
+apps/api/src/app_skeleton/digitalization/registry_writer.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 11,22,203
+apps/api/src/app_skeleton/api/routers/research_knowledge.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-11,18-19
+apps/api/src/app_skeleton/api/register_projects.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 3-4
+docs/10_COMPLETE_SETUP_STEP_BY_STEP.md
+  s_eaa6f401e95506::t_895e3f7235c547 62
+apps/api/src/app_skeleton/api/routers/search.py
+  s_eaa6f401e95506::t_ba0a54b44aaef0 8-11
+infra/scripts/dev/start_mac_thin_client.sh
+  s_eaa6f401e95506::t_895e3f7235c547 34
+docs/PROJECT_INTELLIGENCE_SUBSYSTEM_REVIEW.md
+  s_eaa6f401e95506::t_895e3f7235c547 67,220-222,601,612-613,628-632
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "89cc809d30feeca7017e7a95597576f05eb624f1",
+  "prompts": {},
+  "sessions": {
+    "s_eaa6f401e95506": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "e68cae3c-136f-4fed-9f2c-37ca9b3f29d2",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
