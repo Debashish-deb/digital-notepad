@@ -1,0 +1,22 @@
+RUN_ON_LINUX.sh
+  s_2b13037cc84066::t_3d4712b1672c0c 1-160
+infra/scripts/deploy/mac_push_to_linux.sh
+  s_2b13037cc84066::t_a73670f2226e9a 14-18
+  s_2b13037cc84066::t_bb9c5197869f5b 9-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "b6d380e8ea9c7877d66d3f64c8df7985642cdeaa",
+  "prompts": {},
+  "sessions": {
+    "s_2b13037cc84066": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "5af88669-5bbd-4e29-9b79-f58e8599d312",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
