@@ -6,4 +6,5 @@
 #   ./scripts/start_linux.sh --setup      # first boot: pull Ollama models
 #   ./scripts/start_linux.sh --prod       # build UI, serve on :8000 only
 #   ./scripts/start_linux.sh --api-only   # API + Docker, no frontend
+export OMEIA_REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 exec "$(cd "$(dirname "$0")" && pwd)/dev/start_linux_desktop.sh" "$@"
