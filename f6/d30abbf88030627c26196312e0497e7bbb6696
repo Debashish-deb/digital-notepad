@@ -1,0 +1,24 @@
+infra/compose/docker-compose.yml
+  s_a5bffacab5ca2d::t_4e13b4fe207f9b 106
+infra/scripts/search/build_search_audit_bundle.py
+  s_a5bffacab5ca2d::t_48c23ac42403e5 469-481
+infra/scripts/ops/collect_app_code_bundle.py
+  s_a5bffacab5ca2d::t_db6733ee5e216d 77-79
+  s_a5bffacab5ca2d::t_b8c319bd534be7 30-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "f6d30abbf88030627c26196312e0497e7bbb6696",
+  "prompts": {},
+  "sessions": {
+    "s_a5bffacab5ca2d": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "c4881a6a-dbd0-413a-8914-554a0440f122",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
