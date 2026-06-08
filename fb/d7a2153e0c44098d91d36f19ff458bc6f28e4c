@@ -1,0 +1,99 @@
+web/src/features/documents/components/DocumentTypeShell.jsx
+  s_d8ca0dcf385045::t_a2e2fd576a42f5 64-70
+  s_d8ca0dcf385045::t_10a0ffc0cc25f6 47
+  s_d8ca0dcf385045::t_6efc863f436c6b 7-8
+  s_599bf3a46cf30b::t_9108860ff8891d 1-6,9-46,48-63,71-82
+web/src/features/documents/documentTypeRegistry.js
+  s_599bf3a46cf30b::t_a56c8a7bdb03c6 1-358
+web/src/features/documents/documentTypeGroups.js
+  s_599bf3a46cf30b::t_b2f42e60430cab 1-101
+web/src/features/documents/components/DocumentCategoryFileList.jsx
+  s_d8ca0dcf385045::t_7a1693986f2603 65,67
+  s_d8ca0dcf385045::t_10b4464b716a10 71-75
+  s_d8ca0dcf385045::t_06c71faac981e1 19-20
+web/src/features/documents/components/DocumentListMetadataRow.jsx
+  s_d8ca0dcf385045::t_2556901051aa12 1-32
+web/src/lib/smartDocumentTitle.js
+  s_d8ca0dcf385045::t_bd13ac4f4e5108 2-3,7,9-14,17-57,59-63,67-84,86-121,128-153,156-171,175,177-179,182,184-220,222-225,227-236,238-241,243-247,251,254-266,269-275,278-282
+web/package-lock.json
+  s_d8ca0dcf385045::t_9dea8f3e5ad0d0 33-35
+web/src/features/documents/components/DocumentViewer.jsx
+  s_d8ca0dcf385045::t_475e9e6821ae77 18
+  s_599bf3a46cf30b::t_674cbbd73923f1 218-229
+  s_d8ca0dcf385045::t_a2e2fd576a42f5 214-216
+  s_599bf3a46cf30b::t_fc6666f8b5ed41 366-379
+  s_599bf3a46cf30b::t_23261b9aec01a7 447-449
+  s_599bf3a46cf30b::t_298b0bde8c6cc6 27
+  s_599bf3a46cf30b::t_f9e051d8755461 16-17
+web/src/features/lab/components/LabDocumentsHub.jsx
+  s_599bf3a46cf30b::t_8caca72b2a9240 181
+web/src/features/documents/components/LabDocumentsBrowser.jsx
+  s_599bf3a46cf30b::t_75610009448af7 700-701
+  s_599bf3a46cf30b::t_055cabbcee29e2 71
+  s_599bf3a46cf30b::t_c5780ed7801a64 396-402,405,410
+  s_599bf3a46cf30b::t_cb4ba8ed524782 160-171,173-174,182-183
+  s_599bf3a46cf30b::t_42b8f780d55e67 769,771-780,782
+  s_599bf3a46cf30b::t_baf1b145fbf9de 781
+  s_599bf3a46cf30b::t_4b3e468e522b91 45-50
+web/src/features/documents/components/DocumentMetadataPanel.jsx
+  s_d8ca0dcf385045::t_ed93e887b1dcbf 16
+  s_599bf3a46cf30b::t_6c46e875b3937f 366-371,376-381
+  s_599bf3a46cf30b::t_64439820801fad 17
+  s_d8ca0dcf385045::t_2f431ffa60c86e 306-308
+  s_d8ca0dcf385045::t_71bc7062018f65 610
+  s_d8ca0dcf385045::t_19130b123020f1 581-588
+  s_d8ca0dcf385045::t_1e58a4c5ee460d 564
+  s_d8ca0dcf385045::t_d598cbf8b68d09 506-516
+web/src/features/documents/components/ScientificFileExplorer.jsx
+  s_599bf3a46cf30b::t_1967e193f8545c 233
+web/src/features/documents/documentLibraryUi.js
+  s_d8ca0dcf385045::t_536fb62be8bf33 5
+web/src/features/documents/components/documentTypeLayouts.css
+  s_599bf3a46cf30b::t_b72c6f55f0a1c5 1-150,204-279
+  s_d8ca0dcf385045::t_a9f8fc265f47a7 151-203
+web/src/features/documents/components/DocumentResultList.jsx
+  s_d8ca0dcf385045::t_5940e9b6ab75ad 263-267
+  s_599bf3a46cf30b::t_3e0c08d5fde547 95-113,115-124,133
+  s_599bf3a46cf30b::t_89850474f15099 148-154,156-166,169,171-173,175-197
+  s_599bf3a46cf30b::t_efc3f5d3f573ef 3-8
+  s_d8ca0dcf385045::t_8857e04958ae2b 19-20
+  s_d8ca0dcf385045::t_7c4f3ca916c4e3 167-168,170
+  s_599bf3a46cf30b::t_81ef0ca89b9e9e 232-262,268-292,294-295
+web/src/pages/LabKnowledgeScreen.jsx
+  s_599bf3a46cf30b::t_e1acb19e0e5602 32
+  s_599bf3a46cf30b::t_912994d0439228 47-48,51-53,56,69,71-78,82-96
+  s_599bf3a46cf30b::t_3d66677331fe35 4,6-8
+  s_599bf3a46cf30b::t_92065e07906c51 23
+  s_599bf3a46cf30b::t_46fde7c6792043 2
+  s_599bf3a46cf30b::t_3471c16977a762 172,176-224
+web/src/features/documents/components/DocumentPreviewPane.jsx
+  s_599bf3a46cf30b::t_937df63d6a8761 4
+  s_599bf3a46cf30b::t_4f121045d25375 78-79
+  s_599bf3a46cf30b::t_ff4bff43fa69db 253-263,272-282
+web/src/features/storage/components/StorageTabDocuments.jsx
+  s_599bf3a46cf30b::t_fd21a6c291712a 170
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "fbd7a2153e0c44098d91d36f19ff458bc6f28e4c",
+  "prompts": {},
+  "sessions": {
+    "s_599bf3a46cf30b": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "f8b9b954-8921-4f6b-81aa-0e31cc537c1e",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
