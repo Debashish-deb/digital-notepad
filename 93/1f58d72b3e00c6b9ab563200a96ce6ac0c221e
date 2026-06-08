@@ -1,0 +1,31 @@
+tests/test_readiness_qdrant_collections.py
+  s_7b209ddd14bb2c::t_1b3848088f9bf0 4,13-20
+  s_7b209ddd14bb2c::t_7c3d6cfff7f9b6 1-3,5-12,21-83
+omeia/api/qdrant_collections.py
+  s_7b209ddd14bb2c::t_eb0ae1db1bceca 52-64
+infra/scripts/ingest/ensure_runtime_qdrant_collections.py
+  s_7b209ddd14bb2c::t_35c335ece1958f 1-54
+tests/test_qdrant_collections.py
+  s_7b209ddd14bb2c::t_60d1b5ed4d5964 9
+  s_7b209ddd14bb2c::t_ead2dfdf8dc61d 29-35
+omeia/api/readiness.py
+  s_7b209ddd14bb2c::t_061ed3d1305bc8 41,46
+infra/scripts/docker/linux_post_stack_setup.sh
+  s_7b209ddd14bb2c::t_a6eab9e3dd3ff5 62-64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "931f58d72b3e00c6b9ab563200a96ce6ac0c221e",
+  "prompts": {},
+  "sessions": {
+    "s_7b209ddd14bb2c": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "fc2b3542-e81e-48cb-afe5-cb4eb34036f4",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
