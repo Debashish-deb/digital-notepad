@@ -1,0 +1,20 @@
+tests/test_ocr_adapter.py
+  s_36dba99d4976c1::t_13c1f3ab79a1df 1,6-7,10,16-17,21,23
+  s_36dba99d4976c1::t_df9ce9554e3fba 2-5,8-9,11-15,18-20,22,24-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "77cabec5ef2f3aad1e950bb55fcb2ad61e17adf9",
+  "prompts": {},
+  "sessions": {
+    "s_36dba99d4976c1": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "fdd140a6-4b6c-4023-b584-83ff376c9d47",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
