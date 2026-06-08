@@ -1,0 +1,25 @@
+web/src/index.css
+  s_d8ca0dcf385045::t_821a15bb3576a6 3004,3013,3017,3023,3028,3063,3089,3094,3302,3313,3323,3327
+  s_d8ca0dcf385045::t_c14428eaaef83c 4619-4643
+web/src/features/documents/components/ScientificFileExplorer.css
+  s_d8ca0dcf385045::t_4d47170f6e26ef 205-206
+  s_d8ca0dcf385045::t_f5e31b7dccb5ea 216,220
+web/src/features/overview/components/OverviewReadingPage.css
+  s_d8ca0dcf385045::t_32434021daa578 17-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "6c640c9bd500ebe7dab3aca62d44c0402a373422",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
