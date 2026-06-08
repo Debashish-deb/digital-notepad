@@ -1,49 +1,32 @@
-import { useState } from 'react';
 import { BookOpen, Search } from 'lucide-react';
-import { fetchUnifiedSearch } from '@/services/searchApi.js';
 import { groupHitsByBucket, navigateFromSearchHit } from '@/lib/searchHits.js';
-import SearchAdvancedFilters, { advancedFiltersToSearchParams, emptyAdvancedFilters } from '@/features/search/components/SearchAdvancedFilters.jsx';
+import SearchAdvancedFilters from '@/features/search/components/SearchAdvancedFilters.jsx';
 import SearchBucketGroup from '@/features/search/components/SearchBucketGroup.jsx';
 import SearchFilterMetadata from '@/features/search/components/SearchFilterMetadata.jsx';
-import SearchFilters, { SCOPE_OPTIONS } from '@/features/search/components/SearchFilters.jsx';
+import SearchFilters from '@/features/search/components/SearchFilters.jsx';
+import useUnifiedSearch from '@/features/search/hooks/useUnifiedSearch.js';
 import '@/features/search/components/UnifiedSearch.css';
 
 export default function KnowledgeSearchScreen({ title, description, onNavigate, onSelectProject }) {
-  const [query, setQuery] = useState('');
-  const [mode, setMode] = useState('hybrid');
-  const [scopes, setScopes] = useState(() => SCOPE_OPTIONS.map((s) => s.id));
-  const [hits, setHits] = useState([]);
-  const [error, setError] = useState(null);
-  const [busy, setBusy] = useState(false);
-  const [advancedFilters, setAdvancedFilters] = useState(emptyAdvancedFilters);
-  const [filtersApplied, setFiltersApplied] = useState({});
-  const [unsupportedFilters, setUnsupportedFilters] = useState([]);
-  const [cacheHit, setCacheHit] = useState(false);
+  const {
+    query,
+    setQuery,
+    mode,
+    setMode,
+    scopes,
+    setScopes,
+    hits,
+    error,
+    loading,
+    advancedFilters,
+    setAdvancedFilters,
+    filtersApplied,
+    unsupportedFilters,
+    cacheHit,
+    runSearch,
+  } = useUnifiedSearch({ trigger: 'manual' });
 
-  const runSearch = async () => {
-    const q = query.trim();
-    if (q.length < 2) return;
-    setBusy(true);
-    setError(null);
-    try {
-      const data = await fetchUnifiedSearch({
-        query: q,
-        mode,
-        scopes: scopes.join(','),
-        limit: 30,
-        ...advancedFiltersToSearchParams(advancedFilters),
-      });
-      setHits(Array.isArray(data?.hits) ? data.hits : []);
-      setFiltersApplied(data?.filters_applied || {});
-      setUnsupportedFilters(Array.isArray(data?.unsupported_filters) ? data.unsupported_filters : []);
-      setCacheHit(Boolean(data?.metadata?.cache_hit));
-    } catch (e) {
-      setError(String(e.message || e));
-      setHits([]);
-    } finally {
-      setBusy(false);
-    }
-  };
+  const handleSearch = () => runSearch();
 
   const grouped = groupHitsByBucket(hits);
 
@@ -63,10 +46,10 @@ export default function KnowledgeSearchScreen({ title, description, onNavigate, 
             placeholder="Query protocols, documents, vault metadata…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && runSearch()}
+            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
           />
-          <button type="button" className="btn btn-primary btn-sm" onClick={runSearch} disabled={busy}>
-            <Search size={14} /> {busy ? 'Searching…' : 'Search'}
+          <button type="button" className="btn btn-primary btn-sm" onClick={handleSearch} disabled={loading}>
+            <Search size={14} /> {loading ? 'Searching…' : 'Search'}
           </button>
         </div>
         <SearchFilters mode={mode} onModeChange={setMode} scopes={scopes} onScopesChange={setScopes} />

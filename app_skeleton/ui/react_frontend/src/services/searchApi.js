@@ -6,6 +6,19 @@ const suggestionsCoordinator = createAbortCoordinator();
 
 export { SEARCH_DEBOUNCE_MS };
 
+/** Normalize unified-search API payload for UI consumers. */
+export function parseUnifiedSearchResponse(data) {
+  return {
+    hits: Array.isArray(data?.hits) ? data.hits : [],
+    buckets: data?.buckets || {},
+    suggestions: Array.isArray(data?.suggestions) ? data.suggestions : [],
+    synonymHints: Array.isArray(data?.synonym_hints) ? data.synonym_hints : [],
+    filtersApplied: data?.filters_applied || {},
+    unsupportedFilters: Array.isArray(data?.unsupported_filters) ? data.unsupported_filters : [],
+    cacheHit: Boolean(data?.metadata?.cache_hit),
+  };
+}
+
 /**
  * Canonical platform search — GET /api/platform/unified-search
  * @param {object} options

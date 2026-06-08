@@ -1,33 +1,20 @@
 
-import React, { useState, useEffect, useMemo } from 'react';
-import { useGuiT } from '@/i18n/useGuiT.js';
-import { 
-  ArrowLeft, 
-  BookOpen, 
-  FileText, 
-  Edit, 
-  BookMarked,
-  Calendar,
-  LayoutDashboard,
-  Database,
-  Scale,
-  NotebookPen,
-} from 'lucide-react';
+import { useEffect } from 'react';
+import { ArrowLeft } from 'lucide-react';
 
 import ProjectIntroHeader from '@/features/projects/components/ProjectIntroHeader';
 import ProjectWorkspaceTaskbar from '@/features/projects/components/ProjectWorkspaceTaskbar';
 import ProjectDocumentsBrowser from '@/features/projects/components/ProjectDocumentsBrowser';
 import ProjectLogPanel from '@/features/projects/components/ProjectLogPanel';
 import { useDigitalTwin } from '@/shared/hooks/useDigitalTwin.js';
-import { ProjectTaskpadScope, useTaskpad } from '@/contexts/TaskpadContext.jsx';
-import { resolveProject, fetchWithTimeout } from '@/lib/projectUtils.js';
-import { normalizeDigitalTwin } from '@/lib/digitalTwinUtils.js';
+import { ProjectTaskpadScope } from '@/contexts/TaskpadContext.jsx';
+import { fetchWithTimeout } from '@/lib/projectUtils.js';
 import { useEnsureProjectReadme } from '@/shared/hooks/useEnsureProjectReadme.js';
 import NotebookWikiPanel from '@/features/projects/components/portfolio/NotebookWikiPanel.jsx';
 import DecisionsPanel from '@/features/projects/components/portfolio/DecisionsPanel.jsx';
+import useWorkspaceTabs from '@/features/projects/hooks/useWorkspaceTabs.js';
+import useProjectWorkspaceData from '@/features/projects/hooks/useProjectWorkspaceData.js';
 import '@/features/projects/components/portfolio/ProjectPortfolioIntegrated.css';
-
-const WORKSPACE_TAB_IDS = new Set(['overview', 'plan', 'data', 'methods', 'writing', 'archive', 'log', 'notebook', 'decisions']);
 
 export default function WorkspaceScreen({
   projectCode,
@@ -38,14 +25,19 @@ export default function WorkspaceScreen({
   onNavigate,
   onSelectProject,
 }) {
-  const [projectData, setProjectData] = useState(() => resolveProject(projectCode, dbProjects));
-  const [projectFolders, setProjectFolders] = useState([]);
-  const [workspaceMenu, setWorkspaceMenu] = useState(
-    WORKSPACE_TAB_IDS.has(initialTab) ? initialTab : 'overview',
-  );
-  const [activeSub, setActiveSub] = useState({});
-  const [loadError, setLoadError] = useState(null);
-  
+  const {
+    projectData,
+    loadError,
+    fetchProjectDetails,
+  } = useProjectWorkspaceData(projectCode, dbProjects, API_URL);
+
+  const {
+    workspaceMenu,
+    setWorkspaceMenu,
+    menuItems,
+    currentMenu,
+  } = useWorkspaceTabs(projectCode, initialTab);
+
   const {
     twin,
     loading: twinLoading,
@@ -59,38 +51,6 @@ export default function WorkspaceScreen({
     projectCode,
     { twin, setTwin, refreshTwin },
   );
-  const { setTargetSection } = useTaskpad();
-  const { t } = useGuiT();
-  const menuItems = useMemo(
-    () => [
-      { id: 'overview', label: t('workspace.overview'), icon: LayoutDashboard },
-      { id: 'plan', label: t('workspace.plan'), icon: Calendar },
-      { id: 'data', label: t('workspace.data'), icon: Database },
-      { id: 'methods', label: t('workspace.methods'), icon: FileText },
-      { id: 'writing', label: t('workspace.writing'), icon: Edit },
-      { id: 'archive', label: t('workspace.archive'), icon: BookMarked },
-      { id: 'log', label: t('workspace.log'), icon: BookOpen },
-      { id: 'notebook', label: t('workspace.notebook'), icon: NotebookPen },
-      { id: 'decisions', label: t('workspace.decisions'), icon: Scale },
-    ],
-    [t]
-  );
-
-  useEffect(() => {
-    if (WORKSPACE_TAB_IDS.has(initialTab)) {
-      setWorkspaceMenu(initialTab);
-    }
-  }, [projectCode, initialTab]);
-
-  useEffect(() => {
-    setProjectData(resolveProject(projectCode, dbProjects));
-    fetchProjectDetails();
-    fetchProjectFolders();
-  }, [projectCode, dbProjects]);
-
-  useEffect(() => {
-    setTargetSection(workspaceMenu);
-  }, [workspaceMenu, setTargetSection]);
 
   useEffect(() => {
     const onReadmeUpdated = async (event) => {
@@ -113,48 +73,6 @@ export default function WorkspaceScreen({
     return () => window.removeEventListener('project-readme-updated', onReadmeUpdated);
   }, [projectCode, API_URL, setTwin, refreshTwin]);
 
-  const fetchProjectFolders = async () => {
-    try {
-      const res = await fetch(`${API_URL}/documents/${projectCode}`);
-      if (res.ok) {
-        const docs = await res.json();
-        const folders = new Set();
-        docs.forEach(d => {
-          if (d.folder_path && d.folder_path !== '.') {
-            folders.add(d.folder_path.split('/')[0]);
-          }
-        });
-        setProjectFolders(Array.from(folders).sort());
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const fetchProjectDetails = async () => {
-    setLoadError(null);
-    const localProject = resolveProject(projectCode, dbProjects);
-    if (localProject) setProjectData(localProject);
-
-    try {
-      const res = await fetchWithTimeout(`${API_URL}/projects`);
-      if (res.ok) {
-        const data = await res.json();
-        const resolved = resolveProject(projectCode, data);
-        if (resolved) {
-          setProjectData(resolved);
-          return;
-        }
-      }
-    } catch (e) {
-      console.error(e);
-    }
-
-    if (!localProject) {
-      setLoadError(`Project "${projectCode}" was not found in the catalog or API.`);
-    }
-  };
-
   if (!projectData) {
     return (
       <div className="panel panel-danger">
@@ -164,8 +82,6 @@ export default function WorkspaceScreen({
       </div>
     );
   }
-
-  const currentMenu = menuItems.find(m => m.id === workspaceMenu) || menuItems[0];
 
   const handleReadmeSaved = () => {
     refreshTwin();
@@ -196,7 +112,7 @@ export default function WorkspaceScreen({
           )}
         </div>
       );
-    } 
+    }
     else if (workspaceMenu === 'plan') {
       return (
         <div className="stack-lg">
@@ -359,4 +275,3 @@ export default function WorkspaceScreen({
     </ProjectTaskpadScope>
   );
 }
-

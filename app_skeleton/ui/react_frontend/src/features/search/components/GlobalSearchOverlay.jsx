@@ -1,20 +1,19 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Search, X, Sparkles, Loader2, AlertCircle, ExternalLink } from 'lucide-react';
-import { fetchSearchSuggestions, fetchUnifiedSearch, SEARCH_DEBOUNCE_MS } from '@/services/searchApi.js';
+import { fetchSearchSuggestions, SEARCH_DEBOUNCE_MS } from '@/services/searchApi.js';
 import {
   BUCKET_LABELS,
   groupHitsByBucket,
   navigateFromSearchHit,
-  pushRecentSearchQuery,
-  readRecentSearchQueries,
   stashSearchQuery,
   consumeOmniboxPrefill,
 } from '@/lib/searchHits.js';
-import SearchAdvancedFilters, { advancedFiltersToSearchParams, emptyAdvancedFilters } from './SearchAdvancedFilters.jsx';
+import SearchAdvancedFilters from './SearchAdvancedFilters.jsx';
 import SearchBucketGroup from './SearchBucketGroup.jsx';
 import SearchFilterMetadata from './SearchFilterMetadata.jsx';
-import SearchFilters, { SCOPE_OPTIONS } from './SearchFilters.jsx';
+import SearchFilters from './SearchFilters.jsx';
 import SearchSuggestions from './SearchSuggestions.jsx';
+import useUnifiedSearch from '@/features/search/hooks/useUnifiedSearch.js';
 import '@/features/search/components/UnifiedSearch.css';
 
 export default function GlobalSearchOverlay({
@@ -25,46 +24,67 @@ export default function GlobalSearchOverlay({
   onAskAi,
   projectCode,
 }) {
-  const [query, setQuery] = useState('');
-  const [mode, setMode] = useState('hybrid');
-  const [scopes, setScopes] = useState(() => SCOPE_OPTIONS.map((s) => s.id));
-  const [hits, setHits] = useState([]);
-  const [buckets, setBuckets] = useState({});
-  const [suggestions, setSuggestions] = useState([]);
-  const [synonymHints, setSynonymHints] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [activeIndex, setActiveIndex] = useState(-1);
-  const [recentQueries, setRecentQueries] = useState(() => readRecentSearchQueries());
-  const [advancedFilters, setAdvancedFilters] = useState(emptyAdvancedFilters);
-  const [filtersApplied, setFiltersApplied] = useState({});
-  const [unsupportedFilters, setUnsupportedFilters] = useState([]);
-  const [cacheHit, setCacheHit] = useState(false);
   const inputRef = useRef(null);
-  const abortRef = useRef(null);
   const suggestAbortRef = useRef(null);
+
+  const handleSearchResults = useCallback((parsed) => {
+    setActiveIndex(parsed.hits.length ? 0 : -1);
+  }, []);
+
+  const {
+    query,
+    setQuery,
+    mode,
+    setMode,
+    scopes,
+    setScopes,
+    hits,
+    buckets,
+    error,
+    loading,
+    advancedFilters,
+    setAdvancedFilters,
+    filtersApplied,
+    unsupportedFilters,
+    cacheHit,
+    recentQueries,
+    setRecentQueries,
+    resetSearchState,
+    suggestions,
+    setSuggestions,
+    synonymHints,
+    setSynonymHints,
+  } = useUnifiedSearch({
+    trigger: 'debounced',
+    enabled: isOpen,
+    projectCode,
+    limit: 30,
+    onResults: handleSearchResults,
+  });
 
   const flatHits = useMemo(() => hits, [hits]);
   const grouped = useMemo(() => groupHitsByBucket(hits), [hits]);
-  const scopesParam = scopes.join(',');
+  const groupOffsets = useMemo(() => {
+    let offset = 0;
+    return grouped.map((group) => {
+      const current = offset;
+      offset += group.items.length;
+      return current;
+    });
+  }, [grouped]);
 
   useEffect(() => {
     if (isOpen) {
       const prefill = consumeOmniboxPrefill();
       setTimeout(() => inputRef.current?.focus(), 80);
       setQuery(prefill || '');
-      setHits([]);
-      setBuckets({});
+      resetSearchState();
       setSuggestions([]);
       setSynonymHints([]);
-      setError(null);
       setActiveIndex(-1);
-      setFiltersApplied({});
-      setUnsupportedFilters([]);
-      setCacheHit(false);
-      setRecentQueries(readRecentSearchQueries());
     }
-  }, [isOpen]);
+  }, [isOpen, setQuery, resetSearchState, setSuggestions, setSynonymHints]);
 
   const openHit = useCallback(
     (hit) => {
@@ -126,58 +146,7 @@ export default function GlobalSearchOverlay({
       clearTimeout(timer);
       suggestAbortRef.current?.abort();
     };
-  }, [isOpen, query]);
-
-  useEffect(() => {
-    if (!query.trim() || query.trim().length < 2) {
-      setHits([]);
-      setBuckets({});
-      setError(null);
-      setLoading(false);
-      return undefined;
-    }
-
-    const timer = setTimeout(async () => {
-      abortRef.current?.abort();
-      const controller = new AbortController();
-      abortRef.current = controller;
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await fetchUnifiedSearch({
-          query,
-          mode,
-          scopes: scopesParam,
-          projectCode,
-          limit: 30,
-          signal: controller.signal,
-          ...advancedFiltersToSearchParams(advancedFilters),
-        });
-        if (controller.signal.aborted) return;
-        setHits(Array.isArray(data?.hits) ? data.hits : []);
-        setBuckets(data?.buckets || {});
-        setSuggestions(Array.isArray(data?.suggestions) ? data.suggestions : []);
-        setSynonymHints(Array.isArray(data?.synonym_hints) ? data.synonym_hints : []);
-        setFiltersApplied(data?.filters_applied || {});
-        setUnsupportedFilters(Array.isArray(data?.unsupported_filters) ? data.unsupported_filters : []);
-        setCacheHit(Boolean(data?.metadata?.cache_hit));
-        setActiveIndex(data?.hits?.length ? 0 : -1);
-        pushRecentSearchQuery(query);
-        setRecentQueries(readRecentSearchQueries());
-      } catch (err) {
-        if (err?.name === 'AbortError') return;
-        setError(err?.message || 'Search failed. Check API connection and try again.');
-        setHits([]);
-      } finally {
-        if (!controller.signal.aborted) setLoading(false);
-      }
-    }, SEARCH_DEBOUNCE_MS);
-
-    return () => {
-      clearTimeout(timer);
-      abortRef.current?.abort();
-    };
-  }, [query, mode, scopesParam, projectCode, advancedFilters]);
+  }, [isOpen, query, setRecentQueries, setSuggestions, setSynonymHints]);
 
   const handleAskAi = useCallback(
     (text) => {
@@ -201,8 +170,6 @@ export default function GlobalSearchOverlay({
   );
 
   if (!isOpen) return null;
-
-  let rowOffset = 0;
 
   return (
     <div className="search-overlay-backdrop" onClick={onClose} role="presentation">
@@ -299,22 +266,18 @@ export default function GlobalSearchOverlay({
                   </span>
                 ))}
               </div>
-              {grouped.map((group) => {
-                const offset = rowOffset;
-                rowOffset += group.items.length;
-                return (
+              {grouped.map((group, groupIndex) => (
                   <SearchBucketGroup
                     key={group.bucket}
                     group={group}
                     query={query}
                     activeIndex={activeIndex}
-                    activeIndexOffset={offset}
+                    activeIndexOffset={groupOffsets[groupIndex]}
                     onOpenHit={openHit}
                     onAskAiAboutHit={onAskAi ? handleAskAiAboutHit : null}
                     onHoverIndex={setActiveIndex}
                   />
-                );
-              })}
+              ))}
             </>
           ) : null}
         </div>
