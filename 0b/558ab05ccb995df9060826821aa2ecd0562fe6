@@ -1,0 +1,263 @@
+tests/test_auth_protected_routes.py
+  s_d8ca0dcf385045::t_30198ecac915bd 13-14,21-22,33-34
+docs/AI_LAB_ASSISTANT_ENHANCEMENT_ROADMAP.md
+  s_d8ca0dcf385045::t_4b2201e2c3ea2b 253-268
+  s_d8ca0dcf385045::t_254cb54740923e 1-252,269-280
+app_skeleton/api/project_knowledge_extractor.py
+  s_d8ca0dcf385045::t_692a54c6104eea 204-206,221,225,241,249-265,270-271
+app_skeleton/api/routers/storage.py
+  s_d8ca0dcf385045::t_b41eabeb638075 11,22,42,46,53,60,64,71,78,88,97
+scripts/debug_rag_wiring.py
+  s_d8ca0dcf385045::t_b4c4fae8239dc0 124-138
+  s_d8ca0dcf385045::t_a2f97174114fc7 156
+  s_d8ca0dcf385045::t_ae01f2d61d4fab 1-123,139-155,157-180
+app_skeleton/api/evidence_orchestrator.py
+  s_d8ca0dcf385045::t_39eff80f7ca744 203-211,219
+  s_d8ca0dcf385045::t_0e1787e9e61348 676-685
+  s_106c5a7c17ebe3::t_ed9f4680f7edc1 161
+  s_d8ca0dcf385045::t_bfd766ee1c3ec1 515-521
+  s_d8ca0dcf385045::t_06462d3de77ece 567-574
+  s_106c5a7c17ebe3::t_f745b7fa51c042 252
+  s_d8ca0dcf385045::t_46cc4b98cf2254 377-378
+  s_d8ca0dcf385045::t_4a83ad6fbb7716 12-35
+  s_d8ca0dcf385045::t_b77c2689de3499 375-376,379-435,440,442-514,522-543
+  s_d8ca0dcf385045::t_d051381dab302d 436-439,441
+  s_d8ca0dcf385045::t_20fb0476152bde 642-643,650
+  s_d8ca0dcf385045::t_6b9e75bc5c77ed 791-801,805-810
+  s_80359ef9da8185::t_f15e0f522734e7 253
+app_skeleton/api/routers/health.py
+  s_d8ca0dcf385045::t_cf3514546e275e 73
+scripts/docker/start_linux_docker_stack.sh
+  s_d8ca0dcf385045::t_94ebfd29e0ed76 41-43
+app_skeleton/api/chat_conversation.py
+  s_106c5a7c17ebe3::t_fa1432b3ed34ce 293
+scripts/ingest/reindex_vectors.py
+  s_d8ca0dcf385045::t_8a2848c623b19c 1-147
+app_skeleton/api/routers/chat.py
+  s_d8ca0dcf385045::t_c92550d8344ef9 185-188,191-197,201
+  s_d8ca0dcf385045::t_de4ef2f1846d88 275
+  s_d8ca0dcf385045::t_58783b31425ab2 124-145
+  s_d8ca0dcf385045::t_c0347d4a86cd30 86-87
+  s_d8ca0dcf385045::t_983386a4fa19b2 146-182
+  s_d8ca0dcf385045::t_b27738a5ea48e3 247
+  s_d8ca0dcf385045::t_5e528f0e7e6191 15
+  s_d8ca0dcf385045::t_c0f52e4a2ddd2f 30,36-43
+  s_d8ca0dcf385045::t_7c674c60651785 84-85
+  s_d8ca0dcf385045::t_19c6da9219aa70 205-208
+  s_d8ca0dcf385045::t_999cc47e029ac3 46-53
+  s_d8ca0dcf385045::t_5f905d0e43a673 100-101
+app_skeleton/ui/react_frontend/src/features/ai-assistant/styles/AiAssistantChat.css
+  s_d8ca0dcf385045::t_d77a9af526f8cd 1541-1573
+app_skeleton/api/embedding_service.py
+  s_d8ca0dcf385045::t_3e4ff031c2db89 31-45,47-50
+  s_d8ca0dcf385045::t_47bf0fc07e8b70 1-30,46,51-133
+app_skeleton/api/routers/knowledge.py
+  s_d8ca0dcf385045::t_ebae01d942edbd 312,336
+app_skeleton/api/retrieval_cache.py
+  s_d8ca0dcf385045::t_17e0386f8999e3 104-163
+scripts/ci/run_copilot_quality_gate.sh
+  s_d8ca0dcf385045::t_46d40cab944abe 1-22
+app_skeleton/api/copilot_feedback_store.py
+  s_d8ca0dcf385045::t_23966a12a4bfbc 43,48
+  s_d8ca0dcf385045::t_998357213446c3 1,4-6,11-12,15-16,18-33,35-42,44-47,49-60,62-63,66-72,74,78-82,84,86-101
+app_skeleton/ui/react_frontend/src/features/ai-assistant/components/OrchestratorAnswerView.jsx
+  s_d8ca0dcf385045::t_9f4905bd3f9d79 1-232
+scripts/ops/collect_app_code_bundle.py
+  s_d8ca0dcf385045::t_2fa395435a0136 1-408
+tests/test_search_service.py
+  s_80359ef9da8185::t_7e771bc82e1dd8 87-103
+  s_80359ef9da8185::t_1295fbba3bc8ea 8-9,11,13
+scripts/collect_app_code.sh
+  s_d8ca0dcf385045::t_e7a3c7f4528a71 1-8
+app_skeleton/api/dev.sh
+  s_d8ca0dcf385045::t_2e4d388463d980 1-5
+app_skeleton/ui/react_frontend/src/services/agentCategoryClient.js
+  s_d8ca0dcf385045::t_fdef52e6de640d 68-106,113
+  s_d8ca0dcf385045::t_462ac44198cb1f 6
+  s_d8ca0dcf385045::t_8f5359a4ce963d 127
+start.sh
+  s_d8ca0dcf385045::t_77d991a90bc226 34-36
+tests/test_chat_intent.py
+  s_106c5a7c17ebe3::t_9d2b233b68228d 94-109
+app_skeleton/api/project_processor.py
+  s_106c5a7c17ebe3::t_7e951e504c57d7 1777-1779
+app_skeleton/api/rerank_service.py
+  s_d8ca0dcf385045::t_20a089cf54aef6 1-92
+app_skeleton/api/chunk_fts.py
+  s_d8ca0dcf385045::t_8af1d86d9403c2 1-103
+app_skeleton/api/lab_knowledge_store.py
+  s_d8ca0dcf385045::t_026e1efca6c2c9 29
+  s_d8ca0dcf385045::t_e13638ee84b36a 38
+app_skeleton/security/auth.py
+  s_d8ca0dcf385045::t_bd8b04bf283723 2,5,9,14,50
+app_skeleton/api/routers/vault.py
+  s_d8ca0dcf385045::t_59971826763cfd 236,243,266,283,290,313,337,350,370,379,389,398,414,433,458,474,500,517,521,528,533
+  s_d8ca0dcf385045::t_20532bc537059d 2
+  s_d8ca0dcf385045::t_6e63e57764dba6 479
+app_skeleton/api/chat_service.py
+  s_d8ca0dcf385045::t_7e95897c5faa90 546-556,565-566
+  s_d8ca0dcf385045::t_1a4b403b149805 487,491-498
+  s_d8ca0dcf385045::t_6e60aa05b14551 445,447
+  s_d8ca0dcf385045::t_40bebdd16b788b 189,191,194
+  s_d8ca0dcf385045::t_5c56729ef345a4 441
+  s_d8ca0dcf385045::t_ba07c4527969b0 539-545,575
+  s_d8ca0dcf385045::t_255ca615a22783 243-244,251-258,260,262-264
+  s_d8ca0dcf385045::t_5a512611f42def 335-342
+  s_80359ef9da8185::t_cd48b69f9bb43c 429-435,440,442
+  s_d8ca0dcf385045::t_fd87b2b1b19d85 259,261
+  s_d8ca0dcf385045::t_14f62f2427866a 32
+  s_d8ca0dcf385045::t_25b79b336f5f97 214
+  s_d8ca0dcf385045::t_847bd9d7f4fd79 38-43
+  s_d8ca0dcf385045::t_531ecfda216943 231
+  s_d8ca0dcf385045::t_8350f61f7cf099 322
+  s_80359ef9da8185::t_e355f08c6794e3 331
+app_skeleton/api/routers/datapad.py
+  s_d8ca0dcf385045::t_7651c08b956415 69,87,266,280,306,311,316,340,359
+scripts/docker/linux_post_stack_setup.sh
+  s_d8ca0dcf385045::t_0183aec3f5ef7f 1-106
+tests/test_evidence_orchestrator.py
+  s_d8ca0dcf385045::t_be7ad61b554116 17,19,22
+  s_106c5a7c17ebe3::t_02accbedb17134 62-67,69-70,75
+  s_d8ca0dcf385045::t_56d43aaa92d4de 181-252
+  s_80359ef9da8185::t_75b065288d9367 68,71-74
+app_skeleton/api/search_service.py
+  s_106c5a7c17ebe3::t_4bf82595c60b38 166-171,173
+  s_80359ef9da8185::t_d50f2730d8ad7b 1686-1691,1693,1698-1699,1710-1714
+  s_106c5a7c17ebe3::t_e84b7055fccafe 16
+  s_d8ca0dcf385045::t_f5c3559cead070 43-44
+  s_d8ca0dcf385045::t_ef32354b1c8dc0 1080-1117
+  s_80359ef9da8185::t_f85c3f9b133533 1666-1667
+  s_d8ca0dcf385045::t_a4a6ef1b1e57ab 8
+  s_106c5a7c17ebe3::t_b8f166ee1aecc3 1716,1719
+  s_80359ef9da8185::t_c681396d2fe195 123
+  s_80359ef9da8185::t_54f3727003456f 172,177-187,200-201,203,205-210
+  s_106c5a7c17ebe3::t_e81967001eeee9 1729,1731-1738,1740-1743,1752-1754
+  s_106c5a7c17ebe3::t_85d1541786ecc7 113
+  s_80359ef9da8185::t_f26964061cb7a0 15
+  s_d8ca0dcf385045::t_2f52d233d52ec2 1772,1787-1789
+  s_d8ca0dcf385045::t_32dad46b4fd658 1613-1614,1648-1665,1668-1683
+  s_80359ef9da8185::t_dee6a9fc3b82b5 188-199,202,204
+  s_80359ef9da8185::t_6886650ea4a056 1727,1744-1751
+  s_d8ca0dcf385045::t_d48dc0e92b31d5 23-32
+  s_106c5a7c17ebe3::t_25c3d9f7b76faa 1384-1430,1440-1441,1444,1446-1452
+  s_d8ca0dcf385045::t_03b11cef4b8962 850-883
+  s_80359ef9da8185::t_e398820528f147 1615-1616,1622,1643-1644
+  s_d8ca0dcf385045::t_7d65f78818a8ab 1717
+  s_d8ca0dcf385045::t_f2b7d7acf937d3 1718,1723
+  s_d8ca0dcf385045::t_c2e15e653737f4 1730,1739,1755,1764-1771,1779-1786
+  s_d8ca0dcf385045::t_51261de2cd0e34 1623-1636
+  s_d8ca0dcf385045::t_3b956d32bfee5a 83-109
+  s_106c5a7c17ebe3::t_cce000220ad29b 130
+docs/AI_LAB_ASSISTANT_ARCHITECTURE.md
+  s_d8ca0dcf385045::t_dd94eb69fa95ed 1-325
+sql/144_copilot_enhancements.sql
+  s_d8ca0dcf385045::t_90865f7c67f9a0 1-53
+app_skeleton/api/rag_diagnostics.py
+  s_d8ca0dcf385045::t_273117a1b1fd9e 84-88,93-99,101-106
+  s_d8ca0dcf385045::t_c35142acdc973c 89-92,100
+  s_d8ca0dcf385045::t_2d5cb4a934e483 1-83,107-218
+scripts/dev/start_backend.sh
+  s_d8ca0dcf385045::t_a5fd8c2e7e9732 22-23
+app_skeleton/ui/react_frontend/src/features/ai-assistant/components/ChatWidget.jsx
+  s_d8ca0dcf385045::t_cecc26abbd7362 10-11
+  s_d8ca0dcf385045::t_17c7d3117e7fb6 624-630
+  s_d8ca0dcf385045::t_a5280d0bd1ee8e 41
+  s_d8ca0dcf385045::t_76f4a44b2444a3 425
+  s_d8ca0dcf385045::t_cb529142f421b7 157-163,170-171
+  s_d8ca0dcf385045::t_b8478899354b89 21-23
+  s_d8ca0dcf385045::t_78894b5abf1daa 789,791-806
+  s_d8ca0dcf385045::t_2194b1ce20f40d 1114-1121
+  s_d8ca0dcf385045::t_a3cc67d7cd8ed3 637,639-642
+  s_d8ca0dcf385045::t_c959e3f9e5cf7f 1149-1207
+  s_d8ca0dcf385045::t_e8f7ac4f532969 142-143
+app_skeleton/api/chat_intent.py
+  s_106c5a7c17ebe3::t_dfabbdfb402137 12
+  s_106c5a7c17ebe3::t_48a80b154bd72c 121-160
+  s_106c5a7c17ebe3::t_1f2cd3b33a6fbb 355-365
+  s_106c5a7c17ebe3::t_743697197c8d24 182-232
+  s_106c5a7c17ebe3::t_cf0ced80152ebb 50
+app_skeleton/api/agent_orchestrator/rag_context.py
+  s_80359ef9da8185::t_8d8667bf4ce683 40
+  s_d8ca0dcf385045::t_efc25bcf6513bb 7-8
+  s_d8ca0dcf385045::t_90848cea046b58 43,47,53
+  s_80359ef9da8185::t_a37f0a6f2bcd55 54
+tests/test_chat_conversation.py
+  s_106c5a7c17ebe3::t_a9db5fb37abda7 37-44
+app_skeleton/api/chat_session_store.py
+  s_d8ca0dcf385045::t_f979a0de932d53 1-3,5-171,173-174,223-241
+  s_d8ca0dcf385045::t_cff77a11081194 4
+  s_d8ca0dcf385045::t_8d1c0159451567 172,175-222
+README.md
+  s_d8ca0dcf385045::t_7e0208487fce73 17-21,24,27
+app_skeleton/api/docker_service_client.py
+  s_d8ca0dcf385045::t_ee4dcb0e2106b3 103-111,114-126
+configs/.env.example
+  s_d8ca0dcf385045::t_3015ad7e0a0a3b 153-154,156,160-168
+  s_d8ca0dcf385045::t_531ffdc3563722 152,155,157,159,169-177
+  s_d8ca0dcf385045::t_da2cd2d3e8594d 221-222,227-228,230
+app_skeleton/api/routers/copilot.py
+  s_80359ef9da8185::t_748966f4e7f2b8 98
+scripts/llm/setup_ollama_local_llm.sh
+  s_d8ca0dcf385045::t_94ebfd29e0ed76 149
+tests/test_copilot_enhancements.py
+  s_d8ca0dcf385045::t_650d4bfc108f4c 1-22,25-35,38-40,42-54,57-81
+  s_d8ca0dcf385045::t_7c313ed8ae06ce 23-24
+  s_d8ca0dcf385045::t_226844545e63de 55
+  s_d8ca0dcf385045::t_6e231f95fc9622 56
+  s_d8ca0dcf385045::t_c321cf88488e62 36-37,41
+app_skeleton/api/project_knowledge_store.py
+  s_d8ca0dcf385045::t_2591137856d9e0 1-245
+tests/test_production_rag_fixes.py
+  s_d8ca0dcf385045::t_4c9fcea3eb6fe9 1-64
+app_skeleton/ui/react_frontend/src/features/ai-assistant/components/OrchestratorAnswerView.css
+  s_d8ca0dcf385045::t_d5342ab07de1fe 1-85
+app_skeleton/api/routers/agent_categories.py
+  s_d8ca0dcf385045::t_351f979544f343 116
+  s_d8ca0dcf385045::t_562e246e1d8a30 4,11
+  s_80359ef9da8185::t_07d52e66bd7d3f 95
+  s_d8ca0dcf385045::t_bab2538046b711 32
+  s_d8ca0dcf385045::t_813276c238567b 127-131,142
+  s_d8ca0dcf385045::t_ece4f08451352a 151-155
+  s_d8ca0dcf385045::t_37f017d7f5a389 100-102,105-115,117-126,132-140
+  s_d8ca0dcf385045::t_c85213c663a422 14
+  s_80359ef9da8185::t_b7bee8adda8b6b 81
+app_skeleton/api/llm_client.py
+  s_d8ca0dcf385045::t_94ebfd29e0ed76 122-125,193-195,198,692-694,697,699-704,714-717
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "0b558ab05ccb995df9060826821aa2ecd0562fe6",
+  "prompts": {},
+  "humans": {
+    "h_0b448993649ed1": {
+      "author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  },
+  "sessions": {
+    "s_106c5a7c17ebe3": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "c6952193-08d7-4c31-9998-d718740473e5",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_80359ef9da8185": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "90186a91-d90c-4a0d-913a-c61b92b497c8",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
