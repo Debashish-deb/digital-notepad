@@ -6,9 +6,16 @@
 #   ./scripts/deploy/mac_push_to_linux.sh
 #   ./scripts/deploy/mac_push_to_linux.sh --data-only
 #   ./scripts/deploy/mac_push_to_linux.sh --code-only
+# SSH/rsync steps require key-based auth on the Linux host first:
+#   ssh-copy-id labuser@<linux-tailscale-ip>
+#
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+_DEPLOY_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(git -C "$_DEPLOY_DIR" rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -z "$ROOT" ]]; then
+  ROOT="$(cd "$_DEPLOY_DIR/../../.." && pwd)"
+fi
 cd "$ROOT"
 
 if [[ -f "$ROOT/configs/.env" ]]; then
