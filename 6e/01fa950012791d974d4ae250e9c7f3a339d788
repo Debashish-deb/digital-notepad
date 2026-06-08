@@ -1,0 +1,25 @@
+app_skeleton/ui/react_frontend/src/features/auth/components/LoginOvarianScene.jsx
+  h_0b448993649ed1 3,34-36,38-39,41-43,48-49,51-52,54,56,63-64,68,70-72,75-78,80,82,87-88,91-93,95,97,101-105,107-109,111-112,116-132,142,147,149-150,153-154,162,164-165,173,176-179,187-188,196-197,205-209,212,217-218,222,232,238
+app_skeleton/data/01_source_inventory/raw_asset_inventory.json
+  s_d8ca0dcf385045::t_061836f6bf9a0c 931848,931874,931900,931926
+app_skeleton/ui/react_frontend/dev.sh
+  s_d8ca0dcf385045::t_594f7c2ee7b279 1-5
+app_skeleton/README.md
+  s_d8ca0dcf385045::t_c34471f55d3061 1-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "6e01fa950012791d974d4ae250e9c7f3a339d788",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
