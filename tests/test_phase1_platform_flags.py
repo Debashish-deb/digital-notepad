@@ -6,6 +6,7 @@ import os
 import pytest
 
 from app_skeleton.api.platform_flags import (
+    canonical_chunk_pipeline_enabled,
     knowledge_indexer_enabled,
     platform_chunk_write_enabled,
     require_auth_static_enabled,
@@ -46,3 +47,8 @@ def test_require_auth_static_defaults_false(monkeypatch: pytest.MonkeyPatch) -> 
 def test_vault_use_vector_indexer_defaults_false(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("VAULT_USE_VECTOR_INDEXER", raising=False)
     assert vault_use_vector_indexer_enabled() is False
+
+
+def test_canonical_chunk_pipeline_defaults_false(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("CANONICAL_CHUNK_PIPELINE", raising=False)
+    assert canonical_chunk_pipeline_enabled() is False

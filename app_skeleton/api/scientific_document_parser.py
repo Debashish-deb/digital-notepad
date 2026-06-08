@@ -43,6 +43,27 @@ def extract_sections(text: str) -> dict[str, str]:
 
 def chunk_document(text: str, target_chars: int = 4200, overlap_chars: int = 650) -> list[dict[str, Any]]:
     clean = clean_scientific_text(text)
+    try:
+        from app_skeleton.api.chunking import chunk_text as facade_chunk_text
+        from app_skeleton.api.platform_flags import canonical_chunk_pipeline_enabled
+
+        facade_chunks = facade_chunk_text(clean, section_path="research_kb")
+        if facade_chunks:
+            return [
+                {
+                    "chunk_index": c.get("chunk_index", idx),
+                    "section_title": c.get("metadata", {}).get("section_title", "Body"),
+                    "text": c.get("text") or "",
+                    "text_hash": sha256_text(c.get("text") or ""),
+                    "token_count": c.get("token_count") or max(1, len((c.get("text") or "").split())),
+                }
+                for idx, c in enumerate(facade_chunks)
+            ]
+        if canonical_chunk_pipeline_enabled():
+            return []
+    except Exception:
+        pass
+
     sections = extract_sections(clean)
     chunks: list[dict[str, Any]] = []
     idx = 0

@@ -9,6 +9,7 @@ from app_skeleton.digitalization.chunker import (
     APPROX_CHARS_PER_TOKEN,
     DEFAULT_CHUNK_SIZE_TOKENS,
     DEFAULT_OVERLAP_TOKENS,
+    _estimate_tokens,
     _split_text_into_chunks,
 )
 
@@ -25,6 +26,11 @@ def _overlap_tokens() -> int:
 
 def _count_words(text: str) -> int:
     return len(re.findall(r"[A-Za-z0-9\u00C0-\uFFFF]+", text or ""))
+
+
+def estimate_token_count(text: str) -> int:
+    """Approximate token count aligned with digitalization/chunker."""
+    return _estimate_tokens(text or "")
 
 
 def chunk_text(text: str, *, section_path: str = "") -> list[dict[str, Any]]:
@@ -45,8 +51,10 @@ def chunk_text(text: str, *, section_path: str = "") -> list[dict[str, Any]]:
             start = offset
         end = start + len(part)
         offset = max(end - _overlap_tokens() * APPROX_CHARS_PER_TOKEN, start + 1)
+        chunk_id = f"{section_path}::chunk_{idx:04d}" if section_path else f"chunk_{idx:04d}"
         chunks.append({
-            "chunk_id": f"{section_path}::chunk_{idx:04d}" if section_path else f"chunk_{idx:04d}",
+            "chunk_id": chunk_id,
+            "chunk_uid": chunk_id,
             "source_file": section_path,
             "chunk_index": idx,
             "start_char": start,
@@ -54,5 +62,48 @@ def chunk_text(text: str, *, section_path: str = "") -> list[dict[str, Any]]:
             "char_count": len(part),
             "word_count": _count_words(part),
             "text": part,
+            "chunk_text": part,
+            "token_count": estimate_token_count(part),
         })
     return chunks
+
+
+def normalize_chunks_for_indexer(
+    chunks: list[dict[str, Any]],
+    *,
+    document_code: str,
+) -> list[dict[str, Any]]:
+    """Map extraction/digitalization chunk dicts to knowledge_indexer write shape."""
+    normalized: list[dict[str, Any]] = []
+    for raw in chunks:
+        text = (raw.get("chunk_text") or raw.get("text") or "").strip()
+        if len(text) < 8:
+            continue
+        idx = int(raw.get("chunk_index") or len(normalized))
+        chunk_uid = (
+            raw.get("chunk_uid")
+            or raw.get("chunk_id")
+            or f"{document_code}::chunk_{idx:04d}"
+        )
+        metadata = dict(raw.get("metadata") or {})
+        for key in (
+            "source_file",
+            "section_title",
+            "section_heading",
+            "start_char",
+            "end_char",
+            "char_count",
+            "word_count",
+            "text_hash",
+        ):
+            if key in raw and key not in metadata:
+                metadata[key] = raw[key]
+        normalized.append({
+            "chunk_index": idx,
+            "chunk_uid": chunk_uid,
+            "chunk_text": text,
+            "text": text,
+            "token_count": raw.get("token_count") or estimate_token_count(text),
+            "metadata": metadata,
+        })
+    return normalized

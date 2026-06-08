@@ -239,6 +239,31 @@ def ingest_section_to_database(
     if not twin:
         raise FileNotFoundError(f"No processed twin for {section_id}")
 
+    from app_skeleton.api.platform_flags import knowledge_indexer_enabled
+
+    if knowledge_indexer_enabled():
+        from app_skeleton.api.knowledge_indexer import index_section_twin
+
+        llm = llm or LLMClient()
+        qdrant = qdrant or QdrantClient(url=_qdrant_url())
+        result = index_section_twin(
+            section_id=section_id,
+            section_label=meta_section["label"],
+            twin=twin,
+            qdrant=qdrant,
+            llm=llm,
+        )
+        return {
+            "section_id": section_id,
+            "documents_upserted": result.get("documents_indexed", 0),
+            "chunks_indexed": result.get("chunks_written", 0),
+            "vectors_upserted": result.get("vectors_upserted", 0),
+            "skipped_empty": 0,
+            "skipped_unchanged": 0,
+            "errors": [],
+            "knowledge_indexer": True,
+        }
+
     chunks_by_path: dict[str, list[dict[str, Any]]] = {}
     for chunk in _iter_chunks_from_disk(section_id):
         path = (chunk.get("source_file") or "").replace("\\", "/")

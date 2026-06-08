@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import re
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -18,6 +19,8 @@ from app_skeleton.api.data_layout import (
 )
 from app_skeleton.api.paths import DATABASE_ROOT, PROCESSED_DIR, PUBLIC_PROCESSED_DIR
 from app_skeleton.api.project_processor import sync_public_processed
+
+LOGGER = logging.getLogger(__name__)
 
 
 def _iter_chunks_from_disk(section_id: str) -> list[dict[str, Any]]:
@@ -180,6 +183,18 @@ def save_processed_section(section_id: str, data: dict[str, Any] | None = None) 
             fh.write(json.dumps(chunk, ensure_ascii=False) + "\n")
     sync_public_processed()
     write_lab_manifest()
+    try:
+        from app_skeleton.api.knowledge_indexer import index_section_twin
+        from app_skeleton.api.platform_flags import knowledge_indexer_enabled
+
+        if knowledge_indexer_enabled():
+            index_section_twin(
+                section_id=section_id,
+                section_label=payload.get("section_label") or section_id,
+                twin=payload,
+            )
+    except Exception as exc:
+        LOGGER.warning("knowledge_indexer twin hook failed for %s: %s", section_id, exc)
     return out
 
 

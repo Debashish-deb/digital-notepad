@@ -91,8 +91,11 @@ def admin_index_health(
         except Exception as exc:
             qdrant["error"] = str(exc)[:300]
 
+    from app_skeleton.api.platform_flags import canonical_chunk_pipeline_enabled
+
     flags = {
         "KNOWLEDGE_INDEXER_ENABLED": knowledge_indexer_enabled(),
+        "CANONICAL_CHUNK_PIPELINE": canonical_chunk_pipeline_enabled(),
         "PLATFORM_CHUNK_WRITE": platform_chunk_write_enabled(),
         "VAULT_JSON_FALLBACK": vault_json_fallback_enabled(),
         "REQUIRE_AUTH_STATIC": require_auth_static_enabled(),

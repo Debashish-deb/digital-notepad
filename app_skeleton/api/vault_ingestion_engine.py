@@ -337,6 +337,35 @@ def upsert_vault_from_extraction(
     return asset_id
 
 
+def _maybe_knowledge_index(
+    asset_id: str,
+    result: de.ExtractionResult,
+    *,
+    logical_path: str = "",
+) -> None:
+    if not result.chunks:
+        return
+    try:
+        from app_skeleton.api.platform_flags import knowledge_indexer_enabled
+
+        if not knowledge_indexer_enabled():
+            return
+        from app_skeleton.api.knowledge_indexer import index_vault_extraction
+
+        index_vault_extraction(
+            asset_id=asset_id,
+            filename=result.name or logical_path or asset_id,
+            chunks=result.chunks,
+            metadata={
+                "logical_path": logical_path or result.path,
+                "document_kind": result.document_kind,
+                "extractor": result.extractor,
+            },
+        )
+    except Exception as exc:
+        LOGGER.warning("knowledge_indexer vault hook failed for %s: %s", asset_id, exc)
+
+
 def _maybe_vectorize(cur, asset_id: str, result: de.ExtractionResult) -> None:
     if not VECTORIZATION_ENABLED or not result.chunks:
         return
@@ -501,6 +530,8 @@ def run_ingest_scan(
                     result=result,
                     counts=counts,
                 )
+                if result.chunks:
+                    _maybe_knowledge_index(asset_id, result, logical_path=logical)
                 if VECTORIZATION_ENABLED and result.chunks:
                     _maybe_vectorize(cur, asset_id, result)
 

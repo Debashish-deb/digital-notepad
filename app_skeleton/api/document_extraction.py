@@ -372,11 +372,19 @@ def _chunk_text(text: str, source_path: str, *, chunk_chars: int = DEFAULT_CHUNK
         return []
     try:
         from app_skeleton.api.chunking import chunk_text as facade_chunk_text
+        from app_skeleton.api.platform_flags import canonical_chunk_pipeline_enabled
 
         chunks = facade_chunk_text(text, section_path=source_path)
         if chunks:
             return chunks
+        if canonical_chunk_pipeline_enabled():
+            return []
     except Exception:
+        from app_skeleton.api.platform_flags import canonical_chunk_pipeline_enabled
+
+        if canonical_chunk_pipeline_enabled():
+            LOGGER.warning("canonical chunk pipeline failed for %s", source_path, exc_info=True)
+            return []
         LOGGER.debug("chunking facade unavailable; using legacy _chunk_text", exc_info=True)
     chunk_chars = max(500, int(chunk_chars))
     overlap = min(max(0, int(overlap)), chunk_chars // 2)

@@ -208,6 +208,20 @@ def _process_single_file(
         rw.update_manifest_status(conn, manifest.id, status)
         if status == Status.NEEDS_OCR:
             counts["needs_ocr"] += 1
+            try:
+                from app_skeleton.api.ocr.queue import enqueue_ocr_job
+
+                source_path = str((root / manifest.logical_path).resolve())
+                enqueue_ocr_job(
+                    conn,
+                    manifest_id=manifest.id,
+                    extracted_document_id=extracted.id,
+                    source_path=source_path,
+                    root_path=str(root),
+                    metadata={"logical_path": manifest.logical_path, "file_ext": manifest.file_ext},
+                )
+            except Exception as exc:
+                LOGGER.warning("OCR enqueue failed for %s: %s", manifest.logical_path, exc)
         else:
             counts["extraction_failed"] += 1
         return
@@ -252,6 +266,26 @@ def _process_single_file(
             counts["chunked"] += 1
             counts["chunks_total"] += inserted
             rw.update_manifest_status(conn, manifest.id, Status.CHUNKED)
+
+            try:
+                from app_skeleton.api.knowledge_indexer import index_digitalization_chunks
+                from app_skeleton.api.platform_flags import knowledge_indexer_enabled
+
+                if knowledge_indexer_enabled():
+                    index_digitalization_chunks(
+                        document_code=canonical.document_id or canonical.id or manifest.logical_path,
+                        title=canonical.title or manifest.file_name,
+                        source_type=canonical.document_type or "canonical_document",
+                        chunks=chunks,
+                        metadata={
+                            "logical_path": manifest.logical_path,
+                            "provider": manifest.provider,
+                            "domain": canonical.domain,
+                            "manifest_id": manifest.id,
+                        },
+                    )
+            except Exception as exc:
+                LOGGER.warning("knowledge_indexer hook failed for %s: %s", manifest.logical_path, exc)
 
 
 def _job_summary(job: DigitalizationJob) -> dict[str, Any]:

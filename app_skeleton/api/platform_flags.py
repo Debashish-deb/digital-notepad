@@ -30,3 +30,13 @@ def require_auth_static_enabled() -> bool:
 def vault_use_vector_indexer_enabled() -> bool:
     """When true, vault ingestion upserts via vector_indexer (shared embed path)."""
     return _env_bool("VAULT_USE_VECTOR_INDEXER", "false")
+
+
+def canonical_chunk_pipeline_enabled() -> bool:
+    """When true, all API chunking uses digitalization/chunker via chunking.py (no legacy char splits)."""
+    return _env_bool("CANONICAL_CHUNK_PIPELINE", "false")
+
+
+def ocr_enabled() -> bool:
+    """When false (default), needs_ocr files stay metadata-only and the OCR worker idles."""
+    return _env_bool("ENABLE_OCR", "false")

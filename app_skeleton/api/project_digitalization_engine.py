@@ -508,6 +508,10 @@ def run_digitalization(
                         abs_path=abs_path,
                         relative_path=logical,
                     )
+                    if result.chunks:
+                        from app_skeleton.api.vault_ingestion_engine import _maybe_knowledge_index
+
+                        _maybe_knowledge_index(asset_id, result, logical_path=logical)
 
                     counts["files_processed"] += 1
                     if ext_status == "failed":

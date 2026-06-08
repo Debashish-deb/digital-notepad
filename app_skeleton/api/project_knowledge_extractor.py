@@ -28,7 +28,7 @@ def calculate_confidence(text: str) -> float:
     return (len(valid_tokens) / len(tokens)) * 100.0
 
 
-def chunk_text(text: str, max_tokens: int = 1000) -> list[str]:
+def _legacy_chunk_text(text: str, max_tokens: int = 1000) -> list[str]:
     max_chars = max_tokens * 4
     paragraphs = text.split('\n\n')
     chunks = []
@@ -53,6 +53,29 @@ def chunk_text(text: str, max_tokens: int = 1000) -> list[str]:
     if not chunks and text.strip():
         chunks.append(text.strip()[:max_chars])
     return chunks
+
+
+def _chunk_content(text: str, *, section_path: str) -> list[dict]:
+    """Canonical chunking via chunking.py; legacy paragraph split as fallback."""
+    from app_skeleton.api.chunking import chunk_text as canonical_chunk_text
+    from app_skeleton.api.platform_flags import canonical_chunk_pipeline_enabled
+
+    chunks = canonical_chunk_text(text, section_path=section_path)
+    if chunks:
+        return chunks
+    if canonical_chunk_pipeline_enabled():
+        return []
+    return [
+        {
+            "chunk_index": idx,
+            "text": part,
+            "chunk_text": part,
+            "token_count": max(1, len(part) // 4),
+            "metadata": {"char_count": len(part)},
+        }
+        for idx, part in enumerate(_legacy_chunk_text(text))
+    ]
+
 
 def extract_and_ingest_project(project_code: str) -> dict:
     project_dir = PROJECTS_ROOT / project_code
@@ -179,17 +202,16 @@ def extract_and_ingest_project(project_code: str) -> dict:
                 }
                 document_sources.append(doc_source)
                 
-                chunks = chunk_text(content)
-                for idx, chunk in enumerate(chunks):
+                for fc in _chunk_content(content, section_path=relative_path):
+                    idx = int(fc.get("chunk_index") or len(document_chunks))
+                    chunk_body = fc.get("chunk_text") or fc.get("text") or ""
                     doc_chunk = {
                         "document_code": doc_code,
                         "chunk_index": idx,
-                        "chunk_uid": generate_chunk_uid(doc_code, idx),
-                        "chunk_text": chunk,
-                        "token_count": len(chunk) // 4,
-                        "metadata": {
-                            "char_count": len(chunk)
-                        }
+                        "chunk_uid": fc.get("chunk_uid") or generate_chunk_uid(doc_code, idx),
+                        "chunk_text": chunk_body,
+                        "token_count": fc.get("token_count") or max(1, len(chunk_body) // 4),
+                        "metadata": dict(fc.get("metadata") or {"char_count": len(chunk_body)}),
                     }
                     document_chunks.append(doc_chunk)
 
@@ -197,14 +219,16 @@ def extract_and_ingest_project(project_code: str) -> dict:
         return {"extracted_docs": 0, "extracted_chunks": 0, "message": "No valid documents found."}
 
     import os
-    if os.getenv("KNOWLEDGE_INDEXER_ENABLED", "false").strip().lower() in ("1", "true", "yes", "on"):
-        from app_skeleton.api.knowledge_indexer import write_chunks
+    from app_skeleton.api.platform_flags import knowledge_indexer_enabled
+
+    if knowledge_indexer_enabled():
+        from app_skeleton.api.knowledge_indexer import index_extraction_chunks
 
         total_vectors = 0
         for doc in document_sources:
             doc_code = doc["document_code"]
             doc_chunks = [c for c in document_chunks if c["document_code"] == doc_code]
-            result = write_chunks(
+            result = index_extraction_chunks(
                 document_code=doc_code,
                 title=doc["title"],
                 source_type=doc["source_type"],
