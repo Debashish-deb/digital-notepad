@@ -1,0 +1,182 @@
+scripts/ops/restore_linux_backup.sh
+  s_d8ca0dcf385045::t_dfffc69000fb32 1-88
+app_skeleton/ui/react_frontend/src/pages/UserProfileScreen.css
+  s_d8ca0dcf385045::t_a9ae748669ea6d 7-62
+app_skeleton/ui/react_frontend/src/features/ai-assistant/components/ResearchStrategyAnswerView.jsx
+  s_d8ca0dcf385045::t_62e3d26ae5f162 1-148
+app_skeleton/api/chat_service.py
+  s_d8ca0dcf385045::t_18c702959298c3 47
+  s_d8ca0dcf385045::t_9bdb503228d96e 417-452
+app_skeleton/ui/react_frontend/src/App.jsx
+  s_d8ca0dcf385045::t_6301771b82d7b3 34
+  s_d8ca0dcf385045::t_69a087a200f18e 212
+  s_d8ca0dcf385045::t_06e09b8c151b1c 717-718
+  s_d8ca0dcf385045::t_2ee9316657dab3 733-735,739-740
+  s_d8ca0dcf385045::t_53fa23e2743c8f 786-787
+  s_d8ca0dcf385045::t_ead93896da3cb3 732,736
+app_skeleton/api/research_strategy_engine.py
+  s_d8ca0dcf385045::t_f795ccbe62d5ba 1-116,118-119,121-130,132-318,332-336,338-374
+  s_d8ca0dcf385045::t_da6d6a98d4ff1b 131
+  s_d8ca0dcf385045::t_578829bd7312dd 319-331,337
+  s_d8ca0dcf385045::t_02dfce2acf0dc4 120
+  s_d8ca0dcf385045::t_3ecafc57b20811 117
+docs/PRODUCTION_READINESS_REPORT.md
+  s_d8ca0dcf385045::t_5ea01cb04b27b6 1-260
+configs/caddy/Caddyfile.platform
+  s_d8ca0dcf385045::t_18433cae93eab5 1-34
+configs/linux-workstation.env.template
+  s_d8ca0dcf385045::t_afb5b5e75fe38a 11-16
+  s_d8ca0dcf385045::t_d4d8e67b895eb9 48-53
+  s_d8ca0dcf385045::t_b04106ab2bfd70 54-57
+deploy/university-desktop/omeia-quality-eval.timer
+  s_d8ca0dcf385045::t_7a897cd9d0a652 1-11
+tests/test_research_strategy_engine.py
+  s_d8ca0dcf385045::t_207e0bbd781e33 68,77
+  s_d8ca0dcf385045::t_9bcea61294109e 1-67,69-76,78-98
+app_skeleton/api/middleware/metrics.py
+  s_d8ca0dcf385045::t_479a16bf30b3a7 67
+  s_d8ca0dcf385045::t_5c7fdd039c4dcf 1-66,68-88
+app_skeleton/api/strategy_agents/research_gap_agent.py
+  s_d8ca0dcf385045::t_8b35934c2aa13b 1-49
+tests/test_strategy_citation_grounding.py
+  s_d8ca0dcf385045::t_97d1764d1e4edf 1-34
+deploy/university-desktop/omeia-quality-eval.service
+  s_d8ca0dcf385045::t_eab7ee0678f869 1-19
+scripts/ops/backup_linux.sh
+  s_d8ca0dcf385045::t_ea255f5297002f 1-118
+start.sh
+  s_d8ca0dcf385045::t_af492fd414bf89 100-102
+  s_d8ca0dcf385045::t_120fe3db0475ad 41
+app_skeleton/api/strategy_agents/bioinformatics_agent.py
+  s_d8ca0dcf385045::t_af3dbe8e3e38ad 8
+  s_d8ca0dcf385045::t_a25543ab5c3f5a 1-7,9-44
+scripts/ops/check_linux_sync_health.py
+  s_d8ca0dcf385045::t_36163a066d0a17 1-45,58-59,62-120
+  s_d8ca0dcf385045::t_ea5089b1e07050 46-57,60-61
+app_skeleton/api/routers/chat.py
+  s_d8ca0dcf385045::t_b438828feba2f2 88-90
+  s_d8ca0dcf385045::t_34447232940407 95-97
+scripts/search/run_search_qa.py
+  s_d8ca0dcf385045::t_d05b032190ef19 178,180-194
+  s_d8ca0dcf385045::t_e1664369d4680d 27-28
+app_skeleton/api/strategy_agents/experimental_design_agent.py
+  s_d8ca0dcf385045::t_b6fcc7186c70c0 1-48
+app_skeleton/api/middleware/__init__.py
+  s_d8ca0dcf385045::t_40a87a92979beb 1
+app_skeleton/api/main.py
+  s_d8ca0dcf385045::t_90281e53bff498 21
+  s_d8ca0dcf385045::t_588f54fda6f625 55-56
+  s_d8ca0dcf385045::t_f09c56e56ea0e0 7-8
+app_skeleton/api/strategy_report_models.py
+  s_d8ca0dcf385045::t_9df4bf1e9bc682 1-47
+app_skeleton/api/frontend_static.py
+  s_d8ca0dcf385045::t_c070ea9502d2ca 1-83
+app_skeleton/api/common.py
+  s_d8ca0dcf385045::t_eff2b2ec98e345 171,173
+app_skeleton/api/strategy_agents/literature_agent.py
+  s_d8ca0dcf385045::t_c5d6314cf1f777 1-46
+tests/fixtures/research_strategy_questions.json
+  s_d8ca0dcf385045::t_63f6565346d263 1-57
+app_skeleton/api/routers/health.py
+  s_d8ca0dcf385045::t_a773347bbdf916 11-21
+tests/test_quality_eval_service.py
+  s_d8ca0dcf385045::t_c7989136df4c73 1-92
+tests/test_strategy_answer_schema.py
+  s_d8ca0dcf385045::t_615b42f49b92e1 1-36
+docker-compose.yml
+  s_d8ca0dcf385045::t_95eada5bf0ec23 102-125
+scripts/search/run_ai_lab_assistant_eval.py
+  s_d8ca0dcf385045::t_69a1c94735448d 518
+  s_d8ca0dcf385045::t_108629ab48b6f0 530
+  s_d8ca0dcf385045::t_80c091fb41af71 474-506
+scripts/dev/build_frontend_prod.sh
+  s_d8ca0dcf385045::t_48be137fe488bf 1-24
+scripts/ci/run_copilot_quality_gate.sh
+  s_d8ca0dcf385045::t_e7d05080ae9374 22-25
+app_skeleton/api/strategy_agents/spatial_biology_agent.py
+  s_d8ca0dcf385045::t_797ab22179f31a 1-45
+app_skeleton/api/startup_validation.py
+  s_d8ca0dcf385045::t_980c755c89df79 1-131
+app_skeleton/ui/react_frontend/src/features/ai-assistant/components/ChatWidget.jsx
+  s_d8ca0dcf385045::t_4406f4fbfd5c75 145-146
+  s_d8ca0dcf385045::t_22a2d4500e0b18 42
+  s_d8ca0dcf385045::t_c51d61cba348e3 1117-1118
+tests/quality_eval_last_run.json
+  s_d8ca0dcf385045::t_4d5d6656d35ad9 2,5-6,9,11,18-61,65,67-109,112,114,118
+  s_d8ca0dcf385045::t_d6b7eaa58ef7c1 1,3-4,7-8,10,12-17,62-64,66,110-111,113,115-117,119-125
+tests/test_strategy_agents.py
+  s_d8ca0dcf385045::t_b2b93cac2a4308 1-66
+scripts/dev/start_linux_desktop.sh
+  s_4cdd3d63159103::t_6f375d554fdefd 57-59
+  s_d8ca0dcf385045::t_4d8a4e667757fe 24-25,27,29-31,37
+  s_d8ca0dcf385045::t_042e94d0d1d6c8 85-92
+tests/test_deployment_ops.py
+  s_d8ca0dcf385045::t_022514af7c7424 80-82
+  s_d8ca0dcf385045::t_193af6262de6cb 64-76
+app_skeleton/api/platform_flags.py
+  s_d8ca0dcf385045::t_b84d9def266232 53-72
+  s_d8ca0dcf385045::t_39ce8be38d3572 73-82
+tests/search_qa_last_run.json
+  s_d8ca0dcf385045::t_db6956fe86fe97 1-81
+scripts/ops/validate_platform.py
+  s_d8ca0dcf385045::t_9ea625fbacfaee 218-229,231-244
+  s_d8ca0dcf385045::t_50baa5cb72c981 179-186,188,190
+  s_d8ca0dcf385045::t_bd2ae6a615382b 95
+  s_d8ca0dcf385045::t_565a47185f570e 2-9,12,14,16,18,21-23,26-55,58-64,67-68,70,72-76,78,81-82,84,86-94,96-112,114-117,119-170,172-174,176-178,189,191-195,197-217,245-264
+configs/.env.example
+  s_d8ca0dcf385045::t_eb2c43f2ff6750 9-15
+  s_d8ca0dcf385045::t_75a81daab31070 86-89
+  s_d8ca0dcf385045::t_4d1605f081cd4d 80-85
+scripts/ops/run_continuous_eval.py
+  s_d8ca0dcf385045::t_59297ab635e734 1-74
+app_skeleton/ui/react_frontend/src/pages/UserProfileScreen.jsx
+  s_d8ca0dcf385045::t_4165df3c950c6d 1-3,5,9-29,31-33,35-37,39,44-100
+app_skeleton/ui/react_frontend/src/features/ai-assistant/components/ResearchStrategyAnswerView.css
+  s_d8ca0dcf385045::t_384f24ebdd9d96 1-98
+app_skeleton/api/strategy_agents/_base.py
+  s_d8ca0dcf385045::t_fdbcbfb72325d3 1-62
+sql/149_quality_eval_runs.sql
+  s_d8ca0dcf385045::t_edb0423360cedc 1-23
+app_skeleton/ui/react_frontend/src/shared/layout/Sidebar.jsx
+  s_d8ca0dcf385045::t_1ab9d92bf99b56 183-193
+  s_d8ca0dcf385045::t_3906009e76f093 5
+  s_d8ca0dcf385045::t_baa4477747527c 31
+app_skeleton/api/quality_eval_service.py
+  s_d8ca0dcf385045::t_478b16152d7469 1-110,113,120-121,125,136-461
+  s_d8ca0dcf385045::t_de2871c89907c1 111-112,114-119,122-124,126-135
+app_skeleton/api/strategy_agents/biomarker_agent.py
+  s_d8ca0dcf385045::t_2792f9cf53e0ec 1-48
+app_skeleton/api/strategy_agents/__init__.py
+  s_d8ca0dcf385045::t_ea2f98ec0e3723 1-16
+docs/PLATFORM_ARCHITECTURE_REVIEW.md
+  s_d8ca0dcf385045::t_b0eaf6b14b5847 85
+  s_d8ca0dcf385045::t_9766acbed0bdc3 1020-1022
+app_skeleton/api/routers/admin_index.py
+  s_d8ca0dcf385045::t_55b22b9c19e257 5
+  s_d8ca0dcf385045::t_0e3d239a38fbbe 24
+  s_d8ca0dcf385045::t_96b24443ce3b29 129-174
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "8cb75c1bde9120f0dd6e7d5b6eabe83105fc07a3",
+  "prompts": {},
+  "sessions": {
+    "s_4cdd3d63159103": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "6f1fdf3c-1eeb-4531-bff2-db47a7b00717",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
