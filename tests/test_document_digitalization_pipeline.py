@@ -4,8 +4,8 @@ from __future__ import annotations
 import tempfile
 import pytest
 from pathlib import Path
-from app_skeleton.digitalization.models import SourceFileManifest, ExtractedDocument, CanonicalDocument
-from app_skeleton.digitalization import validators, canonicalizer, chunker, status, secret_detector
+from omeia.digitalization.models import SourceFileManifest, ExtractedDocument, CanonicalDocument
+from omeia.digitalization import validators, canonicalizer, chunker, status, secret_detector
 
 def test_status_lifecycle():
     assert status.Status.is_digitalized("canonicalized")
@@ -63,7 +63,7 @@ def test_validator_path_only_fake():
     assert any("path-only" in w for w in warnings)
 
 def test_extractors_map_empty_pdf_to_needs_ocr():
-    from app_skeleton.digitalization import extractors
+    from omeia.digitalization import extractors
 
     status = extractors._map_extraction_status("empty", "", ".pdf")
     assert status == "needs_ocr"

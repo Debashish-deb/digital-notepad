@@ -1,0 +1,152 @@
+# OMEIA local stack — hardened for dev (localhost bind, internal network, auth proxy).
+# Only ollama-proxy exposes :11434 on 127.0.0.1; Ollama itself is internal-only.
+# Generate token once: scripts/llm/generate_ollama_token.sh
+
+networks:
+  omeia-internal:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: omeia-postgres
+    networks: [omeia-internal]
+    environment:
+      POSTGRES_USER: farkki
+      POSTGRES_PASSWORD: farkki_dev_password
+      POSTGRES_DB: farkki_ai
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - omeia-pg-data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U farkki -d farkki_ai"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    security_opt:
+      - no-new-privileges:true
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: omeia-qdrant
+    networks: [omeia-internal]
+    ports:
+      - "127.0.0.1:6333:6333"
+      - "127.0.0.1:6334:6334"
+    volumes:
+      - omeia-qdrant-data:/qdrant/storage
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "timeout 3 bash -c '</dev/tcp/127.0.0.1/6333' || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
+
+  # Local LLM — internal only; API reaches it via ollama-proxy (bearer auth).
+  ollama:
+    image: ollama/ollama:latest
+    container_name: omeia-ollama
+    networks: [omeia-internal]
+    expose:
+      - "11434"
+    volumes:
+      - omeia-ollama-data:/root/.ollama
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+
+  ollama-proxy:
+    image: caddy:2-alpine
+    container_name: omeia-ollama-proxy
+    networks: [omeia-internal]
+    ports:
+      - "127.0.0.1:11434:11434"
+    env_file:
+      - configs/.env
+    environment:
+      OLLAMA_INTERNAL_TOKEN: ${OLLAMA_INTERNAL_TOKEN:-}
+    volumes:
+      - ./configs/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /config
+      - /data
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://127.0.0.1:11434/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Optional full imaging stack (Linux workstation). Not needed for basic tifffile streaming.
+  # docker compose --profile imaging build imaging-worker
+  # docker compose --profile imaging run --rm imaging-worker
+  # Optional production UI on :5173 (dist/) with API reverse proxy to host :8000.
+  #   bash scripts/dev/build_frontend_prod.sh
+  #   docker compose --profile platform up -d caddy-platform
+  caddy-platform:
+    profiles: [platform]
+    image: caddy:2-alpine
+    container_name: omeia-caddy-platform
+    networks: [omeia-internal]
+    ports:
+      - "127.0.0.1:5173:5173"
+    volumes:
+      - ./configs/caddy/Caddyfile.platform:/etc/caddy/Caddyfile:ro
+      - ./omeia/ui/react_frontend/dist:/srv/frontend:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /config
+      - /data
+    security_opt:
+      - no-new-privileges:true
+
+  imaging-worker:
+    profiles: [imaging]
+    build:
+      context: .
+      dockerfile: docker/imaging-worker/Dockerfile
+      args:
+        IMAGING_INCLUDE_NAPARI: ${IMAGING_INCLUDE_NAPARI:-1}
+    container_name: omeia-imaging-worker
+    networks: [omeia-internal]
+    volumes:
+      - ${DATABASE_ROOT:-../OMEIA-database}:/data/database:ro
+    environment:
+      DATABASE_ROOT: /data/database
+    restart: "no"
+    healthcheck:
+      test: ["CMD", "python", "/opt/omeia/healthcheck.py"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  omeia-pg-data:
+  omeia-qdrant-data:
+  omeia-ollama-data:

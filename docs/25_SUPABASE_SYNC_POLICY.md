@@ -12,7 +12,7 @@ When `SUPABASE_DB_PASSWORD` is set and `SUPABASE_SYNC_ENABLED=true`:
 | `platform.knowledge_assets` | Digitalization registry when present locally |
 | `platform.extracted_texts` | **Truncated** `raw_text` / `cleaned_text` previews (not full corpora) |
 
-Sync source is always **local Postgres** (`POSTGRES_CONN`). Destination is the **Supabase pooler** URI built from `SUPABASE_DB_PASSWORD` (see `app_skeleton/api/supabase_config.py`).
+Sync source is always **local Postgres** (`POSTGRES_CONN`). Destination is the **Supabase pooler** URI built from `SUPABASE_DB_PASSWORD` (see `omeia/api/supabase_config.py`).
 
 Upserts are **idempotent** by `asset_id`.
 
@@ -57,7 +57,7 @@ Operational notes:
 
 ## Reports and status
 
-- Last run: `app_skeleton/data/ingestion_reports/sync_run_report.json`
+- Last run: `omeia/data/ingestion_reports/sync_run_report.json`
 - API / connectors: `supabase_sync` block in `GET /api/platform/connectors`
 
 ## Enable sync (checklist)

@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-Phases 0–9 materially improved the platform: a **single chat orchestration path** (`answer_chat` in `app_skeleton/api/chat_service.py`), **unified retrieval** via `SearchService.hits_for_copilot`, **research KB mass ingestion** (6 → 224 Qdrant points), intent routing fixes, citation enforcement, and `/ask` delegation to the same pipeline. Search contract tests pass (`tests/search_qa_last_run.json`: 15/15).
+Phases 0–9 materially improved the platform: a **single chat orchestration path** (`answer_chat` in `omeia/api/chat_service.py`), **unified retrieval** via `SearchService.hits_for_copilot`, **research KB mass ingestion** (6 → 224 Qdrant points), intent routing fixes, citation enforcement, and `/ask` delegation to the same pipeline. Search contract tests pass (`tests/search_qa_last_run.json`: 15/15).
 
 However, **release gates fail** on the 57-question gold set: **29.8% overall pass**, **research-bucket gate fail**, **intent gate fail (86% vs 95% target)**. The dominant failure class remains **retrieval coverage and ranking**, not LLM fluency. Eval ran entirely on **mock synthesis** (57/57), so production Gemini quality is unverified in the latest battery.
 
@@ -45,7 +45,7 @@ flowchart TB
     DFS[DocumentFileSearch local filter]
   end
 
-  subgraph API["FastAPI (app_skeleton/api/main.py)"]
+  subgraph API["FastAPI (omeia/api/main.py)"]
     SR["/api/platform/unified-search"]
     CR["/api/chat + /stream"]
     AR["/ask (copilot.py)"]
@@ -114,63 +114,63 @@ flowchart TB
 
 | File | Role |
 |------|------|
-| `app_skeleton/api/chat_service.py` | Canonical chat: intent, guardrails, unified search RAG, legacy RAGAgent merge, prompts, citations, provenance |
-| `app_skeleton/api/chat_intent.py` | 9-intent classifier; RAG/citation flags; scientific accession bypass |
-| `app_skeleton/api/answer_grounding_service.py` | Research system prompt, grounded prompt template, citation enforce/retry, off-topic refusal |
-| `app_skeleton/api/privacy_guardrails.py` | PII/secret audit; scientific allowlist; external LLM block policy |
-| `app_skeleton/api/llm_client.py` | Multi-provider router, embeddings, streaming, fallback chain, synthesis provenance |
-| `app_skeleton/api/agents.py` | `RAGAgent` (doc_chunks), `PrivacyGuardrailAgent`, install/HPC agents |
-| `app_skeleton/api/common.py` | Shared clients, `SourceInfo`, Postgres metadata, clinical context helpers |
+| `omeia/api/chat_service.py` | Canonical chat: intent, guardrails, unified search RAG, legacy RAGAgent merge, prompts, citations, provenance |
+| `omeia/api/chat_intent.py` | 9-intent classifier; RAG/citation flags; scientific accession bypass |
+| `omeia/api/answer_grounding_service.py` | Research system prompt, grounded prompt template, citation enforce/retry, off-topic refusal |
+| `omeia/api/privacy_guardrails.py` | PII/secret audit; scientific allowlist; external LLM block policy |
+| `omeia/api/llm_client.py` | Multi-provider router, embeddings, streaming, fallback chain, synthesis provenance |
+| `omeia/api/agents.py` | `RAGAgent` (doc_chunks), `PrivacyGuardrailAgent`, install/HPC agents |
+| `omeia/api/common.py` | Shared clients, `SourceInfo`, Postgres metadata, clinical context helpers |
 
 ### Backend — search
 
 | File | Role |
 |------|------|
-| `app_skeleton/api/search_service.py` | Unified search across 9 buckets; copilot retrieval; rerank/gate/diversify |
-| `app_skeleton/api/search_models.py` | `SearchHit`, `UnifiedSearchResponse`, `SearchNavAction` |
-| `app_skeleton/api/search_nav.py` | Bucket → in-app navigation mapping |
-| `app_skeleton/api/routers/search.py` | `/api/platform/unified-search`, suggestions, index status, project-files search |
-| `app_skeleton/api/page_registry.py` | Section/domain → IA page mapping |
+| `omeia/api/search_service.py` | Unified search across 9 buckets; copilot retrieval; rerank/gate/diversify |
+| `omeia/api/search_models.py` | `SearchHit`, `UnifiedSearchResponse`, `SearchNavAction` |
+| `omeia/api/search_nav.py` | Bucket → in-app navigation mapping |
+| `omeia/api/routers/search.py` | `/api/platform/unified-search`, suggestions, index status, project-files search |
+| `omeia/api/page_registry.py` | Section/domain → IA page mapping |
 
 ### Backend — knowledge stores
 
 | File | Role |
 |------|------|
-| `app_skeleton/api/lab_knowledge_store.py` | Lab SOP ingest → `rag.*` + Qdrant `doc_chunks` (corpus=`lab_operations`) |
-| `app_skeleton/api/research_knowledge_store.py` | Crawl/publications/datasets → `platform.research_*` + Qdrant `research_knowledge` |
-| `app_skeleton/api/research_search_service.py` | Research hit normalization |
-| `app_skeleton/api/research_crawler.py` | farkkilab.org crawler (Playwright optional, default off) |
-| `app_skeleton/api/publication_fetcher.py` | PubMed/Crossref discovery |
-| `app_skeleton/api/dataset_fetcher.py` | Dataset registry seed |
-| `app_skeleton/api/qdrant_research_indexer.py` | Research collection upsert/search |
-| `app_skeleton/api/database_processor.py` | Section chunk keyword search (`file` bucket) |
-| `app_skeleton/api/raw_vault_store.py` | Vault metadata search |
-| `app_skeleton/api/database_sections.py` | 11 lab section definitions |
+| `omeia/api/lab_knowledge_store.py` | Lab SOP ingest → `rag.*` + Qdrant `doc_chunks` (corpus=`lab_operations`) |
+| `omeia/api/research_knowledge_store.py` | Crawl/publications/datasets → `platform.research_*` + Qdrant `research_knowledge` |
+| `omeia/api/research_search_service.py` | Research hit normalization |
+| `omeia/api/research_crawler.py` | farkkilab.org crawler (Playwright optional, default off) |
+| `omeia/api/publication_fetcher.py` | PubMed/Crossref discovery |
+| `omeia/api/dataset_fetcher.py` | Dataset registry seed |
+| `omeia/api/qdrant_research_indexer.py` | Research collection upsert/search |
+| `omeia/api/database_processor.py` | Section chunk keyword search (`file` bucket) |
+| `omeia/api/raw_vault_store.py` | Vault metadata search |
+| `omeia/api/database_sections.py` | 11 lab section definitions |
 
 ### Backend — routers
 
 | File | Role |
 |------|------|
-| `app_skeleton/api/routers/chat.py` | `/api/chat`, `/api/chat/stream`, `/api/chat/status` |
-| `app_skeleton/api/routers/copilot.py` | `/ask` (+ search_only mode), install/HPC/clinical/feature endpoints |
-| `app_skeleton/api/routers/research_knowledge.py` | Research KB admin: crawl, ingest, status, search |
-| `app_skeleton/api/routers/knowledge.py` | Legacy lab search, hybrid-search, database process/read APIs |
-| `app_skeleton/api/routers/vault.py` | Vault ingest/search/review |
-| `app_skeleton/api/storage_stub.py` | Portable storage mode (`OMEIA_STORAGE_MODE=stub`) |
+| `omeia/api/routers/chat.py` | `/api/chat`, `/api/chat/stream`, `/api/chat/status` |
+| `omeia/api/routers/copilot.py` | `/ask` (+ search_only mode), install/HPC/clinical/feature endpoints |
+| `omeia/api/routers/research_knowledge.py` | Research KB admin: crawl, ingest, status, search |
+| `omeia/api/routers/knowledge.py` | Legacy lab search, hybrid-search, database process/read APIs |
+| `omeia/api/routers/vault.py` | Vault ingest/search/review |
+| `omeia/api/storage_stub.py` | Portable storage mode (`OMEIA_STORAGE_MODE=stub`) |
 
 ### Frontend — AI & search
 
 | File | Role |
 |------|------|
-| `app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx` | Chat UI, streaming, project scope, source cards, omnibox handoff |
-| `app_skeleton/ui/react_frontend/src/components/GlobalSearchOverlay.jsx` | ⌘K omnibox, unified search, Ask AI |
-| `app_skeleton/ui/react_frontend/src/components/search/AssistantSearchHits.jsx` | Source/hit cards with Open / follow-up / omnibox |
-| `app_skeleton/ui/react_frontend/src/components/search/SearchFilters.jsx` | Mode + scope chips (**no research scope**) |
-| `app_skeleton/ui/react_frontend/src/utils/searchHits.js` | Nav stash, bucket labels (**research not in BUCKET_ORDER**) |
-| `app_skeleton/ui/react_frontend/src/api/chatClient.js` | `/api/chat` JSON + SSE |
-| `app_skeleton/ui/react_frontend/src/api/searchApi.js` | Unified search client |
-| `app_skeleton/ui/react_frontend/src/screens/ResearchKnowledgeAdminScreen.jsx` | Research KB admin UI |
-| `app_skeleton/ui/react_frontend/src/screens/KnowledgeSearchScreen.jsx` | Legacy advanced search (orphan route) |
+| `omeia/ui/react_frontend/src/components/ChatWidget.jsx` | Chat UI, streaming, project scope, source cards, omnibox handoff |
+| `omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx` | ⌘K omnibox, unified search, Ask AI |
+| `omeia/ui/react_frontend/src/components/search/AssistantSearchHits.jsx` | Source/hit cards with Open / follow-up / omnibox |
+| `omeia/ui/react_frontend/src/components/search/SearchFilters.jsx` | Mode + scope chips (**no research scope**) |
+| `omeia/ui/react_frontend/src/utils/searchHits.js` | Nav stash, bucket labels (**research not in BUCKET_ORDER**) |
+| `omeia/ui/react_frontend/src/api/chatClient.js` | `/api/chat` JSON + SSE |
+| `omeia/ui/react_frontend/src/api/searchApi.js` | Unified search client |
+| `omeia/ui/react_frontend/src/screens/ResearchKnowledgeAdminScreen.jsx` | Research KB admin UI |
+| `omeia/ui/react_frontend/src/screens/KnowledgeSearchScreen.jsx` | Legacy advanced search (orphan route) |
 
 ### Tests & eval
 
@@ -216,7 +216,7 @@ flowchart TB
 
 ## 5. Access Control & Privacy Audit
 
-### Roles (`app_skeleton/security/permissions.py`)
+### Roles (`omeia/security/permissions.py`)
 
 | Role | Chat `/api/chat` | `/ask` (non-search_only) | Unified search | Research KB ingest | Vault ingest |
 |------|------------------|--------------------------|----------------|---------------|--------------|
@@ -456,9 +456,9 @@ Pre-phase heuristic ~4.1/5 overall; research grounding scored lower. Post-phase 
 | Location | Finding |
 |----------|---------|
 | `OMEIA_Farkkila_Research_KB_AI_Brain_Package/04_BACKEND_SCAFFOLDING/research_knowledge_router.py` | `# TODO: persist`, `# TODO: call Qdrant` — scaffold only, not wired to main app |
-| `app_skeleton/api/storage_stub.py` | Portable stub storage — intentional for git-portable dev |
-| `app_skeleton/api/routers/search.py:74` | "portable stub" index status comment |
-| `app_skeleton/api/routers/vault.py:98` | Qdrant ingest skipped offline stub path |
+| `omeia/api/storage_stub.py` | Portable stub storage — intentional for git-portable dev |
+| `omeia/api/routers/search.py:74` | "portable stub" index status comment |
+| `omeia/api/routers/vault.py:98` | Qdrant ingest skipped offline stub path |
 | `configs/.env.example` | `ENABLE_VECTOR_EMBEDDINGS=false`, `ENABLE_AI_CLASSIFICATION=false`, `SUPABASE_SYNC_ENABLED=false` |
 | Frontend grep TODO/FIXME | **No matches** in react search/chat files |
 | `research_knowledge_store` relations | `relation_count: 0` — extractor runs but graph unused in retrieval |

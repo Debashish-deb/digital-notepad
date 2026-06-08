@@ -15,10 +15,10 @@ Confirmed source roots:
 | `database/Overview` | Personnel, permits, forms, onboarding, lab cleaning, guidelines | 0.90 |
 | `database/ORDERS & RELATED INFORMATION` | Ordering, billing, vendor and archive records | 0.95 |
 | `database/SOCIAL & MISCELLANEOUS` | Lab photos, retreats, visits, outreach, social memory | 0.90 |
-| `farkki_ai_platform_blueprint/app_skeleton/data/projects_catalog.json` | Existing 37-project catalog with project leads, categories, status, modalities | 0.80 |
-| `farkki_ai_platform_blueprint/app_skeleton/data/processed_projects/*.json` | Extracted digital-twin records and chunk indexes from project and lab sections | 0.85 |
+| `farkki_ai_platform_blueprint/omeia/data/projects_catalog.json` | Existing 37-project catalog with project leads, categories, status, modalities | 0.80 |
+| `farkki_ai_platform_blueprint/omeia/data/processed_projects/*.json` | Extracted digital-twin records and chunk indexes from project and lab sections | 0.85 |
 | SQL files under `farkki_ai_platform_blueprint/sql` | Current database design and implemented schema intent | 0.90 |
-| API/UI code under `app_skeleton` | Implemented platform capabilities | 0.90 |
+| API/UI code under `omeia` | Implemented platform capabilities | 0.90 |
 
 Corpus scale from filesystem scan:
 

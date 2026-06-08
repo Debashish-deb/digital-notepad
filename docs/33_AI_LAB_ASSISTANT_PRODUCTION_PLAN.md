@@ -16,9 +16,9 @@
 - **Each phase ends with a gate.** Do not start the next phase until the current gate passes and the standard verification suite is green.
 - **Standard verification suite (run at the end of every phase):**
   ```bash
-  python -m compileall app_skeleton/api
+  python -m compileall omeia/api
   python -m unittest discover -s tests -p 'test_*.py'
-  cd app_skeleton/ui/react_frontend && npm run build
+  cd omeia/ui/react_frontend && npm run build
   ```
 - **Never claim a phase is done without pasting the actual command output.**
 
@@ -100,10 +100,10 @@
 **Test:** Force a mock path (no key / forced failure) → response reports `synthesis_mode="mock"` and `fallback_used=true`, never `gemini`.
 
 ### Files
-- `app_skeleton/api/privacy_guardrails.py` (+ the guardrail agent if separate)
-- `app_skeleton/api/chat_intent.py`
-- `app_skeleton/api/llm_client.py`
-- `app_skeleton/api/chat_service.py`, `app_skeleton/api/routers/chat.py`
+- `omeia/api/privacy_guardrails.py` (+ the guardrail agent if separate)
+- `omeia/api/chat_intent.py`
+- `omeia/api/llm_client.py`
+- `omeia/api/chat_service.py`, `omeia/api/routers/chat.py`
 - `tests/test_privacy_guardrails.py` (new), `tests/test_chat_intent.py`, `tests/test_chat_api.py`
 
 ### Gate
@@ -123,8 +123,8 @@
 4. **Chunk → embed → index** all of the above into the `research_knowledge` Qdrant collection (named vector `text`), with payloads carrying `source_type`, `title`, `url`, `doi`, `pmid`, `dataset_accession`, `visibility`.
 
 ### Files
-- `app_skeleton/api/research_crawler.py`, `publication_fetcher.py`, `dataset_fetcher.py`
-- `app_skeleton/api/scientific_document_parser.py`, `qdrant_research_indexer.py`, `research_knowledge_store.py`
+- `omeia/api/research_crawler.py`, `publication_fetcher.py`, `dataset_fetcher.py`
+- `omeia/api/scientific_document_parser.py`, `qdrant_research_indexer.py`, `research_knowledge_store.py`
 - `configs/research_knowledge/seed_sources.json`, `crawl_allowlist.yml`
 - `scripts/document-library/setup_research_knowledge.sh`
 
@@ -151,7 +151,7 @@
 - `"What does Färkkilä Lab study?"` → `research_question` with RAG.
 
 ### Files
-- `app_skeleton/api/chat_intent.py`
+- `omeia/api/chat_intent.py`
 - `tests/test_chat_intent.py`
 
 ### Gate
@@ -174,9 +174,9 @@
 5. **Remove prompt noise.** Stop injecting "0 patients / 0 samples" when counts are zero or out of scope.
 
 ### Files
-- `app_skeleton/api/search_service.py` (`hits_for_copilot`, scopes, weights)
-- `app_skeleton/api/chat_service.py` (threshold/gating, prompt assembly)
-- `app_skeleton/api/agents.py` (RAGAgent, reranker integration)
+- `omeia/api/search_service.py` (`hits_for_copilot`, scopes, weights)
+- `omeia/api/chat_service.py` (threshold/gating, prompt assembly)
+- `omeia/api/agents.py` (RAGAgent, reranker integration)
 - `tests/test_search_service.py` (new/extended), `tests/test_chat_api.py`
 
 ### Gate
@@ -199,8 +199,8 @@
 3. **Off-topic / refusal policy.** For clearly out-of-domain questions (e.g. quantum physics), the assistant states it is a lab research copilot and either declines or clearly labels the answer as general knowledge, not lab-grounded.
 
 ### Files
-- `app_skeleton/api/answer_grounding_service.py`
-- `app_skeleton/api/chat_service.py`
+- `omeia/api/answer_grounding_service.py`
+- `omeia/api/chat_service.py`
 - `tests/test_chat_api.py`
 
 ### Gate
@@ -219,8 +219,8 @@
 - Remove the source-count divergence (chat 12 vs `/ask` 20). Pick one policy.
 
 ### Files
-- `app_skeleton/api/routers/copilot.py`, `app_skeleton/api/routers/chat.py`
-- `app_skeleton/api/chat_service.py`
+- `omeia/api/routers/copilot.py`, `omeia/api/routers/chat.py`
+- `omeia/api/chat_service.py`
 - `tests/test_copilot.py`, `tests/test_chat_api.py`
 
 ### Gate
@@ -240,10 +240,10 @@
 5. **Multilingual:** detect the user's language (Finnish and other supported locales) and answer in that language while still retrieving from English docs.
 
 ### Files
-- `app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx`
-- `app_skeleton/ui/react_frontend/src/components/AssistantSearchHits` (or equivalent)
-- `app_skeleton/ui/react_frontend/src/api/chatClient.js`
-- `app_skeleton/api/chat_service.py` (language-detection → response-language instruction)
+- `omeia/ui/react_frontend/src/components/ChatWidget.jsx`
+- `omeia/ui/react_frontend/src/components/AssistantSearchHits` (or equivalent)
+- `omeia/ui/react_frontend/src/api/chatClient.js`
+- `omeia/api/chat_service.py` (language-detection → response-language instruction)
 
 ### Gate
 - UI badge matches the actual synthesis mode.
@@ -260,7 +260,7 @@
 3. **Docs:** update `docs/30_SEARCH_FUNCTIONALITY_AUDIT.md` to reflect `ChatWidget → /api/chat` (currently stale, says `/ask`).
 
 ### Files
-- `app_skeleton/api/llm_client.py`
+- `omeia/api/llm_client.py`
 - `scripts/search/run_ai_lab_assistant_eval.py`
 - `docs/30_SEARCH_FUNCTIONALITY_AUDIT.md`
 
@@ -378,7 +378,7 @@ Never import `auth_fixtures` from production code paths.
 |------|-------|--------|--------------|
 | 2026-06-06 | 0 | Added `tests/auth_fixtures.py` (test-only auth override for researcher/viewer/editor/admin). Hardened `scripts/search/run_ai_lab_assistant_eval.py` for in-process TestClient calls; captures intent, provider, buckets, answer. Baseline written to `tests/search_qa_ai_baseline.json` (15 questions, 0 HTTP errors). | `compileall` OK; Phase 0/1 unit tests OK; `npm run build` OK; baseline harness `http_errors: 0` |
 | 2026-06-06 | 1 | Scientific identifier allowlist in `privacy_guardrails.py` (GSE/GSM/EGA/TCGA/DOI/PMID etc.) before PII regex; secret-key blocking preserved. Short-query trap bypass for accessions in `chat_intent.py`. Provider honesty: `effective_provider`, `model`, `fallback_used`, `synthesis_mode` on `/api/chat` and `/ask`. | `test_privacy_guardrails` pass/block matrix green; `Find GSE211956` → `search_request` + `use_rag=true`; mock fallback reports `synthesis_mode=mock`, never `gemini` |
-| 2026-06-06 | 2 | Mass research KB ingestion: expanded PubMed/Crossref discovery (efetch abstracts, seed queries, 429 backoff); richer publication index text; setup script default crawl cap uses `RESEARCH_KB_MAX_PUBLIC_PAGES`. Ran `scripts/document-library/setup_research_knowledge.sh` with Playwright. **Before:** 6 points / 12 sources / 3 datasets. **After:** 224 points / 217 sources / 3 datasets. | `compileall app_skeleton/api` OK; `test_copilot` + `test_chat_intent` OK; `search_research("What is MHC class II in HGSC?")` → 5 hits |
+| 2026-06-06 | 2 | Mass research KB ingestion: expanded PubMed/Crossref discovery (efetch abstracts, seed queries, 429 backoff); richer publication index text; setup script default crawl cap uses `RESEARCH_KB_MAX_PUBLIC_PAGES`. Ran `scripts/document-library/setup_research_knowledge.sh` with Playwright. **Before:** 6 points / 12 sources / 3 datasets. **After:** 224 points / 217 sources / 3 datasets. | `compileall omeia/api` OK; `test_copilot` + `test_chat_intent` OK; `search_research("What is MHC class II in HGSC?")` → 5 hits |
 | 2026-06-06 | 3 | Intent classifier reordered (sensitive → accession → ingestion → app_help → search → protocol → research → smalltalk); expanded `RESEARCH_TERMS` + lab overview patterns; removed `ingest` from protocol terms. 15 routing tests in `test_chat_intent.py`. | Intent matrix green; `Färkkilä Lab study` → `research_question` + RAG |
 | 2026-06-06 | 4 | Intent-aware scopes/weights, lexical reranker, min-score gating, dedup/diversify in `hits_for_copilot`; zero-count DB noise removed from prompts. `test_search_service.py` added. | Reranker unit test promotes relevant chunk; gating drops sub-threshold hits |
 | 2026-06-06 | 5 | Citation enforcement via re-prompt + sources append in `answer_grounding_service`; empty-corpus honest answers; off-topic refusal policy. Tests in `test_chat_api.py`. | Must-cite path appends `[n]` or sources block; off-topic labeled |

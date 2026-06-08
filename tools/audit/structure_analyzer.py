@@ -13,7 +13,7 @@ Default usage from a repository:
 Useful examples:
   python tools/audit/structure_analyzer.py --root .
   python tools/audit/structure_analyzer.py --root . --max-depth 6 --hash
-  python tools/audit/structure_analyzer.py --paths app_skeleton/data docs scripts
+  python tools/audit/structure_analyzer.py --paths omeia/data docs scripts
 
 Why this version is safer than the original:
   - Valid Mermaid node IDs even for paths containing spaces/slashes.
@@ -43,8 +43,8 @@ from typing import Any, Iterable
 
 
 DEFAULT_ANALYSIS_PATHS = [
-    "app_skeleton/data",
-    "app_skeleton/storage",
+    "omeia/data",
+    "omeia/storage",
     "docs",
     "scripts",
     "configs",

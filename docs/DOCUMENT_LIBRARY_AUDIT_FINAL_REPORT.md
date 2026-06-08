@@ -24,9 +24,9 @@ This comprehensive audit analyzed the OMEIA Digital Notepad's document library t
 
 ## What Was Scanned
 
-- File inventory from: `/Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/data/raw_asset_inventory.json`
+- File inventory from: `/Users/debashishdeb/Downloads/OMEIA-AI/omeia/data/raw_asset_inventory.json`
 - Database root: `/Users/debashishdeb/Downloads/OMEIA-AI/database`
-- Processed projects: `/Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/data/processed_projects`
+- Processed projects: `/Users/debashishdeb/Downloads/OMEIA-AI/omeia/data/processed_projects`
 - Total assets in inventory: 4,800
 - Independent disk file count: 0 (files stored remotely or in external storage)
 

@@ -5,12 +5,12 @@ import os
 import unittest
 from unittest.mock import patch
 
-from app_skeleton.api.agent_orchestrator.persistent_audit import (
+from omeia.api.agent_orchestrator.persistent_audit import (
     persist_agent_audit,
     redact_payload,
     redact_text,
 )
-from app_skeleton.api.agent_orchestrator.trace_store import create_trace, finalize_trace, get_trace
+from omeia.api.agent_orchestrator.trace_store import create_trace, finalize_trace, get_trace
 
 
 class TestAuditLogging(unittest.TestCase):
@@ -48,7 +48,7 @@ class TestAuditLogging(unittest.TestCase):
     def test_persist_attempts_db_when_enabled(self) -> None:
         os.environ["AGENT_AUDIT_PERSIST_ENABLED"] = "true"
         trace = create_trace(category="general_research", mode="fast")
-        with patch("app_skeleton.api.agent_orchestrator.persistent_audit.psycopg.connect") as mock_conn:
+        with patch("omeia.api.agent_orchestrator.persistent_audit.psycopg.connect") as mock_conn:
             mock_conn.side_effect = Exception("db unavailable")
             ok = persist_agent_audit(
                 trace,

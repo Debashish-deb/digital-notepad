@@ -26,7 +26,7 @@ Authenticated endpoints under `/api/assets/{asset_id}/image/*`:
 
 ## Required metadata fields (`metadata.image` cache)
 
-Stored in `app_skeleton/data/image_metadata_cache.json`:
+Stored in `omeia/data/image_metadata_cache.json`:
 
 - `format` — `tiff` | `ome_tiff`
 - `streaming_status` — `unknown`, `metadata_only`, `thumbnail_ready`, `tile_ready`, `failed`

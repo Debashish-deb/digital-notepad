@@ -2,7 +2,7 @@
 
 **Scope:** Projects, digital twins, notebook/wiki/decisions, datapad, research workspace, portfolio, project processing, lab knowledge, knowledge extraction, collaboration, project & research lifecycles  
 **Perspective:** Research Platform Architecture  
-**Codebase:** OMEIA-AI / `app_skeleton/`  
+**Codebase:** OMEIA-AI / `omeia/`  
 **Date:** 2026-06-08  
 **Context docs verified against code:** `docs/KNOWLEDGE_DOCUMENT_SUBSYSTEM_REVIEW.md`, `docs/KNOWLEDGE_PLATFORM_REMEDIATION_PLAN.md`
 
@@ -64,7 +64,7 @@ The subsystem is **functionally rich for a single-lab dev twin** and demonstrate
 
 ## 2. Project Architecture Diagram
 
-Navigation maps to implementation (`app_skeleton/ui/react_frontend/src/config/navigation.js`):
+Navigation maps to implementation (`omeia/ui/react_frontend/src/config/navigation.js`):
 
 | UI area | Screen / component | Backend |
 |---------|-------------------|---------|
@@ -153,7 +153,7 @@ flowchart TB
 
 ### Path resolution (Mac vs Linux)
 
-`app_skeleton/api/paths.py` resolves roots from environment — never hardcoded:
+`omeia/api/paths.py` resolves roots from environment — never hardcoded:
 
 - `DATABASE_ROOT` — external `OMEIA-database` or repo `database/`
 - `PROJECTS_ROOT` — `DATABASE_ROOT/projects` or repo `projects/`
@@ -214,12 +214,12 @@ flowchart LR
 
 | Role | Path |
 |------|------|
-| Twin builder | `app_skeleton/api/project_processor.py` — `process_project()`, `get_digital_twin()`, `save_processed()` |
+| Twin builder | `omeia/api/project_processor.py` — `process_project()`, `get_digital_twin()`, `save_processed()` |
 | Lifecycle → workspace tab mapping | `LIFECYCLE_RULES` in `project_processor.py` (management → plan, methods → methods, etc.) |
-| API | `app_skeleton/api/routers/datapad.py` — `GET/PUT /api/projects/{code}/digital-twin` |
-| Frontend hook | `app_skeleton/ui/react_frontend/src/shared/hooks/useDigitalTwin.js` |
-| Static fallback | `app_skeleton/ui/react_frontend/public/processed/{code}.json` |
-| Normalization | `app_skeleton/ui/react_frontend/src/lib/digitalTwinUtils.js` |
+| API | `omeia/api/routers/datapad.py` — `GET/PUT /api/projects/{code}/digital-twin` |
+| Frontend hook | `omeia/ui/react_frontend/src/shared/hooks/useDigitalTwin.js` |
+| Static fallback | `omeia/ui/react_frontend/public/processed/{code}.json` |
+| Normalization | `omeia/ui/react_frontend/src/lib/digitalTwinUtils.js` |
 
 ### Twin refresh semantics
 
@@ -334,7 +334,7 @@ Writes go to **disk**, not twin JSON — twin refresh is manual ("Scan project f
 
 | Stage | Mechanism | Code |
 |-------|-----------|------|
-| Seed / catalog | Static JSON | `app_skeleton/data/00_registry/projects_catalog.json` |
+| Seed / catalog | Static JSON | `omeia/data/00_registry/projects_catalog.json` |
 | DB registration | `POST /projects` | `research.py` — inserts `core.project`, `platform.project_extension`, `project_member` |
 | Portfolio display | Merge catalog + DB | `fetch_projects_unified()` in `common.py` |
 | Metadata update | `PUT /projects/{code}` | Updates `project_extension`; auto notebook log |
@@ -595,41 +595,41 @@ Prioritized by remediation phase:
 
 | File | Change |
 |------|--------|
-| `app_skeleton/api/routers/research.py` | Firebase user → researcher; project ACL on reads |
-| `app_skeleton/security/permissions.py` | Wire `can_read_project` into route helpers |
-| `app_skeleton/api/common.py` | `fetch_projects_unified()` — expose coverage flags |
-| `app_skeleton/ui/react_frontend/src/pages/ProjectsScreen.jsx` | Needs-confirmation badges |
-| `app_skeleton/api/project_knowledge_extractor.py` | Shared chunker; checksum skip |
-| `app_skeleton/api/datapad_service.py` | Post-save re-index hook (optional flag) |
+| `omeia/api/routers/research.py` | Firebase user → researcher; project ACL on reads |
+| `omeia/security/permissions.py` | Wire `can_read_project` into route helpers |
+| `omeia/api/common.py` | `fetch_projects_unified()` — expose coverage flags |
+| `omeia/ui/react_frontend/src/pages/ProjectsScreen.jsx` | Needs-confirmation badges |
+| `omeia/api/project_knowledge_extractor.py` | Shared chunker; checksum skip |
+| `omeia/api/datapad_service.py` | Post-save re-index hook (optional flag) |
 
 ### P1 — Twin operations & jobs
 
 | File | Change |
 |------|--------|
-| `app_skeleton/api/project_processor.py` | Incremental scan; split parsers module |
-| `app_skeleton/api/routers/datapad.py` | Async `process-all`; twin-status endpoint |
+| `omeia/api/project_processor.py` | Incremental scan; split parsers module |
+| `omeia/api/routers/datapad.py` | Async `process-all`; twin-status endpoint |
 | `scripts/ops/autonomous_processor.py` | Schedule twin + ingest pipeline |
-| `app_skeleton/ui/react_frontend/src/shared/hooks/useDigitalTwin.js` | Stale indicator UX |
-| `app_skeleton/ui/react_frontend/src/features/projects/components/DigitalTwinPanel.jsx` | Scan progress / error surfacing |
+| `omeia/ui/react_frontend/src/shared/hooks/useDigitalTwin.js` | Stale indicator UX |
+| `omeia/ui/react_frontend/src/features/projects/components/DigitalTwinPanel.jsx` | Scan progress / error surfacing |
 
 ### P1 — Knowledge plane alignment
 
 | File | Change |
 |------|--------|
-| `app_skeleton/api/project_knowledge_store.py` | Single upsert contract with `vector_indexer` |
-| `app_skeleton/api/project_digitalization_engine.py` | Delegate chunk/embed to shared services |
-| `app_skeleton/api/lab_knowledge_store.py` | Align Qdrant vector naming with `qdrant_collections.py` |
-| `app_skeleton/api/routers/knowledge.py` | Remove deprecated `/api/database/search` proxy (after migration) |
+| `omeia/api/project_knowledge_store.py` | Single upsert contract with `vector_indexer` |
+| `omeia/api/project_digitalization_engine.py` | Delegate chunk/embed to shared services |
+| `omeia/api/lab_knowledge_store.py` | Align Qdrant vector naming with `qdrant_collections.py` |
+| `omeia/api/routers/knowledge.py` | Remove deprecated `/api/database/search` proxy (after migration) |
 
 ### P2 — UI & collaboration
 
 | File | Change |
 |------|--------|
-| `app_skeleton/ui/react_frontend/src/pages/LabKnowledgeScreen.jsx` | API-first catalog |
-| `app_skeleton/ui/react_frontend/src/pages/WorkspaceScreen.jsx` | Ingest freshness banner |
-| `app_skeleton/ui/react_frontend/src/contexts/TaskpadContext.jsx` | Server-backed persistence option |
-| `app_skeleton/ui/react_frontend/src/pages/MeetingScreen.jsx` | Backend or remove from nav |
-| `app_skeleton/ui/react_frontend/src/features/projects/components/portfolio/ResearchAssistPanel.jsx` | Ground on `search_project_knowledge()` |
+| `omeia/ui/react_frontend/src/pages/LabKnowledgeScreen.jsx` | API-first catalog |
+| `omeia/ui/react_frontend/src/pages/WorkspaceScreen.jsx` | Ingest freshness banner |
+| `omeia/ui/react_frontend/src/contexts/TaskpadContext.jsx` | Server-backed persistence option |
+| `omeia/ui/react_frontend/src/pages/MeetingScreen.jsx` | Backend or remove from nav |
+| `omeia/ui/react_frontend/src/features/projects/components/portfolio/ResearchAssistPanel.jsx` | Ground on `search_project_knowledge()` |
 
 ### P2 — Schema & SQL
 
@@ -646,7 +646,7 @@ Prioritized by remediation phase:
 |------|--------|
 | `configs/.env.example` | Document Mac `PROJECTS_ROOT` vs Linux `LAB_STORAGE_ROOT` |
 | `docs/MAC_STARTUP.md` | Add project folder mount prerequisites |
-| `app_skeleton/api/paths.py` | Health helper for root mount visibility |
+| `omeia/api/paths.py` | Health helper for root mount visibility |
 
 ---
 

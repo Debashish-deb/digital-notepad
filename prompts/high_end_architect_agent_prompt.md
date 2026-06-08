@@ -162,9 +162,9 @@ Start at workspace root:
 Read these files first, in this order:
 
 1. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/docs/11_LABORATORY_DIGITAL_TWIN_REPORT.md
-2. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/data/raw_asset_inventory_summary.json
-3. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/data/raw_asset_inventory.json
-4. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/data/raw_asset_inventory.csv
+2. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/data/raw_asset_inventory_summary.json
+3. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/data/raw_asset_inventory.json
+4. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/data/raw_asset_inventory.csv
 5. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/README.md
 6. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/task.md
 7. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/docs/00_EXECUTIVE_SUMMARY.md
@@ -181,19 +181,19 @@ Read these files first, in this order:
 
 Then inspect implementation code:
 
-18. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/main.py
-19. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/paths.py
-20. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/database_sections.py
-21. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/database_processor.py
-22. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/project_processor.py
-23. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/document_extraction.py
-24. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/lab_knowledge_store.py
-25. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/feature_warehouse.py
-26. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/clinical_tools.py
-27. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/api/agents.py
-28. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/ui/react_frontend/src/App.jsx
-29. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/ui/react_frontend/src/config/navigation.js
-30. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/data/projects_catalog.json
+18. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/main.py
+19. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/paths.py
+20. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/database_sections.py
+21. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/database_processor.py
+22. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/project_processor.py
+23. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/document_extraction.py
+24. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/lab_knowledge_store.py
+25. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/feature_warehouse.py
+26. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/clinical_tools.py
+27. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/api/agents.py
+28. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/ui/react_frontend/src/App.jsx
+29. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/ui/react_frontend/src/config/navigation.js
+30. /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/data/projects_catalog.json
 
 Then inspect SQL:
 
@@ -249,7 +249,7 @@ If needed, independently verify extension counts from the filesystem.
 
 5. Search page/navigation implementation:
 
-rg -n "Dashboard|Overview|Research Hub|Projects|Data|Storage|Computational|CyCIF|Image Analysis|Wet Lab|Orders|Procurement|Social|Knowledge Base|Notebook|Wiki|Tasks|Decisions|AI Lab Assistant|Administration" farkki_ai_platform_blueprint/app_skeleton
+rg -n "Dashboard|Overview|Research Hub|Projects|Data|Storage|Computational|CyCIF|Image Analysis|Wet Lab|Orders|Procurement|Social|Knowledge Base|Notebook|Wiki|Tasks|Decisions|AI Lab Assistant|Administration" farkki_ai_platform_blueprint/omeia
 
 6. Search registry and vault terms:
 
@@ -270,7 +270,7 @@ rg -n "asset|vault|document|search|vector|project|database|permission|sensitivit
 
 10. Inspect generated processed records:
 
-ls -lh /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/app_skeleton/data/processed_projects
+ls -lh /Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/data/processed_projects
 
 11. Inspect project catalog and processed summaries:
 

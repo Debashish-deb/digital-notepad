@@ -5,11 +5,11 @@ import unittest
 
 from fastapi.testclient import TestClient
 
-from app_skeleton.api import lab_knowledge_store as lks
-from app_skeleton.api.database_sections import list_sections, assert_all_section_roots_exist
-from app_skeleton.api.raw_vault_store import search_vault, _public_row, deduplication_report
-from app_skeleton.api.main import app
-from app_skeleton.api.paths import storage_roots_public_summary
+from omeia.api import lab_knowledge_store as lks
+from omeia.api.database_sections import list_sections, assert_all_section_roots_exist
+from omeia.api.raw_vault_store import search_vault, _public_row, deduplication_report
+from omeia.api.main import app
+from omeia.api.paths import storage_roots_public_summary
 from tests.db_safety import SKIP_REASON_NO_DB, postgres_reachable
 
 

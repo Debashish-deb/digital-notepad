@@ -18,9 +18,9 @@
     <string>1</string>
   </dict>
   <key>StandardOutPath</key>
-  <string>REPLACE_WITH_REPO_ROOT/app_skeleton/data/logs/autonomous_processor.log</string>
+  <string>REPLACE_WITH_REPO_ROOT/omeia/data/logs/autonomous_processor.log</string>
   <key>StandardErrorPath</key>
-  <string>REPLACE_WITH_REPO_ROOT/app_skeleton/data/logs/autonomous_processor.log</string>
+  <string>REPLACE_WITH_REPO_ROOT/omeia/data/logs/autonomous_processor.log</string>
   <key>RunAtLoad</key>
   <true/>
   <key>KeepAlive</key>

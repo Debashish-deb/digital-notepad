@@ -25,8 +25,8 @@ The following directories were analyzed:
 
 | Directory | Status | Path |
 |-----------|--------|------|
-| app_skeleton/data | ✓ Analyzed | /Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/data |
-| app_skeleton/storage | ✓ Analyzed | /Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/storage |
+| omeia/data | ✓ Analyzed | /Users/debashishdeb/Downloads/OMEIA-AI/omeia/data |
+| omeia/storage | ✓ Analyzed | /Users/debashishdeb/Downloads/OMEIA-AI/omeia/storage |
 | docs | ✓ Analyzed | /Users/debashishdeb/Downloads/OMEIA-AI/docs |
 | scripts | ✓ Analyzed | /Users/debashishdeb/Downloads/OMEIA-AI/scripts |
 | configs | ✓ Analyzed | /Users/debashishdeb/Downloads/OMEIA-AI/configs |
@@ -61,26 +61,26 @@ The following directories were analyzed:
 
 | Rank | Name | Size | Location |
 |------|------|------|----------|
-| 1 | raw_asset_inventory.json | 47.0 MB | app_skeleton/data/ |
+| 1 | raw_asset_inventory.json | 47.0 MB | omeia/data/ |
 | 2 | document_inventory.json | 47.0 MB | reports/document_library_audit/first_pass/ |
 | 3 | metadata_enriched_inventory.json | 22.1 MB | reports/document_library_audit/metadata_v2/ |
-| 4 | lab__wet_lab_files.json | 6.4 MB | app_skeleton/data/processed_projects/ |
-| 5 | lab__wet_lab_files.chunks.jsonl | 5.3 MB | app_skeleton/data/processed_projects/ |
+| 4 | lab__wet_lab_files.json | 6.4 MB | omeia/data/processed_projects/ |
+| 5 | lab__wet_lab_files.chunks.jsonl | 5.3 MB | omeia/data/processed_projects/ |
 | 6 | display_title_mapping_top_class.csv | 3.7 MB | reports/document_library_audit/metadata_v2/ |
 | 7 | HERAfreeze minus80 Manual english-ult-ma | 3.4 MB | docs/ORDERS & RELATED INFORMATION/ |
-| 8 | raw_asset_inventory.csv | 3.0 MB | app_skeleton/data/ |
-| 9 | NKI.json | 2.9 MB | app_skeleton/data/processed_projects/ |
+| 8 | raw_asset_inventory.csv | 3.0 MB | omeia/data/ |
+| 9 | NKI.json | 2.9 MB | omeia/data/processed_projects/ |
 | 10 | document_inventory.csv | 2.8 MB | reports/document_library_audit/first_pass/ |
-| 11 | NKI.chunks.jsonl | 2.6 MB | app_skeleton/data/processed_projects/ |
+| 11 | NKI.chunks.jsonl | 2.6 MB | omeia/data/processed_projects/ |
 | 12 | metadata_enriched_inventory.csv | 2.4 MB | reports/document_library_audit/metadata_v2/ |
 | 13 | classification_report_by_page.md | 2.2 MB | reports/document_library_audit/ |
-| 14 | CellCycle.json | 2.2 MB | app_skeleton/data/processed_projects/ |
-| 15 | Fanconi.json | 2.2 MB | app_skeleton/data/processed_projects/ |
+| 14 | CellCycle.json | 2.2 MB | omeia/data/processed_projects/ |
+| 15 | Fanconi.json | 2.2 MB | omeia/data/processed_projects/ |
 | 16 | project_metadata_overlay.csv | 2.0 MB | reports/document_library_audit/metadata_v2/ |
-| 17 | iPDC_1.0.json | 2.0 MB | app_skeleton/data/processed_projects/ |
-| 18 | lab__overview_documents.json | 1.6 MB | app_skeleton/data/processed_projects/ |
-| 19 | iPDC_1.0.chunks.jsonl | 1.5 MB | app_skeleton/data/processed_projects/ |
-| 20 | lab__overview_documents.chunks.jsonl | 1.4 MB | app_skeleton/data/processed_projects/ |
+| 17 | iPDC_1.0.json | 2.0 MB | omeia/data/processed_projects/ |
+| 18 | lab__overview_documents.json | 1.6 MB | omeia/data/processed_projects/ |
+| 19 | iPDC_1.0.chunks.jsonl | 1.5 MB | omeia/data/processed_projects/ |
+| 20 | lab__overview_documents.chunks.jsonl | 1.4 MB | omeia/data/processed_projects/ |
 
 ---
 
@@ -88,9 +88,9 @@ The following directories were analyzed:
 
 | Directory | Files | Size | Description |
 |-----------|-------|------|-------------|
-| app_skeleton/data | 6 | 50.2 MB | Core data directory with inventory and processed projects |
+| omeia/data | 6 | 50.2 MB | Core data directory with inventory and processed projects |
 | reports/document_library_audit/first_pass | 14 | 49.8 MB | First-pass audit reports |
-| app_skeleton/data/processed_projects | 94 | 49.3 MB | Processed project data (JSON + chunks) |
+| omeia/data/processed_projects | 94 | 49.3 MB | Processed project data (JSON + chunks) |
 | reports/document_library_audit/metadata_v2 | 21 | 34.1 MB | Metadata-enriched audit reports |
 | docs/ORDERS & RELATED INFORMATION/Order_confirmations | 2 | 3.6 MB | Order confirmation documents |
 | reports/document_library_audit | 2 | 2.4 MB | Main audit reports directory |
@@ -110,7 +110,7 @@ The following directories were analyzed:
 
 ```mermaid
 graph TD
-    Data[app_skeleton/data]
+    Data[omeia/data]
     Data --> Ingestion[ingestion_reports 📁 1.3 KB]
     Data --> Logs[logs 📁 85.4 KB]
     Data --> Processed[processed_projects 📁 49.3 MB]
@@ -130,7 +130,7 @@ graph TD
 
 ```mermaid
 graph TD
-    Storage[app_skeleton/storage]
+    Storage[omeia/storage]
     Storage --> Init[__init__.py 🐍 45 B]
     Storage --> DataCloud[datacloud_webdav.py 🐍 9.2 KB]
     Storage --> Env[env.py 🐍 1.7 KB]
@@ -200,7 +200,7 @@ graph TD
 
 ## Detailed Directory Analysis
 
-### app_skeleton/data/
+### omeia/data/
 
 **Purpose:** Core data directory containing inventory, processed projects, and ingestion reports
 
@@ -219,7 +219,7 @@ graph TD
 - Contains 94 processed project files with chunked data
 - Active ingestion logging with 41 report files
 
-### app_skeleton/storage/
+### omeia/storage/
 
 **Purpose:** Storage provider implementations for different backends
 
@@ -361,8 +361,8 @@ graph TD
 
 The OMEIA Digital Notepad project has a well-organized structure with clear separation of concerns:
 
-- **Data layer** (app_skeleton/data): Centralized data management with inventory and processed projects
-- **Storage layer** (app_skeleton/storage): Modular storage provider architecture
+- **Data layer** (omeia/data): Centralized data management with inventory and processed projects
+- **Storage layer** (omeia/storage): Modular storage provider architecture
 - **Documentation layer** (docs): Comprehensive lab and project documentation
 - **Automation layer** (scripts): Balanced mix of Python and shell scripts
 - **Configuration layer** (configs): Service and deployment configurations

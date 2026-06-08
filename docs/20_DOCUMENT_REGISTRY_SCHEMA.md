@@ -2,7 +2,7 @@
 
 ## RAG corpus: `rag.document_source` + `rag.document_chunk`
 
-Used by `app_skeleton/api/document_registry.py` for lab operations text (not large binaries).
+Used by `omeia/api/document_registry.py` for lab operations text (not large binaries).
 
 | Field | Source | Notes |
 |-------|--------|-------|

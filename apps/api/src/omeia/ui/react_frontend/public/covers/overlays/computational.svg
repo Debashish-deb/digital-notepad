@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 220" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="cp-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#0891b2" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <!-- HPC cluster rack -->
+  <rect x="48" y="40" width="120" height="80" rx="6" stroke="url(#cp-blue)" stroke-width="2" opacity="0.55"/>
+  <path d="M48 60h120M48 80h120M48 100h120" stroke="#67e8f9" stroke-width="1" opacity="0.38"/>
+  <circle cx="64" cy="50" r="3" fill="#22d3ee" opacity="0.5"/>
+  <circle cx="80" cy="50" r="3" fill="#67e8f9" opacity="0.45"/>
+  <circle cx="96" cy="50" r="3" fill="#22d3ee" opacity="0.42"/>
+  <circle cx="64" cy="70" r="3" fill="#67e8f9" opacity="0.4"/>
+  <circle cx="80" cy="70" r="3" fill="#06b6d4" opacity="0.48"/>
+  <circle cx="96" cy="70" r="3" fill="#67e8f9" opacity="0.38"/>
+  <rect x="56" y="86" width="24" height="8" rx="2" fill="#67e8f9" opacity="0.28"/>
+  <rect x="88" y="86" width="24" height="8" rx="2" fill="#22d3ee" opacity="0.25"/>
+  <!-- LUMI node connections -->
+  <path d="M168 56l32-16v56l-32-16" stroke="#67e8f9" stroke-width="1.5" opacity="0.45"/>
+  <path d="M200 72c16 0 32 8 40 20" stroke="#67e8f9" stroke-width="1.2" opacity="0.35" stroke-dasharray="4 3"/>
+  <circle cx="244" cy="92" r="6" fill="#22d3ee" opacity="0.4"/>
+  <!-- DNA / omics helix -->
+  <path d="M180 120c16-12 32-12 48 0s32 12 48 0" stroke="#67e8f9" stroke-width="1.5" opacity="0.42"/>
+  <path d="M180 140c16 12 32 12 48 0s32-12 48 0" stroke="#67e8f9" stroke-width="1.5" opacity="0.38"/>
+  <path d="M196 120v20M228 120v20M260 120v20" stroke="#67e8f9" stroke-width="0.8" opacity="0.3"/>
+  <!-- Single-cell UMAP scatter -->
+  <circle cx="72" cy="148" r="5" fill="#67e8f9" opacity="0.42"/>
+  <circle cx="88" cy="160" r="4" fill="#22d3ee" opacity="0.38"/>
+  <circle cx="104" cy="144" r="6" fill="#06b6d4" opacity="0.45"/>
+  <circle cx="120" cy="168" r="4" fill="#67e8f9" opacity="0.35"/>
+  <circle cx="96" cy="176" r="5" fill="#22d3ee" opacity="0.4"/>
+  <circle cx="136" cy="152" r="4" fill="#67e8f9" opacity="0.38"/>
+  <ellipse cx="100" cy="158" rx="44" ry="28" stroke="#67e8f9" stroke-width="1" opacity="0.28"/>
+  <!-- Spatial omics heatmap -->
+  <rect x="168" y="148" width="80" height="48" rx="4" stroke="#67e8f9" stroke-width="1.2" opacity="0.4"/>
+  <rect x="176" y="156" width="12" height="12" fill="#22d3ee" opacity="0.35"/>
+  <rect x="192" y="156" width="12" height="12" fill="#67e8f9" opacity="0.3"/>
+  <rect x="208" y="156" width="12" height="12" fill="#06b6d4" opacity="0.38"/>
+  <rect x="224" y="156" width="12" height="12" fill="#22d3ee" opacity="0.32"/>
+  <rect x="176" y="172" width="12" height="12" fill="#67e8f9" opacity="0.28"/>
+  <rect x="192" y="172" width="12" height="12" fill="#06b6d4" opacity="0.42"/>
+  <rect x="208" y="172" width="12" height="12" fill="#22d3ee" opacity="0.35"/>
+  <rect x="224" y="172" width="12" height="12" fill="#67e8f9" opacity="0.3"/>
+  <!-- Tool labels -->
+  <text x="56" y="136" fill="#67e8f9" font-size="7" font-weight="600" opacity="0.45" font-family="system-ui,sans-serif">LUMI</text>
+  <text x="168" y="200" fill="#67e8f9" font-size="7" font-weight="600" opacity="0.4" font-family="system-ui,sans-serif">SPACEstat · Tribus</text>
+</svg>

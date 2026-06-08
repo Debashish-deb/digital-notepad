@@ -19,7 +19,7 @@ uname -s
 
 **Autonomous processor** (vault / digitalize / Supabase) runs **independently of Cursor IDE** — see `docs/28_AUTONOMOUS_PROCESSOR.md` and `./scripts/ops/autonomous_processor.sh`.
 
-**Both platforms:** Python venv, same `app_skeleton.api.main:app`, env from `.env.desktop.example`.
+**Both platforms:** Python venv, same `omeia.api.main:app`, env from `.env.desktop.example`.
 
 ---
 
@@ -40,7 +40,7 @@ Browser → Hostinger React (VITE_API_URL)
 ```bash
 cd digital-notepad
 python3 -m venv .venv && source .venv/bin/activate
-pip install -r app_skeleton/api/requirements.txt httpx pillow
+pip install -r omeia/api/requirements.txt httpx pillow
 
 cp deploy/university-desktop/.env.desktop.example configs/.env
 # Edit: CORS_ORIGINS=http://localhost:5173,https://app.yourdomain.example
@@ -203,7 +203,7 @@ Public: `/health`, `/api/auth/config`, `/api/platform/connectors`.
 ## Hostinger frontend
 
 ```bash
-cd app_skeleton/ui/react_frontend
+cd omeia/ui/react_frontend
 # .env.production: VITE_API_URL=https://<desktop-public-host>
 npm ci && npm run build
 ```

@@ -14,7 +14,7 @@
 - Do not vectorize OME-TIFF, masks, videos, binary outputs, model weights.
 - Do not delete or move files under `OMEIA-AI/database/`.
 - Do not touch `OMEIA-AI/database/projects/**` content (read/process only).
-- Match existing code style in `app_skeleton/api/` and `react_frontend/src/`.
+- Match existing code style in `omeia/api/` and `react_frontend/src/`.
 - Run smallest test set after each task; report `TASK COMPLETED` block.
 
 ---

@@ -30,20 +30,20 @@ dist/
 *.local
 
 # Frontend public lab-data (serve via authenticated API only)
-app_skeleton/ui/react_frontend/public/database/docs/
-app_skeleton/ui/react_frontend/public/database/catalog.json
-app_skeleton/ui/react_frontend/public/processed/*.json
+omeia/ui/react_frontend/public/database/docs/
+omeia/ui/react_frontend/public/database/catalog.json
+omeia/ui/react_frontend/public/processed/*.json
 
 # Runtime / generated data
 logs/
-app_skeleton/data/logs/
-app_skeleton/data/ingestion_reports/
-app_skeleton/data/raw_asset_inventory.csv
-app_skeleton/data/raw_asset_inventory.json
-app_skeleton/data/lab_catalog/
-app_skeleton/data/processed_projects/
-app_skeleton/data/processor.pid
-app_skeleton/data/processor_state.json
+omeia/data/logs/
+omeia/data/ingestion_reports/
+omeia/data/raw_asset_inventory.csv
+omeia/data/raw_asset_inventory.json
+omeia/data/lab_catalog/
+omeia/data/processed_projects/
+omeia/data/processor.pid
+omeia/data/processor_state.json
 
 # Large local media (mount or set CSC_MEDIA_DIR)
 CSC/

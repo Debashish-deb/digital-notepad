@@ -1,6 +1,6 @@
 # Docker security and connection layer
 
-OMEIA local stack uses hardened `docker-compose.yml` plus `app_skeleton/api/docker_service_client.py` for health checks, circuit breaking, and optional auto-start.
+OMEIA local stack uses hardened `docker-compose.yml` plus `omeia/api/docker_service_client.py` for health checks, circuit breaking, and optional auto-start.
 
 ## Architecture
 

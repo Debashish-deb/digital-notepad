@@ -2,7 +2,7 @@
 
 **Scope:** Image streaming, tile serving, pyramidal TIFF/OME-TIFF, worker architecture, Docker imaging stack, Linux workstation integration, GPU utilization, LUMI/CycIF processing pipelines, performance  
 **Perspective:** Imaging Platform Architecture · Bioinformatics Infrastructure · Systems Engineering  
-**Codebase:** OMEIA-AI / digital-notepad (`app_skeleton/`)  
+**Codebase:** OMEIA-AI / digital-notepad (`omeia/`)  
 **Date:** 2026-06-08  
 **Related docs:** `docs/IMAGE_STREAMING_API.md`, `docs/IMAGING_PACKAGES_GUIDE.md`, `docs/LINUX_MEDIA_AND_DATA_PATHS.md`, `docs/IMAGE_SECURITY_NOTES.md`
 
@@ -35,7 +35,7 @@ OMEIA implements a **two-plane imaging stack**:
 |-------|------|---------|
 | **Streaming API** | Authenticated TIFF/OME-TIFF metadata, thumbnails, pyramid tiles, byte-range stream | FastAPI on Linux API host (`image_assets.py` → `image_streaming_service.py`) |
 | **Heavy imaging worker** | Conda stack (openslide, pyvips, napari, CycIF tools) for offline/HPC-style processing | Optional Docker `imaging-worker` on Linux workstation |
-| **LUMI pipeline** | Illumination → stitching → segmentation (StarDist/Mesmer) → quantification | Shell/Snakemake under `app_skeleton/pipelines/lumi_image_processing/` |
+| **LUMI pipeline** | Illumination → stitching → segmentation (StarDist/Mesmer) → quantification | Shell/Snakemake under `omeia/pipelines/lumi_image_processing/` |
 
 ### Strengths
 
@@ -487,19 +487,19 @@ flowchart TB
 
 | File | Why |
 |------|-----|
-| `app_skeleton/api/image_streaming/image_streaming_service.py` | Tile/thumbnail decode, caching, pyvips path |
-| `app_skeleton/api/image_streaming/storage_adapter.py` | Asset index cache; openslide provider |
-| `app_skeleton/api/image_streaming/image_metadata_service.py` | Postgres backing; auto-inspect triggers |
-| `app_skeleton/api/image_streaming/job_queue.py` | File locking or Redis migration |
-| `app_skeleton/api/routers/image_assets.py` | Rate limits; async inspect job status endpoint |
+| `omeia/api/image_streaming/image_streaming_service.py` | Tile/thumbnail decode, caching, pyvips path |
+| `omeia/api/image_streaming/storage_adapter.py` | Asset index cache; openslide provider |
+| `omeia/api/image_streaming/image_metadata_service.py` | Postgres backing; auto-inspect triggers |
+| `omeia/api/image_streaming/job_queue.py` | File locking or Redis migration |
+| `omeia/api/routers/image_assets.py` | Rate limits; async inspect job status endpoint |
 
 ### Priority 2 — inventory integration
 
 | File | Why |
 |------|-----|
-| `app_skeleton/api/document_library_service.py` | Bulk streamable asset index; preview path consistency |
-| `app_skeleton/api/document_extraction.py` | `_extract_image_metadata` overlap with streaming inspect |
-| `app_skeleton/api/paths.py` | `LAB_STORAGE_ROOT` provider for image adapter |
+| `omeia/api/document_library_service.py` | Bulk streamable asset index; preview path consistency |
+| `omeia/api/document_extraction.py` | `_extract_image_metadata` overlap with streaming inspect |
+| `omeia/api/paths.py` | `LAB_STORAGE_ROOT` provider for image adapter |
 
 ### Priority 3 — Docker & Linux ops
 
@@ -514,16 +514,16 @@ flowchart TB
 
 | File | Why |
 |------|-----|
-| `app_skeleton/ui/react_frontend/src/features/imaging/components/ImageTileViewer.jsx` | Error UX; loading skeleton; tile retry |
-| `app_skeleton/ui/react_frontend/src/shared/hooks/useImageTileLoader.js` | In-flight dedup exists; add abort on unmount race |
-| `app_skeleton/ui/react_frontend/src/pages/ImageStreamingAdminScreen.jsx` | Show GPU probe; bulk inspect progress |
+| `omeia/ui/react_frontend/src/features/imaging/components/ImageTileViewer.jsx` | Error UX; loading skeleton; tile retry |
+| `omeia/ui/react_frontend/src/shared/hooks/useImageTileLoader.js` | In-flight dedup exists; add abort on unmount race |
+| `omeia/ui/react_frontend/src/pages/ImageStreamingAdminScreen.jsx` | Show GPU probe; bulk inspect progress |
 
 ### Priority 5 — offline pipelines
 
 | File | Why |
 |------|-----|
-| `app_skeleton/pipelines/lumi_image_processing/scripts/run_pipeline.sh` | Platform health hook; GPU doctor output |
-| `app_skeleton/pipelines/lumi_image_processing/scripts/2-segmentation/stardist/run_stardist.py` | GPU fallback logging |
+| `omeia/pipelines/lumi_image_processing/scripts/run_pipeline.sh` | Platform health hook; GPU doctor output |
+| `omeia/pipelines/lumi_image_processing/scripts/2-segmentation/stardist/run_stardist.py` | GPU fallback logging |
 
 ### Priority 6 — tests & docs
 

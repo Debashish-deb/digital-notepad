@@ -4,8 +4,8 @@ from __future__ import annotations
 import unittest
 from unittest.mock import patch
 
-from app_skeleton.api.search_models import SearchFilters
-from app_skeleton.api.search_service import (
+from omeia.api.search_models import SearchFilters
+from omeia.api.search_service import (
     FILTER_SOURCE_SUPPORT,
     SearchService,
     _build_search_filters,

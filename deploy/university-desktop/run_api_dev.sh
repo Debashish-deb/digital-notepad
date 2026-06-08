@@ -34,12 +34,13 @@ if [[ -z "${VIRTUAL_ENV:-}" ]]; then
     # shellcheck disable=SC1091
     source "${REPO_ROOT}/.venv/bin/activate"
   else
-    echo "No venv found. Create one: python3 -m venv ${REPO_ROOT}/.venv && pip install -r app_skeleton/api/requirements.txt"
+    echo "No venv found. Create one: python3 -m venv ${REPO_ROOT}/.venv && pip install -r omeia/api/requirements.txt"
     exit 1
   fi
 fi
 
 cd "${REPO_ROOT}"
+export PYTHONPATH="${REPO_ROOT}/apps/api/src${PYTHONPATH:+:$PYTHONPATH}"
 
 BIND_HOST="${OMEIA_BIND_HOST:-}"
 if [[ -z "${BIND_HOST}" ]]; then
@@ -52,4 +53,4 @@ fi
 BIND_PORT="${OMEIA_BIND_PORT:-8000}"
 
 echo "Starting uvicorn on ${BIND_HOST}:${BIND_PORT} (${OS})"
-exec uvicorn app_skeleton.api.main:app --host "${BIND_HOST}" --port "${BIND_PORT}" --reload
+exec uvicorn omeia.api.main:app --host "${BIND_HOST}" --port "${BIND_PORT}" --reload

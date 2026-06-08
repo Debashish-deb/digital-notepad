@@ -24,11 +24,11 @@ install_python_deps() {
   local pip="${venv_path}/bin/pip"
   if [[ -n "${owner}" ]]; then
     sudo -u "${owner}" "${pip}" install -U pip wheel
-    sudo -u "${owner}" "${pip}" install -r "${REPO_ROOT}/app_skeleton/api/requirements.txt"
+    sudo -u "${owner}" "${pip}" install -r "${REPO_ROOT}/omeia/api/requirements.txt"
     sudo -u "${owner}" "${pip}" install httpx pillow
   else
     "${pip}" install -U pip wheel
-    "${pip}" install -r "${REPO_ROOT}/app_skeleton/api/requirements.txt"
+    "${pip}" install -r "${REPO_ROOT}/omeia/api/requirements.txt"
     "${pip}" install httpx pillow
   fi
 }

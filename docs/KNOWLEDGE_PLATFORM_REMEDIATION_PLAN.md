@@ -84,7 +84,7 @@ Sources → Canonical Ingestion → Metadata → Classification → Chunk → Em
 
 ### Canonical path decision (Phase 2)
 
-**Pipeline A** (`app_skeleton/digitalization/`) is the canonical ingestion spine because it has:
+**Pipeline A** (`omeia/digitalization/`) is the canonical ingestion spine because it has:
 
 - Explicit lifecycle statuses (`digitalization/status.py`)
 - Validation gate (`validators.py`)
@@ -167,14 +167,14 @@ flowchart TB
 **Files:**
 
 ```python
-# app_skeleton/api/qdrant_research_indexer.py
-from app_skeleton.api.embedding_service import embedding_dim
+# omeia/api/qdrant_research_indexer.py
+from omeia.api.embedding_service import embedding_dim
 VECTOR_SIZE = int(os.getenv("RESEARCH_KB_VECTOR_SIZE", "") or embedding_dim())
 ```
 
 ```python
-# app_skeleton/api/qdrant_vectors.py
-from app_skeleton.api.embedding_service import embedding_dim as _embedding_dim
+# omeia/api/qdrant_vectors.py
+from omeia.api.embedding_service import embedding_dim as _embedding_dim
 EMBEDDING_DIM = int(os.getenv("TEXT_EMBEDDING_DIM", "") or _embedding_dim())
 ```
 
@@ -198,7 +198,7 @@ OLLAMA_INTERNAL_TOKEN=<token>
 
 #### 1.3 Standardize vector upsert logic
 
-**New file:** `app_skeleton/api/vector_indexer.py`
+**New file:** `omeia/api/vector_indexer.py`
 
 ```python
 """Single upsert entry for doc_chunks, research_knowledge, vault_asset_chunks."""
@@ -220,7 +220,7 @@ def upsert_chunks(
 
 #### 1.4 Standardize collection definitions
 
-**New file:** `app_skeleton/api/qdrant_collections.py`
+**New file:** `omeia/api/qdrant_collections.py`
 
 | Collection | Env key | Default | Vector name |
 |------------|---------|---------|-------------|
@@ -296,9 +296,9 @@ CHUNK_OVERLAP_TOKENS=100
 **Adapter** for legacy callers:
 
 ```python
-# app_skeleton/api/chunking.py (thin facade)
+# omeia/api/chunking.py (thin facade)
 def chunk_text(text: str, *, section_path: str = "") -> list[Chunk]:
-    from app_skeleton.digitalization.chunker import chunk_document
+    from omeia.digitalization.chunker import chunk_document
     ...
 ```
 
@@ -370,8 +370,8 @@ flowchart TD
 | Component | Path |
 |-----------|------|
 | OCR job table | `sql/145_ocr_jobs.sql` |
-| OCR adapter interface | `app_skeleton/api/ocr/adapter.py` |
-| Tesseract backend | `app_skeleton/api/ocr/tesseract_backend.py` |
+| OCR adapter interface | `omeia/api/ocr/adapter.py` |
+| Tesseract backend | `omeia/api/ocr/tesseract_backend.py` |
 | Worker CLI | `scripts/ops/run_ocr_queue.py` |
 | API | `POST /api/digitalization/ocr/retry/{document_id}` |
 
@@ -464,7 +464,7 @@ hits_semantic = search_vault_vectors(q, ...)   # NEW: Qdrant vault_asset_chunks
 merged = merge_vault_hits(hits_metadata, hits_semantic, dedupe_by_asset_id=True)
 ```
 
-**New:** `app_skeleton/api/vault_vector_search.py`
+**New:** `omeia/api/vault_vector_search.py`
 
 #### 5.3 Duplicate suppression in search
 
@@ -558,16 +558,16 @@ def legacy_search(q: str, ...):
 
 | File | Change |
 |------|--------|
-| `app_skeleton/api/embedding_service.py` | Single dim contract; document env vars |
-| `app_skeleton/api/qdrant_vectors.py` | Use `embedding_dim()` |
-| `app_skeleton/api/qdrant_research_indexer.py` | Align VECTOR_SIZE |
-| `app_skeleton/api/llm_client.py` | Ensure `embed(dim=)` passed through ✓ (done) |
-| `app_skeleton/api/lab_knowledge_store.py` | Use `vector_indexer` |
-| `app_skeleton/api/project_knowledge_store.py` | Use `vector_indexer` |
+| `omeia/api/embedding_service.py` | Single dim contract; document env vars |
+| `omeia/api/qdrant_vectors.py` | Use `embedding_dim()` |
+| `omeia/api/qdrant_research_indexer.py` | Align VECTOR_SIZE |
+| `omeia/api/llm_client.py` | Ensure `embed(dim=)` passed through ✓ (done) |
+| `omeia/api/lab_knowledge_store.py` | Use `vector_indexer` |
+| `omeia/api/project_knowledge_store.py` | Use `vector_indexer` |
 | `scripts/ingest/reindex_vectors.py` | Use shared indexer |
 | `scripts/ingest/reindex_research_vectors.py` | **NEW** |
-| `app_skeleton/api/vector_indexer.py` | **NEW** |
-| `app_skeleton/api/qdrant_collections.py` | **NEW** |
+| `omeia/api/vector_indexer.py` | **NEW** |
+| `omeia/api/qdrant_collections.py` | **NEW** |
 | `configs/.env.example` | 768 defaults, token docs |
 | `scripts/docker/linux_post_stack_setup.sh` | Set `RESEARCH_KB_VECTOR_SIZE` |
 
@@ -575,61 +575,61 @@ def legacy_search(q: str, ...):
 
 | File | Change |
 |------|--------|
-| `app_skeleton/digitalization/ingestion_job.py` | Post-chunk index hook |
-| `app_skeleton/api/knowledge_indexer.py` | **NEW** — Postgres + Qdrant write |
-| `app_skeleton/api/chunking.py` | **NEW** — facade to `chunker.py` |
-| `app_skeleton/api/document_extraction.py` | Redirect `_chunk_text` to facade |
-| `app_skeleton/api/project_knowledge_extractor.py` | Delegate to `knowledge_indexer` |
-| `app_skeleton/api/project_digitalization_engine.py` | Adapter to `knowledge_indexer` |
-| `app_skeleton/api/project_processor.py` | Optional dual-write flag |
+| `omeia/digitalization/ingestion_job.py` | Post-chunk index hook |
+| `omeia/api/knowledge_indexer.py` | **NEW** — Postgres + Qdrant write |
+| `omeia/api/chunking.py` | **NEW** — facade to `chunker.py` |
+| `omeia/api/document_extraction.py` | Redirect `_chunk_text` to facade |
+| `omeia/api/project_knowledge_extractor.py` | Delegate to `knowledge_indexer` |
+| `omeia/api/project_digitalization_engine.py` | Adapter to `knowledge_indexer` |
+| `omeia/api/project_processor.py` | Optional dual-write flag |
 
 ### Phase 3 (HIGH)
 
 | File | Change |
 |------|--------|
 | `sql/145_ocr_jobs.sql` | **NEW** |
-| `app_skeleton/api/ocr/adapter.py` | **NEW** |
-| `app_skeleton/api/ocr/tesseract_backend.py` | **NEW** |
-| `app_skeleton/digitalization/extractors.py` | Queue OCR jobs |
+| `omeia/api/ocr/adapter.py` | **NEW** |
+| `omeia/api/ocr/tesseract_backend.py` | **NEW** |
+| `omeia/digitalization/extractors.py` | Queue OCR jobs |
 | `scripts/ops/run_ocr_queue.py` | **NEW** |
-| `app_skeleton/api/routers/digitalization.py` | OCR retry endpoint |
+| `omeia/api/routers/digitalization.py` | OCR retry endpoint |
 
 ### Phase 4 (MEDIUM)
 
 | File | Change |
 |------|--------|
 | `sql/146_taxonomy_assignment.sql` | **NEW** |
-| `app_skeleton/api/taxonomy_service.py` | **NEW** |
-| `app_skeleton/api/library_taxonomy.py` | Read assignments |
-| `app_skeleton/api/document_classification.py` | Write assignments |
-| `app_skeleton/api/routers/document_library.py` | Override endpoint |
+| `omeia/api/taxonomy_service.py` | **NEW** |
+| `omeia/api/library_taxonomy.py` | Read assignments |
+| `omeia/api/document_classification.py` | Write assignments |
+| `omeia/api/routers/document_library.py` | Override endpoint |
 
 ### Phase 5 (HIGH)
 
 | File | Change |
 |------|--------|
-| `app_skeleton/api/vault_vector_search.py` | **NEW** |
-| `app_skeleton/api/search_service.py` | Hybrid vault bucket |
-| `app_skeleton/api/raw_vault_store.py` | Dedup filter in search |
-| `app_skeleton/api/vault_ingestion_engine.py` | Use `vector_indexer` |
+| `omeia/api/vault_vector_search.py` | **NEW** |
+| `omeia/api/search_service.py` | Hybrid vault bucket |
+| `omeia/api/raw_vault_store.py` | Dedup filter in search |
+| `omeia/api/vault_ingestion_engine.py` | Use `vector_indexer` |
 | `sql/147_vault_search_indexes.sql` | **NEW** — GIN on paths |
 
 ### Phase 6 (MEDIUM)
 
 | File | Change |
 |------|--------|
-| `app_skeleton/api/routers/knowledge.py` | Proxy + Deprecation header |
-| `app_skeleton/api/routers/research.py` | Proxy `/platform/search` |
-| `app_skeleton/ui/react_frontend/src/services/searchClient.js` | Consolidate clients |
-| `app_skeleton/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx` | Use unified client |
+| `omeia/api/routers/knowledge.py` | Proxy + Deprecation header |
+| `omeia/api/routers/research.py` | Proxy `/platform/search` |
+| `omeia/ui/react_frontend/src/services/searchClient.js` | Consolidate clients |
+| `omeia/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx` | Use unified client |
 
 ### Phase 7 (LOW–MEDIUM, ongoing)
 
 | File | Change |
 |------|--------|
-| `app_skeleton/api/document_extraction.py` | Split submodules |
-| `app_skeleton/api/search_service.py` | Split buckets |
-| `app_skeleton/api/raw_vault_store.py` | Split stores |
+| `omeia/api/document_extraction.py` | Split submodules |
+| `omeia/api/search_service.py` | Split buckets |
+| `omeia/api/raw_vault_store.py` | Split stores |
 
 ---
 
@@ -639,15 +639,15 @@ def legacy_search(q: str, ...):
 
 | File / area | Reason |
 |-------------|--------|
-| `app_skeleton/api/evidence_orchestrator.py` | Copilot logic stable; consumes `SearchService` |
-| `app_skeleton/api/chat_service.py` | Category chat path production-tested |
-| `app_skeleton/api/routers/chat.py` | API contract frozen |
-| `app_skeleton/ui/react_frontend/src/features/ai-assistant/components/ChatWidget.jsx` | User-facing; change only via API |
-| `app_skeleton/security/auth.py` | Security hardened recently |
+| `omeia/api/evidence_orchestrator.py` | Copilot logic stable; consumes `SearchService` |
+| `omeia/api/chat_service.py` | Category chat path production-tested |
+| `omeia/api/routers/chat.py` | API contract frozen |
+| `omeia/ui/react_frontend/src/features/ai-assistant/components/ChatWidget.jsx` | User-facing; change only via API |
+| `omeia/security/auth.py` | Security hardened recently |
 | `sql/040_rag_audit_security_schema.sql` | Legacy schema; migrate data, don't alter |
 | `sql/111_raw_asset_vault.sql` | Vault schema stable; additive only |
 | `configs/document_library/smart_taxonomy.json` | Phase 4 reads as-is |
-| `app_skeleton/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx` | Phase 7 split only |
+| `omeia/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx` | Phase 7 split only |
 | `docker-compose.yml` | Infra stable |
 | `scripts/dev/start_linux_desktop.sh` | Deployment scripts |
 | Digital twin JSON **read** paths in UI | Until Phase 2 dual-write proven |
@@ -714,7 +714,7 @@ def legacy_search(q: str, ...):
 | `POST /api/document-library/taxonomy/override` | 4 | New |
 | `GET /api/vault/search` | 5 | Add `semantic=true` query param (opt-in) |
 
-**OpenAPI:** Update `app_skeleton/api/main.py` tags descriptions; no version bump required (additive).
+**OpenAPI:** Update `omeia/api/main.py` tags descriptions; no version bump required (additive).
 
 ---
 
@@ -874,7 +874,7 @@ ENABLE_OCR=false
 
 ## Appendix A — Phase 1 exact code sketch
 
-### `app_skeleton/api/vector_indexer.py` (new)
+### `omeia/api/vector_indexer.py` (new)
 
 ```python
 @dataclass

@@ -9,10 +9,10 @@
 |---|------------|-------|------------|-------------|
 | W0 | Master plan | Agent | — | This document |
 | W1 | R2 audit & deprecation | Agent | W0 | `docs/15_STORAGE_CLOUDFLARE_REMOVAL_AUDIT.md` |
-| W2 | DataCloud connector | Agent + user creds | W1 | `configs/DATACLOUD_WEBDAV_SETUP.md`, `app_skeleton/storage/datacloud_webdav.py` |
-| W3 | P-drive connector | Agent + user mount | W1 | `configs/PDRIVE_SETUP.md`, `app_skeleton/storage/pdrive_smb.py` |
+| W2 | DataCloud connector | Agent + user creds | W1 | `configs/DATACLOUD_WEBDAV_SETUP.md`, `omeia/storage/datacloud_webdav.py` |
+| W3 | P-drive connector | Agent + user mount | W1 | `configs/PDRIVE_SETUP.md`, `omeia/storage/pdrive_smb.py` |
 | W4 | Supabase schema & registry docs | Agent | W1 | `sql/117_storage_architecture.sql`, `docs/19–20` |
-| W5 | Connector design & ingestion | Agent | W2–W4 | `docs/16–17`, `app_skeleton/storage/ingestion.py` |
+| W5 | Connector design & ingestion | Agent | W2–W4 | `docs/16–17`, `omeia/storage/ingestion.py` |
 | W6 | Folder validation & safety | Agent + user tree | W2 | `docs/18`, `docs/22` |
 | W7 | Page mapping & workers | Agent | W4–W5 | `docs/21`, `docs/23` |
 | W8 | UI & API wiring | Agent | W2–W3 | Data & Storage, Administration, `connector_status.py` |

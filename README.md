@@ -10,13 +10,13 @@ The active UI is a **React SPA**; the API is **FastAPI**. They are separate proc
 
 | App | Path | Dev port |
 |-----|------|----------|
-| Frontend | `app_skeleton/ui/react_frontend/` | **5173** |
-| Backend | `app_skeleton/api/` | **8000** |
+| Frontend | `omeia/ui/react_frontend/` | **5173** |
+| Backend | `omeia/api/` | **8000** |
 
 ```bash
 # From inside the app folders (recommended)
-app_skeleton/api/dev.sh
-app_skeleton/ui/react_frontend/dev.sh   # or: cd there && npm run dev
+omeia/api/dev.sh
+omeia/ui/react_frontend/dev.sh   # or: cd there && npm run dev
 
 # Or from repo root
 ./scripts/dev/start_backend.sh
@@ -24,13 +24,13 @@ app_skeleton/ui/react_frontend/dev.sh   # or: cd there && npm run dev
 ./start.sh                            # both together
 ```
 
-> **Why `app_skeleton`?** Legacy scaffold name—the folder is production code. See [app_skeleton/README.md](app_skeleton/README.md). Top-level `scripts/` is for repo-wide ops (ingest, DB, Docker); day-to-day UI/API dev can run from `app_skeleton/` as above.
+> **Why `omeia`?** Legacy scaffold name—the folder is production code. See [omeia/README.md](omeia/README.md). Top-level `scripts/` is for repo-wide ops (ingest, DB, Docker); day-to-day UI/API dev can run from `omeia/` as above.
 
 **Architecture tutorial:** [docs/FRONTEND_BACKEND_TUTORIAL.md](docs/FRONTEND_BACKEND_TUTORIAL.md)  
 **Repo layout:** [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) · **Scripts index:** [scripts/README.md](scripts/README.md)  
-**Env split:** `configs/.env.backend.example` (API) + `app_skeleton/ui/react_frontend/.env.local.example` (UI)
+**Env split:** `configs/.env.backend.example` (API) + `omeia/ui/react_frontend/.env.local.example` (UI)
 
-> Legacy **Streamlit** dashboard (`app_skeleton/ui/streamlit_app.py`, port 8501) is still in the repo but is not the primary UI.
+> Legacy **Streamlit** dashboard (`omeia/ui/streamlit_app.py`, port 8501) is still in the repo but is not the primary UI.
 
 ---
 
@@ -99,7 +99,7 @@ We have successfully migrated the blueprint from a skeleton mock into a fully fu
 │   ├── ingest_documents_demo.py      # Chunks and embeds docs and scripts to Qdrant
 │   ├── query_copilot_demo.py         # Terminal verification search utility
 │   └── synthetic_seed_data.py        # Generates synthetic data files
-├── app_skeleton/
+├── omeia/
 │   ├── api/
 │   │   ├── main.py            # FastAPI main app serving database and vector endpoints
 │   │   └── requirements.txt   # Backend python package dependencies
@@ -125,7 +125,7 @@ Initialize Python virtual environment and install dependencies:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r app_skeleton/api/requirements.txt
+pip install -r omeia/api/requirements.txt
 ```
 
 ### 3. Ingest Registries and Documents
@@ -147,11 +147,11 @@ python scripts/ingest/ingest_documents_demo.py
 ### 4. Launch the Applications
 Run the FastAPI backend server:
 ```bash
-.venv/bin/uvicorn app_skeleton.api.main:app --host 0.0.0.0 --port 8000
+.venv/bin/uvicorn omeia.api.main:app --host 0.0.0.0 --port 8000
 ```
 In a separate terminal, launch the Streamlit frontend dashboard:
 ```bash
-.venv/bin/streamlit run app_skeleton/ui/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
+.venv/bin/streamlit run omeia/ui/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
 ```
 
 Open [http://localhost:8501](http://localhost:8501) in your browser to interact with the platform dashboard!

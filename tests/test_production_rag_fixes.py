@@ -3,24 +3,24 @@ from __future__ import annotations
 
 from unittest.mock import patch
 
-from app_skeleton.api.embedding_service import embedding_provider
-from app_skeleton.api.retrieval_cache import (
+from omeia.api.embedding_service import embedding_provider
+from omeia.api.retrieval_cache import (
     clear_cache,
     get_copilot_cached,
     make_copilot_cache_key,
     set_copilot_cached,
 )
-from app_skeleton.api.search_service import copilot_min_score
+from omeia.api.search_service import copilot_min_score
 
 
 def test_embedding_provider_auto_falls_back_to_hash():
-    with patch("app_skeleton.api.embedding_service._ollama_embed_available", return_value=False):
+    with patch("omeia.api.embedding_service._ollama_embed_available", return_value=False):
         with patch.dict("os.environ", {"EMBEDDING_PROVIDER": "auto"}, clear=False):
             assert embedding_provider() == "hash"
 
 
 def test_embedding_provider_auto_uses_ollama_when_up():
-    with patch("app_skeleton.api.embedding_service._ollama_embed_available", return_value=True):
+    with patch("omeia.api.embedding_service._ollama_embed_available", return_value=True):
         with patch.dict("os.environ", {"EMBEDDING_PROVIDER": "auto"}, clear=False):
             assert embedding_provider() == "ollama"
 
@@ -46,7 +46,7 @@ def test_copilot_cache_roundtrip():
 
 
 def test_project_knowledge_format_hit():
-    from app_skeleton.api.project_knowledge_store import _format_hit
+    from omeia.api.project_knowledge_store import _format_hit
 
     hit = _format_hit(
         1,

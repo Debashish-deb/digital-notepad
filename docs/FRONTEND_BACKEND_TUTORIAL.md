@@ -44,7 +44,7 @@ The frontend **never** holds database passwords, service-role keys, or LLM secre
 
 ```text
 OMEIA-AI/
-├── app_skeleton/
+├── omeia/
 │   ├── api/                    ← BACKEND (Python)
 │   │   ├── main.py             FastAPI entry
 │   │   ├── routers/            Route modules
@@ -93,7 +93,7 @@ Copy from `configs/.env.backend.example` (or `configs/.env.example` **without** 
 
 **Never** put `VITE_*` in the backend `.env` on a production server.
 
-### Frontend — `app_skeleton/ui/react_frontend/.env.local` (dev)
+### Frontend — `omeia/ui/react_frontend/.env.local` (dev)
 
 Copy from `.env.local.example`:
 
@@ -157,7 +157,7 @@ cd OMEIA-AI
 ./deploy/university-desktop/run_api_dev.sh
 
 # Frontend
-cd app_skeleton/ui/react_frontend
+cd omeia/ui/react_frontend
 cp .env.local.example .env.local
 npm ci && npm run dev
 ```
@@ -193,7 +193,7 @@ curl -s http://127.0.0.1:8000/health | python3 -m json.tool
 
 | Host | What runs | Docs |
 |------|-----------|------|
-| **Hostinger** (or any static host) | `npm run build` → upload `dist/` | `app_skeleton/ui/react_frontend/README.md` |
+| **Hostinger** (or any static host) | `npm run build` → upload `dist/` | `omeia/ui/react_frontend/README.md` |
 | **University Linux desktop** | uvicorn + Caddy/nginx TLS | `deploy/university-desktop/README.md` |
 
 Checklist: `configs/DEPLOYMENT_ENV.md`  
@@ -228,8 +228,8 @@ Future cleanup: normalize under `/api/v1/` (not required for split deployment to
 Some screens read **processed JSON** directly:
 
 ```text
-app_skeleton/ui/react_frontend/public/processed/lab__*.json
-app_skeleton/ui/react_frontend/public/processed/{project}__*.json
+omeia/ui/react_frontend/public/processed/lab__*.json
+omeia/ui/react_frontend/public/processed/{project}__*.json
 ```
 
 Fetched as `/processed/{code}.json` from the Vite/static host. The backend also writes these during ingestion. For a **hard** repo split, move this to `GET /api/twins/{code}` only.
@@ -250,7 +250,7 @@ Use this when extracting frontend and backend into separate Git repositories.
 
 ### Backend repo
 
-- [ ] `app_skeleton/api/`, `app_skeleton/security/`, `scripts/`, `sql/`
+- [ ] `omeia/api/`, `omeia/security/`, `scripts/`, `sql/`
 - [ ] Stop writing into `react_frontend/public/processed/`
 - [ ] Serve twins via API or object storage
 - [ ] Own CI: pytest + uvicorn smoke test
@@ -270,7 +270,7 @@ Use this when extracting frontend and backend into separate Git repositories.
 |---------|-----|
 | Sidebar “API Unreachable” | Start backend; check `curl localhost:8000/health` |
 | CORS error in browser | Set `CORS_ORIGINS` on backend to exact frontend URL |
-| Empty lab sections | Run ingestion scripts; check `app_skeleton/data/processed_projects/` |
+| Empty lab sections | Run ingestion scripts; check `omeia/data/processed_projects/` |
 | Firebase 401 | `PLATFORM_AUTH_DISABLED=true` in dev, or configure `VITE_FIREBASE_*` |
 | Port 8000 in use | `lsof -ti tcp:8000 \| xargs kill` or change `OMEIA_BIND_PORT` |
 
@@ -278,7 +278,7 @@ Use this when extracting frontend and backend into separate Git repositories.
 
 ## 11. Related docs
 
-- `app_skeleton/ui/react_frontend/README.md` — React dev & Hostinger build
+- `omeia/ui/react_frontend/README.md` — React dev & Hostinger build
 - `configs/DEPLOYMENT_ENV.md` — env checklist
 - `docs/26_PRODUCTION_DEPLOYMENT.md` — production topology
 - `deploy/university-desktop/README.md` — desktop API install
@@ -299,6 +299,6 @@ Use this when extracting frontend and backend into separate Git repositories.
 ./start.sh
 
 # Production frontend build
-cd app_skeleton/ui/react_frontend
+cd omeia/ui/react_frontend
 npm run build   # upload dist/
 ```

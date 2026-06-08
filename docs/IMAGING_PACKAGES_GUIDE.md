@@ -7,7 +7,7 @@ OMEIA TIFF/OME-TIFF streaming reads files from your database mirror. **There is 
 **Mac dev or Linux API host** — small pip wheels (~30–80 MB):
 
 ```bash
-pip install -r app_skeleton/api/requirements-imaging-core.txt
+pip install -r omeia/api/requirements-imaging-core.txt
 ```
 
 | Package | Role | API-only alternative? |
@@ -22,7 +22,7 @@ Check status: `GET /api/admin/image-streaming/capabilities` (admin).
 ## Tier 2 — Extended (optional pip)
 
 ```bash
-pip install -r app_skeleton/api/requirements-imaging-extended.txt
+pip install -r omeia/api/requirements-imaging-extended.txt
 ```
 
 | Package | Role |
@@ -37,7 +37,7 @@ pip install -r app_skeleton/api/requirements-imaging-extended.txt
 Install on **Linux workstation only** — not needed on Mac thin client:
 
 ```bash
-pip install -r app_skeleton/api/requirements-imaging-workstation.txt
+pip install -r omeia/api/requirements-imaging-workstation.txt
 # plus system libs:
 # sudo apt install libvips-dev openslide-tools libopenslide-dev libtiff-dev libjpeg-dev
 ```
@@ -98,13 +98,13 @@ The streaming API does **not** import napari.
 ```bash
 cd /path/to/OMEIA-AI
 pip install tifffile imagecodecs
-python -c "from app_skeleton.api.imaging_capabilities import probe_imaging_stack; import json; print(json.dumps(probe_imaging_stack(), indent=2))"
+python -c "from omeia.api.imaging_capabilities import probe_imaging_stack; import json; print(json.dumps(probe_imaging_stack(), indent=2))"
 ```
 
 ## Linux workstation (persistent)
 
 ```bash
-pip install -r app_skeleton/api/requirements-imaging-core.txt
+pip install -r omeia/api/requirements-imaging-core.txt
 # When you need whole-slide / napari ecosystem:
 docker compose --profile imaging build imaging-worker
 ```

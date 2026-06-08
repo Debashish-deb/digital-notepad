@@ -2,7 +2,7 @@
 
 **Scope:** Document Library, Document Extraction, Vault, Storage, Research Knowledge, Knowledge Base, Digitalization, Metadata, Taxonomy  
 **Perspective:** Knowledge Systems · Data · Information Retrieval · Scientific Data Engineering  
-**Codebase:** OMEIA-AI / digital-notepad (`app_skeleton/`)  
+**Codebase:** OMEIA-AI / digital-notepad (`omeia/`)  
 **Date:** 2026-06-08
 
 ---
@@ -70,7 +70,7 @@ UI areas map to these backend planes:
 | Document Library | `document_library_service.py` + audit inventory | `document_library` |
 | Document Extraction | `document_extraction.py`, `digitalization/` | (feeds vault + chunks) |
 | Vault | `raw_vault_store.py`, `vault_ingestion_engine.py` | `vault`, `vault_review` |
-| Storage | `app_skeleton/storage/*`, `storage_objects` | (ingest → vault) |
+| Storage | `omeia/storage/*`, `storage_objects` | (ingest → vault) |
 | Research Knowledge | `research_knowledge_store.py` | `research` |
 | Knowledge Base | `lab_knowledge_store.py` + `rag.*` + copilot | `lab`, `file` |
 | Digitalization | `digitalization/ingestion_job.py` | status in library UI |
@@ -154,15 +154,15 @@ flowchart TB
 
 | Role | Path |
 |------|------|
-| Unified search | `app_skeleton/api/search_service.py` |
-| Search API | `app_skeleton/api/routers/search.py` |
-| Document library | `app_skeleton/api/document_library_service.py` |
-| Vault store | `app_skeleton/api/raw_vault_store.py` |
-| Vault ingestion | `app_skeleton/api/vault_ingestion_engine.py` |
-| Research KB | `app_skeleton/api/research_knowledge_store.py` |
-| Lab knowledge / RAG | `app_skeleton/api/lab_knowledge_store.py` |
-| FTS | `app_skeleton/api/chunk_fts.py` |
-| Qdrant helpers | `app_skeleton/api/qdrant_vectors.py` |
+| Unified search | `omeia/api/search_service.py` |
+| Search API | `omeia/api/routers/search.py` |
+| Document library | `omeia/api/document_library_service.py` |
+| Vault store | `omeia/api/raw_vault_store.py` |
+| Vault ingestion | `omeia/api/vault_ingestion_engine.py` |
+| Research KB | `omeia/api/research_knowledge_store.py` |
+| Lab knowledge / RAG | `omeia/api/lab_knowledge_store.py` |
+| FTS | `omeia/api/chunk_fts.py` |
+| Qdrant helpers | `omeia/api/qdrant_vectors.py` |
 | Copilot architecture | `docs/AI_LAB_ASSISTANT_ARCHITECTURE.md` |
 | Search audit | `docs/31_SEARCH_UNIFIED_AUDIT_AND_SOURCE_BUNDLE.md` |
 
@@ -172,7 +172,7 @@ flowchart TB
 
 OMEIA has **three parallel ingestion/digitalization tracks**:
 
-1. **Pipeline A** — `app_skeleton/digitalization/` (scan → extract → canonicalize → validate → chunk → `platform.*`)
+1. **Pipeline A** — `omeia/digitalization/` (scan → extract → canonicalize → validate → chunk → `platform.*`)
 2. **Pipeline B** — `project_digitalization_engine.py` → vault + `knowledge_assets`
 3. **Pipeline C** — `project_processor.py` / `database_processor.py` → digital twins + `.chunks.jsonl`
 4. **Pipeline D** — `research_knowledge_store.py` → crawl/publications
@@ -468,9 +468,9 @@ flowchart TB
 
 ### Legacy / parallel search endpoints (still exist)
 
-- `app_skeleton/api/routers/knowledge.py` — lab/hybrid/unified aliases
-- `app_skeleton/api/routers/research.py` — `/platform/search` (notebook/wiki/decisions)
-- `app_skeleton/api/research_search_service.py` — research hit normalization
+- `omeia/api/routers/knowledge.py` — lab/hybrid/unified aliases
+- `omeia/api/routers/research.py` — `/platform/search` (notebook/wiki/decisions)
+- `omeia/api/research_search_service.py` — research hit normalization
 
 ---
 
@@ -699,45 +699,45 @@ Cleanup script: `scripts/document-library/delete_duplicate_files.py`
 
 | File | Why |
 |------|-----|
-| `app_skeleton/api/document_extraction.py` | God-module; chunk + extract + vault; split by concern |
-| `app_skeleton/api/search_service.py` | 1000+ lines; extract bucket fetchers |
-| `app_skeleton/api/raw_vault_store.py` | JSON/Postgres dual path |
-| `app_skeleton/api/project_knowledge_extractor.py` | Legacy; merge into digitalization pipeline |
-| `app_skeleton/digitalization/ingestion_job.py` | Add embed + Qdrant hook at end |
+| `omeia/api/document_extraction.py` | God-module; chunk + extract + vault; split by concern |
+| `omeia/api/search_service.py` | 1000+ lines; extract bucket fetchers |
+| `omeia/api/raw_vault_store.py` | JSON/Postgres dual path |
+| `omeia/api/project_knowledge_extractor.py` | Legacy; merge into digitalization pipeline |
+| `omeia/digitalization/ingestion_job.py` | Add embed + Qdrant hook at end |
 
 ### Priority 2 — metadata/taxonomy
 
 | File | Why |
 |------|-----|
-| `app_skeleton/api/document_classification.py` | Merge with `metadata_engine/duplicates.py` |
-| `app_skeleton/api/library_taxonomy.py` | Single taxonomy service |
-| `app_skeleton/api/metadata_engine/enricher.py` | Too many responsibilities |
+| `omeia/api/document_classification.py` | Merge with `metadata_engine/duplicates.py` |
+| `omeia/api/library_taxonomy.py` | Single taxonomy service |
+| `omeia/api/metadata_engine/enricher.py` | Too many responsibilities |
 | `scripts/digitalization/process_inventory_pipeline.py` | Orchestration should be API-driven |
 
 ### Priority 3 — search/retrieval
 
 | File | Why |
 |------|-----|
-| `app_skeleton/api/lab_knowledge_store.py` | Align with `chunk_fts` + Qdrant dim |
-| `app_skeleton/api/research_knowledge_store.py` | Dim alignment + access_levels enforcement |
-| `app_skeleton/api/qdrant_research_indexer.py` | VECTOR_SIZE should follow `TEXT_EMBEDDING_DIM` |
-| `app_skeleton/api/embedding_service.py` | Central embed contract |
+| `omeia/api/lab_knowledge_store.py` | Align with `chunk_fts` + Qdrant dim |
+| `omeia/api/research_knowledge_store.py` | Dim alignment + access_levels enforcement |
+| `omeia/api/qdrant_research_indexer.py` | VECTOR_SIZE should follow `TEXT_EMBEDDING_DIM` |
+| `omeia/api/embedding_service.py` | Central embed contract |
 
 ### Priority 4 — storage/vault
 
 | File | Why |
 |------|-----|
-| `app_skeleton/api/vault_ingestion_engine.py` | Split scan vs extract vs sync |
-| `app_skeleton/storage/ingestion.py` | Unify promotion path to vault |
-| `app_skeleton/api/routers/vault.py` | Large router; split ingest vs search vs review |
+| `omeia/api/vault_ingestion_engine.py` | Split scan vs extract vs sync |
+| `omeia/storage/ingestion.py` | Unify promotion path to vault |
+| `omeia/api/routers/vault.py` | Large router; split ingest vs search vs review |
 
 ### Priority 5 — frontend
 
 | File | Why |
 |------|-----|
-| `app_skeleton/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx` | 1200+ lines; extract metadata panel |
-| `app_skeleton/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx` | Consolidate into `GlobalSearchOverlay` |
-| `app_skeleton/ui/react_frontend/src/config/navigation.js` | Legacy sub redirects |
+| `omeia/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx` | 1200+ lines; extract metadata panel |
+| `omeia/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx` | Consolidate into `GlobalSearchOverlay` |
+| `omeia/ui/react_frontend/src/config/navigation.js` | Legacy sub redirects |
 
 ---
 
@@ -748,7 +748,7 @@ Cleanup script: `scripts/document-library/delete_duplicate_files.py`
 | Document Library | `document_library_service.py`, `ScientificFileExplorer.jsx` |
 | Document Extraction | `document_extraction.py`, `digitalization/extractors.py` |
 | Vault | `raw_vault_store.py`, `vault_ingestion_engine.py` |
-| Storage | `app_skeleton/storage/` |
+| Storage | `omeia/storage/` |
 | Research Knowledge | `research_knowledge_store.py`, `ResearchKnowledgeAdminScreen.jsx` |
 | Knowledge Base | `lab_knowledge_store.py`, `search_service.py`, copilot path |
 | Digitalization | `digitalization/ingestion_job.py`, `DigitalizationDashboard.jsx` |

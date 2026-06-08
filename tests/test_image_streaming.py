@@ -10,11 +10,11 @@ from unittest.mock import patch
 import pytest
 from fastapi.testclient import TestClient
 
-from app_skeleton.api.main import app
-from app_skeleton.api.image_streaming.constants import MAX_TILE_EDGE
-from app_skeleton.api.image_streaming.image_metadata_service import CACHE_PATH
-from app_skeleton.api.image_streaming.storage_adapter import ImageStorageAdapter
-from app_skeleton.security.auth import _dev_user
+from omeia.api.main import app
+from omeia.api.image_streaming.constants import MAX_TILE_EDGE
+from omeia.api.image_streaming.image_metadata_service import CACHE_PATH
+from omeia.api.image_streaming.storage_adapter import ImageStorageAdapter
+from omeia.security.auth import _dev_user
 
 
 def _make_test_tiff(path: Path, width: int = 64, height: int = 48) -> None:
@@ -76,7 +76,7 @@ class TestImageStreaming(unittest.TestCase):
         stack = ExitStack()
         stack.enter_context(
             patch.multiple(
-                "app_skeleton.api.image_streaming.storage_adapter",
+                "omeia.api.image_streaming.storage_adapter",
                 lookup_asset_row=lookup,
                 _ROOTS={
                     "database-static": root,
@@ -86,12 +86,12 @@ class TestImageStreaming(unittest.TestCase):
             )
         )
         stack.enter_context(
-            patch("app_skeleton.api.routers.image_assets.lookup_asset_row", lookup)
+            patch("omeia.api.routers.image_assets.lookup_asset_row", lookup)
         )
         return stack
 
     def test_metadata_requires_auth_when_enabled(self) -> None:
-        with patch("app_skeleton.security.auth.AUTH_DISABLED", False):
+        with patch("omeia.security.auth.AUTH_DISABLED", False):
             client = TestClient(app)
             response = client.get(f"/api/assets/{TEST_ASSET_ID}/image/metadata")
             self.assertEqual(response.status_code, 401)
@@ -164,7 +164,7 @@ class TestImageStreaming(unittest.TestCase):
 
     def test_404_invalid_asset(self) -> None:
         with patch(
-            "app_skeleton.api.image_streaming.storage_adapter.lookup_asset_row",
+            "omeia.api.image_streaming.storage_adapter.lookup_asset_row",
             return_value=None,
         ):
             response = self.client.get("/api/assets/asset_nonexistent/image/metadata")
@@ -177,10 +177,10 @@ class TestImageStreaming(unittest.TestCase):
             return pdf_row if asset_id == "asset_pdf" else None
 
         with patch(
-            "app_skeleton.api.image_streaming.storage_adapter.lookup_asset_row",
+            "omeia.api.image_streaming.storage_adapter.lookup_asset_row",
             lookup,
         ), patch(
-            "app_skeleton.api.routers.image_assets.lookup_asset_row",
+            "omeia.api.routers.image_assets.lookup_asset_row",
             lookup,
         ):
             response = self.client.get("/api/assets/asset_pdf/image/metadata")
@@ -193,13 +193,13 @@ class TestImageStreaming(unittest.TestCase):
             return restricted_row if asset_id == TEST_ASSET_ID else None
 
         with self._mock_resolve(), patch(
-            "app_skeleton.api.routers.image_assets.lookup_asset_row",
+            "omeia.api.routers.image_assets.lookup_asset_row",
             lookup,
         ), patch(
-            "app_skeleton.api.routers.image_assets.can_access_image_asset",
+            "omeia.api.routers.image_assets.can_access_image_asset",
             return_value=False,
         ), patch(
-            "app_skeleton.security.auth.require_platform_user",
+            "omeia.security.auth.require_platform_user",
             return_value=viewer,
         ):
             response = self.client.get(f"/api/assets/{TEST_ASSET_ID}/image/metadata")
@@ -207,7 +207,7 @@ class TestImageStreaming(unittest.TestCase):
 
     def test_inspect_populates_cache(self) -> None:
         with self._mock_resolve():
-            from app_skeleton.api.image_streaming.image_streaming_service import ImageStreamingService
+            from omeia.api.image_streaming.image_streaming_service import ImageStreamingService
 
             svc = ImageStreamingService()
             result = svc.inspect_asset(TEST_ASSET_ID)
@@ -217,7 +217,7 @@ class TestImageStreaming(unittest.TestCase):
 
     def test_readiness_stats(self) -> None:
         with patch(
-            "app_skeleton.security.auth.require_admin_user",
+            "omeia.security.auth.require_admin_user",
             return_value=_dev_user(),
         ):
             response = self.client.get("/api/admin/image-streaming/readiness")

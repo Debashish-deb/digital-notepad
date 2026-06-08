@@ -1,7 +1,7 @@
 """Research strategy structured answer schema."""
 from __future__ import annotations
 
-from app_skeleton.api.strategy_report_models import (
+from omeia.api.strategy_report_models import (
     RecommendedDirection,
     ResearchStrategyReport,
     StrategyEvidenceRef,

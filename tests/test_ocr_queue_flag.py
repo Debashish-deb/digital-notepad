@@ -5,8 +5,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from app_skeleton.api.ocr.queue import enqueue_ocr_job
-from app_skeleton.api.platform_flags import ocr_enabled
+from omeia.api.ocr.queue import enqueue_ocr_job
+from omeia.api.platform_flags import ocr_enabled
 
 
 def test_platform_flags_ocr_defaults_false(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -65,7 +65,7 @@ def test_process_queue_uses_backend_when_enabled(monkeypatch: pytest.MonkeyPatch
     monkeypatch.setenv("ENABLE_OCR", "true")
     monkeypatch.setenv("OCR_ENGINE", "tesseract")
 
-    from app_skeleton.api.ocr.adapter import OcrResult
+    from omeia.api.ocr.adapter import OcrResult
     from scripts.ops import run_ocr_queue
 
     fake_backend = MagicMock()

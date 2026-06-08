@@ -65,7 +65,7 @@
           "scripts/ops/check_linux_sync_health.py"
         ],
         "exit_code": 1,
-        "stdout_tail": "{\n  \"ok\": false,\n  \"database_root\": \"/Users/debashishdeb/Downloads/OMEIA-database\",\n  \"projects_root\": \"/Users/debashishdeb/Downloads/OMEIA-database/projects\",\n  \"checks\": [\n    {\n      \"name\": \"database_root\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-database\",\n      \"exists\": true,\n      \"readable\": true\n    },\n    {\n      \"name\": \"projects_root\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-database/projects\",\n      \"exists\": true,\n      \"readable\": true\n    },\n    {\n      \"name\": \"database_wet_lab\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-database/WET_LAB\",\n      \"exists\": true,\n      \"readable\": true\n    },\n    {\n      \"name\": \"database_projects\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-database/projects\",\n      \"exists\": true,\n      \"readable\": true\n    },\n    {\n      \"name\": \"vault_inventory_json\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/data/01_source_inventory/raw_asset_inventory.json\",\n      \"exists\": true,\n      \"readable\": true\n    },\n    {\n      \"name\": \"legacy_processed_twins\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/data/processed_projects\",\n      \"sample_files\": [\n        \"iPDC_1.0.json\",\n        \"HaikalaCollab.json\",\n        \"Sequencing.json\",\n        \"SPACE.json\",\n        \"ovaHRDscar.json\"\n      ]\n    },\n    {\n      \"name\": \"public_processed_twins\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/ui/react_frontend/public/processed\",\n      \"sample_files\": [\n        \"iPDC_1.0.json\",\n        \"HaikalaCollab.json\",\n        \"Sequencing.json\",\n        \"SPACE.json\",\n        \"ovaHRDscar.json\"\n      ]\n    },\n    {\n      \"name\": \"processed_twins_present\",\n      \"ok\": true,\n      \"message\": \"at least one processed twin directory has JSON\"\n    },\n    {\n      \"name\": \"project_media_readable\",\n      \"ok\": true,\n      \"samples\": [\n        \"combined_projects_summary.md\",\n        \"Projects_Master_File.md\",\n        \"4_CellCycle/4_Project Log.md\"\n      ]\n    },\n    {\n      \"name\": \"csc_media_readable\",\n      \"ok\": false,\n      \"samples\": []\n    }\n  ],\n  \"failed\": [\n    \"csc_media_readable\"\n  ]\n}\n",
+        "stdout_tail": "{\n  \"ok\": false,\n  \"database_root\": \"/Users/debashishdeb/Downloads/OMEIA-database\",\n  \"projects_root\": \"/Users/debashishdeb/Downloads/OMEIA-database/projects\",\n  \"checks\": [\n    {\n      \"name\": \"database_root\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-database\",\n      \"exists\": true,\n      \"readable\": true\n    },\n    {\n      \"name\": \"projects_root\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-database/projects\",\n      \"exists\": true,\n      \"readable\": true\n    },\n    {\n      \"name\": \"database_wet_lab\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-database/WET_LAB\",\n      \"exists\": true,\n      \"readable\": true\n    },\n    {\n      \"name\": \"database_projects\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-database/projects\",\n      \"exists\": true,\n      \"readable\": true\n    },\n    {\n      \"name\": \"vault_inventory_json\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-AI/omeia/data/01_source_inventory/raw_asset_inventory.json\",\n      \"exists\": true,\n      \"readable\": true\n    },\n    {\n      \"name\": \"legacy_processed_twins\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-AI/omeia/data/processed_projects\",\n      \"sample_files\": [\n        \"iPDC_1.0.json\",\n        \"HaikalaCollab.json\",\n        \"Sequencing.json\",\n        \"SPACE.json\",\n        \"ovaHRDscar.json\"\n      ]\n    },\n    {\n      \"name\": \"public_processed_twins\",\n      \"ok\": true,\n      \"path\": \"/Users/debashishdeb/Downloads/OMEIA-AI/omeia/ui/react_frontend/public/processed\",\n      \"sample_files\": [\n        \"iPDC_1.0.json\",\n        \"HaikalaCollab.json\",\n        \"Sequencing.json\",\n        \"SPACE.json\",\n        \"ovaHRDscar.json\"\n      ]\n    },\n    {\n      \"name\": \"processed_twins_present\",\n      \"ok\": true,\n      \"message\": \"at least one processed twin directory has JSON\"\n    },\n    {\n      \"name\": \"project_media_readable\",\n      \"ok\": true,\n      \"samples\": [\n        \"combined_projects_summary.md\",\n        \"Projects_Master_File.md\",\n        \"4_CellCycle/4_Project Log.md\"\n      ]\n    },\n    {\n      \"name\": \"csc_media_readable\",\n      \"ok\": false,\n      \"samples\": []\n    }\n  ],\n  \"failed\": [\n    \"csc_media_readable\"\n  ]\n}\n",
         "stderr_tail": "",
         "elapsed_s": 0.0,
         "ok": false
@@ -106,14 +106,14 @@
           {
             "name": "vault_inventory_json",
             "ok": true,
-            "path": "/Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/data/01_source_inventory/raw_asset_inventory.json",
+            "path": "/Users/debashishdeb/Downloads/OMEIA-AI/omeia/data/01_source_inventory/raw_asset_inventory.json",
             "exists": true,
             "readable": true
           },
           {
             "name": "legacy_processed_twins",
             "ok": true,
-            "path": "/Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/data/processed_projects",
+            "path": "/Users/debashishdeb/Downloads/OMEIA-AI/omeia/data/processed_projects",
             "sample_files": [
               "iPDC_1.0.json",
               "HaikalaCollab.json",
@@ -125,7 +125,7 @@
           {
             "name": "public_processed_twins",
             "ok": true,
-            "path": "/Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/ui/react_frontend/public/processed",
+            "path": "/Users/debashishdeb/Downloads/OMEIA-AI/omeia/ui/react_frontend/public/processed",
             "sample_files": [
               "iPDC_1.0.json",
               "HaikalaCollab.json",
@@ -173,7 +173,7 @@
     },
     "frontend_build": {
       "dist_index_exists": true,
-      "path": "/Users/debashishdeb/Downloads/OMEIA-AI/app_skeleton/ui/react_frontend/dist/index.html"
+      "path": "/Users/debashishdeb/Downloads/OMEIA-AI/omeia/ui/react_frontend/dist/index.html"
     },
     "api_smoke": {
       "ok": false,

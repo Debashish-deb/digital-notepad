@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 220" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="cy-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.35"/>
+    </linearGradient>
+    <radialGradient id="cy-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Tissue section frame -->
+  <rect x="56" y="48" width="128" height="96" rx="4" stroke="url(#cy-cyan)" stroke-width="2" opacity="0.52"/>
+  <!-- Multiplex imaging rings (cycle layers) -->
+  <circle cx="120" cy="96" r="44" stroke="#67e8f9" stroke-width="1.5" opacity="0.42"/>
+  <circle cx="120" cy="96" r="34" stroke="#22d3ee" stroke-width="1.2" opacity="0.38"/>
+  <circle cx="120" cy="96" r="24" stroke="#06b6d4" stroke-width="1" opacity="0.45"/>
+  <circle cx="120" cy="96" r="14" stroke="#67e8f9" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="120" cy="96" r="6" fill="url(#cy-core)" opacity="0.7"/>
+  <!-- Channel markers (MHC-II, CD8, etc.) -->
+  <circle cx="88" cy="72" r="10" fill="#f472b6" opacity="0.38" stroke="#fda4af" stroke-width="1"/>
+  <circle cx="152" cy="72" r="9" fill="#a78bfa" opacity="0.35" stroke="#c4b5fd" stroke-width="1"/>
+  <circle cx="80" cy="112" r="8" fill="#4ade80" opacity="0.32" stroke="#86efac" stroke-width="1"/>
+  <circle cx="160" cy="108" r="9" fill="#fbbf24" opacity="0.34" stroke="#fcd34d" stroke-width="1"/>
+  <circle cx="120" cy="128" r="7" fill="#60a5fa" opacity="0.36" stroke="#93c5fd" stroke-width="1"/>
+  <!-- Cycle counter -->
+  <rect x="196" y="36" width="56" height="40" rx="5" stroke="#67e8f9" stroke-width="1.5" opacity="0.48"/>
+  <text x="224" y="52" text-anchor="middle" fill="#67e8f9" font-size="7" font-weight="700" opacity="0.55" font-family="system-ui,sans-serif">CYCLE</text>
+  <text x="224" y="66" text-anchor="middle" fill="#22d3ee" font-size="12" font-weight="700" opacity="0.6" font-family="system-ui,sans-serif">12</text>
+  <!-- Napari viewer hint -->
+  <rect x="196" y="88" width="64" height="48" rx="4" stroke="#67e8f9" stroke-width="1.2" opacity="0.38"/>
+  <path d="M204 104h48M204 116h32M212 128h24" stroke="#67e8f9" stroke-width="0.8" opacity="0.32"/>
+  <!-- GeoMx ROI -->
+  <circle cx="48" cy="168" r="20" stroke="#06b6d4" stroke-width="1.5" opacity="0.42"/>
+  <circle cx="48" cy="168" r="10" stroke="#67e8f9" stroke-width="1" opacity="0.38"/>
+  <path d="M48 148v40M28 168h40" stroke="#22d3ee" stroke-width="0.8" opacity="0.3"/>
+  <!-- Visium spot grid -->
+  <g opacity="0.35">
+    <circle cx="200" cy="168" r="3" fill="#67e8f9"/>
+    <circle cx="216" cy="168" r="3" fill="#22d3ee"/>
+    <circle cx="232" cy="168" r="3" fill="#67e8f9"/>
+    <circle cx="200" cy="184" r="3" fill="#06b6d4"/>
+    <circle cx="216" cy="184" r="3" fill="#67e8f9"/>
+    <circle cx="232" cy="184" r="3" fill="#22d3ee"/>
+  </g>
+</svg>

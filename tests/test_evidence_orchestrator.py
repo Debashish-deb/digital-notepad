@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import unittest
 
-from app_skeleton.api.chat_conversation import classify_and_enrich
-from app_skeleton.api.evidence_orchestrator import (
+from omeia.api.chat_conversation import classify_and_enrich
+from omeia.api.evidence_orchestrator import (
     ORCHESTRATOR_CORE_PROMPT,
     PRINCIPLE_HALLUCINATION_CONTROL,
     PRINCIPLE_RESPONSE_STRUCTURE,
@@ -21,7 +21,7 @@ from app_skeleton.api.evidence_orchestrator import (
     understand_query,
     validate_claims_across_sources,
 )
-from app_skeleton.api.evidence_orchestrator import EvidenceItem, EvidencePackage
+from omeia.api.evidence_orchestrator import EvidenceItem, EvidencePackage
 
 
 class _FakeHit:

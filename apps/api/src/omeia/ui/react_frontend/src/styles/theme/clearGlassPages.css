@@ -1,0 +1,775 @@
+/* Clear glass — academic (light) theme ONLY.
+   Cool pale blue-gray canvas + frosted white panes. Does NOT apply to dark theme.
+   Excludes project workspace (.workspace-layout). Login included (no app-container). */
+
+/* Scope: non-workspace app shell OR login screen */
+html[data-theme='academic']:is(
+  :has(.app-container:not(:has(.workspace-layout))),
+  :has(.login-page)
+) {
+  /* Canvas tokens — override warm Kindle paper from typography.css + themeManager.css */
+  --cg-bg-a: #e8eef4;
+  --cg-bg-b: #d4dee8;
+  --cg-bg-c: #bcc9d6;
+
+  --cg-blur: 24px;
+  --cg-saturate: 1.05;
+
+  --cg-pane: rgba(255, 255, 255, 0.34);
+  --cg-pane-strong: rgba(255, 255, 255, 0.44);
+  --cg-pane-inset: rgba(255, 255, 255, 0.22);
+
+  --cg-border: rgba(255, 255, 255, 0.58);
+  --cg-border-soft: rgba(255, 255, 255, 0.38);
+  --cg-accent-bar: color-mix(in srgb, var(--color-primary) 22%, rgba(255, 255, 255, 0.5));
+  --cg-shadow: 0 10px 36px rgba(88, 108, 132, 0.14);
+
+  --bg-app: var(--cg-bg-b);
+  --bg-page: var(--cg-bg-a);
+  --bg-surface: var(--cg-pane);
+  --bg-surface-hover: var(--cg-pane-strong);
+  --bg-elevated: var(--cg-pane-strong);
+  --bg-panel: var(--cg-pane);
+  --bg-card: var(--cg-pane-strong);
+
+  --text-primary: #2a3542;
+  --text-secondary: #4a5568;
+  --text-muted: #6b7a8c;
+  --text-faint: #8a98a8;
+
+  --border-color: rgba(255, 255, 255, 0.52);
+  --border-focus: #496a8f;
+
+  --color-accent: #6b8aa3;
+  --color-accent-2: #496a8f;
+
+  --academic-paper: #e8eef4;
+  --academic-paper-0: #e8eef4;
+  --academic-paper-1: #d4dee8;
+  --academic-paper-2: #bcc9d6;
+  --academic-paper-3: #a8b8c8;
+  --academic-porcelain: #ffffff;
+  --academic-glass: rgba(255, 255, 255, 0.34);
+  --academic-glass-strong: rgba(255, 255, 255, 0.44);
+  --academic-glass-soft: rgba(255, 255, 255, 0.22);
+  --academic-surface: rgba(255, 255, 255, 0.34);
+  --academic-surface-hover: rgba(255, 255, 255, 0.48);
+  --academic-elevated: rgba(255, 255, 255, 0.52);
+
+  --mx-paper-redline: transparent;
+  --mx-manuscript-rule: transparent;
+
+  --selection-bg: rgba(107, 138, 163, 0.25);
+  --selection-text: #2a3542;
+  --shadow-lg: 0 22px 60px rgba(88, 108, 132, 0.14);
+  --shadow-glass: 0 10px 36px rgba(88, 108, 132, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.74);
+
+  --sg-surface: rgba(255, 255, 255, 0.34);
+  --sg-surface-strong: rgba(255, 255, 255, 0.44);
+  --sg-inset: rgba(255, 255, 255, 0.22);
+  --sg-depth: rgba(88, 108, 132, 0.14);
+  --sg-fill-bottom: rgba(107, 138, 163, 0.06);
+
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) {
+  color: var(--text-primary);
+}
+
+/* Kill warm sepia html+body canvas (typography.css + themeManager redline stack) */
+html[data-theme='academic']:is(
+  :has(.app-container:not(:has(.workspace-layout))),
+  :has(.login-page)
+),
+html[data-theme='academic']:is(
+  :has(.app-container:not(:has(.workspace-layout))),
+  :has(.login-page)
+) body {
+  background:
+    linear-gradient(128deg, #e8eef4 0%, #d4dee8 48%, #bcc9d6 100%) !important;
+  background-attachment: fixed;
+  color: #2a3542;
+}
+
+/* Hide warm paper / manuscript overlays (typography body::before grid + ::after lines) */
+html[data-theme='academic']:is(
+  :has(.app-container:not(:has(.workspace-layout))),
+  :has(.login-page)
+) body::before,
+html[data-theme='academic']:is(
+  :has(.app-container:not(:has(.workspace-layout))),
+  :has(.login-page)
+) body::after {
+  display: none !important;
+  content: none !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) {
+  background: transparent !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout))::before {
+  opacity: 0 !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) .module-shell {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) .module-shell-header {
+  background: var(--cg-pane) !important;
+  border: 1px solid var(--cg-border) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.82) !important;
+  border-bottom: 1px solid var(--cg-border-soft) !important;
+  box-shadow: var(--cg-shadow) !important;
+  backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate)) !important;
+  -webkit-backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate)) !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .module-shell-title,
+  .module-shell-lead,
+  .panel-title,
+  h1,
+  h2,
+  h3
+) {
+  color: var(--text-primary);
+  -webkit-text-fill-color: unset;
+  background: none;
+  background-clip: border-box;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) .main-content {
+  background: transparent !important;
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .panel,
+  .glass-panel,
+  .metric-card,
+  .project-card,
+  .roster-card,
+  .timeline-card,
+  .dt-group,
+  .feed-item,
+  .overview-theme-card,
+  .workspace-context-card,
+  .lab-knowledge-results,
+  .lab-knowledge-detail,
+  .ingestion-metric-card,
+  .modal-content,
+  .hub-section-frame,
+  .hub-detail-frame,
+  .storage-lead-panel,
+  .storage-tab-section,
+  .glass-mini-card,
+  .subsection-cover-card,
+  .module-top-tab,
+  .obp-shell,
+  .obp-archive-shell,
+  .notebook-wiki-screen > .panel,
+  .research-kb-screen .panel
+) {
+  background: var(--cg-pane) !important;
+  border: 1px solid var(--cg-border) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.78) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.72) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--cg-shadow) !important;
+  backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate)) !important;
+  -webkit-backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate)) !important;
+  color: var(--text-primary);
+  -webkit-text-fill-color: unset;
+  background-clip: border-box !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .panel,
+  .hub-section-frame,
+  .hub-detail-frame,
+  .storage-tab-section,
+  .metric-card
+) {
+  border-top: 2px solid var(--cg-accent-bar) !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) .module-cover-hero {
+  background: var(--cg-pane-strong) !important;
+  border: 1px solid var(--cg-border) !important;
+  border-top: 2px solid var(--cg-accent-bar) !important;
+  box-shadow: var(--cg-shadow) !important;
+  backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate)) !important;
+  -webkit-backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate)) !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .module-cover-hero::before,
+  .module-cover-hero::after,
+  .subsection-cover-card::before,
+  .subsection-cover-card::after
+) {
+  display: none !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) .sidebar {
+  background: var(--cg-pane) !important;
+  border-right: 1px solid var(--cg-border) !important;
+  box-shadow: var(--cg-shadow) !important;
+  backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate)) !important;
+  -webkit-backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate)) !important;
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .sidebar-item,
+  .sidebar-label
+) {
+  color: var(--text-secondary);
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) .sidebar-item--active {
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .panel-inset,
+  .surface-inset,
+  .form-input,
+  .form-textarea,
+  .form-select,
+  .input,
+  .search-input,
+  .dt-input,
+  .dt-input-sm,
+  input[type='text'],
+  input[type='search'],
+  input[type='email'],
+  input[type='number'],
+  select,
+  textarea
+) {
+  background: var(--cg-pane-inset) !important;
+  border: 1px solid var(--cg-border-soft) !important;
+  box-shadow: none !important;
+  color: var(--text-primary) !important;
+  backdrop-filter: blur(calc(var(--cg-blur) * 0.65)) saturate(var(--cg-saturate)) !important;
+  -webkit-backdrop-filter: blur(calc(var(--cg-blur) * 0.65)) saturate(var(--cg-saturate)) !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .btn:not(.btn-primary):not(.btn-success):not(.btn-danger),
+  button.btn:not(.btn-primary):not(.btn-success):not(.btn-danger),
+  .smart-link-btn,
+  .copy-path-btn
+) {
+  background: var(--cg-pane-inset) !important;
+  border: 1px solid var(--cg-border-soft) !important;
+  box-shadow: none !important;
+  color: var(--text-primary);
+  transform: none !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .panel,
+  .metric-card,
+  .project-card,
+  .roster-card,
+  .timeline-card,
+  .feed-item,
+  .ingestion-metric-card,
+  .glass-mini-card,
+  .hub-section-frame
+):hover {
+  transform: none !important;
+  box-shadow: 0 12px 40px rgba(88, 108, 132, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .glass-mini-card,
+  .glass-mini-card::after
+) {
+  animation: none !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .dashboard-page,
+  .projects-page,
+  .projects-integrated-view,
+  .overview-page,
+  .document-library-screen,
+  .bioinformatics-hub-screen,
+  .lab-knowledge-screen,
+  .storage-page-layout,
+  .ipp-pipeline-shell,
+  .notebook-wiki-screen,
+  .research-kb-screen,
+  .module-shell-page
+) {
+  background: transparent !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .ipp-glass-3d,
+  .ipp-glass-inset,
+  .ipp-pipeline-25d__viewport,
+  .ipp-pipeline-25d__lumi-zone,
+  .ipp-pipeline-3d__metadata-panel,
+  .ipp-pipeline-3d__topbar
+) {
+  background: var(--cg-pane) !important;
+  border: 1px solid var(--cg-border) !important;
+  box-shadow: var(--cg-shadow) !important;
+  backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate)) !important;
+  -webkit-backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate)) !important;
+  color: var(--text-primary);
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) .ipp-pipeline-25d__lumi-zone {
+  border-top: 2px solid var(--cg-accent-bar) !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .ipp-glass-3d::before,
+  .ipp-glass-3d::after,
+  .ipp-pipeline-3d::before,
+  .ipp-pipeline-3d::after
+) {
+  display: none !important;
+}
+
+html[data-theme='academic'] .app-container:not(:has(.workspace-layout)) :is(
+  .custom-table thead th,
+  table thead th
+) {
+  background: var(--cg-pane-strong) !important;
+  border-bottom: 1px solid var(--cg-border-soft) !important;
+  box-shadow: none !important;
+  color: var(--text-primary);
+}
+
+/* Cool scrollbars in clear-glass mode (typography uses sepia thumb) */
+html[data-theme='academic']:has(.app-container:not(:has(.workspace-layout))) {
+  scrollbar-color: rgba(107, 138, 163, 0.42) rgba(255, 255, 255, 0.46);
+}
+
+html[data-theme='academic']:has(.app-container:not(:has(.workspace-layout))) *::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.46);
+}
+
+html[data-theme='academic']:has(.app-container:not(:has(.workspace-layout))) *::-webkit-scrollbar-thumb {
+  border-color: rgba(255, 255, 255, 0.62);
+  background: rgba(107, 138, 163, 0.42);
+}
+
+/* Login — academic clear glass (no .app-container; typography sets warm sepia) */
+html[data-theme='academic']:has(.login-page) .login-page {
+  --login-bg-0: #e8eef4;
+  --login-bg-1: #d4dee8;
+  --login-bg-2: #bcc9d6;
+  --login-panel: rgba(255, 255, 255, 0.34);
+  --login-panel-strong: rgba(255, 255, 255, 0.44);
+  --login-card: rgba(255, 255, 255, 0.34);
+  --login-card-strong: rgba(255, 255, 255, 0.44);
+  --login-card-border: rgba(255, 255, 255, 0.58);
+  --login-text: #2a3542;
+  --login-muted: #6b7a8c;
+  --login-soft: #8a98a8;
+
+  background:
+    linear-gradient(128deg, #e8eef4 0%, #d4dee8 48%, #bcc9d6 100%) !important;
+  color: var(--login-text);
+}
+
+html[data-theme='academic']:has(.login-page) .login-page::before,
+html[data-theme='academic']:has(.login-page) .login-page::after {
+  display: none !important;
+  content: none !important;
+}
+
+html[data-theme='academic']:has(.login-page) .login-page__panel-wrap {
+  border-left-color: rgba(255, 255, 255, 0.38);
+  background: var(--cg-pane) !important;
+  backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate));
+  -webkit-backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate));
+  box-shadow: var(--cg-shadow);
+}
+
+html[data-theme='academic']:has(.login-page) .login-page__panel-wrap::before {
+  opacity: 0 !important;
+}
+
+html[data-theme='academic']:has(.login-page) .login-page__brand {
+  background: var(--cg-pane) !important;
+  border-color: rgba(255, 255, 255, 0.58) !important;
+  box-shadow: var(--cg-shadow) !important;
+  backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate));
+  -webkit-backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate));
+}
+
+html[data-theme='academic']:has(.login-page) .login-page__brand-title {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html[data-theme='academic']:has(.login-page) .login-page__brand-lead {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+html[data-theme='academic']:has(.login-page) .login-page__brand-eyebrow {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+html[data-theme='academic']:has(.login-page) .login-card {
+  background: var(--cg-pane) !important;
+  border: 1px solid var(--cg-border) !important;
+  box-shadow: var(--cg-shadow) !important;
+  backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate));
+  -webkit-backdrop-filter: blur(var(--cg-blur)) saturate(var(--cg-saturate));
+  color: var(--text-primary);
+}
+
+html[data-theme='academic']:has(.login-page) .login-card__title {
+  color: var(--text-primary) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+html[data-theme='academic']:has(.login-page) .login-card__kicker,
+html[data-theme='academic']:has(.login-page) .login-field label {
+  color: var(--text-secondary);
+}
+
+html[data-theme='academic']:has(.login-page) .login-mode-tabs {
+  border-color: var(--cg-border-soft);
+  background: var(--cg-pane-inset);
+}
+
+html[data-theme='academic']:has(.login-page) .login-mode-tab--active {
+  color: var(--color-primary);
+  background: var(--cg-pane-strong);
+}
+
+html[data-theme='academic']:has(.login-page) .login-field input,
+html[data-theme='academic']:has(.login-page) .login-field select {
+  color: var(--text-primary);
+  border-color: var(--cg-border-soft);
+  background: var(--cg-pane-inset);
+}
+
+/* ── Academic navigation — flat scholarly glass (replaces 3D neon navGlass) ── */
+
+html[data-theme='academic'] {
+  --ac-nav-radius: 8px;
+  --ac-nav-pane: rgba(255, 255, 255, 0.34);
+  --ac-nav-pane-strong: rgba(255, 255, 255, 0.48);
+  --ac-nav-pane-inset: rgba(255, 255, 255, 0.22);
+  --ac-nav-border: rgba(255, 255, 255, 0.52);
+  --ac-nav-border-soft: rgba(255, 255, 255, 0.34);
+  --ac-nav-border-faint: rgba(107, 138, 163, 0.16);
+}
+
+/* Sidebar — main section buttons */
+html[data-theme='academic'] .sidebar .sidebar-item-main {
+  transform: none !important;
+  border: 1px solid var(--ac-nav-border-faint) !important;
+  border-left: none !important;
+  border-radius: var(--ac-nav-radius) !important;
+  color: var(--text-secondary) !important;
+  font-weight: 550 !important;
+  letter-spacing: 0.01em;
+  backdrop-filter: blur(12px) saturate(1.05) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.05) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: none !important;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease !important;
+}
+
+html[data-theme='academic'] .sidebar .sidebar-item-main:hover,
+html[data-theme='academic'] .sidebar .sidebar-item-main.active,
+html[data-theme='academic'] .sidebar .sidebar-item-main.expanded {
+  transform: none !important;
+  border-left: none !important;
+  border-radius: var(--ac-nav-radius) !important;
+  backdrop-filter: blur(12px) saturate(1.05) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.05) !important;
+}
+
+html[data-theme='academic'] .sidebar .sidebar-item-main::before,
+html[data-theme='academic'] .sidebar .sidebar-item-main::after {
+  display: none !important;
+  content: none !important;
+  animation: none !important;
+}
+
+html[data-theme='academic'] .sidebar .sidebar-item-main:hover {
+  color: var(--text-primary) !important;
+  border-color: var(--ac-nav-border-soft) !important;
+  background: var(--ac-nav-pane-inset) !important;
+}
+
+html[data-theme='academic'] .sidebar .sidebar-item-main.active,
+html[data-theme='academic'] .sidebar .sidebar-item-main.expanded {
+  color: var(--color-primary) !important;
+  font-weight: 600 !important;
+  border-color: var(--ac-nav-border) !important;
+  background: var(--ac-nav-pane) !important;
+  box-shadow: inset 3px 0 0 var(--color-primary) !important;
+}
+
+html[data-theme='academic'] .sidebar .sidebar-item-main .sidebar-item-icon {
+  border-radius: 6px !important;
+  border: 1px solid var(--ac-nav-border-faint) !important;
+  background: var(--ac-nav-pane-inset) !important;
+  color: var(--color-primary) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme='academic'] .sidebar .sidebar-item-main:hover .sidebar-item-icon,
+html[data-theme='academic'] .sidebar .sidebar-item-main.active .sidebar-item-icon,
+html[data-theme='academic'] .sidebar .sidebar-item-main.expanded .sidebar-item-icon {
+  border-color: var(--ac-nav-border-soft) !important;
+}
+
+/* Sidebar — sub-nav items */
+html[data-theme='academic'] .sidebar .sidebar-item-sub,
+html[data-theme='academic'] .sidebar-subnav .sidebar-item-sub:nth-child(n) {
+  transform: none !important;
+  border: 1px solid var(--ac-nav-border-faint) !important;
+  border-radius: 6px !important;
+  color: var(--text-muted) !important;
+  font-weight: 500 !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme='academic'] .sidebar .sidebar-item-sub:hover {
+  color: var(--text-primary) !important;
+  border-color: var(--ac-nav-border-soft) !important;
+  background: var(--ac-nav-pane-inset) !important;
+}
+
+html[data-theme='academic'] .sidebar .sidebar-item-sub.active,
+html[data-theme='academic'] .sidebar .sidebar-item-sub[aria-current='page'] {
+  color: var(--color-primary) !important;
+  font-weight: 600 !important;
+  border-color: var(--ac-nav-border) !important;
+  background: var(--ac-nav-pane) !important;
+  box-shadow: inset 2px 0 0 var(--color-primary) !important;
+}
+
+html[data-theme='academic'] .sidebar-item-sub.active .sidebar-subnav-dot,
+html[data-theme='academic'] .sidebar-item-sub[aria-current='page'] .sidebar-subnav-dot {
+  background: var(--color-primary) !important;
+  opacity: 1 !important;
+}
+
+html[data-theme='academic'] .sidebar-group--active {
+  border: 1px solid var(--ac-nav-border-soft) !important;
+  border-radius: 10px !important;
+  background: var(--ac-nav-pane-inset) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(12px) saturate(1.05);
+  -webkit-backdrop-filter: blur(12px) saturate(1.05);
+}
+
+html[data-theme='academic'] .sidebar-subnav-wrap {
+  border-left-color: var(--ac-nav-border-soft) !important;
+}
+
+html[data-theme='academic'] .sidebar-search-btn {
+  border-radius: var(--ac-nav-radius) !important;
+  border: 1px solid var(--ac-nav-border-soft) !important;
+  background: var(--ac-nav-pane-inset) !important;
+  box-shadow: none !important;
+  color: var(--text-secondary) !important;
+}
+
+html[data-theme='academic'] .sidebar-search-btn:hover {
+  transform: none !important;
+  border-color: var(--ac-nav-border) !important;
+  background: var(--ac-nav-pane) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Horizontal module / document tabs */
+html[data-theme='academic'] .module-subnav--horizontal.module-top-tabs,
+html[data-theme='academic'] .lab-doc-nav-tabs {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.28rem !important;
+  padding: 0.32rem !important;
+  margin: 0 0 0.75rem !important;
+  border: 1px solid var(--ac-nav-border-soft) !important;
+  border-bottom: 1px solid var(--ac-nav-border-soft) !important;
+  border-radius: 10px !important;
+  background: var(--ac-nav-pane-inset) !important;
+  backdrop-filter: blur(12px) saturate(1.05);
+  -webkit-backdrop-filter: blur(12px) saturate(1.05);
+  box-shadow: none !important;
+}
+
+html[data-theme='academic'] .module-top-tab,
+html[data-theme='academic'] .lab-doc-nav-tab,
+html[data-theme='academic'] .lab-doc-group-tab,
+html[data-theme='academic'] .module-top-tab:nth-child(n),
+html[data-theme='academic'] .lab-doc-nav-tab:nth-child(n) {
+  min-height: 2.2rem !important;
+  min-width: 6.5rem !important;
+  border-radius: 7px !important;
+  border: 1px solid var(--ac-nav-border-faint) !important;
+  margin-bottom: 0 !important;
+  color: var(--text-muted) !important;
+  font-size: 0.78rem !important;
+  font-weight: 550 !important;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html[data-theme='academic'] .module-top-tab:hover,
+html[data-theme='academic'] .lab-doc-nav-tab:hover,
+html[data-theme='academic'] .lab-doc-subcategory-tab:hover {
+  transform: none !important;
+  color: var(--text-primary) !important;
+  border-color: var(--ac-nav-border-soft) !important;
+  background: var(--ac-nav-pane) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme='academic'] .module-top-tab.active,
+html[data-theme='academic'] .module-top-tabs .module-top-tab.active,
+html[data-theme='academic'] .lab-doc-nav-tab.active,
+html[data-theme='academic'] .lab-doc-group-tab.module-top-tab.active {
+  color: var(--color-primary) !important;
+  font-weight: 600 !important;
+  border: 1px solid var(--ac-nav-border) !important;
+  border-bottom: 2px solid var(--color-primary) !important;
+  background: var(--ac-nav-pane-strong) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme='academic'] .lab-doc-subcategory-tab {
+  border-radius: 6px !important;
+  border: 1px solid var(--ac-nav-border-faint) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme='academic'] .lab-doc-subcategory-tab.active {
+  color: var(--color-primary) !important;
+  border-color: var(--ac-nav-border) !important;
+  background: var(--ac-nav-pane) !important;
+}
+
+/* In-page tab rails, report nav, workspace nav */
+html[data-theme='academic'] .tab-bar {
+  padding: 0.3rem !important;
+  border: 1px solid var(--ac-nav-border-soft) !important;
+  border-radius: 10px !important;
+  background: var(--ac-nav-pane-inset) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme='academic'] :is(
+  .tab-button,
+  .report-nav-btn,
+  .workspace-nav-item,
+  .module-subnav-item
+) {
+  border-radius: 7px !important;
+  border: 1px solid var(--ac-nav-border-faint) !important;
+  color: var(--text-secondary) !important;
+  font-weight: 550 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+html[data-theme='academic'] :is(
+  .tab-button,
+  .report-nav-btn,
+  .workspace-nav-item,
+  .module-subnav-item
+):hover {
+  transform: none !important;
+  color: var(--text-primary) !important;
+  border-color: var(--ac-nav-border-soft) !important;
+  background: var(--ac-nav-pane) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme='academic'] :is(
+  .tab-button.active,
+  .report-nav-btn.active,
+  .workspace-nav-item.active,
+  .module-subnav-item.active,
+  .scope-chip.is-checked
+) {
+  color: var(--color-primary) !important;
+  font-weight: 600 !important;
+  border-color: var(--ac-nav-border) !important;
+  background: var(--ac-nav-pane-strong) !important;
+  box-shadow: inset 0 -2px 0 var(--color-primary) !important;
+}
+
+/* Generic secondary buttons — flat glass, not 3D lift */
+html[data-theme='academic'] :is(
+  .btn-secondary,
+  .btn.btn-secondary,
+  .smart-link-btn,
+  .copy-path-btn
+) {
+  transform: none !important;
+  border: 1px solid var(--ac-nav-border-soft) !important;
+  background: var(--ac-nav-pane-inset) !important;
+  box-shadow: none !important;
+  color: var(--text-primary) !important;
+}
+
+html[data-theme='academic'] :is(
+  .btn-secondary,
+  .btn.btn-secondary,
+  .smart-link-btn,
+  .copy-path-btn
+):hover {
+  transform: none !important;
+  border-color: var(--ac-nav-border) !important;
+  background: var(--ac-nav-pane) !important;
+  box-shadow: none !important;
+}
+
+/* Project workspace — keep warm manuscript paper (excluded from clear glass) */
+html[data-theme='academic']:has(.workspace-layout) {
+  --academic-paper-0: #fbf7ee;
+  --academic-paper-1: #f5ecde;
+  --academic-paper-2: #eadcc8;
+  --academic-paper-3: #ddc9ad;
+  --bg-app: var(--academic-paper-1);
+  --bg-page: var(--academic-paper-0);
+  --bg-inset: #f1e6d5;
+  --mx-paper-redline: rgba(152, 50, 50, 0.18);
+  --mx-manuscript-rule: rgba(30, 58, 95, 0.065);
+}
+
+html[data-theme='academic']:has(.workspace-layout) body {
+  background:
+    linear-gradient(90deg, var(--mx-paper-redline) 0 1px, transparent 1px) 5.7rem 0 / 1px 100% fixed,
+    linear-gradient(var(--mx-manuscript-rule) 1px, transparent 1px) 0 1.25rem / 100% 2rem fixed,
+    linear-gradient(180deg, var(--bg-app), color-mix(in srgb, var(--bg-app) 88%, #d8cebd 12%)) !important;
+}

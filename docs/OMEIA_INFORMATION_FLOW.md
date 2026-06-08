@@ -73,7 +73,7 @@ flowchart LR
 - One command: `./scripts/start_linux.sh` → `scripts/dev/start_linux_desktop.sh` → `start.sh`
 - Default Docker stack (`docker-compose.yml`): **postgres** (`127.0.0.1:5432`), **qdrant** (`127.0.0.1:6333`), **ollama** (internal), **ollama-proxy** (`127.0.0.1:11434` with bearer auth)
 - Optional biomedical model services: `docker-compose.biomodels.yml` + `/api/biomedical-models/*`
-- API: `uvicorn app_skeleton.api.main:app --host 0.0.0.0 --port 8000`
+- API: `uvicorn omeia.api.main:app --host 0.0.0.0 --port 8000`
 - Dev UI: Vite `0.0.0.0:5173` (proxies API paths to `:8000`)
 - Typical URLs: `http://<tailscale-ip>:5173/`, campus LAN as configured
 
@@ -107,9 +107,9 @@ flowchart LR
 
 ### Import time (before FastAPI lifespan)
 
-`validate_environment()` runs at **`app_skeleton/api/main.py` import time** (line 11), **before** the FastAPI app object is fully wired and **before** `_app_lifespan` runs. It blocks unsafe production combinations (auth disabled outside dev, `CORS_ORIGINS=*`, missing Firebase in prod).
+`validate_environment()` runs at **`omeia/api/main.py` import time** (line 11), **before** the FastAPI app object is fully wired and **before** `_app_lifespan` runs. It blocks unsafe production combinations (auth disabled outside dev, `CORS_ORIGINS=*`, missing Firebase in prod).
 
-### Lifespan (`app_skeleton/api/common.py` `_app_lifespan`)
+### Lifespan (`omeia/api/common.py` `_app_lifespan`)
 
 Order on API boot:
 
@@ -161,9 +161,9 @@ sequenceDiagram
     API-->>Browser: 200 project list
 ```
 
-**Client:** Firebase web SDK (`app_skeleton/ui/react_frontend/src/config/firebase.js`) — **email/password only** (no Google Sign-In). Token key: **`farkki_id_token`** in `localStorage`, attached by `app_skeleton/ui/react_frontend/src/services/client.js`.
+**Client:** Firebase web SDK (`omeia/ui/react_frontend/src/config/firebase.js`) — **email/password only** (no Google Sign-In). Token key: **`farkki_id_token`** in `localStorage`, attached by `omeia/ui/react_frontend/src/services/client.js`.
 
-**Server:** `require_platform_user` (`app_skeleton/security/auth.py`):
+**Server:** `require_platform_user` (`omeia/security/auth.py`):
 
 - If `PLATFORM_AUTH_DISABLED=true` **and** `APP_ENV=development` → synthetic dev user
 - Else → `Authorization: Bearer <Firebase ID token>`, verify via Admin SDK, check `platform.allowed_email` (approved) or platform admin
@@ -317,7 +317,7 @@ flowchart TB
 
 **Operational content (notebook, wiki, decisions, tasks):** stored in **Postgres** (`platform.notebook_entry`, `platform.research_wiki`, `platform.decision_registry`, `platform.task`) — **not** in processed JSON twins.
 
-**Processed JSON twins:** project portfolio/workspace search uses `app_skeleton/data/processed_projects/` (+ `public/processed/`); lab section twins live under `app_skeleton/data/02_processed_projects/lab_operations/...` with legacy fallback to `processed_projects/`.
+**Processed JSON twins:** project portfolio/workspace search uses `omeia/data/processed_projects/` (+ `public/processed/`); lab section twins live under `omeia/data/02_processed_projects/lab_operations/...` with legacy fallback to `processed_projects/`.
 
 **Storage:** Authoritative metadata in Postgres; semantic search in Qdrant when indexing flags are on; large binary assets on disk; denormalized inventories in JSON for document library and vault fallbacks.
 
@@ -633,13 +633,13 @@ Global `require_platform_user` on most routers unless noted. Write/admin handler
 **Checks run:**
 
 - `bash -n scripts/start_linux.sh`, `bash -n scripts/dev/start_linux_desktop.sh`, `bash -n start.sh` - passed.
-- `.venv/bin/python -c "import app_skeleton.api.main; print('IMPORT_OK')"` - passed, but emitted a Qdrant compatibility warning when local Qdrant was unavailable.
+- `.venv/bin/python -c "import omeia.api.main; print('IMPORT_OK')"` - passed, but emitted a Qdrant compatibility warning when local Qdrant was unavailable.
 - `python3 scripts/ops/check_linux_sync_health.py` - local data roots and processed twins readable; `csc_media_readable` failed in the Mac workspace because no CSC media samples were present.
-- `npm run build` in `app_skeleton/ui/react_frontend` - passed in about 2 s; Vite warned about a >700 kB chunk (`three-vendor`, about 973 kB minified). Build output was about 89 MB because `public/` is about 77 MB.
+- `npm run build` in `omeia/ui/react_frontend` - passed in about 2 s; Vite warned about a >700 kB chunk (`three-vendor`, about 973 kB minified). Build output was about 89 MB because `public/` is about 77 MB.
 
 ### High priority findings
 
-1. **Public static extracted-document exposure** - `app_skeleton/ui/react_frontend/public/database/docs/*.json` and `public/processed/*.json` are copied into `dist/` by Vite. Some files are multi-MB extracted document payloads. If a future Hostinger/Cloudflare deployment serves `dist/` publicly, those JSON files are public static content, bypassing Firebase and `/api/files/*`.
+1. **Public static extracted-document exposure** - `omeia/ui/react_frontend/public/database/docs/*.json` and `public/processed/*.json` are copied into `dist/` by Vite. Some files are multi-MB extracted document payloads. If a future Hostinger/Cloudflare deployment serves `dist/` publicly, those JSON files are public static content, bypassing Firebase and `/api/files/*`.
 
    **Fix:** remove extracted lab document payloads from frontend `public/`; serve previews/downloads through authenticated API routes (`secure_files` or document-library preview/export) with `REQUIRE_AUTH_STATIC=true` for originals. Add a CI/build guard that fails when `public/database/docs/*.json` or large full-text JSON appears in the frontend public folder. Purge any deployed static copy/CDN cache after removal.
 
@@ -651,7 +651,7 @@ Global `require_platform_user` on most routers unless noted. Write/admin handler
 
    **Fix:** split `/live` from `/ready`. Keep `/live` cheap and always process-level. Make `/ready` fail with 503 until required dependencies (Postgres, Qdrant when indexing/search needs it, LLM when configured as required) pass. Change launchers and monitoring to wait on `/ready`.
 
-4. **Direct `uvicorn` env-ordering hazard** - `main.py` imports auth and runs `validate_environment()` before `common.py` loads `configs/.env`; `auth.py` freezes `APP_ENV`, `AUTH_DISABLED`, and `AUTH_ALLOW_SKIP` at import time. Launchers load `.env` first, but direct `uvicorn app_skeleton.api.main:app` can validate/auth against process defaults instead of `configs/.env`.
+4. **Direct `uvicorn` env-ordering hazard** - `main.py` imports auth and runs `validate_environment()` before `common.py` loads `configs/.env`; `auth.py` freezes `APP_ENV`, `AUTH_DISABLED`, and `AUTH_ALLOW_SKIP` at import time. Launchers load `.env` first, but direct `uvicorn omeia.api.main:app` can validate/auth against process defaults instead of `configs/.env`.
 
    **Fix:** centralize settings loading before importing auth/security modules. Make `validate_environment()` and auth config read from one settings object, not module-level constants. Also document that production must start through the launcher or a service file that exports the same env.
 
@@ -733,7 +733,7 @@ These are **implemented today** — not gaps:
 
 3. **Readiness/liveness mismatch** — `/health` returns 200 + `"status": "ok"` even when dependency checks are degraded; launcher waits on liveness rather than readiness.
 
-4. **Env/auth import ordering** — launchers load env correctly, but direct `uvicorn app_skeleton.api.main:app` can evaluate `validate_environment()` and auth constants before `configs/.env` is loaded.
+4. **Env/auth import ordering** — launchers load env correctly, but direct `uvicorn omeia.api.main:app` can evaluate `validate_environment()` and auth constants before `configs/.env` is loaded.
 
 5. **Broken agent-category duplicate route** — `/api/agent-categories/{category_id}/run` calls `chat_category(req, user)` with the wrong function signature.
 
@@ -829,19 +829,19 @@ These are **implemented today** — not gaps:
 
 | Topic | Path |
 |-------|------|
-| API entry + import-time validation | `app_skeleton/api/main.py` |
-| Lifespan / projects cache | `app_skeleton/api/common.py` |
-| Environment validation | `app_skeleton/security/environment.py` |
-| Unified search | `app_skeleton/api/search_service.py` |
-| Chat RAG | `app_skeleton/api/chat_service.py` |
-| Document library | `app_skeleton/api/document_library_service.py` |
-| Scheduled scanner | `app_skeleton/api/scheduled_directory_scanner.py` |
-| Processed path layout | `app_skeleton/api/data_layout.py`, `app_skeleton/api/paths.py` |
+| API entry + import-time validation | `omeia/api/main.py` |
+| Lifespan / projects cache | `omeia/api/common.py` |
+| Environment validation | `omeia/security/environment.py` |
+| Unified search | `omeia/api/search_service.py` |
+| Chat RAG | `omeia/api/chat_service.py` |
+| Document library | `omeia/api/document_library_service.py` |
+| Scheduled scanner | `omeia/api/scheduled_directory_scanner.py` |
+| Processed path layout | `omeia/api/data_layout.py`, `omeia/api/paths.py` |
 | Qdrant blueprint | `configs/qdrant_collections.yaml` |
-| Auth | `app_skeleton/security/auth.py` |
-| Static + secure files | `app_skeleton/api/routers/lab_static.py`, `app_skeleton/security/secure_files.py` |
-| Frontend shell | `app_skeleton/ui/react_frontend/src/App.jsx` |
-| Screen cache | `app_skeleton/ui/react_frontend/src/shared/layout/ScreenCache.jsx` |
+| Auth | `omeia/security/auth.py` |
+| Static + secure files | `omeia/api/routers/lab_static.py`, `omeia/security/secure_files.py` |
+| Frontend shell | `omeia/ui/react_frontend/src/App.jsx` |
+| Screen cache | `omeia/ui/react_frontend/src/shared/layout/ScreenCache.jsx` |
 | Linux start | `scripts/dev/start_linux_desktop.sh`, `start.sh` |
 | Env template | `configs/.env.example`, `configs/linux-workstation.env.template` |
 

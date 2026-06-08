@@ -65,7 +65,7 @@ The platform has **six partially overlapping search systems**, not one. Each use
 
 | Property | Value |
 |----------|-------|
-| **Component** | `app_skeleton/ui/react_frontend/src/components/GlobalSearchOverlay.jsx` |
+| **Component** | `omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx` |
 | **Trigger** | Sidebar search button → `App.jsx` `isSearchOpen` |
 | **API** | `GET /platform/search?q={query}` |
 | **Debounce** | 300 ms |
@@ -131,13 +131,13 @@ The platform has **six partially overlapping search systems**, not one. Each use
 
 ## 3. Search backends (API)
 
-All routers mount with `Depends(require_platform_user)` unless noted (`app_skeleton/api/main.py`).
+All routers mount with `Depends(require_platform_user)` unless noted (`omeia/api/main.py`).
 
 ### 3.1 Platform registry search (global overlay)
 
 | Endpoint | `GET /platform/search` |
 |----------|------------------------|
-| **File** | `app_skeleton/api/routers/research.py` (`platform_search`) |
+| **File** | `omeia/api/routers/research.py` (`platform_search`) |
 | **Engine** | Postgres `ILIKE %q%` on title/content/rationale |
 | **Tables** | `platform.notebook_entry`, `platform.research_wiki`, `platform.decision_registry` |
 | **Params** | `q`, `project_code?`, `include` (default `notebook,wiki,decisions`), `limit` |
@@ -157,7 +157,7 @@ All routers mount with `Depends(require_platform_user)` unless noted (`app_skele
 
 | Endpoint | `GET /api/search` |
 |----------|-------------------|
-| **File** | `app_skeleton/api/routers/knowledge.py` |
+| **File** | `omeia/api/routers/knowledge.py` |
 | **Modes** | `exact`, `metadata`, `semantic`, `hybrid` |
 | **Lab leg** | `search_lab_knowledge()` when semantic/hybrid |
 | **Vault leg** | `search_vault()` when metadata/exact/hybrid |
@@ -185,7 +185,7 @@ All routers mount with `Depends(require_platform_user)` unless noted (`app_skele
 
 | Endpoint | `GET /api/vault/search` |
 |----------|-------------------------|
-| **File** | `app_skeleton/api/routers/vault.py` |
+| **File** | `omeia/api/routers/vault.py` |
 | **Engine** | Postgres first, JSON manifest fallback (`raw_vault_store.py`) |
 | **Auth** | `_FIREBASE_PROTECTED` on vault routes (stricter than platform search) |
 | **Filters** | domain, project_hint, review_status, vector_status, extraction_status, uncategorized_only |
@@ -212,7 +212,7 @@ Superseded by `/platform/search` but still exist.
 
 | Endpoint | `POST /ask` |
 |----------|-------------|
-| **File** | `app_skeleton/api/routers/copilot.py` |
+| **File** | `omeia/api/routers/copilot.py` |
 | **Pipeline** | Privacy audit → PG metadata → `RAGAgent.retrieve()` → `search_lab_knowledge()` → merge/dedupe → LLM |
 | **Limit** | 12 sources max in response |
 | **Logging** | `platform.conversation` + `platform.message.retrieved_chunks` |
@@ -588,4 +588,4 @@ Remaining optional polish: Postgres `tsvector` ranking, automated ingest cron, n
 
 ---
 
-*Generated from codebase audit of `app_skeleton/` on branch working tree 2026-06-06. Merged with parallel backend and frontend subagent audits.*
+*Generated from codebase audit of `omeia/` on branch working tree 2026-06-06. Merged with parallel backend and frontend subagent audits.*

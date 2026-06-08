@@ -1,0 +1,551 @@
+.kindle-doc {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--text-primary);
+}
+
+.kindle-doc--full {
+  max-width: none;
+}
+
+.kindle-doc-body {
+  display: grid;
+  gap: clamp(1rem, 1.6vw, 1.45rem);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.kindle-section {
+  position: relative;
+  padding: clamp(1rem, 1.8vw, 1.4rem);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl, 24px);
+  background:
+    radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--color-primary) 7%, transparent), transparent 18rem),
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 92%, transparent), color-mix(in srgb, var(--bg-inset) 38%, transparent));
+  box-shadow:
+    var(--shadow-card, 0 14px 34px rgba(0, 0, 0, 0.12)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.kindle-section--alt {
+  background:
+    radial-gradient(circle at 96% 0%, color-mix(in srgb, var(--color-accent, var(--color-primary)) 7%, transparent), transparent 18rem),
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 90%, transparent), color-mix(in srgb, var(--bg-inset) 44%, transparent));
+}
+
+.doc-section-star {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  opacity: 0.92;
+}
+
+.kindle-heading,
+.kindle-subheading,
+.kindle-subsection {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 1.15rem;
+  padding: 0.55rem 0.9rem 0.55rem 0.75rem;
+  border-left: 3px solid color-mix(in srgb, var(--color-primary) 70%, transparent);
+  border-radius: 0 8px 8px 0;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-primary) 14%, transparent),
+    transparent 85%
+  );
+  color: var(--text-primary);
+  font-family: var(--font-heading, var(--font-display, Georgia, serif));
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: left;
+  text-wrap: balance;
+}
+
+.kindle-subheading {
+  margin: 0.35rem 0 0.95rem;
+  padding: 0.45rem 0.75rem 0.45rem 0.65rem;
+  border-left-width: 2px;
+  font-size: clamp(0.88rem, 0.84rem + 0.18vw, 1.02rem);
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  text-transform: none;
+}
+
+.kindle-subsection {
+  margin: 0.25rem 0 0.75rem;
+  padding: 0.35rem 0.6rem;
+  border-left: 2px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+  border-radius: 0 6px 6px 0;
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  font-size: clamp(0.82rem, 0.8rem + 0.12vw, 0.94rem);
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.kindle-section-body {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.doc-card {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+  padding: clamp(0.85rem, 1.4vw, 1.15rem);
+  border: 1px solid color-mix(in srgb, var(--border-color) 86%, transparent);
+  border-radius: var(--radius-lg, 18px);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 94%, transparent), color-mix(in srgb, var(--bg-page, var(--bg-app)) 62%, transparent));
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.doc-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.85rem;
+  padding: 0.42rem 0.68rem;
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 16%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  color: var(--text-primary);
+  font-family: var(--font-heading, var(--font-display, Georgia, serif));
+  font-size: clamp(0.95rem, 0.9rem + 0.22vw, 1.12rem);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.doc-card-body {
+  display: grid;
+  gap: 0.9rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.doc-inline-label {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  margin: 0.55rem 0 0.35rem;
+  padding: 0.42rem 0.68rem;
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.doc-field {
+  display: grid;
+  gap: 0.32rem;
+  margin: 0;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--border-color) 78%, transparent);
+  border-radius: var(--radius-md, 14px);
+  background: color-mix(in srgb, var(--bg-inset) 42%, transparent);
+}
+
+.doc-field-label,
+.doc-link-field-label {
+  color: var(--text-muted);
+  font-size: 0.69rem;
+  font-weight: 850;
+  letter-spacing: 0.075em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.doc-field-body {
+  display: grid;
+  gap: 0.38rem;
+  margin: 0;
+}
+
+.doc-field-value {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.76;
+  letter-spacing: 0.012em;
+  word-spacing: 0.03em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.doc-link-field {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0.68rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, var(--border-color));
+  border-radius: var(--radius-md, 14px);
+  background: color-mix(in srgb, var(--color-primary) 7%, transparent);
+}
+
+.doc-url-block {
+  margin: 0;
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.doc-url-link {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.kindle-link {
+  display: inline;
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.kindle-link__icon {
+  display: inline;
+  vertical-align: -0.12em;
+  margin-left: 0.15rem;
+}
+
+.kindle-link:hover {
+  text-decoration: underline;
+}
+
+.kindle-link--invalid {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.doc-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0 0 0.85rem;
+  padding-left: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.74;
+}
+
+.doc-list li {
+  text-align: left;
+  hyphens: auto;
+  margin-bottom: 0.65rem;
+  padding-left: 0.15rem;
+  line-height: 1.72;
+}
+
+.doc-list li::marker {
+  color: var(--color-primary);
+}
+
+.doc-lines {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.doc-lines p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.78;
+  letter-spacing: 0.013em;
+  word-spacing: 0.03em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  text-wrap: pretty;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.doc-commitment-block {
+  margin: 0.35rem 0 0.85rem;
+  padding: 0.72rem 0.85rem 0.72rem 0.78rem;
+  border-radius: var(--radius-md, 14px);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 12%, var(--border-color));
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-primary) 6%, var(--bg-surface)),
+      color-mix(in srgb, var(--color-primary) 3%, var(--bg-inset, var(--bg-surface)))
+    );
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+.doc-commitment-block .doc-paragraph-row {
+  margin: 0;
+}
+
+.doc-commitment-block .doc-paragraph {
+  margin-bottom: 0;
+}
+
+.doc-commitment-block .doc-list {
+  margin-bottom: 0;
+}
+
+.doc-list-item--plan,
+.doc-line--plan {
+  padding: 0.45rem 0.55rem;
+  margin: 0.2rem 0;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+}
+
+.doc-paragraph-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.65rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.doc-paragraph {
+  margin: 0 0 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.78;
+  letter-spacing: 0.013em;
+  word-spacing: 0.03em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 4 2;
+  text-wrap: pretty;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.kindle-task-btn {
+  align-self: start;
+  min-height: 1.8rem;
+  padding: 0.25rem 0.48rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  white-space: nowrap;
+  opacity: 0.74;
+}
+
+.doc-paragraph-row:hover .kindle-task-btn,
+.doc-paragraph-row:focus-within .kindle-task-btn {
+  opacity: 1;
+}
+
+.doc-divider,
+.kindle-divider {
+  width: 100%;
+  height: 1px;
+  margin: 1.3rem 0;
+  border: 0;
+  background:
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--border-color) 90%, transparent), transparent);
+}
+
+.kindle-spreadsheet {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.kindle-spreadsheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 18px);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--bg-surface) 92%, transparent), color-mix(in srgb, var(--bg-inset) 42%, transparent));
+  box-shadow:
+    var(--shadow-card, 0 14px 34px rgba(0, 0, 0, 0.1)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.kindle-spreadsheet-title,
+.kindle-spreadsheet-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.kindle-spreadsheet-title {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.kindle-spreadsheet-meta {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 750;
+}
+
+.kindle-table-wrap {
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 18px);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card, 0 14px 34px rgba(0, 0, 0, 0.1));
+}
+
+.kindle-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.kindle-table th,
+.kindle-table td {
+  padding: 0.72rem 0.85rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color) 78%, transparent);
+  text-align: left;
+  vertical-align: top;
+}
+
+.kindle-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: var(--color-primary);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-surface-hover) 92%, white 8%), var(--bg-surface-hover));
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.kindle-table td {
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.48;
+}
+
+.kindle-table tbody tr:hover td {
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+}
+
+.kindle-doc--code {
+  overflow: hidden;
+}
+
+.kindle-empty {
+  display: grid;
+  place-items: center;
+  gap: 0.6rem;
+  min-height: 220px;
+  padding: 2rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.kindle-empty-icon {
+  opacity: 0.32;
+}
+
+/* Legacy alias */
+.kindle-paragraph {
+  margin: 0 0 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.78;
+  letter-spacing: 0.013em;
+  word-spacing: 0.03em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  text-wrap: pretty;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.academic-manuscript .kindle-doc,
+.kindle-doc-scroll.academic-manuscript .kindle-doc {
+  font-family: var(--font-manuscript, var(--font-serif, Georgia, serif));
+  font-size: clamp(0.92rem, 0.88rem + 0.15vw, 1.05rem);
+}
+
+html[data-theme='academic'] .doc-paragraph {
+  color: var(--text-secondary);
+  font-family: var(--font-manuscript, var(--font-serif, Georgia, serif));
+}
+
+html[data-theme='academic'] .doc-card {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 248, 238, 0.5)),
+    rgba(255, 253, 248, 0.7);
+}
+
+html[data-theme='academic'] .kindle-section {
+  background:
+    linear-gradient(90deg, rgba(152, 50, 50, 0.09) 0 1px, transparent 1px) 3.35rem 0 / 1px 100%,
+    linear-gradient(rgba(30, 58, 95, 0.04) 1px, transparent 1px) 0 1.1rem / 100% 1.9rem,
+    linear-gradient(145deg, rgba(255, 253, 248, 0.88), rgba(246, 238, 224, 0.76));
+}
+
+@media (max-width: 720px) {
+  .doc-paragraph-row {
+    grid-template-columns: 1fr;
+  }
+
+  .kindle-task-btn {
+    justify-self: start;
+  }
+
+  .kindle-spreadsheet-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kindle-task-btn,
+  .kindle-link {
+    transition: none;
+  }
+}

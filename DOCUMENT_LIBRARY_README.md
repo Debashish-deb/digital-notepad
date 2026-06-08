@@ -6,14 +6,14 @@ This repository organizes scientific, lab, and platform knowledge into a **task-
 
 | You need… | Go to… | Label |
 |-----------|--------|-------|
-| Core catalogs, personnel roster, processor state | `app_skeleton/data/00_registry/` | Project Registry |
-| Raw file inventory and source asset maps | `app_skeleton/data/01_source_inventory/` | Source Inventory |
-| Project JSON twins, chunk indexes, search-ready exports | `app_skeleton/data/02_processed_projects/` | Processed Knowledge Base |
-| Ingestion reports, failed imports, processing history | `app_skeleton/data/03_ingestion_audit/` | Import & Processing History |
-| Application and operational logs | `app_skeleton/data/04_runtime_logs/` | Runtime Logs |
-| WebDAV, SMB, R2, and cloud/local storage adapters | `app_skeleton/storage/01_providers/` | Storage Connectors |
-| Code that pulls files into the system | `app_skeleton/storage/02_ingestion_runtime/` | Ingestion Engine |
-| Environment helpers and runtime path configuration | `app_skeleton/storage/03_environment/` | Storage Environment |
+| Core catalogs, personnel roster, processor state | `omeia/data/00_registry/` | Project Registry |
+| Raw file inventory and source asset maps | `omeia/data/01_source_inventory/` | Source Inventory |
+| Project JSON twins, chunk indexes, search-ready exports | `omeia/data/02_processed_projects/` | Processed Knowledge Base |
+| Ingestion reports, failed imports, processing history | `omeia/data/03_ingestion_audit/` | Import & Processing History |
+| Application and operational logs | `omeia/data/04_runtime_logs/` | Runtime Logs |
+| WebDAV, SMB, R2, and cloud/local storage adapters | `omeia/storage/01_providers/` | Storage Connectors |
+| Code that pulls files into the system | `omeia/storage/02_ingestion_runtime/` | Ingestion Engine |
+| Environment helpers and runtime path configuration | `omeia/storage/03_environment/` | Storage Environment |
 | Equipment manuals, maintenance, gas ordering | `docs/01_lab_operations/` | Lab Operations |
 | Orders, quotes, offers, yearly spreadsheets, lab coats | `docs/02_procurement_and_orders/` | Orders & Procurement |
 | FedEx, billing, supplier contacts, account instructions | `docs/03_shipping_billing_and_accounts/` | Shipping, Billing & Accounts |

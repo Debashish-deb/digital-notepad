@@ -6,8 +6,8 @@ from unittest.mock import patch
 import pytest
 from fastapi.testclient import TestClient
 
-from app_skeleton.api.middleware.metrics import metrics_enabled, snapshot_metrics
-from app_skeleton.api.startup_validation import validate_deployment_environment
+from omeia.api.middleware.metrics import metrics_enabled, snapshot_metrics
+from omeia.api.startup_validation import validate_deployment_environment
 
 
 def test_metrics_disabled_by_default(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -17,7 +17,7 @@ def test_metrics_disabled_by_default(monkeypatch: pytest.MonkeyPatch) -> None:
 
 def test_metrics_endpoint_reports_disabled(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ENABLE_REQUEST_METRICS", "false")
-    from app_skeleton.api.main import app
+    from omeia.api.main import app
 
     client = TestClient(app)
     resp = client.get("/metrics")
@@ -32,7 +32,7 @@ def test_metrics_collect_when_enabled(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("QDRANT_URL", "http://127.0.0.1:6333")
     monkeypatch.setenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434/v1")
     monkeypatch.setenv("TEXT_EMBEDDING_DIM", "768")
-    from app_skeleton.api.main import app
+    from omeia.api.main import app
 
     client = TestClient(app)
     client.get("/health")
@@ -43,7 +43,7 @@ def test_metrics_collect_when_enabled(monkeypatch: pytest.MonkeyPatch) -> None:
 
 def test_live_endpoint(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ENABLE_REQUEST_METRICS", "false")
-    from app_skeleton.api.main import app
+    from omeia.api.main import app
 
     client = TestClient(app)
     resp = client.get("/live")
@@ -53,7 +53,7 @@ def test_live_endpoint(monkeypatch: pytest.MonkeyPatch) -> None:
 
 def test_ready_endpoint_reports_postgres(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ENABLE_REQUEST_METRICS", "false")
-    from app_skeleton.api.main import app
+    from omeia.api.main import app
 
     client = TestClient(app)
     resp = client.get("/ready")
@@ -68,7 +68,7 @@ def test_ready_endpoint_reports_postgres(monkeypatch: pytest.MonkeyPatch) -> Non
 
 def test_health_still_works(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ENABLE_REQUEST_METRICS", "false")
-    from app_skeleton.api.main import app
+    from omeia.api.main import app
 
     client = TestClient(app)
     resp = client.get("/health")

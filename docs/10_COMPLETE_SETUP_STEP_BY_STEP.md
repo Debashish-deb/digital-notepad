@@ -27,7 +27,7 @@ MinIO       localhost:9000 and console localhost:9001
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r app_skeleton/api/requirements.txt
+pip install -r omeia/api/requirements.txt
 ```
 
 ## 4. Create vector collections
@@ -59,7 +59,7 @@ python scripts/ops/query_copilot_demo.py
 ## 8. Start API
 
 ```bash
-uvicorn app_skeleton.api.main:app --reload --host 0.0.0.0 --port 8000
+uvicorn omeia.api.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 Test:
@@ -72,7 +72,7 @@ http://localhost:8000/health
 
 ```bash
 pip install streamlit
-streamlit run app_skeleton/ui/streamlit_app.py
+streamlit run omeia/ui/streamlit_app.py
 ```
 
 ## 10. Add your real documentation, not patient data

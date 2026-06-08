@@ -30,8 +30,8 @@ PROJECT_ROOT = SCRIPT_PATH.parents[2]  # Go up from tools/audit to OMEIA-AI
 REPORTS_DIR = PROJECT_ROOT / "reports" / "document_library_audit"
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
-INVENTORY_PATH = PROJECT_ROOT / "app_skeleton" / "data" / "raw_asset_inventory.json"
-INVENTORY_SUMMARY_PATH = PROJECT_ROOT / "app_skeleton" / "data" / "raw_asset_inventory_summary.json"
+INVENTORY_PATH = PROJECT_ROOT / "omeia" / "data" / "raw_asset_inventory.json"
+INVENTORY_SUMMARY_PATH = PROJECT_ROOT / "omeia" / "data" / "raw_asset_inventory_summary.json"
 DATABASE_ROOT = PROJECT_ROOT / "database"
 
 print("=" * 80)

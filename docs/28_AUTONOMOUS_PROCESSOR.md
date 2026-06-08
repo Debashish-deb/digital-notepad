@@ -10,9 +10,9 @@ Switching to a different Cursor project **does not** stop this work. Only explic
 |-------|------|
 | `scripts/ops/autonomous_processor.py` | Supervisor: `--once`, `--daemon`, `--resume`, `--stop`, `--force` |
 | `scripts/ops/autonomous_processor.sh` | `start` / `stop` / `status` / `once` wrapper (`nohup` + `disown`) |
-| `app_skeleton/data/processor_state.json` | Last step, checkpoint hints, errors, run history |
-| `app_skeleton/data/processor.pid` | Single-instance lock |
-| `app_skeleton/data/logs/autonomous_processor.log` | Append log (rotate externally if needed) |
+| `omeia/data/processor_state.json` | Last step, checkpoint hints, errors, run history |
+| `omeia/data/processor.pid` | Single-instance lock |
+| `omeia/data/logs/autonomous_processor.log` | Append log (rotate externally if needed) |
 
 ## Pipeline steps
 

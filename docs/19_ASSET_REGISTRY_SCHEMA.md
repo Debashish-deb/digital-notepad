@@ -38,7 +38,7 @@ Deprecated row: `cloudflare_r2` (role `deprecated`).
 
 ## Provider enum (application)
 
-Defined in `app_skeleton/storage/env.py` — `VALID_STORAGE_PROVIDERS` and `DEPRECATED_STORAGE_PROVIDERS`.
+Defined in `omeia/storage/env.py` — `VALID_STORAGE_PROVIDERS` and `DEPRECATED_STORAGE_PROVIDERS`.
 
 ## API exposure
 

@@ -28,7 +28,7 @@ The **Data Pad** (Disk pad) is the project workspace file browser with an integr
    - `DATAPAD_AI_ENABLED=true` (optional)
    - `GROQ_API_KEY` or `OPENAI_API_KEY` / `LLM_PROVIDER` for AI assists
 2. Apply SQL: `sql/120_datapad_edits.sql` (local or Supabase migration)
-3. Rebuild frontend: `cd app_skeleton/ui/react_frontend && npm run build`
+3. Rebuild frontend: `cd omeia/ui/react_frontend && npm run build`
 4. With production auth: `PLATFORM_AUTH_DISABLED=false` — Data Pad routes require Firebase Bearer token
 
 Public config (no auth): `GET /api/datapad/config`
@@ -58,10 +58,10 @@ Public config (no auth): `GET /api/datapad/config`
 
 | Layer | Path |
 |-------|------|
-| Service | `app_skeleton/api/datapad_service.py` |
-| Routes | `app_skeleton/api/main.py` |
+| Service | `omeia/api/datapad_service.py` |
+| Routes | `omeia/api/main.py` |
 | SQL | `sql/120_datapad_edits.sql` |
-| API client | `app_skeleton/ui/react_frontend/src/api/datapad.js` |
+| API client | `omeia/ui/react_frontend/src/api/datapad.js` |
 | UI | `DataPadEditor.jsx`, `ProjectFolderBrowser.jsx` |
 | Tests | `tests/test_datapad_service.py` |
 

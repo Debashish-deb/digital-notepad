@@ -84,7 +84,7 @@ The platform has **six partially overlapping search systems**, not one. Each use
 
 | Property | Value |
 |----------|-------|
-| **Component** | `app_skeleton/ui/react_frontend/src/components/GlobalSearchOverlay.jsx` |
+| **Component** | `omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx` |
 | **Trigger** | Sidebar search button → `App.jsx` `isSearchOpen` |
 | **API** | `GET /platform/search?q={query}` |
 | **Debounce** | 300 ms |
@@ -150,13 +150,13 @@ The platform has **six partially overlapping search systems**, not one. Each use
 
 ## 3. Search backends (API)
 
-All routers mount with `Depends(require_platform_user)` unless noted (`app_skeleton/api/main.py`).
+All routers mount with `Depends(require_platform_user)` unless noted (`omeia/api/main.py`).
 
 ### 3.1 Platform registry search (global overlay)
 
 | Endpoint | `GET /platform/search` |
 |----------|------------------------|
-| **File** | `app_skeleton/api/routers/research.py` (`platform_search`) |
+| **File** | `omeia/api/routers/research.py` (`platform_search`) |
 | **Engine** | Postgres `ILIKE %q%` on title/content/rationale |
 | **Tables** | `platform.notebook_entry`, `platform.research_wiki`, `platform.decision_registry` |
 | **Params** | `q`, `project_code?`, `include` (default `notebook,wiki,decisions`), `limit` |
@@ -176,7 +176,7 @@ All routers mount with `Depends(require_platform_user)` unless noted (`app_skele
 
 | Endpoint | `GET /api/search` |
 |----------|-------------------|
-| **File** | `app_skeleton/api/routers/knowledge.py` |
+| **File** | `omeia/api/routers/knowledge.py` |
 | **Modes** | `exact`, `metadata`, `semantic`, `hybrid` |
 | **Lab leg** | `search_lab_knowledge()` when semantic/hybrid |
 | **Vault leg** | `search_vault()` when metadata/exact/hybrid |
@@ -204,7 +204,7 @@ All routers mount with `Depends(require_platform_user)` unless noted (`app_skele
 
 | Endpoint | `GET /api/vault/search` |
 |----------|-------------------------|
-| **File** | `app_skeleton/api/routers/vault.py` |
+| **File** | `omeia/api/routers/vault.py` |
 | **Engine** | Postgres first, JSON manifest fallback (`raw_vault_store.py`) |
 | **Auth** | `_FIREBASE_PROTECTED` on vault routes (stricter than platform search) |
 | **Filters** | domain, project_hint, review_status, vector_status, extraction_status, uncategorized_only |
@@ -231,7 +231,7 @@ Superseded by `/platform/search` but still exist.
 
 | Endpoint | `POST /ask` |
 |----------|-------------|
-| **File** | `app_skeleton/api/routers/copilot.py` |
+| **File** | `omeia/api/routers/copilot.py` |
 | **Pipeline** | Privacy audit → PG metadata → `RAGAgent.retrieve()` → `search_lab_knowledge()` → merge/dedupe → LLM |
 | **Limit** | 12 sources max in response |
 | **Logging** | `platform.conversation` + `platform.message.retrieved_chunks` |
@@ -593,7 +593,7 @@ Phases 1–2 deliver the biggest user-visible improvement: one reliable omnibox 
 
 ---
 
-*Generated from codebase audit of `app_skeleton/` on branch working tree 2026-06-06. Merged with parallel backend and frontend subagent audits.*
+*Generated from codebase audit of `omeia/` on branch working tree 2026-06-06. Merged with parallel backend and frontend subagent audits.*
 
 
 ---
@@ -617,7 +617,7 @@ Search is fragmented across **six data planes**, not one unified index:
 | Platform research | Postgres notebook/wiki/decisions | ILIKE |
 | Project workspace | Processed JSON twins + optional Postgres `rag.*` | Client-side / ingest only; **no search API** |
 
-Router registration: `app_skeleton/api/main.py` — all API routers except `health` get `Depends(require_platform_user)`.
+Router registration: `omeia/api/main.py` — all API routers except `health` get `Depends(require_platform_user)`.
 
 ---
 
@@ -625,22 +625,22 @@ Router registration: `app_skeleton/api/main.py` — all API routers except `heal
 
 | Path | Role |
 |------|------|
-| `app_skeleton/api/routers/knowledge.py` | Lab, hybrid, unified, database search endpoints |
-| `app_skeleton/api/lab_knowledge_store.py` | Lab ingest + `search_lab_knowledge()` |
-| `app_skeleton/api/database_processor.py` | Processed JSON build, `search_section_chunks()`, section document filter |
-| `app_skeleton/api/raw_vault_store.py` | `search_vault()` Postgres + JSON fallback |
-| `app_skeleton/api/routers/vault.py` | Vault + digitalize search routes |
-| `app_skeleton/api/project_digitalization_engine.py` | `search_knowledge()` for legacy digitalization |
-| `app_skeleton/api/routers/digitalization.py` | Canonical documents (no `q` search) |
-| `app_skeleton/api/routers/research.py` | Notebook/wiki/decisions/platform unified search |
-| `app_skeleton/api/agents.py` | `RAGAgent.retrieve()` — copilot Qdrant retrieval |
-| `app_skeleton/api/routers/copilot.py` | `/ask` RAG + `/features/similarity` |
-| `app_skeleton/api/project_knowledge_extractor.py` | Project file ingest → Postgres only |
-| `app_skeleton/api/routers/datapad.py` | Project file list/preview (no search) |
-| `app_skeleton/api/feature_warehouse.py` | Sample similarity (Qdrant `feature` vectors) |
-| `app_skeleton/api/llm_client.py` | `embed()` — deterministic hashed 384-d vectors |
-| `app_skeleton/security/auth.py` | `require_platform_user` |
-| `app_skeleton/api/auth_firebase.py` | `require_firebase_user` |
+| `omeia/api/routers/knowledge.py` | Lab, hybrid, unified, database search endpoints |
+| `omeia/api/lab_knowledge_store.py` | Lab ingest + `search_lab_knowledge()` |
+| `omeia/api/database_processor.py` | Processed JSON build, `search_section_chunks()`, section document filter |
+| `omeia/api/raw_vault_store.py` | `search_vault()` Postgres + JSON fallback |
+| `omeia/api/routers/vault.py` | Vault + digitalize search routes |
+| `omeia/api/project_digitalization_engine.py` | `search_knowledge()` for legacy digitalization |
+| `omeia/api/routers/digitalization.py` | Canonical documents (no `q` search) |
+| `omeia/api/routers/research.py` | Notebook/wiki/decisions/platform unified search |
+| `omeia/api/agents.py` | `RAGAgent.retrieve()` — copilot Qdrant retrieval |
+| `omeia/api/routers/copilot.py` | `/ask` RAG + `/features/similarity` |
+| `omeia/api/project_knowledge_extractor.py` | Project file ingest → Postgres only |
+| `omeia/api/routers/datapad.py` | Project file list/preview (no search) |
+| `omeia/api/feature_warehouse.py` | Sample similarity (Qdrant `feature` vectors) |
+| `omeia/api/llm_client.py` | `embed()` — deterministic hashed 384-d vectors |
+| `omeia/security/auth.py` | `require_platform_user` |
+| `omeia/api/auth_firebase.py` | `require_firebase_user` |
 
 Duplicate unmounted copies exist (`knowledge copy.py`, `vault copy.py`, `research copy.py`) — not wired in `main.py`.
 
@@ -716,7 +716,7 @@ All order by recency (`created_at` / `updated_at` / `decision_date`), not text r
 ```
 Disk (DATABASE_ROOT)
  → database_processor.py (extract/chunk)
- → app_skeleton/data/processed_projects/lab__*.json + *.chunks.jsonl
+ → omeia/data/processed_projects/lab__*.json + *.chunks.jsonl
  → lab_knowledge_store.ingest_section_to_database()
  → Postgres rag.document_source + rag.document_chunk
  → Qdrant doc_chunks (named vector "text", corpus=lab_operations)
@@ -728,7 +728,7 @@ Trigger endpoints: `POST /api/database/process-all`, `POST /api/knowledge/lab/in
 
 ```
 Disk scan (vault_ingestion_engine)
- → raw_asset_inventory.json (app_skeleton/data/)
+ → raw_asset_inventory.json (omeia/data/)
  → platform.raw_asset_vault (Postgres)
 ```
 
@@ -1058,13 +1058,13 @@ No Escape to close; no error message in UI; unused `API_URL` props; no search st
 
 Full file copies as of audit date. Paths relative to repository root.
 
-### `app_skeleton/api/routers/knowledge.py`
+### `omeia/api/routers/knowledge.py`
 
 ```python
-from app_skeleton.security.permissions import require_role
-from app_skeleton.security.auth import require_platform_user
+from omeia.security.permissions import require_role
+from omeia.security.auth import require_platform_user
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
-from app_skeleton.api.common import *
+from omeia.api.common import *
 from typing import *
 from pydantic import BaseModel, Field
 import psycopg
@@ -1170,7 +1170,7 @@ def lab_sections_list(user: dict = Depends(require_platform_user)) -> dict:
     require_role(user, ["editor", "admin"])
     """Lab database sections with processed-twin and vault asset counts.
 
-    Processed twins are read from local ``app_skeleton/data/processed_projects/lab__*.json``
+    Processed twins are read from local ``omeia/data/processed_projects/lab__*.json``
     (not Supabase/remote Postgres). Run ``database_processor --all --refresh`` to rebuild.
     """
     return {
@@ -1407,13 +1407,13 @@ def database_asset_url(section_id: str = Query(...), relative_path: str = Query(
     }
 ```
 
-### `app_skeleton/api/routers/research.py`
+### `omeia/api/routers/research.py`
 
 ```python
-from app_skeleton.security.permissions import require_role
-from app_skeleton.security.auth import require_platform_user
+from omeia.security.permissions import require_role
+from omeia.security.auth import require_platform_user
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
-from app_skeleton.api.common import *
+from omeia.api.common import *
 from typing import *
 from pydantic import BaseModel, Field
 import psycopg
@@ -2661,13 +2661,13 @@ def toggle_checklist(req: ChecklistToggleRequest, user: dict = Depends(require_p
         raise HTTPException(status_code=500, detail=str(exc))
 ```
 
-### `app_skeleton/api/routers/copilot.py`
+### `omeia/api/routers/copilot.py`
 
 ```python
-from app_skeleton.security.permissions import require_role
-from app_skeleton.security.auth import require_platform_user
+from omeia.security.permissions import require_role
+from omeia.security.auth import require_platform_user
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
-from app_skeleton.api.common import *
+from omeia.api.common import *
 from typing import *
 from pydantic import BaseModel, Field
 import psycopg
@@ -3047,13 +3047,13 @@ def clinical_recipe(analysis_type: str) -> dict:
     return {"analysis_type": analysis_type, "script": script}
 ```
 
-### `app_skeleton/api/routers/vault.py`
+### `omeia/api/routers/vault.py`
 
 ```python
-from app_skeleton.security.permissions import require_role
-from app_skeleton.security.auth import require_platform_user
+from omeia.security.permissions import require_role
+from omeia.security.auth import require_platform_user
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
-from app_skeleton.api.common import *
+from omeia.api.common import *
 from typing import *
 from pydantic import BaseModel, Field
 import psycopg
@@ -3386,7 +3386,7 @@ def digitalize_scan(
     resume: bool = Query(False),
     max_files: Optional[int] = Query(None, ge=1, le=100000),
 ) -> dict:
-    from app_skeleton.api.project_digitalization_engine import run_digitalization
+    from omeia.api.project_digitalization_engine import run_digitalization
 
     try:
         return run_digitalization(mode="full", resume=resume, dry_run=dry_run, max_files=max_files)
@@ -3400,7 +3400,7 @@ def digitalize_project(
     dry_run: bool = Query(False),
     max_files: Optional[int] = Query(None, ge=1, le=100000),
 ) -> dict:
-    from app_skeleton.api.project_digitalization_engine import run_digitalization
+    from omeia.api.project_digitalization_engine import run_digitalization
 
     try:
         return run_digitalization(
@@ -3418,7 +3418,7 @@ def digitalize_retry_failed(
     project_name: Optional[str] = Query(None),
     limit: int = Query(500, ge=1, le=5000),
 ) -> dict:
-    from app_skeleton.api.vault_ingestion_engine import retry_failed_extractions
+    from omeia.api.vault_ingestion_engine import retry_failed_extractions
 
     return retry_failed_extractions(project_hint=project_name, limit=limit)
 
@@ -3428,7 +3428,7 @@ def digitalize_search(
     uncategorized_only: bool = Query(False),
     limit: int = Query(50, ge=1, le=200),
 ) -> dict:
-    from app_skeleton.api.project_digitalization_engine import search_knowledge
+    from omeia.api.project_digitalization_engine import search_knowledge
 
     return {"items": search_knowledge(q, uncategorized_only=uncategorized_only, limit=limit)}
 
@@ -3437,7 +3437,7 @@ def digitalize_review(
     kind: str = Query("uncategorized"),
     limit: int = Query(100, ge=1, le=500),
 ) -> dict:
-    from app_skeleton.api.project_digitalization_engine import list_review_queue
+    from omeia.api.project_digitalization_engine import list_review_queue
 
     return {"kind": kind, "items": list_review_queue(kind=kind, limit=limit)}
 
@@ -3448,7 +3448,7 @@ def digitalize_patch_review(
     review_status: Optional[str] = Query(None),
     project_candidate_id: Optional[str] = Query(None),
 ) -> dict:
-    from app_skeleton.api.project_digitalization_engine import patch_asset_review
+    from omeia.api.project_digitalization_engine import patch_asset_review
 
     return patch_asset_review(
         asset_id,
@@ -3459,7 +3459,7 @@ def digitalize_patch_review(
 
 @router.get("/api/digitalize/runs", dependencies=_FIREBASE_PROTECTED)
 def digitalize_runs(limit: int = Query(20, ge=1, le=100)) -> dict:
-    from app_skeleton.api.project_digitalization_engine import _db_conn
+    from omeia.api.project_digitalization_engine import _db_conn
     import psycopg
 
     with psycopg.connect(_db_conn(), connect_timeout=10) as conn:
@@ -3579,7 +3579,7 @@ def supabase_sync_status_endpoint() -> dict:
     return {"status": status, "last_report": last_report}
 ```
 
-### `app_skeleton/api/lab_knowledge_store.py`
+### `omeia/api/lab_knowledge_store.py`
 
 ```python
 """Canonical lab knowledge indexing: Postgres rag.* + Qdrant doc_chunks.
@@ -3603,15 +3603,15 @@ import psycopg
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
 
-from app_skeleton.api import document_extraction as de
-from app_skeleton.api.database_sections import DATABASE_SECTIONS, section_root
-from app_skeleton.api.database_processor import (
+from omeia.api import document_extraction as de
+from omeia.api.database_sections import DATABASE_SECTIONS, section_root
+from omeia.api.database_processor import (
     _iter_chunks_from_disk,
     get_section_record,
     load_processed_section,
 )
-from app_skeleton.api.llm_client import LLMClient
-from app_skeleton.api.paths import DATABASE_ROOT
+from omeia.api.llm_client import LLMClient
+from omeia.api.paths import DATABASE_ROOT
 
 LOGGER = logging.getLogger(__name__)
 
@@ -3623,7 +3623,7 @@ SCHEMA_VERSION = 1
 
 
 def _db_conn():
-    from app_skeleton.api.supabase_config import postgres_conn
+    from omeia.api.supabase_config import postgres_conn
 
     return postgres_conn()
 
@@ -4231,7 +4231,7 @@ if __name__ == "__main__":
 
 ```
 
-### `app_skeleton/api/raw_vault_store.py`
+### `omeia/api/raw_vault_store.py`
 
 ```python
 """Raw knowledge vault — JSON inventory + optional Postgres registry (Phases 2–3)."""
@@ -4249,12 +4249,12 @@ from typing import Any
 
 import psycopg
 
-from app_skeleton.api.page_registry import resolve_page_ids
-from app_skeleton.api.paths import BLUEPRINT_ROOT, DATABASE_ROOT, SCRIPTS_DIR
+from omeia.api.page_registry import resolve_page_ids
+from omeia.api.paths import BLUEPRINT_ROOT, DATABASE_ROOT, SCRIPTS_DIR
 
 LOGGER = logging.getLogger(__name__)
 
-INVENTORY_DIR = BLUEPRINT_ROOT / "app_skeleton" / "data"
+INVENTORY_DIR = BLUEPRINT_ROOT / "omeia" / "data"
 INVENTORY_JSON = INVENTORY_DIR / "raw_asset_inventory.json"
 INVENTORY_SUMMARY = INVENTORY_DIR / "raw_asset_inventory_summary.json"
 VAULT_SQL = BLUEPRINT_ROOT / "sql" / "111_raw_asset_vault.sql"
@@ -4290,7 +4290,7 @@ _PUBLIC_FIELDS = (
 
 
 def _db_conn() -> str:
-    from app_skeleton.api.supabase_config import postgres_conn
+    from omeia.api.supabase_config import postgres_conn
 
     return postgres_conn()
 
@@ -4316,7 +4316,7 @@ def _row_from_pg(record: tuple, columns: list[str]) -> dict[str, Any]:
 
 
 def ensure_vault_schema() -> None:
-    from app_skeleton.api.sql_migrations import apply_pending_migrations
+    from omeia.api.sql_migrations import apply_pending_migrations
 
     applied = apply_pending_migrations(conn_str=_db_conn())
     if applied:
@@ -4777,7 +4777,7 @@ def sync_inventory_to_postgres(*, batch_size: int = 400) -> dict[str, Any]:
                 """,
                 (DATABASE_ROOT.is_dir(),),
             )
-            from app_skeleton.storage.env import datacloud_webdav_base_url
+            from omeia.storage.env import datacloud_webdav_base_url
 
             datacloud_url = datacloud_webdav_base_url()
             cur.execute(
@@ -4850,7 +4850,7 @@ def rebuild_inventory() -> dict[str, Any]:
 
 ```
 
-### `app_skeleton/api/database_processor.py`
+### `omeia/api/database_processor.py`
 
 ```python
 """Extract, chunk, and persist lab database sections (Overview, Orders, Social, Wet-lab)."""
@@ -4864,10 +4864,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from app_skeleton.api import document_extraction as de
-from app_skeleton.api.database_sections import DATABASE_SECTIONS, section_root
-from app_skeleton.api.paths import DATABASE_ROOT, PROCESSED_DIR, PUBLIC_PROCESSED_DIR
-from app_skeleton.api.project_processor import sync_public_processed
+from omeia.api import document_extraction as de
+from omeia.api.database_sections import DATABASE_SECTIONS, section_root
+from omeia.api.paths import DATABASE_ROOT, PROCESSED_DIR, PUBLIC_PROCESSED_DIR
+from omeia.api.project_processor import sync_public_processed
 
 
 def _iter_chunks_from_disk(section_id: str) -> list[dict[str, Any]]:
@@ -5085,7 +5085,7 @@ def process_all_sections(*, refresh: bool = True) -> dict[str, Any]:
 def _vault_asset_counts_by_section() -> dict[str, int]:
     """Count vault rows whose logical_path is under each section root (when Postgres is up)."""
     try:
-        from app_skeleton.api.supabase_sync import local_postgres_conn
+        from omeia.api.supabase_sync import local_postgres_conn
 
         import psycopg
 
@@ -5364,7 +5364,7 @@ if __name__ == "__main__":
 
 ```
 
-### `app_skeleton/api/agents.py`
+### `omeia/api/agents.py`
 
 ```python
 """OMEIA copilot specialist agents.
@@ -6027,7 +6027,7 @@ class ClinicalSpatialSpecialist:
 
 ```
 
-### `app_skeleton/api/llm_client.py`
+### `omeia/api/llm_client.py`
 
 ```python
 """Provider-routed LLM client for OMEIA.
@@ -6481,7 +6481,7 @@ class LLMClient:
 
 ```
 
-### `app_skeleton/api/project_digitalization_engine.py`
+### `omeia/api/project_digitalization_engine.py`
 
 ```python
 """Project folder digitalization: scan LAB_STORAGE_ROOT, extract, store raw knowledge layer."""
@@ -6499,10 +6499,10 @@ from typing import Any, Iterator
 
 import psycopg
 
-from app_skeleton.api import document_extraction as de
-from app_skeleton.api.paths import DATABASE_ROOT, lab_storage_root, projects_roots_for_scan
-from app_skeleton.api.raw_vault_store import ensure_vault_schema
-from app_skeleton.api.vault_ingestion_engine import (
+from omeia.api import document_extraction as de
+from omeia.api.paths import DATABASE_ROOT, lab_storage_root, projects_roots_for_scan
+from omeia.api.raw_vault_store import ensure_vault_schema
+from omeia.api.vault_ingestion_engine import (
     STORAGE_PROVIDER,
     _db_conn,
     _guess_mime,
@@ -6545,7 +6545,7 @@ EXT_TYPE_MAP: dict[str, str] = {
 
 def ensure_digitalization_schema() -> None:
     ensure_vault_schema()
-    from app_skeleton.api.sql_migrations import apply_pending_migrations
+    from omeia.api.sql_migrations import apply_pending_migrations
 
     apply_pending_migrations()
 
@@ -6909,7 +6909,7 @@ def run_digitalization(
 
             resume_after: str | None = None
             if resume:
-                from app_skeleton.api.vault_ingestion_engine import _load_checkpoint
+                from omeia.api.vault_ingestion_engine import _load_checkpoint
 
                 cp = _load_checkpoint(cur, checkpoint_key)
                 if cp:
@@ -7022,7 +7022,7 @@ def run_digitalization(
                         counts["review_needed"] += 1
 
                     if counts["files_processed"] % BATCH_SIZE == 0:
-                        from app_skeleton.api.vault_ingestion_engine import _save_checkpoint
+                        from omeia.api.vault_ingestion_engine import _save_checkpoint
 
                         _save_checkpoint(
                             cur,
@@ -7180,7 +7180,7 @@ def patch_asset_review(
 
 Full file copies as of audit date. Paths relative to repository root.
 
-### `app_skeleton/ui/react_frontend/src/components/GlobalSearchOverlay.jsx`
+### `omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx`
 
 ```javascript
 import React, { useState, useEffect, useRef } from 'react';
@@ -7398,7 +7398,7 @@ export default function GlobalSearchOverlay({ isOpen, onClose, API_URL }) {
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/screens/KnowledgeSearchScreen.jsx`
+### `omeia/ui/react_frontend/src/screens/KnowledgeSearchScreen.jsx`
 
 ```javascript
 
@@ -7506,7 +7506,7 @@ export default function KnowledgeSearchScreen({ title, description }) {
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/components/DocumentFileSearch.jsx`
+### `omeia/ui/react_frontend/src/components/DocumentFileSearch.jsx`
 
 ```javascript
 import { Search } from 'lucide-react';
@@ -7543,7 +7543,7 @@ export default function DocumentFileSearch({
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/utils/documentBrowserUtils.js`
+### `omeia/ui/react_frontend/src/utils/documentBrowserUtils.js`
 
 ```javascript
 /** Shared helpers for lab document browsers (billing, overview, etc.). */
@@ -7902,7 +7902,7 @@ export function filterFilesBySubfolder(files, subfolderId) {
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx`
+### `omeia/ui/react_frontend/src/components/ChatWidget.jsx`
 
 ```javascript
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -8276,7 +8276,7 @@ export default function ChatWidget({ dbProjects = [], API_URL }) {
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/api/client.js`
+### `omeia/ui/react_frontend/src/api/client.js`
 
 ```javascript
 /**
@@ -8405,7 +8405,7 @@ export async function apiDelete(path, options = {}) {
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/App.jsx`
+### `omeia/ui/react_frontend/src/App.jsx`
 
 ```javascript
 import React, { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
@@ -8992,7 +8992,7 @@ export default App;
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/components/Sidebar.jsx`
+### `omeia/ui/react_frontend/src/components/Sidebar.jsx`
 
 ```javascript
 import React, { useMemo } from 'react';
@@ -9235,7 +9235,7 @@ export default function Sidebar({
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/components/ProjectFolderBrowser.jsx`
+### `omeia/ui/react_frontend/src/components/ProjectFolderBrowser.jsx`
 
 ```javascript
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
@@ -10030,7 +10030,7 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/components/LabDocumentsBrowser.jsx`
+### `omeia/ui/react_frontend/src/components/LabDocumentsBrowser.jsx`
 
 ```javascript
 import { useEffect, useMemo, useState } from 'react';
@@ -10532,7 +10532,7 @@ export default function LabDocumentsBrowser({
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/screens/AiLabAssistantScreen.jsx`
+### `omeia/ui/react_frontend/src/screens/AiLabAssistantScreen.jsx`
 
 ```javascript
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -11044,7 +11044,7 @@ function PromptsLibraryTab() {
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/screens/LabKnowledgeScreen.jsx`
+### `omeia/ui/react_frontend/src/screens/LabKnowledgeScreen.jsx`
 
 ```javascript
 
@@ -11271,7 +11271,7 @@ export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, desc
 
 ```
 
-### `app_skeleton/ui/react_frontend/src/components/ProjectDocumentsBrowser.jsx`
+### `omeia/ui/react_frontend/src/components/ProjectDocumentsBrowser.jsx`
 
 ```javascript
 import { useEffect, useMemo, useState } from 'react';

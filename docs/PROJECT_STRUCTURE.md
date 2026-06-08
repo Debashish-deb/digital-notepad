@@ -8,7 +8,7 @@ OMEIA-AI/
 ├── docker-compose.yml       # Local Postgres, Qdrant, Ollama (when DOCKER_LOCAL=true)
 ├── README.md
 │
-├── app_skeleton/            # Application code
+├── omeia/            # Application code
 │   ├── api/                 # FastAPI backend (port 8000)
 │   ├── ui/react_frontend/   # React SPA (port 5173)
 │   ├── ui/streamlit_app.py  # Legacy Streamlit dashboard

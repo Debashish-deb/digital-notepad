@@ -11,13 +11,14 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$SCRIPT_DIR"
 BACKEND_DIR="$PROJECT_ROOT"
-FRONTEND_DIR="$BACKEND_DIR/app_skeleton/ui/react_frontend"
+FRONTEND_DIR="$BACKEND_DIR/apps/web"
 VENV_UVICORN="$BACKEND_DIR/.venv-local/bin/uvicorn"
 if [ ! -x "$VENV_UVICORN" ]; then
   VENV_UVICORN="$BACKEND_DIR/.venv/bin/uvicorn"
 fi
 
 export OMEIA_REPO_ROOT="$PROJECT_ROOT"
+export PYTHONPATH="${PROJECT_ROOT}/apps/api/src${PYTHONPATH:+:$PYTHONPATH}"
 export DATABASE_ROOT="${DATABASE_ROOT:-$PROJECT_ROOT/../OMEIA-database}"
 export PROJECTS_ROOT="${PROJECTS_ROOT:-$DATABASE_ROOT/projects}"
 
@@ -128,9 +129,9 @@ fi
 echo "FastAPI backend http://localhost:8000"
 cd "$BACKEND_DIR" || exit 1
 if [ "$OMEIA_FRONTEND_MODE" = "prod" ]; then
-  "$VENV_UVICORN" app_skeleton.api.main:app --host 0.0.0.0 --port 8000 &
+  "$VENV_UVICORN" omeia.api.main:app --host 0.0.0.0 --port 8000 &
 else
-  "$VENV_UVICORN" app_skeleton.api.main:app --host 0.0.0.0 --port 8000 --reload &
+  "$VENV_UVICORN" omeia.api.main:app --host 0.0.0.0 --port 8000 --reload &
 fi
 BACKEND_PID=$!
 

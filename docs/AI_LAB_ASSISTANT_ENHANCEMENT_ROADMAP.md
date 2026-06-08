@@ -255,11 +255,11 @@ Run baseline **before** Phase A merges; store in `tests/baselines/`.
 | Component | Path |
 |-----------|------|
 | SQL migration | `sql/144_copilot_enhancements.sql` |
-| Ollama/hash embeddings | `app_skeleton/api/embedding_service.py` |
-| Postgres FTS | `app_skeleton/api/chunk_fts.py` + `search_service.py` |
-| Cross-encoder rerank | `app_skeleton/api/rerank_service.py` |
-| Session memory | `app_skeleton/api/chat_session_store.py` |
-| Feedback store | `app_skeleton/api/copilot_feedback_store.py` |
+| Ollama/hash embeddings | `omeia/api/embedding_service.py` |
+| Postgres FTS | `omeia/api/chunk_fts.py` + `search_service.py` |
+| Cross-encoder rerank | `omeia/api/rerank_service.py` |
+| Session memory | `omeia/api/chat_session_store.py` |
+| Feedback store | `omeia/api/copilot_feedback_store.py` |
 | Auto-regen | `chat_service._needs_evidence_regen` + one-shot regen |
 | Re-index CLI | `scripts/ingest/reindex_vectors.py` |
 | UI thumbs | `ChatWidget.jsx` + `POST /api/chat/feedback` |

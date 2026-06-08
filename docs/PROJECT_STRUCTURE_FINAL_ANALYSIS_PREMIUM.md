@@ -43,8 +43,8 @@ This document provides a comprehensive analysis of the OMEIA Digital Notepad pro
 - **Mermaid Node Limit:** 350 (prevents huge broken diagrams)
 
 **Directories Analyzed:**
-- ✓ `app_skeleton/data` → 142 files, 99.6 MB
-- ✓ `app_skeleton/storage` → 6 files, 21.4 KB
+- ✓ `omeia/data` → 142 files, 99.6 MB
+- ✓ `omeia/storage` → 6 files, 21.4 KB
 - ✓ `docs` → 102 files, 11.3 MB
 - ✓ `scripts` → 80 files, 431.7 KB
 - ✓ `configs` → 23 files, 259.6 KB
@@ -79,26 +79,26 @@ This document provides a comprehensive analysis of the OMEIA Digital Notepad pro
 
 | Rank | Name | Size | Extension | Path |
 |------|------|------|-----------|------|
-| 1 | raw_asset_inventory.json | 47.0 MB | `.json` | app_skeleton/data/ |
+| 1 | raw_asset_inventory.json | 47.0 MB | `.json` | omeia/data/ |
 | 2 | document_inventory.json | 47.0 MB | `.json` | reports/document_library_audit/first_pass/ |
 | 3 | metadata_enriched_inventory.json | 22.1 MB | `.json` | reports/document_library_audit/metadata_v2/ |
-| 4 | lab__wet_lab_files.json | 6.4 MB | `.json` | app_skeleton/data/processed_projects/ |
-| 5 | lab__wet_lab_files.chunks.jsonl | 5.3 MB | `.jsonl` | app_skeleton/data/processed_projects/ |
+| 4 | lab__wet_lab_files.json | 6.4 MB | `.json` | omeia/data/processed_projects/ |
+| 5 | lab__wet_lab_files.chunks.jsonl | 5.3 MB | `.jsonl` | omeia/data/processed_projects/ |
 | 6 | display_title_mapping_top_class.csv | 3.7 MB | `.csv` | reports/document_library_audit/metadata_v2/ |
 | 7 | HERAfreeze minus80 Manual english-ult-manual-328398h01.pdf | 3.4 MB | `.pdf` | docs/ORDERS & RELATED INFORMATION/ |
-| 8 | raw_asset_inventory.csv | 3.0 MB | `.csv` | app_skeleton/data/ |
-| 9 | NKI.json | 2.9 MB | `.json` | app_skeleton/data/processed_projects/ |
+| 8 | raw_asset_inventory.csv | 3.0 MB | `.csv` | omeia/data/ |
+| 9 | NKI.json | 2.9 MB | `.json` | omeia/data/processed_projects/ |
 | 10 | document_inventory.csv | 2.8 MB | `.csv` | reports/document_library_audit/first_pass/ |
-| 11 | NKI.chunks.jsonl | 2.6 MB | `.jsonl` | app_skeleton/data/processed_projects/ |
+| 11 | NKI.chunks.jsonl | 2.6 MB | `.jsonl` | omeia/data/processed_projects/ |
 | 12 | metadata_enriched_inventory.csv | 2.4 MB | `.csv` | reports/document_library_audit/metadata_v2/ |
 | 13 | classification_report_by_page.md | 2.2 MB | `.md` | reports/document_library_audit/ |
-| 14 | CellCycle.json | 2.2 MB | `.json` | app_skeleton/data/processed_projects/ |
-| 15 | Fanconi.json | 2.2 MB | `.json` | app_skeleton/data/processed_projects/ |
+| 14 | CellCycle.json | 2.2 MB | `.json` | omeia/data/processed_projects/ |
+| 15 | Fanconi.json | 2.2 MB | `.json` | omeia/data/processed_projects/ |
 | 16 | project_metadata_overlay.csv | 2.0 MB | `.csv` | reports/document_library_audit/metadata_v2/ |
-| 17 | iPDC_1.0.json | 2.0 MB | `.json` | app_skeleton/data/processed_projects/ |
-| 18 | lab__overview_documents.json | 1.6 MB | `.json` | app_skeleton/data/processed_projects/ |
-| 19 | iPDC_1.0.chunks.jsonl | 1.5 MB | `.jsonl` | app_skeleton/data/processed_projects/ |
-| 20 | lab__overview_documents.chunks.jsonl | 1.4 MB | `.jsonl` | app_skeleton/data/processed_projects/ |
+| 17 | iPDC_1.0.json | 2.0 MB | `.json` | omeia/data/processed_projects/ |
+| 18 | lab__overview_documents.json | 1.6 MB | `.json` | omeia/data/processed_projects/ |
+| 19 | iPDC_1.0.chunks.jsonl | 1.5 MB | `.jsonl` | omeia/data/processed_projects/ |
+| 20 | lab__overview_documents.chunks.jsonl | 1.4 MB | `.jsonl` | omeia/data/processed_projects/ |
 
 ---
 
@@ -106,9 +106,9 @@ This document provides a comprehensive analysis of the OMEIA Digital Notepad pro
 
 | Directory | Files | Size | Description |
 |-----------|-------|------|-------------|
-| app_skeleton/data | 6 | 50.2 MB | Core data directory with inventory and processed projects |
+| omeia/data | 6 | 50.2 MB | Core data directory with inventory and processed projects |
 | reports/document_library_audit/first_pass | 14 | 49.8 MB | First-pass audit reports |
-| app_skeleton/data/processed_projects | 94 | 49.3 MB | Processed project data (JSON + chunks) |
+| omeia/data/processed_projects | 94 | 49.3 MB | Processed project data (JSON + chunks) |
 | reports/document_library_audit/metadata_v2 | 21 | 34.1 MB | Metadata-enriched audit reports |
 | docs/ORDERS & RELATED INFORMATION/Order_confirmations_manuals | 2 | 3.6 MB | Order confirmation documents |
 | reports/document_library_audit | 2 | 2.4 MB | Main audit reports directory |
@@ -133,9 +133,9 @@ This document provides a comprehensive analysis of the OMEIA Digital Notepad pro
 ```mermaid
 graph TD
     n0["Project Structure Audit<br/>29 directories · 401 files · 199.0 MB"]
-    n1["📁 app_skeleton/data<br/>142 files · 3 dirs · 99.6 MB"]
+    n1["📁 omeia/data<br/>142 files · 3 dirs · 99.6 MB"]
     n0 --> n1
-    n2["📁 app_skeleton/storage<br/>6 files · 0 dirs · 21.4 KB"]
+    n2["📁 omeia/storage<br/>6 files · 0 dirs · 21.4 KB"]
     n0 --> n2
     n3["📁 docs<br/>102 files · 11 dirs · 11.3 MB"]
     n0 --> n3
@@ -151,7 +151,7 @@ graph TD
 
 ## Detailed Directory Analysis
 
-### app_skeleton/data (99.6 MB, 142 files)
+### omeia/data (99.6 MB, 142 files)
 
 **Purpose:** Core data directory containing inventory, processed projects, and ingestion reports
 
@@ -171,7 +171,7 @@ graph TD
 - Active ingestion logging with 41 timestamped report files
 - Well-organized with clear separation of concerns
 
-### app_skeleton/storage (21.4 KB, 6 files)
+### omeia/storage (21.4 KB, 6 files)
 
 **Purpose:** Storage provider implementations for different backends
 
@@ -268,7 +268,7 @@ graph TD
 
 | Level | Path | Message |
 |-------|------|---------|
-| skip | app_skeleton/storage/__pycache__ | configured skip name |
+| skip | omeia/storage/__pycache__ | configured skip name |
 | skip | scripts/__pycache__ | configured skip name |
 | skip | configs/.env | hidden path |
 | skip | configs/.env.backend.example | hidden path |
@@ -357,7 +357,7 @@ python tools/audit/structure_analyzer.py
 
 ### Analyze Specific Paths
 ```bash
-python tools/audit/structure_analyzer.py --paths app_skeleton/data docs scripts
+python tools/audit/structure_analyzer.py --paths omeia/data docs scripts
 ```
 
 ### With Hashing and Line Counting
@@ -386,8 +386,8 @@ python tools/audit/structure_analyzer.py --max-depth 5
 
 The OMEIA Digital Notepad project has a well-organized structure with clear separation of concerns:
 
-- **Data layer** (app_skeleton/data): Centralized data management with inventory and processed projects
-- **Storage layer** (app_skeleton/storage): Modular storage provider architecture
+- **Data layer** (omeia/data): Centralized data management with inventory and processed projects
+- **Storage layer** (omeia/storage): Modular storage provider architecture
 - **Documentation layer** (docs): Comprehensive lab and project documentation
 - **Automation layer** (scripts): Balanced mix of Python and shell scripts
 - **Configuration layer** (configs): Service and deployment configurations

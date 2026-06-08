@@ -402,7 +402,7 @@ flowchart TB
 |------|-------------|-------|
 | Production frontend | `npm run build` + Caddy serve `dist/` | `start.sh`, `scripts/dev/start_linux_desktop.sh`, new `Caddyfile.ui` |
 | Backup | Weekly `pg_dump` + Qdrant snapshot cron | `scripts/ops/backup_linux.sh` |
-| Monitoring | Prometheus `/metrics` middleware | `app_skeleton/api/middleware/metrics.py` |
+| Monitoring | Prometheus `/metrics` middleware | `omeia/api/middleware/metrics.py` |
 | Observability | Structured JSON logs + request_id | `common.py` lifespan |
 | Deployment safety | `validate_environment()` on startup | Already exists — add to `start_linux.sh` |
 | Node 22 | nvm in `ensure_node_for_vite.sh` | **Done** (`c7aa00c`) |
@@ -573,43 +573,43 @@ Each migration ships behind env flags with documented rollback (§11).
 
 ### CRITICAL — Phase 1
 
-- `app_skeleton/api/qdrant_collections.py`
-- `app_skeleton/api/vector_indexer.py`
-- `app_skeleton/api/knowledge_indexer.py`
-- `app_skeleton/api/chunking.py`
-- `app_skeleton/digitalization/chunker.py`
-- `app_skeleton/api/document_extraction.py`
-- `app_skeleton/api/search_service.py` (extract buckets)
-- `app_skeleton/api/raw_vault_store.py`
-- `app_skeleton/api/lab_knowledge_store.py`
-- `app_skeleton/security/auth.py`
-- `app_skeleton/api/routers/research.py`
-- `app_skeleton/api/routers/lab_static.py`
-- `app_skeleton/security/secure_files.py`
-- `app_skeleton/api/main.py` (admin router)
+- `omeia/api/qdrant_collections.py`
+- `omeia/api/vector_indexer.py`
+- `omeia/api/knowledge_indexer.py`
+- `omeia/api/chunking.py`
+- `omeia/digitalization/chunker.py`
+- `omeia/api/document_extraction.py`
+- `omeia/api/search_service.py` (extract buckets)
+- `omeia/api/raw_vault_store.py`
+- `omeia/api/lab_knowledge_store.py`
+- `omeia/security/auth.py`
+- `omeia/api/routers/research.py`
+- `omeia/api/routers/lab_static.py`
+- `omeia/security/secure_files.py`
+- `omeia/api/main.py` (admin router)
 
 ### HIGH — Phase 2–3
 
-- `app_skeleton/api/vault_ingestion_engine.py`
-- `app_skeleton/api/project_digitalization_engine.py`
-- `app_skeleton/api/project_knowledge_extractor.py`
-- `app_skeleton/api/database_processor.py`
-- `app_skeleton/api/project_processor.py`
-- `app_skeleton/digitalization/ingestion_job.py`
-- `app_skeleton/api/chat_service.py`
-- `app_skeleton/api/evidence_orchestrator.py`
-- `app_skeleton/api/routers/knowledge.py`
-- `app_skeleton/api/routers/search.py`
+- `omeia/api/vault_ingestion_engine.py`
+- `omeia/api/project_digitalization_engine.py`
+- `omeia/api/project_knowledge_extractor.py`
+- `omeia/api/database_processor.py`
+- `omeia/api/project_processor.py`
+- `omeia/digitalization/ingestion_job.py`
+- `omeia/api/chat_service.py`
+- `omeia/api/evidence_orchestrator.py`
+- `omeia/api/routers/knowledge.py`
+- `omeia/api/routers/search.py`
 
 ### MEDIUM — Phase 4–7
 
-- `app_skeleton/security/permissions.py` (new)
-- `app_skeleton/api/ocr/*`
-- `app_skeleton/api/document_library_service.py`
-- `app_skeleton/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx`
-- `app_skeleton/ui/react_frontend/src/components/GlobalSearchOverlay.jsx`
-- `app_skeleton/ui/react_frontend/src/pages/WorkspaceScreen.jsx`
-- `app_skeleton/ui/react_frontend/src/App.jsx`
+- `omeia/security/permissions.py` (new)
+- `omeia/api/ocr/*`
+- `omeia/api/document_library_service.py`
+- `omeia/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx`
+- `omeia/ui/react_frontend/src/components/GlobalSearchOverlay.jsx`
+- `omeia/ui/react_frontend/src/pages/WorkspaceScreen.jsx`
+- `omeia/ui/react_frontend/src/App.jsx`
 
 ### LOW — Phase 8
 
@@ -624,12 +624,12 @@ Each migration ships behind env flags with documented rollback (§11).
 
 | File | Reason |
 |------|--------|
-| `app_skeleton/api/docker_service_client.py` | Good pattern; working circuit breaker |
-| `app_skeleton/api/embedding_service.py` | Recent unified embed path |
-| `app_skeleton/ui/react_frontend/src/components/AuthLoginPanel.jsx` | Login UX stable |
-| `app_skeleton/api/routers/health.py` | Contract frozen for probes |
-| `app_skeleton/api/routers/image_assets.py` | Recently hardened |
-| `app_skeleton/api/image_streaming/image_streaming_service.py` | Recent tile fixes |
+| `omeia/api/docker_service_client.py` | Good pattern; working circuit breaker |
+| `omeia/api/embedding_service.py` | Recent unified embed path |
+| `omeia/ui/react_frontend/src/components/AuthLoginPanel.jsx` | Login UX stable |
+| `omeia/api/routers/health.py` | Contract frozen for probes |
+| `omeia/api/routers/image_assets.py` | Recently hardened |
+| `omeia/api/image_streaming/image_streaming_service.py` | Recent tile fixes |
 | `scripts/deploy/mac_push_to_linux.sh` | Recent guards |
 | `scripts/dev/ensure_node_for_vite.sh` | Working |
 | `docs/YOUR_SETUP.md` | Canonical ops — update only, don't restructure |

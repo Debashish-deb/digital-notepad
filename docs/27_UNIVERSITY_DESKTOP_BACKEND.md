@@ -145,7 +145,7 @@ Steps:
 
 ## Thumbnails
 
-`app_skeleton/api/thumbnail_service.py` uses `Path.expanduser().resolve()` for all roots. Fallback preview dir: `{tempdir}/omeia-previews/...` (macOS and Linux). Files larger than `THUMBNAIL_SKIP_IMAGE_BYTES` get metadata-only records.
+`omeia/api/thumbnail_service.py` uses `Path.expanduser().resolve()` for all roots. Fallback preview dir: `{tempdir}/omeia-previews/...` (macOS and Linux). Files larger than `THUMBNAIL_SKIP_IMAGE_BYTES` get metadata-only records.
 
 ---
 

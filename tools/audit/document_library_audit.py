@@ -281,8 +281,8 @@ class DocumentLibraryAuditor:
             self.project_root / "media",
             self.project_root / "projects",
             self.project_root / "docs",
-            self.project_root / "app_skeleton" / "data",
-            self.project_root / "app_skeleton" / "storage",
+            self.project_root / "omeia" / "data",
+            self.project_root / "omeia" / "storage",
         ]
         
         # Also check for environment variables

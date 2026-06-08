@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import unittest
 
-from app_skeleton.api.search_models import SearchHit
-from app_skeleton.api.search_service import (
+from omeia.api.search_models import SearchHit
+from omeia.api.search_service import (
     COPILOT_MIN_SCORE,
     INTENT_BUCKET_CAPS,
     SearchService,

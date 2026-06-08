@@ -16,12 +16,12 @@
 
 | Module | Responsibility |
 |--------|----------------|
-| `app_skeleton/storage/env.py` | Canonical env names + aliases |
-| `app_skeleton/storage/datacloud_webdav.py` | PROPFIND, MKCOL, PUT, GET stream, scan, manifest |
-| `app_skeleton/storage/pdrive_smb.py` | Read-only mount scan/manifest |
-| `app_skeleton/storage/ingestion.py` | Manifest → `platform.storage_objects` |
-| `app_skeleton/api/paths.py` | Public provider registry (no secrets) |
-| `app_skeleton/api/connector_status.py` | Production readiness flags |
+| `omeia/storage/env.py` | Canonical env names + aliases |
+| `omeia/storage/datacloud_webdav.py` | PROPFIND, MKCOL, PUT, GET stream, scan, manifest |
+| `omeia/storage/pdrive_smb.py` | Read-only mount scan/manifest |
+| `omeia/storage/ingestion.py` | Manifest → `platform.storage_objects` |
+| `omeia/api/paths.py` | Public provider registry (no secrets) |
+| `omeia/api/connector_status.py` | Production readiness flags |
 
 ## API surface (backend-only I/O)
 

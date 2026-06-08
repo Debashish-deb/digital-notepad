@@ -38,10 +38,10 @@ FINAL_DIR = REPORTS_DIR / "final_corrected"
 SECOND_PASS_DIR.mkdir(parents=True, exist_ok=True)
 FINAL_DIR.mkdir(parents=True, exist_ok=True)
 
-INVENTORY_PATH = PROJECT_ROOT / "app_skeleton" / "data" / "raw_asset_inventory.json"
-INVENTORY_SUMMARY_PATH = PROJECT_ROOT / "app_skeleton" / "data" / "raw_asset_inventory_summary.json"
+INVENTORY_PATH = PROJECT_ROOT / "omeia" / "data" / "raw_asset_inventory.json"
+INVENTORY_SUMMARY_PATH = PROJECT_ROOT / "omeia" / "data" / "raw_asset_inventory_summary.json"
 DATABASE_ROOT = PROJECT_ROOT / "database"
-PROCESSED_DIR = PROJECT_ROOT / "app_skeleton" / "data" / "processed_projects"
+PROCESSED_DIR = PROJECT_ROOT / "omeia" / "data" / "processed_projects"
 
 print("=" * 80)
 print("SECOND-PASS AUDIT AND DIGITALIZED DATA VERIFICATION")
@@ -82,7 +82,7 @@ for key, value in env_roots.items():
         file_roots_discovered[key] = value
 
 # Check for roots in backend config
-paths_file = PROJECT_ROOT / "app_skeleton" / "api" / "paths.py"
+paths_file = PROJECT_ROOT / "omeia" / "api" / "paths.py"
 if paths_file.exists():
     print(f"Found paths.py configuration file")
 

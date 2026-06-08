@@ -1,6 +1,6 @@
 # Image Viewer Contract
 
-Frontend type definitions live in `app_skeleton/ui/react_frontend/src/types/imageViewerContract.js`.
+Frontend type definitions live in `omeia/ui/react_frontend/src/types/imageViewerContract.js`.
 
 ## ImageViewerAsset
 

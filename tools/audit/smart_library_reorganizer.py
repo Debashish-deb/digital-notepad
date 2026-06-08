@@ -35,7 +35,7 @@ CATEGORY_INDEX: list[dict[str, Any]] = [
     {
         "id": "registry",
         "label": "Project Registry",
-        "folder": "app_skeleton/data/00_registry",
+        "folder": "omeia/data/00_registry",
         "description": "Core catalogs, personnel roster, processor state",
         "search_tags": ["catalog", "projects", "roster", "processor", "registry"],
         "aliases": ["projects_catalog.json", "lab_personnel_roster.json"],
@@ -45,7 +45,7 @@ CATEGORY_INDEX: list[dict[str, Any]] = [
     {
         "id": "source_inventory",
         "label": "Source Inventory",
-        "folder": "app_skeleton/data/01_source_inventory",
+        "folder": "omeia/data/01_source_inventory",
         "description": "Raw file inventory and source asset maps",
         "search_tags": ["inventory", "raw", "assets", "vault", "manifest"],
         "aliases": ["raw_asset_inventory.json", "raw_asset_inventory.csv"],
@@ -55,7 +55,7 @@ CATEGORY_INDEX: list[dict[str, Any]] = [
     {
         "id": "processed_knowledge",
         "label": "Processed Knowledge Base",
-        "folder": "app_skeleton/data/02_processed_projects",
+        "folder": "omeia/data/02_processed_projects",
         "description": "Project JSON twins, chunk indexes, search-ready exports",
         "search_tags": ["processed", "chunks", "jsonl", "digitalization", "twins"],
         "aliases": ["processed_projects"],
@@ -65,7 +65,7 @@ CATEGORY_INDEX: list[dict[str, Any]] = [
     {
         "id": "ingestion_audit",
         "label": "Import & Processing History",
-        "folder": "app_skeleton/data/03_ingestion_audit",
+        "folder": "omeia/data/03_ingestion_audit",
         "description": "Ingestion reports, failed imports, processing history",
         "search_tags": ["ingestion", "import", "sync", "audit", "pipeline"],
         "aliases": ["ingestion_reports"],
@@ -75,7 +75,7 @@ CATEGORY_INDEX: list[dict[str, Any]] = [
     {
         "id": "runtime_logs",
         "label": "Runtime Logs",
-        "folder": "app_skeleton/data/04_runtime_logs",
+        "folder": "omeia/data/04_runtime_logs",
         "description": "Application and operational logs",
         "search_tags": ["log", "runtime", "processor", "errors"],
         "aliases": ["logs"],
@@ -85,7 +85,7 @@ CATEGORY_INDEX: list[dict[str, Any]] = [
     {
         "id": "storage_providers",
         "label": "Storage Connectors",
-        "folder": "app_skeleton/storage/01_providers",
+        "folder": "omeia/storage/01_providers",
         "description": "WebDAV, SMB, R2, and cloud/local storage adapters",
         "search_tags": ["webdav", "smb", "r2", "storage", "connector"],
         "aliases": ["datacloud_webdav.py", "pdrive_smb.py", "r2_preview.py"],
@@ -95,7 +95,7 @@ CATEGORY_INDEX: list[dict[str, Any]] = [
     {
         "id": "ingestion_engine",
         "label": "Ingestion Engine",
-        "folder": "app_skeleton/storage/02_ingestion_runtime",
+        "folder": "omeia/storage/02_ingestion_runtime",
         "description": "Code that pulls files into the system",
         "search_tags": ["ingestion", "runtime", "vault"],
         "aliases": ["ingestion.py"],
@@ -105,7 +105,7 @@ CATEGORY_INDEX: list[dict[str, Any]] = [
     {
         "id": "storage_environment",
         "label": "Storage Environment",
-        "folder": "app_skeleton/storage/03_environment",
+        "folder": "omeia/storage/03_environment",
         "description": "Environment helpers and runtime path configuration",
         "search_tags": ["env", "paths", "configuration"],
         "aliases": ["env.py"],
@@ -381,10 +381,10 @@ def classify_path(root: Path, path: Path) -> MoveProposal | None:
             size_bytes=size,
         )
 
-    # --- app_skeleton/data ---
+    # --- omeia/data ---
     if name in {"projects_catalog.json", "lab_personnel_roster.json", "processor_state.json", "processor.pid"}:
         return proposal(
-            f"app_skeleton/data/00_registry/{name}",
+            f"omeia/data/00_registry/{name}",
             reason="Core registry catalog (requires --allow-data-moves + API path update)",
             lifecycle="config",
             risk="high",
@@ -392,13 +392,13 @@ def classify_path(root: Path, path: Path) -> MoveProposal | None:
 
     if name in {"raw_asset_inventory.json", "raw_asset_inventory.csv", "raw_asset_inventory_summary.json", "inventory_manifest.json"}:
         return proposal(
-            f"app_skeleton/data/01_source_inventory/{name}",
+            f"omeia/data/01_source_inventory/{name}",
             reason="Canonical source inventory (requires --allow-data-moves + API path update)",
             lifecycle="source",
             risk="high",
         )
 
-    if rp.startswith("app_skeleton/data/processed_projects/"):
+    if rp.startswith("omeia/data/processed_projects/"):
         stem = name.replace(".chunks.jsonl", "").replace(".json", "")
         if stem in LAB_PROCESSED_PREFIXES:
             sub = LAB_PROCESSED_PREFIXES[stem]
@@ -407,14 +407,14 @@ def classify_path(root: Path, path: Path) -> MoveProposal | None:
         else:
             sub = "research_projects/" + stem.replace(".", "_")
         return proposal(
-            f"app_skeleton/data/02_processed_projects/{sub}/{name}",
+            f"omeia/data/02_processed_projects/{sub}/{name}",
             reason=f"Processed twin ({stem})",
             lifecycle="processed",
             confidence=0.92,
             risk="high",
         )
 
-    if rp.startswith("app_skeleton/data/ingestion_reports/"):
+    if rp.startswith("omeia/data/ingestion_reports/"):
         if name == "sync_run_report.json":
             sub = "latest"
         elif "fail" in lower or "partial" in lower or "error" in lower:
@@ -422,18 +422,18 @@ def classify_path(root: Path, path: Path) -> MoveProposal | None:
         else:
             sub = "history"
         return proposal(
-            f"app_skeleton/data/03_ingestion_audit/{sub}/{name}",
+            f"omeia/data/03_ingestion_audit/{sub}/{name}",
             reason="Ingestion audit report (requires --allow-data-moves + API path update)",
             lifecycle="generated_report",
             confidence=0.85,
             risk="high",
         )
 
-    if rp.startswith("app_skeleton/data/logs/"):
+    if rp.startswith("omeia/data/logs/"):
         if name == "autonomous_processor.log":
-            target = "app_skeleton/data/04_runtime_logs/latest.log"
+            target = "omeia/data/04_runtime_logs/latest.log"
         else:
-            target = f"app_skeleton/data/04_runtime_logs/archived/{name}"
+            target = f"omeia/data/04_runtime_logs/archived/{name}"
         return proposal(
             target,
             reason="Runtime operational log",
@@ -441,11 +441,11 @@ def classify_path(root: Path, path: Path) -> MoveProposal | None:
             confidence=0.88,
         )
 
-    # --- app_skeleton/storage (high risk) ---
-    if rp.startswith("app_skeleton/storage/"):
+    # --- omeia/storage (high risk) ---
+    if rp.startswith("omeia/storage/"):
         if name in STORAGE_PROVIDER_FILES:
             return proposal(
-                f"app_skeleton/storage/01_providers/{name}",
+                f"omeia/storage/01_providers/{name}",
                 reason="Storage connector module",
                 lifecycle="code",
                 risk="high",
@@ -453,7 +453,7 @@ def classify_path(root: Path, path: Path) -> MoveProposal | None:
             )
         if name in STORAGE_RUNTIME_FILES:
             return proposal(
-                f"app_skeleton/storage/02_ingestion_runtime/{name}",
+                f"omeia/storage/02_ingestion_runtime/{name}",
                 reason="Ingestion runtime module",
                 lifecycle="code",
                 risk="high",
@@ -461,7 +461,7 @@ def classify_path(root: Path, path: Path) -> MoveProposal | None:
             )
         if name in STORAGE_ENV_FILES:
             return proposal(
-                f"app_skeleton/storage/03_environment/{name}",
+                f"omeia/storage/03_environment/{name}",
                 reason="Storage environment helper",
                 lifecycle="code",
                 risk="high",
@@ -585,12 +585,12 @@ def classify_path(root: Path, path: Path) -> MoveProposal | None:
 
 
 def iter_scan_paths(root: Path, *, include_docs: bool, include_reports: bool) -> Iterable[Path]:
-    roots = [root / "app_skeleton" / "data"]
+    roots = [root / "omeia" / "data"]
     if include_docs:
         roots.append(root / "docs")
     if include_reports:
         roots.append(root / "reports")
-    roots.append(root / "app_skeleton" / "storage")
+    roots.append(root / "omeia" / "storage")
 
     for base in roots:
         if not base.exists():
@@ -719,10 +719,10 @@ def _pick_canonical(paths: list[str]) -> str:
 def _quarantine_target(root: Path, prop: MoveProposal) -> str:
     name = Path(prop.current_path).name
     if prop.duplicate_group_id:
-        return f"app_skeleton/data/99_quarantine_review/duplicates/{prop.duplicate_group_id[:8]}_{name}"
+        return f"omeia/data/99_quarantine_review/duplicates/{prop.duplicate_group_id[:8]}_{name}"
     if prop.document_lifecycle == "generated_report":
         return f"reports/99_quarantine_review/obsolete_reports/{name}"
-    return f"app_skeleton/data/99_quarantine_review/unknown_category/{name}"
+    return f"omeia/data/99_quarantine_review/unknown_category/{name}"
 
 
 def write_manifests(root: Path, proposals: list[MoveProposal], stats: ScanStats, hash_groups: dict[str, list[str]]) -> Path:
@@ -957,7 +957,7 @@ def apply_moves(
             continue
         if prop.confidence < min_confidence:
             continue
-        if prop.current_path.startswith("app_skeleton/data/") and not allow_data_moves:
+        if prop.current_path.startswith("omeia/data/") and not allow_data_moves:
             continue
         if prop.document_lifecycle == "code" and prop.risk_level == "high" and not allow_code_moves:
             continue
@@ -1018,8 +1018,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--no-include-reports", action="store_false", dest="include_reports")
     p.add_argument("--no-include-docs", action="store_false", dest="include_docs")
     p.add_argument("--quarantine-only", action="store_true", help="Only output quarantine actions")
-    p.add_argument("--allow-code-moves", action="store_true", help="Allow moving app_skeleton/storage Python modules")
-    p.add_argument("--allow-data-moves", action="store_true", help="Allow moving app_skeleton/data (breaks API until paths updated)")
+    p.add_argument("--allow-code-moves", action="store_true", help="Allow moving omeia/storage Python modules")
+    p.add_argument("--allow-data-moves", action="store_true", help="Allow moving omeia/data (breaks API until paths updated)")
     p.add_argument("--rollback", type=Path, metavar="MANIFEST", help="Rollback a prior apply using rollback_manifest.json")
     return p.parse_args(argv)
 
@@ -1060,7 +1060,7 @@ def main(argv: list[str] | None = None) -> int:
         )
         print(f"Applied {len(applied)} moves. Rollback manifest updated.")
         if not args.allow_data_moves:
-            print("Note: app_skeleton/data moves were skipped (use --allow-data-moves after updating API paths).")
+            print("Note: omeia/data moves were skipped (use --allow-data-moves after updating API paths).")
     else:
         print("\nDry-run complete. Review manifests before running with --apply.")
 

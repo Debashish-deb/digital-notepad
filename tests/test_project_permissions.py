@@ -6,9 +6,9 @@ from unittest.mock import MagicMock
 import pytest
 from fastapi import HTTPException
 
-from app_skeleton.api.platform_flags import project_rbac_enabled
-from app_skeleton.security.auth import resolve_researcher
-from app_skeleton.security.permissions import (
+from omeia.api.platform_flags import project_rbac_enabled
+from omeia.security.auth import resolve_researcher
+from omeia.security.permissions import (
     can_access_project,
     ensure_project_access,
     filter_projects_for_user,
@@ -39,7 +39,7 @@ def test_can_access_project_blocks_unauthorized(monkeypatch: pytest.MonkeyPatch)
 
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(
-            "app_skeleton.security.permissions.project_codes_for_user",
+            "omeia.security.permissions.project_codes_for_user",
             lambda _cur, _user: {"SPACE"},
         )
         assert can_access_project(user, "SPACE", cur=cur) is True
@@ -53,7 +53,7 @@ def test_ensure_project_access_raises_403(monkeypatch: pytest.MonkeyPatch) -> No
 
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(
-            "app_skeleton.security.permissions.project_codes_for_user",
+            "omeia.security.permissions.project_codes_for_user",
             lambda _cur, _user: {"SPACE"},
         )
         ensure_project_access(user, "SPACE", cur=cur)
@@ -74,7 +74,7 @@ def test_filter_projects_for_user_non_admin(monkeypatch: pytest.MonkeyPatch) -> 
 
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(
-            "app_skeleton.security.permissions.project_codes_for_user",
+            "omeia.security.permissions.project_codes_for_user",
             lambda _cur, _user: {"SPACE", "EYEMT"},
         )
         filtered = filter_projects_for_user(user, projects, cur)

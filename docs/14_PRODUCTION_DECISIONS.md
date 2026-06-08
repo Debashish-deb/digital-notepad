@@ -7,7 +7,7 @@
 | Topic | Decision |
 |-------|----------|
 | **Platform admins** | `anniina.farkkila@helsinki.fi`, `debashish.deb@helsinki.fi`, `joonas.jukonen@helsinki.fi` |
-| **Allowlist source** | `app_skeleton/data/lab_personnel_roster.json` (from lab-newspaper-site); inferred emails use `firstname.lastname@helsinki.fi` (ä→a, ö→o, å→a) |
+| **Allowlist source** | `omeia/data/lab_personnel_roster.json` (from lab-newspaper-site); inferred emails use `firstname.lastname@helsinki.fi` (ä→a, ö→o, å→a) |
 | **Research Materials** | Under **Projects** (`database/projects/RESEARCH MATERIALS/`); Overview nav is a lens only |
 | **Personnel roster** | Public lab site + `Overview/PERSONNEL/` on disk; treat as **tentative** until HR-confirmed |
 | **Dated exports `*-20260602T*`** | Do not delete; index metadata; mark possible superseded; human review |
@@ -59,7 +59,7 @@ Supabase document sync on free tier: **`docs/25_SUPABASE_SYNC_POLICY.md`**.
 - `docs/16–23` — connector design, ingestion, validation, registry, safety, workers
 - `configs/.env.example` — all variable names
 - `configs/FIREBASE_WEB_SETUP.md` — full Console SDK snippet + what OMEIA uses
-- `app_skeleton/api/firebase_app.py` — Firebase Admin init
-- `app_skeleton/ui/react_frontend/src/config/firebase.js` — web config + optional Analytics
-- `app_skeleton/api/connector_status.py` — readiness summary
-- `app_skeleton/data/lab_personnel_roster.json` — members + admin emails
+- `omeia/api/firebase_app.py` — Firebase Admin init
+- `omeia/ui/react_frontend/src/config/firebase.js` — web config + optional Analytics
+- `omeia/api/connector_status.py` — readiness summary
+- `omeia/data/lab_personnel_roster.json` — members + admin emails

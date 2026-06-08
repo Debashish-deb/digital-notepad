@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 220" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="ds-teal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5eead4" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#0d9488" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <!-- FAIR data layers -->
+  <ellipse cx="120" cy="44" rx="72" ry="20" stroke="url(#ds-teal)" stroke-width="2" opacity="0.58"/>
+  <path d="M48 44v40c0 11 32.2 20 72 20s72-9 72-20V44" stroke="#5eead4" stroke-width="2" opacity="0.52"/>
+  <ellipse cx="120" cy="84" rx="72" ry="20" stroke="#5eead4" stroke-width="2" opacity="0.55"/>
+  <path d="M48 84v40c0 11 32.2 20 72 20s72-9 72-20V84" stroke="#5eead4" stroke-width="2" opacity="0.48"/>
+  <ellipse cx="120" cy="124" rx="72" ry="20" stroke="#5eead4" stroke-width="2" opacity="0.52"/>
+  <path d="M48 124v32c0 11 32.2 20 72 20s72-9 72-20v-32" stroke="#5eead4" stroke-width="2" opacity="0.45"/>
+  <!-- Data flow arrows -->
+  <path d="M200 56c16 10 28 22 32 36M200 96c16 10 28 22 32 36" stroke="#5eead4" stroke-width="1.2" opacity="0.35" stroke-dasharray="4 4"/>
+  <circle cx="236" cy="44" r="5" fill="#2dd4bf" opacity="0.42"/>
+  <circle cx="244" cy="72" r="4" fill="#5eead4" opacity="0.38"/>
+  <circle cx="240" cy="100" r="5" fill="#14b8a6" opacity="0.4"/>
+  <!-- FAIR badge nodes -->
+  <circle cx="200" cy="168" r="22" stroke="#5eead4" stroke-width="1.5" opacity="0.45"/>
+  <text x="200" y="164" text-anchor="middle" fill="#5eead4" font-size="7" font-weight="700" opacity="0.55" font-family="system-ui,sans-serif">F</text>
+  <text x="200" y="174" text-anchor="middle" fill="#5eead4" font-size="7" font-weight="700" opacity="0.5" font-family="system-ui,sans-serif">A I R</text>
+  <!-- Cloud / remote storage -->
+  <path d="M48 168c0-12 10-20 22-20 2-14 16-22 30-18 14 4 22 18 18 32 12 2 20 12 16 24-4 12-16 18-28 16H56c-12 0-20-10-20-22 0-8 6-14 12-12z" stroke="#5eead4" stroke-width="1.5" opacity="0.42"/>
+  <!-- Tier labels -->
+  <path d="M72 52h16M72 92h20M72 132h14" stroke="#2dd4bf" stroke-width="1" opacity="0.32"/>
+  <circle cx="64" cy="52" r="3" fill="#5eead4" opacity="0.4"/>
+  <circle cx="64" cy="92" r="3" fill="#14b8a6" opacity="0.38"/>
+  <circle cx="64" cy="132" r="3" fill="#2dd4bf" opacity="0.36"/>
+</svg>

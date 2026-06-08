@@ -27,13 +27,13 @@ class TestProjectDigitalization(unittest.TestCase):
             raise unittest.SkipTest(
                 "Test database unavailable (set TEST_DATABASE_URL or local POSTGRES_CONN)"
             )
-        from app_skeleton.api.project_digitalization_engine import ensure_digitalization_schema
+        from omeia.api.project_digitalization_engine import ensure_digitalization_schema
 
         ensure_digitalization_schema()
 
     def test_scan_one_project(self) -> None:
-        from app_skeleton.api import paths
-        from app_skeleton.api.project_digitalization_engine import run_digitalization
+        from omeia.api import paths
+        from omeia.api.project_digitalization_engine import run_digitalization
 
         paths.PROJECTS_ROOT = FIXTURES_ROOT
         report = run_digitalization(
@@ -48,8 +48,8 @@ class TestProjectDigitalization(unittest.TestCase):
     @pytest.mark.requires_database
     def test_knowledge_assets_registered_even_on_edge(self) -> None:
         import psycopg
-        from app_skeleton.api import paths
-        from app_skeleton.api.project_digitalization_engine import run_digitalization
+        from omeia.api import paths
+        from omeia.api.project_digitalization_engine import run_digitalization
 
         paths.PROJECTS_ROOT = FIXTURES_ROOT
         run_digitalization(mode="project", project_name=FIXTURE_PROJECT, max_files=50)
@@ -68,7 +68,7 @@ class TestProjectDigitalization(unittest.TestCase):
         self.assertGreater(n, 0)
 
     def test_search_and_review_api(self) -> None:
-        from app_skeleton.api.main import app
+        from omeia.api.main import app
 
         client = TestClient(app)
         r = client.get("/api/digitalize/review", params={"kind": "uncategorized", "limit": 5})
@@ -77,8 +77,8 @@ class TestProjectDigitalization(unittest.TestCase):
         self.assertEqual(r2.status_code, 200)
 
     def test_dry_run(self) -> None:
-        from app_skeleton.api import paths
-        from app_skeleton.api.project_digitalization_engine import run_digitalization
+        from omeia.api import paths
+        from omeia.api.project_digitalization_engine import run_digitalization
 
         paths.PROJECTS_ROOT = FIXTURES_ROOT
         report = run_digitalization(mode="project", project_name=FIXTURE_PROJECT, dry_run=True)
@@ -86,7 +86,7 @@ class TestProjectDigitalization(unittest.TestCase):
         self.assertGreater(report["counts"]["files_scanned"], 0)
 
     def test_detect_file_types(self) -> None:
-        from app_skeleton.api.project_digitalization_engine import detect_file_type
+        from omeia.api.project_digitalization_engine import detect_file_type
 
         self.assertEqual(detect_file_type(Path("a.pdf")), "document")
         self.assertEqual(detect_file_type(Path("b.csv")), "spreadsheet")

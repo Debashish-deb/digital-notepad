@@ -131,7 +131,7 @@ Restore requires `--confirm-restore` (destructive Postgres overwrite). **Do not 
 ### 9. Frontend production build
 
 ```
-cd app_skeleton/ui/react_frontend && npm run build  → ✓
+cd omeia/ui/react_frontend && npm run build  → ✓
 dist/index.html present
 ```
 
@@ -231,7 +231,7 @@ python3 scripts/ops/validate_platform.py
 python3 scripts/search/run_search_qa.py
 python3 scripts/search/run_ai_lab_assistant_eval.py --role admin
 bash scripts/ops/backup_linux.sh --dry-run
-cd app_skeleton/ui/react_frontend && npm run build
+cd omeia/ui/react_frontend && npm run build
 curl -s http://127.0.0.1:8000/health | jq .
 curl -s http://127.0.0.1:6333/collections | jq .
 curl -s http://127.0.0.1:11434/ | head

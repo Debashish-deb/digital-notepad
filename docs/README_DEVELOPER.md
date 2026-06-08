@@ -23,7 +23,7 @@ graph TD
 
 ## 🛠️ Modifying & Extending Agents
 
-All specialist agent implementations reside inside [app_skeleton/api/agents.py](file:///home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/api/agents.py). 
+All specialist agent implementations reside inside [omeia/api/agents.py](file:///home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/omeia/api/agents.py). 
 
 ### 1. Adding a new Installation Recipe
 To add a new tool or OS installation step, edit the `RECIPES` dictionary inside `InstallationSpecialist`:
@@ -42,7 +42,7 @@ To add a new tool or OS installation step, edit the `RECIPES` dictionary inside 
 To adjust cluster execution structures, update the `SLURM_TEMPLATE` property within the `LumiHpcAgent` class in `agents.py`.
 
 ### 3. Adding Environment Checkers
-Place new checker scripts (shell or Python) in the `scripts/` directory. Make them executable, and register the script endpoint mapping within the `/run_checker` route in [app_skeleton/api/main.py](file:///home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/app_skeleton/api/main.py).
+Place new checker scripts (shell or Python) in the `scripts/` directory. Make them executable, and register the script endpoint mapping within the `/run_checker` route in [omeia/api/main.py](file:///home/debdeba/Documents/scripts/farkki_ai_platform_blueprint/omeia/api/main.py).
 
 ## 🩺 Automated Testing
 Run automated unit tests covering RAG context loading, installation steps, log parsing, and the 14 researcher test questions:

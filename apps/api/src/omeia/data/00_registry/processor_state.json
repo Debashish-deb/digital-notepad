@@ -1,0 +1,91 @@
+{
+  "pid": null,
+  "started_at": "2026-06-03T18:37:59.763075+00:00",
+  "mode": "stopped",
+  "interval_sec": 3600,
+  "steps": [
+    "vault",
+    "digitalize",
+    "supabase_sync"
+  ],
+  "updated_at": "2026-06-04T05:23:49.435832+00:00",
+  "errors": [
+    "digitalize:prepared statement \"_pg3_0\" already exists",
+    "digitalize:prepared statement \"_pg3_0\" already exists",
+    "digitalize:prepared statement \"_pg3_0\" already exists",
+    "digitalize:prepared statement \"_pg3_0\" already exists",
+    "vault:error",
+    "digitalize:consuming input failed: server closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request.\nserver closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request.",
+    "vault:error",
+    "vault:error",
+    "vault:error",
+    "vault:error"
+  ],
+  "last_step": "supabase_sync",
+  "checkpoint": {
+    "vault": {
+      "roots": [
+        "/Users/debashishdeb/Downloads/OMEIA-AI/database"
+      ],
+      "resume": true
+    },
+    "digitalize": {
+      "resume": true
+    }
+  },
+  "last_run_at": "2026-06-04T04:59:21.023802+00:00",
+  "last_run": {
+    "started_at": "2026-06-04T04:55:04.326505+00:00",
+    "steps_requested": [
+      "vault",
+      "digitalize",
+      "supabase_sync"
+    ],
+    "steps": {
+      "vault": {
+        "status": "error",
+        "roots": [
+          {
+            "scan_root": "/Users/debashishdeb/Downloads/OMEIA-AI/database",
+            "status": "error",
+            "detail": "unsupported Unicode escape sequence\nDETAIL:  \\u0000 cannot be converted to text.\nCONTEXT:  JSON data, line 1: ...00'\", \"Producer\": \"Adobe PSL 1.2e for Canon\\u0000...\nunnamed portal parameter $25 = '...'"
+          }
+        ]
+      },
+      "digitalize": {
+        "status": "ok",
+        "run_id": "20260604T045917Z_dig_e2f1a788",
+        "mode": "full",
+        "storage_root": "/Users/debashishdeb/Downloads/OMEIA-AI/database/projects",
+        "project_name": null,
+        "dry_run": false,
+        "enable_ocr": false,
+        "enable_vectors": false,
+        "finished_at": "2026-06-04T04:59:21.021470+00:00",
+        "counts": {
+          "folders_scanned": 0,
+          "files_scanned": 6,
+          "files_processed": 6,
+          "files_skipped": 0,
+          "files_failed": 0,
+          "documents_extracted": 3,
+          "tables_extracted": 0,
+          "scripts_extracted": 0,
+          "logs_extracted": 0,
+          "large_metadata_only": 0,
+          "uncategorized": 5,
+          "review_needed": 5,
+          "unsupported": 0
+        },
+        "report_path": "/Users/debashishdeb/Downloads/OMEIA-AI/farkki_ai_platform_blueprint/omeia/data/ingestion_reports/ingestion_20260604T045917Z_dig_e2f1a788.json"
+      },
+      "supabase_sync": {
+        "status": "skipped",
+        "reason": "SUPABASE_SYNC_ENABLED=false"
+      }
+    },
+    "finished_at": "2026-06-04T04:59:21.023802+00:00"
+  },
+  "runs_completed": 9,
+  "stopped_at": "2026-06-04T05:23:49.434960+00:00"
+}

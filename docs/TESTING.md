@@ -7,7 +7,7 @@
 pytest tests/ -q
 
 # Frontend
-cd app_skeleton/ui/react_frontend && npm run build && npm run lint
+cd omeia/ui/react_frontend && npm run build && npm run lint
 ```
 
 ## Test database safety
@@ -82,7 +82,7 @@ Register in `pytest.ini` if adding new markers.
 ## Frontend validation
 
 ```bash
-cd app_skeleton/ui/react_frontend
+cd omeia/ui/react_frontend
 npm run build    # must pass before merge
 npm run lint     # incremental cleanup; hook deps not mass-changed in phase 1
 ```

@@ -2,7 +2,7 @@
 
 **Scope:** Entire digital-notepad / OMEIA-AI platform — frontend, backend, data, search, RAG, AI, projects, documents, imaging, storage, auth, deployment, networking, observability, scalability  
 **Perspective:** CTO · Principal Architect · Security Architect · Platform Architect · Staff Frontend · Staff Backend  
-**Codebase:** `app_skeleton/` (FastAPI + React) on branch `cursor/unified-search-ai-lab-assistant`  
+**Codebase:** `omeia/` (FastAPI + React) on branch `cursor/unified-search-ai-lab-assistant`  
 **Date:** 2026-06-08 (re-scored 2026-06-08 after Phases 1–3 merge)  
 **Cross-references:** `docs/KNOWLEDGE_DOCUMENT_SUBSYSTEM_REVIEW.md`, `docs/PROJECT_INTELLIGENCE_SUBSYSTEM_REVIEW.md`, `docs/IMAGING_SUBSYSTEM_REVIEW.md`, `docs/YOUR_SETUP.md`, `docs/LINUX_PRIMARY_DEPLOYMENT.md`
 
@@ -62,7 +62,7 @@ The platform is organized into five cooperating planes:
 | Plane | Authority | Primary consumers |
 |-------|-----------|-------------------|
 | **Presentation** | React 19 + Vite 8 SPA | Lab researchers, admins |
-| **API / orchestration** | FastAPI 0.4.0 (`app_skeleton/api/`) | All UI + copilot |
+| **API / orchestration** | FastAPI 0.4.0 (`omeia/api/`) | All UI + copilot |
 | **Knowledge & retrieval** | Postgres `rag.*` + `platform.*` + Qdrant + JSON twins | Search, copilot, document library |
 | **Filesystem corpus** | `DATABASE_ROOT` + `PROJECTS_ROOT` | Ingestion, previews, imaging, datapad |
 | **Infrastructure** | Docker Compose, Tailscale, optional biomedical/imaging profiles | LLM, vectors, HPC-adjacent workloads |
@@ -119,7 +119,7 @@ OMEIA is an **ambitious, domain-rich research platform** that successfully demon
 | Legacy copilot | `routers/copilot.py` | `/ask`, install guide, clinical tools |
 | Research knowledge | `routers/research_knowledge.py`, `research_knowledge_store.py` | Crawl, publications, datasets |
 | Image streaming | `routers/image_assets.py`, `image_streaming/` | Tiles, thumbnails, manifest |
-| Storage connectors | `routers/storage.py`, `app_skeleton/storage/` | DataCloud WebDAV, P-drive SMB |
+| Storage connectors | `routers/storage.py`, `omeia/storage/` | DataCloud WebDAV, P-drive SMB |
 | Biomedical models client | `routers/biomedical_models.py`, `biomedical_models_client.py` | Gateway to Docker LLM stack |
 | Agent categories | `routers/agent_categories.py`, `agent_orchestrator/` | Multi-agent category runs |
 | Secure files | `security/secure_files.py` | Authenticated file download/preview |
@@ -1124,7 +1124,7 @@ For engineers onboarding or auditing the platform, review in this order:
 | 9 | **Document library** | `document_library_service.py`, `ScientificFileExplorer.jsx` | Primary browse UX |
 | 10 | **Database schema** | `sql/111_raw_asset_vault.sql`, `sql/140_document_digitalization_pipeline.sql`, `sql/040_rag_audit_security_schema.sql` | Data model |
 | 11 | **Imaging** | `image_streaming_service.py`, `ImageTileViewer.jsx` | Performance-sensitive |
-| 12 | **Storage connectors** | `app_skeleton/storage/`, `routers/storage.py` | External integrations |
+| 12 | **Storage connectors** | `omeia/storage/`, `routers/storage.py` | External integrations |
 | 13 | **Tests** | `tests/test_search_service.py`, `tests/test_auth_protected_routes.py` | Expected behavior |
 | 14 | **Subsystem deep dives** | `docs/KNOWLEDGE_*`, `docs/PROJECT_*`, `docs/IMAGING_*` | Domain detail |
 
@@ -1138,57 +1138,57 @@ Priority-ordered. **Do not start refactors without tests** for `search_service`,
 
 | File | Lines (approx) | Why refactor |
 |------|----------------|--------------|
-| `app_skeleton/api/search_service.py` | 1800+ | Extract bucket fetchers; single extension point for new sources |
-| `app_skeleton/api/common.py` | 890+ | Remove star-import; split project fetch, static mounts, LLM init |
-| `app_skeleton/api/document_extraction.py` | Large | God-module; split extract / chunk / vault |
-| `app_skeleton/api/project_knowledge_extractor.py` | Medium | Merge into shared indexer or deprecate |
-| `app_skeleton/api/lab_knowledge_store.py` | Medium | Align chunk dim, FTS, Qdrant naming with `qdrant_collections.py` |
-| `app_skeleton/api/raw_vault_store.py` | Medium | Eliminate JSON fallback authority |
-| `app_skeleton/api/routers/research.py` | 1200+ | Bind user identity; split notebook vs platform CRUD |
-| `app_skeleton/security/auth.py` | 137 | Add project scope from `platform.researcher` |
+| `omeia/api/search_service.py` | 1800+ | Extract bucket fetchers; single extension point for new sources |
+| `omeia/api/common.py` | 890+ | Remove star-import; split project fetch, static mounts, LLM init |
+| `omeia/api/document_extraction.py` | Large | God-module; split extract / chunk / vault |
+| `omeia/api/project_knowledge_extractor.py` | Medium | Merge into shared indexer or deprecate |
+| `omeia/api/lab_knowledge_store.py` | Medium | Align chunk dim, FTS, Qdrant naming with `qdrant_collections.py` |
+| `omeia/api/raw_vault_store.py` | Medium | Eliminate JSON fallback authority |
+| `omeia/api/routers/research.py` | 1200+ | Bind user identity; split notebook vs platform CRUD |
+| `omeia/security/auth.py` | 137 | Add project scope from `platform.researcher` |
 
 ### P1 — Ingest & index pipeline
 
 | File | Why |
 |------|-----|
-| `app_skeleton/api/vault_ingestion_engine.py` | Split scan / extract / sync |
-| `app_skeleton/api/project_digitalization_engine.py` | Delegate chunk/embed to `knowledge_indexer.py` |
-| `app_skeleton/api/vector_indexer.py` | Central embed contract |
-| `app_skeleton/api/qdrant_research_indexer.py` | Single VECTOR_SIZE source of truth |
-| `app_skeleton/digitalization/ingestion_job.py` | Add embed + Qdrant hook at job end |
-| `app_skeleton/api/project_processor.py` | Incremental scan; extract parsers submodule |
-| `app_skeleton/api/database_processor.py` | Align with lab_knowledge_store single path |
+| `omeia/api/vault_ingestion_engine.py` | Split scan / extract / sync |
+| `omeia/api/project_digitalization_engine.py` | Delegate chunk/embed to `knowledge_indexer.py` |
+| `omeia/api/vector_indexer.py` | Central embed contract |
+| `omeia/api/qdrant_research_indexer.py` | Single VECTOR_SIZE source of truth |
+| `omeia/digitalization/ingestion_job.py` | Add embed + Qdrant hook at job end |
+| `omeia/api/project_processor.py` | Incremental scan; extract parsers submodule |
+| `omeia/api/database_processor.py` | Align with lab_knowledge_store single path |
 
 ### P1 — API & services
 
 | File | Why |
 |------|-----|
-| `app_skeleton/api/chat_service.py` | Extract RAG vs orchestrator vs greeting paths |
-| `app_skeleton/api/routers/vault.py` | Split ingest / search / review |
-| `app_skeleton/api/routers/knowledge.py` | Remove legacy `/api/search` after migration |
-| `app_skeleton/api/main.py` | Explicit imports only; router registry table |
-| `app_skeleton/api/docker_service_client.py` | Already good — use as pattern for other clients |
+| `omeia/api/chat_service.py` | Extract RAG vs orchestrator vs greeting paths |
+| `omeia/api/routers/vault.py` | Split ingest / search / review |
+| `omeia/api/routers/knowledge.py` | Remove legacy `/api/search` after migration |
+| `omeia/api/main.py` | Explicit imports only; router registry table |
+| `omeia/api/docker_service_client.py` | Already good — use as pattern for other clients |
 
 ### P2 — Imaging & files
 
 | File | Why |
 |------|-----|
-| `app_skeleton/api/image_streaming/image_streaming_service.py` | Async decode; thumbnail region read |
-| `app_skeleton/api/image_streaming/storage_adapter.py` | Cache `lookup_asset_row` |
-| `app_skeleton/api/document_library_service.py` | Split enrichment vs search vs preview |
-| `app_skeleton/api/routers/lab_static.py` | Deprecate in favor of `secure_files` |
-| `app_skeleton/security/secure_files.py` | Extend providers; unify static paths |
+| `omeia/api/image_streaming/image_streaming_service.py` | Async decode; thumbnail region read |
+| `omeia/api/image_streaming/storage_adapter.py` | Cache `lookup_asset_row` |
+| `omeia/api/document_library_service.py` | Split enrichment vs search vs preview |
+| `omeia/api/routers/lab_static.py` | Deprecate in favor of `secure_files` |
+| `omeia/security/secure_files.py` | Extend providers; unify static paths |
 
 ### P2 — Frontend
 
 | File | Why |
 |------|-----|
-| `app_skeleton/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx` | 1200+ lines; extract metadata panel |
-| `app_skeleton/ui/react_frontend/src/pages/WorkspaceScreen.jsx` | Tab shell vs data hooks |
-| `app_skeleton/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx` | Consolidate into `GlobalSearchOverlay` |
-| `app_skeleton/ui/react_frontend/src/services/ApiContext.jsx` | Split auth vs API config |
-| `app_skeleton/ui/react_frontend/src/App.jsx` | Screen registry vs routes |
-| `app_skeleton/ui/react_frontend/src/pages/LabKnowledgeScreen.jsx` | API-first catalog vs static JSON |
+| `omeia/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx` | 1200+ lines; extract metadata panel |
+| `omeia/ui/react_frontend/src/pages/WorkspaceScreen.jsx` | Tab shell vs data hooks |
+| `omeia/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx` | Consolidate into `GlobalSearchOverlay` |
+| `omeia/ui/react_frontend/src/services/ApiContext.jsx` | Split auth vs API config |
+| `omeia/ui/react_frontend/src/App.jsx` | Screen registry vs routes |
+| `omeia/ui/react_frontend/src/pages/LabKnowledgeScreen.jsx` | API-first catalog vs static JSON |
 
 ### P3 — Config & deploy
 

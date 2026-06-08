@@ -33,35 +33,35 @@ While the architecture is well-designed with proper separation of concerns, seve
 
 | Component | File | Purpose |
 |-----------|------|---------|
-| **Copilot Router** | `app_skeleton/api/routers/copilot.py` | Main API endpoints for AI assistant |
-| **Chat Service** | `app_skeleton/api/chat_service.py` | Chat orchestration with RAG and intent routing |
-| **Search Service** | `app_skeleton/api/search_service.py` | Unified search across multiple data sources |
-| **LLM Client** | `app_skeleton/api/llm_client.py` | Provider routing with fallback (OpenAI, Groq, Ollama, etc.) |
-| **Privacy Guardrails** | `app_skeleton/api/privacy_guardrails.py` | PII redaction before external LLM calls |
-| **Intent Classifier** | `app_skeleton/api/chat_intent.py` | Query intent detection and routing |
-| **Specialist Agents** | `app_skeleton/api/agents.py` | RAG, installation, troubleshooting agents |
-| **Lab Knowledge Store** | `app_skeleton/api/lab_knowledge_store.py` | Lab document indexing (PostgreSQL + Qdrant) |
-| **Database Processor** | `app_skeleton/api/database_processor.py` | Lab section extraction and chunking |
-| **Frontend Chat Widget** | `app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx` | React chat interface |
-| **AI Assistant Screen** | `app_skeleton/ui/react_frontend/src/screens/AiLabAssistantScreen.jsx` | Main AI assistant UI |
-| **Agent Orchestrator** | `app_skeleton/api/agent_orchestrator/orchestrator.py` | Multi-agent category-based routing |
-| **Agent RAG Context** | `app_skeleton/api/agent_orchestrator/rag_context.py` | Shared retrieval context for agents |
-| **Agent Registry** | `app_skeleton/api/agent_orchestrator/registry.py` | Agent and category configuration |
-| **Agent Trace Store** | `app_skeleton/api/agent_orchestrator/trace_store.py` | In-memory agent run traces |
-| **Research Knowledge Store** | `app_skeleton/api/research_knowledge_store.py` | External research indexing (Postgres + Qdrant) |
-| **Research Crawler** | `app_skeleton/api/research_crawler.py` | Web crawling for research KB |
-| **Document Library Service** | `app_skeleton/api/document_library_service.py` | Faceted document library search |
-| **Raw Vault Store** | `app_skeleton/api/raw_vault_store.py` | Asset vault with PostgreSQL registry |
-| **Feature Warehouse** | `app_skeleton/api/feature_warehouse.py` | Clinical feature similarity search |
-| **Answer Grounding Service** | `app_skeleton/api/answer_grounding_service.py` | Citation enforcement and validation |
-| **Docker Service Client** | `app_skeleton/api/docker_service_client.py` | Docker service health and circuit breakers |
-| **People Index** | `app_skeleton/api/people_index.py` | Lab member directory search |
-| **Entity Relation Extractor** | `app_skeleton/api/entity_relation_extractor.py` | Knowledge graph extraction |
-| **Scientific Document Parser** | `app_skeleton/api/scientific_document_parser.py` | Research document chunking |
-| **Dataset Fetcher** | `app_skeleton/api/dataset_fetcher.py` | Dataset metadata registry |
-| **Research Search Service** | `app_skeleton/api/research_search_service.py` | Research-specific search scoring |
-| **Qdrant Research Indexer** | `app_skeleton/api/qdrant_research_indexer.py` | Research vector indexing |
-| **Library Taxonomy** | `app_skeleton/api/library_taxonomy.py` | Smart document categorization |
+| **Copilot Router** | `omeia/api/routers/copilot.py` | Main API endpoints for AI assistant |
+| **Chat Service** | `omeia/api/chat_service.py` | Chat orchestration with RAG and intent routing |
+| **Search Service** | `omeia/api/search_service.py` | Unified search across multiple data sources |
+| **LLM Client** | `omeia/api/llm_client.py` | Provider routing with fallback (OpenAI, Groq, Ollama, etc.) |
+| **Privacy Guardrails** | `omeia/api/privacy_guardrails.py` | PII redaction before external LLM calls |
+| **Intent Classifier** | `omeia/api/chat_intent.py` | Query intent detection and routing |
+| **Specialist Agents** | `omeia/api/agents.py` | RAG, installation, troubleshooting agents |
+| **Lab Knowledge Store** | `omeia/api/lab_knowledge_store.py` | Lab document indexing (PostgreSQL + Qdrant) |
+| **Database Processor** | `omeia/api/database_processor.py` | Lab section extraction and chunking |
+| **Frontend Chat Widget** | `omeia/ui/react_frontend/src/components/ChatWidget.jsx` | React chat interface |
+| **AI Assistant Screen** | `omeia/ui/react_frontend/src/screens/AiLabAssistantScreen.jsx` | Main AI assistant UI |
+| **Agent Orchestrator** | `omeia/api/agent_orchestrator/orchestrator.py` | Multi-agent category-based routing |
+| **Agent RAG Context** | `omeia/api/agent_orchestrator/rag_context.py` | Shared retrieval context for agents |
+| **Agent Registry** | `omeia/api/agent_orchestrator/registry.py` | Agent and category configuration |
+| **Agent Trace Store** | `omeia/api/agent_orchestrator/trace_store.py` | In-memory agent run traces |
+| **Research Knowledge Store** | `omeia/api/research_knowledge_store.py` | External research indexing (Postgres + Qdrant) |
+| **Research Crawler** | `omeia/api/research_crawler.py` | Web crawling for research KB |
+| **Document Library Service** | `omeia/api/document_library_service.py` | Faceted document library search |
+| **Raw Vault Store** | `omeia/api/raw_vault_store.py` | Asset vault with PostgreSQL registry |
+| **Feature Warehouse** | `omeia/api/feature_warehouse.py` | Clinical feature similarity search |
+| **Answer Grounding Service** | `omeia/api/answer_grounding_service.py` | Citation enforcement and validation |
+| **Docker Service Client** | `omeia/api/docker_service_client.py` | Docker service health and circuit breakers |
+| **People Index** | `omeia/api/people_index.py` | Lab member directory search |
+| **Entity Relation Extractor** | `omeia/api/entity_relation_extractor.py` | Knowledge graph extraction |
+| **Scientific Document Parser** | `omeia/api/scientific_document_parser.py` | Research document chunking |
+| **Dataset Fetcher** | `omeia/api/dataset_fetcher.py` | Dataset metadata registry |
+| **Research Search Service** | `omeia/api/research_search_service.py` | Research-specific search scoring |
+| **Qdrant Research Indexer** | `omeia/api/qdrant_research_indexer.py` | Research vector indexing |
+| **Library Taxonomy** | `omeia/api/library_taxonomy.py` | Smart document categorization |
 
 ### 1.2 Architecture Mermaid Diagram (Enriched)
 
@@ -239,7 +239,7 @@ The AI assistant has comprehensive search integration through `SearchService.uni
 - **Reranking:** Lightweight lexical reranking boosts hits with query term overlap
 - **Deduplication:** Near-identical snippet deduplication with per-bucket caps
 
-**Code Reference:** `app_skeleton/api/search_service.py:327-604`
+**Code Reference:** `omeia/api/search_service.py:327-604`
 
 ### 2.2 Search Scope Configuration
 
@@ -274,7 +274,7 @@ The AI assistant does **NOT** have a dedicated filtering mechanism. Filtering is
 4. **Bucket caps:** Per-bucket result limits (max 4 per bucket by default)
 5. **Visibility filtering:** Restricted/confidential documents filtered based on user role
 
-**Code Reference:** `app_skeleton/api/search_service.py:270-273`
+**Code Reference:** `omeia/api/search_service.py:270-273`
 
 ```python
 def _visibility_clause(include_restricted: bool, user_role: str | None) -> tuple[str, list[Any]]:
@@ -319,11 +319,11 @@ The assistant connects to multiple database systems:
   - `core.patient`, `core.sample` - Clinical data
   - `platform.raw_asset_vault` - File vault
 
-**Code Reference:** `app_skeleton/api/lab_knowledge_store.py:41-44`
+**Code Reference:** `omeia/api/lab_knowledge_store.py:41-44`
 
 ```python
 def _db_conn():
-    from app_skeleton.api.supabase_config import postgres_conn
+    from omeia.api.supabase_config import postgres_conn
     return postgres_conn()
 ```
 
@@ -335,7 +335,7 @@ def _db_conn():
 - **Payload fields:** document_id, chunk_id, section_id, title, text_preview, metadata
 - **Fallback:** Postgres keyword search when Qdrant unavailable
 
-**Code Reference:** `app_skeleton/api/lab_knowledge_store.py:398-441`
+**Code Reference:** `omeia/api/lab_knowledge_store.py:398-441`
 
 ### 4.2 Indexing Pipeline
 
@@ -350,7 +350,7 @@ The indexing pipeline includes:
 5. **Job tracking:** Embedding jobs tracked in `rag.embedding_job`
 6. **Checksum validation:** SHA256 checksums prevent redundant indexing
 
-**Code Reference:** `app_skeleton/api/lab_knowledge_store.py:221-373`
+**Code Reference:** `omeia/api/lab_knowledge_store.py:221-373`
 
 ---
 
@@ -365,8 +365,8 @@ The assistant does **NOT** have unrestricted access to all app data. Access is c
 #### 5.1.1 Role-Based Access Control
 
 ```python
-from app_skeleton.security.permissions import require_role
-from app_skeleton.security.auth import require_platform_user
+from omeia.security.permissions import require_role
+from omeia.security.auth import require_platform_user
 ```
 
 - **Authentication required:** All endpoints require `require_platform_user`
@@ -383,7 +383,7 @@ The assistant CANNOT access:
 - **File system:** Cannot directly read arbitrary files (only indexed documents)
 - **Database writes:** Read-only access to most tables (no INSERT/UPDATE/DELETE)
 
-**Code Reference:** `app_skeleton/api/privacy_guardrails.py:127-133`
+**Code Reference:** `omeia/api/privacy_guardrails.py:127-133`
 
 ```python
 def allow_external_llm(audit: dict[str, Any], provider: str) -> bool:
@@ -428,7 +428,7 @@ The assistant classifies queries into intents and routes accordingly:
 - **people_question:** Lab member lookups
 - **sensitive_private:** Refusal (privacy block)
 
-**Code Reference:** `app_skeleton/api/chat_intent.py:137-339`
+**Code Reference:** `omeia/api/chat_intent.py:137-339`
 
 #### 6.1.2 Action Generation (Not Execution)
 
@@ -445,7 +445,7 @@ The assistant CANNOT:
 - **Change database state:** No INSERT/UPDATE/DELETE operations
 - **Trigger workflows:** No workflow orchestration
 
-**Code Reference:** `app_skeleton/api/agents.py:442-534`
+**Code Reference:** `omeia/api/agents.py:442-534`
 
 ### 6.2 Decision-Making Assessment
 
@@ -471,7 +471,7 @@ The assistant CANNOT:
 | **Network Latency** | Variable | Depends on provider location |
 | **Chunk Retrieval** | Low | Local JSON: <50ms |
 
-**Code Reference:** `app_skeleton/api/llm_client.py:122-124`
+**Code Reference:** `omeia/api/llm_client.py:122-124`
 
 ```python
 self.timeout_seconds = _bounded_float(_env("LLM_TIMEOUT_SECONDS", "45"), 45.0, 2.0, 240.0)
@@ -487,7 +487,7 @@ The assistant supports streaming responses:
 - **Frontend:** `ChatWidget.jsx` implements progressive text reveal
 - **Fallback:** Non-streaming mode available
 
-**Code Reference:** `app_skeleton/api/llm_client.py:502-546`
+**Code Reference:** `omeia/api/llm_client.py:502-546`
 
 ### 7.2 Performance Issues
 
@@ -522,7 +522,7 @@ The assistant generates responses in different styles based on intent:
 - **search_summary:** Search result summaries
 - **safety:** Refusal messages
 
-**Code Reference:** `app_skeleton/api/chat_service.py:124-182`
+**Code Reference:** `omeia/api/chat_service.py:124-182`
 
 #### 8.1.2 Response Compilation
 
@@ -534,7 +534,7 @@ The assistant generates responses in different styles based on intent:
 4. **No figure references:** Cannot reference figures or images
 5. **Limited markdown:** Only basic markdown (bold, headers, code blocks, lists)
 
-**Code Reference:** `app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx:141-189`
+**Code Reference:** `omeia/ui/react_frontend/src/components/ChatWidget.jsx:141-189`
 
 ```jsx
 function MarkdownLite({ text }) {
@@ -577,7 +577,7 @@ The assistant can find internal information from:
 - **Research KB:** Publications and datasets
 - **Clinical data:** Patient/sample counts (aggregated only)
 
-**Code Reference:** `app_skeleton/api/search_service.py:327-604`
+**Code Reference:** `omeia/api/search_service.py:327-604`
 
 ### 9.2 External Information Finding
 
@@ -675,7 +675,7 @@ The assistant CANNOT:
 - **SQL injection protection:** Parameterized queries throughout
 - **No code execution:** Scripts returned as text, not executed
 
-**Code Reference:** `app_skeleton/api/privacy_guardrails.py:129-159`
+**Code Reference:** `omeia/api/privacy_guardrails.py:129-159`
 
 ### 11.2 Privacy Concerns
 
@@ -724,7 +724,7 @@ The assistant CANNOT:
 
 **Status:** ✅ **WELL-DESIGNED BUT POORLY DOCUMENTED**
 
-**Location:** `app_skeleton/api/agent_orchestrator/`
+**Location:** `omeia/api/agent_orchestrator/`
 
 **Components:**
 - `orchestrator.py` - Category-based multi-agent orchestration
@@ -748,13 +748,13 @@ The assistant CANNOT:
 - **ISSUE-012:** No agent timeout enforcement
 - **ISSUE-013:** No agent retry logic beyond model fallback
 
-**Code Reference:** `app_skeleton/api/agent_orchestrator/orchestrator.py:87-208`
+**Code Reference:** `omeia/api/agent_orchestrator/orchestrator.py:87-208`
 
 ### 13.2 Research Knowledge Store
 
 **Status:** ✅ **COMPREHENSIVE BUT UNDERUTILIZED**
 
-**Location:** `app_skeleton/api/research_knowledge_store.py`
+**Location:** `omeia/api/research_knowledge_store.py`
 
 **Analysis:**
 - **Architecture:** External research knowledge indexing (publications, datasets, web pages)
@@ -774,13 +774,13 @@ The assistant CANNOT:
 - **ISSUE-017:** No publication date filtering in search
 - **ISSUE-018:** Playwright integration is optional but not tested
 
-**Code Reference:** `app_skeleton/api/research_knowledge_store.py:447-897`
+**Code Reference:** `omeia/api/research_knowledge_store.py:447-897`
 
 ### 13.3 Document Library Service
 
 **Status:** ⚠️ **COMPLEX BUT POORLY INTEGRATED WITH AI ASSISTANT**
 
-**Location:** `app_skeleton/api/document_library_service.py`
+**Location:** `omeia/api/document_library_service.py`
 
 **Analysis:**
 - **Architecture:** Faceted search over vault/audit inventory with enrichment
@@ -800,13 +800,13 @@ The assistant CANNOT:
 - **ISSUE-022:** No document similarity search in library
 - **ISSUE-023:** No document versioning or change tracking
 
-**Code Reference:** `app_skeleton/api/document_library_service.py:569-833`
+**Code Reference:** `omeia/api/document_library_service.py:569-833`
 
 ### 13.4 Raw Vault Store
 
 **Status:** ✅ **WELL-DESIGNED WITH POSTGRES REGISTRY**
 
-**Location:** `app_skeleton/api/raw_vault_store.py`
+**Location:** `omeia/api/raw_vault_store.py`
 
 **Analysis:**
 - **Architecture:** JSON inventory + optional PostgreSQL registry (platform.raw_asset_vault)
@@ -824,13 +824,13 @@ The assistant CANNOT:
 - **ISSUE-026:** No asset lifecycle management (stale detection)
 - **ISSUE-027:** No asset access logging beyond audit events
 
-**Code Reference:** `app_skeleton/api/raw_vault_store.py:248-655`
+**Code Reference:** `omeia/api/raw_vault_store.py:248-655`
 
 ### 13.5 Feature Warehouse
 
 **Status:** ⚠️ **TEMPLATE-ONLY, NO REAL DATA**
 
-**Location:** `app_skeleton/api/feature_warehouse.py`
+**Location:** `omeia/api/feature_warehouse.py`
 
 **Analysis:**
 - **Architecture:** Feature definitions, matrices, similarity search
@@ -848,13 +848,13 @@ The assistant CANNOT:
 - **ISSUE-030:** No feature quality metrics or validation
 - **ISSUE-031:** No feature update mechanism
 
-**Code Reference:** `app_skeleton/api/feature_warehouse.py:98-447`
+**Code Reference:** `omeia/api/feature_warehouse.py:98-447`
 
 ### 13.6 Answer Grounding Service
 
 **Status:** ✅ **WELL-IMPLEMENTED BUT UNDERUSED**
 
-**Location:** `app_skeleton/api/answer_grounding_service.py`
+**Location:** `omeia/api/answer_grounding_service.py`
 
 **Analysis:**
 - **Citation Enforcement:** Validates [n] markers, re-prompts once, then appends sources
@@ -870,13 +870,13 @@ The assistant CANNOT:
 - **ISSUE-034:** No citation confidence levels
 - **ISSUE-035:** No citation format validation
 
-**Code Reference:** `app_skeleton/api/answer_grounding_service.py:87-135`
+**Code Reference:** `omeia/api/answer_grounding_service.py:87-135`
 
 ### 13.7 Docker Service Client
 
 **Status:** ✅ **ROBUST WITH CIRCUIT BREAKERS**
 
-**Location:** `app_skeleton/api/docker_service_client.py`
+**Location:** `omeia/api/docker_service_client.py`
 
 **Analysis:**
 - **Architecture:** Service registry with health checks and circuit breakers
@@ -893,13 +893,13 @@ The assistant CANNOT:
 - **ISSUE-037:** No service scaling or load balancing
 - **ISSUE-038:** No service metrics export (Prometheus, etc.)
 
-**Code Reference:** `app_skeleton/api/docker_service_client.py:100-530`
+**Code Reference:** `omeia/api/docker_service_client.py:100-530`
 
 ### 13.8 People Index
 
 **Status:** ⚠️ **STATIC JSON-BASED, NO DATABASE**
 
-**Location:** `app_skeleton/api/people_index.py`
+**Location:** `omeia/api/people_index.py`
 
 **Analysis:**
 - **Architecture:** JSON-based lab member directory (configs/lab_people_index.json)
@@ -913,13 +913,13 @@ The assistant CANNOT:
 - **ISSUE-040:** No people expertise matching
 - **ISSUE-041:** No people availability or status tracking
 
-**Code Reference:** `app_skeleton/api/people_index.py:43-77`
+**Code Reference:** `omeia/api/people_index.py:43-77`
 
 ### 13.9 Research Crawler
 
 **Status:** ✅ **WELL-DESIGNED WITH PLAYWRIGHT SUPPORT**
 
-**Location:** `app_skeleton/api/research_crawler.py`
+**Location:** `omeia/api/research_crawler.py`
 
 **Analysis:**
 - **Architecture:** Web crawler with BeautifulSoup + optional Playwright
@@ -934,13 +934,13 @@ The assistant CANNOT:
 - **ISSUE-043:** No duplicate URL detection during crawl
 - **ISSUE-044:** No crawl scheduling or persistence
 
-**Code Reference:** `app_skeleton/api/research_crawler.py:171-222`
+**Code Reference:** `omeia/api/research_crawler.py:171-222`
 
 ### 13.10 Entity Relation Extractor
 
 **Status:** ⚠️ **RULE-BASED ONLY, LIMITED COVERAGE**
 
-**Location:** `app_skeleton/api/entity_relation_extractor.py`
+**Location:** `omeia/api/entity_relation_extractor.py`
 
 **Analysis:**
 - **Architecture:** Rule-based entity and relation extraction
@@ -955,13 +955,13 @@ The assistant CANNOT:
 - **ISSUE-046:** No entity disambiguation
 - **ISSUE-047:** No temporal relation extraction
 
-**Code Reference:** `app_skeleton/api/entity_relation_extractor.py:39-88`
+**Code Reference:** `omeia/api/entity_relation_extractor.py:39-88`
 
 ### 13.11 Scientific Document Parser
 
 **Status:** ✅ **SIMPLE BUT EFFECTIVE**
 
-**Location:** `app_skeleton/api/scientific_document_parser.py`
+**Location:** `omeia/api/scientific_document_parser.py`
 
 **Analysis:**
 - **Architecture:** Section-aware chunking for scientific documents
@@ -976,13 +976,13 @@ The assistant CANNOT:
 - **ISSUE-049:** No reference parsing
 - **ISSUE-050:** No equation extraction
 
-**Code Reference:** `app_skeleton/api/scientific_document_parser.py:44-68`
+**Code Reference:** `omeia/api/scientific_document_parser.py:44-68`
 
 ### 13.12 Dataset Fetcher
 
 **Status:** ⚠️ **STATIC SEED ONLY**
 
-**Location:** `app_skeleton/api/dataset_fetcher.py`
+**Location:** `omeia/api/dataset_fetcher.py`
 
 **Analysis:**
 - **Architecture:** Static dataset registry (GEO, EGA, TCGA)
@@ -995,13 +995,13 @@ The assistant CANNOT:
 - **ISSUE-051:** No dataset search or filtering
 - **ISSUE-052:** No dataset download or access management
 
-**Code Reference:** `app_skeleton/api/dataset_fetcher.py:41-54`
+**Code Reference:** `omeia/api/dataset_fetcher.py:41-54`
 
 ### 13.13 Research Search Service
 
 **Status:** ✅ **WELL-DESIGNED SCORING**
 
-**Location:** `app_skeleton/api/research_search_service.py`
+**Location:** `omeia/api/research_search_service.py`
 
 **Analysis:**
 - **Architecture:** Research-specific search scoring and normalization
@@ -1014,13 +1014,13 @@ The assistant CANNOT:
 - **ISSUE-053:** No A/B testing for scoring algorithms
 - **ISSUE-054:** No search result explanation
 
-**Code Reference:** `app_skeleton/api/research_search_service.py:41-76`
+**Code Reference:** `omeia/api/research_search_service.py:41-76`
 
 ### 13.14 Qdrant Research Indexer
 
 **Status:** ✅ **ROBUST VECTOR INDEXING**
 
-**Location:** `app_skeleton/api/qdrant_research_indexer.py`
+**Location:** `omeia/api/qdrant_research_indexer.py`
 
 **Analysis:**
 - **Architecture:** Research knowledge vector indexing
@@ -1032,13 +1032,13 @@ The assistant CANNOT:
 - **ISSUE-055:** No vector backup or migration
 - **ISSUE-056:** No vector compression or quantization
 
-**Code Reference:** `app_skeleton/api/qdrant_research_indexer.py:23-97`
+**Code Reference:** `omeia/api/qdrant_research_indexer.py:23-97`
 
 ### 13.15 Library Taxonomy
 
 **Status:** ✅ **COMPREHENSIVE TAXONOMY**
 
-**Location:** `app_skeleton/api/library_taxonomy.py`
+**Location:** `omeia/api/library_taxonomy.py`
 
 **Analysis:**
 - **Architecture:** Smart library taxonomy for document categorization
@@ -1050,7 +1050,7 @@ The assistant CANNOT:
 - **ISSUE-057:** No taxonomy versioning
 - **ISSUE-058:** No taxonomy analytics (usage tracking)
 
-**Code Reference:** `app_skeleton/api/library_taxonomy.py:16-261`
+**Code Reference:** `omeia/api/library_taxonomy.py:16-261`
 
 ---
 
@@ -1268,9 +1268,9 @@ This section outlines the safe implementation plan to integrate existing interna
 - Add clear labels: "Document Library", "Vault Asset", "Lab Knowledge", "Research KB"
 
 **Files to Modify:**
-- `app_skeleton/api/search_service.py` - Add document library search integration
-- `app_skeleton/api/chat_service.py` - Ensure document library hits are included in RAG context
-- `app_skeleton/api/search_models.py` - May need to update SearchHit model for document library metadata
+- `omeia/api/search_service.py` - Add document library search integration
+- `omeia/api/chat_service.py` - Ensure document library hits are included in RAG context
+- `omeia/api/search_models.py` - May need to update SearchHit model for document library metadata
 
 **API Contract Changes:**
 - UnifiedSearchResponse will include hits with bucket="document_library"
@@ -1309,9 +1309,9 @@ This section outlines the safe implementation plan to integrate existing interna
 - Review actions are recommendations only, not autonomous
 
 **Files to Modify:**
-- `app_skeleton/api/search_service.py` - Add vault review queue search
-- `app_skeleton/api/raw_vault_store.py` - May need to add safe review queue search function
-- `app_skeleton/api/chat_service.py` - Ensure vault review hits are included in RAG context
+- `omeia/api/search_service.py` - Add vault review queue search
+- `omeia/api/raw_vault_store.py` - May need to add safe review queue search function
+- `omeia/api/chat_service.py` - Ensure vault review hits are included in RAG context
 
 **API Contract Changes:**
 - UnifiedSearchResponse will include hits with bucket="vault_review"
@@ -1359,10 +1359,10 @@ This section outlines the safe implementation plan to integrate existing interna
 - No breaking changes to existing API
 
 **Files to Modify:**
-- `app_skeleton/api/search_models.py` - Extend request models with advanced filters
-- `app_skeleton/api/search_service.py` - Implement filter logic
-- `app_skeleton/api/document_library_service.py` - May need to add filter support
-- `app_skeleton/api/raw_vault_store.py` - May need to add filter support
+- `omeia/api/search_models.py` - Extend request models with advanced filters
+- `omeia/api/search_service.py` - Implement filter logic
+- `omeia/api/document_library_service.py` - May need to add filter support
+- `omeia/api/raw_vault_store.py` - May need to add filter support
 
 **API Contract Changes:**
 - UnifiedSearchRequest will have optional advanced filter fields
@@ -1403,9 +1403,9 @@ This section outlines the safe implementation plan to integrate existing interna
 - Cache can be bypassed if needed
 
 **Files to Modify:**
-- `app_skeleton/api/routers/copilot.py` - Add rate limiting middleware
-- `app_skeleton/api/search_service.py` - Add caching layer
-- `app_skeleton/api/chat_service.py` - May need cache integration
+- `omeia/api/routers/copilot.py` - Add rate limiting middleware
+- `omeia/api/search_service.py` - Add caching layer
+- `omeia/api/chat_service.py` - May need cache integration
 - `configs/.env.example` - Add rate limit and cache TTL environment variables
 
 **API Contract Changes:**
@@ -1451,9 +1451,9 @@ This section outlines the safe implementation plan to integrate existing interna
 - Audit logs are append-only (no deletion)
 
 **Files to Modify:**
-- `app_skeleton/api/agent_orchestrator/trace_store.py` - Add persistent database logging
-- `app_skeleton/api/agent_orchestrator/orchestrator.py` - Call persistent logging
-- `app_skeleton/api/docker_service_client.py` - May need to integrate with persistent logging
+- `omeia/api/agent_orchestrator/trace_store.py` - Add persistent database logging
+- `omeia/api/agent_orchestrator/orchestrator.py` - Call persistent logging
+- `omeia/api/docker_service_client.py` - May need to integrate with persistent logging
 - `sql/` - Add migration for audit log table
 
 **API Contract Changes:**
@@ -1493,7 +1493,7 @@ This section outlines the safe implementation plan to integrate existing interna
 - Backward compatible with existing markdown
 
 **Files to Modify:**
-- `app_skeleton/ui/react_frontend/src/components/ChatWidget.jsx` - Improve markdown rendering
+- `omeia/ui/react_frontend/src/components/ChatWidget.jsx` - Improve markdown rendering
 - `package.json` - May need to add markdown library if not present
 
 **API Contract Changes:**
