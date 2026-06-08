@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Image, FileText, Presentation, Table, Film, FolderOpen, X, ImageOff } from 'lucide-react';
 import { projectAssetUrl } from '@/lib/digitalTwinUtils.js';
+import { pdfEmbedUrl } from '@/lib/pdfEmbedUrl.js';
 import FileTypeBadge from '@/shared/ui/FileTypeBadge.jsx';
 import SmartLink from '@/shared/ui/SmartLink.jsx';
 import CopyPathButton from '@/shared/ui/CopyPathButton.jsx';
@@ -192,7 +193,7 @@ export default function ProjectContentLibrary({ twin, projectCode, API_URL }) {
             <button type="button" className="pcl-lightbox-close" onClick={() => setPreview(null)}><X size={20} /></button>
             {(preview.extension || '').toLowerCase() === '.pdf' ? (
                <object
-                 data={projectAssetUrl(projectCode, preview.path, API_URL, contentRoot)}
+                 data={pdfEmbedUrl(projectAssetUrl(projectCode, preview.path, API_URL, contentRoot))}
                  type="application/pdf"
                  width="100%"
                  style={{ minHeight: '80vh', borderRadius: '8px', border: 'none' }}

@@ -15,6 +15,7 @@ import {
   DocumentViewerToolbar,
 } from './DocumentViewerToolbar.jsx';
 import { inferCodeLanguage } from '@/lib/filePreviewKind.js';
+import { pdfEmbedUrl } from '@/lib/pdfEmbedUrl.js';
 import DocumentExportMenu from './DocumentExportMenu.jsx';
 import './DocumentExportMenu.css';
 import './DocumentPreviewPane.css';
@@ -313,7 +314,7 @@ export default function DocumentPreviewPane({
           <Expand size={10} aria-hidden /> {pdfThumbLabel}
         </span>
         <object
-          data={pdfPreviewUrl}
+          data={pdfEmbedUrl(pdfPreviewUrl)}
           type="application/pdf"
           className="pdf-header-thumb__object"
           aria-hidden
@@ -430,7 +431,7 @@ export default function DocumentPreviewPane({
                 </button>
               </div>
               <object
-                data={pdfPreviewUrl}
+                data={pdfEmbedUrl(pdfPreviewUrl)}
                 type="application/pdf"
                 className="database-pdf-frame pdf-expand-frame"
                 aria-label="PDF full preview"

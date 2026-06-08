@@ -202,8 +202,7 @@
 
 .sfe-body {
   display: grid;
-  /* Explorer split — wider list than embedded document viewer */
-  grid-template-columns: minmax(15rem, 24%) minmax(0, 1fr);
+  grid-template-columns: minmax(300px, 0.95fr) minmax(420px, 1.35fr);
   gap: 1.1rem;
   flex: 1;
   min-height: 480px;
@@ -213,11 +212,11 @@
 }
 
 .sfe-body--list-compact {
-  grid-template-columns: minmax(14rem, 20%) minmax(0, 1fr);
+  grid-template-columns: minmax(280px, 0.62fr) minmax(400px, 1.38fr);
 }
 
 .sfe-body--list-expanded {
-  grid-template-columns: minmax(16rem, 28%) minmax(0, 1fr);
+  grid-template-columns: minmax(300px, 0.95fr) minmax(420px, 1.35fr);
 }
 
 @media (max-width: 960px) {

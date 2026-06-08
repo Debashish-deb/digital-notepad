@@ -39,6 +39,7 @@ import {
 } from '@/lib/folderBrowserUtils.js';
 import { inferExtension } from '@/lib/fileTypeMeta.js';
 import { projectAssetUrl } from '@/lib/digitalTwinUtils.js';
+import { pdfEmbedUrl } from '@/lib/pdfEmbedUrl.js';
 import FileTypeBadge from '@/shared/ui/FileTypeBadge.jsx';
 import CopyPathButton from '@/shared/ui/CopyPathButton.jsx';
 import SmartLink from '@/shared/ui/SmartLink.jsx';
@@ -762,7 +763,7 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
                 </>
               )}
               {assetUrl && isPdf && (
-                <iframe title={selectedFile.name} src={assetUrl} className="database-pdf-frame pfb-pdf-frame" />
+                <iframe title={selectedFile.name} src={pdfEmbedUrl(assetUrl)} className="database-pdf-frame pfb-pdf-frame" />
               )}
               {assetUrl && mediaKind === 'model3d' && !previewLoading && (
                 <Suspense fallback={<p className="text-footnote muted">Loading 3D viewer…</p>}>

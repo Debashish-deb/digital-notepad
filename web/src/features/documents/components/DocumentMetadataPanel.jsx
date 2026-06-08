@@ -13,6 +13,7 @@ import { useSpreadsheetPreview } from '@/shared/hooks/useSpreadsheetPreview.js';
 import { useRawFilePreview } from '@/shared/hooks/useRawFilePreview.js';
 import { apiSpreadsheetSheetsToModels } from '@/lib/spreadsheetPreview.js';
 import { smartDocumentTitle, documentTitleSubline } from '@/lib/smartDocumentTitle.js';
+import { pdfEmbedUrl } from '@/lib/pdfEmbedUrl.js';
 import DocumentListMetadataRow from './DocumentListMetadataRow.jsx';
 import DocumentTypeShell from './DocumentTypeShell.jsx';
 import SpreadsheetPreview from './SpreadsheetPreview.jsx';
@@ -341,7 +342,7 @@ export default function DocumentMetadataPanel({
       {!showMedia && !showSpreadsheet && isPdf && previewUrl ? (
         <iframe
           title={preview.filename}
-          src={previewUrl}
+          src={pdfEmbedUrl(previewUrl)}
           className="sfe-pdf-frame"
         />
       ) : null}
