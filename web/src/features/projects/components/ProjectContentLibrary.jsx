@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Image, FileText, Presentation, Table, Film, FolderOpen, X, ImageOff } from 'lucide-react';
 import { projectAssetUrl } from '@/lib/digitalTwinUtils.js';
-import { pdfEmbedUrl } from '@/lib/pdfEmbedUrl.js';
+import PdfDocumentViewer from '@/features/documents/components/PdfDocumentViewer.jsx';
 import FileTypeBadge from '@/shared/ui/FileTypeBadge.jsx';
 import SmartLink from '@/shared/ui/SmartLink.jsx';
 import CopyPathButton from '@/shared/ui/CopyPathButton.jsx';
@@ -192,15 +192,17 @@ export default function ProjectContentLibrary({ twin, projectCode, API_URL }) {
           <div className="pcl-lightbox-inner" onClick={(e) => e.stopPropagation()}>
             <button type="button" className="pcl-lightbox-close" onClick={() => setPreview(null)}><X size={20} /></button>
             {(preview.extension || '').toLowerCase() === '.pdf' ? (
-               <object
-                 data={pdfEmbedUrl(projectAssetUrl(projectCode, preview.path, API_URL, contentRoot))}
-                 type="application/pdf"
-                 width="100%"
-                 style={{ minHeight: '80vh', borderRadius: '8px', border: 'none' }}
+               <PdfDocumentViewer
+                 url={projectAssetUrl(projectCode, preview.path, API_URL, contentRoot)}
+                 title={preview.name}
+                 documentKey={preview.path}
+                 exportLocal={{
+                   filename: preview.name,
+                   originalUrl: projectAssetUrl(projectCode, preview.path, API_URL, contentRoot),
+                   title: preview.name,
+                 }}
                  className="pcl-lightbox-pdf"
-               >
-                 <p>It appears you don't have a PDF plugin for this browser. <a href={projectAssetUrl(projectCode, preview.path, API_URL, contentRoot)}>Click here to download the PDF file.</a></p>
-               </object>
+               />
             ) : (
               <AssetImage
                 src={projectAssetUrl(projectCode, preview.path, API_URL, contentRoot)}

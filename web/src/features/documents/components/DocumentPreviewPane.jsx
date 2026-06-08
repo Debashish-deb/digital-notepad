@@ -16,6 +16,7 @@ import {
 } from './DocumentViewerToolbar.jsx';
 import { inferCodeLanguage } from '@/lib/filePreviewKind.js';
 import { pdfEmbedUrl } from '@/lib/pdfEmbedUrl.js';
+import PdfDocumentViewer from './PdfDocumentViewer.jsx';
 import DocumentExportMenu from './DocumentExportMenu.jsx';
 import './DocumentExportMenu.css';
 import './DocumentPreviewPane.css';
@@ -286,7 +287,7 @@ export default function DocumentPreviewPane({
         <div className="doc-preview-placeholder doc-preview-pdf-only">
           <FileText size={28} aria-hidden />
           <p className="text-footnote muted">
-            No extracted text for this file. Use the PDF thumbnail to open the original layout.
+            No extracted text for this file. Use the PDF control in the toolbar to open the full viewer.
           </p>
         </div>
       ) : (
@@ -430,18 +431,22 @@ export default function DocumentPreviewPane({
                   <X size={14} /> Close
                 </button>
               </div>
-              <object
-                data={pdfEmbedUrl(pdfPreviewUrl)}
-                type="application/pdf"
+              <PdfDocumentViewer
+                url={pdfPreviewUrl}
+                title={title}
+                documentKey={path || pdfPreviewUrl}
+                exportLocal={
+                  exportLocal || (pdfPreviewUrl
+                    ? {
+                        filename: path || title || 'document.pdf',
+                        originalUrl: pdfPreviewUrl,
+                        title,
+                        text: previewText || '',
+                      }
+                    : null)
+                }
                 className="database-pdf-frame pdf-expand-frame"
-                aria-label="PDF full preview"
-              >
-                <p className="text-footnote">
-                  <a href={pdfPreviewUrl} target="_blank" rel="noreferrer">
-                    Download PDF
-                  </a>
-                </p>
-              </object>
+              />
             </div>
           </div>
         ) : null}

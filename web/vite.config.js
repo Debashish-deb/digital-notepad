@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -38,6 +39,49 @@ function loadSharedFirebaseEnv() {
 }
 
 loadSharedFirebaseEnv()
+
+/** Read a single key from configs/.env (dev machine may not export it into process.env). */
+function readConfigEnv(key) {
+  const envPath = path.join(REPO_ROOT, 'configs', '.env')
+  if (!fs.existsSync(envPath)) return ''
+  for (const line of fs.readFileSync(envPath, 'utf8').split('\n')) {
+    const trimmed = line.trim()
+    if (!trimmed || trimmed.startsWith('#')) continue
+    const eq = trimmed.indexOf('=')
+    if (eq < 1) continue
+    const name = trimmed.slice(0, eq).trim()
+    if (name !== key) continue
+    return trimmed.slice(eq + 1).trim().replace(/^["']|["']$/g, '')
+  }
+  return ''
+}
+
+function detectTailscaleIp() {
+  try {
+    const out = execSync('tailscale ip -4 2>/dev/null', { encoding: 'utf8' }).trim()
+    return out.split('\n').map((line) => line.trim()).find(Boolean) || ''
+  } catch {
+    return ''
+  }
+}
+
+/** HMR host for remote browsers (Mac over Tailscale). Campus/Docker IPs fail from Mac. */
+function resolveHmrHost() {
+  return (
+    process.env.VITE_HMR_HOST?.trim()
+    || process.env.TAILSCALE_LINUX_IP?.trim()
+    || readConfigEnv('VITE_HMR_HOST')
+    || readConfigEnv('TAILSCALE_LINUX_IP')
+    || (process.platform === 'linux' ? detectTailscaleIp() : '')
+  )
+}
+
+const DEV_PORT = Number(process.env.VITE_DEV_PORT || 5173)
+const HMR_HOST = resolveHmrHost()
+if (HMR_HOST) {
+  console.log(`[vite] Remote HMR host: ${HMR_HOST}:${DEV_PORT} (Tailscale / mesh clients)`)
+}
+
 const DATABASE_ROOT_ENV = process.env.DATABASE_ROOT?.trim()
 const EXTERNAL_DATABASE_ROOT = path.resolve(REPO_ROOT, '..', 'OMEIA-database')
 const LEGACY_DATABASE_ROOT = path.join(REPO_ROOT, 'database')
@@ -198,6 +242,19 @@ export default defineConfig({
   },
   server: {
     host: true,
+    port: DEV_PORT,
+    strictPort: true,
+    ...(HMR_HOST
+      ? {
+          origin: `http://${HMR_HOST}:${DEV_PORT}`,
+          hmr: {
+            host: HMR_HOST,
+            port: DEV_PORT,
+            clientPort: DEV_PORT,
+            protocol: 'ws',
+          },
+        }
+      : {}),
     fs: {
       allow: [DATABASE_ROOT, PROJECTS_ROOT, path.resolve(__dirname, '..')],
     },

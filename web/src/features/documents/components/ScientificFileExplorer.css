@@ -202,8 +202,8 @@
 
 .sfe-body {
   display: grid;
-  grid-template-columns: minmax(300px, 0.95fr) minmax(420px, 1.35fr);
-  gap: 1.1rem;
+  grid-template-columns: minmax(320px, 0.42fr) minmax(0, 1fr);
+  gap: 0.85rem;
   flex: 1;
   min-height: 480px;
   height: min(72vh, 680px);
@@ -212,11 +212,11 @@
 }
 
 .sfe-body--list-compact {
-  grid-template-columns: minmax(280px, 0.62fr) minmax(400px, 1.38fr);
+  grid-template-columns: minmax(300px, 0.38fr) minmax(0, 1fr);
 }
 
 .sfe-body--list-expanded {
-  grid-template-columns: minmax(300px, 0.95fr) minmax(420px, 1.35fr);
+  grid-template-columns: minmax(340px, 0.48fr) minmax(0, 1fr);
 }
 
 @media (max-width: 960px) {
@@ -1306,6 +1306,7 @@ body.sfe-col-resizing {
   flex-direction: column;
   gap: 0.35rem;
   padding: 0.55rem 0.65rem 0.5rem;
+  min-width: 0;
   border-radius: 18px;
   min-width: 0;
   flex: 1;

@@ -141,7 +141,19 @@ if [ "$OMEIA_FRONTEND_MODE" = "prod" ]; then
   echo "Production UI served from API http://localhost:8000"
   wait $BACKEND_PID
 else
+  if [ -z "${VITE_HMR_HOST:-}" ] && [ -n "${TAILSCALE_LINUX_IP:-}" ]; then
+    export VITE_HMR_HOST="${TAILSCALE_LINUX_IP}"
+  fi
+  if [ -z "${VITE_HMR_HOST:-}" ] && command -v tailscale >/dev/null 2>&1; then
+    _ts_ip="$(tailscale ip -4 2>/dev/null | head -1 | tr -d '[:space:]')"
+    if [ -n "$_ts_ip" ]; then
+      export VITE_HMR_HOST="$_ts_ip"
+    fi
+  fi
   echo "Vite frontend http://localhost:5173"
+  if [ -n "${VITE_HMR_HOST:-}" ]; then
+    echo "  Remote UI (Mac/Tailscale): http://${VITE_HMR_HOST}:5173 — live reload enabled"
+  fi
   # shellcheck disable=SC1091
   source "$PROJECT_ROOT/scripts/dev/ensure_node_for_vite.sh"
   cd "$FRONTEND_DIR" || exit 1
