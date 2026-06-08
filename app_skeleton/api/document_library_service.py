@@ -1197,11 +1197,13 @@ def get_preview(asset_id: str) -> dict[str, Any] | None:
             proc_md = row.get("processed_metadata") or {}
             ext = (row.get("extension") or "").lower()
             fname = (row.get("filename") or "").lower()
-            is_tiff = ext in {".tif", ".tiff"} or fname.endswith((".tif", ".tiff", ".ome.tif", ".ome.tiff"))
+            from app_skeleton.api.image_streaming.storage_adapter import is_streamable_image
+
+            streamable = is_streamable_image(row)
             image_meta = None
             thumb_url = None
             viewer_url = None
-            if is_tiff:
+            if streamable:
                 try:
                     from app_skeleton.api.image_streaming.image_metadata_service import ImageMetadataService
 
@@ -1231,7 +1233,7 @@ def get_preview(asset_id: str) -> dict[str, Any] | None:
                 "logical_path": logical,
                 "preview_url": preview_url,
                 "preview_type": preview_type,
-                "is_streamable_image": is_tiff,
+                "is_streamable_image": streamable,
                 "image_metadata": image_meta,
                 "thumbnail_url": thumb_url,
                 "viewer_url": viewer_url,

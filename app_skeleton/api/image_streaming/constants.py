@@ -1,7 +1,10 @@
 """Constants for image streaming APIs."""
 from __future__ import annotations
 
-IMAGE_EXTENSIONS = frozenset({".tif", ".tiff", ".ome.tif", ".ome.tiff"})
+IMAGE_EXTENSIONS = frozenset({
+    ".tif", ".tiff", ".ome.tif", ".ome.tiff",
+    ".jpg", ".jpeg", ".png", ".gif", ".webp",
+})
 OME_TIFF_SUFFIXES = (".ome.tif", ".ome.tiff")
 
 MAX_TILE_EDGE = 512

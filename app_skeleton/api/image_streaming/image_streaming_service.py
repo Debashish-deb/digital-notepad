@@ -119,13 +119,31 @@ class ImageStreamingService:
     def _generate_thumbnail(self, resolved: dict[str, Any], dest: Path) -> bytes | None:
         path = Path(resolved["disk_path"])
         asset_id = resolved["asset_id"]
+        ext = (resolved.get("extension") or path.suffix or "").lower()
+        try:
+            from PIL import Image
+        except ImportError:
+            return None
+
+        # Standard raster images (JPG/PNG/WebP/GIF)
+        if ext in {".jpg", ".jpeg", ".png", ".gif", ".webp"}:
+            try:
+                with Image.open(path) as im:
+                    im = im.convert("RGB") if im.mode not in ("RGB", "L") else im
+                    im.thumbnail((DEFAULT_THUMB_EDGE, DEFAULT_THUMB_EDGE))
+                    dest.parent.mkdir(parents=True, exist_ok=True)
+                    buf = io.BytesIO()
+                    im.save(buf, format="JPEG", quality=82, optimize=True)
+                    data = buf.getvalue()
+                    dest.write_bytes(data)
+                    return data
+            except Exception as exc:
+                LOGGER.debug("raster thumbnail failed %s: %s", asset_id, exc)
+                return None
+
         try:
             import tifffile  # type: ignore
             import numpy as np  # type: ignore
-        except ImportError:
-            return None
-        try:
-            from PIL import Image
         except ImportError:
             return None
 
