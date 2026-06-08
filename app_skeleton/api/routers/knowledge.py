@@ -76,29 +76,77 @@ def knowledge_hybrid_search(
 
 @router.get("/api/search")
 def unified_search(
+    response: Response,
     q: str = Query(..., min_length=2),
     mode: str = Query("hybrid"),
     section_id: Optional[str] = Query(None),
     page_domain_id: Optional[str] = Query(None),
     limit: int = Query(15, ge=1, le=50),
 ) -> dict:
-    """Unified search: exact|metadata|semantic|hybrid (LUMI-W140)."""
+    """Unified search: exact|metadata|semantic|hybrid (LUMI-W140).
+
+    Proxies to SearchService.unified_search — legacy response shape preserved.
+    """
+    response.headers["Deprecation"] = "true"
+    response.headers["Link"] = '</api/platform/unified-search>; rel="successor-version"'
+
     mode = (mode or "hybrid").lower()
-    out: dict = {"query": q, "mode": mode}
-    vault_domain = None
-    if page_domain_id:
-        from app_skeleton.api.search_nav import vault_domain_for_page
-        vault_domain = vault_domain_for_page(page_domain_id)
+    scopes: list[str] = []
     if mode in ("semantic", "hybrid"):
-        out["lab_results"] = search_lab_knowledge(
-            q, section_id=section_id, limit=limit, qdrant=qdrant_client, llm=llm_client
-        )
+        scopes.append("lab")
     if mode in ("metadata", "exact", "hybrid"):
-        out["vault_results"] = search_vault(q, domain=vault_domain, limit=limit)
+        scopes.append("vault")
+    scopes_str = ",".join(scopes) if scopes else "lab,vault"
+
+    from app_skeleton.api.search_service import SearchService
+
+    search_mode = mode if mode in ("keyword", "semantic", "hybrid", "exact") else "hybrid"
+    result = SearchService(db_conn=DB_CONN, qdrant=qdrant_client, llm=llm_client).unified_search(
+        q,
+        scopes=scopes_str,
+        section_id=section_id,
+        page_domain_id=page_domain_id,
+        mode=search_mode,
+        limit=limit,
+    )
+
+    lab_results: list[dict] = []
+    vault_results: list[dict] = []
+    for hit in result.hits:
+        if hit.bucket == "lab":
+            lab_results.append({
+                "rank": hit.rank,
+                "score": hit.score,
+                "chunk_uid": hit.id,
+                "title": hit.title,
+                "section_id": hit.section_id,
+                "relative_path": hit.relative_path,
+                "where_to_find": hit.relative_path,
+                "citation": hit.relative_path,
+                "excerpt": hit.snippet,
+                "source_type": hit.source_type,
+            })
+        elif hit.bucket == "vault":
+            vault_results.append({
+                "asset_id": hit.id,
+                "filename": hit.title,
+                "logical_path": hit.relative_path,
+                "metadata_preview": {"excerpt": hit.snippet},
+                "page_domain_id": hit.page_domain_id,
+                "project_hint": hit.project_code,
+                "review_status": (hit.metadata or {}).get("review_status"),
+            })
+
+    out: dict = {
+        "query": q,
+        "mode": mode,
+        "lab_results": lab_results,
+        "vault_results": vault_results,
+        "count": len(lab_results) + len(vault_results),
+        "page_domain_id": page_domain_id,
+    }
     if mode == "exact" and not out.get("lab_results"):
         out["lab_results"] = []
-    out["count"] = len(out.get("lab_results") or []) + len(out.get("vault_results") or [])
-    out["page_domain_id"] = page_domain_id
     return out
 
 @router.get("/api/documents/registry")

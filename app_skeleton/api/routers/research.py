@@ -659,6 +659,7 @@ def delete_task(task_id: str, user: dict = Depends(require_platform_user)) -> di
 
 @router.get("/platform/search")
 def platform_search(
+    response: Response,
     q: str = Query(..., min_length=2),
     project_code: Optional[str] = Query(None),
     include: str = Query("notebook,wiki,decisions,tasks", description="Comma-separated: notebook,wiki,decisions,tasks"),
@@ -666,117 +667,94 @@ def platform_search(
 ) -> Dict[str, Any]:
     """Unified full-text keyword search across notebook entries, wiki pages, and decisions.
 
-    Useful for the UI global search bar — returns ranked, merged results without
-    requiring a Qdrant/RAG round trip.
+    Proxies to SearchService.unified_search — legacy response shape preserved.
     """
+    response.headers["Deprecation"] = "true"
+    response.headers["Link"] = '</api/platform/unified-search>; rel="successor-version"'
+
     targets = {t.strip().lower() for t in (include or "").split(",") if t.strip()}
-    out: Dict[str, Any] = {"query": q, "project_code": project_code}
+    scope_parts: list[str] = []
+    if "notebook" in targets:
+        scope_parts.append("notebook")
+    if "wiki" in targets:
+        scope_parts.append("wiki")
+    if "decisions" in targets:
+        scope_parts.append("decision")
+    if "tasks" in targets:
+        scope_parts.append("task")
+    scopes_str = ",".join(scope_parts) if scope_parts else "notebook,wiki,decision,task"
 
     try:
-        with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
-            with conn.cursor() as cur:
-                pattern = f"%{q}%"
+        from app_skeleton.api.search_service import SearchService
 
-                if "notebook" in targets:
-                    nb_query = """
-                        SELECT ne.entry_id::text, p.project_code, ne.title,
-                               LEFT(ne.content, 300) AS excerpt, ne.entry_type, ne.created_at
-                        FROM platform.notebook_entry ne
-                        JOIN core.project p ON ne.project_id = p.project_id
-                        WHERE (ne.title ILIKE %s OR ne.content ILIKE %s)
-                    """
-                    nb_params: list = [pattern, pattern]
-                    if project_code:
-                        nb_query += " AND p.project_code = %s"
-                        nb_params.append(project_code)
-                    nb_query += " ORDER BY ne.created_at DESC LIMIT %s;"
-                    nb_params.append(limit)
-                    cur.execute(nb_query, tuple(nb_params))
-                    out["notebook"] = [
-                        {
-                            "id": r[0], "entry_id": r[0], "project_code": r[1], "title": r[2],
-                            "excerpt": r[3], "content": r[3], "kind": r[4], "entry_type": r[4],
-                            "created_at": r[5].isoformat() if r[5] else None,
-                        }
-                        for r in cur.fetchall()
-                    ]
+        result = SearchService(db_conn=DB_CONN, qdrant=qdrant_client, llm=llm_client).unified_search(
+            q,
+            scopes=scopes_str,
+            project_code=project_code,
+            mode="keyword",
+            limit=limit,
+        )
+        out: Dict[str, Any] = {"query": q, "project_code": project_code}
+        bucket_key = {"notebook": "notebook", "wiki": "wiki", "decision": "decisions", "task": "tasks"}
+        grouped: dict[str, list] = {k: [] for k in ("notebook", "wiki", "decisions", "tasks")}
 
-                if "wiki" in targets:
-                    w_query = """
-                        SELECT w.wiki_id::text, p.project_code, w.title,
-                               LEFT(w.content, 300) AS excerpt, w.wiki_type, w.updated_at
-                        FROM platform.research_wiki w
-                        LEFT JOIN core.project p ON w.project_id = p.project_id
-                        WHERE (w.title ILIKE %s OR w.content ILIKE %s)
-                    """
-                    w_params: list = [pattern, pattern]
-                    if project_code:
-                        w_query += " AND p.project_code = %s"
-                        w_params.append(project_code)
-                    w_query += " ORDER BY w.updated_at DESC LIMIT %s;"
-                    w_params.append(limit)
-                    cur.execute(w_query, tuple(w_params))
-                    out["wiki"] = [
-                        {
-                            "id": r[0], "wiki_id": r[0], "project_code": r[1], "title": r[2],
-                            "excerpt": r[3], "content": r[3], "kind": r[4], "wiki_type": r[4],
-                            "updated_at": r[5].isoformat() if r[5] else None, "revision": 1,
-                        }
-                        for r in cur.fetchall()
-                    ]
+        for hit in result.hits:
+            key = bucket_key.get(hit.bucket or "")
+            if not key:
+                continue
+            meta = hit.metadata or {}
+            if hit.bucket == "notebook":
+                grouped[key].append({
+                    "id": hit.id,
+                    "entry_id": hit.id,
+                    "project_code": hit.project_code,
+                    "title": hit.title,
+                    "excerpt": hit.snippet,
+                    "content": hit.snippet,
+                    "kind": meta.get("entry_type"),
+                    "entry_type": meta.get("entry_type"),
+                    "created_at": hit.created_at,
+                })
+            elif hit.bucket == "wiki":
+                grouped[key].append({
+                    "id": hit.id,
+                    "wiki_id": hit.id,
+                    "project_code": hit.project_code,
+                    "title": hit.title,
+                    "excerpt": hit.snippet,
+                    "content": hit.snippet,
+                    "kind": meta.get("wiki_type"),
+                    "wiki_type": meta.get("wiki_type"),
+                    "updated_at": hit.updated_at,
+                    "revision": 1,
+                })
+            elif hit.bucket == "decision":
+                grouped[key].append({
+                    "id": hit.id,
+                    "decision_id": hit.id,
+                    "project_code": hit.project_code,
+                    "title": hit.title,
+                    "excerpt": hit.snippet,
+                    "decision_details": hit.snippet,
+                    "decision_date": meta.get("decision_date"),
+                })
+            elif hit.bucket == "task":
+                grouped[key].append({
+                    "id": hit.id,
+                    "task_id": hit.id,
+                    "project_code": hit.project_code,
+                    "title": hit.title,
+                    "description": hit.snippet,
+                    "excerpt": hit.snippet,
+                    "status": meta.get("status"),
+                    "assignee": meta.get("assignee"),
+                })
 
-                if "decisions" in targets:
-                    d_query = """
-                        SELECT d.decision_id::text, p.project_code, d.title,
-                               LEFT(d.decision_details, 300) AS excerpt, d.decision_date
-                        FROM platform.decision_registry d
-                        JOIN core.project p ON d.project_id = p.project_id
-                        WHERE (d.title ILIKE %s OR d.decision_details ILIKE %s OR d.rationale ILIKE %s)
-                    """
-                    d_params: list = [pattern, pattern, pattern]
-                    if project_code:
-                        d_query += " AND p.project_code = %s"
-                        d_params.append(project_code)
-                    d_query += " ORDER BY d.decision_date DESC LIMIT %s;"
-                    d_params.append(limit)
-                    cur.execute(d_query, tuple(d_params))
-                    out["decisions"] = [
-                        {
-                            "id": r[0], "decision_id": r[0], "project_code": r[1], "title": r[2],
-                            "excerpt": r[3], "decision_details": r[3], "decision_date": str(r[4]),
-                        }
-                        for r in cur.fetchall()
-                    ]
-
-                if "tasks" in targets:
-                    t_query = """
-                        SELECT t.task_id::text, p.project_code, t.title,
-                               LEFT(t.description, 300), t.status, r.full_name
-                        FROM platform.task t
-                        JOIN core.project p ON t.project_id = p.project_id
-                        LEFT JOIN platform.researcher r ON t.assigned_to = r.researcher_id
-                        WHERE (t.title ILIKE %s OR t.description ILIKE %s)
-                    """
-                    t_params: list = [pattern, pattern]
-                    if project_code:
-                        t_query += " AND p.project_code = %s"
-                        t_params.append(project_code)
-                    t_query += " ORDER BY t.due_date DESC NULLS LAST LIMIT %s;"
-                    t_params.append(limit)
-                    cur.execute(t_query, tuple(t_params))
-                    out["tasks"] = [
-                        {
-                            "id": r[0], "task_id": r[0], "project_code": r[1], "title": r[2],
-                            "description": r[3], "excerpt": r[3], "status": r[4], "assignee": r[5],
-                        }
-                        for r in cur.fetchall()
-                    ]
-
-                total = sum(
-                    len(out.get(k) or []) for k in ("notebook", "wiki", "decisions", "tasks")
-                )
-                out["total"] = total
-                return out
+        for k in ("notebook", "wiki", "decisions", "tasks"):
+            if k in targets:
+                out[k] = grouped[k]
+        out["total"] = sum(len(out.get(k) or []) for k in ("notebook", "wiki", "decisions", "tasks"))
+        return out
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
 
