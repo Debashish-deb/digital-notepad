@@ -1,0 +1,26 @@
+app_skeleton/api/routers/research.py
+  s_6b73098ab26784::t_260fc315a89504 662
+  s_6b73098ab26784::t_943860a63d6162 754
+  s_6b73098ab26784::t_ea7f6f38fa65fd 672-673
+  s_6b73098ab26784::t_2d04bd84ab802e 670,674,676-685,688-753,755-757
+app_skeleton/api/routers/knowledge.py
+  s_6b73098ab26784::t_740b4d04fa132a 86-89,92,94,96,98-147
+  s_6b73098ab26784::t_eebdf2c72cd3d5 90-91
+  s_6b73098ab26784::t_5d0c2b5b0fab19 79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "aae7db302f1d0ba1175d5f4cd61d98535c838bfe",
+  "prompts": {},
+  "sessions": {
+    "s_6b73098ab26784": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "609bcea6-8335-4ef6-9e0d-98c7de17556a",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
