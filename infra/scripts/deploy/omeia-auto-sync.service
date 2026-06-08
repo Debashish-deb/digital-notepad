@@ -1,0 +1,26 @@
+# User systemd unit — Linux workstation auto git pull after Mac pushes.
+#
+# Install (on Linux, once):
+#   mkdir -p ~/.config/systemd/user
+#   cp ~/data4TB/digital-notepad/scripts/deploy/omeia-auto-sync.service ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now omeia-auto-sync.service
+#
+# Logs:
+#   journalctl --user -u omeia-auto-sync.service -f
+
+[Unit]
+Description=OMEIA auto git pull (Mac → Linux code sync)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/data4TB/digital-notepad
+Environment=OMEIA_AUTO_SYNC_INTERVAL_SEC=90
+ExecStart=%h/data4TB/digital-notepad/scripts/deploy/auto_sync_daemon.sh
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target

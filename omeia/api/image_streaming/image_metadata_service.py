@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import logging
+import re
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -17,6 +19,55 @@ from omeia.api.image_streaming.constants import (
 LOGGER = logging.getLogger(__name__)
 
 CACHE_PATH = BLUEPRINT_ROOT / "omeia" / "data" / "image_metadata_cache.json"
+
+_OME_NS = {"ome": "http://www.openmicroscopy.org/Schemas/OME/2016-06"}
+
+
+def _parse_ome_channel_names(ome_xml: str | None) -> list[str]:
+    if not ome_xml:
+        return []
+    names: list[str] = []
+    try:
+        root = ET.fromstring(ome_xml)
+        for ch in root.findall(".//ome:Channel", _OME_NS):
+            name = (ch.get("Name") or ch.get("name") or "").strip()
+            if name:
+                names.append(name)
+        if not names:
+            for ch in root.iter():
+                if ch.tag.endswith("Channel"):
+                    name = (ch.get("Name") or ch.get("name") or "").strip()
+                    if name:
+                        names.append(name)
+    except Exception:
+        for match in re.finditer(r'<Channel[^>]*\bName="([^"]+)"', ome_xml, re.I):
+            names.append(match.group(1).strip())
+    return names
+
+
+def _parse_ome_pixel_size_um(ome_xml: str | None) -> float | None:
+    if not ome_xml:
+        return None
+    try:
+        root = ET.fromstring(ome_xml)
+        for pix in root.findall(".//ome:Pixels", _OME_NS):
+            val = pix.get("PhysicalSizeX")
+            if val:
+                return float(val)
+        for pix in root.iter():
+            if pix.tag.endswith("Pixels"):
+                val = pix.get("PhysicalSizeX") or pix.get("PhysicalSizeY")
+                if val:
+                    return float(val)
+    except Exception:
+        pass
+    match = re.search(r'PhysicalSizeX="([0-9.eE+-]+)"', ome_xml or "")
+    if match:
+        try:
+            return float(match.group(1))
+        except ValueError:
+            return None
+    return None
 
 
 def _utc_now() -> str:
@@ -84,6 +135,9 @@ class ImageMetadataService:
             "pyramid_levels": 0,
             "series_count": 0,
             "ome_xml_present": False,
+            "channel_names": [],
+            "physical_pixel_size_um": None,
+            "pixel_size_um": None,
             "tile_ready": False,
             "thumbnail_ready": False,
             "errors": [],
@@ -113,7 +167,14 @@ class ImageMetadataService:
 
         try:
             with tifffile.TiffFile(str(disk_path)) as tif:
-                meta["ome_xml_present"] = bool(getattr(tif, "ome_metadata", None))
+                ome_xml = getattr(tif, "ome_metadata", None)
+                meta["ome_xml_present"] = bool(ome_xml)
+                if ome_xml:
+                    meta["channel_names"] = _parse_ome_channel_names(ome_xml)
+                    px_um = _parse_ome_pixel_size_um(ome_xml)
+                    if px_um is not None:
+                        meta["physical_pixel_size_um"] = px_um
+                        meta["pixel_size_um"] = px_um
                 meta["series_count"] = len(tif.series)
                 series = tif.series[0] if tif.series else None
                 if series is not None:

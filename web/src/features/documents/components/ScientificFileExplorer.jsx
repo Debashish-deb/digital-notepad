@@ -157,7 +157,7 @@ export default function ScientificFileExplorer({
           !isReadingLayout && !listDetailExpanded ? 'sfe-body--list-compact' : '',
         ].filter(Boolean).join(' ')}
       >
-        <section className={`sfe-main${!isReadingLayout && !listDetailExpanded ? ' sfe-main--list-compact' : ''}`}>
+        <section className={`sfe-main${isReadingLayout || !listDetailExpanded ? ' sfe-main--list-compact' : ''}`}>
           {loadError ? (
             <div className="sfe-list-section sfe-list-section--alert">
               <div className="sfe-error-banner" role="alert">{loadError}</div>

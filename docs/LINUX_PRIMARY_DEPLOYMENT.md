@@ -57,12 +57,34 @@ chmod +x scripts/deploy/linux_bootstrap_all.sh scripts/deploy/mac_push_to_linux.
 ./scripts/deploy/linux_bootstrap_all.sh --with-biomodels
 ```
 
+## Auto-sync (ping + git)
+
+**Linux** — background pull every 90s when Mac has pushed:
+
+```bash
+cd ~/data4TB/digital-notepad
+chmod +x scripts/deploy/auto_sync_daemon.sh
+./scripts/deploy/auto_sync_daemon.sh
+# Or enable on login:
+cp scripts/deploy/omeia-auto-sync.service ~/.config/systemd/user/
+systemctl --user enable --now omeia-auto-sync.service
+```
+
+**Mac** — push when Linux answers ping:
+
+```bash
+# configs/.env: TAILSCALE_LINUX_IP=100.x.x.x  LINUX_SSH=user@host
+./scripts/deploy/auto_sync_daemon.sh --mac-push
+```
+
+Status log: `omeia/data/auto_sync_last_run.json`
+
 ## Daily workflow
 
 | Machine | Action |
 |---------|--------|
-| **Mac** (code changes) | edit → `mac_push_to_linux.sh --code-only` |
-| **Linux** | `git pull && ./scripts/start_linux.sh` |
+| **Mac** (code changes) | edit → `mac_push_to_linux.sh --code-only` or auto-sync `--mac-push` |
+| **Linux** | auto-sync daemon, or `git pull && ./scripts/start_linux.sh` |
 | **Any browser** | `http://<linux-tailscale-ip>:5173` |
 
 ## Mac `.env` (browser-only client)

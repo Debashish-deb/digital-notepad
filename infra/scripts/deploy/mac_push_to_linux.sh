@@ -60,6 +60,12 @@ if [[ "$GIT_ONLY" != true && -z "$LINUX_SSH" ]]; then
   exit 1
 fi
 
+# shellcheck source=linux_ssh_auth.sh
+source "$_DEPLOY_DIR/linux_ssh_auth.sh"
+if [[ "$GIT_ONLY" != true && -n "$LINUX_SSH" ]]; then
+  linux_ssh_preflight "$LINUX_SSH" || exit 1
+fi
+
 RSYNC_FLAGS=(-avz --progress)
 [[ "$DRY_RUN" == true ]] && RSYNC_FLAGS+=(--dry-run)
 
@@ -105,7 +111,7 @@ if [[ "$DATA_ONLY" != true ]]; then
     echo "  cd $LINUX_REPO && git pull"
   else
     echo "--- Git pull on Linux ---"
-    ssh "$LINUX_SSH" "cd $LINUX_REPO && git pull"
+    linux_ssh_exec "$LINUX_SSH" "cd $LINUX_REPO && git pull"
   fi
   echo ""
 fi
@@ -116,7 +122,7 @@ if [[ "$CODE_ONLY" != true && "$GIT_ONLY" != true ]]; then
     echo "      Skip data rsync or set DATABASE_ROOT in configs/.env"
   else
     echo "--- Rsync OMEIA-database (heavy — may take a long time) ---"
-    ssh "$LINUX_SSH" "mkdir -p $LINUX_DATA"
+    linux_ssh_exec "$LINUX_SSH" "mkdir -p $LINUX_DATA"
     rsync "${RSYNC_FLAGS[@]}" \
       --exclude '.DS_Store' \
       --exclude '**/.Trash/**' \

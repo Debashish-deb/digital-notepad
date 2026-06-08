@@ -202,7 +202,8 @@
 
 .sfe-body {
   display: grid;
-  grid-template-columns: minmax(300px, 0.95fr) minmax(420px, 1.35fr);
+  /* File list 15% · PDF / preview pane 85% */
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%);
   gap: 1.1rem;
   flex: 1;
   min-height: 480px;
@@ -212,11 +213,11 @@
 }
 
 .sfe-body--list-compact {
-  grid-template-columns: minmax(280px, 0.62fr) minmax(400px, 1.38fr);
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%);
 }
 
 .sfe-body--list-expanded {
-  grid-template-columns: minmax(300px, 0.95fr) minmax(420px, 1.35fr);
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%);
 }
 
 @media (max-width: 960px) {

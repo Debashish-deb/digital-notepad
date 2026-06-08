@@ -25,13 +25,17 @@ elif [[ -f "$TEMPLATE" ]]; then
   echo "NOTE: merge any new keys from configs/linux-workstation.env.template into configs/.env"
 fi
 
-READY_URL="${OMEIA_READY_URL:-http://127.0.0.1:8000/ready}"
-echo "Checking readiness: $READY_URL"
-if curl -sf "$READY_URL" >/dev/null; then
-  echo "Ready check: OK"
+if [[ "${OMEIA_POST_PULL_SKIP_READY:-false}" != "true" ]]; then
+  READY_URL="${OMEIA_READY_URL:-http://127.0.0.1:8000/ready}"
+  echo "Checking readiness: $READY_URL"
+  if curl -sf "$READY_URL" >/dev/null; then
+    echo "Ready check: OK"
+  else
+    echo "Ready check: API not reachable (start with ./scripts/start_linux.sh)"
+    exit 1
+  fi
 else
-  echo "Ready check: API not reachable (start with ./scripts/start_linux.sh)"
-  exit 1
+  echo "Skipping readiness check (OMEIA_POST_PULL_SKIP_READY=true)"
 fi
 
 echo "Post-pull complete."

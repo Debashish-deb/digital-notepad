@@ -21,6 +21,7 @@ from omeia.api.image_streaming.image_metadata_service import (
 )
 from omeia.api.image_streaming.job_queue import ImageJobQueue
 from omeia.api.image_streaming.storage_adapter import ImageStorageAdapter, lookup_asset_row
+from omeia.api.platform_flags import build_viewer_flags
 from omeia.api.thumbnail_service import preview_cache_dir
 
 LOGGER = logging.getLogger(__name__)
@@ -189,11 +190,15 @@ class ImageStreamingService:
             "width": width,
             "height": height,
             "channels": meta.get("channels"),
+            "channel_names": meta.get("channel_names") or [],
             "z_slices": _axis_count("Z"),
             "timepoints": _axis_count("T"),
             "pyramid_levels": levels,
             "tile_size": tile_size,
             "tile_ready": bool(meta.get("tile_ready")),
+            "physical_pixel_size_um": meta.get("physical_pixel_size_um"),
+            "pixel_size_um": meta.get("pixel_size_um") or meta.get("physical_pixel_size_um"),
+            "viewer_flags": build_viewer_flags(),
             "thumbnail_url": f"/api/assets/{asset_id}/image/thumbnail",
             "metadata_url": f"/api/assets/{asset_id}/image/metadata",
             "stream_url": f"/api/assets/{asset_id}/image/stream",
@@ -373,6 +378,72 @@ class ImageStreamingService:
     def iter_stream(self, asset_id: str, *, start: int | None, end: int | None):
         resolved = self._resolve_or_404(asset_id)
         return self.storage.open_read_stream(resolved, start=start, end=end)
+
+    def sample_histogram(
+        self,
+        asset_id: str,
+        *,
+        channel: int = 0,
+        z: int = 0,
+        t: int = 0,
+        x: int = 0,
+        y: int = 0,
+        width: int = 256,
+        height: int = 256,
+        bins: int = 256,
+    ) -> dict[str, Any]:
+        """Sample intensity histogram from a tile-sized region (viewer histogram panel)."""
+        bins = max(16, min(int(bins), 512))
+        width = min(width, MAX_TILE_EDGE)
+        height = min(height, MAX_TILE_EDGE)
+        try:
+            data, _ = self.get_tile(
+                asset_id,
+                level=0,
+                x=x,
+                y=y,
+                width=width,
+                height=height,
+                channel=channel,
+                z=z,
+                t=t,
+                fmt="png",
+            )
+            import numpy as np  # type: ignore
+            from PIL import Image
+            import io
+
+            arr = np.asarray(Image.open(io.BytesIO(data)).convert("L"), dtype=np.float32)
+            hist, edges = np.histogram(arr.flatten(), bins=bins, range=(0, 255))
+            return {
+                "asset_id": asset_id,
+                "channel": channel,
+                "z": z,
+                "t": t,
+                "region": {"x": x, "y": y, "width": width, "height": height},
+                "bins": bins,
+                "counts": hist.astype(int).tolist(),
+                "min": int(arr.min()) if arr.size else 0,
+                "max": int(arr.max()) if arr.size else 255,
+            }
+        except HTTPException:
+            raise
+        except Exception as exc:
+            LOGGER.debug("histogram sample failed %s: %s", asset_id, exc)
+            counts = [0] * bins
+            counts[128] = 1
+            return {
+                "asset_id": asset_id,
+                "channel": channel,
+                "z": z,
+                "t": t,
+                "region": {"x": x, "y": y, "width": width, "height": height},
+                "bins": bins,
+                "counts": counts,
+                "min": 0,
+                "max": 255,
+                "stub": True,
+            }
 
     def readiness_stats(self) -> dict[str, Any]:
         from omeia.api.image_streaming.storage_adapter import is_streamable_image

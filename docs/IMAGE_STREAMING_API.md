@@ -29,6 +29,34 @@ Viewer-oriented manifest:
 }
 ```
 
+Additional Phase 7B manifest fields:
+
+- `channel_names` — from OME-XML when present
+- `physical_pixel_size_um` / `pixel_size_um` — micron calibration
+- `viewer_flags` — `{ low_resource_mode, heatmaps, segmentation_overlays, roi_annotations }`
+
+### `GET /api/assets/{asset_id}/image/rois`
+
+List user ROIs (auth + asset access). POST creates; DELETE removes by `roi_id`.
+
+### `GET /api/assets/{asset_id}/image/overlays`
+
+List segmentation overlays referencing `overlay_asset_id`.
+
+### `GET /api/users/me/image/channel-presets`
+
+User channel presets. POST save; DELETE by `preset_id`.
+
+### `GET /api/assets/{asset_id}/image/cells/{cell_id}`
+
+Cell inspection metrics (stub or overlay metadata).
+
+### `GET /api/assets/{asset_id}/image/histogram`
+
+Sample histogram for a tile region (`channel`, `x`, `y`, `width`, `height`, `bins`).
+
+See `docs/SCIENTIFIC_VIEWER_FEATURE_REFERENCES.md` for feature rationale and Linux validation.
+
 ### `GET /api/assets/{asset_id}/image/thumbnail`
 
 Returns `image/jpeg`. Generates on first request via `tifffile` region read + Pillow resize. Cached per asset_id.

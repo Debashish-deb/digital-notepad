@@ -95,3 +95,86 @@ export async function loadTileBitmap(assetId, params) {
   const blob = await response.blob();
   return createImageBitmap(blob);
 }
+
+// --- Phase 7B viewer extensions ---
+
+export async function fetchImageRois(assetId) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/rois`);
+}
+
+export async function createImageRoi(assetId, body) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/rois`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
+
+export async function deleteImageRoi(assetId, roiId) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/rois/${encodeURIComponent(roiId)}`, {
+    method: 'DELETE',
+  });
+}
+
+export async function fetchImageOverlays(assetId) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/overlays`);
+}
+
+export async function createImageOverlay(assetId, body) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/overlays`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
+
+export async function deleteImageOverlay(assetId, overlayId) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/overlays/${encodeURIComponent(overlayId)}`, {
+    method: 'DELETE',
+  });
+}
+
+export async function fetchChannelPresets() {
+  return apiFetch('/api/users/me/image/channel-presets');
+}
+
+export async function saveChannelPreset(body) {
+  return apiFetch('/api/users/me/image/channel-presets', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
+
+export async function deleteChannelPreset(presetId) {
+  return apiFetch(`/api/users/me/image/channel-presets/${encodeURIComponent(presetId)}`, {
+    method: 'DELETE',
+  });
+}
+
+export async function fetchCellInspection(assetId, cellId) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/cells/${encodeURIComponent(cellId)}`);
+}
+
+export async function fetchImageHistogram(assetId, params = {}) {
+  const sp = new URLSearchParams();
+  const {
+    channel = 0,
+    z = 0,
+    t = 0,
+    x = 0,
+    y = 0,
+    width = 256,
+    height = 256,
+    bins = 256,
+  } = params;
+  sp.set('channel', String(channel));
+  sp.set('z', String(z));
+  sp.set('t', String(t));
+  sp.set('x', String(x));
+  sp.set('y', String(y));
+  sp.set('width', String(width));
+  sp.set('height', String(height));
+  sp.set('bins', String(bins));
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/histogram?${sp}`);
+}

@@ -3001,7 +3001,7 @@ html[data-theme='academic'] .sidebar-exit-btn:hover {
 }
 
 .lab-docs-layout--compact.pfb-layout {
-  grid-template-columns: minmax(9.25rem, 11.25rem) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%) !important;
   height: min(72vh, 680px);
   max-height: min(72vh, 680px);
   min-height: min(72vh, 680px);
@@ -3010,22 +3010,22 @@ html[data-theme='academic'] .sidebar-exit-btn:hover {
 
 /* Project workspace document browser — wider file list than legacy compact */
 .lab-docs-layout--project.lab-docs-layout--compact.pfb-layout {
-  grid-template-columns: minmax(17.5rem, 22rem) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%) !important;
 }
 
 .lab-docs-layout--project.lab-docs-layout--compact.pfb-layout.pfb-layout--doc-full {
-  grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%) !important;
 }
 
-/* Catalog split must stay wider than default compact columns */
+/* Catalog split — file list 15%, PDF preview 85% */
 .lab-docs-catalog-split.lab-docs-layout--compact.pfb-layout,
 .lab-docs-layout--catalog.lab-docs-layout--compact.pfb-layout {
-  grid-template-columns: minmax(17.5rem, 22rem) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%) !important;
 }
 
 .lab-docs-catalog-split.lab-docs-layout--compact.pfb-layout.pfb-layout--doc-full,
 .lab-docs-layout--catalog.lab-docs-layout--compact.pfb-layout.pfb-layout--doc-full {
-  grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%) !important;
 }
 
 .lab-docs-layout--compact.pfb-layout .pfb-files-pane {
@@ -3060,7 +3060,7 @@ html[data-theme='academic'] .sidebar-exit-btn:hover {
 }
 
 .lab-docs-layout--compact.pfb-layout.pfb-layout--doc-full {
-  grid-template-columns: minmax(8.75rem, 10.75rem) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%) !important;
   height: min(78vh, 720px);
   max-height: min(78vh, 720px);
   min-height: min(78vh, 720px);
@@ -3086,12 +3086,12 @@ html[data-theme='academic'] .sidebar-exit-btn:hover {
 
 @media (max-width: 960px) {
   .lab-docs-layout--compact.pfb-layout {
-    grid-template-columns: minmax(8.5rem, 10rem) minmax(0, 1fr) !important;
+    grid-template-columns: minmax(10rem, 15%) minmax(0, 85%) !important;
   }
 
   .lab-docs-catalog-split.lab-docs-layout--compact.pfb-layout,
   .lab-docs-layout--catalog.lab-docs-layout--compact.pfb-layout {
-    grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr) !important;
+    grid-template-columns: minmax(10rem, 15%) minmax(0, 85%) !important;
   }
 }
 
@@ -3299,7 +3299,7 @@ html[data-theme='academic'] .sidebar-exit-btn:hover {
 
 .lab-docs-protocols-split.pfb-layout {
   display: grid;
-  grid-template-columns: minmax(9.25rem, 11.25rem) minmax(0, 1fr);
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%);
   gap: 0.5rem;
   flex: 1;
   min-height: 0;
@@ -3310,7 +3310,7 @@ html[data-theme='academic'] .sidebar-exit-btn:hover {
 
 .lab-docs-catalog-split.pfb-layout {
   display: grid;
-  grid-template-columns: minmax(17.5rem, 22rem) minmax(0, 1fr);
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%);
   gap: 0.65rem;
   flex: 1;
   min-height: 0;
@@ -3320,11 +3320,11 @@ html[data-theme='academic'] .sidebar-exit-btn:hover {
 }
 
 .lab-docs-protocols-split.pfb-layout.pfb-layout--doc-full {
-  grid-template-columns: minmax(8.75rem, 10.75rem) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%) !important;
 }
 
 .lab-docs-catalog-split.pfb-layout.pfb-layout--doc-full {
-  grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(10rem, 15%) minmax(0, 85%) !important;
 }
 
 .lab-doc-files-panel--catalog,

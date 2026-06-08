@@ -110,3 +110,43 @@ def external_cancer_evidence_enabled() -> bool:
 def lab_knowledge_threads_enabled() -> bool:
     """When true, expose Lab Knowledge Threads challenge/correct API."""
     return _env_bool("OMEIA_LAB_KNOWLEDGE_THREADS", "false")
+
+
+def adaptive_compute_enabled() -> bool:
+    """When true, expose compute profiles and runtime selection (Phase 14)."""
+    return _env_bool("OMEIA_ADAPTIVE_COMPUTE", "false")
+
+
+def low_resource_mode_enabled() -> bool:
+    """When true, force LOW_END_LAPTOP compute behavior."""
+    return _env_bool("OMEIA_LOW_RESOURCE_MODE", "false")
+
+
+def image_low_resource_mode() -> bool:
+    """When true, viewer skips heavy overlays and reduces tile prefetch."""
+    return _env_bool("IMAGE_LOW_RESOURCE_MODE", "false")
+
+
+def image_enable_heatmaps() -> bool:
+    """When true, expose density heatmap overlay controls in the viewer."""
+    return _env_bool("IMAGE_ENABLE_HEATMAPS", "false")
+
+
+def image_enable_segmentation_overlays() -> bool:
+    """When true, allow segmentation overlay registration and rendering."""
+    return _env_bool("IMAGE_ENABLE_SEGMENTATION_OVERLAYS", "true")
+
+
+def image_enable_roi_annotations() -> bool:
+    """When true, allow ROI draw/save via image viewer API."""
+    return _env_bool("IMAGE_ENABLE_ROI_ANNOTATIONS", "true")
+
+
+def build_viewer_flags() -> dict[str, bool]:
+    """Feature flags included in image manifest viewer_flags."""
+    return {
+        "low_resource_mode": image_low_resource_mode(),
+        "heatmaps": image_enable_heatmaps(),
+        "segmentation_overlays": image_enable_segmentation_overlays(),
+        "roi_annotations": image_enable_roi_annotations(),
+    }
