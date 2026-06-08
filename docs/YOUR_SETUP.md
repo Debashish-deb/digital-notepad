@@ -70,6 +70,20 @@ mv OMEIA-database ~/data4TB/
 
 Files must exist on **Linux disk** at `DATABASE_ROOT`, not on Mac. See `docs/LINUX_MEDIA_AND_DATA_PATHS.md`.
 
+## Node.js on Linux (Vite 8)
+
+Cubbli ships Node 20.11 — **too old**. Upgrade once with nvm:
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+source ~/.nvm/nvm.sh
+nvm install 22
+nvm use 22
+node -v   # expect v22.x
+```
+
+Then `npm install` in `app_skeleton/ui/react_frontend` and `./scripts/start_linux.sh`.
+
 ## One-shot Linux bootstrap (after git pull)
 
 ```bash

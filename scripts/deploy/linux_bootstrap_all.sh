@@ -98,11 +98,31 @@ echo "--- Python packages ---"
 "$PY" -m pip install -r "$ROOT/app_skeleton/api/requirements.txt"
 "$PY" -m pip install pytest
 
+echo "--- Node.js (Vite 8 needs >=20.19 or >=22.12) ---"
+need_node_bump() {
+  command -v node >/dev/null 2>&1 || return 0
+  node -e 'const v=process.versions.node.split(".").map(Number); const ok=(v[0]>22||(v[0]===22&&v[1]>=12)||(v[0]===20&&v[1]>=19)); process.exit(ok?0:1)' 2>/dev/null
+}
+if need_node_bump; then
+  if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+    # shellcheck disable=SC1091
+    . "$HOME/.nvm/nvm.sh"
+    nvm install 22
+    nvm use 22
+  else
+    echo "WARN: Node $(node -v 2>/dev/null || echo missing) is too old for Vite 8."
+    echo "  Install nvm then re-run bootstrap:"
+    echo "    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash"
+    echo "    source ~/.nvm/nvm.sh && nvm install 22 && nvm use 22"
+  fi
+fi
+
 echo "--- Frontend packages ---"
 if command -v npm >/dev/null 2>&1; then
+  echo "  node: $(node -v)  npm: $(npm -v)"
   (cd "$ROOT/app_skeleton/ui/react_frontend" && npm install)
 else
-  echo "WARN: npm not found — install Node.js 20+"
+  echo "WARN: npm not found — install Node.js 22 via nvm"
 fi
 
 if [[ "$SKIP_DOCKER" != true ]]; then
