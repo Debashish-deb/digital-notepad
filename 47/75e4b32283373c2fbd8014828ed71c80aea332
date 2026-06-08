@@ -1,0 +1,23 @@
+infra/scripts/dev/start_linux_desktop.sh
+  s_d8ca0dcf385045::t_0283de2bcfa738 102-104
+infra/scripts/docker/start_linux_docker_stack.sh
+  s_d8ca0dcf385045::t_d0af3641f6cca4 5-7
+  s_d8ca0dcf385045::t_842db71d2da033 42
+  s_d8ca0dcf385045::t_2a86215ba5b471 21-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "4775e4b32283373c2fbd8014828ed71c80aea332",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
