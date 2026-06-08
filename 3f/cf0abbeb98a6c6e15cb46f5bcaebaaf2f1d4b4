@@ -1,0 +1,19 @@
+infra/compose/docker-compose.yml
+  s_d8ca0dcf385045::t_9f9064e9eff016 21-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "3fcf0abbeb98a6c6e15cb46f5bcaebaaf2f1d4b4",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
