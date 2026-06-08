@@ -93,15 +93,37 @@ if [[ -f "$ROOT/configs/.env" && ! -f "$ROOT/.env" ]]; then
   echo "  Linked .env -> configs/.env"
 fi
 
+_omeia_core_containers_running() {
+  local name
+  for name in omeia-postgres omeia-qdrant omeia-ollama; do
+    if ! docker inspect -f '{{.State.Running}}' "$name" 2>/dev/null | grep -q '^true$'; then
+      return 1
+    fi
+  done
+  return 0
+}
+
 if [[ "$FULL_SETUP" == true ]]; then
   echo "--- Full Docker setup (models, Ollama smoke tests) ---"
   "$ROOT/scripts/docker/start_linux_docker_stack.sh"
   export DOCKER_COMPOSE_STARTED=true
+elif _omeia_core_containers_running; then
+  echo "--- Docker stack (quick) ---"
+  echo "  Core containers already running (omeia-postgres, omeia-qdrant, omeia-ollama) — skip compose up"
+  docker ps --format 'table {{.Names}}\t{{.Status}}' | grep -E 'omeia-(postgres|qdrant|ollama)' || true
+  export DOCKER_COMPOSE_STARTED=true
 else
   echo "--- Docker stack (quick) ---"
   COMPOSE_FILE="$ROOT/infra/compose/docker-compose.yml"
-  docker compose -f "$COMPOSE_FILE" up -d
-  docker compose -f "$COMPOSE_FILE" ps
+  if ! docker compose -f "$COMPOSE_FILE" up -d; then
+    if _omeia_core_containers_running; then
+      echo "WARN: docker compose up failed but core containers are running — continuing"
+    else
+      echo "ERROR: docker compose up failed and core containers are not running"
+      exit 1
+    fi
+  fi
+  docker compose -f "$COMPOSE_FILE" ps 2>/dev/null || docker ps --format 'table {{.Names}}\t{{.Status}}' | grep omeia || true
   export DOCKER_COMPOSE_STARTED=true
 fi
 
