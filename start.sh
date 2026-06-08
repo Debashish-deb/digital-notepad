@@ -1,7 +1,7 @@
 #!/bin/bash
 # OMEIA / Farkki platform launcher (repo root)
 #
-# Starts FastAPI on :8000, waits until /health responds, then starts Vite on :5173.
+# Starts FastAPI on :8000, waits until /ready responds, then starts Vite on :5173.
 #
 # Split architecture (recommended for development):
 #   ./scripts/dev/start_backend.sh   # API only
@@ -72,15 +72,19 @@ free_port() {
 }
 
 wait_for_backend() {
-  local url="http://127.0.0.1:8000/health"
+  local live_url="http://127.0.0.1:8000/live"
+  local ready_url="http://127.0.0.1:8000/ready"
   local timeout=60
   local elapsed=0
 
-  echo "Waiting for API at $url (up to ${timeout}s)..."
+  echo "Waiting for API readiness at $ready_url (up to ${timeout}s)..."
   while [ "$elapsed" -lt "$timeout" ]; do
-    if curl -sf "$url" >/dev/null 2>&1; then
+    if curl -sf "$ready_url" >/dev/null 2>&1; then
       echo "API is ready."
       return 0
+    fi
+    if curl -sf "$live_url" >/dev/null 2>&1; then
+      :
     fi
     sleep 1
     elapsed=$((elapsed + 1))
@@ -107,6 +111,7 @@ if [ "${DOCKER_LOCAL:-true}" = "false" ] || [ "${DOCKER_LOCAL:-true}" = "0" ]; t
 else
   if [ -x "$PROJECT_ROOT/scripts/dev/docker_bootstrap.sh" ]; then
     "$PROJECT_ROOT/scripts/dev/docker_bootstrap.sh" || echo "WARN: Docker bootstrap incomplete — API will use fallbacks."
+    export DOCKER_COMPOSE_STARTED=true
   fi
 fi
 

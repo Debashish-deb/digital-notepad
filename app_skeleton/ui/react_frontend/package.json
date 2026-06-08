@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "prebuild": "bash ../../../scripts/ops/check_frontend_public_lab_data.sh || true",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

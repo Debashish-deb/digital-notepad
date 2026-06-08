@@ -105,7 +105,10 @@ def document_library_search(
         }.items()
         if v is not None
     }
-    return svc.search_documents(
+    from app_skeleton.api.observability import timed
+
+    with timed("document_library.search"):
+        return svc.search_documents(
         q=q,
         domain_tab=domain_tab,
         system_view=system_view,
@@ -172,7 +175,10 @@ def document_library_facets(
         }.items()
         if v is not None
     }
-    return svc.compute_facets(q=q, domain_tab=domain_tab, system_view=system_view, filters=filters)
+    from app_skeleton.api.observability import timed
+
+    with timed("document_library.facets"):
+        return svc.compute_facets(q=q, domain_tab=domain_tab, system_view=system_view, filters=filters)
 
 
 @router.get("/api/document-library/preview/{asset_id}")

@@ -59,12 +59,11 @@ def agent_category_detail(
     return detail
 
 
-@router.post("/api/chat/category")
-def chat_category(
+def _execute_category_chat(
     req: CategoryChatRequest,
     request: Request,
     response: Response,
-    user: dict[str, Any] = Depends(require_platform_user),
+    user: dict[str, Any],
 ) -> dict[str, Any]:
     from app_skeleton.api.rate_limit import apply_rate_limit_headers, check_rate_limit
 
@@ -155,10 +154,26 @@ def chat_category(
     }
 
 
+@router.post("/api/chat/category")
+def chat_category(
+    req: CategoryChatRequest,
+    request: Request,
+    response: Response,
+    user: dict[str, Any] = Depends(require_platform_user),
+) -> dict[str, Any]:
+    return _execute_category_chat(req, request, response, user)
+
+
 @router.post("/api/agent-categories/{category_id}/run")
-def run_category(category_id: str, req: CategoryChatRequest, user: dict[str, Any] = Depends(require_platform_user)) -> dict[str, Any]:
+def run_category(
+    category_id: str,
+    req: CategoryChatRequest,
+    request: Request,
+    response: Response,
+    user: dict[str, Any] = Depends(require_platform_user),
+) -> dict[str, Any]:
     req.category = category_id
-    return chat_category(req, user)
+    return _execute_category_chat(req, request, response, user)
 
 
 @router.get("/api/agent-runs/{run_id}")

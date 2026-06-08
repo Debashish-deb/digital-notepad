@@ -3,6 +3,10 @@ import time
 from dataclasses import dataclass
 from typing import Any, Optional
 
+from app_skeleton.api.env_bootstrap import load_application_env
+
+load_application_env()
+
 import firebase_admin
 import psycopg
 from fastapi import Depends, HTTPException, Request

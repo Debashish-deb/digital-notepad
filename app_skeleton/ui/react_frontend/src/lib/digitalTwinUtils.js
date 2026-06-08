@@ -88,13 +88,23 @@ export function normalizeDigitalTwin(data) {
   return out;
 }
 
-export async function fetchProcessedTwin(projectCode) {
+export async function fetchProcessedTwin(projectCode, API_URL = '') {
   const code = encodeURIComponent(projectCode);
   try {
-    const res = await fetch(`/processed/${code}.json`, { cache: 'no-store' });
-    if (res.ok) return normalizeDigitalTwin(await res.json());
+    const { apiFetch } = await import('@/services/client.js');
+    const twin = await apiFetch(`/api/projects/${code}/digital-twin`, { timeoutMs: 60_000 });
+    if (twin) return normalizeDigitalTwin(twin);
   } catch (e) {
-    console.warn('Processed twin JSON unavailable', e);
+    if (!import.meta.env.DEV) {
+      console.warn('Digital twin API unavailable', e);
+      return null;
+    }
+    try {
+      const res = await fetch(`/processed/${code}.json`, { cache: 'no-store' });
+      if (res.ok) return normalizeDigitalTwin(await res.json());
+    } catch (err) {
+      console.warn('Processed twin JSON unavailable', err);
+    }
   }
   return null;
 }

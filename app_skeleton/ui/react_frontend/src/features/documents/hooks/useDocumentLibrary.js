@@ -10,6 +10,9 @@ import {
 import { consumeSearchNavigation } from '@/lib/searchHits.js';
 import { filterClientView } from '@/features/documents/documentLibraryUi.js';
 
+/** Initial page size — keeps first open fast; API supports offset/limit up to 5000. */
+const DOCUMENT_LIBRARY_PAGE_SIZE = 200;
+
 export default function useDocumentLibrary({
   initialDomainTab = 'all_files',
   taxonomyTab = 'all_files',
@@ -32,8 +35,10 @@ export default function useDocumentLibrary({
   const [stats, setStats] = useState(null);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [selected, setSelected] = useState(null);
   const [viewMode, setViewMode] = useState('table');
   const [sort, setSort] = useState('filename');
@@ -83,53 +88,73 @@ export default function useDocumentLibrary({
 
   const effectiveDomainTab = domainTab === 'all_files' ? undefined : (taxonomyTab || domainTab);
 
-  const searchParams = useMemo(() => ({
+  const facetParams = useMemo(() => ({
     q: debouncedQ,
     domain_tab: effectiveDomainTab === 'all_files' ? undefined : effectiveDomainTab,
     system_view: ['recently_opened', 'pinned'].includes(systemView) ? undefined : (systemView === 'all_files' ? undefined : systemView),
     sort,
     order,
-    offset: 0,
-    limit: 5000,
     ...filters,
   }), [debouncedQ, effectiveDomainTab, systemView, sort, order, filters]);
 
+  const searchParams = useMemo(() => ({
+    ...facetParams,
+    offset: 0,
+    limit: DOCUMENT_LIBRARY_PAGE_SIZE,
+  }), [facetParams]);
+
+  useEffect(() => {
+    setOffset(0);
+  }, [facetParams, systemView]);
+
   useEffect(() => {
     let alive = true;
-    const isInitialLoad = items.length === 0;
+    fetchDocumentLibraryFacets(facetParams)
+      .then((facetRes) => {
+        if (alive) setFacets(facetRes);
+      })
+      .catch(() => {
+        if (alive) setFacets(null);
+      });
+    return () => { alive = false; };
+  }, [facetParams]);
+
+  useEffect(() => {
+    let alive = true;
+    const isInitialLoad = offset === 0;
     if (isInitialLoad) {
       setLoading(true);
     } else {
-      setIsRefreshing(true);
+      setLoadingMore(true);
     }
-    setLoadError(null);
-    Promise.all([
-      searchDocumentLibrary(searchParams),
-      fetchDocumentLibraryFacets(searchParams),
-    ])
-      .then(([searchRes, facetRes]) => {
+    if (isInitialLoad) {
+      setLoadError(null);
+    }
+    const params = { ...facetParams, offset, limit: DOCUMENT_LIBRARY_PAGE_SIZE };
+    searchDocumentLibrary(params)
+      .then((searchRes) => {
         if (!alive) return;
         let rows = searchRes.items || [];
         rows = filterClientView(rows, systemView);
-        setItems(rows);
+        setItems((prev) => (offset === 0 ? rows : [...prev, ...rows]));
         setTotal(systemView === 'recently_opened' || systemView === 'pinned' ? rows.length : searchRes.total || 0);
-        setFacets(facetRes);
       })
       .catch((err) => {
         if (!alive) return;
-        if (isInitialLoad) {
+        if (offset === 0) {
           setItems([]);
           setTotal(0);
+          setLoadError(err?.message || 'Could not load document library.');
         }
-        setLoadError(err?.message || 'Could not load document library.');
       })
       .finally(() => {
         if (!alive) return;
         setLoading(false);
         setIsRefreshing(false);
+        setLoadingMore(false);
       });
     return () => { alive = false; };
-  }, [searchParams, systemView]);
+  }, [facetParams, systemView, offset]);
 
   useEffect(() => {
     if (loading || !items.length) return;
@@ -187,6 +212,17 @@ export default function useDocumentLibrary({
     );
   }, [hideScopeFilters, initialFilters]);
 
+  const hasMore = useMemo(() => {
+    if (systemView === 'recently_opened' || systemView === 'pinned') return false;
+    return items.length < total;
+  }, [items.length, total, systemView]);
+
+  const loadMore = useCallback(() => {
+    if (loadingMore || loading || !hasMore) return;
+    setIsRefreshing(true);
+    setOffset((prev) => prev + DOCUMENT_LIBRARY_PAGE_SIZE);
+  }, [hasMore, loading, loadingMore]);
+
   const scopedStats = facets?.scoped_stats;
   const scopeChips = facets?.scope_chips || [];
   const scopedAudit = scopedStats?.audit_counts;
@@ -210,6 +246,9 @@ export default function useDocumentLibrary({
     total,
     loading,
     isRefreshing,
+    loadingMore,
+    hasMore,
+    loadMore,
     selected,
     viewMode,
     setViewMode,

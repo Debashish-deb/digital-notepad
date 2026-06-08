@@ -12,32 +12,52 @@ router = APIRouter()
 def metrics() -> dict:
     """Basic in-memory request metrics (enable with ENABLE_REQUEST_METRICS=true)."""
     from app_skeleton.api.middleware.metrics import metrics_enabled, snapshot_metrics
+    from app_skeleton.api.observability import timing_snapshot
+    from app_skeleton.api.db_pool import pool_available
 
     data = snapshot_metrics()
     if not metrics_enabled():
         return {"enabled": False, "message": "Set ENABLE_REQUEST_METRICS=true to collect request metrics."}
+    data["timings"] = timing_snapshot()
+    data["postgres_pool"] = pool_available()
     return data
+
+
+@router.get("/live")
+def live() -> dict:
+    """Process-level liveness — cheap, always 200 when the API process is up."""
+    return {"status": "alive"}
+
+
+@router.get("/ready")
+def ready(response: Response) -> dict:
+    """Readiness — 503 when required dependencies (Postgres, optional Qdrant/LLM) are unavailable."""
+    from app_skeleton.api.readiness import check_readiness
+
+    report = check_readiness(db_conn=DB_CONN, qdrant_client=qdrant_client, llm_client=llm_client)
+    if not report["ready"]:
+        response.status_code = 503
+    return report
 
 
 @router.get("/health")
 def health() -> dict:
-    db_ok = True
-    try:
-        with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
-            pass
-    except Exception:
-        db_ok = False
-        
     from app_skeleton.api.connector_status import production_connectors_summary
     from app_skeleton.api.docker_service_client import docker_services
+    from app_skeleton.api.readiness import check_readiness
+
+    readiness = check_readiness(db_conn=DB_CONN, qdrant_client=qdrant_client, llm_client=llm_client)
+    checks = readiness.get("checks") or {}
 
     return {
-        "status": "ok",
-        "database_connected": db_ok,
+        "status": readiness.get("status") or "ok",
+        "ready": readiness.get("ready", True),
+        "database_connected": checks.get("database_connected", False),
         "llm_client_provider": llm_client.provider,
-        "llm_client_healthy": llm_client.healthCheck(),
+        "llm_client_healthy": checks.get("llm_healthy", llm_client.healthCheck()),
         "docker_services": docker_services.public_status(),
         "connectors": production_connectors_summary(),
+        "blockers": readiness.get("blockers") or [],
     }
 
 @router.get("/api/processor/status")
@@ -46,6 +66,13 @@ def processor_status() -> dict:
     from app_skeleton.api.processor_status import read_processor_status
 
     return read_processor_status()
+
+@router.get("/api/platform/scheduled-scanner/status")
+def scheduled_scanner_status() -> dict:
+    """Last run, config, and thread state for the scheduled directory scanner."""
+    from app_skeleton.api.scheduled_directory_scanner import scheduled_directory_scanner
+
+    return scheduled_directory_scanner.status()
 
 @router.get("/stats")
 def stats(project_code: Optional[List[str]] = Query(None)) -> dict:

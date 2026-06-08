@@ -6,6 +6,8 @@ import {
   buildLabDocumentMermaid,
   buildZoneStats,
 } from '@/lib/labDocumentMap.js';
+import { apiFetch } from '@/services/client.js';
+import { fetchLabProcessedSummary } from '@/lib/labDatabaseUtils.js';
 
 export default function LabDocumentMapPanel({ onNavigate, onZoneSelect, activeZoneId }) {
   const containerRef = useRef(null);
@@ -22,8 +24,8 @@ export default function LabDocumentMapPanel({ onNavigate, onZoneSelect, activeZo
   useEffect(() => {
     let alive = true;
     Promise.all([
-      fetch('/processed/lab__manifest.json', { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)),
-      fetch('/projects').then((r) => (r.ok ? r.json() : [])).catch(() => []),
+      fetchLabProcessedSummary(),
+      apiFetch('/projects').catch(() => []),
     ]).then(([manifest, projects]) => {
       if (!alive) return;
       const projectCount = Array.isArray(projects) ? projects.length : 0;

@@ -41,6 +41,31 @@ def test_metrics_collect_when_enabled(monkeypatch: pytest.MonkeyPatch) -> None:
     assert "200" in snap["requests_by_status"]
 
 
+def test_live_endpoint(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("ENABLE_REQUEST_METRICS", "false")
+    from app_skeleton.api.main import app
+
+    client = TestClient(app)
+    resp = client.get("/live")
+    assert resp.status_code == 200
+    assert resp.json().get("status") == "alive"
+
+
+def test_ready_endpoint_reports_postgres(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("ENABLE_REQUEST_METRICS", "false")
+    from app_skeleton.api.main import app
+
+    client = TestClient(app)
+    resp = client.get("/ready")
+    body = resp.json()
+    assert "ready" in body
+    assert "checks" in body
+    if body.get("ready"):
+        assert resp.status_code == 200
+    else:
+        assert resp.status_code == 503
+
+
 def test_health_still_works(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ENABLE_REQUEST_METRICS", "false")
     from app_skeleton.api.main import app
@@ -48,7 +73,9 @@ def test_health_still_works(monkeypatch: pytest.MonkeyPatch) -> None:
     client = TestClient(app)
     resp = client.get("/health")
     assert resp.status_code == 200
-    assert resp.json().get("status") == "ok"
+    body = resp.json()
+    assert body.get("status") in ("ok", "degraded")
+    assert "ready" in body
     assert "X-Request-ID" in resp.headers
 
 

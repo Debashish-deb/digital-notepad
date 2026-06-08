@@ -1,12 +1,12 @@
 
 import { useCallback, useEffect, useState } from 'react';
-import { BookOpen, Loader2, FileText, ChevronRight, Search, Folder, AlertCircle } from 'lucide-react';
+import { apiFetch } from '@/services/client.js';
+import { BookOpen, Loader2, FileText, ChevronRight, Search, Folder, AlertCircle, Users, Activity } from 'lucide-react';
 import DocumentViewer from '@/features/documents/components/DocumentViewer.jsx';
 import { databaseSectionIdForSub } from '@/config/databaseSections.js';
 import { teamDirectory } from '@/data/teamDirectory.js';
 import LabTeamRoster from '@/features/lab/components/LabTeamRoster.jsx';
 import { activityLogs } from '@/data/activityLogs.js';
-import { Users, Activity } from 'lucide-react';
 
 export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, description }) {
   const sectionId = databaseSectionIdForSub(subId, navSub);
@@ -22,12 +22,8 @@ export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, desc
   useEffect(() => {
     let mounted = true;
     setLoadingCatalog(true);
-    fetch('/database/catalog.json')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to load static database catalog.');
-        return res.json();
-      })
-      .then(data => {
+    apiFetch('/api/database/catalog', { timeoutMs: 30_000 })
+      .then((data) => {
         if (mounted) {
           setCatalog(data);
           // Auto-expand all sections initially

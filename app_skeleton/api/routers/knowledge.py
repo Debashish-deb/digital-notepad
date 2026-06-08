@@ -8,6 +8,45 @@ import psycopg
 
 router = APIRouter()
 
+@router.get("/api/database/catalog")
+def database_catalog_index() -> dict:
+    """Authenticated lab catalog index (replaces public /database/catalog.json)."""
+    from app_skeleton.api.lab_catalog_service import build_catalog_index
+
+    return build_catalog_index()
+
+
+@router.get("/api/database/catalog/docs/{doc_id}")
+def database_catalog_document(doc_id: str) -> dict:
+    from app_skeleton.api.lab_catalog_service import load_catalog_document
+
+    doc = load_catalog_document(doc_id)
+    if not doc:
+        raise HTTPException(status_code=404, detail="Document not found.")
+    return doc
+
+
+@router.get("/api/database/catalog/document/{doc_id}")
+def database_catalog_document_alias(doc_id: str) -> dict:
+    return database_catalog_document(doc_id)
+
+
+@router.get("/api/database/catalog/preview")
+def database_catalog_preview_by_path(relative_path: str = Query(..., min_length=1)) -> dict:
+    from app_skeleton.api.lab_catalog_service import find_document_by_path
+
+    doc = find_document_by_path(relative_path)
+    if not doc:
+        raise HTTPException(status_code=404, detail="No extracted preview for this path.")
+    return doc
+
+
+@router.get("/api/database/manifest")
+def database_lab_manifest() -> dict:
+    from app_skeleton.api.lab_catalog_service import lab_manifest_for_api
+
+    return lab_manifest_for_api()
+
 @router.get("/api/knowledge/lab/stats")
 def knowledge_lab_stats() -> dict:
     return get_lab_index_stats()

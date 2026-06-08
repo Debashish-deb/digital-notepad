@@ -94,10 +94,12 @@ fi
 if [[ "$FULL_SETUP" == true ]]; then
   echo "--- Full Docker setup (models, Ollama smoke tests) ---"
   "$ROOT/scripts/docker/start_linux_docker_stack.sh"
+  export DOCKER_COMPOSE_STARTED=true
 else
   echo "--- Docker stack (quick) ---"
   docker compose up -d
   docker compose ps
+  export DOCKER_COMPOSE_STARTED=true
 fi
 
 if [[ "$API_ONLY" == true ]]; then
@@ -119,7 +121,7 @@ fi
 echo ""
 echo "=== Full stack starting (one terminal — Ctrl+C stops API + UI) ==="
 echo "  Docker:   postgres :5432, qdrant :6333, ollama :11434"
-echo "  API:      http://127.0.0.1:8000/health"
+echo "  API:      http://127.0.0.1:8000/ready (readiness)  /live (liveness)"
 if [[ "$OMEIA_FRONTEND_MODE" == "prod" ]]; then
   echo "  Frontend: ${UI_URL} (production build on :8000)"
 else

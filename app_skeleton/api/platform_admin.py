@@ -15,6 +15,12 @@ def _db_conn() -> str:
     return postgres_conn()
 
 
+def _with_db():
+    from app_skeleton.api.db_pool import get_db_connection
+
+    return get_db_connection()
+
+
 def platform_admin_emails() -> set[str]:
     """Emails with platform admin role (registration approve, allowlist CRUD)."""
     raw = os.getenv("PLATFORM_ADMIN_EMAILS", "").strip()
@@ -28,7 +34,7 @@ def is_platform_admin(email: str | None) -> bool:
 
 
 def list_allowed_emails() -> list[dict[str, Any]]:
-    with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+    with _with_db() as conn:
         with conn.cursor() as cur:
             cur.execute(
                 "SELECT email, status, approved_by, approved_at FROM platform.allowed_email ORDER BY email;"
@@ -41,7 +47,7 @@ def list_allowed_emails() -> list[dict[str, Any]]:
 
 def upsert_allowed_email(email: str, *, status: str = "approved", approved_by: str | None = None) -> dict[str, Any]:
     email = email.strip().lower()
-    with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+    with _with_db() as conn:
         with conn.cursor() as cur:
             cur.execute(
                 """
@@ -71,7 +77,7 @@ def create_registration_request(
     auto_approve = is_platform_admin(email)
     status = "approved" if auto_approve else "pending"
 
-    with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+    with _with_db() as conn:
         with conn.cursor() as cur:
             try:
                 cur.execute(
@@ -123,7 +129,7 @@ def create_registration_request(
 
 
 def list_registration_requests(*, status: str | None = "pending") -> list[dict[str, Any]]:
-    with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+    with _with_db() as conn:
         with conn.cursor() as cur:
             if status:
                 cur.execute(
@@ -154,7 +160,7 @@ def list_registration_requests(*, status: str | None = "pending") -> list[dict[s
 
 
 def list_ingestion_jobs(*, limit: int = 20) -> list[dict[str, Any]]:
-    with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+    with _with_db() as conn:
         with conn.cursor() as cur:
             cur.execute(
                 """
@@ -180,7 +186,7 @@ def list_ingestion_jobs(*, limit: int = 20) -> list[dict[str, Any]]:
 
 def create_ingestion_job(job_type: str, *, items_total: int = 0, config: dict | None = None) -> dict[str, Any]:
     job_id = uuid.uuid4()
-    with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+    with _with_db() as conn:
         with conn.cursor() as cur:
             cur.execute(
                 """
@@ -200,7 +206,7 @@ def finish_ingestion_job(
     items_processed: int | None = None,
     error_summary: str | None = None,
 ) -> None:
-    with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+    with _with_db() as conn:
         with conn.cursor() as cur:
             cur.execute(
                 """
@@ -217,7 +223,7 @@ def finish_ingestion_job(
 
 
 def list_review_tasks(*, status: str = "open", limit: int = 50) -> list[dict[str, Any]]:
-    with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+    with _with_db() as conn:
         with conn.cursor() as cur:
             cur.execute(
                 """

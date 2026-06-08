@@ -1,6 +1,10 @@
 """Tests for category-based agent orchestration."""
 from __future__ import annotations
 
+import inspect
+
+import pytest
+
 from app_skeleton.api.agent_orchestrator.registry import (
     agents_for_category,
     get_agent,
@@ -61,3 +65,18 @@ def test_category_detail_includes_team_roster_with_models():
     assert roster
     assert roster[0].get("model")
     assert roster[0].get("chains")
+
+
+def test_agent_category_run_route_signature() -> None:
+    """Duplicate /run route must accept Request/Response like /api/chat/category."""
+    from app_skeleton.api.routers import agent_categories
+
+    run_fn = agent_categories.run_category
+    sig = inspect.signature(run_fn)
+    assert "request" in sig.parameters
+    assert "response" in sig.parameters
+    assert "user" in sig.parameters
+
+    execute_fn = agent_categories._execute_category_chat
+    sig2 = inspect.signature(execute_fn)
+    assert set(sig2.parameters) >= {"req", "request", "response", "user"}

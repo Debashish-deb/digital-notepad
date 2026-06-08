@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import DocumentViewer from '@/features/documents/components/DocumentViewer.jsx';
 import DocumentFileSearch from '@/features/documents/components/DocumentFileSearch.jsx';
+import { apiFetch } from '@/services/client.js';
 import {
   catalogDocBreadcrumb,
   catalogDocDisplayTitle,
@@ -133,11 +134,7 @@ export default function LabSectionTwinPanel({
   useEffect(() => {
     let mounted = true;
     setLoading(true);
-    fetch('/database/catalog.json')
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to load static database catalog.');
-        return res.json();
-      })
+    apiFetch('/api/database/catalog', { timeoutMs: 30_000 })
       .then((data) => {
         if (mounted) {
           setCatalog(data);
@@ -146,7 +143,7 @@ export default function LabSectionTwinPanel({
       })
       .catch((err) => {
         if (mounted) {
-          setError(err.message);
+          setError(err?.message || 'Failed to load lab catalog.');
           setLoading(false);
         }
       });

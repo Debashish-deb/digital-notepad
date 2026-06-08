@@ -1,7 +1,8 @@
 fastapi
 uvicorn
 pydantic
-psycopg[binary]
+psycopg[binary,pool]
+psycopg-pool
 qdrant-client
 neo4j
 pandas

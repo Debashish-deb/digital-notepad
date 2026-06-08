@@ -20,6 +20,7 @@ import MediaViewer from '@/features/documents/components/MediaViewer.jsx';
 import { getMediaPreviewKind } from '@/lib/mediaPreviewKind.js';
 import { DocumentViewerExpandButton, DocumentViewerExpandPortal } from './DocumentViewerExpand.jsx';
 import { useTaskpad } from '@/contexts/TaskpadContext.jsx';
+import { apiFetch } from '@/services/client.js';
 import './DocumentViewer.css';
 import './DocumentExportMenu.css';
 import './DocumentViewerExpand.css';
@@ -132,9 +133,9 @@ export default function DocumentViewer({ documentId }) {
 
   const documentPath = useMemo(() => normalizeDocumentId(documentId), [documentId]);
 
-  const documentUrl = useMemo(() => {
+  const documentApiPath = useMemo(() => {
     if (!documentPath) return null;
-    return `/database/docs/${documentPath}.json`;
+    return `/api/database/catalog/docs/${encodeURIComponent(documentPath)}`;
   }, [documentPath]);
 
   useEffect(() => {
@@ -142,7 +143,7 @@ export default function DocumentViewer({ documentId }) {
   }, [documentPath]);
 
   useEffect(() => {
-    if (!documentUrl) {
+    if (!documentApiPath) {
       setDoc(null);
       setLoading(false);
       setError(null);
@@ -158,22 +159,10 @@ export default function DocumentViewer({ documentId }) {
       setCopied(false);
 
       try {
-        const response = await fetch(documentUrl, {
+        const data = await apiFetch(documentApiPath, {
           signal: controller.signal,
-          headers: {
-            Accept: 'application/json',
-          },
+          timeoutMs: 45_000,
         });
-
-        if (!response.ok) {
-          if (response.status === 404) {
-            throw new Error('Document not found in the static database.');
-          }
-
-          throw new Error(`Could not load document. Server returned ${response.status}.`);
-        }
-
-        const data = await response.json();
 
         if (active) {
           setDoc(data || null);
@@ -185,7 +174,7 @@ export default function DocumentViewer({ documentId }) {
 
         if (active) {
           setDoc(null);
-          setError(err.message || 'Failed to load document.');
+          setError(err?.message || 'Failed to load document.');
         }
       } finally {
         if (active) {
@@ -200,7 +189,7 @@ export default function DocumentViewer({ documentId }) {
       active = false;
       controller.abort();
     };
-  }, [documentUrl, reloadKey]);
+  }, [documentApiPath, documentPath, reloadKey]);
 
   const handleRetry = useCallback(() => {
     setReloadKey((value) => value + 1);

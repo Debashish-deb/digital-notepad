@@ -1,4 +1,9 @@
-"""In-memory agent run traces (debug / advanced mode)."""
+"""In-memory agent run traces (debug / advanced mode).
+
+Production note: traces live in this process only (max 200 entries). Restarts and
+multi-worker setups do not share trace history; use AGENT_AUDIT_PERSIST when durable
+audit is required.
+"""
 from __future__ import annotations
 
 import time

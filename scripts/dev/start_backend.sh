@@ -32,6 +32,6 @@ fi
 echo "OMEIA backend"
 echo "  REPO:     ${OMEIA_REPO_ROOT}"
 echo "  DATABASE: ${DATABASE_ROOT}"
-echo "  API:      http://127.0.0.1:${OMEIA_BIND_PORT:-8000}/health"
+echo "  API:      http://127.0.0.1:${OMEIA_BIND_PORT:-8000}/ready"
 
 exec "${PROJECT_ROOT}/deploy/university-desktop/run_api_dev.sh"

@@ -50,3 +50,4 @@ if unhealthy:
 PY
 
 echo "=== Docker bootstrap complete ==="
+export DOCKER_COMPOSE_STARTED=true

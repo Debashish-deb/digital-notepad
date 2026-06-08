@@ -1,5 +1,6 @@
-/** Load lab database section twins from public/processed (works without API). */
+/** Load lab database section twins — API-first; public/processed is dev-only fallback. */
 
+import { apiFetch } from '@/services/client.js';
 import {
   cleanExtractedText,
   humanizeFilenameLabel,
@@ -104,15 +105,24 @@ export function sectionDetailFromTwin(twin, sectionId) {
 
 export async function fetchLabSectionProcessed(sectionId) {
   if (!sectionId) return null;
-  const key = encodeURIComponent(`lab__${sectionId}`);
   try {
-    const res = await fetch(`/processed/${key}.json`, { cache: 'no-store' });
-    if (!res.ok) return null;
-    return await res.json();
+    const twin = await apiFetch(`/api/database/processed/${encodeURIComponent(sectionId)}`, {
+      timeoutMs: 45_000,
+    });
+    if (twin && typeof twin === 'object') return twin;
   } catch (e) {
-    console.warn('Lab section processed JSON unavailable', sectionId, e);
-    return null;
+    if (import.meta.env.DEV) {
+      const key = encodeURIComponent(`lab__${sectionId}`);
+      try {
+        const res = await fetch(`/processed/${key}.json`, { cache: 'no-store' });
+        if (res.ok) return await res.json();
+      } catch {
+        // fall through
+      }
+    }
+    console.warn('Lab section processed twin unavailable', sectionId, e);
   }
+  return null;
 }
 
 /** If API returns counts but an empty preview, rebuild from cached processed JSON. */
@@ -143,10 +153,18 @@ export async function hydrateSectionDocuments(data, sectionId) {
 
 export async function fetchLabProcessedSummary() {
   try {
-    const res = await fetch('/processed/lab__manifest.json', { cache: 'no-store' });
-    if (res.ok) return await res.json();
+    const data = await apiFetch('/api/database/processed-summary', { timeoutMs: 20_000 });
+    if (data?.sections) return data;
   } catch {
     // fall through
+  }
+  if (import.meta.env.DEV) {
+    try {
+      const res = await fetch('/processed/lab__manifest.json', { cache: 'no-store' });
+      if (res.ok) return await res.json();
+    } catch {
+      // fall through
+    }
   }
   return null;
 }

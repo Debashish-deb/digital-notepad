@@ -1,4 +1,9 @@
-"""In-memory retrieval-result cache for unified search (not final LLM answers)."""
+"""In-memory retrieval-result cache for unified search (not final LLM answers).
+
+Production note: cache is process-local. Multi-worker deployments (several uvicorn
+workers or horizontal replicas) each hold an independent cache — expect cold misses
+after restarts and no cross-worker sharing unless an external store is added.
+"""
 from __future__ import annotations
 
 import hashlib

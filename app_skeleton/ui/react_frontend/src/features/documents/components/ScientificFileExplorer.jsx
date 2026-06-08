@@ -58,6 +58,9 @@ export default function ScientificFileExplorer({
     total,
     loading,
     isRefreshing,
+    loadingMore,
+    hasMore,
+    loadMore,
     selected,
     viewMode,
     setViewMode,
@@ -220,13 +223,34 @@ export default function ScientificFileExplorer({
             {loading && !items.length ? (
               <div className="sfe-loading"><Loader2 className="spin-inline" size={20} /> Loading files…</div>
             ) : (
-              <DocumentResultList
-                items={items}
-                viewMode={viewMode}
-                selectedId={selected?.asset_id}
-                onSelect={handleSelect}
-                listDetailExpanded={listDetailExpanded}
-              />
+              <>
+                <DocumentResultList
+                  items={items}
+                  viewMode={viewMode}
+                  selectedId={selected?.asset_id}
+                  onSelect={handleSelect}
+                  listDetailExpanded={listDetailExpanded}
+                />
+                {hasMore ? (
+                  <div className="sfe-load-more">
+                    <button
+                      type="button"
+                      className="sfe-load-more__btn"
+                      onClick={loadMore}
+                      disabled={loadingMore}
+                    >
+                      {loadingMore ? (
+                        <>
+                          <Loader2 className="spin-inline" size={16} aria-hidden />
+                          Loading more…
+                        </>
+                      ) : (
+                        `Load more (${items.length} of ${total})`
+                      )}
+                    </button>
+                  </div>
+                ) : null}
+              </>
             )}
           </div>
         </section>

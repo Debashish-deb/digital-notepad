@@ -18,8 +18,9 @@ export function getApiUrl() {
   if (fromEnv && String(fromEnv).trim()) {
     return String(fromEnv).replace(/\/$/, '');
   }
+  // Production: same-origin (reverse proxy / API static on :8000). Avoid hostname:8000 mixed-content on HTTPS hosts.
   if (typeof window !== 'undefined') {
-    return `http://${window.location.hostname}:8000`;
+    return '';
   }
   return 'http://127.0.0.1:8000';
 }

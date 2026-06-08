@@ -32,15 +32,9 @@ from fastapi.staticfiles import StaticFiles
 
 from pydantic import BaseModel, Field
 
-from dotenv import load_dotenv
-
 import psycopg
 
-from qdrant_client import QdrantClient
-
 from qdrant_client.http import models
-
-from app_skeleton.api.llm_client import LLMClient
 
 from app_skeleton.api.project_processor import (
     get_digital_twin, process_project, PROCESSED_DIR, update_digital_twin, get_content_root,
@@ -145,9 +139,10 @@ from app_skeleton.api.clinical_tools import (
     get_clinical_variables,
 )
 
+from app_skeleton.api.service_clients import llm_client, qdrant_client, rag_agent
+
 from app_skeleton.api.agents import (
     PrivacyGuardrailAgent,
-    RAGAgent,
     InstallationSpecialist,
     LumiHpcAgent,
     ImagePipelineSpecialist,
@@ -156,11 +151,11 @@ from app_skeleton.api.agents import (
     ClinicalSpatialSpecialist
 )
 
-_BLUEPRINT_ROOT = Path(__file__).resolve().parents[2]
+from app_skeleton.api.env_bootstrap import load_application_env, repo_root as _repo_root
 
-load_dotenv(_BLUEPRINT_ROOT / "configs" / ".env")
+_BLUEPRINT_ROOT = _repo_root()
 
-load_dotenv()
+load_application_env()
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"))
 
@@ -171,15 +166,29 @@ async def _app_lifespan(application: FastAPI):
     from app_skeleton.api.firebase_app import init_firebase_if_configured
     from app_skeleton.api.docker_service_client import docker_services
     from app_skeleton.api.startup_validation import log_deployment_checklist
+    from app_skeleton.api.db_pool import close_pool, init_pool
+    from app_skeleton.api.observability import timed
+    from app_skeleton.api.service_clients import warm_clients
 
-    log_deployment_checklist()
+    with timed("startup.checklist"):
+        log_deployment_checklist()
     init_firebase_if_configured()
+    init_pool(DB_CONN)
+    launcher_started = os.getenv("DOCKER_COMPOSE_STARTED", "").lower() in ("1", "true", "yes", "on")
+    skip_bootstrap = launcher_started or os.getenv("DOCKER_LIFESPAN_BOOTSTRAP", "auto").lower() == "skip"
     try:
-        bootstrap = docker_services.bootstrap()
-        LOGGER.info("Docker bootstrap: %s", bootstrap)
+        if skip_bootstrap:
+            bootstrap = {"skipped": True, "reason": "launcher_or_DOCKER_LIFESPAN_BOOTSTRAP=skip", "services": docker_services.public_status()}
+            LOGGER.info("Docker bootstrap skipped (launcher already started compose): %s", bootstrap)
+        else:
+            with timed("startup.docker_bootstrap"):
+                bootstrap = docker_services.bootstrap()
+            LOGGER.info("Docker bootstrap: %s", bootstrap)
         docker_services.start_background_watcher()
     except Exception as exc:
         LOGGER.warning("Docker bootstrap skipped or failed: %s", exc)
+    with timed("startup.warm_clients"):
+        warm_clients()
     try:
         from app_skeleton.api.scheduled_directory_scanner import scheduled_directory_scanner
         scheduled_directory_scanner.start()
@@ -192,6 +201,7 @@ async def _app_lifespan(application: FastAPI):
     except Exception:
         pass
     docker_services.stop_background_watcher()
+    close_pool()
 
 _cors_origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "*").split(",") if o.strip()]
 
@@ -200,12 +210,6 @@ from app_skeleton.api.supabase_config import postgres_conn
 DB_CONN = postgres_conn()
 
 QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
-
-qdrant_client = QdrantClient(url=QDRANT_URL)
-
-llm_client = LLMClient()
-
-rag_agent = RAGAgent(qdrant_client, llm_client)
 
 install_agent = InstallationSpecialist()
 

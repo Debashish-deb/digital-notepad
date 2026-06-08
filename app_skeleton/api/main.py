@@ -1,3 +1,7 @@
+from app_skeleton.api.env_bootstrap import load_application_env
+
+load_application_env()
+
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 

@@ -1,5 +1,6 @@
-/** Fallback previews from static /database/catalog.json when originals are offline. */
+/** Fallback previews from authenticated /api/database/catalog when originals are offline. */
 
+import { apiFetch } from '@/services/client.js';
 import { cleanExtractedText, isBrowserPrintChromeOnly, isJunkPreviewText } from './textCleanup.js';
 import { isSpreadsheetPreviewable } from './folderBrowserUtils.js';
 import {
@@ -23,21 +24,18 @@ function basenameOf(p) {
 async function loadCatalogIndex() {
   if (catalogIndex) return catalogIndex;
   if (!indexPromise) {
-    indexPromise = fetch('/database/catalog.json', { cache: 'no-store' })
-      .then((res) => {
-        if (!res.ok) throw new Error('Catalog unavailable');
-        return res.json();
-      })
+    indexPromise = apiFetch('/api/database/catalog', { cache: 'no-store' })
       .then((data) => {
         const byPath = new Map();
         const byBasename = new Map();
         for (const docs of Object.values(data.sections || {})) {
           for (const doc of docs || []) {
             const key = normPath(doc.path);
-            if (key && doc.id) {
-              byPath.set(key, doc.id);
+            const docId = doc.id || doc.document_id;
+            if (key && docId) {
+              byPath.set(key, docId);
               const base = basenameOf(key);
-              if (base && !byBasename.has(base)) byBasename.set(base, doc.id);
+              if (base && !byBasename.has(base)) byBasename.set(base, docId);
             }
           }
         }
@@ -65,9 +63,7 @@ export async function resolveCatalogDocId(relativePath, fileName = null) {
 export async function fetchCatalogDocument(relativePath, fileName = null) {
   const docId = await resolveCatalogDocId(relativePath, fileName);
   if (!docId) return null;
-  const res = await fetch(`/database/docs/${docId}.json`, { cache: 'no-store' });
-  if (!res.ok) return null;
-  return res.json();
+  return apiFetch(`/api/database/catalog/docs/${encodeURIComponent(docId)}`, { cache: 'no-store' });
 }
 
 /** Turn catalog R1:/R2: spreadsheet extraction into SpreadsheetPreview sheet models. */

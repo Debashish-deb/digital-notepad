@@ -117,7 +117,7 @@ def deployment_checklist_lines() -> list[str]:
         lines.extend(f"  - {item}" for item in report["warnings"])
     if not report["issues"] and not report["warnings"]:
         lines.append("All deployment checks passed.")
-    lines.append("Endpoints: /health  /metrics (when ENABLE_REQUEST_METRICS=true)")
+    lines.append("Endpoints: /live  /ready  /health  /metrics (when ENABLE_REQUEST_METRICS=true)")
     lines.append("Linux sync: python scripts/ops/check_linux_sync_health.py")
     lines.append("Backup dry-run: bash scripts/ops/backup_linux.sh --dry-run")
     return lines
