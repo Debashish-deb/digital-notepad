@@ -167,6 +167,7 @@ export default function StorageTabDocuments({ tabId, title = 'Related lab docume
         documentTitle={config.documentTitle}
         documentFilter={config.documentFilter}
         categoryIcons={STORAGE_CATEGORY_ICONS}
+        groupByDocumentType
         className="lab-documents-browser storage-documents-browser catalog-space-browser"
       />
     </div>

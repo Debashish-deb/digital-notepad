@@ -230,6 +230,7 @@ export default function ScientificFileExplorer({
                   selectedId={selected?.asset_id}
                   onSelect={handleSelect}
                   listDetailExpanded={listDetailExpanded}
+                  groupByDocumentType
                 />
                 {hasMore ? (
                   <div className="sfe-load-more">

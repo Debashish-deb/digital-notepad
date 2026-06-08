@@ -1,6 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, Expand, FileText, Info, Loader2, X } from 'lucide-react';
 import DocumentFormatter from './DocumentFormatter.jsx';
+import DocumentTypeShell from './DocumentTypeShell.jsx';
 import LazyDataPadEditor from '@/features/projects/components/LazyDataPadEditor.jsx';
 import FileTypeBadge from '@/shared/ui/FileTypeBadge.jsx';
 import SpreadsheetPreview from './SpreadsheetPreview.jsx';
@@ -74,6 +75,8 @@ export default function DocumentPreviewPane({
   onBackToFiles,
   onExpandChange = null,
   expandEnabled = true,
+  documentMeta = null,
+  useTypeLayout = true,
 }) {
   const [pdfExpanded, setPdfExpanded] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -247,7 +250,17 @@ export default function DocumentPreviewPane({
         />
       ) : showMarkup ? (
         <div className="doc-preview-editor-scroll kindle-doc-scroll academic-manuscript doc-preview-prose">
-          <DocumentFormatter text={markupSource} onCreateTask={onCreateTask} preferProse={preferProse} />
+          {useTypeLayout ? (
+            <DocumentTypeShell
+              doc={documentMeta || { path, title, extension }}
+              text={markupSource}
+              title={title}
+              onCreateTask={onCreateTask}
+              preferProse={preferProse}
+            />
+          ) : (
+            <DocumentFormatter text={markupSource} onCreateTask={onCreateTask} preferProse={preferProse} />
+          )}
         </div>
       ) : hasFormattedText ? (
         <div className="doc-preview-editor-scroll kindle-doc-scroll academic-manuscript doc-preview-prose">
@@ -256,7 +269,17 @@ export default function DocumentPreviewPane({
               {previewFallbackNote}
             </p>
           ) : null}
-          <DocumentFormatter text={previewText} onCreateTask={onCreateTask} preferProse={preferProse} />
+          {useTypeLayout ? (
+            <DocumentTypeShell
+              doc={documentMeta || { path, title, extension }}
+              text={previewText}
+              title={title}
+              onCreateTask={onCreateTask}
+              preferProse={preferProse}
+            />
+          ) : (
+            <DocumentFormatter text={previewText} onCreateTask={onCreateTask} preferProse={preferProse} />
+          )}
         </div>
       ) : showPdfThumb ? (
         <div className="doc-preview-placeholder doc-preview-pdf-only">

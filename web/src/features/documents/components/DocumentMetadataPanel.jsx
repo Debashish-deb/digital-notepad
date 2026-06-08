@@ -13,7 +13,8 @@ import { useSpreadsheetPreview } from '@/shared/hooks/useSpreadsheetPreview.js';
 import { useRawFilePreview } from '@/shared/hooks/useRawFilePreview.js';
 import { apiSpreadsheetSheetsToModels } from '@/lib/spreadsheetPreview.js';
 import { smartDocumentTitle, documentTitleSubline } from '@/lib/smartDocumentTitle.js';
-import DocumentFormatter from './DocumentFormatter.jsx';
+import DocumentListMetadataRow from './DocumentListMetadataRow.jsx';
+import DocumentTypeShell from './DocumentTypeShell.jsx';
 import SpreadsheetPreview from './SpreadsheetPreview.jsx';
 import CodePreview from './CodePreview.jsx';
 import MediaViewer from '@/features/documents/components/MediaViewer.jsx';
@@ -302,6 +303,9 @@ export default function DocumentMetadataPanel({
   const showMedia = Boolean(previewMedia || preview.is_streamable_image);
   const previewTitle = smartDocumentTitle(preview);
   const previewSubline = documentTitleSubline(preview);
+  const previewSubtitle = previewSubline.chips?.map((chip) => chip.label).join(' · ')
+    || previewSubline.filename
+    || preview.filename;
   const hasFormattedText =
     Boolean(preview.excerpt)
     && !showMedia
@@ -359,12 +363,22 @@ export default function DocumentMetadataPanel({
       ) : null}
       {!showMedia && !showSpreadsheet && !isPdf && showMarkup ? (
         <div className={proseReaderClass}>
-          <DocumentFormatter text={rawContent || preview.excerpt} preferProse />
+          <DocumentTypeShell
+            doc={preview}
+            text={rawContent || preview.excerpt}
+            title={preview?.title || preview?.filename}
+            preferProse
+          />
         </div>
       ) : null}
       {!showMedia && !showSpreadsheet && !isPdf && hasFormattedText ? (
         <div className={proseReaderClass}>
-          <DocumentFormatter text={preview.excerpt} preferProse />
+          <DocumentTypeShell
+            doc={preview}
+            text={preview.excerpt}
+            title={preview?.title || preview?.filename}
+            preferProse
+          />
         </div>
       ) : null}
       {!showMedia && !showSpreadsheet && !isPdf && !hasFormattedText && !showCode && !showPlainText && !showMarkup ? (
@@ -489,17 +503,17 @@ export default function DocumentMetadataPanel({
         <article className={`overview-reading-article${viewerExpanded ? ' overview-reading-article--hidden' : ''}`}>
           <header className="overview-reading-hero">
             <h1 className="overview-reading-hero__title">{previewTitle}</h1>
-            <div className="overview-reading-hero__subline">
-              {previewSubline.dateLabel ? (
-                <span className="sfe-preview-date">{previewSubline.dateLabel}</span>
-              ) : null}
-              {previewSubline.filename ? (
-                <span className="sfe-preview-filename">{previewSubline.filename}</span>
-              ) : null}
-              {(preview.badges || []).map((b) => (
-                <span key={b} className="sfe-badge sfe-badge--partial">{b}</span>
-              ))}
-            </div>
+            <DocumentListMetadataRow
+              item={preview}
+              className="overview-reading-hero__subline sfe-preview-top__subline"
+            />
+            {(preview.badges || []).length ? (
+              <div className="overview-reading-hero__badges">
+                {(preview.badges || []).map((b) => (
+                  <span key={b} className="sfe-badge sfe-badge--partial">{b}</span>
+                ))}
+              </div>
+            ) : null}
           </header>
 
           {preview.duplicate_warning ? (
@@ -547,7 +561,7 @@ export default function DocumentMetadataPanel({
             expanded={viewerExpanded}
             onClose={() => setViewerExpanded(false)}
             title={previewTitle}
-            subtitle={previewSubline.dateLabel || previewSubline.filename || preview.filename}
+            subtitle={previewSubtitle}
             headerActions={headerActions}
           >
             <div className="sfe-preview-content sfe-preview-content--expanded">{previewBody}</div>
@@ -564,17 +578,14 @@ export default function DocumentMetadataPanel({
         <div className="sfe-preview-top__primary">
           <div className="sfe-preview-top__main">
             <h3 className="sfe-preview-title">{previewTitle}</h3>
-            <div className="sfe-preview-top__subline">
-              {previewSubline.dateLabel ? (
-                <span className="sfe-preview-date">{previewSubline.dateLabel}</span>
-              ) : null}
-              {previewSubline.filename ? (
-                <span className="sfe-preview-filename">{previewSubline.filename}</span>
-              ) : null}
-              {(preview.badges || []).map((b) => (
-                <span key={b} className="sfe-badge sfe-badge--partial">{b}</span>
-              ))}
-            </div>
+            <DocumentListMetadataRow item={preview} className="sfe-preview-top__subline" />
+            {(preview.badges || []).length ? (
+              <div className="sfe-preview-top__badges">
+                {(preview.badges || []).map((b) => (
+                  <span key={b} className="sfe-badge sfe-badge--partial">{b}</span>
+                ))}
+              </div>
+            ) : null}
           </div>
           <div className="sfe-preview-top__rail">
             <DocumentViewerMetaChip value={completeness} low={completeness < 40} />
@@ -596,7 +607,7 @@ export default function DocumentMetadataPanel({
       expanded={viewerExpanded}
       onClose={() => setViewerExpanded(false)}
       title={previewTitle}
-      subtitle={previewSubline.dateLabel || previewSubline.filename || preview.filename}
+      subtitle={previewSubtitle}
       headerActions={headerActions}
     >
       <div className="sfe-preview-content sfe-preview-content--expanded">{previewBody}</div>

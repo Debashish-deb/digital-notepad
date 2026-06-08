@@ -178,6 +178,7 @@ export default function LabDocumentsHub({ onNavigate }) {
               )
             }
             folderHintResolver={sectionLabelForHub}
+            groupByDocumentType
           />
         </>
       )}

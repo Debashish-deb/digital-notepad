@@ -1,8 +1,11 @@
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { apiFetch } from '@/services/client.js';
-import { BookOpen, Loader2, FileText, ChevronRight, Search, Folder, AlertCircle, Users, Activity } from 'lucide-react';
+import { BookOpen, Loader2, FileText, ChevronRight, Search, AlertCircle, Users, Activity } from 'lucide-react';
 import DocumentViewer from '@/features/documents/components/DocumentViewer.jsx';
+import { groupDocumentsByDocumentType } from '@/features/documents/documentTypeGroups.js';
+import { getDocumentType } from '@/features/documents/documentTypeRegistry.js';
+import '@/features/documents/components/documentTypeLayouts.css';
 import { databaseSectionIdForSub } from '@/config/databaseSections.js';
 import { teamDirectory } from '@/data/teamDirectory.js';
 import LabTeamRoster from '@/features/lab/components/LabTeamRoster.jsx';
@@ -17,7 +20,7 @@ export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, desc
   
   const [selectedDocId, setSelectedDocId] = useState(null);
   const [query, setQuery] = useState('');
-  const [expandedSections, setExpandedSections] = useState({});
+  const [expandedTypes, setExpandedTypes] = useState({});
 
   useEffect(() => {
     let mounted = true;
@@ -26,12 +29,7 @@ export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, desc
       .then((data) => {
         if (mounted) {
           setCatalog(data);
-          // Auto-expand all sections initially
-          const initialExpand = {};
-          Object.keys(data.sections || {}).forEach(sec => {
-            initialExpand[sec] = true;
-          });
-          setExpandedSections(initialExpand);
+          setExpandedTypes({});
           setLoadingCatalog(false);
         }
       })
@@ -46,18 +44,16 @@ export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, desc
     return () => mounted = false;
   }, []);
 
-  const toggleSection = (sec) => {
-    setExpandedSections(prev => ({ ...prev, [sec]: !prev[sec] }));
+  const toggleType = (typeId) => {
+    setExpandedTypes((prev) => ({ ...prev, [typeId]: !prev[typeId] }));
   };
 
-  const getFilteredSections = () => {
-    if (!catalog || !catalog.sections) return {};
+  const typeGroupedDocs = useMemo(() => {
+    if (!catalog?.sections) return [];
+
     const q = query.trim().toLowerCase();
-    
-    // Map legacy sectionId to new sections.
-    // We want to hardcode the scoping so that searches don't bleed across tabs.
     let allowedSections = [];
-    
+
     if (!sectionId || sectionId?.startsWith('overview_') || sectionId === 'get_started') {
       allowedSections = ['01_Overview', '00_General_Knowledge'];
     } else if (sectionId?.startsWith('orders_')) {
@@ -70,21 +66,34 @@ export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, desc
       allowedSections = Object.keys(catalog.sections);
     }
 
-    const filtered = {};
+    const flat = [];
     for (const sec of allowedSections) {
-      const docs = catalog.sections[sec] || [];
-      const matchedDocs = docs.filter(doc => 
-        doc.title.toLowerCase().includes(q) || 
-        doc.path.toLowerCase().includes(q)
-      );
-      if (matchedDocs.length > 0) {
-        filtered[sec] = matchedDocs;
+      for (const doc of catalog.sections[sec] || []) {
+        if (
+          !q
+          || doc.title.toLowerCase().includes(q)
+          || doc.path.toLowerCase().includes(q)
+        ) {
+          flat.push({ ...doc, catalogSection: sec });
+        }
       }
     }
-    return filtered;
-  };
 
-  const filteredSections = getFilteredSections();
+    const grouped = groupDocumentsByDocumentType(
+      flat.map((doc) => ({
+        ...doc,
+        display_title: doc.title,
+      })),
+    );
+
+    return Object.entries(grouped)
+      .filter(([, docs]) => docs.length > 0)
+      .map(([typeId, docs]) => ({
+        typeId,
+        type: getDocumentType(typeId),
+        docs,
+      }));
+  }, [catalog, query, sectionId]);
 
   return (
     <div className="stack-md lab-knowledge-screen" style={{ height: 'calc(100vh - 60px)', display: 'flex', flexDirection: 'column' }}>
@@ -160,51 +169,59 @@ export default function LabKnowledgeScreen({ subId, navSub, API_URL, title, desc
             </div>
           )}
           
-          {!loadingCatalog && !catalogError && Object.keys(filteredSections).length === 0 && (
+          {!loadingCatalog && !catalogError && typeGroupedDocs.length === 0 && (
             <p className="text-caption muted">No matching files found.</p>
           )}
 
-          {!loadingCatalog && !catalogError && Object.keys(filteredSections).map(sec => (
-            <div key={sec} style={{ marginBottom: '1rem' }}>
-              <button 
-                className="section-header-btn" 
-                onClick={() => toggleSection(sec)}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: '0.5rem', width: '100%', 
-                  background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left',
-                  padding: '0.25rem 0', color: 'var(--mac-ink)', fontWeight: 600, fontSize: '0.9rem'
-                }}
-              >
-                {expandedSections[sec] ? <ChevronRight size={14} style={{ transform: 'rotate(90deg)' }}/> : <ChevronRight size={14} />}
-                <Folder size={16} style={{ color: 'var(--mac-blue)' }} />
-                {sec.replace(/^[0-9]+_/, '').replace(/_/g, ' ')} ({filteredSections[sec].length})
-              </button>
-              
-              {expandedSections[sec] && (
-                <ul style={{ listStyle: 'none', padding: 0, margin: '0.25rem 0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                  {filteredSections[sec].map(doc => (
-                    <li key={doc.id}>
-                      <button
-                        className={`doc-list-btn ${selectedDocId === doc.id ? 'active' : ''}`}
-                        onClick={() => setSelectedDocId(doc.id)}
-                        style={{
-                          display: 'flex', alignItems: 'flex-start', gap: '0.5rem', width: '100%', 
-                          background: selectedDocId === doc.id ? 'var(--mac-blue-alpha)' : 'none', 
-                          border: 'none', cursor: 'pointer', textAlign: 'left',
-                          padding: '0.35rem 0.5rem', borderRadius: '4px',
-                          color: selectedDocId === doc.id ? 'var(--mac-blue)' : 'var(--mac-ink)',
-                          fontSize: '0.85rem'
-                        }}
-                      >
-                        <FileText size={14} style={{ flexShrink: 0, marginTop: '2px' }} />
-                        <span style={{ wordBreak: 'break-word', lineHeight: 1.3 }}>{doc.title}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
+          {!loadingCatalog && !catalogError && typeGroupedDocs.map(({ typeId, type, docs }) => {
+            const TypeIcon = type.icon;
+            const expanded = expandedTypes[typeId] ?? true;
+            return (
+              <div key={typeId} className="lab-knowledge-type-group">
+                <button
+                  type="button"
+                  className="lab-knowledge-type-header"
+                  onClick={() => toggleType(typeId)}
+                >
+                  {expanded ? <ChevronRight size={14} style={{ transform: 'rotate(90deg)' }} /> : <ChevronRight size={14} />}
+                  <TypeIcon size={15} className="lab-knowledge-type-header__icon" aria-hidden />
+                  <span>{type.label}</span>
+                  <span className="lab-knowledge-type-header__count">{docs.length}</span>
+                </button>
+
+                {expanded ? (
+                  <ul style={{ listStyle: 'none', padding: 0, margin: '0.25rem 0 0 1.25rem', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                    {docs.map((doc) => (
+                      <li key={doc.id}>
+                        <button
+                          type="button"
+                          className={`doc-list-btn ${selectedDocId === doc.id ? 'active' : ''}`}
+                          onClick={() => setSelectedDocId(doc.id)}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            gap: '0.5rem',
+                            width: '100%',
+                            background: selectedDocId === doc.id ? 'var(--mac-blue-alpha)' : 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            textAlign: 'left',
+                            padding: '0.35rem 0.5rem',
+                            borderRadius: '4px',
+                            color: selectedDocId === doc.id ? 'var(--mac-blue)' : 'var(--mac-ink)',
+                            fontSize: '0.85rem',
+                          }}
+                        >
+                          <FileText size={14} style={{ flexShrink: 0, marginTop: '2px' }} />
+                          <span style={{ wordBreak: 'break-word', lineHeight: 1.3 }}>{doc.title}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            );
+          })}
         </div>
 
         {/* Detail View */}

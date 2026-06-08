@@ -1,5 +1,12 @@
 import { useMemo } from 'react';
 import {
+  classifyDocument,
+  getDocumentType,
+  sortByDocumentType,
+} from '@/features/documents/documentTypeRegistry.js';
+import { DOCUMENT_TYPE_CATEGORY_ORDER } from '@/features/documents/documentTypeGroups.js';
+import './documentTypeLayouts.css';
+import {
   Database,
   FileCode,
   FileSpreadsheet,
@@ -9,7 +16,8 @@ import {
   Image,
 } from 'lucide-react';
 import { formatBytes } from '@/services/documentLibraryClient.js';
-import { smartDocumentTitle, documentTitleSubline } from '@/lib/smartDocumentTitle.js';
+import { smartDocumentTitle } from '@/lib/smartDocumentTitle.js';
+import DocumentListMetadataRow from './DocumentListMetadataRow.jsx';
 import { useResizableGridColumns } from '@/lib/useResizableGridColumns.js';
 import {
   ROW_HEIGHT,
@@ -84,19 +92,36 @@ function FileListBullet({ item, selected = false }) {
   );
 }
 
-function DocumentTitleSubline({ item, className = 'sfe-row-original', pathFallback = null }) {
-  const subline = documentTitleSubline(item);
-  if (!subline.dateLabel && !subline.filename) {
-    return pathFallback ? <div className="sfe-row-path">{pathFallback}</div> : null;
+function resolveItemDocumentType(item) {
+  const { typeId } = classifyDocument({
+    path: item.logical_path,
+    filename: item.filename,
+    title: item.title,
+    category: item.category,
+    subcategory: item.subcategory,
+    document_type: item.document_type || item.metadata?.classification?.document_type,
+    domain: item.domain,
+  });
+  return getDocumentType(typeId);
+}
+
+function groupItemsByDocumentType(items) {
+  const buckets = Object.fromEntries(DOCUMENT_TYPE_CATEGORY_ORDER.map((id) => [id, []]));
+  for (const item of items) {
+    const type = resolveItemDocumentType(item);
+    if (!buckets[type.id]) buckets[type.id] = [];
+    buckets[type.id].push({ item, type });
   }
-  return (
-    <div className={className}>
-      {subline.dateLabel ? (
-        <span className="sfe-preview-date">{subline.dateLabel}</span>
-      ) : null}
-      {subline.filename ? <span>{subline.filename}</span> : null}
-    </div>
-  );
+  return DOCUMENT_TYPE_CATEGORY_ORDER
+    .map((typeId) => ({
+      typeId,
+      type: getDocumentType(typeId),
+      entries: (buckets[typeId] || []).sort((a, b) => sortByDocumentType(
+        { display_title: smartDocumentTitle(a.item) },
+        { display_title: smartDocumentTitle(b.item) },
+      )),
+    }))
+    .filter((group) => group.entries.length > 0);
 }
 
 export default function DocumentResultList({
@@ -105,6 +130,7 @@ export default function DocumentResultList({
   selectedId,
   onSelect,
   listDetailExpanded = false,
+  groupByDocumentType = false,
 }) {
   const { gridTemplateColumns, startResize } = useResizableGridColumns(
     SFE_COLUMN_WIDTHS_KEY,
@@ -119,27 +145,56 @@ export default function DocumentResultList({
     return <div className="sfe-empty">No files match your filters.</div>;
   }
 
-  if (viewMode === 'card') {
+  const typeGroups = useMemo(
+    () => (groupByDocumentType ? groupItemsByDocumentType(items) : null),
+    [items, groupByDocumentType],
+  );
+
+  const renderCard = (item) => {
+    const docType = groupByDocumentType ? resolveItemDocumentType(item) : null;
     return (
-      <div className="sfe-card-grid">
-        {items.map((item) => (
-          <button
-            key={item.asset_id}
-            type="button"
-            className={`sfe-card${selectedId === item.asset_id ? ' is-selected' : ''}`}
-            onClick={() => onSelect(item)}
-          >
-            <div className="sfe-card-name-line">
-              <FileListBullet item={item} selected={selectedId === item.asset_id} />
-              <div className="sfe-card-name">{smartDocumentTitle(item)}</div>
-            </div>
-            <DocumentTitleSubline item={item} />
-            <div className="sfe-row-path">{item.project_category_original || item.category || item.domain} · {formatBytes(item.size_bytes)}</div>
-            <StatusBadges item={item} />
-          </button>
-        ))}
-      </div>
+      <button
+        key={item.asset_id}
+        type="button"
+        className={`sfe-card${selectedId === item.asset_id ? ' is-selected' : ''}`}
+        onClick={() => onSelect(item)}
+      >
+        <div className="sfe-card-name-line">
+          <FileListBullet item={item} selected={selectedId === item.asset_id} />
+          <div className="sfe-card-name">{smartDocumentTitle(item)}</div>
+          {docType ? <span className="lab-doc-type-badge">{docType.shortLabel}</span> : null}
+        </div>
+        <DocumentListMetadataRow item={item} className="sfe-row-original sfe-card-meta-row" />
+        <div className="sfe-row-path sfe-card-footnote">
+          {formatBytes(item.size_bytes)}
+          {item.modified_at ? ` · ${item.modified_at.slice(0, 10)}` : ''}
+        </div>
+        <StatusBadges item={item} />
+      </button>
     );
+  };
+
+  if (viewMode === 'card') {
+    if (typeGroups) {
+      return (
+        <div className="sfe-type-grouped">
+          {typeGroups.map((group) => {
+            const TypeIcon = group.type.icon;
+            return (
+              <section key={group.typeId} className="sfe-type-group">
+                <header className="sfe-type-group__header">
+                  <TypeIcon size={13} aria-hidden />
+                  <span>{group.type.label}</span>
+                  <span className="sfe-type-group__count">{group.entries.length}</span>
+                </header>
+                <div className="sfe-card-grid">{group.entries.map(({ item }) => renderCard(item))}</div>
+              </section>
+            );
+          })}
+        </div>
+      );
+    }
+    return <div className="sfe-card-grid">{items.map((item) => renderCard(item))}</div>;
   }
 
   const listWrapClass = [
@@ -174,41 +229,70 @@ export default function DocumentResultList({
         </div>
       ) : null}
       <div className="sfe-virtual-scroll">
-        {items.map((item, rowIndex) => (
-          <div
-            key={item.asset_id}
-            className={`sfe-row${selectedId === item.asset_id ? ' is-selected' : ''}${rowIndex % 2 === 1 ? ' sfe-row--alt' : ''}`}
-            style={listDetailExpanded ? { ...rowGridStyle, height: ROW_HEIGHT } : { height: ROW_HEIGHT }}
-            onClick={() => onSelect(item)}
-            onKeyDown={(e) => e.key === 'Enter' && onSelect(item)}
-            role="button"
-            tabIndex={0}
-          >
-            <div className="sfe-col-cell sfe-col-cell--name">
-              <div className="sfe-row-name-line">
-                <FileListBullet item={item} selected={selectedId === item.asset_id} />
-                <div className="sfe-row-name-copy">
-                  <div className="sfe-row-title">{smartDocumentTitle(item)}</div>
-                  {listDetailExpanded ? (
-                    <DocumentTitleSubline item={item} pathFallback={item.logical_path} />
-                  ) : null}
-                </div>
-              </div>
+        {(typeGroups || [{ typeId: '_flat', type: null, entries: items.map((item) => ({ item })) }]).map((group) => {
+          const TypeIcon = group.type?.icon;
+          let rowIndex = 0;
+          return (
+            <div key={group.typeId} className={group.type ? 'sfe-type-group' : undefined}>
+              {group.type ? (
+                <header className="sfe-type-group__header">
+                  {TypeIcon ? <TypeIcon size={13} aria-hidden /> : null}
+                  <span>{group.type.label}</span>
+                  <span className="sfe-type-group__count">{group.entries.length}</span>
+                </header>
+              ) : null}
+              {group.entries.map(({ item }) => {
+                const docType = groupByDocumentType ? resolveItemDocumentType(item) : null;
+                const alt = rowIndex % 2 === 1;
+                rowIndex += 1;
+                return (
+                  <div
+                    key={item.asset_id}
+                    className={`sfe-row${selectedId === item.asset_id ? ' is-selected' : ''}${alt ? ' sfe-row--alt' : ''}`}
+                    style={listDetailExpanded ? { ...rowGridStyle, height: ROW_HEIGHT } : { height: ROW_HEIGHT }}
+                    onClick={() => onSelect(item)}
+                    onKeyDown={(e) => e.key === 'Enter' && onSelect(item)}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <div className="sfe-col-cell sfe-col-cell--name">
+                      <div className="sfe-row-name-line">
+                        <FileListBullet item={item} selected={selectedId === item.asset_id} />
+                        <div className="sfe-row-name-copy">
+                          <div className="sfe-row-title">{smartDocumentTitle(item)}</div>
+                          <DocumentListMetadataRow
+                            item={item}
+                            showPathFallback={listDetailExpanded}
+                            pathFallback={item.logical_path}
+                          />
+                        </div>
+                        {docType && !listDetailExpanded ? (
+                          <span className="lab-doc-type-badge">{docType.shortLabel}</span>
+                        ) : null}
+                      </div>
+                    </div>
+                    {listDetailExpanded ? (
+                      <>
+                        <span className="sfe-row-category sfe-col-cell">
+                          {docType?.shortLabel
+                            || item.professional_role_label
+                            || prettifyCategory(item.project_category_original || item.category)
+                            || item.domain
+                            || '—'}
+                        </span>
+                        <span className="sfe-col-cell">{formatBytes(item.size_bytes)}</span>
+                        <span className="sfe-col-cell">{item.modified_at?.slice(0, 10) || '—'}</span>
+                        <span className="sfe-col-cell sfe-col-cell--status">
+                          <StatusBadges item={item} />
+                        </span>
+                      </>
+                    ) : null}
+                  </div>
+                );
+              })}
             </div>
-            {listDetailExpanded ? (
-              <>
-                <span className="sfe-row-category sfe-col-cell">
-                  {item.professional_role_label || prettifyCategory(item.project_category_original || item.category) || item.domain || '—'}
-                </span>
-                <span className="sfe-col-cell">{formatBytes(item.size_bytes)}</span>
-                <span className="sfe-col-cell">{item.modified_at?.slice(0, 10) || '—'}</span>
-                <span className="sfe-col-cell sfe-col-cell--status">
-                  <StatusBadges item={item} />
-                </span>
-              </>
-            ) : null}
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

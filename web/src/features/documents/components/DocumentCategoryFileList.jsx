@@ -16,6 +16,8 @@ import {
 import DocumentSubfolderAlbums from './DocumentSubfolderAlbums.jsx';
 import DocumentSectionHeader from './DocumentSectionHeader.jsx';
 import { useGuiT } from '@/i18n/useGuiT.js';
+import { smartDocumentTitle } from '@/lib/smartDocumentTitle.js';
+import DocumentListMetadataRow from './DocumentListMetadataRow.jsx';
 
 function FileList({
   files,
@@ -60,25 +62,17 @@ function FileList({
               ) : catalogLayout ? (
                 <span className="lab-doc-file-text lab-doc-file-text--catalog" title={docTitle}>
                   <span className="lab-doc-title lab-doc-title--catalog">
-                    {docTitle}
-                    {ext ? (
-                      <span className="lab-doc-ext lab-doc-ext--inline lab-doc-ext--catalog">
-                        {ext.replace('.', '')}
-                      </span>
-                    ) : null}
+                    {smartDocumentTitle(doc) || docTitle}
                   </span>
+                  <DocumentListMetadataRow item={doc} className="lab-doc-meta-row lab-doc-meta-row--catalog" />
                 </span>
               ) : (
                 <span className="lab-doc-file-text">
-                  <span className="lab-doc-title">{docTitle}</span>
-                  <span className="lab-doc-path">
-                    {ext ? <span className="lab-doc-ext">{ext.replace('.', '')}</span> : null}
-                    {pathHint ? (
-                      <span className="lab-doc-path-hint">{pathHint}</span>
-                    ) : null}
-                    {!pathHint && doc.folderHint ? `${doc.folderHint} · ` : null}
-                    {!pathHint ? fileName : null}
-                  </span>
+                  <span className="lab-doc-title">{smartDocumentTitle(doc) || docTitle}</span>
+                  <DocumentListMetadataRow
+                    item={doc}
+                    className="lab-doc-path lab-doc-meta-row"
+                  />
                 </span>
               )}
               <ChevronRight size={13} className="lab-doc-file-chevron" aria-hidden />

@@ -2,7 +2,7 @@ import { loadPinnedIds, loadRecentIds } from '@/services/documentLibraryClient.j
 import { getMediaPreviewKind } from '@/lib/mediaPreviewKind.js';
 import { getFilePreviewKind } from '@/lib/filePreviewKind.js';
 
-export const ROW_HEIGHT = 52;
+export const ROW_HEIGHT = 60;
 export const CARD_HEIGHT = 100;
 
 export const SFE_LIST_COLUMNS = [

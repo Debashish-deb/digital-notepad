@@ -13,7 +13,9 @@ import {
   RefreshCw,
   Tag,
 } from 'lucide-react';
-import DocumentFormatter from './DocumentFormatter.jsx';
+import DocumentTypeShell from './DocumentTypeShell.jsx';
+import { classifyDocument, getDocumentType } from '@/features/documents/documentTypeRegistry.js';
+import { smartDocumentTitle } from '@/lib/smartDocumentTitle.js';
 import DocumentExportMenu from './DocumentExportMenu.jsx';
 import DocumentProofreadPanel from './DocumentProofreadPanel.jsx';
 import MediaViewer from '@/features/documents/components/MediaViewer.jsx';
@@ -22,6 +24,7 @@ import { DocumentViewerExpandButton, DocumentViewerExpandPortal } from './Docume
 import { useTaskpad } from '@/contexts/TaskpadContext.jsx';
 import { apiFetch } from '@/services/client.js';
 import './DocumentViewer.css';
+import './documentTypeLayouts.css';
 import './DocumentExportMenu.css';
 import './DocumentViewerExpand.css';
 
@@ -208,8 +211,22 @@ export default function DocumentViewer({ documentId }) {
   const source = metadata.source || {};
   const classification = metadata.classification || {};
 
-  const displayTitle = doc?.title || doc?.filename || documentId || 'Untitled document';
+  const displayTitle = doc
+    ? smartDocumentTitle({ ...doc, title: doc.title, filename: doc.filename })
+    : (documentId || 'Untitled document');
   const relativePath = doc?.relative_path || source.relative_path || source.path || '';
+  const docType = useMemo(() => {
+    if (!doc) return null;
+    const { typeId } = classifyDocument({
+      path: relativePath,
+      title: displayTitle,
+      filename: doc.filename,
+      document_type: classification.document_type,
+      classification,
+      metadata,
+    });
+    return getDocumentType(typeId);
+  }, [doc, relativePath, displayTitle, classification, metadata]);
   const modifiedDate = formatDate(source.modified);
   const extractedDate = formatDate(metadata.converted_at);
   const fileFormat = formatFamily(classification);
@@ -346,7 +363,20 @@ export default function DocumentViewer({ documentId }) {
   ) : doc.full_text ? (
     <>
       <div className="kindle-doc-scroll academic-manuscript doc-preview-prose">
-        <DocumentFormatter text={doc.full_text} onCreateTask={handleCreateTask} preferProse />
+        <DocumentTypeShell
+          doc={{
+            path: relativePath,
+            title: displayTitle,
+            filename: doc.filename,
+            document_type: classification.document_type,
+            classification,
+            metadata,
+          }}
+          text={doc.full_text}
+          title={displayTitle}
+          onCreateTask={handleCreateTask}
+          preferProse
+        />
       </div>
       <DocumentProofreadPanel content={doc.full_text} className="doc-preview-proofread" />
     </>
@@ -414,6 +444,9 @@ export default function DocumentViewer({ documentId }) {
             <h2 id="document-viewer-title" className="notebook-page-title">
               {displayTitle}
             </h2>
+            {docType ? (
+              <span className="lab-doc-type-badge">{docType.shortLabel}</span>
+            ) : null}
           </div>
 
           {relativePath && (

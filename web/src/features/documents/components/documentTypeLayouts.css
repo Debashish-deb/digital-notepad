@@ -1,0 +1,279 @@
+/* Type-aware document presentation — shared across viewers */
+
+.doc-type-shell {
+  --doc-type-accent: var(--mac-blue, #2563eb);
+  --doc-type-surface: var(--mac-surface-secondary, #f8fafc);
+  --doc-type-border: color-mix(in srgb, var(--doc-type-accent) 18%, transparent);
+  border-radius: 10px;
+  background: var(--doc-type-surface);
+  border: 1px solid var(--doc-type-border);
+  overflow: hidden;
+}
+
+.doc-type-shell__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: color-mix(in srgb, var(--doc-type-accent) 8%, var(--mac-surface, #fff));
+  border-bottom: 1px solid var(--doc-type-border);
+}
+
+.doc-type-shell__icon {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--doc-type-accent) 14%, transparent);
+  color: var(--doc-type-accent);
+}
+
+.doc-type-shell__titles {
+  min-width: 0;
+  flex: 1;
+}
+
+.doc-type-shell__eyebrow {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--doc-type-accent);
+}
+
+.doc-type-shell__title {
+  margin: 0.15rem 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--mac-ink, #0f172a);
+  line-height: 1.35;
+}
+
+.doc-type-shell__meta {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: var(--mac-ink-muted, #64748b);
+}
+
+.doc-type-shell__body {
+  padding: 0.25rem 0;
+}
+
+.doc-type-shell__body .kindle-doc {
+  border: none;
+  background: transparent;
+}
+
+/* Layout variants */
+
+.doc-type-shell--protocol {
+  --doc-type-accent: #16a34a;
+}
+
+.doc-type-shell--protocol .doc-type-shell__body .kindle-section {
+  counter-reset: protocol-step;
+}
+
+.doc-type-shell--protocol .kindle-heading {
+  font-variant-numeric: tabular-nums;
+}
+
+.doc-type-shell--form {
+  --doc-type-accent: #7c3aed;
+}
+
+.doc-type-shell--form .doc-field {
+  background: var(--mac-surface, #fff);
+  border: 1px solid var(--mac-border, #e2e8f0);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.doc-type-shell--order {
+  --doc-type-accent: #d97706;
+}
+
+.doc-type-shell--order .doc-type-shell__header {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--doc-type-accent) 10%, #fff),
+    color-mix(in srgb, var(--doc-type-accent) 4%, #fff)
+  );
+}
+
+.doc-type-shell--sop .doc-list {
+  list-style: decimal;
+  padding-left: 1.35rem;
+}
+
+.doc-type-shell--sop .doc-list-item--plan,
+.doc-type-shell--sop .doc-line--plan,
+.doc-type-shell--sop .doc-commitment-block {
+  border-left: 3px solid #f59e0b;
+  padding-left: 0.65rem;
+  background: color-mix(in srgb, #f59e0b 6%, transparent);
+  border-radius: 0 6px 6px 0;
+}
+
+.doc-type-shell--correspondence {
+  --doc-type-accent: #6366f1;
+}
+
+.doc-type-shell--correspondence .doc-type-shell__body {
+  padding: 1rem 1.25rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.65;
+}
+
+.doc-type-shell--manuscript .doc-type-shell__body,
+.doc-type-shell--report .doc-type-shell__body {
+  padding: 0.5rem 0.75rem;
+}
+
+.doc-type-shell--note {
+  --doc-type-accent: #0d9488;
+}
+
+.doc-type-shell--inventory {
+  --doc-type-accent: #0891b2;
+}
+
+.doc-type-shell--data .kindle-spreadsheet {
+  margin: 0.75rem;
+}
+
+/* Type badges in file lists */
+
+/* List metadata chips — place · type · date */
+.sfe-meta-chip,
+.sfe-row-original .sfe-meta-chip,
+.sfe-preview-top__subline .sfe-meta-chip,
+.lab-doc-meta-row .sfe-meta-chip {
+  font-size: 0.625rem;
+  color: var(--text-muted, #64748b);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.sfe-meta-chip--place {
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-primary, #2563eb) 72%, var(--text-muted, #64748b));
+}
+
+.sfe-meta-chip--type {
+  font-weight: 500;
+}
+
+.sfe-meta-chip--date {
+  font-variant-numeric: tabular-nums;
+}
+
+.sfe-meta-chip--file {
+  opacity: 0.85;
+}
+
+.sfe-row-original .sfe-meta-chip::after,
+.sfe-preview-top__subline .sfe-meta-chip::after,
+.lab-doc-meta-row .sfe-meta-chip::after,
+.sfe-card-meta-row .sfe-meta-chip::after {
+  content: '·';
+  margin: 0 0.35rem;
+  opacity: 0.5;
+}
+
+.sfe-row-original .sfe-meta-chip:last-child::after,
+.sfe-preview-top__subline .sfe-meta-chip:last-child::after,
+.lab-doc-meta-row .sfe-meta-chip:last-child::after,
+.sfe-card-meta-row .sfe-meta-chip:last-child::after {
+  content: none;
+}
+
+.sfe-card-meta-row,
+.sfe-card-footnote {
+  margin-top: 0.15rem;
+}
+
+.sfe-row-name-copy .sfe-row-original {
+  margin-top: 0.1rem;
+}
+
+.lab-doc-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mac-ink-muted, #64748b);
+  background: var(--mac-surface-secondary, #f1f5f9);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  flex-shrink: 0;
+}
+
+/* Type-grouped explorer sections */
+
+.sfe-type-group {
+  margin-bottom: 0.35rem;
+}
+
+.sfe-type-group__header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--mac-ink-muted, #64748b);
+  background: var(--mac-surface-secondary, #f8fafc);
+  border-bottom: 1px solid var(--mac-border, #e2e8f0);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.sfe-type-group__count {
+  margin-left: auto;
+  font-weight: 500;
+  font-size: 0.68rem;
+}
+
+/* Lab knowledge type sidebar */
+
+.lab-knowledge-type-group {
+  margin-bottom: 0.75rem;
+}
+
+.lab-knowledge-type-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0.35rem 0;
+  color: var(--mac-ink, #0f172a);
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.lab-knowledge-type-header__icon {
+  color: var(--mac-blue, #2563eb);
+  flex-shrink: 0;
+}
+
+.lab-knowledge-type-header__count {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: var(--mac-ink-muted, #64748b);
+  font-weight: 500;
+}

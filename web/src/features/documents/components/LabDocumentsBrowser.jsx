@@ -42,6 +42,12 @@ import {
   computePreviewMetadataScore,
   prettifyPreviewLabel,
 } from '@/lib/previewMetaUtils.js';
+import {
+  DOCUMENT_TYPE_CATEGORY_GROUPS,
+  DOCUMENT_TYPE_CATEGORY_ICONS,
+  enrichAndGroupByDocumentType,
+} from '@/features/documents/documentTypeGroups.js';
+import { classifyDocument, getDocumentType } from '@/features/documents/documentTypeRegistry.js';
 
 export default function LabDocumentsBrowser({
   sectionId,
@@ -62,6 +68,7 @@ export default function LabDocumentsBrowser({
   syntheticPreviewField = 'inlineContent',
   folderHintResolver = null,
   layoutVariant = 'catalog',
+  groupByDocumentType = false,
 }) {
   const [twins, setTwins] = useState({});
   const [loading, setLoading] = useState(true);
@@ -150,9 +157,21 @@ export default function LabDocumentsBrowser({
     return deduplicateDocumentsByPath(docs);
   }, [twins, ids, categorizePath, documentTitle, documentFilter, syntheticDocs, folderHintResolver]);
 
+  const typeGrouping = useMemo(() => {
+    if (!groupByDocumentType) return null;
+    return enrichAndGroupByDocumentType(allDocs);
+  }, [allDocs, groupByDocumentType]);
+
+  const effectiveCategoryGroups = groupByDocumentType
+    ? DOCUMENT_TYPE_CATEGORY_GROUPS
+    : categoryGroups;
+  const effectiveCategoryIcons = groupByDocumentType
+    ? DOCUMENT_TYPE_CATEGORY_ICONS
+    : categoryIcons;
+
   const localizedCategoryGroups = useMemo(
-    () => localizeCategories(categoryGroups),
-    [categoryGroups, localizeCategories]
+    () => localizeCategories(effectiveCategoryGroups),
+    [effectiveCategoryGroups, localizeCategories]
   );
 
   const categoryOrder = useMemo(
@@ -160,8 +179,8 @@ export default function LabDocumentsBrowser({
     [localizedCategoryGroups]
   );
   const grouped = useMemo(
-    () => groupDocumentsByCategory(allDocs, categoryOrder),
-    [allDocs, categoryOrder]
+    () => (typeGrouping ? typeGrouping.grouped : groupDocumentsByCategory(allDocs, categoryOrder)),
+    [typeGrouping, allDocs, categoryOrder]
   );
 
   const visibleFileCount = useMemo(
@@ -374,13 +393,21 @@ export default function LabDocumentsBrowser({
     [selectedDoc, previewText, rawFilePreview?.content]
   );
 
+  const selectedDocType = useMemo(() => {
+    if (!selectedDoc) return null;
+    return getDocumentType(
+      selectedDoc.documentTypeId || classifyDocument(selectedDoc).typeId,
+    );
+  }, [selectedDoc]);
+
   const previewBadges = useMemo(() => {
     const items = [];
+    if (selectedDocType) items.push(selectedDocType.shortLabel);
     if (previewKind) items.push(prettifyPreviewLabel(previewKind));
     if (previewFromCatalog) items.push('Catalog extract');
     if (selectedDoc?.sensitivity_level) items.push(prettifyPreviewLabel(selectedDoc.sensitivity_level));
     return items;
-  }, [previewKind, previewFromCatalog, selectedDoc?.sensitivity_level]);
+  }, [selectedDocType, previewKind, previewFromCatalog, selectedDoc?.sensitivity_level]);
 
   const handleVisibleFilesChange = useCallback((files) => {
     setVisibleFiles((prev) => {
@@ -670,6 +697,8 @@ export default function LabDocumentsBrowser({
                   expandedMetadataItems={expandedPreviewMetadata}
                   metadataCompleteness={metadataCompleteness}
                   badges={previewBadges}
+                  documentMeta={selectedDoc}
+                  useTypeLayout={groupByDocumentType}
                   actions={
                     <>
                       {assetUrl ? (
@@ -737,8 +766,20 @@ export default function LabDocumentsBrowser({
       documentTitle={documentTitle}
       selectedPath={selectedPath}
       onSelectFile={setSelectedPath}
-      categoryIcons={categoryIcons}
+      categoryIcons={effectiveCategoryIcons}
       sensitiveCategories={sensitiveCategories}
+      pathHintResolver={
+        groupByDocumentType
+          ? (filePath) => {
+              const doc = allDocs.find((d) => d.path === filePath);
+              if (!doc) return null;
+              const type = getDocumentType(
+                doc.documentTypeId || classifyDocument(doc).typeId,
+              );
+              return type.shortLabel;
+            }
+          : undefined
+      }
       categoryLayout={useTopTabsLayout ? 'horizontal-top' : 'inline'}
       sectionHeader={isSplitCatalogLayout ? sectionHeader : null}
       toolbarAfterTabs={layoutToggle}
