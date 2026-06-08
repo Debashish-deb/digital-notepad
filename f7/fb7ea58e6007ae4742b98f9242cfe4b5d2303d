@@ -1,0 +1,77 @@
+sql/150_continuous_learning.sql
+  s_c6380f19637389::t_42acbafff2805f 1-184
+omeia/api/main.py
+  s_c6380f19637389::t_573323aaeaa4ae 55
+  s_c6380f19637389::t_d57990985f34ef 19
+omeia/api/confidence_scorer.py
+  s_c6380f19637389::t_49406a6ba959b6 1-136
+omeia/api/routers/chat.py
+  s_c6380f19637389::t_109829952b0688 91-92
+tests/test_learning_feedback.py
+  s_c6380f19637389::t_c6c55291618214 1-66
+omeia/api/learning_store.py
+  s_c6380f19637389::t_ce107292e553f6 1-576
+omeia/api/routers/learning.py
+  s_c6380f19637389::t_3f6ff0c98a44e5 1-118
+omeia/api/platform_flags.py
+  s_c6380f19637389::t_8054fb40f52fef 83-87
+omeia/api/claim_extractor.py
+  s_c6380f19637389::t_3a1d328683a4ef 1-84
+tests/test_confidence_scorer.py
+  s_c6380f19637389::t_13aeb13c8b3116 1-76
+omeia/api/chat_service.py
+  s_c6380f19637389::t_189486dd799fd3 594-612
+  s_c6380f19637389::t_3c93da5e30c0d3 47
+  s_c6380f19637389::t_6d6e7672fc8bc5 623-624
+omeia/api/learning_models.py
+  s_c6380f19637389::t_57e5a5bf905512 1-198
+web/src/features/ai-assistant/components/ChatWidget.jsx
+  s_c6380f19637389::t_265a2bff20565a 32
+  s_c6380f19637389::t_9e3e01d4f6b937 151-152,156-174
+  s_c6380f19637389::t_71955a12eafc13 782-783
+  s_c6380f19637389::t_5e52165dbd24b2 1196-1197,1199-1200,1221-1222,1224-1225,1239-1338
+  s_7b209ddd14bb2c::t_b773a5b034c4fa 10-11,15
+  s_c6380f19637389::t_19e3c17f324553 819-820
+  s_c6380f19637389::t_a4a7edf4ccc3d3 699-700
+omeia/api/knowledge_graph_service.py
+  s_c6380f19637389::t_5af9ad8d1cf511 1-116
+omeia/api/learning_pipeline_service.py
+  s_7b209ddd14bb2c::t_9447dbf63fbd4f 258
+  s_c6380f19637389::t_202a5cc6654ae7 1-257,259-405
+config/env/.env.example
+  s_c6380f19637389::t_96a3342d25b844 101-103
+omeia/api/search_service.py
+  s_c6380f19637389::t_55e6f3991ac05f 1882-1890
+web/src/services/learningClient.js
+  s_c6380f19637389::t_99b9eb383eedb2 1-30
+omeia/api/learning_retrieval_service.py
+  s_c6380f19637389::t_d2b9932cd7ceb6 1-136
+omeia/api/contradiction_checker.py
+  s_c6380f19637389::t_2d69dff1a5bc4b 1-75
+tests/test_learning_pipeline.py
+  s_c6380f19637389::t_c67e221e05047d 1-72
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "f7fb7ea58e6007ae4742b98f9242cfe4b5d2303d",
+  "prompts": {},
+  "sessions": {
+    "s_7b209ddd14bb2c": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "fc2b3542-e81e-48cb-afe5-cb4eb34036f4",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_c6380f19637389": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "e808d924-e1a7-4970-8f1d-8289be535dca",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
