@@ -1,0 +1,19 @@
+docs/PLATFORM_ARCHITECTURE_REVIEW.md
+  s_fee86319e45ded::t_70fe129c49e76a 1-1270
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "bc13155572ebc41f42f215bfeb752ee7104a477c",
+  "prompts": {},
+  "sessions": {
+    "s_fee86319e45ded": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "904fc3fc-56b3-4b82-8bea-ff8d46b3441c",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
