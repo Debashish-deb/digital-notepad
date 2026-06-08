@@ -1,0 +1,2440 @@
+docs/KNOWLEDGE_PLATFORM_REMEDIATION_PLAN.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 87,170-171,176-177,201,223,299,301,373-374,467,561-566,569-571,578-584,591-593,595,602-605,611-614,621-624,630-632,642-646,650,717,877,899
+infra/scripts-migrate/ops/check_linux_sync_health.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 48-59
+apps/api/src/omeia/app_skeleton/api/strategy_agents/experimental_design_agent.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-5,7-48
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 6
+apps/web/src/features/documents/components/DocumentFormatter.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-597
+apps/api/src/omeia/api/image_streaming/storage_adapter.py
+  s_efdcdca69a2820::t_827f8ca221ad42 8-10
+docs/AI_LAB_ASSISTANT_ENHANCEMENT_ROADMAP.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 258-262
+apps/web/src/features/documents/components/ScientificFileExplorer.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-266
+apps/web/src/pages/OrdersHubScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-1067
+config/env/PDRIVE_SETUP.md
+  s_d8ca0dcf385045::t_8b50be265eaced 1-21,23-46
+  s_eaa6f401e95506::t_7481686e81d0a8 22
+apps/api/src/omeia/app_skeleton/api/lab_catalog_service.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-10,13-16,18-183
+  s_d8ca0dcf385045::t_b3340e3338f80f 11-12,17
+infra/scripts/frontend/fix_moved_imports.py
+  s_d8ca0dcf385045::t_8b50be265eaced 10
+  s_efdcdca69a2820::t_827f8ca221ad42 1
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 2-9,11-133
+app_skeleton/ui/react_frontend/public/database/docs/980041e157339e1a9ddc99556d390829.json
+  s_eaa6f401e95506::t_ccb4771231cefb 1
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/data/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-76
+infra/scripts/ops/autonomous_processor.sh
+  s_eaa6f401e95506::t_7481686e81d0a8 7
+  s_efdcdca69a2820::t_42c077f49e34ea 20-21
+  s_d8ca0dcf385045::t_5ea6a826e716ab 6
+  s_d8ca0dcf385045::t_044fd146cf137f 1-5,8-19,22-113
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260607T030839Z_dig_21aaed10.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/app_skeleton/api/project_knowledge_extractor.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 7-299
+apps/web/src/types/imageViewerContract.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-55
+apps/web/src/features/search/components/AssistantSearchHits.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-125
+apps/web/src/App.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-898
+apps/web/src/lib/filePreviewKind.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-189
+apps/api/src/omeia/api/data_layout.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-11,13,15-196
+  s_efdcdca69a2820::t_96f562e59df4fa 12,14
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T174435Z_dig_5866bb06.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/DeepCell.egg-info/requires.txt
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-18
+tests/test_search_service.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6-7
+apps/web/src/features/imaging/components/ImageTileViewer.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-168
+apps/api/src/omeia/app_skeleton/api/metadata_engine/duplicates.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 9
+apps/web/src/features/projects/components/portfolio/DecisionsPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-198
+apps/web/src/lib/chatMotion.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-60
+infra/scripts/imaging/linux_minimal_imaging_capabilities.sh
+  s_eaa6f401e95506::t_7481686e81d0a8 6-7,54
+  s_efdcdca69a2820::t_f7a7e3c07738de 57
+  s_d8ca0dcf385045::t_044fd146cf137f 1-5,8-53,55-56
+apps/web/src/features/documents/components/DocumentViewer.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-404
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/backbone_utils_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-136
+infra/scripts/ops/collect_app_code_bundle.py
+  s_eaa6f401e95506::t_7481686e81d0a8 30-31,44,78,158,160,170,388
+  s_efdcdca69a2820::t_42c077f49e34ea 34
+  s_efdcdca69a2820::t_827f8ca221ad42 16
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-15,17-29,32-33,35-43,45-77,79-157,159,161-169,171-387,389-410
+infra/scripts-migrate/digitalization/import_top_class_metadata.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 16
+apps/api/src/omeia/app_skeleton/api/dataset_fetcher.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-53
+tests/test_strategy_citation_grounding.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 4-5
+infra/scripts-migrate/ingest/rebuild_and_ingest_collection.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 11-13
+apps/web/src/features/orders/components/OrdersArchiveBrowser.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-13
+tests/test_phase1_platform_flags.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_research_materials/lab__overview_research_materials.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-8324
+apps/web/src/pages/DashboardScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-707
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__overview_documents.chunks.jsonl
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-692
+infra/scripts/ops/restore_linux_backup.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 12
+  s_d8ca0dcf385045::t_044fd146cf137f 1-11,13-88
+tools/audit/structure_analyzer.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 16,46-47
+apps/api/src/omeia/api/biomedical_models_client.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-17,19-131
+  s_efdcdca69a2820::t_96f562e59df4fa 18
+tests/test_vault_semantic_search.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 11-13,18,50,90,93,131,146-147,167,179,182,185
+apps/api/src/omeia/app_skeleton/api/ocr/adapter.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 11,35
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-10,12-34,36-38
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T174429Z_dig_d9c046dd.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/app_skeleton/api/routers/lab_static.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 14-16
+apps/web/src/features/computational/components/ModelViewer3D.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-158
+apps/web/index.html
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-28
+apps/web/src/contexts/ThemeContext.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-107
+docs/15_STORAGE_MASTER_PLAN.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 12-13,15,52
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__overview_guidelines.chunks.jsonl
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-52
+infra/scripts/imaging/pack_imaging_worker_bundle.sh
+  s_eaa6f401e95506::t_7481686e81d0a8 16
+  s_eaa6f401e95506::t_ccb4771231cefb 11-15
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-10,17-41
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+apps/api/src/omeia/app_skeleton/api/metadata_engine/constants.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-114
+apps/api/src/omeia/app_skeleton/storage/pdrive_smb.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9
+apps/web/eslint.config.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-27
+apps/web/src/pages/ImageStreamingAdminScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-144
+infra/scripts/ops/validate_platform.py
+  s_efdcdca69a2820::t_827f8ca221ad42 12
+  s_d8ca0dcf385045::t_8b50be265eaced 209,213
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-11,13-208,210-212,214-271
+deploy/university-desktop/omeia-ingest.service
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-11,13
+app_skeleton/ui/react_frontend/public/repo-static/DATACLOUD_WEBDAV_SETUP.md
+  s_eaa6f401e95506::t_2690bac1413cef 28,38
+apps/web/src/shared/layout/SubsectionCoverCard.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-50
+apps/api/src/omeia/app_skeleton/api/vault_ingestion_engine.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-15,21-39,41-49,51-348,350-352,354-372,374-389,391-393,395-418,421-692
+  s_d8ca0dcf385045::t_b3340e3338f80f 16-20,40,50,349,353,373,390,394,419-420
+docs/31_SEARCH_UNIFIED_AUDIT_AND_SOURCE_BUNDLE.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 87,153,159,179,207,234,596,620,628-643,719,731,1061,1064-1065,1067,1173,1410,1413-1414,1416,2664,2667-2668,2670,3050,3053-3054,3056,3389,3403,3421,3431,3440,3451,3462,3582,3606-3608,3613-3614,3626,4234,4252-4253,4257,4293,4319,4780,4853,4867-4870,5088,5367,6030,6484,6502-6505,6548,6912,7025,7183,7401,7509,7546,7905,8279,8408,8995,9238,10033,10535,11047,11274
+apps/web/src/pages/DataStorageScreen.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-989
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260604T035501Z_dig_fff4ecb7.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/web/src/data/coverImages.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-8
+apps/web/src/features/projects/components/RunPipelineTab.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-68
+apps/web/public/repo-static/PDRIVE_SETUP.md
+  s_eaa6f401e95506::t_7481686e81d0a8 22
+infra/scripts/dev/load_env.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-46
+infra/scripts-migrate/search/run_ai_lab_assistant_eval.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 476-477
+infra/scripts/sync/sync_allowlist.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-7,10-49
+  s_efdcdca69a2820::t_827f8ca221ad42 8-9
+tests/auth_fixtures.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 12-13
+apps/web/src/lib/workspaceDatapadUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-72
+apps/web/src/features/documents/components/TaxonomyConnectorMap.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-476
+apps/web/src/data/billingInstructions.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/lib/job_log_ui.sh
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-56
+apps/api/src/omeia/app_skeleton/api/supabase_config.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-103
+infra/scripts-migrate/ingest/reindex_vectors.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 24-26,39
+apps/api/src/omeia/api/db_pool.py
+  s_efdcdca69a2820::t_827f8ca221ad42 71
+app_skeleton/ui/react_frontend/README.md
+  s_eaa6f401e95506::t_2690bac1413cef 3,41,68
+apps/api/src/omeia/api/library_taxonomy.py
+  s_efdcdca69a2820::t_827f8ca221ad42 10
+apps/web/public/icons.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-24
+apps/web/src/features/projects/components/LazyDataPadEditor.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-19
+prompts/high_end_architect_agent_prompt.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 165-167,184-196,252,273
+apps/api/src/omeia/app_skeleton/api/database_sections.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 7
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-6,8-113
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/model_zoo/panopticnet.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-309
+apps/web/src/i18n/guiStrings/es.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-482
+infra/scripts/dev/start_frontend.sh
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-6,8-35
+  s_d8ca0dcf385045::t_5ea6a826e716ab 7
+infra/scripts/check/check_napari.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-41
+apps/web/src/features/documents/components/SpreadsheetPreview.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-121
+apps/web/src/features/projects/components/DataPadEditor.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-509
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/mesmer-lumi-rocm63.def
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-129
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/model_zoo/panopticnet_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-430
+infra/scripts/auth/inject_authz.py
+  s_eaa6f401e95506::t_7481686e81d0a8 5-11
+  s_efdcdca69a2820::t_827f8ca221ad42 23,25
+  s_d8ca0dcf385045::t_8b50be265eaced 1-4,12-22,24,26-56
+apps/api/src/omeia/api/platform_admin.py
+  s_efdcdca69a2820::t_827f8ca221ad42 13,19
+infra/scripts/ingest/create_qdrant_collections.py
+  s_efdcdca69a2820::t_827f8ca221ad42 4
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-3,5-54
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__social_misc.chunks.jsonl
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-26
+infra/scripts-migrate/ops/backup_linux.sh
+  s_efdcdca69a2820::t_74f4f3bd7996c1 98-103
+apps/api/src/omeia/app_skeleton/digitalization/canonicalizer.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9,15
+apps/web/src/features/projects/components/ProjectContentLibrary.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-230
+apps/web/public/covers/overlays/computational.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-48
+apps/web/src/lib/teamRoster.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-146
+infra/scripts/database/synthetic_seed_data.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 2-37
+  s_efdcdca69a2820::t_827f8ca221ad42 1
+apps/web/src/services/datapad.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-65
+infra/scripts/search/run_search_qa.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-35,37-49,52-132,135-200
+  s_efdcdca69a2820::t_827f8ca221ad42 5,36,50-51,133-134
+infra/scripts/dev/start_backend.sh
+  s_efdcdca69a2820::t_4f0abfa87905fb 11
+  s_efdcdca69a2820::t_fb8f78b104ba21 8
+  s_d8ca0dcf385045::t_044fd146cf137f 1-7,9-10,12-38
+apps/api/src/omeia/app_skeleton/api/storage_stub.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-10,14-39,41-67
+  s_d8ca0dcf385045::t_b3340e3338f80f 11-13,40
+apps/api/src/omeia/app_skeleton/api/vector_indexer.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-11,19
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-9,12-18,20-171
+apps/web/src/features/projects/components/ProjectModalityPills.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-37
+infra/scripts/network/portable_apply_env.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 6
+  s_d8ca0dcf385045::t_044fd146cf137f 1-5,7-36
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T122641Z_dig_ec3880a7.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/api/image_streaming/image_streaming_service.py
+  s_efdcdca69a2820::t_827f8ca221ad42 12,17,22-24,378,381,388,414
+apps/web/src/lib/catalogDocumentTree.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-110
+tests/test_chunking_normalize.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 4,9
+apps/web/src/shared/layout/HubNestedNav.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-331
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260607T030536Z_05879600.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/model_zoo/featurenet_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-547
+infra/scripts-migrate/database/apply_sql_migrations.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 21
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/metrics.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-32
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/model_zoo/fpn.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-533
+apps/web/src/lib/projectUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-61
+infra/scripts-migrate/digitalization/reprocess_all_twins.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 20
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121158Z_dig_86d1d036.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/digitalization/secret_detector.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-104
+apps/web/src/features/search/components/HighlightedSnippet.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-20
+apps/web/src/services/imageAssetsClient.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-97
+apps/api/src/omeia/api/scientific_document_parser.py
+  s_efdcdca69a2820::t_827f8ca221ad42 47-48
+apps/web/src/features/projects/components/portfolio/ResearchAssistPanel.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-100
+apps/api/src/omeia/api/image_streaming/job_queue.py
+  s_d8ca0dcf385045::t_69ea63ad479557 15
+  s_efdcdca69a2820::t_827f8ca221ad42 11
+infra/scripts/digitalization/import_top_class_metadata.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-17,19-190
+  s_efdcdca69a2820::t_827f8ca221ad42 5,18
+apps/api/src/omeia/app_skeleton/api/strategy_agents/research_gap_agent.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 6-7
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-5,8-49
+apps/web/src/lib/kindleLayout.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-507
+infra/scripts-migrate/search/run_search_qa.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 34,48-49,131-132
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/image_generators/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-294
+infra/scripts/MIGRATION.md
+  s_eaa6f401e95506::t_7481686e81d0a8 70
+apps/web/src/pages/FeatureClinicalScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-286
+apps/web/src/features/projects/components/portfolio/NotebookWikiPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-264
+apps/web/src/shared/ui/common/LazyViewFallback.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-95
+apps/api/src/omeia/app_skeleton/api/strategy_agents/biomarker_agent.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 7-8
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-6,9-48
+apps/web/src/features/ai-assistant/styles/AiAssistant3D.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-1980
+apps/web/src/services/searchClient.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-4
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-36
+apps/api/src/omeia/app_skeleton/api/quality_eval_service.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 16-17,33,85-86,143-144
+apps/web/scripts/buildDatabase.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-230
+docs/LINUX_MEDIA_AND_DATA_PATHS.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 48
+apps/web/src/i18n/localizeNav.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-55
+docs/13_LOW_END_WORKER_IMPLEMENTATION_PLAN.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 17
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/DeepCell.egg-info/SOURCES.txt
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-95
+apps/api/src/omeia/api/chat_model_catalog.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-7,9,11-181
+  s_efdcdca69a2820::t_96f562e59df4fa 10
+infra/docker/imaging-worker/healthcheck.py
+  s_d8ca0dcf385045::t_8b50be265eaced 7
+tests/test_architecture_audit.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 18,23,31,44,53,59,61,63,72,83
+infra/scripts-migrate/llm/setup_ollama_local_llm.sh
+  s_efdcdca69a2820::t_f7a7e3c07738de 156
+infra/scripts/digitalization/reprocess_all_twins.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-21,23-26
+  s_efdcdca69a2820::t_827f8ca221ad42 5,22
+apps/web/src/features/auth/components/LoginOvarianScene.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-248
+apps/web/src/shared/ui/common/CopyableCodeBlock.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-87
+infra/scripts/network/linux_enable_tailscale_ssh.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-33
+infra/scripts/search/setup_search_portable.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 6
+  s_d8ca0dcf385045::t_044fd146cf137f 1-5,7-49,52-58,60-67
+  s_eaa6f401e95506::t_7481686e81d0a8 51
+  s_d8ca0dcf385045::t_8b50be265eaced 50
+  s_efdcdca69a2820::t_f7a7e3c07738de 59
+infra/scripts/digitalization/process_inventory_pipeline.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-18,20-23,25-273
+  s_efdcdca69a2820::t_827f8ca221ad42 5,19,24
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_research_materials/lab__overview_research_materials.chunks.jsonl
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-390
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/model_zoo/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-37
+apps/api/src/omeia/app_skeleton/api/datapad_service.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-12,16-21,23-250,252-529
+  s_d8ca0dcf385045::t_b3340e3338f80f 13-15,22,251
+infra/scripts-migrate/imaging/linux_minimal_imaging_capabilities.sh
+  s_efdcdca69a2820::t_f7a7e3c07738de 57
+  s_eaa6f401e95506::t_7481686e81d0a8 6-7,54
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/pooling.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-331
+infra/scripts-migrate/search/build_search_audit_bundle.py
+  s_eaa6f401e95506::t_7481686e81d0a8 28,36-51,127,139,456-465
+apps/web/src/features/documents/components/DocumentCategorySidebar.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-62
+apps/web/src/shared/ui/SmartLink.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-71
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T183800Z_c899f24f.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/app_skeleton/api/image_streaming/image_metadata_service.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 10-19
+apps/api/src/omeia/app_skeleton/api/routers/admin_index.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 11,18-21,96,137,159,171
+infra/scripts/database/ingest_platform_seed_data.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 2-263
+  s_efdcdca69a2820::t_827f8ca221ad42 1
+apps/api/src/omeia/storage/ingestion.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-8,10-24,26-107
+apps/api/src/omeia/app_skeleton/api/project_processor.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 11-1616
+tests/test_agent_categories.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8,72
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/location.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-175
+apps/web/public/covers/overlays/profile.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-31
+apps/web/src/lib/cycifCategories.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-288
+infra/scripts/ingest/ingest_lab_knowledge.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-14,16-20
+  s_efdcdca69a2820::t_827f8ca221ad42 5,15
+apps/api/src/omeia/digitalization/registry_writer.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-10,12-21,23-202,204-272
+infra/scripts/deploy/linux_bootstrap_all.sh
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-10,12-152
+  s_d8ca0dcf385045::t_5ea6a826e716ab 11
+apps/web/src/fonts.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-455
+tests/test_security_files.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 3,6
+apps/web/src/lib/labDatabaseUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-231
+apps/web/src/features/documents/components/MediaViewer.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-329
+apps/web/src/features/documents/components/DocumentFormatter.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-551
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260607T032552Z_7c408009.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260608T152553Z_f386a6bc.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/web/src/features/search/components/SearchResultCard.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-56
+apps/web/src/lib/folderBrowserUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-252
+tests/test_vault_review_search.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8-9,28,35,54-55
+apps/web/src/features/taskpad/components/TaskpadSheet.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-465
+apps/web/src/shared/layout/ScreenCache.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-32
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T220033Z_fde197b2.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/web/src/features/projects/components/DigitalTwinPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-521
+apps/api/src/omeia/storage/r2_preview.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-27
+apps/api/src/omeia/app_skeleton/data/00_registry/processor_state.json
+  s_d8ca0dcf385045::t_b3340e3338f80f 80
+app_skeleton/ui/react_frontend/public/repo-static/PDRIVE_SETUP.md
+  s_eaa6f401e95506::t_2690bac1413cef 22
+apps/api/src/omeia/app_skeleton/api/library_taxonomy.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 10
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/cytoplasm_segmentation.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-169
+apps/web/src/shared/layout/ModuleCoverHero.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-113
+infra/scripts/deploy/mac_push_to_linux.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-10,12-130
+  s_d8ca0dcf385045::t_5ea6a826e716ab 11
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/lib/pipeline_ui.sh
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-244
+apps/web/src/lib/researchAssistPrompts.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-96
+apps/web/src/features/search/components/UnifiedSearch.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-590
+apps/api/src/omeia/digitalization/canonicalizer.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-8,10-14,16-264
+apps/web/src/i18n/guiStrings/ru.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-482
+infra/scripts/search/build_search_audit_bundle.py
+  s_efdcdca69a2820::t_827f8ca221ad42 5
+  s_eaa6f401e95506::t_7481686e81d0a8 30,38-53,129,141,458-467
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-29,31-37,54-128,130-140,142-457,468-553
+infra/scripts/database/ingest_database.py
+  s_efdcdca69a2820::t_827f8ca221ad42 1
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 2-119
+apps/web/src/features/overview/components/OverviewIntroBody.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-170
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121401Z_dig_e3763d5b.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+infra/scripts/network/mac_test_linux.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-39
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+apps/web/src/features/overview/components/OverviewReadingPage.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-473
+apps/web/src/features/documents/components/DocumentPreviewPane.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-314
+apps/api/src/omeia/api/clinical_tools.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-26,28-30,32-347
+  s_efdcdca69a2820::t_827f8ca221ad42 31
+  s_efdcdca69a2820::t_96f562e59df4fa 27
+apps/api/src/omeia/data/01_source_inventory/raw_asset_inventory.csv
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-4801
+apps/web/src/features/documents/components/DocumentFileSearch.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-31
+apps/api/src/omeia/app_skeleton/api/dev.sh
+  s_d8ca0dcf385045::t_b3340e3338f80f 2
+apps/api/src/omeia/api/quality_eval_service.py
+  s_efdcdca69a2820::t_96f562e59df4fa 20
+  s_d8ca0dcf385045::t_8b50be265eaced 1-15,18-19,21-32,34-84,87-142,145-461
+apps/web/src/features/documents/components/DocumentViewerExpand.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-131
+infra/scripts-migrate/ops/autonomous_processor.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 29,35,156,169,199,217
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T174436Z_dig_4d0db0e5.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/README.md
+  s_d8ca0dcf385045::t_69ea63ad479557 1,3
+  s_d8ca0dcf385045::t_b3340e3338f80f 9,13,18
+  s_d8ca0dcf385045::t_59ee8929840700 10
+  s_d8ca0dcf385045::t_6b00a44d82f748 2,4-8,11-12,14-17,19-27
+infra/scripts-migrate/database/migrate_data_layout.py
+  s_eaa6f401e95506::t_7481686e81d0a8 2
+  s_efdcdca69a2820::t_f7a7e3c07738de 15
+apps/api/src/omeia/app_skeleton/api/requirements-imaging-extended.txt
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-7
+apps/api/src/omeia/app_skeleton/api/chat_session_store.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 25
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-24,26-241
+apps/web/src/features/projects/components/ProjectCoverTeamStrip.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-135
+apps/web/src/lib/taskpadRegistry.js
+  s_efdcdca69a2820::t_7235190bfe4038 1-207
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T174435Z_dig_2332a5ca.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/web/src/pages/DecisionsScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-33
+apps/web/src/i18n/useGuiT.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-58
+apps/web/src/index.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-6912
+apps/api/src/omeia/app_skeleton/api/requirements.txt
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-22
+docs/29_INTELLIGENT_DATAPAD.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 26,31,61-62,64
+apps/web/src/styles/theme/consistency.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-205
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/callbacks.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-76
+apps/api/src/omeia/data/03_ingestion_audit/latest/sync_run_report.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-9
+infra/scripts-migrate/digitalization/extract_pending_inventory.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 16-17,24
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/padding_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-175
+infra/scripts-migrate/ingest/ingest_complete_collection.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 11-13
+apps/web/src/data/localeStorage.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-28
+apps/api/src/omeia/app_skeleton/api/agent_orchestrator/trace_store.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 57
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-56,58-71
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/nuclear_segmentation_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-63
+apps/web/src/features/projects/components/ProjectDocumentsBrowser.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-537
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/cell_tracking_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-81
+apps/web/src/lib/spreadsheetText.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-162
+apps/api/src/omeia/app_skeleton/api/metadata_engine/__init__.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 2-3
+  s_efdcdca69a2820::t_2168fd4772cfd1 1,4-5
+apps/web/src/pages/LoginScreen.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-889
+docs/20_DOCUMENT_REGISTRY_SCHEMA.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 5
+CONTRIBUTING.md
+  s_eaa6f401e95506::t_2690bac1413cef 23
+apps/api/src/omeia/data/01_source_inventory/raw_asset_inventory.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-1137916
+tests/test_strategy_answer_schema.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 4
+apps/api/src/omeia/app_skeleton/api/search_models.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-129
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__social_misc.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-7802
+apps/api/src/omeia/api/raw_vault_store.py
+  s_efdcdca69a2820::t_827f8ca221ad42 16-18,61,112,304,670,763
+apps/web/src/lib/modalityMeta.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-52
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/rules/quantification.smk
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-449
+tests/test_image_streaming.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 13-17,79,89,94,167,180,183,196,199,202,210,220
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260604T010557Z_dig_beecab03.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+infra/scripts/ingest/ingest_complete_collection.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-10,14-637
+  s_efdcdca69a2820::t_827f8ca221ad42 11-13
+infra/scripts-migrate/digitalization/finalize_empty_extractions.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 16,22
+infra/scripts/dev/start_mac_thin_client.sh
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-10,12-66
+  s_d8ca0dcf385045::t_5ea6a826e716ab 11
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/misc_utils_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-50
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/pooling_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-98
+apps/web/src/features/documents/components/CopyableCodeBlock.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+apps/web/src/features/projects/components/portfolio/ProjectPortfolioContextBar.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-49
+apps/web/src/lib/textCleanup.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-231
+config/env/SUPABASE_SETUP.md
+  s_eaa6f401e95506::t_7481686e81d0a8 29
+apps/api/src/omeia/api/page_registry.py
+  s_efdcdca69a2820::t_827f8ca221ad42 35
+infra/scripts/debug_rag_wiring.py
+  s_efdcdca69a2820::t_827f8ca221ad42 31-34
+infra/scripts/network/setup_mac_portable.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-56
+start_linux.sh
+  s_d8ca0dcf385045::t_b3340e3338f80f 2-3
+apps/web/src/shared/hooks/useDigitalTwin.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-67
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/lib/log_humanize.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-306
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/rules/stitching.smk
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-192
+apps/web/src/shared/hooks/useCatalogDocumentPreview.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-59
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260607T032653Z_7ca7d2a8.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/web/src/data/labMembers.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-38
+scripts/ops/backup_linux.sh
+  s_d8ca0dcf385045::t_b3340e3338f80f 98,102-103
+apps/web/src/shared/ui/common/LazyViewFallback.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-45
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/plot_utils_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-119
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/mesmer.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-312
+apps/api/src/omeia/digitalization/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1
+apps/api/src/omeia/app_skeleton/api/strategy_agents/literature_agent.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 7-8
+apps/api/src/omeia/api/vector_indexer.py
+  s_efdcdca69a2820::t_827f8ca221ad42 10-11,19
+apps/web/src/lib/fileTypeMeta.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-81
+apps/api/src/omeia/app_skeleton/storage/ingestion.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9,25
+apps/web/src/features/projects/components/portfolio/ProjectPortfolioIntegrated.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-173
+apps/web/public/covers/overlays/overview.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-44
+infra/scripts-migrate/docker/linux_post_stack_setup.sh
+  s_efdcdca69a2820::t_f7a7e3c07738de 84,95
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/data_utils_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-519
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/tracking.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-30
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/data/tracking_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-292
+apps/web/src/config/firebase.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-185
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/_version.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-36
+apps/web/src/features/ai-assistant/components/ResearchStrategyAnswerView.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-98
+apps/api/src/omeia/app_skeleton/api/lab_knowledge_store.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 23-606
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/datasets/spot_net.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-147
+tests/test_search_advanced_filters.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 7-8
+docs/PROJECT_STRUCTURE_FINAL_ANALYSIS_PREMIUM.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 46-47,82,85-86,89-90,92,95-96,98-101,109,111,136,138,154,174,271,275,360,389-390
+deploy/university-desktop/scheduled_ingest.sh
+  s_d8ca0dcf385045::t_b3340e3338f80f 11,26-27
+apps/web/src/data/activityLogs.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+apps/web/src/lib/labMemberPhotos.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-121
+apps/web/src/lib/projectLogContent.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-223
+infra/scripts/auth/audit_routes_security.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-7,9-71
+  s_efdcdca69a2820::t_827f8ca221ad42 8
+apps/web/src/styles/theme/superGlass.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-330
+docs/FRONTEND_BACKEND_TUTORIAL.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 47,82,96,123,160,196,231-232,253,273,281,302
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T174429Z_dig_44209810.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+infra/compose/docker-compose.biomodels.yml
+  s_eaa6f401e95506::t_095a508f88ee6b 1-36,38-62,64-86,88-110,112-134,136-153,155-172,174-186
+  s_eaa6f401e95506::t_30fe9630ce3f1d 37,63,87,111,135,154,173
+apps/api/src/omeia/app_skeleton/digitalization/chunker.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 7-8
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/cytoplasm_segmentation_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-63
+apps/web/src/i18n/guiStrings/fi.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-515
+apps/api/src/omeia/app_skeleton/api/page_registry.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 35
+apps/api/src/omeia/app_skeleton/api/service_clients.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-11
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/datasets/dynamic_nuclear_net.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-154
+tests/test_deployment_ops.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9-10,20,35,46,56,71
+apps/api/src/omeia/app_skeleton/api/routers/search.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-7,12-111
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 8-11
+apps/web/src/pages/ImageProcessingPipelineScreen.jsx
+  s_d8ca0dcf385045::t_8b50be265eaced 1-242,244-509,511-571
+docker-compose.imaging.yml
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T174415Z_dig_8d9a3c8c.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+docs/PORTABLE_MAC_TO_LINUX.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 95
+apps/web/src/features/documents/components/DocumentExportMenu.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-113
+infra/scripts/dev/ensure_node_for_vite.sh
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-46
+docs/PLATFORM_ARCHITECTURE_REVIEW.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 5,65,122,1118,1127,1141-1148,1154-1160,1166-1170,1176-1180,1186-1191,1200,1227-1228
+infra/scripts/ops/rename_package_refs.py
+  s_efdcdca69a2820::t_c2ec853b08806c 2,8,11-20,77-85,99,104
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1,3-6,9,22-76,86-96,98,103,105-108
+  s_efdcdca69a2820::t_4467350da25beb 7
+  s_efdcdca69a2820::t_2092075c967e73 97,100-102
+apps/web/src/services/documentExportClient.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-103
+apps/web/src/features/lab/components/LabSectionTwinPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-318
+apps/api/src/omeia/data/00_registry/processor_state.json
+  s_d8ca0dcf385045::t_b3340e3338f80f 80
+  s_d8ca0dcf385045::t_8b50be265eaced 1-79,81-91
+apps/web/src/pages/OverviewDocumentsScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-75
+docs/19_ASSET_REGISTRY_SCHEMA.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 41
+infra/scripts/dev/start_portable.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-9
+apps/web/src/features/orders/components/OrdersBillingBrowser.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-13
+docs/30_SEARCH_FUNCTIONALITY_AUDIT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 68,134,140,160,188,215,591
+apps/web/src/pages/SectionDocumentsScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-17
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/tensor_product_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-107
+apps/api/src/omeia/api/search_service.py
+  s_efdcdca69a2820::t_827f8ca221ad42 14-23,32-33,40-44,1011-1012
+apps/api/src/omeia/app_skeleton/api/project_digitalization_engine.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 16-543
+apps/api/src/omeia/api/database_processor.py
+  s_efdcdca69a2820::t_827f8ca221ad42 13-15,20-21,187-188,260
+start.sh
+  s_d8ca0dcf385045::t_b3340e3338f80f 2-3
+apps/api/src/omeia/storage/01_providers/README.md
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-7
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121328Z_dig_5382733b.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+docs/IMAGING_PACKAGES_GUIDE.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 10,25,40,101,107
+apps/web/src/styles/theme/clearGlassPages.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-775
+app_skeleton/README.md
+  s_eaa6f401e95506::t_2690bac1413cef 1,3,9-10,13,18
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260604T043749Z_8dd023b9.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121405Z_dig_d177e729.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/web/src/data/researchTopics.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-17
+apps/api/src/omeia/app_skeleton/api/register_projects.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 3-4
+apps/api/src/omeia/app_skeleton/api/strategy_agents/spatial_biology_agent.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 7-8
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-6,9-45
+apps/web/public/covers/overlays/administration.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-36
+apps/api/src/omeia/security/secure_files.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-6,11-108
+apps/api/src/omeia/security/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-4
+scripts/ops/check_linux_sync_health.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 48,59
+infra/scripts/ops/run_vectorization_queue.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-8,10-20,22-168
+  s_efdcdca69a2820::t_827f8ca221ad42 9,21
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/tensor_product.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-221
+infra/scripts/llm/ollama_ssh_tunnel.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-20
+infra/scripts/digitalization/finalize_empty_extractions.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-17,19-23,25-111
+  s_efdcdca69a2820::t_827f8ca221ad42 5,18,24
+apps/api/src/omeia/security/audit_log.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-29
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/cell_tracking.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-227
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/pipeline_config.sh
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-977
+infra/scripts/docker/setup_biomodels_docker.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-38
+infra/scripts/network/linux_tunnel_to_mac.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-31
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/lib/tiff_labels.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-56
+apps/web/src/data/imageProcessingPipelineContent.js
+  s_d8ca0dcf385045::t_8b50be265eaced 1-310,312-322
+apps/api/src/omeia/app_skeleton/api/people_index.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-8,10-76
+  s_d8ca0dcf385045::t_b3340e3338f80f 9
+apps/api/src/omeia/app_skeleton/api/supabase_sync.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 15-17,21
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-14,18-20,22-714
+apps/web/src/features/documents/components/DocumentViewerToolbar.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-129
+apps/api/src/omeia/app_skeleton/digitalization/extractors.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8-9,18
+docs/PROJECT_STRUCTURE_FINAL_ANALYSIS.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 28-29,64,67-68,71-72,74,77-78,80-83,91,93,113,133,203,222,364-365
+apps/web/src/lib/mediaGalleryUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-65
+apps/web/src/pages/AdministrationScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-200
+apps/web/vite.config.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-238
+apps/web/src/pages/LabKnowledgeScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-217
+apps/api/src/omeia/app_skeleton/api/routers/agent_categories.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 10-13,18-22,68,83
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-9,14-17,23-67,69-82,84-204
+deploy/university-desktop/.env.desktop.example
+  s_eaa6f401e95506::t_2690bac1413cef 2,24,26,73
+apps/web/src/features/projects/components/ProjectFolderBrowser.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-796
+config/env/document_library/smart_taxonomy.json
+  s_eaa6f401e95506::t_7481686e81d0a8 225,231,237
+apps/web/src/services/biomedicalModelsClient.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-29
+apps/web/src/data/labStorageTabContent.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-639
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T123401Z_dig_0fa646b3.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121202Z_dig_be924f1e.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/storage/pdrive_smb.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-8,10-169
+apps/api/src/omeia/app_skeleton/security/secure_files.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 7-10
+apps/web/src/lib/labDocumentMap.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-146
+apps/web/src/features/documents/components/DocumentSubfolderAlbums.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-90
+apps/api/src/omeia/storage/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260604T052003Z_dig_72be6b45.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+infra/scripts-migrate/document-library/setup_research_knowledge.sh
+  s_efdcdca69a2820::t_f7a7e3c07738de 33,47-48,57-58,69-70,81-83,94-95
+apps/web/src/features/ai-assistant/components/ResearchStrategyAnswerView.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-148
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/tfrecord_utils_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-297
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/temporal_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-133
+apps/web/src/services/client.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-192
+apps/web/src/features/computational/components/hub/OnboardingRoadmap.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-357
+tests/test_ocr_queue_flag.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8-9,68
+tests/db_safety.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 63
+infra/scripts/docker/start_linux_docker_stack.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-49
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+docs/14_PRODUCTION_DECISIONS.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 10,60,62-65
+tests/test_ensure_project_readme.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8-9,54,64,68,72,76
+apps/api/src/omeia/app_skeleton/api/research_crawler.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-221
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/upsample_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-138
+apps/web/src/pages/UserProfileScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-191
+apps/api/src/omeia/api/image_streaming/image_metadata_service.py
+  s_efdcdca69a2820::t_827f8ca221ad42 10-11
+  s_d8ca0dcf385045::t_69ea63ad479557 19
+apps/api/src/omeia/storage/03_environment/README.md
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-7
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260604T052203Z_7e42e1ba.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/web/src/features/projects/components/ProjectTwinStats.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-85
+tools/audit/comprehensive_audit.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 33-34
+infra/scripts/imaging/linux_paste_install_imaging_worker.sh
+  s_eaa6f401e95506::t_ccb4771231cefb 11,22,37,64,74,81-82,92,144,168
+  s_eaa6f401e95506::t_7481686e81d0a8 91,96
+  s_efdcdca69a2820::t_42c077f49e34ea 93
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-10,12-21,23-36,38-63,65-73,75-80,83-90,94-95,97-143,145-159,161-167,169-176
+  s_d8ca0dcf385045::t_5ea6a826e716ab 160
+apps/web/src/lib/labDocumentsHubConfig.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-107
+apps/web/src/lib/userProfile.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-26
+tests/test_wet_lab_document_filters.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6-7
+infra/scripts/dev/00_bootstrap.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-11
+infra/scripts/digitalization/reconcile_inventory_status.py
+  s_efdcdca69a2820::t_827f8ca221ad42 5,16
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-15,17-108
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260607T032713Z_84bc6fba.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__overview_personnel.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-1822
+apps/api/src/omeia/security/environment.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-32
+apps/web/public/covers/overlays/project-workspace.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-40
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260607T114258Z_a6df4eb3.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/rules/illumination.smk
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-162
+infra/scripts/llm/generate_ollama_token.sh
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-28
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+infra/scripts/ops/backup_linux.sh
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-10,12-97,99-101,104-118
+  s_d8ca0dcf385045::t_5ea6a826e716ab 11
+  s_eaa6f401e95506::t_ccb4771231cefb 98,102-103
+infra/scripts-migrate/ingest/ingest_lab_knowledge.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 13
+docs/33_AI_LAB_ASSISTANT_PRODUCTION_PLAN.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 19,21,103-106,126-127,154,177-179,202-203,222-223,243-246,263,381
+apps/web/src/services/ApiContext.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-204
+apps/api/src/omeia/api/routers/knowledge.py
+  s_efdcdca69a2820::t_96f562e59df4fa 205
+apps/web/src/app/screenRegistry.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-66
+infra/scripts/database/apply_sql_migrations.py
+  s_efdcdca69a2820::t_827f8ca221ad42 12,23
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-11,13-22,24-38
+apps/api/src/omeia/app_skeleton/api/platform_flags.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-82
+infra/scripts/ingest/ingest_documents_demo.py
+  s_efdcdca69a2820::t_827f8ca221ad42 4
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-3,5-184
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/rules/filtering.smk
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-335
+apps/web/src/features/documents/components/DocumentMediaGallery.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-311
+apps/web/src/lib/catalogPreviewUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-134
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/misc_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-59
+apps/web/src/features/imaging/components/ImageTileViewer.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-386
+apps/api/src/omeia/app_skeleton/api/env_bootstrap.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-28,30,40-43
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-9,29,31-39,44-49
+tests/test_chat_intent.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6
+apps/api/src/omeia/app_skeleton/api/research_knowledge_store.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 17-18,23,31-33,37,45,883
+apps/web/public/covers/overlays/ai-assistant.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-43
+apps/web/src/i18n/guiStrings/bn.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-372
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/padding.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-93
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__orders_billing.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-2514
+tests/test_copilot.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9,27,42,58,76,87,102,113
+apps/web/src/shared/ui/ExpandableText.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-70
+docs/TIFF_STREAMING_IMPLEMENTATION_PLAN.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 29
+apps/web/src/lib/pageMeta.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-69
+apps/api/src/omeia/api/vault_vector_search.py
+  s_efdcdca69a2820::t_827f8ca221ad42 10-14
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/data/tracking.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-512
+apps/api/src/omeia/app_skeleton/api/README.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 3
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-2,4-25
+apps/api/src/omeia/app_skeleton/api/qdrant_collections.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 7
+apps/web/src/assets/vite.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+infra/scripts/docker/build_imaging_worker.sh
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-11,17-30,32,34-48
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+  s_eaa6f401e95506::t_7481686e81d0a8 16,33
+  s_eaa6f401e95506::t_ccb4771231cefb 12-15,31
+infra/scripts/network/mac_connect_linux.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-47
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+apps/api/src/omeia/app_skeleton/api/ocr/queue.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 10-215
+apps/web/src/lib/ordersArchiveCategories.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-185
+apps/web/src/features/projects/components/ProjectCohortStrip.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-46
+apps/api/src/omeia/app_skeleton/api/routers/storage.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 1-2,4,14-15
+  s_efdcdca69a2820::t_2168fd4772cfd1 3,5-13,16-116
+infra/scripts-migrate/digitalization/project_digitalize.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 17-18
+apps/api/src/omeia/pipelines/lumi_image_processing/MESMER_INDEX_AUDIT.md
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-80
+infra/scripts/imaging/copy_imaging_bundle_to_linux.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-62
+apps/api/src/omeia/app_skeleton/api/ingest_all.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 2-3
+apps/api/src/omeia/app_skeleton/api/image_streaming/image_streaming_service.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 12-414
+infra/scripts-migrate/llm/test_gemini_chat.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 38-39
+apps/api/src/omeia/app_skeleton/api/agent_orchestrator/__init__.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1
+apps/web/src/lib/overviewCategories.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-360
+tests/test_security_authorization.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 3
+infra/scripts-migrate/digitalization/run_digitalization.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 48
+infra/scripts/search/run_ai_lab_assistant_eval.py
+  s_d8ca0dcf385045::t_8b50be265eaced 275,282-283
+  s_efdcdca69a2820::t_827f8ca221ad42 5,478-479
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-274,276-281,284-477,480-549
+apps/web/src/shared/hooks/useEnsureProjectReadme.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-52
+apps/api/src/omeia/app_skeleton/api/retrieval_cache.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-168
+apps/web/src/features/storage/components/StorageTabDocuments.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-174
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260608T151941Z_a328e82b.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/app_skeleton/api/vault_vector_search.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-9,15-108
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-14
+apps/web/src/features/search/components/SearchBucketGroup.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-33
+infra/scripts/ops/check_linux_sync_health.py
+  s_eaa6f401e95506::t_935208b52ce224 14-16
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-13,17-50,52-61,63-123
+  s_efdcdca69a2820::t_827f8ca221ad42 5,51,62
+apps/api/src/omeia/app_skeleton/api/routers/copilot.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 1-2,4,65,87,90,128-129
+  s_efdcdca69a2820::t_2168fd4772cfd1 3,5-64,66-86,88-89,91-127,130-360
+docs/architecture/REPOSITORY_LAYOUT.md
+  s_d8ca0dcf385045::t_6daf3054b25b98 1-36
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/datasets/dataset_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-147
+apps/web/src/shared/ui/FileTypeBadge.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-10
+apps/web/src/features/projects/components/ProjectIntroHeader.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-561
+infra/scripts/network/sync_mac_repo_to_usb.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-5,7-9,18-26
+  s_eaa6f401e95506::t_7481686e81d0a8 10-17
+  s_d8ca0dcf385045::t_5ea6a826e716ab 6
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260604T044731Z_c849eefc.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/app_skeleton/api/image_streaming/permissions.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 6
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260608T152836Z_d630c8e2.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/security/auth.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-5,7-15,18-39,41-277
+apps/web/src/features/ai-assistant/components/AiAssistant3DScene.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-138
+apps/web/src/pages/IngestionDashboard.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-105
+apps/api/src/omeia/digitalization/chunker.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-6,9-140
+apps/web/src/pages/CycifScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-21
+infra/scripts-migrate/ops/run_ocr_queue.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 17-19
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/model_zoo/tracking_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-36
+apps/api/src/omeia/api/frontend_static.py
+  s_efdcdca69a2820::t_827f8ca221ad42 12
+  s_efdcdca69a2820::t_96f562e59df4fa 45
+infra/scripts/network/mac_test_tailscale_ollama.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-70
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+apps/api/src/omeia/app_skeleton/api/search_nav.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-5,7-113
+  s_d8ca0dcf385045::t_b3340e3338f80f 6
+apps/web/README.md
+  s_eaa6f401e95506::t_7481686e81d0a8 3,68
+  s_d8ca0dcf385045::t_8b50be265eaced 1-2,4-67,69-109
+tests/test_privacy_guardrails.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6
+apps/web/src/lib/useResizableGridColumns.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-74
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260604T022301Z_dig_ebf14532.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/web/src/shared/layout/ModuleShell.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-149
+apps/web/src/features/projects/components/ProjectRegistryEditor.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-145
+apps/api/src/omeia/app_skeleton/api/middleware/__init__.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1
+infra/scripts/document-library/build_document_library_category_trees.py
+  s_efdcdca69a2820::t_827f8ca221ad42 5
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-227
+apps/web/src/features/documents/hooks/useDocumentLibrary.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-271
+apps/api/src/omeia/app_skeleton/api/MANIFEST.json
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-45
+apps/web/src/lib/projectReadmeUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-45
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T194609Z_1090e020.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/web/src/services/agentCategoryClient.js
+  s_efdcdca69a2820::t_7235190bfe4038 1-133
+apps/web/src/lib/ordersBillingCategories.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-186
+tests/test_research_strategy_engine.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8-10,43,83,86
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/nuclear_segmentation.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-224
+infra/scripts/llm/test_gemini_chat.py
+  s_d8ca0dcf385045::t_8b50be265eaced 49
+  s_efdcdca69a2820::t_827f8ca221ad42 5,40-41
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-39,42-48,50-118
+apps/web/src/lib/taskpadUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-35
+infra/scripts/docker/linux_post_stack_setup.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 6
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-5,7-83,85-94,96-114
+  s_efdcdca69a2820::t_f7a7e3c07738de 84,95
+apps/web/src/data/labStorageCatalog.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-537
+apps/api/src/omeia/app_skeleton/api/data_layout.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 14
+apps/web/src/lib/researchMaterialsRouting.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-242
+docs/28_AUTONOMOUS_PROCESSOR.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 13-15,29,71
+docs/10_COMPLETE_SETUP_STEP_BY_STEP.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 30,62,75
+apps/web/jsconfig.json
+  s_eaa6f401e95506::t_7481686e81d0a8 1-24
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/DeepCell.egg-info/PKG-INFO
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-206
+apps/web/src/data/overviewIntroTranslations.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-696
+tests/test_vault_ingestion_engine.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-11,93-94,111-112,161
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/running.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-217
+apps/api/src/omeia/app_skeleton/api/routers/chat.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 12-229
+apps/web/src/features/projects/components/ProjectWorkspaceTaskbar.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-236
+infra/scripts/digitalization/run_metadata_enrichment.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-18,20-23,25-27,30-319
+  s_efdcdca69a2820::t_827f8ca221ad42 5,19,24,28-29
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260604T044328Z_80149104.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/web/src/shared/hooks/useRawFilePreview.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-122
+apps/api/src/omeia/app_skeleton/digitalization/ingestion_job.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 12,20-21,27,213,272-273
+apps/api/src/omeia/digitalization/extractors.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-7,10-17,19-145
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/DeepCell.egg-info/dependency_links.txt
+  s_d8ca0dcf385045::t_6b00a44d82f748 1
+apps/web/src/shared/layout/CentralTaskpadBackground.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-16
+apps/api/src/omeia/app_skeleton/api/connector_status.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6-18
+infra/scripts/ops/migrate_lab_catalog_off_public.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6,8-29
+  s_eaa6f401e95506::t_7481686e81d0a8 7
+tests/test_quality_eval_service.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8,80-85
+apps/web/src/pages/ProjectsScreen.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-3387
+apps/web/src/lib/wetLabCategories.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-101
+apps/web/src/pages/ProjectsScreen.jsx
+  s_efdcdca69a2820::t_7235190bfe4038 1-1176
+apps/api/src/omeia/api/knowledge_indexer.py
+  s_efdcdca69a2820::t_827f8ca221ad42 13-17,23
+deploy/university-desktop/README.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 22,43,66-67,71,109,115,143,206,222
+apps/api/src/omeia/app_skeleton/api/chunking.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8
+infra/scripts/ci/run_copilot_quality_gate.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-3,5-26
+  s_d8ca0dcf385045::t_5ea6a826e716ab 4
+apps/api/src/omeia/app_skeleton/digitalization/manifest.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 12-13
+docs/DOCUMENT_LIBRARY_AUDIT_FINAL_REPORT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 27,29
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/model_zoo/README.md
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-11
+app_skeleton/ui/react_frontend/src/pages/ImageProcessingPipelineScreen.jsx
+  s_eaa6f401e95506::t_2690bac1413cef 243,510
+apps/api/src/omeia/app_skeleton/api/sql_migrations.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 17
+apps/web/src/features/search/hooks/useUnifiedSearch.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-171
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T174429Z_dig_0c4f2a57.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/web/src/pages/UserProfileScreen.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-233
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T205313Z_3efed162.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/pipelines/lumi_image_processing/README.md
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-30
+apps/api/src/omeia/data/01_source_inventory/raw_asset_inventory_summary.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-100
+app_skeleton/ui/react_frontend/src/data/imageProcessingPipelineContent.js
+  s_eaa6f401e95506::t_2690bac1413cef 311
+apps/api/src/omeia/app_skeleton/api/evaluation_service.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-35
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/DeepCell.egg-info/top_level.txt
+  s_d8ca0dcf385045::t_6b00a44d82f748 1
+tests/test_knowledge_indexer_pipeline.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8,30,44-45,68
+apps/api/src/omeia/app_skeleton/api/strategy_agents/bioinformatics_agent.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 7-8
+tests/test_admin_index_health.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9,31-32
+tests/test_project_digitalization.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 30,35-36,51-52,71,80-81,89
+apps/api/src/omeia/app_skeleton/api/embedding_service.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 16
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-15,17-154
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/train_utils_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-70
+apps/api/src/omeia/app_skeleton/api/ocr/tesseract_backend.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 11
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-10,12-199
+apps/api/src/omeia/app_skeleton/api/raw_vault_store.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-15,19-60,62-111,113-303,305-669,671-762,764-769
+  s_d8ca0dcf385045::t_b3340e3338f80f 16-18,61,112,304,670,763
+apps/web/src/services/documentLibraryClient.js
+  s_efdcdca69a2820::t_7235190bfe4038 1-115
+apps/web/src/pages/LoginScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-368
+apps/api/src/omeia/api/project_knowledge_store.py
+  s_efdcdca69a2820::t_827f8ca221ad42 15-17,23,32
+apps/web/src/data/labData.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-547
+infra/compose/docker-compose.imaging.yml
+  s_eaa6f401e95506::t_30fe9630ce3f1d 17,29
+  s_eaa6f401e95506::t_095a508f88ee6b 1-16,18-28,30-35
+infra/scripts-migrate/dev/docker_bootstrap.sh
+  s_efdcdca69a2820::t_f7a7e3c07738de 43
+apps/api/src/omeia/app_skeleton/api/common.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-38,40-44,46-54,56-61,63-72,74-78,80,82,84,86,88,90-94,96,98-100,102-115,117-123,125,127-133,135-141,143,145-153,155-165,172-192,194-198,200-207,209-765,767-933
+  s_d8ca0dcf385045::t_b3340e3338f80f 39,45,55,62,73,79,81,83,85,87,89,95,97,101,116,124,126,134,142,144,154,166-171,193,199,208,766
+apps/web/src/features/computational/components/hub/OnboardingRoadmap.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-492
+tests/test_chat_conversation.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6,15,38
+tests/test_copilot_enhancements.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6-10,72
+apps/web/src/features/ai-assistant/components/AgentCategorySelector.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-210
+infra/scripts/document-library/setup_research_knowledge.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-32,34-46,49-56,59-68,71-80,84-93,96-100
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+  s_efdcdca69a2820::t_f7a7e3c07738de 33,47-48,57-58,69-70,81-83,94-95
+docs/PRODUCTION_READINESS_REPORT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 134,234,259-260
+apps/api/src/omeia/digitalization/ingestion_job.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-11,13-19,22-26,28-212,214-271,274-304
+apps/web/src/features/documents/components/DocumentPreviewPane.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-439
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/multiplex_segmentation.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-32
+Makefile
+  s_eaa6f401e95506::t_767721e8e7a2a4 1-31
+apps/api/src/omeia/digitalization/manifest.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-11,14-120
+apps/web/src/shared/layout/Timeline.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-29
+infra/scripts/frontend/restructure_src.py
+  s_d8ca0dcf385045::t_8b50be265eaced 13
+  s_efdcdca69a2820::t_827f8ca221ad42 6
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-5,7-12,14-324
+apps/web/src/config/navigation.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-372
+apps/web/src/config/databaseSections.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-30
+apps/api/src/omeia/app_skeleton/api/firebase_config.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-66
+infra/scripts/ops/autonomous_processor.py
+  s_d8ca0dcf385045::t_8b50be265eaced 37
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-8,10-30,32-36,38-157,159-170,172-200,202-218,220-403
+  s_efdcdca69a2820::t_827f8ca221ad42 9,31,158,171,201,219
+tests/test_qdrant_collections.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 4
+apps/web/src/features/documents/components/ScientificFileExplorer.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-1749
+apps/web/src/shared/layout/HubNestedNav.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-272
+docs/35_VAST_STYLE_UI_MIGRATION_REPORT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 7,202,348,464,478
+apps/web/src/data/moduleCoverContent.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-198
+apps/api/src/omeia/api/paths.py
+  s_efdcdca69a2820::t_96f562e59df4fa 14-15,75,77
+  s_d8ca0dcf385045::t_8b50be265eaced 1-6,8-13,16-61,63-74,76,78-137,139-218
+infra/scripts-migrate/ops/run_vectorization_queue.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 19
+apps/api/src/omeia/app_skeleton/api/routers/research.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 1-730
+apps/api/src/omeia/api/scheduled_directory_scanner.py
+  s_efdcdca69a2820::t_96f562e59df4fa 17
+  s_d8ca0dcf385045::t_8b50be265eaced 1-12,14-16,18-55,57-140,142-233
+  s_efdcdca69a2820::t_827f8ca221ad42 13,56,141
+apps/web/src/data/projectsCatalog.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-1900
+tests/test_evidence_orchestrator.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6-7,24
+apps/api/src/omeia/app_skeleton/api/frontend_static.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-11,13-44,46-83
+  s_d8ca0dcf385045::t_b3340e3338f80f 12,45
+apps/web/src/contexts/TaskpadContext.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-380
+infra/scripts/ingest/rebuild_and_ingest_collection.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-10,14-1233
+  s_efdcdca69a2820::t_827f8ca221ad42 11-13
+infra/docker/imaging-worker/Dockerfile
+  s_efdcdca69a2820::t_42c077f49e34ea 44-45,47
+infra/scripts-migrate/auth/audit_routes_security.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 8
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/model_zoo/tracking.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-626
+apps/web/src/lib/projectDocumentCategories.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-372
+infra/scripts/ops/query_copilot_demo.py
+  s_eaa6f401e95506::t_7481686e81d0a8 1-41
+infra/scripts-migrate/ingest/vault_ingest.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 13-14
+docs/34_AI_LAB_ASSISTANT_AND_SEARCH_DEEP_AUDIT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 14,48,117-123,129-133,139-148,154-159,165-173,219,239,459-462,567
+apps/web/src/lib/previewMetaUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-105
+tests/test_vector_indexer_vault.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6,12
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121324Z_dig_fe54acb1.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+docs/15_STORAGE_CLOUDFLARE_REMOVAL_AUDIT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 11-14,23-27,29-30
+apps/api/src/omeia/api/chat_conversation.py
+  s_efdcdca69a2820::t_827f8ca221ad42 10
+config/env/.env.example
+  s_efdcdca69a2820::t_42c077f49e34ea 40
+apps/api/src/omeia/app_skeleton/api/metadata_engine/scoring.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-55
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260607T030843Z_dig_6d0f81e7.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/app_skeleton/api/project_knowledge_store.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-14,18-22,24-31,33-237
+  s_d8ca0dcf385045::t_b3340e3338f80f 15-17,23,32
+apps/api/src/omeia/storage/datacloud_webdav.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-8,10-252
+tests/test_vector_indexer.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6,10,25,36-37
+infra/scripts-migrate/llm/generate_ollama_token.sh
+  s_efdcdca69a2820::t_74f4f3bd7996c1 27
+apps/web/src/services/hooks.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-75
+apps/api/src/omeia/api/qdrant_research_indexer.py
+  s_efdcdca69a2820::t_827f8ca221ad42 10-12
+infra/scripts/sync/sync_documents_to_supabase.py
+  s_efdcdca69a2820::t_827f8ca221ad42 5,20
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-19,21-75
+apps/web/src/features/auth/components/AuthLoginPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-73
+infra/scripts/check/check_docker.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-22
+apps/web/src/pages/AiLabAssistantScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-623
+tests/test_auth_protected_routes.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9,13-14,21-22,33-34
+apps/web/src/lib/documentBrowserLayoutMode.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-145
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/label_detection.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-200
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/image_generators/cropping.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-493
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/io_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-103
+apps/web/src/shared/layout/Sidebar.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-201
+tests/test_vault_json_fallback.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8,13-14,22,24,28
+docs/IMAGING_SUBSYSTEM_REVIEW.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 5,38,303,490-494,500-502,509,517-519,525-526,544
+apps/web/src/features/documents/documentLibraryUi.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-118
+apps/web/src/features/lab/components/LabCorpusBrowser.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-180
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__overview_onboarding.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-1204
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260607T030840Z_dig_426ea3f7.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/app_skeleton/api/requirements-imaging-core.txt
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-6
+apps/api/src/omeia/data/00_registry/projects_catalog.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-1879
+apps/web/public/covers/overlays/projects.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-34
+apps/api/src/omeia/app_skeleton/api/chat_model_catalog.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8
+apps/web/src/features/projects/hooks/useWorkspaceTabs.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-68
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/image_generators/image_generators_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-2515
+apps/web/package.json
+  s_eaa6f401e95506::t_7481686e81d0a8 1-40
+infra/scripts-migrate/imaging/linux_paste_install_imaging_worker.sh
+  s_efdcdca69a2820::t_42c077f49e34ea 93
+  s_eaa6f401e95506::t_7481686e81d0a8 91,96
+  s_eaa6f401e95506::t_ccb4771231cefb 11,22,37,64,74,81-82,92,144,168
+apps/api/src/omeia/api/copilot_feedback_store.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-11,13-15,17-101
+  s_efdcdca69a2820::t_96f562e59df4fa 12
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260604T045917Z_dig_e2f1a788.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/web/src/pages/WetLabScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-28
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260607T032810Z_b38bbbab.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+refactor_update_paths.py
+  s_eaa6f401e95506::t_7481686e81d0a8 12
+  s_eaa6f401e95506::t_ccb4771231cefb 59,63,67,80,84
+  s_d8ca0dcf385045::t_59ee8929840700 11
+  s_eaa6f401e95506::t_a1b3cff34f656f 1-10,13-58,60-62,64-66,68-75,77-79,81-83,85-118
+  s_d8ca0dcf385045::t_69ea63ad479557 76
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/lib/snakemake_debug.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-424
+apps/web/src/i18n/mergeLocale.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-22
+apps/web/src/pages/ResearchKnowledge.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-111
+infra/scripts/check/check_lumi_modules.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-29
+apps/api/src/omeia/digitalization/status.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-50
+infra/scripts/dev/stop_local_docker.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-41
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+infra/compose/docker-compose.yml
+  s_eaa6f401e95506::t_30fe9630ce3f1d 2-141
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/upsample.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-149
+apps/web/src/data/userProfilesData.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-130
+apps/web/src/styles/theme/darkAcademicTheme.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-182
+apps/web/src/i18n/guiStrings/index.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-12
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/setup.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-96
+infra/scripts/network/linux_fix_tailscale_inbound.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-5,7-77
+  s_d8ca0dcf385045::t_5ea6a826e716ab 6
+apps/api/src/omeia/api/research_knowledge_store.py
+  s_efdcdca69a2820::t_96f562e59df4fa 41
+  s_d8ca0dcf385045::t_8b50be265eaced 1-16,19-22,24-30,34-36,38-40,42-44,46-882,884-896
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/image_generators/sample.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-701
+infra/scripts/dev/start_linux_desktop.sh
+  s_efdcdca69a2820::t_fca790d678cafd 13
+  s_eaa6f401e95506::t_e30f436958511c 100-102
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-12,14-99,103-134
+apps/web/src/shared/layout/LanguageSwitcher.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-72
+apps/web/src/features/projects/components/ProjectResourceCorner.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-93
+apps/api/src/omeia/app_skeleton/api/qdrant_vectors.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 13-14
+apps/web/src/pages/MeetingScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-23
+infra/scripts-migrate/dev/start_linux_desktop.sh
+  s_efdcdca69a2820::t_74f4f3bd7996c1 49
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/rules/mesmer.smk
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-528
+apps/api/src/omeia/api/agent_orchestrator/registry.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-5,7-8,10-156
+  s_efdcdca69a2820::t_96f562e59df4fa 6,9
+apps/api/src/omeia/app_skeleton/api/evidence_orchestrator.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8-9
+apps/web/src/data/teamDirectory.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-38
+tools/audit/document_library_audit.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 284-285
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/losses.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-318
+infra/scripts-migrate/ops/collect_app_code_bundle.py
+  s_eaa6f401e95506::t_7481686e81d0a8 28-29,42,76-79,156,158,168,386
+  s_efdcdca69a2820::t_42c077f49e34ea 32
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/mesmer_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-262
+apps/api/src/omeia/app_skeleton/api/image_streaming/job_queue.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 11,15
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-10,12-14,16-150
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/4-filter_images/filter_image.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-524
+apps/api/src/omeia/security/permissions.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-7,10-70,72-97,99-188
+docs/PLATFORM_REMEDIATION_MASTER_PLAN.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 222,405,536,576-589,593-602,606-612,618,627-632
+apps/api/src/omeia/app_skeleton/api/document_registry.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-12,14-69
+  s_d8ca0dcf385045::t_b3340e3338f80f 13
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T122642Z_dig_f3603006.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/app_skeleton/api/routers/digitalization.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 11-13,21,100,123,352
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-10,14-20,22-99,101-122,124-351,353-363
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/lib/pipeline_slurm.sh
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-1134
+apps/web/src/features/ai-assistant/components/AiSolarBrainVisual.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-138
+apps/web/src/features/documents/components/DocumentViewer.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-478
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-58
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/image_generators/fully_convolutional.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-754
+apps/web/src/features/search/components/GlobalSearchOverlay.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-292
+apps/web/src/services/researchKnowledgeClient.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-25
+deploy/university-desktop/launchd/com.omeia.api.plist
+  s_d8ca0dcf385045::t_b3340e3338f80f 10
+deploy/university-desktop/omeia-processor.service
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-11,13
+apps/api/src/omeia/storage/02_ingestion_runtime/README.md
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-7
+apps/api/src/omeia/app_skeleton/api/processor_status.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-8,10-57
+  s_d8ca0dcf385045::t_b3340e3338f80f 9
+requirements.txt
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-2
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__orders_archive.chunks.jsonl
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-232
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__overview_documents.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-12296
+apps/web/src/features/documents/components/CodePreview.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-71
+apps/web/public/covers/overlays/orders.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-34
+apps/web/src/pages/BioinformaticsHubScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-1379
+pytest.ini
+  s_d8ca0dcf385045::t_b3340e3338f80f 2
+apps/web/src/features/documents/components/DocumentSectionHeader.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-44
+apps/web/package-lock.json
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-5398
+apps/web/src/i18n/constants.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-14
+docs/11_LABORATORY_DIGITAL_TWIN_REPORT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 18-19,21
+apps/web/src/shared/ui/common/CopyableCodeBlock.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-121
+infra/scripts/lib/lib/common.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-19
+infra/scripts-migrate/digitalization/build_raw_asset_inventory.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 23
+infra/scripts/ops/linux_post_pull.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 6
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-5,7-37
+docs/TESTING.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 10,85
+apps/api/src/omeia/app_skeleton/api/feature_warehouse.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 32
+apps/web/src/features/projects/components/ProjectReadmeSetupPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-44
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/2-segmentation/stardist/run_stardist.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-493
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/0-illumination_correction/imagej_basic_ashlar.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-158
+tests/test_rate_limit_cache.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 7-8,84
+tests/test_document_library_search_integration.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 7-9,54,84,97
+tests/test_datapad_service.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 10,27-29,54-56,66-68
+tests/platform_validation_last_run.json
+  s_d8ca0dcf385045::t_b3340e3338f80f 68,109,116,128,169,176
+apps/web/src/i18n/localizeCategories.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-21
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/losses_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-69
+docs/IMAGE_VIEWER_CONTRACT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 3
+apps/web/src/i18n/guiStrings/ml.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-266
+infra/scripts/ops/run_continuous_eval.py
+  s_efdcdca69a2820::t_827f8ca221ad42 14,35-36
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-13,15-34,37-76
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121108Z_dig_a262800b.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+infra/scripts/database/build_projects_catalog.py
+  s_d8ca0dcf385045::t_8b50be265eaced 14,17
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-13,15-16,18-431
+  s_efdcdca69a2820::t_827f8ca221ad42 5
+apps/web/src/features/documents/components/DocumentFilterPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-387
+apps/web/src/features/documents/components/DocumentMetadataPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-606
+infra/scripts-migrate/ops/linux_post_pull.sh
+  s_efdcdca69a2820::t_74f4f3bd7996c1 11,20,23,25
+apps/web/src/lib/digitalTwinUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-197
+apps/web/src/contexts/ModuleShellHeaderSlotContext.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-8
+deploy/university-desktop/omeia-api.service
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-11,13
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__overview_personnel.chunks.jsonl
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-46
+apps/web/ARCHITECTURE.md
+  s_eaa6f401e95506::t_7481686e81d0a8 1-77
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/datasets/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-37
+tools/audit/second_pass_audit.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 41-42,44,85
+apps/web/public/repo-static/DATACLOUD_WEBDAV_SETUP.md
+  s_d8ca0dcf385045::t_8b50be265eaced 1-37,39-61
+  s_eaa6f401e95506::t_7481686e81d0a8 38
+apps/web/src/lib/projectCoverSummary.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-83
+infra/scripts-migrate/document-library/delete_duplicate_files.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 18,23
+infra/scripts/ingest/reindex_research_vectors.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-10,12-22,28-32,34-154
+  s_efdcdca69a2820::t_827f8ca221ad42 11,23-27,33
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/application_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-328
+apps/api/src/omeia/app_skeleton/api/llm_client.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-39,41-693,695-700,702-713,715-739
+  s_d8ca0dcf385045::t_b3340e3338f80f 40,694,701,714
+apps/web/dev.sh
+  s_eaa6f401e95506::t_7481686e81d0a8 1-5
+apps/api/src/omeia/app_skeleton/api/routers/document_library.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-8,12-107,109-177,179-232
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 9-11,108,178
+apps/web/src/features/documents/components/DocumentCategoryBar.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-59
+apps/web/src/features/orders/components/OrdersSpacePanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-31
+deploy/university-desktop/omeia-quality-eval.service
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-11,14
+apps/api/src/omeia/storage/env.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-68
+apps/web/src/features/projects/components/ProjectLogPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-485
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260608T152925Z_8e9ffd20.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/callbacks_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-60
+infra/scripts/ops/check_frontend_public_lab_data.sh
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-40
+apps/api/src/omeia/app_skeleton/security/auth.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6,16-17,40
+apps/api/src/omeia/app_skeleton/api/routers/knowledge.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 1-205
+apps/api/src/omeia/app_skeleton/api/research_strategy_engine.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-7,10-14,16-19,22-28,31-234,236-374
+  s_d8ca0dcf385045::t_b3340e3338f80f 8-9,15,20-21,29-30,235
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__overview_guidelines.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-1674
+apps/web/src/lib/sectionDocumentsConfig.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-52
+apps/web/src/lib/documentBrowserUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-357
+infra/scripts/dev/docker_bootstrap.sh
+  s_efdcdca69a2820::t_f7a7e3c07738de 43
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-42,44-53
+docs/OMEIA_INFORMATION_FLOW.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 76,110,112,139,164,166,320,430,636,638,642,654,736,832-839,841-844,846
+deploy/university-desktop/launchd/com.omeia.processor.plist
+  s_d8ca0dcf385045::t_b3340e3338f80f 21,23
+apps/web/src/styles/theme/themeManager.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-1433
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/temporal.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-111
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/rules/stardist.smk
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-263
+tests/test_security_authentication.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 3-4
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__overview_cleaning.chunks.jsonl
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-12
+tests/test_project_permissions.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9-11,42,56,77
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/3-quantification/quantification.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-553
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/train_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-109
+tests/test_lab_storage_api.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8-12
+apps/api/src/omeia/app_skeleton/api/chat_service.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9-418
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/run_pipeline.sh
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-899
+apps/web/src/features/documents/components/DocumentExportMenu.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-74
+apps/api/src/omeia/app_skeleton/api/strategy_agents/__init__.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1,8-16
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 2-7
+apps/web/src/features/documents/components/LabDocumentsBrowser.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-781
+apps/web/src/data/biomedicalModelsFallback.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-81
+apps/api/src/omeia/app_skeleton/api/paths.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 7,62,75,138
+tests/test_cycif_wet_lab_separation.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6
+apps/web/src/services/chatClient.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-124
+infra/scripts-migrate/ops/scheduled_ingest.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 30,47-48,65,87-88
+infra/scripts/digitalization/extract_pending_inventory.py
+  s_efdcdca69a2820::t_827f8ca221ad42 5,18-19,26
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-17,20-25,27-180
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-73
+infra/scripts/ingest/vault_ingest.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-14,17-50
+  s_efdcdca69a2820::t_827f8ca221ad42 5,15-16
+apps/api/src/omeia/app_skeleton/api/platform_admin.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-12,14-18,20-249
+  s_d8ca0dcf385045::t_b3340e3338f80f 13,19
+config/env/DATACLOUD_WEBDAV_SETUP.md
+  s_efdcdca69a2820::t_74f4f3bd7996c1 28
+  s_eaa6f401e95506::t_7481686e81d0a8 38
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/model_zoo/featurenet.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-575
+deploy/university-desktop/install_desktop_backend.sh
+  s_d8ca0dcf385045::t_b3340e3338f80f 27,31,53-55,62
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/README-mesmer-lumi.md
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-48
+apps/web/docker-compose.yml
+  s_efdcdca69a2820::t_7235190bfe4038 1-28
+docs/YOUR_SETUP.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 110
+apps/api/src/omeia/app_skeleton/api/rate_limit.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-82
+infra/scripts/digitalization/project_digitalize.py
+  s_efdcdca69a2820::t_827f8ca221ad42 5,19-20
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-18,21-51
+tests/test_audit_logging.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8,13,51
+apps/web/src/lib/documentEditPolicy.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-47
+apps/api/src/omeia/data/00_registry/lab_personnel_roster.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-509
+infra/scripts/digitalization/run_digitalization.py
+  s_efdcdca69a2820::t_827f8ca221ad42 1,50
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 2-49,51-80
+pyproject.toml
+  s_eaa6f401e95506::t_fb83be1ec06aaa 1-14
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/label_detection_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-87
+docs/AI_LAB_ASSISTANT_PRODUCTION_FIX_REPORT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 82
+apps/web/src/features/ai-assistant/styles/AiAssistantChat.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-1573
+apps/web/src/features/search/components/SearchFilters.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-81
+apps/web/src/shared/hooks/useSpreadsheetPreview.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-61
+apps/web/src/lib/polishDisplayText.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-202
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/transform_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-429
+infra/scripts/document-library/delete_duplicate_files.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-19,21-24,26-190
+  s_efdcdca69a2820::t_827f8ca221ad42 5,20,25
+apps/web/src/pages/TasksScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-161
+apps/web/src/shared/layout/SubsectionCoverCard.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-106
+apps/web/src/shared/ui/SwimmingProjectTopics.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-101
+apps/api/src/omeia/app_skeleton/api/document_extraction.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 374-383
+infra/scripts-migrate/ops/run_continuous_eval.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 33-34
+docs/25_SUPABASE_SYNC_POLICY.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 15,60
+infra/scripts-migrate/sync/sync_documents_to_supabase.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 18
+apps/web/src/shared/layout/CompactCornerSearch.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-76
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/transform_utils_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-442
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/location_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-65
+infra/scripts-migrate/search/setup_search_portable.sh
+  s_efdcdca69a2820::t_f7a7e3c07738de 59
+  s_eaa6f401e95506::t_7481686e81d0a8 51
+apps/web/src/lib/mediaPreviewKind.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-63
+apps/web/src/features/projects/hooks/useProjectWorkspaceData.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-64
+apps/web/src/features/lab/components/LabDocumentsHub.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-186
+apps/web/src/features/lab/components/WetLabProtocolsBrowser.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-13
+apps/api/src/omeia/api/README.md
+  s_efdcdca69a2820::t_983429e3cde4a8 3
+apps/api/src/omeia/app_skeleton/api/routers/README_MAXGRADE.md
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 28-35
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/backbone_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-483
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__overview_cleaning.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-614
+apps/web/src/data/technicalNotebook.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+tests/test_embedding_dim_contract.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6-9,35
+apps/web/src/features/search/components/SearchSuggestions.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-77
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/README.md
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-150
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/image_generators/scale.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-282
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/1-stitching/ashlar_workflow.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-146
+apps/web/src/features/projects/components/ProjectBrandMark.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-34
+apps/web/src/lib/searchNavigation.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-25
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/scale_detection_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-85
+apps/web/src/lib/highlightText.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-44
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/application.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-451
+docs/README_DEVELOPER.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 26,45
+docs/LINUX_PRIMARY_DEPLOYMENT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 91
+apps/api/src/omeia/api/dev.sh
+  s_d8ca0dcf385045::t_8b50be265eaced 1,3-5
+  s_d8ca0dcf385045::t_b3340e3338f80f 2
+apps/api/src/omeia/app_skeleton/api/privacy_guardrails.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 16
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-15,17-158
+apps/web/src/data/newsData.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-25
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121107Z_dig_a2848de9.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/api/chunk_fts.py
+  s_efdcdca69a2820::t_827f8ca221ad42 15
+infra/scripts-migrate/network/sync_mac_repo_to_usb.sh
+  s_eaa6f401e95506::t_7481686e81d0a8 10-17
+README.md
+  s_eaa6f401e95506::t_2690bac1413cef 13-14,18-19,27,31,33,102,128,150,154
+infra/scripts/digitalization/build_raw_asset_inventory.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-24,26-366
+  s_efdcdca69a2820::t_827f8ca221ad42 5,25
+infra/scripts/check/check_cylinter_inputs.py
+  s_eaa6f401e95506::t_7481686e81d0a8 1-41
+apps/web/src/App.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-1747
+apps/web/src/pages/DigitalizationDashboard.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-278
+apps/web/src/shared/layout/GlassCardStack.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-417
+apps/api/src/omeia/app_skeleton/api/rag_diagnostics.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-74,79-86,88-218
+  s_d8ca0dcf385045::t_b3340e3338f80f 75-78,87
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T123405Z_dig_5556b121.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-46
+infra/scripts/imaging/sync_imaging_worker_to_linux.sh
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-12,14-15,17,19-22,25-30
+  s_d8ca0dcf385045::t_5ea6a826e716ab 13
+  s_eaa6f401e95506::t_7481686e81d0a8 18,24
+  s_eaa6f401e95506::t_ccb4771231cefb 16,23
+apps/api/src/omeia/data/02_processed_projects/lab_operations/wet_lab_files/lab__wet_lab_files.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-52301
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/io_utils_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-83
+infra/scripts/dev/start_platform.sh
+  s_d8ca0dcf385045::t_fe1eb7e5379597 1
+  s_eaa6f401e95506::t_9880372cad5216 3,6-7,9,11-16,19-121,123,125-142
+  s_eaa6f401e95506::t_c68c9227752ddb 2,4-5,8,10,17-18
+apps/web/public/covers/overlays/meeting.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-44
+apps/web/src/lib/projectLogUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-69
+tests/test_chat_api.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-13,44,59,78-79,110,128-130,137
+infra/scripts/ops/run_ocr_queue.py
+  s_efdcdca69a2820::t_827f8ca221ad42 5,19-21
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-18,22-163
+apps/api/src/omeia/api/privacy_guardrails.py
+  s_efdcdca69a2820::t_827f8ca221ad42 16
+apps/web/src/lib/linkUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-57
+docs/27_UNIVERSITY_DESKTOP_BACKEND.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 15,96,148
+apps/api/src/omeia/security/cors.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-22
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/2-segmentation/mesmer/mesmer.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-1265
+infra/scripts-migrate/imaging/pack_imaging_worker_bundle.sh
+  s_eaa6f401e95506::t_ccb4771231cefb 11-15
+  s_eaa6f401e95506::t_7481686e81d0a8 16
+tests/test_ocr_queue.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8,14-15,74,115
+apps/api/src/omeia/app_skeleton/api/readiness.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 20-41
+infra/scripts-migrate/digitalization/process_inventory_pipeline.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 17,22
+apps/web/src/assets/react.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+apps/web/src/styles/theme/navGlass.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-691
+infra/scripts/check/check_tcycif_project_structure.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-33
+apps/api/src/omeia/app_skeleton/digitalization/validators.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6-7
+apps/web/src/features/projects/components/ProjectTeamRoster.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-85
+infra/scripts-migrate/auth/inject_authz.py
+  s_eaa6f401e95506::t_7481686e81d0a8 5-11
+  s_efdcdca69a2820::t_f7a7e3c07738de 23,25
+infra/scripts-migrate/ingest/reindex_research_vectors.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 21-25,31
+tools/audit/smart_library_reorganizer.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 38,48,58,68,78,88,98,108,384,387,395,401,410,417,425,432,434,436,444-445,448,456,464,588,593,722,725,960,1021-1022,1063
+apps/web/src/lib/wetLabProtocolCategories.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-157
+apps/web/src/shared/hooks/useImageTileLoader.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-54
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/normalization.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-413
+tests/test_audit_implementations.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 12,19,28,39,41,48
+apps/api/src/omeia/api/feature_warehouse.py
+  s_efdcdca69a2820::t_827f8ca221ad42 32
+  s_d8ca0dcf385045::t_8b50be265eaced 1-27,29-31,33-446
+  s_efdcdca69a2820::t_96f562e59df4fa 28
+infra/scripts/ops/refactor_layout.sh
+  s_eaa6f401e95506::t_c48a2d0e7a3fe1 1-9,14,16,18-20,22-28,30,33-40,42-58,60-63,65-73,76-77,79-81,84-87,89-90
+  s_d8ca0dcf385045::t_69ea63ad479557 10,12,74
+  s_eaa6f401e95506::t_7481686e81d0a8 11,13,15,78,82,88
+  s_eaa6f401e95506::t_ccb4771231cefb 41
+  s_efdcdca69a2820::t_42c077f49e34ea 17,75
+apps/web/src/features/documents/components/DocumentViewerExpand.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-98
+apps/web/public/covers/overlays/wetlab.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-34
+apps/api/src/omeia/app_skeleton/api/knowledge_indexer.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-12,18-22,24-291
+  s_d8ca0dcf385045::t_b3340e3338f80f 13-17,23
+apps/api/src/omeia/api/requirements.txt
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-22
+apps/web/src/shared/layout/MetricCard.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-14
+apps/api/src/omeia/api/publication_fetcher.py
+  s_efdcdca69a2820::t_96f562e59df4fa 28
+  s_d8ca0dcf385045::t_8b50be265eaced 1-27,29-302
+apps/web/src/features/documents/components/DocumentCategoryFileList.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-491
+apps/api/src/omeia/app_skeleton/api/routers/image_assets.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-10,16-169,171-214
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 11-15,170
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/data_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-514
+apps/api/src/omeia/app_skeleton/_repo.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-13
+apps/api/src/omeia/api/image_streaming/permissions.py
+  s_efdcdca69a2820::t_827f8ca221ad42 6
+apps/api/src/omeia/app_skeleton/api/search_service.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 14-1012
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/applications/scale_detection.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-199
+apps/web/src/lib/spreadsheetPreview.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-257
+apps/api/src/omeia/digitalization/validators.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-5,8-85
+apps/api/src/omeia/app_skeleton/api/scientific_document_parser.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 47-48
+apps/api/src/omeia/app_skeleton/api/chunk_fts.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 15
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-14,16-103
+apps/web/src/typography.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-833
+apps/api/src/omeia/app_skeleton/security/permissions.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8-9,71,98
+apps/web/src/pages/WorkspaceScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-277
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/datasets/dataset.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-216
+apps/web/src/services/searchApi.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-87
+infra/scripts/database/seed_feature_warehouse.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-12,15-89
+  s_efdcdca69a2820::t_827f8ca221ad42 5,13-14
+apps/api/src/omeia/app_skeleton/api/metadata_engine/enricher.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 8-22
+apps/api/src/omeia/api/ingest_all.py
+  s_efdcdca69a2820::t_827f8ca221ad42 2-3
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260603T174415Z_dig_2b5d899a.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__orders_archive.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-5111
+tests/test_document_digitalization_pipeline.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 7-8,66
+apps/web/src/contexts/ModuleShellCoverContext.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-7
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/datasets/tissue_net.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-107
+docs/LAB_AI_ASSISTANT_DEEP_AUDIT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 36-64,242,277,322,326,338,353,368-369,386,431,448,474,490,525,537,580,678,727,751,757,777,783,803,809,827,833,851,857,873,879,896,902,916,922,937,943,958,964,979,985,998,1004,1017,1023,1035,1041,1053,1271-1273,1312-1314,1362-1365,1406-1409,1454-1456,1496
+apps/api/src/omeia/app_skeleton/api/image_streaming/storage_adapter.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 8-10
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-7,11-127
+apps/web/src/pages/ImageProcessingPipelineScreen.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-1961
+docs/PROJECT_STRUCTURE.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 11
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T123401Z_dig_168df580.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+docs/26_PRODUCTION_DEPLOYMENT.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 146
+docker-compose.biomodels.yml
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+apps/api/src/omeia/api/research_strategy_engine.py
+  s_efdcdca69a2820::t_827f8ca221ad42 8-9,15,20-21,29-30,235
+apps/web/src/features/documents/components/DocumentViewerToolbar.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-54
+apps/api/src/omeia/api/env_bootstrap.py
+  s_d8ca0dcf385045::t_368969ae96c08f 9-11,13-21,23-26
+  s_efdcdca69a2820::t_96f562e59df4fa 8,12,22
+apps/api/src/omeia/app_skeleton/api/clinical_tools.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 31
+apps/api/src/omeia/app_skeleton/api/main.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 2-7,13-16,21-60
+  s_d8ca0dcf385045::t_b3340e3338f80f 1,8-12,17-20
+apps/web/src/lib/socialCategories.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-256
+apps/api/src/omeia/api/common.py
+  s_efdcdca69a2820::t_827f8ca221ad42 39,45,55,62,73,79,81,83,85,87,89,95,97,101,116,124,126,134,142,144,154,166-171,193,199,208,766
+infra/scripts/database/ingest_onboarding_metadata.py
+  s_eaa6f401e95506::t_7481686e81d0a8 1-219
+infra/scripts/ops/scheduled_ingest.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-7,9-31,33-48,51-66,68-88,91-153
+  s_efdcdca69a2820::t_827f8ca221ad42 8,32,49-50,67,89-90
+apps/api/src/omeia/app_skeleton/api/routers/vault.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 1-2,4,59,270-271,377,391,409,419,428,439,450,564,570
+  s_efdcdca69a2820::t_2168fd4772cfd1 3,5-58,60-269,272-376,378-390,392-408,410-418,420-427,429-438,440-449,451-563,565-569,571-580
+apps/web/src/features/documents/components/DocumentProofreadPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-99
+apps/web/public/covers/overlays/data-storage.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-31
+apps/web/src/lib/authSkip.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-28
+apps/web/src/lib/storageDocumentsConfig.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-142
+apps/api/src/omeia/app_skeleton/digitalization/registry_writer.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 11,22,203
+apps/web/src/shared/layout/CompactCornerSearch.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-85
+infra/scripts-migrate/ops/autonomous_processor.sh
+  s_efdcdca69a2820::t_42c077f49e34ea 20-21
+  s_eaa6f401e95506::t_7481686e81d0a8 7
+apps/web/src/shared/hooks/useCatalogPreviewText.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-11
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/lib/__init__.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1
+infra/scripts/llm/pull_ollama_research_models.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-4,6-51
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+apps/web/src/features/documents/components/LabDocumentExplorer.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-37
+apps/web/src/features/search/components/SearchAdvancedFilters.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-128
+apps/api/src/omeia/api/sql_migrations.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-11,13-16,18-78
+  s_efdcdca69a2820::t_96f562e59df4fa 12
+infra/scripts/llm/setup_ollama_local_llm.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-5,7-155,157-190
+  s_d8ca0dcf385045::t_5ea6a826e716ab 6
+  s_efdcdca69a2820::t_f7a7e3c07738de 156
+apps/web/src/main.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-34
+apps/web/src/lib/searchHits.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-189
+infra/scripts-migrate/digitalization/run_metadata_enrichment.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 17,22,26-27
+infra/scripts-migrate/database/seed_feature_warehouse.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 11-12
+.gitignore
+  s_efdcdca69a2820::t_983429e3cde4a8 33-35,39-46
+apps/web/src/features/documents/components/TaxonomyConnectorMap.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-204
+apps/web/src/pages/ComputationalToolsScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-36
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260604T052625Z_c75fc18f.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+infra/scripts-migrate/digitalization/reprocess_lab_database.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 14
+apps/web/src/i18n/guiStrings/el.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-260
+apps/web/src/lib/documentHighlightUtils.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-34
+apps/web/src/pages/ImageViewerPlaceholderScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-150
+apps/api/src/omeia/app_skeleton/api/thumbnail_service.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 11
+infra/scripts/lib/repo_root.sh
+  s_eaa6f401e95506::t_d2fea468848562 1-14
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/tracking_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-35
+apps/web/src/features/documents/components/LabDocumentMapPanel.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-134
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/_conv_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-160
+infra/scripts-migrate/ops/migrate_lab_catalog_off_public.sh
+  s_eaa6f401e95506::t_7481686e81d0a8 7
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121159Z_dig_fa1118c4.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/web/src/pages/NotebookWikiScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-33
+apps/api/src/omeia/app_skeleton/api/image_streaming/constants.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-32
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/requirements.txt
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-19
+apps/web/src/data/platformStats.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121113Z_dig_aadd38ab.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/app_skeleton/api/scheduled_directory_scanner.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 13,56,141
+apps/web/src/features/overview/components/OverviewSocialPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-95
+apps/api/src/omeia/api/routers/README_MAXGRADE.md
+  s_d8ca0dcf385045::t_69ea63ad479557 28
+  s_d8ca0dcf385045::t_b3340e3338f80f 35
+apps/web/src/features/projects/components/ProjectCoverNarrative.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-50
+apps/api/src/omeia/app_skeleton/api/agent_orchestrator/orchestrator.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 7,13,203
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-6,8-12,14-202,204-248
+apps/api/src/omeia/app_skeleton/api/db_pool.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 71
+apps/api/src/omeia/app_skeleton/api/taxonomy_service.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 14
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-13,15-100
+apps/api/src/omeia/app_skeleton/api/document_library_service.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 16-1546
+deploy/university-desktop/run_api_dev.sh
+  s_d8ca0dcf385045::t_b3340e3338f80f 12,27,29,37,43,56
+apps/api/src/omeia/app_skeleton/api/chat_conversation.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 10
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-9,11-309
+docs/16_STORAGE_CONNECTOR_DESIGN.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 19-24
+apps/api/src/omeia/app_skeleton/api/routers/biomedical_models.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-8,11-57
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 9-10
+apps/web/src/features/projects/components/portfolio/ResearchAssistPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-200
+apps/api/src/omeia/app_skeleton/api/firebase_app.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-59
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/_auth.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-173
+apps/web/src/i18n/guiStrings/zh.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-480
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/tfrecord_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-533
+apps/web/src/contexts/LocaleContext.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-31
+apps/api/src/omeia/app_skeleton/api/strategy_agents/_base.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-6,9-62
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 7-8
+apps/web/src/i18n/guiStrings/sv.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-369
+apps/web/src/pages/ResearchKnowledgeAdminScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-147
+apps/api/src/omeia/app_skeleton/api/startup_validation.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-80,82,84-131
+  s_d8ca0dcf385045::t_b3340e3338f80f 81,83
+apps/web/src/pages/KnowledgeSearchScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-80
+apps/api/src/omeia/api/llm_client.py
+  s_efdcdca69a2820::t_827f8ca221ad42 40,694,701,714
+apps/api/src/omeia/data/02_processed_projects/lab_operations/wet_lab_files/lab__wet_lab_files.chunks.jsonl
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-2500
+tests/test_db_safety_unit.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 38
+apps/api/src/omeia/data/03_ingestion_audit/latest/ingestion_20260607T030849Z_7c726476.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-16
+apps/web/src/data/technicalWiki.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+apps/api/src/omeia/api/routers/admin_index.py
+  s_efdcdca69a2820::t_96f562e59df4fa 5,24
+  s_d8ca0dcf385045::t_8b50be265eaced 1-4,6-10,12-17,22-23,25-95,97-136,138-158,160-170,172-174
+tests/test_researcher_resolver.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9,61
+apps/api/src/omeia/app_skeleton/api/database_processor.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 13-15,20-21,187-188,260
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-12,16-19,22-186,189-259,261-535
+infra/scripts/check/check_gpu.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-35
+infra/scripts/ops/validate_manifests.py
+  s_efdcdca69a2820::t_827f8ca221ad42 1
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 2-28
+apps/web/src/shared/hooks/useChatAutoScroll.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-54
+infra/scripts/database/migrate_data_layout.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1,3-4,6-16,18-109
+  s_efdcdca69a2820::t_827f8ca221ad42 5,17
+  s_eaa6f401e95506::t_7481686e81d0a8 2
+apps/api/src/omeia/api/readiness.py
+  s_efdcdca69a2820::t_827f8ca221ad42 20,41
+apps/api/src/omeia/pipelines/lumi_image_processing/SEGMENTATION_LUMI_OPTIMIZATION.md
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-104
+apps/api/src/omeia/api/main.py
+  s_efdcdca69a2820::t_827f8ca221ad42 1,8-12,17-20
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/image_generators/tracking.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-962
+infra/scripts-migrate/docker/build_imaging_worker.sh
+  s_eaa6f401e95506::t_7481686e81d0a8 16,33
+  s_eaa6f401e95506::t_ccb4771231cefb 12-15,31
+apps/web/src/features/projects/components/ProjectCoverMeta.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-32
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/running_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-203
+apps/web/src/shared/layout/GlassCardStack.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-85
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/image_generators/semantic.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-1666
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__orders_billing.chunks.jsonl
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-83
+docs/DOCKER_SECURITY_AND_CONNECTION.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 3
+apps/web/src/features/projects/components/ProjectDigitalTwinView.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-317
+apps/web/public/covers/overlays/cycif.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-46
+apps/web/src/i18n/translate.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-31
+apps/web/public/favicon.svg
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+docs/KNOWLEDGE_DOCUMENT_SUBSYSTEM_REVIEW.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 5,73,157-165,175,471-473,702-706,712-714,721-724,730-732,738-740,751
+tests/test_security_environment.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 3-4
+apps/web/src/features/projects/components/ProjectIntroHeader.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-143
+apps/api/src/omeia/app_skeleton/storage/datacloud_webdav.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9
+DOCUMENT_LIBRARY_README.md
+  s_efdcdca69a2820::t_983429e3cde4a8 9-16
+apps/web/src/features/documents/components/DocumentResultList.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-250
+apps/api/src/omeia/api/docker_service_client.py
+  s_d8ca0dcf385045::t_8b50be265eaced 1-31,33-550
+  s_efdcdca69a2820::t_96f562e59df4fa 32
+docs/PROJECT_INTELLIGENCE_SUBSYSTEM_REVIEW.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 5,67,156,217,219-222,337,598-603,609-610,612-613,619-622,628-632,647,649
+infra/scripts/digitalization/reprocess_lab_database.py
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-15,17-20
+  s_efdcdca69a2820::t_827f8ca221ad42 5,16
+apps/web/src/lib/documentExplorerPresets.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-222
+infra/scripts-migrate/sync/sync_allowlist.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 8-9
+infra/scripts/dev/build_frontend_prod.sh
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-4,6-24
+  s_d8ca0dcf385045::t_5ea6a826e716ab 5
+apps/web/src/i18n/guiStrings/en.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-897
+apps/api/src/omeia/data/04_runtime_logs/latest.log
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-1136
+apps/web/src/features/lab/components/LabTeamRoster.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-116
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/layers/normalization_test.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-123
+apps/web/src/features/ai-assistant/components/OrchestratorAnswerView.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-232
+configs
+  s_d8ca0dcf385045::t_b3340e3338f80f 1
+apps/api/src/omeia/digitalization/models.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-108
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/export_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-150
+apps/api/src/omeia/app_skeleton/api/agent_orchestrator/rag_context.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-6,9-89
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 7-8
+docs/32_SEARCH_PORTABLE_SETUP.md
+  s_d8ca0dcf385045::t_b3340e3338f80f 17,28,77
+infra/scripts/ingest/reindex_vectors.py
+  s_efdcdca69a2820::t_827f8ca221ad42 13,26-28,41
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 1-12,14-25,29-40,42-149
+apps/api/src/omeia/data/02_processed_projects/lab_operations/overview_documents/lab__overview_onboarding.chunks.jsonl
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-61
+infra/scripts/ingest/ingest_real_projects.py
+  s_eaa6f401e95506::t_7481686e81d0a8 1-278
+tests/test_supabase_sync.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 9
+apps/web/src/features/ai-assistant/components/OrchestratorAnswerView.css
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-85
+infra/scripts-migrate/digitalization/reconcile_inventory_status.py
+  s_efdcdca69a2820::t_f7a7e3c07738de 14
+config/env/DEPLOYMENT_ENV.md
+  s_efdcdca69a2820::t_42c077f49e34ea 40,55,87,98
+apps/web/src/lib/smartDocumentTitle.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-93
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/training.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-590
+tests/test_find_project_folder.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 8-9,35
+apps/web/src/i18n/guiStrings/ne.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-300
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/Snakefile
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-1261
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/lib/pipeline_state.sh
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-2055
+apps/api/src/omeia/app_skeleton/api/copilot_feedback_store.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 16
+apps/web/src/shared/ui/CopyPathButton.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-38
+apps/api/src/omeia/pipelines/lumi_image_processing/scripts/containers/deepcell-tf/deepcell/utils/plot_utils.py
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-272
+apps/api/src/omeia/app_skeleton/api/observability.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-66
+apps/api/src/omeia/api/search_nav.py
+  s_efdcdca69a2820::t_827f8ca221ad42 6
+tests/test_ocr_adapter.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6-7
+apps/api/src/omeia/app_skeleton/api/qdrant_research_indexer.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 10-12
+apps/api/src/omeia/app_skeleton/api/routers/research_knowledge.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-7,12-17,20-71
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 8-11,18-19
+infra/scripts/ingest/ingest_billing_instructions.py
+  s_efdcdca69a2820::t_827f8ca221ad42 1
+  s_eaa6f401e95506::t_5b64d3f2abe8a0 2-207
+apps/api/src/omeia/api/document_library_service.py
+  s_efdcdca69a2820::t_827f8ca221ad42 16-18,48,87,249-250,1221,1280,1288-1289,1429,1546
+apps/api/src/omeia/app_skeleton/api/image_streaming/__init__.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1
+apps/web/src/features/documents/components/LabDocumentMapPanel.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-171
+infra/scripts/check/check_python_env.sh
+  s_d8ca0dcf385045::t_044fd146cf137f 1-34
+apps/api/src/omeia/app_skeleton/api/research_search_service.py
+  s_efdcdca69a2820::t_2168fd4772cfd1 1-75
+apps/web/src/features/projects/components/WorkspaceSectionDataPad.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-149
+apps/web/src/pages/DocumentLibraryScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-15
+apps/web/src/pages/DataStorageScreen.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-855
+apps/api/src/omeia/app_skeleton/api/routers/health.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 2,7,14-16,35,45-47,66,73,84,111-112
+  s_efdcdca69a2820::t_2168fd4772cfd1 1,3-6,8-13,17-34,36-44,48-65,67-72,74-83,85-110,113-151
+apps/web/src/features/computational/components/Pipeline3DScene.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-477
+tests/test_production_rag_fixes.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 6-7,13,17,23,49
+tests/test_strategy_agents.py
+  s_d8ca0dcf385045::t_b3340e3338f80f 4-5
+infra/scripts-migrate/imaging/sync_imaging_worker_to_linux.sh
+  s_eaa6f401e95506::t_ccb4771231cefb 16,23
+  s_eaa6f401e95506::t_7481686e81d0a8 18,24
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121324Z_dig_34802330.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/web/src/data/agentCategoryFallback.js
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-99
+apps/web/src/features/search/components/SearchFilterMetadata.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-67
+apps/web/src/shared/layout/ErrorBoundary.jsx
+  s_d8ca0dcf385045::t_b3340e3338f80f 1-29
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T122647Z_dig_fbdbc9be.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/api/src/omeia/data/03_ingestion_audit/history/ingestion_20260606T121401Z_dig_b80c6829.json
+  s_d8ca0dcf385045::t_6b00a44d82f748 1-25
+apps/web/src/features/ai-assistant/components/ChatWidget.jsx
+  s_efdcdca69a2820::t_7235190bfe4038 1-1311
+apps/api/src/omeia/app_skeleton/api/routers/datapad.py
+  s_d8ca0dcf385045::t_a4d6bd6125da1a 1-3,5,9
+  s_efdcdca69a2820::t_2168fd4772cfd1 4,6-8,10-397
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "145de8d5cab029d13c14ad81cf9c6f2af10ebc0d",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_eaa6f401e95506": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "e68cae3c-136f-4fed-9f2c-37ca9b3f29d2",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_efdcdca69a2820": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "c5b1a92a-383a-4551-918f-ee94ebbe639d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
