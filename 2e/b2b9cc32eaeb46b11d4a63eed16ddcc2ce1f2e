@@ -1,0 +1,131 @@
+web/src/services/agentCategoryClient.js
+  s_d8ca0dcf385045::t_0fc424dc3cc8af 114,129
+tests/test_chat_query_expansion.py
+  s_d8ca0dcf385045::t_0c75126b7be81a 1-54
+web/src/features/ai-assistant/components/ChatWidget.jsx
+  s_d8ca0dcf385045::t_c0f84d59f6b608 125-134
+  s_d8ca0dcf385045::t_351ea2337096bc 780
+web/src/config/navigation.js
+  s_d8ca0dcf385045::t_629aae9d8285fc 362-366,368,371-382
+  s_d8ca0dcf385045::t_80576778dc4a3d 519-538,541-543,550-566
+omeia/api/routers/agent_categories.py
+  s_d8ca0dcf385045::t_1e4c142d3fea8a 116-122,128-129
+  s_d8ca0dcf385045::t_c400e32022ece4 37-40
+docs/DESIGN_RATIONALE/supporting_articles/document_library_folder_tree.md
+  s_a948b3d4404bd2::t_f52505096ee888 1-61
+web/src/config/navigation.test.mjs
+  s_d8ca0dcf385045::t_f825f461f704d2 54-87
+  s_d8ca0dcf385045::t_985d2eb6296f38 10,13
+web/src/features/documents/hooks/useDocumentLibrary.js
+  s_a948b3d4404bd2::t_eb6fe0704fc1de 26
+  s_a948b3d4404bd2::t_8a228684338390 105-106
+  s_a948b3d4404bd2::t_e6fb7cc2dc6c40 290-292
+  s_a948b3d4404bd2::t_72cfc823e7def3 224,232-234
+  s_a948b3d4404bd2::t_da2f5ed06e75ff 50
+web/src/features/documents/components/DocumentFolderTree.jsx
+  s_a948b3d4404bd2::t_0fd7fc09791a11 1-188
+web/src/lib/documentFolderTree.js
+  s_a948b3d4404bd2::t_ef1b08b1cbab99 1-100
+docs/DESIGN_RATIONALE/README.md
+  s_a948b3d4404bd2::t_608f9682cdad45 1-32
+omeia/api/routers/document_library.py
+  s_a948b3d4404bd2::t_a29fc921bd6ca1 154,182
+  s_a948b3d4404bd2::t_9b09f55087205f 106
+  s_a948b3d4404bd2::t_219bb336dec711 72
+omeia/api/document_library_service.py
+  s_a948b3d4404bd2::t_ba0261df3388e5 1028-1032
+web/src/lib/documentFolderTree.test.mjs
+  s_a948b3d4404bd2::t_1f9b1e001ac432 1-34
+omeia/api/chat_service.py
+  s_d8ca0dcf385045::t_71a9e5daeef783 368-383
+  s_d8ca0dcf385045::t_4704a3b2cc4628 197
+  s_d8ca0dcf385045::t_8d4e584c5f2a88 342-343
+  s_d8ca0dcf385045::t_c0c275b93380d6 354-358
+  s_d8ca0dcf385045::t_5737ed3ec44a4e 610
+  s_d8ca0dcf385045::t_1394dc98df014b 227
+  s_d8ca0dcf385045::t_c0cd724b52b2d7 240-243
+  s_d8ca0dcf385045::t_9957e5d63db5d1 566
+  s_d8ca0dcf385045::t_a91b4a5b4be838 38-42
+  s_d8ca0dcf385045::t_9c3e3bebe64cf8 542-545,547,557
+web/src/features/documents/components/ScientificFileExplorer.css
+  s_a948b3d4404bd2::t_4ae1316b2a46c1 214-225,234-415,421-426
+web/src/styles/theme/consistency.css
+  s_d8ca0dcf385045::t_cfdbda28962124 206-285
+web/src/features/documents/components/ScientificFileExplorer.jsx
+  s_a948b3d4404bd2::t_55a49eb6110f10 192,198-208
+  s_a948b3d4404bd2::t_0735e9293702ae 1,3,9-10
+  s_a948b3d4404bd2::t_91482b858347e4 216-226
+  s_a948b3d4404bd2::t_42ce80ae4f448e 110-111,114-119
+  s_a948b3d4404bd2::t_69ff97c4ceb56d 293
+  s_a948b3d4404bd2::t_06743169747dec 30,35-37,49,52-70
+omeia/api/chat_query_expansion.py
+  s_d8ca0dcf385045::t_4cd83b95a57365 1-128
+docs/DESIGN_RATIONALE/eln_folder_taxonomy_research.md
+  s_a948b3d4404bd2::t_d3d1599cd9a81b 1-54
+web/src/pages/AdministrationScreen.jsx
+  s_d8ca0dcf385045::t_5566a90add2323 5
+  s_d8ca0dcf385045::t_e744dee1cc5563 75
+web/src/features/documents/components/LabDocumentExplorer.jsx
+  s_a948b3d4404bd2::t_1c9de9a02bdd71 34
+docs/DESIGN_RATIONALE/supporting_articles/INDEX.md
+  s_a948b3d4404bd2::t_87bda2a0d5f4f2 1-29
+infra/scripts/search/build_search_audit_bundle.py
+  s_d8ca0dcf385045::t_1baac2b40e2271 8
+omeia/api/evidence_orchestrator.py
+  s_d8ca0dcf385045::t_7cd6b2f006ecab 791,795-796
+  s_d8ca0dcf385045::t_1d2320a08fc4e4 167-179
+  s_d8ca0dcf385045::t_9a002f50470f0d 256-277
+  s_d8ca0dcf385045::t_b3c871256a6868 301,308,311-316,321
+web/src/features/documents/components/DocumentFolderBreadcrumb.jsx
+  s_a948b3d4404bd2::t_4d7ac40279f829 1-46
+web/src/lib/documentExplorerPresets.js
+  s_d2d1f642caf14b::t_6be3c6e73abf26 111-114
+  s_d2d1f642caf14b::t_b9d6b10d3e16b0 299
+  s_a948b3d4404bd2::t_505de0a3cdd0dd 109,124,136,147,161,174,187,205,220,232,243-254,264
+  s_d2d1f642caf14b::t_92ef5d7ea625f1 1
+  s_d2d1f642caf14b::t_b814cd8fd8e951 286-289,292-295
+  s_d2d1f642caf14b::t_f775e6e65ebd28 2,8-20
+web/package.json
+  s_d2d1f642caf14b::t_1f5ddba6be6717 13
+web/src/App.jsx
+  s_d8ca0dcf385045::t_fd5f4e76658828 145
+  s_d8ca0dcf385045::t_fa3b024519cfdd 25
+  s_d2d1f642caf14b::t_b4d865dc081b81 127,129,132,136,139,141
+web/src/features/admin/components/DataIndexObservatoryPanel.jsx
+  s_d8ca0dcf385045::t_4384e5eb5f93bd 1-173
+web/src/lib/documentExplorerPresets.test.mjs
+  s_d2d1f642caf14b::t_6de9b11cbb753b 1-22,24-25,30,32
+  s_d2d1f642caf14b::t_409ee2da62802c 23,26-29,31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "2eb2b9cc32eaeb46b11d4a63eed16ddcc2ce1f2e",
+  "prompts": {},
+  "sessions": {
+    "s_a948b3d4404bd2": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "481a1161-1d75-41b9-a1e2-4c84223079ef",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d2d1f642caf14b": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a5bc5377-b02f-4171-a6e9-511a6c706a65",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
