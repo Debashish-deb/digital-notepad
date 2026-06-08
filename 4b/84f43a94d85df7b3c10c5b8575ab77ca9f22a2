@@ -1,0 +1,61 @@
+app_skeleton/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx
+  s_4cdd3d63159103::t_c25bce8ec92a78 1-2,4-7,32-42,44-62,65-78,129,135,214,224
+app_skeleton/ui/react_frontend/src/features/documents/documentLibraryUi.js
+  s_4cdd3d63159103::t_dec72544f6adc1 1-118
+app_skeleton/ui/react_frontend/src/pages/WorkspaceScreen.jsx
+  s_4cdd3d63159103::t_cbf0974e6c1424 2-3,10-11,15-16,28-40,115
+app_skeleton/ui/react_frontend/src/services/searchApi.js
+  s_4cdd3d63159103::t_ce6bca769a3b37 9-21
+app_skeleton/ui/react_frontend/src/pages/KnowledgeSearchScreen.jsx
+  s_4cdd3d63159103::t_3e53dd4e1e5486 3,6-7,11-27,29,49,51-52
+app_skeleton/ui/react_frontend/src/features/projects/hooks/useWorkspaceTabs.js
+  s_4cdd3d63159103::t_7ca17dc182c3ff 28
+  s_4cdd3d63159103::t_8b10f9b70e8fdf 42
+  s_4cdd3d63159103::t_4c72a86e6fddb9 1-3,5-27,29-41,43-53,55-68
+  s_4cdd3d63159103::t_da505079e00a8a 54
+  s_4cdd3d63159103::t_bbe92f13ee370b 4
+app_skeleton/ui/react_frontend/src/features/search/hooks/useUnifiedSearch.js
+  s_4cdd3d63159103::t_b25f24a1ca4ccd 1-23,25-37,40-49,52-55,57,59-91,93-139,142-162,167-171
+  s_4cdd3d63159103::t_83eed9cdf0909e 38-39
+  s_4cdd3d63159103::t_1cc4a80268075a 163-166
+  s_4cdd3d63159103::t_2b326dd7cbce4d 24
+  s_4cdd3d63159103::t_4e77eaa9f1c309 140-141
+  s_4cdd3d63159103::t_3d5c09bec29602 50-51
+  s_4cdd3d63159103::t_1442f4b5304cc8 92
+  s_4cdd3d63159103::t_f11bd04607e2bf 56,58
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentMetadataPanel.jsx
+  s_4cdd3d63159103::t_25f8a80d330637 1-606
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentResultList.jsx
+  s_4cdd3d63159103::t_03c000ab5cea4e 1-243
+app_skeleton/ui/react_frontend/src/features/search/components/GlobalSearchOverlay.jsx
+  s_4cdd3d63159103::t_166e650180bc14 31-34
+  s_4cdd3d63159103::t_d3a2ad54df271c 3,11,14,16,35-53,58-62,64-65,82
+  s_4cdd3d63159103::t_c1ec72ade2c036 149
+  s_4cdd3d63159103::t_9734b55bb6833f 54-57
+  s_4cdd3d63159103::t_29ef6d4e1c705a 87
+  s_4cdd3d63159103::t_1b2d7057c3137e 269,275,280
+  s_4cdd3d63159103::t_facad450493e6d 63
+  s_4cdd3d63159103::t_1af629c14d9e54 68-75
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentFilterPanel.jsx
+  s_4cdd3d63159103::t_606d64087bc6ac 1-387
+app_skeleton/ui/react_frontend/src/features/projects/hooks/useProjectWorkspaceData.js
+  s_4cdd3d63159103::t_a55822b9ade04e 1-64
+app_skeleton/ui/react_frontend/src/features/documents/hooks/useDocumentLibrary.js
+  s_4cdd3d63159103::t_30dbcbb53eaa67 1-219
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "4b84f43a94d85df7b3c10c5b8575ab77ca9f22a2",
+  "prompts": {},
+  "sessions": {
+    "s_4cdd3d63159103": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "6f1fdf3c-1eeb-4531-bff2-db47a7b00717",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
