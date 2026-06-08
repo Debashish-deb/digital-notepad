@@ -1,0 +1,225 @@
+app_skeleton/ui/react_frontend/src/pages/ImageProcessingPipelineScreen.css
+  s_d8ca0dcf385045::t_480a73c1d58e00 1580,1582-1592
+  s_d8ca0dcf385045::t_a781af175e8c65 1472-1474
+  s_d8ca0dcf385045::t_5de68436b41cea 1510,1512
+  s_d8ca0dcf385045::t_5181b0dd5cf89b 1613-1615,1618-1619
+  s_d8ca0dcf385045::t_8774244f31d8cf 1502
+  s_d8ca0dcf385045::t_0cc7699b1a086d 1319,1321,1365,1456-1465
+  s_d8ca0dcf385045::t_3e21f354a3c7fa 1276
+  s_d8ca0dcf385045::t_dd6285c41acd1c 1262,1674-1750
+  s_d8ca0dcf385045::t_4487cf16937df9 1536
+  s_d8ca0dcf385045::t_68f90b3aa87593 1283-1284
+  s_d8ca0dcf385045::t_7afa9a1686ce05 1513-1535,1537-1552
+  s_d8ca0dcf385045::t_ecd23b8daa0d64 1439
+  s_d8ca0dcf385045::t_ffaa3a2f6bb9c5 1252-1261,1263-1266,1268,1270-1275,1277-1282,1285-1318,1320,1322-1323,1366-1369,1373,1466-1471,1475-1493,1499-1501,1504-1505,1511,1553-1557,1559-1560,1563-1566,1570-1572,1574,1577-1578,1593-1612,1616-1617,1620-1627,1629-1632,1634-1635,1638-1639,1642-1650,1666-1667,1670-1671
+  s_d8ca0dcf385045::t_5ab48ee0cdcee8 1628,1633,1636-1637,1640-1641,1668-1669,1672-1673
+  s_d8ca0dcf385045::t_77ec3fec7c4d31 1324-1329,1370-1372,1374-1438,1440-1455
+  s_d8ca0dcf385045::t_0e6032d3579261 1651-1653,1656-1660,1663-1665
+  s_d8ca0dcf385045::t_8ad37356e6c537 1654-1655,1661-1662
+  s_d8ca0dcf385045::t_cd0f605ccd9998 1251,1267,1269
+  s_d8ca0dcf385045::t_a6a86cf8a7d2e2 1558,1561-1562,1567-1569,1573,1575-1576,1579,1581
+  s_d8ca0dcf385045::t_6529ac921ebac9 1494-1498,1503,1506-1509
+app_skeleton/ui/react_frontend/src/index.css
+  s_a1ad094f29dc2f::t_d72accee485627 5419
+tests/test_evidence_orchestrator.py
+  s_369657998babe1::t_ad6dcda1ff3967 1-165
+app_skeleton/ui/react_frontend/src/features/documents/components/LabDocumentsBrowser.jsx
+  s_a1ad094f29dc2f::t_97d5d7cc6cada2 296-304,306
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentPreviewPane.css
+  s_a1ad094f29dc2f::t_31078ea4d34583 293-314
+app_skeleton/ui/react_frontend/src/styles/theme/superGlass.css
+  s_d8ca0dcf385045::t_f9db39d874e633 37-38,41,43-46
+app_skeleton/ui/react_frontend/src/features/computational/components/Pipeline3DScene.jsx
+  s_d8ca0dcf385045::t_251535f7457c6f 468-471
+  s_d8ca0dcf385045::t_9e2d38845baa2b 48-54,59-61
+  s_4c136e2a8f63be::t_f1e8b541b6c4df 64,66-96,98,101-102
+  s_d8ca0dcf385045::t_8e56ac9de26070 180,186,188
+  s_d8ca0dcf385045::t_59450868a4efd9 405-407
+  s_d8ca0dcf385045::t_2997ac1eabd14e 22-23,26,29,32-33
+  s_d8ca0dcf385045::t_2e04c795c63994 185
+  s_d8ca0dcf385045::t_e35a3090f5969e 418-423
+  s_d8ca0dcf385045::t_71f4b555b1ed20 222-225
+  s_4c136e2a8f63be::t_f9fa257ff6b159 408
+  h_0b448993649ed1 30,34,216
+  s_d8ca0dcf385045::t_f2992342bfa6ad 374-378
+  s_4c136e2a8f63be::t_3a5df20cbaa017 341-342,346-365
+  s_4c136e2a8f63be::t_5f9444d1e9b158 228
+  s_4c136e2a8f63be::t_8c3f5bb5bd17f7 384-385
+  s_d8ca0dcf385045::t_e738690c0407d6 248-249
+  s_d8ca0dcf385045::t_b1fd7f71967508 5-8,13-15,18,39,42-43,55-56,105,107,109-110,115,117,120,122-124,126-129,133-142,189,214,220,285,294,301,319-331,333-337,340,343,371,387-395,397-398,400-404,409-410,412-417,424-436,439-447,450,452-457,459
+  s_d8ca0dcf385045::t_1c492d02da7cf0 270
+  s_4c136e2a8f63be::t_25110cba13d8e8 257,264
+  s_d8ca0dcf385045::t_ba36cb05b77e1d 451
+  s_4c136e2a8f63be::t_4c6687c603d97f 242-243,246
+  s_d8ca0dcf385045::t_7937379169e07a 11-12,16,19-21,35-38,40-41,44-45,47,106,108,111-114,116,118-119,145-151,178,183,191,215,218-219,221,226-227,229-238,247,250-252,275,286,332,368,383,386,411,437-438,458,460-461
+  s_d8ca0dcf385045::t_e2ccea1d00e342 154-155,158-161,164-167,170-172,181,184,187,190,193
+  s_d8ca0dcf385045::t_15b83e5ab20be6 448-449
+  s_4c136e2a8f63be::t_403a17489f4edf 175-177
+  s_4c136e2a8f63be::t_13291e1bdc917e 1
+  s_d8ca0dcf385045::t_b006bd6d73ecae 396,399
+  s_d8ca0dcf385045::t_66a6c9be00fc05 65
+  s_d8ca0dcf385045::t_adc818e1649367 253-256,258-263,265-269,271-274
+  s_d8ca0dcf385045::t_16176cd21055b5 24-25,27-28
+  s_d8ca0dcf385045::t_f8370f8aad5338 196,198-210
+app_skeleton/api/chat_service.py
+  s_369657998babe1::t_1d4c97a128df72 180-181,192-211
+  s_d8ca0dcf385045::t_b335231d4be77d 329-346
+  s_369657998babe1::t_2db84aa3ca5428 387
+  s_369657998babe1::t_c0d356c0253521 305
+  s_d8ca0dcf385045::t_55507ffb2d4326 18-27
+  s_369657998babe1::t_e73e1b7f6d84b4 28-36
+  s_d8ca0dcf385045::t_665fae5491e42e 304,309
+  s_d8ca0dcf385045::t_a9d9bac40050af 377-379,381
+  s_d8ca0dcf385045::t_91c05c0a4373de 142
+  s_369657998babe1::t_e07499e6929680 403-408
+  s_369657998babe1::t_e23ec645e9d050 447-450
+  s_369657998babe1::t_1f3b7148a69ae8 500
+  s_d8ca0dcf385045::t_dd1315097923ad 244-245,254-267
+  s_369657998babe1::t_2e67e3931c9f66 439-440
+app_skeleton/ui/react_frontend/src/features/ai-assistant/styles/AiAssistantChat.css
+  s_d8ca0dcf385045::t_e4f371d7f86b1d 467-496
+app_skeleton/ui/react_frontend/src/pages/LoginScreen.css
+  s_d8ca0dcf385045::t_1dfd807d6bd135 198-200
+  s_d8ca0dcf385045::t_c7a95fc844b098 812-827,829-831,836-888
+  s_d8ca0dcf385045::t_43917cf90b9fec 828,832-835
+app_skeleton/ui/react_frontend/src/styles/theme/consistency.css
+  s_a1ad094f29dc2f::t_b5c6332b086806 79
+app_skeleton/ui/react_frontend/src/features/projects/components/ProjectFolderBrowser.jsx
+  s_d8ca0dcf385045::t_239f78a9201adb 767
+  s_d8ca0dcf385045::t_715566fca56156 739
+  s_d8ca0dcf385045::t_f1a418414bc116 300-306
+  s_d8ca0dcf385045::t_4f1f1699542baf 772
+app_skeleton/ui/react_frontend/src/typography.css
+  s_d8ca0dcf385045::t_38a9e2b9a17e3e 261,267-270,276-278
+  s_d8ca0dcf385045::t_84255ceeca6db9 14-17
+  s_d8ca0dcf385045::t_c1c298455c0080 311,313-314,329-330,332-333
+  s_d8ca0dcf385045::t_4aee910cb6e18b 310
+  s_d8ca0dcf385045::t_16dddd34ce69c7 643-654,662,666-669
+  s_d8ca0dcf385045::t_7b7f4573dd3f9b 676,685-700
+  s_d8ca0dcf385045::t_c4ff7e31505e14 56-57
+  s_d8ca0dcf385045::t_634eb93d34664d 92-93,97,99-100
+  s_d8ca0dcf385045::t_0a5912e4bd3aa4 260
+  s_d8ca0dcf385045::t_0e443f5dc8018e 24-29
+  s_d8ca0dcf385045::t_16ec72e94a594e 61-62
+  s_d8ca0dcf385045::t_162a3f646e2b11 420-424,432-434
+app_skeleton/api/chat_model_catalog.py
+  s_d8ca0dcf385045::t_fd3b6db7ac0b77 142-181
+app_skeleton/ui/react_frontend/src/main.jsx
+  s_d8ca0dcf385045::t_dffcd8cbb74cbf 11
+  s_d8ca0dcf385045::t_c9c02f1208f557 12
+app_skeleton/api/answer_grounding_service.py
+  s_d8ca0dcf385045::t_de43772a6c0dea 54-61
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentPreviewPane.jsx
+  s_a1ad094f29dc2f::t_aa483a013186b6 248-267
+  s_a1ad094f29dc2f::t_97a1f6b843dc68 107-111,114,125,130
+app_skeleton/ui/react_frontend/src/styles/theme/clearGlassPages.css
+  s_d8ca0dcf385045::t_289a5bfd55b292 468,757-775
+  s_d8ca0dcf385045::t_4e0d73fac82cf6 478,482,484,492,498-507
+  s_d8ca0dcf385045::t_696c7ef8215d19 267-268,270,276
+  s_d8ca0dcf385045::t_39c83280b8759c 469-477,479-481,483,485-491,493-497,508-531,533,535-539,546-549,551-553,555-559,561-567,569-631,633-637,639-668,671-695,697-698,700-756
+  s_d8ca0dcf385045::t_6dc107e5e4e5cf 89,91,93-94,109-111,114-115,117-123,125,130-131,146-147,149,151-152,154,156-181,186-187,191-192,194-202,204-205,208-211,218-220,222-223,225-226,239-240,242-260,262-265,269,271-274,277-278,280-290,293-294,299-301,303-318,320-328,330-331,333-334,336-338,345-347,352,354,356
+  s_d8ca0dcf385045::t_86eb43285928a6 560,568
+  s_d8ca0dcf385045::t_b9e47801495043 11-28,35-37,40,77-79,92,113,126-129,132-133,142,150,182-185,188,206-207,224,227-229,234-236,238,261,275,291-292,329,332,353,355
+  s_d8ca0dcf385045::t_f70403a8dd68f6 155
+  s_d8ca0dcf385045::t_c93fd7807a232c 638
+  s_d8ca0dcf385045::t_fa66ac783716b6 4,90,108,112,116,124,134-141,143-145,148,153,189-190,193,203,212-217,221,230-233,237,241,266,279,295-298,302,319,335,339-344,348-351
+  s_d8ca0dcf385045::t_40d58180254c63 632
+  s_d8ca0dcf385045::t_ff275a2ddb0192 540-545,550,554
+  s_5b22fb7e856cf6::t_2fa92ce93000de 357-467
+  s_5b22fb7e856cf6::t_2e2032fdfa684a 1-3,5-10,29-34,38-39,41-76,80-88,95-103
+  s_d8ca0dcf385045::t_66ed672c3c26f6 104-107
+  s_d8ca0dcf385045::t_0b023487a89f25 532,534
+  s_d8ca0dcf385045::t_2e95efeccdbfef 669-670
+  s_d8ca0dcf385045::t_b9bb970733f883 696,699
+app_skeleton/api/routers/chat.py
+  s_d8ca0dcf385045::t_c974400c45c4f3 87
+  s_d8ca0dcf385045::t_05752d6876c1b2 55-83
+  s_d8ca0dcf385045::t_f2f61ba2207aec 184-188
+  s_d8ca0dcf385045::t_5fc33655477458 48-49
+  s_d8ca0dcf385045::t_bac3b1bb4face8 12
+  s_d8ca0dcf385045::t_78ad0a3dcb9b1c 204
+app_skeleton/ui/react_frontend/src/features/ai-assistant/components/ChatWidget.jsx
+  s_d8ca0dcf385045::t_3fb485a2e592b4 640
+  s_d8ca0dcf385045::t_693fd727978a91 756
+  s_d8ca0dcf385045::t_89300a46e9b348 48
+  s_d8ca0dcf385045::t_e3a9208615adb6 1041-1055
+  s_d8ca0dcf385045::t_637768b6c577c8 129-145
+  s_d8ca0dcf385045::t_4089009f0f425e 719,721
+  s_d8ca0dcf385045::t_6c92d0bdb26111 148-155
+app_skeleton/ui/react_frontend/src/styles/theme/themeManager.css
+  s_d8ca0dcf385045::t_bb8d587ec38922 58,60-67
+  s_d8ca0dcf385045::t_1f57b891b56bea 93,95-96
+  s_d8ca0dcf385045::t_cfb50ba54ca8a6 151-152
+  s_d8ca0dcf385045::t_36149b0171f8fe 119-120
+  s_d8ca0dcf385045::t_2020f2fcb2124f 261-262
+  s_d8ca0dcf385045::t_5007b75151611e 1417-1429
+  s_d8ca0dcf385045::t_332beb3392c208 111
+  s_d8ca0dcf385045::t_cf4dfd8908f60c 282-283
+app_skeleton/api/chat_intent.py
+  s_d8ca0dcf385045::t_12c5c996c33c22 28-29
+  s_d8ca0dcf385045::t_b4161a06d31a73 32-34,36
+app_skeleton/ui/react_frontend/src/styles/theme/darkAcademicTheme.css
+  s_d8ca0dcf385045::t_827b422dd8e861 1-182
+tests/test_chat_conversation.py
+  s_d8ca0dcf385045::t_c4527f959d7428 42
+  s_d8ca0dcf385045::t_09af83cfeacd1c 1-41,43-78
+app_skeleton/api/evidence_orchestrator.py
+  s_369657998babe1::t_9b392a93662619 1-575
+app_skeleton/api/chat_conversation.py
+  s_d8ca0dcf385045::t_1a0d892ac6028d 252-265
+  s_d8ca0dcf385045::t_320e4363dceac9 1-251,266-273,275-277,279-309
+  s_d8ca0dcf385045::t_453cf1a21ca05c 274,278
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "cfd4a45d163eea3229e06200d0d6e7c9df6da402",
+  "prompts": {},
+  "humans": {
+    "h_0b448993649ed1": {
+      "author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  },
+  "sessions": {
+    "s_369657998babe1": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "60310676-f093-4981-932d-a572f8c722b2",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_4c136e2a8f63be": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "e6ab28b5-8a12-4759-9890-46f4c0691ea8",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_5b22fb7e856cf6": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4566904e-8f31-46b7-9b8b-ee9845bc4890",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_a1ad094f29dc2f": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "c8229f40-8f68-4a5e-9fcc-94b31bb0bf08",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
