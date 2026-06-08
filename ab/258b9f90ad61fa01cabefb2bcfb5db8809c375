@@ -1,0 +1,31 @@
+web/src/App.jsx
+  s_d8ca0dcf385045::t_fb9f996867c8d8 730
+web/src/shared/hooks/usePersistentReveal.js
+  s_d8ca0dcf385045::t_c9ccb9b3b0d0b9 18-19
+  s_d8ca0dcf385045::t_1dbc050229d807 1-17,20-50
+web/src/shared/layout/ScreenCache.jsx
+  s_d8ca0dcf385045::t_e784ac7065f12a 1,4-6,10,12,14-17,19-21,28-34,37-42
+  s_d8ca0dcf385045::t_8127974d844620 9,13,18,22-23,35-36
+web/src/pages/ProjectsScreen.jsx
+  s_d8ca0dcf385045::t_0a9412ddbf2369 490
+  s_d8ca0dcf385045::t_e57a49123661a0 624
+  s_d8ca0dcf385045::t_8aaa9a43fcfcc4 4
+web/src/pages/ProjectsScreen.css
+  s_d8ca0dcf385045::t_e1e0070fce97a5 4-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "ab258b9f90ad61fa01cabefb2bcfb5db8809c375",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
