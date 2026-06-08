@@ -5,10 +5,13 @@ import unittest
 
 from app_skeleton.api.search_models import SearchHit
 from app_skeleton.api.search_service import (
-    SearchService,
-    _dedup_and_diversify,
-    _rerank_hits,
     COPILOT_MIN_SCORE,
+    INTENT_BUCKET_CAPS,
+    SearchService,
+    _copilot_include_restricted,
+    _dedup_and_diversify,
+    _project_research_query,
+    _rerank_hits,
 )
 
 
@@ -80,6 +83,23 @@ class TestSearchServiceCopilot(unittest.TestCase):
             limit=4,
         )
         self.assertIsInstance(hits, list)
+
+    def test_project_question_research_cap_raised(self) -> None:
+        caps = INTENT_BUCKET_CAPS["project_question"]
+        self.assertGreaterEqual(caps.get("research", 0), 4)
+
+    def test_copilot_include_restricted_for_lab_roles(self) -> None:
+        self.assertTrue(_copilot_include_restricted("admin"))
+        self.assertTrue(_copilot_include_restricted("editor"))
+        self.assertTrue(_copilot_include_restricted("researcher"))
+        self.assertFalse(_copilot_include_restricted("viewer"))
+        self.assertFalse(_copilot_include_restricted(None))
+
+    def test_project_research_query_enriches_code(self) -> None:
+        enriched = _project_research_query("tell me about the project", ["EyeMT"])
+        self.assertEqual(enriched, "EyeMT tell me about the project")
+        unchanged = _project_research_query("tell more about EyeMT project", None)
+        self.assertEqual(unchanged, "tell more about EyeMT project")
 
 
 if __name__ == "__main__":

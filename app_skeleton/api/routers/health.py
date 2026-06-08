@@ -70,7 +70,7 @@ def auth_register_request(body: RegisterRequestBody) -> dict:
 @router.get("/api/auth/config")
 def auth_config_public() -> dict:
     """Firebase web client config + Email/Password-only policy (no Google Sign-In)."""
-    from app_skeleton.api.auth_firebase import AUTH_ALLOW_SKIP, AUTH_DISABLED
+    from app_skeleton.security.auth import AUTH_ALLOW_SKIP, AUTH_DISABLED
     from app_skeleton.api.firebase_config import firebase_client_config_public
 
     return {

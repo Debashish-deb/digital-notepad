@@ -146,6 +146,7 @@ echo "--- OMEIA llm_client test ---"
   export LLM_PROVIDER=ollama
   export CHAT_LLM_PROVIDER=ollama
   export OLLAMA_MODEL="$OLLAMA_MODEL"
+  export LLM_MODEL="$OLLAMA_MODEL"
   export OLLAMA_BASE_URL=http://127.0.0.1:11434/v1
   export LLM_FALLBACK_PROVIDERS=ollama,mock
   cd "$ROOT"

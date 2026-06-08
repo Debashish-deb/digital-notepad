@@ -14,13 +14,17 @@ The active UI is a **React SPA**; the API is **FastAPI**. They are separate proc
 | Backend | `app_skeleton/api/` | **8000** |
 
 ```bash
-# Split dev (two terminals)
+# From inside the app folders (recommended)
+app_skeleton/api/dev.sh
+app_skeleton/ui/react_frontend/dev.sh   # or: cd there && npm run dev
+
+# Or from repo root
 ./scripts/dev/start_backend.sh
 ./scripts/dev/start_frontend.sh
-
-# Or both together
-./start.sh
+./start.sh                            # both together
 ```
+
+> **Why `app_skeleton`?** Legacy scaffold name—the folder is production code. See [app_skeleton/README.md](app_skeleton/README.md). Top-level `scripts/` is for repo-wide ops (ingest, DB, Docker); day-to-day UI/API dev can run from `app_skeleton/` as above.
 
 **Architecture tutorial:** [docs/FRONTEND_BACKEND_TUTORIAL.md](docs/FRONTEND_BACKEND_TUTORIAL.md)  
 **Repo layout:** [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) · **Scripts index:** [scripts/README.md](scripts/README.md)  

@@ -31,6 +31,9 @@ fi
 if [ -n "${TAILSCALE_LINUX_IP:-}" ]; then
   export OLLAMA_BASE_URL="http://${TAILSCALE_LINUX_IP}:11434/v1"
   export QDRANT_URL="http://${TAILSCALE_LINUX_IP}:6333"
+  # Mac thin client: Docker stack runs on Linux, not on this machine.
+  export DOCKER_LOCAL=false
+  export DOCKER_AUTO_START=false
 fi
 export OMEIA_REPO_ROOT="${OMEIA_REPO_ROOT:-$PROJECT_ROOT}"
 export DATABASE_ROOT="${DATABASE_ROOT:-$PROJECT_ROOT/../OMEIA-database}"

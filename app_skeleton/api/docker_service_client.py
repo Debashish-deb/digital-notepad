@@ -100,9 +100,30 @@ class DockerServiceError(RuntimeError):
 class DockerServiceClient:
     """Registry + health orchestration for compose-backed services."""
 
+    @staticmethod
+    def _looks_remote_url(url: str) -> bool:
+        lowered = (url or "").lower()
+        if not lowered:
+            return False
+        if "100." in lowered:
+            return True
+        return "127.0.0.1" not in lowered and "localhost" not in lowered
+
     def __init__(self) -> None:
         # DOCKER_LOCAL=false → Mac thin client: probe remote URLs only, never run compose.
-        self.local_docker = _env_bool("DOCKER_LOCAL", True)
+        explicit_local = os.getenv("DOCKER_LOCAL")
+        if explicit_local is not None:
+            self.local_docker = _env_bool("DOCKER_LOCAL", True)
+        else:
+            ollama_base = _env("OLLAMA_BASE_URL", "http://127.0.0.1:11434")
+            qdrant_url = _env("QDRANT_URL", "http://127.0.0.1:6333")
+            tailscale_ip = _env("TAILSCALE_LINUX_IP", "")
+            remote_hosted = bool(tailscale_ip) or self._looks_remote_url(ollama_base) or self._looks_remote_url(qdrant_url)
+            self.local_docker = not remote_hosted
+            if remote_hosted:
+                LOGGER.info(
+                    "Remote service URLs detected — DOCKER_LOCAL=false (Docker runs on Linux workstation)."
+                )
         self.auto_start_enabled = self.local_docker and _env_bool("DOCKER_AUTO_START", True)
         self.watch_unhealthy = self.local_docker and _env_bool("DOCKER_WATCH_UNHEALTHY", False)
         self.compose_file = _env("DOCKER_COMPOSE_FILE", "docker-compose.yml")

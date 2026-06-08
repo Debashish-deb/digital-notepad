@@ -1,7 +1,5 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-import os
 
 from app_skeleton.security.environment import validate_environment
 from app_skeleton.security.cors import get_cors_origins
@@ -27,16 +25,6 @@ app.add_middleware(
 )
 
 app.include_router(health.router)
-
-# Public static mounts (dev previews — spreadsheet/PDF fetches use /database-static/)
-if CSC_MEDIA_DIR.exists():
-    app.mount("/csc-media", StaticFiles(directory=str(CSC_MEDIA_DIR)), name="csc-media")
-
-if PROJECTS_ROOT.exists():
-    app.mount("/projects-static", StaticFiles(directory=str(PROJECTS_ROOT)), name="projects-static")
-
-if DATABASE_ROOT.exists():
-    app.mount("/database-static", StaticFiles(directory=str(DATABASE_ROOT)), name="database-static")
 
 # All standard API routes must require authentication
 api_dependencies = [Depends(require_platform_user)]

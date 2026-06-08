@@ -1,5 +1,5 @@
 from app_skeleton.security.permissions import require_role
-from app_skeleton.security.auth import require_platform_user
+from app_skeleton.security.auth import require_platform_user, require_admin_user
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
 from app_skeleton.api.common import *
 from typing import *
@@ -233,14 +233,14 @@ def gap_analysis() -> dict:
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
 
-@router.get("/api/vault/summary", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/vault/summary")
 def vault_summary_endpoint() -> dict:
     summary = vault_summary()
     public = {k: v for k, v in summary.items() if k != "database_root"}
     missing = assert_all_section_roots_exist()
     return {"summary": public, "missing_section_roots": missing}
 
-@router.get("/api/vault/search", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/vault/search")
 def vault_search(
     q: str = Query("", min_length=0),
     domain: Optional[str] = Query(None),
@@ -263,7 +263,7 @@ def vault_search(
     )
     return {"query": q, "count": len(results), "results": results}
 
-@router.get("/api/vault/review-queue", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/vault/review-queue")
 def vault_review_queue_endpoint(
     limit: int = Query(50, ge=1, le=200),
     max_confidence: float = Query(0.85, ge=0, le=1),
@@ -280,14 +280,14 @@ def vault_review_queue_endpoint(
     )
     return {"count": len(rows), "queue": queue, "items": rows}
 
-@router.patch("/api/vault/review/{asset_id}", dependencies=_FIREBASE_PROTECTED)
+@router.patch("/api/vault/review/{asset_id}")
 def vault_mark_reviewed(
     asset_id: str,
     review_status: str = Query("reviewed"),
 ) -> dict:
     return mark_asset_reviewed(asset_id, review_status=review_status)
 
-@router.post("/api/vault/ingest/scan", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/vault/ingest/scan")
 def vault_ingest_scan(
     resume: bool = Query(False),
     confirm_full_scan: bool = Query(False, description="Required for full DATABASE_ROOT scan (safety)"),
@@ -310,7 +310,7 @@ def vault_ingest_scan(
         LOGGER.exception("Vault ingest scan failed")
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
-@router.post("/api/vault/ingest/project/{project_id}", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/vault/ingest/project/{project_id}")
 def vault_ingest_project_endpoint(
     project_id: str,
     resume: bool = Query(False),
@@ -334,7 +334,7 @@ def vault_ingest_project_endpoint(
         LOGGER.exception("Vault project ingest failed")
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
-@router.post("/api/digitalize/scan", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/digitalize/scan")
 def digitalize_scan(
     dry_run: bool = Query(False),
     resume: bool = Query(False),
@@ -347,7 +347,7 @@ def digitalize_scan(
     except FileNotFoundError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
-@router.post("/api/digitalize/project/{project_name}", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/digitalize/project/{project_name}")
 def digitalize_project(
     project_name: str,
     resume: bool = Query(False),
@@ -367,7 +367,7 @@ def digitalize_project(
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
-@router.post("/api/digitalize/retry-failed", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/digitalize/retry-failed")
 def digitalize_retry_failed(
     project_name: Optional[str] = Query(None),
     limit: int = Query(500, ge=1, le=5000),
@@ -376,7 +376,7 @@ def digitalize_retry_failed(
 
     return retry_failed_extractions(project_hint=project_name, limit=limit)
 
-@router.get("/api/digitalize/search", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/digitalize/search")
 def digitalize_search(
     q: str = Query(..., min_length=1),
     uncategorized_only: bool = Query(False),
@@ -386,7 +386,7 @@ def digitalize_search(
 
     return {"items": search_knowledge(q, uncategorized_only=uncategorized_only, limit=limit)}
 
-@router.get("/api/digitalize/review", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/digitalize/review")
 def digitalize_review(
     kind: str = Query("uncategorized"),
     limit: int = Query(100, ge=1, le=500),
@@ -395,7 +395,7 @@ def digitalize_review(
 
     return {"kind": kind, "items": list_review_queue(kind=kind, limit=limit)}
 
-@router.patch("/api/digitalize/review/{asset_id}", dependencies=_FIREBASE_PROTECTED)
+@router.patch("/api/digitalize/review/{asset_id}")
 def digitalize_patch_review(
     asset_id: str,
     user_category: Optional[str] = Query(None),
@@ -411,7 +411,7 @@ def digitalize_patch_review(
         project_candidate_id=project_candidate_id,
     )
 
-@router.get("/api/digitalize/runs", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/digitalize/runs")
 def digitalize_runs(limit: int = Query(20, ge=1, le=100)) -> dict:
     from app_skeleton.api.project_digitalization_engine import _db_conn
     import psycopg
@@ -430,7 +430,7 @@ def digitalize_runs(limit: int = Query(20, ge=1, le=100)) -> dict:
             rows = [dict(zip(cols, r)) for r in cur.fetchall()]
     return {"runs": rows}
 
-@router.post("/api/vault/ingest/retry-failed", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/vault/ingest/retry-failed")
 def vault_ingest_retry_failed(
     project_hint: Optional[str] = Query(None),
     limit: int = Query(500, ge=1, le=5000),
@@ -455,7 +455,7 @@ def vault_ingest_retry_failed(
         LOGGER.exception("Vault retry-failed failed")
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
-@router.post("/api/vault/rebuild", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/vault/rebuild")
 def vault_rebuild(user: dict = Depends(require_platform_user)) -> dict:
     require_role(user, ["editor", "admin"])
     job = platform_admin.create_ingestion_job("vault_rebuild")
@@ -471,12 +471,12 @@ def vault_rebuild(user: dict = Depends(require_platform_user)) -> dict:
         LOGGER.exception("Vault rebuild failed")
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
-@router.post("/api/supabase/sync/documents", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/supabase/sync/documents")
 def supabase_sync_documents(
     dry_run: bool = Query(False),
     limit: Optional[int] = Query(None, ge=1, le=10_000),
     since: Optional[str] = Query(None, description="ISO timestamp for vault.updated_at filter"),
-    _admin: dict = Depends(require_admin),
+    _admin: dict = Depends(require_admin_user),
 ) -> dict:
     """Sync document metadata + truncated text from local Postgres to hosted Supabase (admin)."""
     del _admin
@@ -497,7 +497,7 @@ def supabase_sync_documents(
         LOGGER.exception("Supabase document sync failed")
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
-@router.post("/api/vault/sync", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/vault/sync")
 def vault_sync_postgres(user: dict = Depends(require_platform_user)) -> dict:
     require_role(user, ["editor", "admin"])
     """Phase 3: upsert JSON inventory into platform.raw_asset_vault."""
@@ -514,23 +514,23 @@ def vault_sync_postgres(user: dict = Depends(require_platform_user)) -> dict:
         LOGGER.exception("Vault sync failed")
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
-@router.get("/api/vault/dedupe-report", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/vault/dedupe-report")
 def vault_dedupe_report(limit: int = Query(30, ge=1, le=100)) -> dict:
     return deduplication_report(limit=limit)
 
-@router.get("/api/vault/manifest", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/vault/manifest")
 def vault_manifest(
     offset: int = Query(0, ge=0),
     limit: int = Query(100, ge=1, le=500),
 ) -> dict:
     return vault_manifest_page(offset=offset, limit=limit)
 
-@router.get("/api/vault/scheduled-scan/status", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/vault/scheduled-scan/status")
 def vault_scheduled_scan_status(user: dict = Depends(require_platform_user)) -> dict:
     from app_skeleton.api.scheduled_directory_scanner import scheduled_directory_scanner
     return scheduled_directory_scanner.status()
 
-@router.post("/api/vault/scheduled-scan/run", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/vault/scheduled-scan/run")
 def vault_scheduled_scan_run(user: dict = Depends(require_platform_user)) -> dict:
     require_role(user, ["editor", "admin"])
     from app_skeleton.api.scheduled_directory_scanner import scheduled_directory_scanner

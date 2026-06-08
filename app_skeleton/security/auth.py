@@ -1,14 +1,17 @@
 import os
+import time
 from typing import Any, Optional
 
+import firebase_admin
 import psycopg
 from fastapi import Depends, HTTPException, Request
 from fastapi.concurrency import run_in_threadpool
+from firebase_admin import auth as firebase_auth
 
 from app_skeleton.api.platform_admin import is_platform_admin
 from app_skeleton.security.audit_log import log_failed_auth, log_dev_bypass_attempt
 
-APP_ENV = os.getenv("APP_ENV", "development").lower()
+APP_ENV = os.getenv("APP_ENV", "production").lower()
 AUTH_DISABLED = os.getenv("PLATFORM_AUTH_DISABLED", "true" if APP_ENV == "development" else "false").lower() in ("1", "true", "yes")
 AUTH_ALLOW_SKIP = os.getenv("PLATFORM_AUTH_ALLOW_SKIP", "false").lower() in ("1", "true", "yes")
 AUTH_SKIP_HEADER = "testing"
@@ -20,8 +23,6 @@ def _dev_user() -> dict[str, Any]:
         "role": "admin",
         "verified": True,
     }
-
-import time
 
 _allowlist_cache = {}
 CACHE_TTL = 300  # 5 minutes
@@ -46,9 +47,7 @@ def _email_allowlisted(email: str) -> bool:
                     (email,),
                 )
                 return cur.fetchone() is not None
-    except Exception as e:
-        # In strict mode, failing DB connection should probably block access, 
-        # but for compatibility keeping fallback to False
+    except Exception:
         return False
 
 def _email_allowlisted_cached(email: str) -> bool:
@@ -86,15 +85,6 @@ async def require_platform_user(request: Request) -> dict[str, Any]:
     if not token:
         log_failed_auth("Empty Bearer token", ip_address)
         raise HTTPException(status_code=401, detail="Empty Bearer token")
-
-    try:
-        import firebase_admin
-        from firebase_admin import auth as firebase_auth
-    except ImportError as exc:
-        raise HTTPException(
-            status_code=503,
-            detail="Firebase Admin SDK not installed. Set PLATFORM_AUTH_DISABLED=true for dev.",
-        ) from exc
 
     if not firebase_admin._apps:
         raise HTTPException(status_code=503, detail="Firebase not initialized on server")

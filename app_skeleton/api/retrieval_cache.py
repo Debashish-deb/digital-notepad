@@ -101,3 +101,63 @@ def set_cached(key: str, payload: dict[str, Any]) -> None:
 def clear_cache() -> None:
     with _LOCK:
         _CACHE.clear()
+
+
+def copilot_cache_ttl_seconds() -> int:
+    return max(5, _env_int("COPILOT_RETRIEVAL_CACHE_TTL_SEC", 90))
+
+
+def make_copilot_cache_key(
+    *,
+    query: str,
+    intent: str | None,
+    project_codes: list[str] | None,
+    user_role: str | None,
+    include_restricted: bool,
+    limit: int,
+) -> str:
+    payload = {
+        "kind": "copilot_hits",
+        "q": (query or "").strip().lower(),
+        "intent": intent or "",
+        "projects": sorted(project_codes or []),
+        "role": user_role or "",
+        "restricted": include_restricted,
+        "limit": limit,
+    }
+    digest = hashlib.sha256(json.dumps(payload, sort_keys=True, default=str).encode()).hexdigest()
+    return f"copilot:{digest[:32]}"
+
+
+def get_copilot_cached(key: str) -> list[dict[str, Any]] | None:
+    if not cache_enabled() or os.getenv("COPILOT_RETRIEVAL_CACHE_ENABLED", "true").strip().lower() not in {
+        "1", "true", "yes", "on",
+    }:
+        return None
+    now = time.time()
+    with _LOCK:
+        entry = _CACHE.get(key)
+        if not entry:
+            return None
+        expires, payload = entry
+        if expires < now:
+            _CACHE.pop(key, None)
+            return None
+        hits = payload.get("hits")
+        if not isinstance(hits, list):
+            return None
+        return list(hits)
+
+
+def set_copilot_cached(key: str, hits: list[dict[str, Any]]) -> None:
+    if not cache_enabled() or os.getenv("COPILOT_RETRIEVAL_CACHE_ENABLED", "true").strip().lower() not in {
+        "1", "true", "yes", "on",
+    }:
+        return
+    ttl = copilot_cache_ttl_seconds()
+    expires = time.time() + ttl
+    with _LOCK:
+        if len(_CACHE) >= cache_max_entries():
+            oldest = min(_CACHE.items(), key=lambda item: item[1][0])[0]
+            _CACHE.pop(oldest, None)
+        _CACHE[key] = (expires, {"hits": list(hits)})

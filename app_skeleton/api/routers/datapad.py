@@ -66,7 +66,7 @@ def project_file_extract(
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
-@router.get("/api/project-files/read", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/project-files/read")
 def read_project_file(project_code: str = Query(...), relative_path: str = Query(...)):
     folder_path = get_project_folder_path(project_code)
     if not folder_path:
@@ -84,7 +84,7 @@ def read_project_file(project_code: str = Query(...), relative_path: str = Query
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@router.get("/api/project-files/serve", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/project-files/serve")
 def serve_project_file(project_code: str = Query(...), relative_path: str = Query(...)):
     from fastapi.responses import FileResponse
     folder_path = get_project_folder_path(project_code)
@@ -263,7 +263,7 @@ def get_project_report(project_code: str) -> dict:
         
     return report
 
-@router.get("/api/datapad/document", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/datapad/document")
 def datapad_get_document(
     project_code: str = Query(...),
     relative_path: str = Query(...),
@@ -277,7 +277,7 @@ def datapad_get_document(
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
-@router.put("/api/datapad/document", dependencies=_FIREBASE_PROTECTED)
+@router.put("/api/datapad/document")
 def datapad_put_document(
     req: DatapadSaveRequest,
     user: dict[str, Any] = Depends(require_platform_user),
@@ -303,17 +303,17 @@ def datapad_put_document(
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
-@router.post("/api/datapad/suggest-headings", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/datapad/suggest-headings")
 def datapad_suggest_headings(req: DatapadContentRequest, user: dict = Depends(require_platform_user)) -> dict:
     require_role(user, ["editor", "admin"])
     return datapad.suggest_headings(req.content, req.doc_type)
 
-@router.post("/api/datapad/proofread", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/datapad/proofread")
 def datapad_proofread(req: DatapadContentRequest, user: dict = Depends(require_platform_user)) -> dict:
     require_role(user, ["editor", "admin"])
     return datapad.proofread_content(req.content)
 
-@router.post("/api/datapad/apply-patches", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/datapad/apply-patches")
 def datapad_apply_patches(
     req: DatapadApplyPatchesRequest,
     user: dict[str, Any] = Depends(require_platform_user),
@@ -337,7 +337,7 @@ def datapad_apply_patches(
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
-@router.post("/api/datapad/restore-backup", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/datapad/restore-backup")
 def datapad_restore_backup(
     req: DatapadRestoreRequest,
     user: dict[str, Any] = Depends(require_platform_user),
@@ -356,7 +356,7 @@ def datapad_restore_backup(
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
-@router.get("/api/datapad/section-summary", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/datapad/section-summary")
 def datapad_section_summary(
     project_code: str = Query(...),
     section_id: str | None = Query(None),

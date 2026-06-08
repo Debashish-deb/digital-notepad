@@ -7,6 +7,8 @@ import {
   RefreshCw,
   Send,
   Sparkles,
+  ThumbsDown,
+  ThumbsUp,
   User,
 } from 'lucide-react';
 import { apiFetch } from '@/services/client.js';
@@ -16,6 +18,9 @@ import {
   readStoredCategory,
   readStoredMode,
   sendCategoryChat,
+  sendCopilotFeedback,
+  readStoredSessionId,
+  writeStoredSessionId,
   setDebugModelsEnabled,
   isDebugModelsEnabled,
   writeStoredCategory,
@@ -33,6 +38,7 @@ import {
   formatChatProviderLabel,
 } from '@/lib/searchNavigation.js';
 import AssistantSearchHits from '@/features/search/components/AssistantSearchHits.jsx';
+import OrchestratorAnswerView, { parseOrchestratorSections } from './OrchestratorAnswerView.jsx';
 import '@/features/search/components/UnifiedSearch.css';
 import '@/features/ai-assistant/styles/AiAssistantChat.css';
 const AiAssistant3DScene = lazy(() => import('./AiAssistant3DScene.jsx'));
@@ -133,6 +139,8 @@ function formatAssistantPayload(data) {
     evidenceValidationNotes: Array.isArray(data?.evidence_validation_notes)
       ? data.evidence_validation_notes.filter(Boolean)
       : [],
+    claimValidations: Array.isArray(data?.claim_validations) ? data.claim_validations : [],
+    responseSections: Array.isArray(data?.response_sections) ? data.response_sections : [],
   };
 }
 
@@ -146,13 +154,21 @@ function evidenceConfidenceLabel(level) {
 }
 
 function evidenceMessageMeta(formatted) {
-  if (!formatted?.evidenceOrchestrator && !formatted?.evidenceConfidence) return {};
+  if (
+    !formatted?.evidenceOrchestrator
+    && !formatted?.evidenceConfidence
+    && !formatted?.responseSections?.length
+  ) {
+    return {};
+  }
   return {
     evidenceOrchestrator: formatted.evidenceOrchestrator,
     evidenceConfidence: formatted.evidenceConfidence,
     evidenceCount: formatted.evidenceCount,
     crossSourceSummary: formatted.crossSourceSummary,
     evidenceValidationNotes: formatted.evidenceValidationNotes,
+    claimValidations: formatted.claimValidations,
+    responseSections: formatted.responseSections,
   };
 }
 
@@ -406,6 +422,7 @@ export default function ChatWidget({
 
   const textareaRef = useRef(null);
   const revealAbortRef = useRef(null);
+  const sessionIdRef = useRef(readStoredSessionId());
 
   const projectCodes = useMemo(
     () => dbProjects.map(normalizeProjectCode).filter(Boolean),
@@ -604,13 +621,25 @@ export default function ChatWidget({
 
       try {
         if (!useLegacyModelPicker) {
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === streamedAssistantId
+                ? { ...msg, statusText: 'Retrieving lab evidence…' }
+                : msg,
+            ),
+          );
           const data = await sendCategoryChat({
             message: textToSend,
             category: selectedCategory,
             mode: selectedMode,
             project_codes: selProjs,
             library_scope: libraryScope,
+            session_id: sessionIdRef.current || null,
           });
+          if (data?.session_id) {
+            sessionIdRef.current = data.session_id;
+            writeStoredSessionId(data.session_id);
+          }
           const formatted = formatAssistantPayload({
             ...data,
             synthesis_mode: data?.synthesis_mode || 'category_agents',
@@ -757,8 +786,24 @@ export default function ChatWidget({
           }),
         ]);
       } catch (error) {
+        const failureText = error?.message || 'The copilot request failed.';
         if (streamedAssistantId) {
-          setMessages((prev) => prev.filter((msg) => msg.id !== streamedAssistantId));
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === streamedAssistantId
+                ? {
+                    ...msg,
+                    streaming: false,
+                    statusText: null,
+                    isError: true,
+                    content:
+                      `${failureText}\n\n`
+                      + 'If this persists, run `python scripts/debug_rag_wiring.py` while the API is up '
+                      + 'or enable Debug models in chat settings for a direct LLM path.',
+                  }
+                : msg,
+            ),
+          );
         }
         const isAuthError = error?.status === 401;
         const isRoleBlocked = error?.status === 403;
@@ -1066,6 +1111,14 @@ export default function ChatWidget({
                     <TypingIndicator />
                     <span>{message.statusText || 'Composing answer…'}</span>
                   </div>
+                ) : message.evidenceOrchestrator
+                  && (message.responseSections?.length > 0
+                    || parseOrchestratorSections(message.content).length > 0) ? (
+                  <OrchestratorAnswerView
+                    text={message.content}
+                    sections={message.responseSections}
+                    claimValidations={message.claimValidations}
+                  />
                 ) : (
                   <MarkdownLite text={message.content} />
                 )}
@@ -1091,6 +1144,65 @@ export default function ChatWidget({
                     onAskFollowUp={handleAskFollowUp}
                     onSearchOmnibox={onOpenSearch ? handleSearchOmnibox : null}
                   />
+                ) : null}
+
+                {message.role === 'assistant' && !message.isError && !message.isWelcome && message.queryContext ? (
+                  <div className="chat-feedback-row" role="group" aria-label="Rate this answer">
+                    <button
+                      type="button"
+                      className={`chat-feedback-btn${message.feedbackRating === 1 ? ' is-active' : ''}`}
+                      title="Helpful"
+                      disabled={message.feedbackSent}
+                      onClick={async () => {
+                        try {
+                          await sendCopilotFeedback({
+                            query_text: message.queryContext,
+                            answer_excerpt: (message.content || '').slice(0, 500),
+                            rating: 1,
+                            session_id: sessionIdRef.current || null,
+                            intent: message.intent,
+                            project_codes: selProjs,
+                          });
+                          setMessages((prev) =>
+                            prev.map((m) =>
+                              m.id === message.id ? { ...m, feedbackRating: 1, feedbackSent: true } : m,
+                            ),
+                          );
+                        } catch {
+                          /* ignore */
+                        }
+                      }}
+                    >
+                      <ThumbsUp size={14} aria-hidden="true" />
+                    </button>
+                    <button
+                      type="button"
+                      className={`chat-feedback-btn${message.feedbackRating === -1 ? ' is-active' : ''}`}
+                      title="Not helpful"
+                      disabled={message.feedbackSent}
+                      onClick={async () => {
+                        try {
+                          await sendCopilotFeedback({
+                            query_text: message.queryContext,
+                            answer_excerpt: (message.content || '').slice(0, 500),
+                            rating: -1,
+                            session_id: sessionIdRef.current || null,
+                            intent: message.intent,
+                            project_codes: selProjs,
+                          });
+                          setMessages((prev) =>
+                            prev.map((m) =>
+                              m.id === message.id ? { ...m, feedbackRating: -1, feedbackSent: true } : m,
+                            ),
+                          );
+                        } catch {
+                          /* ignore */
+                        }
+                      }}
+                    >
+                      <ThumbsDown size={14} aria-hidden="true" />
+                    </button>
+                  </div>
                 ) : null}
 
                 {message.isError && message.originalQuestion ? (

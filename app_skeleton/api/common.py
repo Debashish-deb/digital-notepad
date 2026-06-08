@@ -86,13 +86,9 @@ from app_skeleton.api.document_registry import list_documents as list_registry_d
 
 from app_skeleton.api import platform_admin
 
-from app_skeleton.api.auth_firebase import require_admin, require_firebase_user
-
 from app_skeleton.api import datapad_service as datapad
 
 from app_skeleton.api.datapad_service import ConflictError
-
-_FIREBASE_PROTECTED = [Depends(require_firebase_user)]
 
 from app_skeleton.api.supabase_sync import (
     sync_documents_to_supabase,

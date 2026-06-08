@@ -5,20 +5,31 @@ import logging
 import os
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Any
 
 import psycopg
 from qdrant_client import QdrantClient
 
 from app_skeleton.api.database_processor import search_section_chunks
-from app_skeleton.api.paths import PROCESSED_DIR
+from app_skeleton.api.chat_intent import PROJECT_CODE_ALIASES, detect_project_code
+from app_skeleton.api.paths import PROCESSED_DIR, PUBLIC_PROCESSED_DIR
 from app_skeleton.api.project_processor import load_processed
 from app_skeleton.api.storage_stub import storage_roots
 from app_skeleton.api.lab_knowledge_store import get_lab_index_stats, search_lab_knowledge
 from app_skeleton.api.llm_client import LLMClient
 from app_skeleton.api.document_library_service import search_documents as search_document_library_rows
 from app_skeleton.api.raw_vault_store import deduplication_report, review_queue, search_vault
-from app_skeleton.api.retrieval_cache import get_cached, make_cache_key, set_cached, should_cache
+from app_skeleton.api.retrieval_cache import (
+    get_cached,
+    get_copilot_cached,
+    make_cache_key,
+    make_copilot_cache_key,
+    set_cached,
+    set_copilot_cached,
+    should_cache,
+)
+from app_skeleton.api.project_knowledge_store import search_project_knowledge
 from app_skeleton.api.search_models import (
     SearchFilters,
     SearchHit,
@@ -29,6 +40,8 @@ from app_skeleton.api.search_models import (
 from app_skeleton.api.research_knowledge_store import search_research
 from app_skeleton.api.people_index import search_people
 from app_skeleton.api.search_nav import hit_source_label, nav_for_bucket, vault_domain_for_page
+from app_skeleton.api.chunk_fts import search_chunks_fts
+from app_skeleton.api.rerank_service import rerank_hits as cross_rerank_hits
 
 LOGGER = logging.getLogger(__name__)
 
@@ -67,10 +80,37 @@ FILTER_SOURCE_SUPPORT: dict[str, frozenset[str]] = {
     "project": frozenset({"project_codes"}),
 }
 
-COPILOT_MIN_SCORE = float(os.getenv("COPILOT_MIN_SIMILARITY", "0.06"))
+COPILOT_MIN_SCORE_DEFAULT = float(os.getenv("COPILOT_MIN_SIMILARITY", "0.06"))
+
+COPILOT_MIN_SCORE_BY_INTENT: dict[str, float] = {
+    "project_question": 0.04,
+    "protocol_question": 0.05,
+    "research_question": 0.08,
+    "search_request": 0.07,
+    "people_question": 0.06,
+}
+
+
+def copilot_min_score(intent: str | None) -> float:
+    """Per-intent relevance gate — stricter for research, looser for project workspace."""
+    if not intent:
+        return COPILOT_MIN_SCORE_DEFAULT
+    env_key = f"COPILOT_MIN_SIMILARITY_{intent.upper()}"
+    override = os.getenv(env_key, "").strip()
+    if override:
+        try:
+            return float(override)
+        except ValueError:
+            pass
+    return COPILOT_MIN_SCORE_BY_INTENT.get(intent, COPILOT_MIN_SCORE_DEFAULT)
+
+
+# Backward-compatible alias for tests
+COPILOT_MIN_SCORE = COPILOT_MIN_SCORE_DEFAULT
 
 INTENT_SCOPES: dict[str, str] = {
     "research_question": "research,lab,file,vault,document_library,notebook,wiki",
+    "project_question": "project,file,lab,vault,document_library,notebook,wiki,research",
     "protocol_question": "lab,vault,file,document_library,notebook,wiki",
     "search_request": "research,lab,file,vault,document_library,notebook,wiki",
     "people_question": "people,lab,research",
@@ -80,12 +120,14 @@ INTENT_SCOPES: dict[str, str] = {
 
 INTENT_BUCKET_CAPS: dict[str, dict[str, int]] = {
     "research_question": {"vault": 2, "file": 3, "lab": 4},
+    "project_question": {"research": 5, "vault": 2, "file": 4},
     "search_request": {"vault": 2, "file": 3},
     "protocol_question": {"research": 1},
     "people_question": {"file": 2, "vault": 2},
 }
 
 RESEARCH_INTENTS = frozenset({"research_question", "search_request"})
+PROJECT_INTENTS = frozenset({"project_question"})
 PROTOCOL_INTENTS = frozenset({"protocol_question"})
 
 INTENT_BUCKET_WEIGHTS: dict[str, dict[str, float]] = {
@@ -121,7 +163,51 @@ INTENT_BUCKET_WEIGHTS: dict[str, dict[str, float]] = {
         "lab": 1.05,
         "research": 0.9,
     },
+    "project_question": {
+        **BUCKET_WEIGHTS,
+        "project": 1.38,
+        "file": 1.28,
+        "lab": 1.12,
+        "vault": 0.95,
+        "research": 0.98,
+    },
 }
+
+
+def _copilot_include_restricted(
+    user_role: str | None,
+    *,
+    include_restricted: bool | None = None,
+) -> bool:
+    """Lab copilot visibility — admin/editor/researcher see restricted lab content; not auth secrets."""
+    if include_restricted is not None:
+        return include_restricted
+    return (user_role or "").lower() in {"admin", "editor", "researcher"}
+
+
+_KNOWN_PROJECT_CODES = {canonical.upper() for canonical in PROJECT_CODE_ALIASES.values()}
+
+
+def _known_project_code(code: str | None) -> str | None:
+    if not code:
+        return None
+    upper = code.upper()
+    if upper in _KNOWN_PROJECT_CODES:
+        return code
+    return None
+
+
+def _project_research_query(query: str, project_codes: list[str] | None) -> str | None:
+    """Enrich research retrieval when a project code is mentioned."""
+    code = _known_project_code(detect_project_code(query))
+    if not code and project_codes:
+        code = _known_project_code(project_codes[0]) or project_codes[0]
+    if not code:
+        return None
+    lower = (query or "").lower()
+    if code.lower() in lower:
+        return query
+    return f"{code} {query}".strip()
 
 
 def _tokenize_for_rerank(text: str) -> set[str]:
@@ -761,6 +847,40 @@ class SearchService:
             if explain:
                 explain_data["engines"].append({"scope": "lab", "engine": "qdrant+postgres", "count": len(raw_hits)})
 
+        if "lab" in active_scopes and run_keyword:
+            fts_before = len(raw_hits)
+            seen_lab_ids = {h.id for h in raw_hits if h.bucket == "lab"}
+            for fts in search_chunks_fts(query, section_id=section_id, limit=per_bucket):
+                chunk_uid = fts.get("chunk_uid") or ""
+                if chunk_uid in seen_lab_ids:
+                    continue
+                meta = fts.get("metadata") or {}
+                sid = meta.get("section_id")
+                rel = meta.get("relative_path") or ""
+                raw_hits.append(
+                    SearchHit(
+                        id=str(chunk_uid or fts.get("document_code")),
+                        bucket="lab",
+                        title=fts.get("title") or "Lab document",
+                        snippet=(fts.get("chunk_text") or "")[:1200],
+                        score=float(fts.get("score") or 0.0) * BUCKET_WEIGHTS["lab"] * 1.1,
+                        source=hit_source_label("lab"),
+                        section_id=sid,
+                        document_code=fts.get("document_code"),
+                        relative_path=rel or None,
+                        highlights=_highlight_tokens(query, fts.get("chunk_text") or ""),
+                        nav=nav_for_bucket("lab", section_id=sid, relative_path=rel or None),
+                        metadata={"engine": "postgres_fts", "corpus": meta.get("corpus")},
+                    )
+                )
+                seen_lab_ids.add(chunk_uid)
+            if explain:
+                explain_data["engines"].append({
+                    "scope": "lab",
+                    "engine": "postgres_fts",
+                    "count": len(raw_hits) - fts_before,
+                })
+
         if "file" in active_scopes and run_keyword:
             file_before = len(raw_hits)
             for chunk in search_section_chunks(query, section_id=section_id, limit=per_bucket):
@@ -956,6 +1076,44 @@ class SearchService:
                 )
             if explain:
                 explain_data["engines"].append({"scope": "research", "engine": "qdrant+postgres", "count": len(raw_hits) - rk_before})
+
+        if run_semantic and ("file" in active_scopes or "project" in active_scopes):
+            pw_sem_before = len(raw_hits)
+            seen_pw = {h.id for h in raw_hits if h.bucket == "file"}
+            for hit in search_project_knowledge(
+                query,
+                project_codes=codes,
+                limit=per_bucket,
+                qdrant=self.qdrant,
+                llm=self.llm,
+            ):
+                chunk_uid = hit.get("chunk_uid") or ""
+                if chunk_uid in seen_pw:
+                    continue
+                seen_pw.add(chunk_uid)
+                code = hit.get("project_code") or ""
+                rel = hit.get("relative_path") or ""
+                raw_hits.append(
+                    SearchHit(
+                        id=str(chunk_uid or hit.get("document_code")),
+                        bucket="file",
+                        title=hit.get("title") or "Project document",
+                        snippet=(hit.get("excerpt") or "")[:1200],
+                        score=float(hit.get("score") or 0.0) * BUCKET_WEIGHTS["file"] * 1.15,
+                        source=f"Project workspace · {code}" if code else "Project workspace",
+                        project_code=code or None,
+                        relative_path=rel or None,
+                        highlights=_highlight_tokens(query, hit.get("excerpt") or ""),
+                        nav=nav_for_bucket("file", project_code=code or None, relative_path=rel or None),
+                        metadata={"corpus": "project_workspace", "workspace": True, "engine": "qdrant"},
+                    )
+                )
+            if explain:
+                explain_data["engines"].append({
+                    "scope": "project_workspace",
+                    "engine": "qdrant+postgres",
+                    "count": len(raw_hits) - pw_sem_before,
+                })
 
         if run_keyword and ("file" in active_scopes or "project" in active_scopes):
             pw_before = len(raw_hits)
@@ -1223,6 +1381,53 @@ class SearchService:
             LOGGER.warning("Project search failed: %s", exc)
         return hits
 
+    def _iter_processed_twin_codes(self) -> list[str]:
+        seen: set[str] = set()
+        codes: list[str] = []
+        for base in (PROCESSED_DIR, PUBLIC_PROCESSED_DIR):
+            if not base.is_dir():
+                continue
+            for path in sorted(base.glob("*.json")):
+                if path.name.startswith("lab__"):
+                    continue
+                code = path.stem
+                if code not in seen:
+                    seen.add(code)
+                    codes.append(code)
+        return codes
+
+    def _project_twin_summary_hit(self, code: str, query: str) -> SearchHit | None:
+        twin = load_processed(code)
+        if not twin:
+            return None
+        identity = twin.get("identity") or {}
+        name = identity.get("project_name") or code
+        summary = (identity.get("project_summary") or "").strip()
+        research_q = (identity.get("research_question") or "").strip()
+        if research_q and research_q.lower() != summary.lower():
+            blurb = f"{summary}\n\nResearch focus: {research_q}" if summary else research_q
+        else:
+            blurb = summary
+        if not blurb:
+            metrics = twin.get("metrics") or {}
+            blurb = (
+                f"Lab project {name} — "
+                f"{metrics.get('document_count', 0)} documents, "
+                f"{metrics.get('timeline_entries', 0)} timeline entries."
+            )
+        return SearchHit(
+            id=f"pw-summary-{code}",
+            bucket="file",
+            title=f"{name} project overview",
+            snippet=blurb[:1200],
+            score=0.95 * BUCKET_WEIGHTS["file"],
+            source=f"Project workspace · {code}",
+            project_code=code,
+            highlights=_highlight_tokens(query, blurb),
+            nav=SearchNavAction(main="projects_data", sub="portfolio", project_code=code),
+            metadata={"workspace": True, "project_summary": True},
+        )
+
     def _search_project_workspace_files(
         self,
         query: str,
@@ -1232,14 +1437,19 @@ class SearchService:
     ) -> list[SearchHit]:
         """Keyword search over processed project twins (portable JSON — no remote storage required)."""
         tokens = [t for t in re.findall(r"[a-z0-9\u00c0-\uffff]{3,}", (query or "").lower()) if t]
-        if not tokens or not PROCESSED_DIR.is_dir():
+        available_codes = self._iter_processed_twin_codes()
+        if not available_codes:
             return []
 
+        query_code = detect_project_code(query)
         hits: list[SearchHit] = []
-        for path in sorted(PROCESSED_DIR.glob("*.json")):
-            if path.name.startswith("lab__"):
-                continue
-            code = path.stem
+
+        if query_code:
+            summary_hit = self._project_twin_summary_hit(query_code, query)
+            if summary_hit:
+                hits.append(summary_hit)
+
+        for code in available_codes:
             if project_codes and code not in project_codes:
                 continue
             twin = load_processed(code)
@@ -1400,30 +1610,93 @@ class SearchService:
         intent: str | None = None,
         project_codes: list[str] | None = None,
         limit: int = 12,
+        prioritize_buckets: tuple[str, ...] | list[str] | None = None,
+        parallel_scopes: bool | None = None,
+        user_role: str | None = None,
+        include_restricted: bool | None = None,
     ) -> list[SearchHit]:
         """Intent-aware retrieval for chat/ask — rerank, gate, dedup, diversify."""
         codes = ",".join(project_codes) if project_codes else None
         scopes = INTENT_SCOPES.get(intent or "", "lab,file,vault,notebook,wiki,research,people")
         fetch_limit = max(limit * 3, 24)
+        allow_restricted = _copilot_include_restricted(user_role, include_restricted=include_restricted)
+        min_score = copilot_min_score(intent)
+
+        cache_key = make_copilot_cache_key(
+            query=query,
+            intent=intent,
+            project_codes=project_codes,
+            user_role=user_role,
+            include_restricted=allow_restricted,
+            limit=limit,
+        )
+        if should_cache(include_restricted=allow_restricted, user_role=user_role):
+            cached_hits = get_copilot_cached(cache_key)
+            if cached_hits:
+                return [SearchHit(**h) for h in cached_hits[:limit]]
         resp = self.unified_search(
             query,
             scopes=scopes,
             project_codes=codes,
             mode="hybrid",
             limit=fetch_limit,
-            include_restricted=False,
+            include_restricted=allow_restricted,
+            user_role=user_role,
         )
         hits = list(resp.hits)
 
+        use_parallel = (
+            parallel_scopes
+            if parallel_scopes is not None
+            else os.getenv("CHAT_PARALLEL_RETRIEVAL", "true").strip().lower() in {"1", "true", "yes", "on"}
+        )
+        priority_buckets = tuple(dict.fromkeys(prioritize_buckets or ()))
+        if use_parallel and priority_buckets:
+            per_scope_limit = max(6, limit)
+            max_workers = min(4, len(priority_buckets))
+            seen_keys = {f"{h.bucket}:{h.id}" for h in hits}
+
+            def _fetch_bucket(bucket: str) -> list[SearchHit]:
+                scope_resp = self.unified_search(
+                    query,
+                    scopes=bucket,
+                    project_codes=codes,
+                    mode="hybrid",
+                    limit=per_scope_limit,
+                    include_restricted=allow_restricted,
+                    user_role=user_role,
+                )
+                return list(scope_resp.hits)
+
+            with ThreadPoolExecutor(max_workers=max_workers) as pool:
+                futures = {pool.submit(_fetch_bucket, bucket): bucket for bucket in priority_buckets[:max_workers]}
+                for future in as_completed(futures):
+                    try:
+                        scoped_hits = future.result()
+                    except Exception as exc:
+                        LOGGER.warning("Parallel copilot scope fetch failed (%s): %s", futures[future], exc)
+                        continue
+                    for hit in scoped_hits:
+                        key = f"{hit.bucket}:{hit.id}"
+                        if key not in seen_keys:
+                            seen_keys.add(key)
+                            hits.append(hit)
+
         # Research-heavy intents: pull extra research hits so vault/file cannot crowd them out.
-        if intent in RESEARCH_INTENTS:
+        if intent in RESEARCH_INTENTS or intent in PROJECT_INTENTS:
+            research_query = query
+            if intent in PROJECT_INTENTS:
+                enriched = _project_research_query(query, project_codes)
+                if enriched:
+                    research_query = enriched
             rk_resp = self.unified_search(
-                query,
+                research_query,
                 scopes="research",
                 project_codes=codes,
                 mode="hybrid",
                 limit=max(8, limit),
-                include_restricted=False,
+                include_restricted=allow_restricted,
+                user_role=user_role,
             )
             seen = {f"{h.bucket}:{h.id}" for h in hits}
             for hit in rk_resp.hits:
@@ -1434,21 +1707,52 @@ class SearchService:
 
         hits = _apply_intent_weights(hits, intent)
         hits.sort(key=lambda h: h.score, reverse=True)
-        research_pool = [h for h in hits if h.bucket == "research"] if intent in RESEARCH_INTENTS else []
+        research_pool = (
+            [h for h in hits if h.bucket == "research"]
+            if intent in RESEARCH_INTENTS or intent in PROJECT_INTENTS
+            else []
+        )
         lab_pool = [h for h in hits if h.bucket == "lab"] if intent in PROTOCOL_INTENTS else []
-        hits = _rerank_hits(query, hits, top_n=min(fetch_limit, 30))
-        hits = [h for h in hits if h.score >= COPILOT_MIN_SCORE]
-        for pool in (research_pool, lab_pool):
+        project_pool = [h for h in hits if h.bucket in {"project", "file"}] if intent in PROJECT_INTENTS else []
+        hits = cross_rerank_hits(query, hits, top_n=min(fetch_limit, 30))
+        hits = [h for h in hits if h.score >= min_score]
+        for pool in (research_pool, lab_pool, project_pool):
             seen = {f"{h.bucket}:{h.id}" for h in hits}
             for hit in pool:
                 key = f"{hit.bucket}:{hit.id}"
-                if key not in seen and hit.score >= COPILOT_MIN_SCORE:
+                if key not in seen and hit.score >= min_score:
                     hits.append(hit)
                     seen.add(key)
         bucket_caps = INTENT_BUCKET_CAPS.get(intent or "", {})
-        min_research = 2 if intent in RESEARCH_INTENTS else 0
+        min_research = 2 if intent in RESEARCH_INTENTS else (2 if intent in PROJECT_INTENTS else 0)
         min_lab = 1 if intent in PROTOCOL_INTENTS else 0
-        if min_research:
+        min_project = 2 if intent in PROJECT_INTENTS else 0
+
+        if min_project:
+            result = _reserve_bucket_slots(
+                hits,
+                bucket="file",
+                min_count=min_project,
+                limit=limit,
+                bucket_caps=bucket_caps,
+            )
+            if [h for h in project_pool if h.bucket == "project"]:
+                result = _reserve_bucket_slots(
+                    result,
+                    bucket="project",
+                    min_count=1,
+                    limit=limit,
+                    bucket_caps=bucket_caps,
+                )
+            if min_research:
+                result = _reserve_bucket_slots(
+                    result,
+                    bucket="research",
+                    min_count=min_research,
+                    limit=limit,
+                    bucket_caps=bucket_caps,
+                )
+        elif min_research:
             result = _reserve_bucket_slots(
                 hits,
                 bucket="research",
@@ -1457,19 +1761,29 @@ class SearchService:
                 bucket_caps=bucket_caps,
             )
             if min_lab:
-                return _reserve_bucket_slots(result, bucket="lab", min_count=min_lab, limit=limit, bucket_caps=bucket_caps)
-            return result
-        if min_lab:
-            return _reserve_bucket_slots(
+                result = _reserve_bucket_slots(
+                    result,
+                    bucket="lab",
+                    min_count=min_lab,
+                    limit=limit,
+                    bucket_caps=bucket_caps,
+                )
+        elif min_lab:
+            result = _reserve_bucket_slots(
                 hits,
                 bucket="lab",
                 min_count=min_lab,
                 limit=limit,
                 bucket_caps=bucket_caps,
             )
-        return _dedup_and_diversify(
-            hits,
-            limit,
-            max_per_bucket=4,
-            bucket_caps=bucket_caps,
-        )
+        else:
+            result = _dedup_and_diversify(
+                hits,
+                limit,
+                max_per_bucket=4,
+                bucket_caps=bucket_caps,
+            )
+
+        if should_cache(include_restricted=allow_restricted, user_role=user_role):
+            set_copilot_cached(cache_key, [h.model_dump() for h in result])
+        return result

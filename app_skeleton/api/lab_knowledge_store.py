@@ -26,6 +26,7 @@ from app_skeleton.api.database_processor import (
     get_section_record,
     load_processed_section,
 )
+from app_skeleton.api.embedding_service import embedding_dim as _embedding_dim
 from app_skeleton.api.llm_client import LLMClient
 from app_skeleton.api.paths import DATABASE_ROOT
 
@@ -34,7 +35,7 @@ LOGGER = logging.getLogger(__name__)
 LAB_CORPUS = "lab_operations"
 SOURCE_TYPE_LAB = "lab_policy_document"
 COLLECTION_DOC_CHUNKS = "doc_chunks"
-EMBEDDING_DIM = 384
+EMBEDDING_DIM = _embedding_dim()
 SCHEMA_VERSION = 1
 
 

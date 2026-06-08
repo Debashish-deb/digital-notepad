@@ -1774,6 +1774,9 @@ def load_processed(project_code: str) -> dict | None:
     path = PROCESSED_DIR / f"{project_code}.json"
     if path.exists():
         return json.loads(path.read_text(encoding="utf-8"))
+    public_path = PUBLIC_PROCESSED_DIR / f"{project_code}.json"
+    if public_path.exists():
+        return json.loads(public_path.read_text(encoding="utf-8"))
     return None
 
 

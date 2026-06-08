@@ -119,6 +119,10 @@ class LLMClient:
                     "https://generativelanguage.googleapis.com/v1beta/openai/",
                 )
 
+        if self.provider == "ollama":
+            if not self.model or self.model == "mock-model":
+                self.model = _env("OLLAMA_MODEL", "qwen2.5:3b") or "qwen2.5:3b"
+
         self.timeout_seconds = _bounded_float(_env("LLM_TIMEOUT_SECONDS", "45"), 45.0, 2.0, 240.0)
         self.max_tokens = _bounded_int(_env("LLM_MAX_TOKENS", "1400"), 1400, 64, 12000)
         self.temperature = _bounded_float(_env("LLM_TEMPERATURE", "0.0"), 0.0, 0.0, 2.0)
@@ -186,9 +190,12 @@ class LLMClient:
             )
         if provider == "ollama":
             ollama_cfg = self._ollama_endpoint()
+            ollama_model = _env("OLLAMA_MODEL", "") or self.model
+            if not ollama_model or ollama_model == "mock-model":
+                ollama_model = "qwen2.5:3b"
             return ProviderConfig(
                 "ollama",
-                _env("OLLAMA_MODEL", self.model if self.provider == "ollama" else "llama3"),
+                ollama_model,
                 ollama_cfg["api_key"],
                 ollama_cfg["base_url"],
             )
@@ -682,43 +689,19 @@ class LLMClient:
             lines.append(f"- [{source['index']}] {source['title']}: {excerpt}...")
         return "\n".join(lines) if len(lines) > 1 else ""
 
-    def embed(self, text: str, dim: int = 384) -> List[float]:
-        """Generate a stable L2-normalized hashed embedding for offline RAG.
+    def _hash_embed(self, text: str, dim: int = 384) -> List[float]:
+        """Stable L2-normalized hashed embedding (offline fallback)."""
+        from app_skeleton.api.embedding_service import hash_embed
 
-        This intentionally avoids external calls by default so privacy-sensitive
-        queries can still retrieve local Qdrant documentation. It is deterministic
-        across processes and suitable for local/private indexing demos.
-        """
         dim = _bounded_int(dim, 384, 32, 4096)
-        vec = [0.0] * dim
-        tokens = _TOKEN_RE.findall((text or "").lower())
+        return hash_embed(text, dim=dim)
 
-        for token in tokens:
-            if token in _STOPWORDS:
-                continue
-            digest = hashlib.blake2b(token.encode("utf-8"), digest_size=16).digest()
-            idx = int.from_bytes(digest[:4], "big") % dim
-            sign = 1.0 if digest[4] % 2 == 0 else -1.0
-            weight = 1.0 + min(len(token), 24) / 24.0
-            vec[idx] += sign * weight
+    def embed(self, text: str, dim: int = 384) -> List[float]:
+        """Embed via embedding_service (Ollama when EMBEDDING_PROVIDER=ollama, else hash)."""
+        from app_skeleton.api.embedding_service import embed_text, embedding_dim
 
-            if len(token) >= 5:
-                for i in range(min(len(token) - 2, 10)):
-                    gram = token[i:i + 3]
-                    gd = hashlib.blake2b(gram.encode("utf-8"), digest_size=8).digest()
-                    vec[int.from_bytes(gd[:4], "big") % dim] += 0.22
-
-        # Add weak document-level features so extremely short scientific strings still separate.
-        for gram in self._char_ngrams((text or "").lower(), n=4, limit=64):
-            gd = hashlib.blake2b(gram.encode("utf-8"), digest_size=8).digest()
-            vec[int.from_bytes(gd[:4], "big") % dim] += 0.05
-
-        norm = math.sqrt(sum(v * v for v in vec))
-        if norm < 1e-9:
-            seed = hashlib.blake2b((text or "empty").encode("utf-8"), digest_size=32).digest()
-            vec = [((seed[i % len(seed)] / 255.0) * 2.0 - 1.0) for i in range(dim)]
-            norm = math.sqrt(sum(v * v for v in vec)) or 1.0
-        return [v / norm for v in vec]
+        dim = _bounded_int(dim, embedding_dim(), 32, 4096)
+        return embed_text(text, llm=self)
 
     @staticmethod
     def _char_ngrams(text: str, *, n: int = 4, limit: int = 64) -> list[str]:
@@ -728,7 +711,10 @@ class LLMClient:
         return [compact[i:i + n] for i in range(min(len(compact) - n + 1, limit))]
 
     def embed_many(self, texts: list[str], dim: int = 384) -> list[list[float]]:
-        return [self.embed(text, dim=dim) for text in texts]
+        from app_skeleton.api.embedding_service import embed_many, embedding_dim
+
+        dim = _bounded_int(dim, embedding_dim(), 32, 4096)
+        return embed_many(texts, llm=self)
 
     def synthesis_provenance(self) -> dict[str, Any]:
         """Return provenance for the most recent synthesis call."""

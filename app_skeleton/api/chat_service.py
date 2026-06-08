@@ -29,10 +29,17 @@ from app_skeleton.api.evidence_orchestrator import (
     build_orchestrator_system_prompt,
     build_orchestrator_user_prompt,
     evidence_items_to_grounding_hits,
+    orchestrator_answer_metadata,
     orchestrator_metadata,
     package_evidence,
     should_use_orchestrator,
     understand_query,
+)
+from app_skeleton.api.chat_session_store import (
+    append_turn,
+    ensure_session,
+    format_memory_block,
+    load_session_context,
 )
 from app_skeleton.api.common import SourceInfo, _clinical_context_for_question, query_postgres_metadata
 from app_skeleton.api.privacy_guardrails import allow_external_llm, guard_for_llm, is_external_provider
@@ -179,10 +186,12 @@ def _build_prompts(
     lang: str | None = None,
     evidence_package: Any | None = None,
     query_understanding: Any | None = None,
+    memory_block: str = "",
 ) -> tuple[str, str]:
+    memory_prefix = memory_block or ""
     if not intent_decision.use_rag:
         system_prompt = _intent_system_prompt(intent_decision, user_name=user_name, lang=lang)
-        return system_prompt, question
+        return system_prompt, memory_prefix + question
 
     db_block = _format_db_counts_block(db_data)
     clinical_prefix = (
@@ -202,7 +211,7 @@ def _build_prompts(
             lang=lang,
             answer_style=intent_decision.answer_style,
         )
-        user_content = build_orchestrator_user_prompt(
+        user_content = memory_prefix + build_orchestrator_user_prompt(
             question,
             evidence_package,
             db_block=db_block,
@@ -219,7 +228,7 @@ def _build_prompts(
     if use_grounding_template:
         grounding_hits = _grounding_hits_from_retrieval(unified_hits, rag_sources)
         system_prompt = _intent_system_prompt(intent_decision, user_name=user_name, lang=lang)
-        user_content = db_block + clinical_prefix + build_grounded_prompt(question, grounding_hits)
+        user_content = memory_prefix + db_block + clinical_prefix + build_grounded_prompt(question, grounding_hits)
         return system_prompt, user_content
 
     context_str = ""
@@ -231,11 +240,28 @@ def _build_prompts(
 
     system_prompt = _intent_system_prompt(intent_decision, user_name=user_name, lang=lang)
     user_content = (
-        db_block
+        memory_prefix
+        + db_block
         + clinical_prefix
         + f"Documentation Context:\n{context_str}\nQuestion: {question}"
     )
     return system_prompt, user_content
+
+
+_REGEN_SYSTEM_APPEND = (
+    "\n\nREGENERATION: A prior draft had weak or conflicting claim support. "
+    "Only state facts directly supported by the evidence package. "
+    "If uncertain, say evidence is insufficient. Do not invent statistics."
+)
+
+
+def _needs_evidence_regen(evidence_package: Any | None) -> bool:
+    if not evidence_package:
+        return False
+    for claim in (getattr(evidence_package, "claim_validations", None) or [])[:6]:
+        if claim.status in {"conflicting", "uncertain"}:
+            return True
+    return evidence_package.confidence in {"insufficient", "low"}
 
 
 def _intent_metadata(intent_decision: IntentDecision) -> dict[str, Any]:
@@ -293,6 +319,7 @@ def answer_chat(
     *,
     project_codes: list[str] | None = None,
     user: dict[str, Any] | None = None,
+    session_id: str | None = None,
     llm: Any,
     search_svc: SearchService,
     rag_agent: Any,
@@ -301,9 +328,18 @@ def answer_chat(
     """Answer a chat turn with privacy guardrails, intent routing, and optional RAG."""
     provider = getattr(llm, "provider", "mock") or "mock"
     max_sources = _env_int("CHAT_MAX_SOURCES", 12, low=4, high=24)
+    user_role = (user or {}).get("role")
     intent_decision = classify_and_enrich(message)
     query_understanding = understand_query(message, intent_decision)
     user_name = _user_display_name(user)
+    user_email = (user or {}).get("email") or ""
+    active_session = ensure_session(
+        session_id=session_id,
+        user_email=user_email,
+        project_codes=project_codes,
+    )
+    session_ctx = load_session_context(active_session, user_email=user_email) if active_session else None
+    memory_block = format_memory_block(session_ctx)
     response_lang = _detect_response_language(message)
     intent_meta = _intent_metadata(intent_decision)
     chat_ctx = build_user_context(message, user=user, project_codes=project_codes)
@@ -390,15 +426,25 @@ def answer_chat(
         if search_fn is not None:
             unified_hits = search_fn(safe_message, project_codes, max_sources)
         else:
+            retrieval_limit = max_sources
+            if intent_decision.intent == "project_question" and (user_role or "").lower() in {
+                "admin",
+                "editor",
+                "researcher",
+            }:
+                retrieval_limit = min(max_sources + 4, 24)
             unified_hits = search_svc.hits_for_copilot(
                 safe_message,
                 intent=intent_decision.intent,
                 project_codes=project_codes,
-                limit=max_sources,
+                limit=retrieval_limit,
+                prioritize_buckets=query_understanding.search_plan.prioritize_buckets,
+                user_role=user_role,
             )
         use_legacy_rag = os.getenv("CHAT_USE_LEGACY_RAG", "false").lower() in {"1", "true", "yes"}
-        if use_legacy_rag and len(unified_hits) < max(3, max_sources // 2):
+        if use_legacy_rag and rag_agent is not None and len(unified_hits) < max(3, max_sources // 2):
             rag_sources = rag_agent.retrieve(safe_message, project_codes)
+            limitations.append("Legacy RAGAgent supplement used — prefer unified SearchService only.")
         retrieved_sources, unified_hits = _hits_to_sources(unified_hits, rag_sources, limit=max_sources)
         evidence_package = package_evidence(
             unified_hits,
@@ -438,9 +484,18 @@ def answer_chat(
         lang=response_lang,
         evidence_package=evidence_package,
         query_understanding=query_understanding,
+        memory_block=memory_block,
     )
 
     answer = llm.generate(user_content, system_prompt)
+    regenerated = False
+    if intent_decision.use_rag and _needs_evidence_regen(evidence_package):
+        regen_system = system_prompt + _REGEN_SYSTEM_APPEND
+        answer = llm.generate(user_content, regen_system)
+        regenerated = True
+        limitations.append(
+            "Answer regenerated after claim validation flagged weak or conflicting source support."
+        )
     provenance = _llm_provenance(llm, configured_provider=provider)
 
     if intent_decision.require_citations and retrieved_sources:
@@ -481,6 +536,24 @@ def answer_chat(
         ]
         search_hits_payload = [h.model_dump() for h in unified_hits]
 
+    response_meta = orchestrator_metadata(
+        query_understanding,
+        evidence_package if intent_decision.use_rag else None,
+    )
+    if should_use_orchestrator(intent_decision) and evidence_package:
+        response_meta.update(orchestrator_answer_metadata(answer))
+
+    if active_session and user_email:
+        append_turn(active_session, user_email=user_email, role="user", content=safe_message, intent=intent_decision.intent)
+        append_turn(
+            active_session,
+            user_email=user_email,
+            role="assistant",
+            content=answer[:8000],
+            intent=intent_decision.intent,
+            metadata={"regenerated": regenerated},
+        )
+
     return {
         "answer": answer,
         "limitations": limitations,
@@ -489,6 +562,8 @@ def answer_chat(
         "is_safe": True,
         "search_hits": search_hits_payload,
         "blocked_by_guardrail": False,
+        "session_id": active_session or None,
+        "answer_regenerated": regenerated,
         **provenance,
         "audit": {
             "redaction_count": audit.get("redaction_count", 0),
@@ -497,6 +572,6 @@ def answer_chat(
         },
         "system_prompt": system_prompt,
         "user_content": user_content,
-        **orchestrator_metadata(query_understanding, evidence_package if intent_decision.use_rag else None),
+        **response_meta,
         **intent_meta,
     }

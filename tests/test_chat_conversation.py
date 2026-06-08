@@ -34,6 +34,14 @@ class TestChatConversation(unittest.TestCase):
         self.assertEqual(decision.intent_category, INTENT_QUESTION)
         self.assertTrue(decision.use_rag)
 
+    def test_eyemt_project_maps_to_project_category(self) -> None:
+        from app_skeleton.api.chat_conversation import INTENT_PROJECT
+
+        decision = classify_and_enrich("tell more about EYEMT project")
+        self.assertEqual(decision.intent, "project_question")
+        self.assertEqual(decision.intent_category, INTENT_PROJECT)
+        self.assertTrue(decision.use_rag)
+
     def test_instant_greeting_no_capability_brochure(self) -> None:
         reply = instant_greeting_response("hello", UserChatContext())
         self.assertNotIn("OMEIA Research Copilot", reply)

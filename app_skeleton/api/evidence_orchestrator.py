@@ -9,6 +9,30 @@ from app_skeleton.api.chat_intent import IntentDecision, SCIENTIFIC_ACCESSION_PA
 from app_skeleton.api.research_search_service import normalize_query, tokenize_query
 
 ConfidenceLevel = Literal["high", "medium", "low", "insufficient"]
+ClaimStatus = Literal["corroborated", "single_source", "conflicting", "uncertain"]
+
+ORCHESTRATOR_SECTION_ORDER: tuple[tuple[str, str], ...] = (
+    ("executive_summary", r"executive\s+summary"),
+    ("evidence", r"evidence|key\s+findings"),
+    ("methods", r"methods?(?:\s*&\s*context)?|context(?:\s*&\s*methods)?"),
+    ("limitations", r"limitations?(?:\s*&\s*confidence)?|confidence(?:\s*assessment)?"),
+    ("references", r"references?|supporting\s+literature|citations?"),
+)
+
+SECTION_HEADER_RE = re.compile(
+    r"^(?:#{1,3}\s*|\d+\.\s*)?\*{0,2}(" + "|".join(pat for _, pat in ORCHESTRATOR_SECTION_ORDER) + r")\*{0,2}\s*:?\s*$",
+    re.I,
+)
+
+POSITIVE_CLAIM_RE = re.compile(
+    r"\b(increase[ds]?|elevated|high|associated with|predicts|promotes|enhances|correlates|improves|sensitive|response|benefit)\b",
+    re.I,
+)
+NEGATIVE_CLAIM_RE = re.compile(
+    r"\b(decrease[ds]?|reduced|low|lack(?:s|ing)?|inhibits|suppresses|resistant|no association|not associated|worse|poor)\b",
+    re.I,
+)
+SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
 
 # --- Master orchestrator principles (11) encoded as prompt sections ---
 
@@ -134,6 +158,7 @@ BUCKET_PRIORITY: dict[str, float] = {
 
 INTENT_SCOPE_MAP: dict[str, tuple[str, ...]] = {
     "research_question": ("research", "lab", "file", "vault", "document_library", "notebook", "wiki"),
+    "project_question": ("project", "file", "lab", "vault", "document_library", "notebook", "wiki", "research"),
     "protocol_question": ("lab", "vault", "file", "document_library", "notebook", "wiki"),
     "search_request": ("research", "lab", "file", "vault", "document_library", "notebook", "wiki"),
     "people_question": ("people", "lab", "wiki"),
@@ -175,6 +200,15 @@ class EvidenceItem:
     corroboration_count: int = 0
 
 
+@dataclass(frozen=True)
+class ClaimValidation:
+    claim: str
+    status: ClaimStatus
+    supporting_indices: tuple[int, ...]
+    conflicting_indices: tuple[int, ...] = ()
+    note: str = ""
+
+
 @dataclass
 class EvidencePackage:
     items: list[EvidenceItem] = field(default_factory=list)
@@ -182,6 +216,7 @@ class EvidencePackage:
     confidence: ConfidenceLevel = "insufficient"
     validation_notes: list[str] = field(default_factory=list)
     cross_source_summary: str = ""
+    claim_validations: list[ClaimValidation] = field(default_factory=list)
 
 
 def extract_domains(message: str) -> tuple[str, ...]:
@@ -214,6 +249,8 @@ def build_search_plan(intent_decision: IntentDecision, domains: tuple[str, ...],
         prioritize.extend(["research", "lab"])
     if "protocols_pipelines" in domains or intent == "protocol_question":
         prioritize.extend(["lab", "document_library", "vault"])
+    if intent == "project_question":
+        prioritize.extend(["project", "file", "lab", "research"])
     if "hgsc_immunology" in domains or "clinical_translational" in domains:
         prioritize.extend(["research", "lab", "project"])
     if intent == "people_question":
@@ -335,7 +372,175 @@ def _corroboration_counts(items: list[EvidenceItem], entities: tuple[str, ...]) 
     return updated
 
 
-def _assess_confidence(items: list[EvidenceItem], entities: tuple[str, ...]) -> tuple[ConfidenceLevel, list[str], str]:
+def _sentence_polarity(sentence: str) -> str:
+    text = sentence or ""
+    if re.search(r"\bnot\s+associated\b|\bno\s+association\b", text, re.I):
+        return "negative"
+    pos = bool(POSITIVE_CLAIM_RE.search(text))
+    neg = bool(NEGATIVE_CLAIM_RE.search(text))
+    if pos and neg:
+        return "mixed"
+    if pos:
+        return "positive"
+    if neg:
+        return "negative"
+    return "neutral"
+
+
+def _extract_claim_sentences(snippet: str, entities: tuple[str, ...]) -> list[str]:
+    sentences = [s.strip() for s in SENTENCE_SPLIT_RE.split(snippet or "") if s.strip()]
+    if not entities:
+        return [s for s in sentences if len(s) >= 40][:2]
+    matched = [s for s in sentences if any(ent.lower() in s.lower() for ent in entities)]
+    return matched[:3] if matched else sentences[:2]
+
+
+def validate_claims_across_sources(
+    items: list[EvidenceItem],
+    entities: tuple[str, ...],
+    *,
+    max_claims: int = 8,
+) -> list[ClaimValidation]:
+    """Cross-source claim validation via entity overlap and polarity heuristics."""
+    if not items:
+        return []
+
+    claim_map: dict[str, dict[str, Any]] = {}
+
+    for item in items:
+        for sentence in _extract_claim_sentences(item.snippet, entities):
+            key_entities = tuple(
+                ent for ent in entities if ent.lower() in sentence.lower()
+            ) or (sentence[:48].lower(),)
+            key = "|".join(sorted(e.lower() for e in key_entities))
+            entry = claim_map.setdefault(
+                key,
+                {
+                    "claim": sentence[:220],
+                    "by_index": {},
+                    "polarities": {},
+                    "buckets": set(),
+                },
+            )
+            entry["by_index"][item.index] = item.bucket
+            entry["polarities"][item.index] = _sentence_polarity(sentence)
+            entry["buckets"].add(item.bucket)
+
+    validations: list[ClaimValidation] = []
+    for entry in claim_map.values():
+        indices = tuple(sorted(entry["by_index"].keys()))
+        polarities = {entry["polarities"][idx] for idx in indices}
+        buckets = entry["buckets"]
+        claim = entry["claim"]
+
+        per_index = {idx: entry["polarities"][idx] for idx in indices}
+        has_positive = any(p == "positive" for p in per_index.values())
+        has_negative = any(p == "negative" for p in per_index.values())
+
+        if len(indices) >= 2 and len(buckets) >= 2:
+            if has_positive and has_negative:
+                validations.append(
+                    ClaimValidation(
+                        claim=claim,
+                        status="conflicting",
+                        supporting_indices=indices,
+                        conflicting_indices=indices,
+                        note="Sources disagree on directionality or association for this claim.",
+                    )
+                )
+                continue
+            if "mixed" in polarities:
+                validations.append(
+                    ClaimValidation(
+                        claim=claim,
+                        status="uncertain",
+                        supporting_indices=indices,
+                        note="Mixed polarity language across sources — interpret cautiously.",
+                    )
+                )
+                continue
+            validations.append(
+                ClaimValidation(
+                    claim=claim,
+                    status="corroborated",
+                    supporting_indices=indices,
+                    note=f"Corroborated across {len(buckets)} source classes.",
+                )
+            )
+        elif len(indices) == 1:
+            validations.append(
+                ClaimValidation(
+                    claim=claim,
+                    status="single_source",
+                    supporting_indices=indices,
+                    note="Supported by a single retrieved source only.",
+                )
+            )
+        else:
+            validations.append(
+                ClaimValidation(
+                    claim=claim,
+                    status="uncertain",
+                    supporting_indices=indices,
+                    note="Weak or ambiguous support in retrieved excerpts.",
+                )
+            )
+
+    status_rank = {"conflicting": 0, "uncertain": 1, "single_source": 2, "corroborated": 3}
+    validations.sort(key=lambda row: (status_rank.get(row.status, 9), -len(row.supporting_indices)))
+    return validations[:max_claims]
+
+
+def parse_orchestrator_sections(answer: str) -> list[dict[str, str]]:
+    """Parse orchestrator-formatted answers into UI sections."""
+    text = (answer or "").strip()
+    if not text:
+        return []
+
+    lines = text.splitlines()
+    sections: list[dict[str, str]] = []
+    current_id = "preamble"
+    current_label = "Overview"
+    buffer: list[str] = []
+
+    def _flush() -> None:
+        body = "\n".join(buffer).strip()
+        if body or current_id != "preamble":
+            sections.append({"id": current_id, "label": current_label, "body": body})
+
+    def _match_section(line: str) -> tuple[str, str] | None:
+        trimmed = line.strip()
+        if not trimmed:
+            return None
+        header_match = SECTION_HEADER_RE.match(trimmed)
+        if not header_match:
+            return None
+        header_text = re.sub(r"^\d+\.\s*", "", header_match.group(1)).strip("* ").strip(" :")
+        for section_id, pattern in ORCHESTRATOR_SECTION_ORDER:
+            if re.search(pattern, header_text, re.I):
+                return section_id, header_text or section_id.replace("_", " ").title()
+        return None
+
+    for line in lines:
+        matched = _match_section(line)
+        if matched:
+            _flush()
+            buffer = []
+            current_id, current_label = matched
+            continue
+        buffer.append(line)
+
+    _flush()
+    if len(sections) == 1 and sections[0]["id"] == "preamble":
+        return []
+    return [s for s in sections if s.get("body")]
+
+
+def _assess_confidence(
+    items: list[EvidenceItem],
+    entities: tuple[str, ...],
+    claim_validations: list[ClaimValidation] | None = None,
+) -> tuple[ConfidenceLevel, list[str], str]:
     notes: list[str] = []
     if not items:
         return "insufficient", ["No evidence items retrieved."], "No cross-source validation possible."
@@ -358,6 +563,14 @@ def _assess_confidence(items: list[EvidenceItem], entities: tuple[str, ...]) -> 
 
     if entities and corroborated == 0:
         notes.append(f"Query entities ({', '.join(entities[:3])}) not corroborated across multiple sources.")
+
+    conflicts = [v for v in (claim_validations or []) if v.status == "conflicting"]
+    if conflicts:
+        notes.append(f"{len(conflicts)} cross-source claim conflict(s) detected — see claim validation.")
+        if confidence == "high":
+            confidence = "medium"
+        elif confidence == "medium":
+            confidence = "low"
 
     cross_summary = (
         f"{len(items)} sources across {len(buckets)} buckets "
@@ -426,13 +639,15 @@ def package_evidence(
     for item in ranked:
         by_bucket[item.bucket] = by_bucket.get(item.bucket, 0) + 1
 
-    confidence, notes, cross_summary = _assess_confidence(ranked, entities)
+    claim_validations = validate_claims_across_sources(ranked, entities)
+    confidence, notes, cross_summary = _assess_confidence(ranked, entities, claim_validations)
     return EvidencePackage(
         items=ranked,
         by_bucket=by_bucket,
         confidence=confidence,
         validation_notes=notes,
         cross_source_summary=cross_summary,
+        claim_validations=claim_validations,
     )
 
 
@@ -458,6 +673,16 @@ def format_evidence_package_block(package: EvidencePackage) -> str:
     ]
     if package.validation_notes:
         lines.append("Validation notes: " + "; ".join(package.validation_notes))
+    if package.claim_validations:
+        lines.append("Claim validation:")
+        for claim in package.claim_validations[:6]:
+            refs = ", ".join(f"[{idx}]" for idx in claim.supporting_indices)
+            conflict = (
+                f" vs conflict {', '.join(f'[{i}]' for i in claim.conflicting_indices)}"
+                if claim.conflicting_indices
+                else ""
+            )
+            lines.append(f"  - ({claim.status}) {claim.claim[:160]} — {refs}{conflict}")
     lines.append("")
     for item in package.items:
         id_bits = []
@@ -563,7 +788,26 @@ def orchestrator_metadata(
         meta["cross_source_summary"] = package.cross_source_summary
         if package.validation_notes:
             meta["evidence_validation_notes"] = package.validation_notes
+        if package.claim_validations:
+            meta["claim_validations"] = [
+                {
+                    "claim": row.claim,
+                    "status": row.status,
+                    "supporting_indices": list(row.supporting_indices),
+                    "conflicting_indices": list(row.conflicting_indices),
+                    "note": row.note,
+                }
+                for row in package.claim_validations
+            ]
     return meta
+
+
+def orchestrator_answer_metadata(answer: str) -> dict[str, Any]:
+    """Structured section parse for chat UI rendering."""
+    sections = parse_orchestrator_sections(answer)
+    if not sections:
+        return {}
+    return {"response_sections": sections}
 
 
 def should_use_orchestrator(intent_decision: IntentDecision) -> bool:

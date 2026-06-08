@@ -9,6 +9,7 @@ ChatIntent = Literal[
     "general_chat",
     "app_help",
     "research_question",
+    "project_question",
     "protocol_question",
     "search_request",
     "coding_request",
@@ -46,7 +47,7 @@ RESEARCH_TERMS = {
     "tcga", "cptac", "hrd", "brca", "tp53", "chemotherapy", "immunotherapy",
     "färkkilä", "farkkila", "farkkila lab", "färkkilä lab",
     "lab study", "what does the lab study", "what does this lab study",
-    "space", "eyemt", "hgsc immunology", "ovarian cancer immunology",
+    "hgsc immunology", "ovarian cancer immunology",
     "immunotherapy", "stromal", "imc", "proteomics", "humanized", "xenograft",
     "finprove", "precision oncology", "translational",
 }
@@ -117,6 +118,46 @@ RESEARCH_PROTOCOL_SHORT_TERMS = RESEARCH_TERMS | PROTOCOL_TERMS | {
     "gse", "gsm", "ega", "tcga", "doi", "pmid", "accession", "dataset",
 }
 
+# Aliases (lowercase) → canonical project_code from projects_catalog.json
+PROJECT_CODE_ALIASES: dict[str, str] = {
+    "eyemt": "EyeMT",
+    "eye mt": "EyeMT",
+    "eye-mt": "EyeMT",
+    "spacejoint": "SPACEjoint",
+    "spacestat": "SPACEstat",
+    "space": "SPACE",
+    "kras": "KRAS",
+    "tls": "TLS",
+    "emt": "EMT",
+    "ipdc": "iPDC_1.0",
+    "finprove": "FINPROVE",
+    "pixel ai": "Pixel_AI",
+    "pixel_ai": "Pixel_AI",
+}
+
+PROJECT_QUESTION_PHRASES = (
+    "tell me about",
+    "tell more about",
+    "tell about",
+    "overview of",
+    "describe the",
+    "describe",
+    "project overview",
+    "about the project",
+    "about this project",
+    "workspace",
+    "portfolio",
+)
+
+PROJECT_QUESTION_PATTERNS = [
+    re.compile(
+        r"\b(?:tell\s+(?:me\s+)?(?:more\s+)?about|what\s+is|overview\s+of|describe)\s+(?:the\s+)?(.+?)\s+project\b",
+        re.I,
+    ),
+    re.compile(r"\bproject\s+(?:overview|summary|details)\b", re.I),
+    re.compile(r"\babout\s+(?:the\s+)?(.+?)\s+project\b", re.I),
+]
+
 
 def _contains_scientific_identifier(text: str) -> bool:
     return any(pattern.search(text) for pattern in SCIENTIFIC_ACCESSION_PATTERNS)
@@ -136,6 +177,57 @@ def _contains_any(text: str, terms: set[str]) -> bool:
 def _is_lab_overview_question(text: str) -> bool:
     lower = text.lower()
     return any(re.search(pattern, lower, re.I) for pattern in LAB_OVERVIEW_PATTERNS)
+
+
+def normalize_project_code(raw: str) -> str | None:
+    """Map query tokens (EYEMT, eyemt, Eye-MT) to canonical catalog project_code."""
+    key = re.sub(r"[^a-z0-9]", "", (raw or "").lower())
+    if not key:
+        return None
+    for alias, canonical in sorted(PROJECT_CODE_ALIASES.items(), key=lambda item: -len(item[0])):
+        alias_key = re.sub(r"[^a-z0-9]", "", alias.lower())
+        if key == alias_key or key.startswith(alias_key) or alias_key.startswith(key):
+            return canonical
+    # Title-case fallback when user types exact catalog code (EyeMT, SPACE, KRAS)
+    stripped = (raw or "").strip()
+    if stripped and re.match(r"^[A-Za-z][A-Za-z0-9_\-]{1,30}$", stripped):
+        return stripped
+    return None
+
+
+def detect_project_code(message: str) -> str | None:
+    """Return canonical project_code when a known lab project is mentioned."""
+    text = message or ""
+    lower = text.lower()
+    for alias, canonical in sorted(PROJECT_CODE_ALIASES.items(), key=lambda item: -len(item[0])):
+        if re.search(rf"\b{re.escape(alias)}\b", lower, re.I):
+            return canonical
+    for token in re.findall(r"\b[A-Za-z][A-Za-z0-9_\-]{1,30}\b", text):
+        normalized = normalize_project_code(token)
+        if normalized:
+            return normalized
+    return None
+
+
+def is_project_question(message: str) -> bool:
+    """True when the user is asking about a lab project workspace, not general literature."""
+    text = (message or "").strip()
+    if not text:
+        return False
+    lower = text.lower()
+    code = detect_project_code(text)
+
+    for pattern in PROJECT_QUESTION_PATTERNS:
+        if pattern.search(text):
+            return True
+
+    if code and "project" in lower:
+        return True
+
+    if code and any(phrase in lower for phrase in PROJECT_QUESTION_PHRASES):
+        return True
+
+    return False
 
 
 def classify_chat_intent(message: str) -> IntentDecision:
@@ -258,6 +350,17 @@ def classify_chat_intent(message: str) -> IntentDecision:
             require_citations=True,
             answer_style="practical_with_sources",
             reason="protocol how-to detected",
+        )
+
+    # 8b. project_question (before research — EyeMT/SPACE/KRAS project queries are not literature)
+    if is_project_question(text):
+        return IntentDecision(
+            intent="project_question",
+            use_rag=True,
+            show_sources=True,
+            require_citations=True,
+            answer_style="scientific_with_sources",
+            reason="lab project workspace question detected",
         )
 
     # 9. research_question (before app_help so "project research focus" is not misclassified)

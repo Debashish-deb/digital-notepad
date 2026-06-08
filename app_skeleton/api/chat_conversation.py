@@ -290,7 +290,7 @@ def _intent_category_and_confidence(decision: IntentDecision, message: str) -> t
         return INTENT_CODING, 0.88
     if decision.intent == "document_ingestion_help" or decision.intent == "app_help":
         return INTENT_TROUBLESHOOTING, 0.82
-    if decision.intent == "people_question" or any(t in lower for t in PROJECT_TERMS):
+    if decision.intent == "people_question" or decision.intent == "project_question" or any(t in lower for t in PROJECT_TERMS):
         return INTENT_PROJECT, 0.8
     if decision.intent == "search_request" or any(t in lower for t in LITERATURE_TERMS):
         return INTENT_LITERATURE, 0.86

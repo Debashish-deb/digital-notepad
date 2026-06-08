@@ -91,6 +91,22 @@ class TestChatIntent(unittest.TestCase):
         self.assertEqual(decision.intent, "sensitive_private")
         self.assertFalse(decision.use_rag)
 
+    def test_eyemt_project_question_not_research(self) -> None:
+        decision = classify_chat_intent("tell more about EYEMT project")
+        self.assertEqual(decision.intent, "project_question")
+        self.assertNotEqual(decision.intent, "research_question")
+        self.assertTrue(decision.use_rag)
+        self.assertTrue(decision.require_citations)
+
+    def test_tell_me_about_eyemt_is_project_question(self) -> None:
+        decision = classify_chat_intent("tell me about EyeMT")
+        self.assertEqual(decision.intent, "project_question")
+        self.assertTrue(decision.use_rag)
+
+    def test_kras_gene_not_project_without_project_word(self) -> None:
+        decision = classify_chat_intent("What is KRAS mutation in HGSC?")
+        self.assertNotEqual(decision.intent, "project_question")
+
 
 if __name__ == "__main__":
     unittest.main()

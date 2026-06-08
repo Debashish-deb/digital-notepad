@@ -309,7 +309,7 @@ def database_tree(
     del section_id, relative_path
     raise HTTPException(status_code=410, detail=_LAB_FILE_BROWSER_DEPRECATED)
 
-@router.get("/api/database/read", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/database/read")
 def database_read_file(
     section_id: str = Query(...),
     relative_path: str = Query(...),
@@ -333,7 +333,7 @@ def database_asset(
     del section_id, relative_path
     raise HTTPException(status_code=410, detail=_LAB_FILE_BROWSER_DEPRECATED)
 
-@router.get("/api/database/asset-url", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/database/asset-url")
 def database_asset_url(section_id: str = Query(...), relative_path: str = Query(...)) -> dict:
     if section_id not in DATABASE_SECTIONS:
         raise HTTPException(status_code=404, detail="Unknown section.")

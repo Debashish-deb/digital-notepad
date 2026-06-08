@@ -95,6 +95,7 @@ def ask(
             intent=intent_decision.intent,
             project_codes=req.project_codes,
             limit=int(os.getenv("CHAT_MAX_SOURCES", "12") or "12"),
+            user_role=user.get("role"),
         )
         sources = [
             SourceInfo(

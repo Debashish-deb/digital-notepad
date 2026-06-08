@@ -4,7 +4,8 @@ from __future__ import annotations
 import os
 from typing import Any, Callable
 
-from app_skeleton.api.chat_intent import classify_chat_intent
+from app_skeleton.api.chat_conversation import classify_and_enrich
+from app_skeleton.api.evidence_orchestrator import understand_query
 
 
 def _format_library_scope(library_scope: dict[str, Any] | None) -> str:
@@ -36,17 +37,21 @@ def build_rag_bundle(
     rag_agent: Any,
     max_sources: int | None = None,
     library_scope: dict[str, Any] | None = None,
+    user_role: str | None = None,
 ) -> dict[str, Any]:
     limit = max_sources or int(os.getenv("CHAT_MAX_SOURCES", "12") or "12")
-    intent = classify_chat_intent(message)
+    intent = classify_and_enrich(message)
     if not intent.use_rag:
         return {"retrieval_context": "", "sources": [], "search_hits": [], "limitations": []}
 
+    understanding = understand_query(message, intent)
     hits = search_svc.hits_for_copilot(
         message,
         intent=intent.intent,
         project_codes=project_codes,
         limit=limit,
+        prioritize_buckets=understanding.search_plan.prioritize_buckets,
+        user_role=user_role,
     )
     sources: list[dict[str, Any]] = []
     lines: list[str] = []

@@ -8,7 +8,7 @@ import psycopg
 
 router = APIRouter()
 
-@router.get("/api/storage/roots", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/storage/roots")
 def storage_roots_list() -> dict:
     """Phase 1: logical storage providers (configured flags only, no paths)."""
     from app_skeleton.api.paths import storage_roots_public_summary
@@ -19,7 +19,7 @@ def storage_roots_list() -> dict:
         "production_connectors": production_connectors_summary(),
     }
 
-@router.get("/api/storage/connectors/status", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/storage/connectors/status")
 def storage_connectors_status() -> dict:
     return {
         "connectors": [
@@ -39,43 +39,43 @@ def storage_connectors_status() -> dict:
         ]
     }
 
-@router.get("/api/storage/datacloud/list", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/storage/datacloud/list")
 def storage_datacloud_list(relative_path: str = Query(""), depth: int = Query(1, ge=1, le=3)) -> dict:
     return {"entries": datacloud_webdav.list_logical_directory(relative_path, depth=depth)}
 
-@router.get("/api/storage/datacloud/scan", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/storage/datacloud/scan")
 def storage_datacloud_scan(
     relative_path: str = Query(""),
     max_entries: int = Query(200, ge=1, le=2000),
 ) -> dict:
     return datacloud_webdav.scan_tree(relative_path, max_entries=max_entries)
 
-@router.get("/api/storage/datacloud/manifest", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/storage/datacloud/manifest")
 def storage_datacloud_manifest(
     relative_path: str = Query(""),
     max_entries: int = Query(500, ge=1, le=5000),
 ) -> dict:
     return datacloud_webdav.build_manifest(relative_path, max_entries=max_entries)
 
-@router.get("/api/storage/pdrive/list", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/storage/pdrive/list")
 def storage_pdrive_list(relative_path: str = Query("")) -> dict:
     return {"entries": pdrive_smb.list_logical_directory(relative_path)}
 
-@router.get("/api/storage/pdrive/scan", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/storage/pdrive/scan")
 def storage_pdrive_scan(
     relative_path: str = Query(""),
     max_entries: int = Query(200, ge=1, le=2000),
 ) -> dict:
     return pdrive_smb.scan_tree(relative_path, max_entries=max_entries)
 
-@router.get("/api/storage/pdrive/manifest", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/storage/pdrive/manifest")
 def storage_pdrive_manifest(
     relative_path: str = Query(""),
     max_entries: int = Query(500, ge=1, le=5000),
 ) -> dict:
     return pdrive_smb.build_manifest(relative_path, max_entries=max_entries)
 
-@router.get("/api/storage/datacloud/download", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/storage/datacloud/download")
 def storage_datacloud_download(relative_path: str = Query(..., min_length=1)) -> StreamingResponse:
     """Backend-only stream; never expose WebDAV URL to clients."""
     if not datacloud_webdav.is_configured():
@@ -85,7 +85,7 @@ def storage_datacloud_download(relative_path: str = Query(..., min_length=1)) ->
         media_type="application/octet-stream",
     )
 
-@router.get("/api/storage/pdrive/download", dependencies=_FIREBASE_PROTECTED)
+@router.get("/api/storage/pdrive/download")
 def storage_pdrive_download(relative_path: str = Query(..., min_length=1)) -> StreamingResponse:
     if not pdrive_smb.is_configured():
         raise HTTPException(status_code=503, detail="P-drive not configured")
@@ -94,7 +94,7 @@ def storage_pdrive_download(relative_path: str = Query(..., min_length=1)) -> St
         media_type="application/octet-stream",
     )
 
-@router.post("/api/storage/ingest/{provider_id}", dependencies=_FIREBASE_PROTECTED)
+@router.post("/api/storage/ingest/{provider_id}")
 def storage_ingest_provider(
     provider_id: str,
     relative_path: str = Query(""),

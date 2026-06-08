@@ -14,9 +14,12 @@ from app_skeleton.api.evidence_orchestrator import (
     extract_domains,
     extract_entities,
     format_evidence_package_block,
+    orchestrator_answer_metadata,
     package_evidence,
+    parse_orchestrator_sections,
     should_use_orchestrator,
     understand_query,
+    validate_claims_across_sources,
 )
 from app_skeleton.api.evidence_orchestrator import EvidenceItem, EvidencePackage
 
@@ -55,6 +58,20 @@ class TestQueryUnderstanding(unittest.TestCase):
         plan = build_search_plan(decision, ("protocols_pipelines",), ())
         self.assertEqual(decision.intent, "protocol_question")
         self.assertIn("lab", plan.prioritize_buckets)
+
+    def test_eyemt_project_question_search_plan(self) -> None:
+        message = "tell more about EYEMT project"
+        decision = classify_and_enrich(message)
+        self.assertEqual(decision.intent, "project_question")
+        understanding = understand_query(message, decision)
+        self.assertIn("project", understanding.search_plan.scopes)
+        self.assertIn("research", understanding.search_plan.scopes)
+        self.assertIn("project", understanding.search_plan.prioritize_buckets)
+        self.assertIn("file", understanding.search_plan.prioritize_buckets)
+        self.assertIn("research", understanding.search_plan.prioritize_buckets)
+        project_idx = understanding.search_plan.prioritize_buckets.index("project")
+        research_idx = understanding.search_plan.prioritize_buckets.index("research")
+        self.assertLess(project_idx, research_idx)
 
 
 class TestEvidencePackaging(unittest.TestCase):
@@ -159,6 +176,78 @@ class TestOrchestratorPrompts(unittest.TestCase):
     def test_should_not_use_orchestrator_for_greeting(self) -> None:
         decision = classify_and_enrich("hello")
         self.assertFalse(should_use_orchestrator(decision))
+
+
+class TestClaimValidation(unittest.TestCase):
+    def test_conflicting_polarity_across_sources(self) -> None:
+        items = [
+            EvidenceItem(
+                index=1,
+                title="Study A",
+                source_type="publication",
+                bucket="research",
+                snippet="TIM-3 expression is associated with improved immunotherapy response in HGSC.",
+                score=0.8,
+            ),
+            EvidenceItem(
+                index=2,
+                title="Study B",
+                source_type="publication",
+                bucket="lab",
+                snippet="TIM-3 expression is not associated with immunotherapy benefit in HGSC.",
+                score=0.75,
+            ),
+        ]
+        validations = validate_claims_across_sources(items, entities=("TIM-3", "HGSC"))
+        self.assertTrue(any(v.status == "conflicting" for v in validations))
+
+    def test_corroborated_claim_across_buckets(self) -> None:
+        items = [
+            EvidenceItem(
+                index=1,
+                title="A",
+                source_type="publication",
+                bucket="research",
+                snippet="TLS predicts improved survival in HGSC patients.",
+                score=0.8,
+            ),
+            EvidenceItem(
+                index=2,
+                title="B",
+                source_type="protocol",
+                bucket="lab",
+                snippet="TLS structure is associated with improved survival in HGSC cohorts.",
+                score=0.7,
+            ),
+        ]
+        validations = validate_claims_across_sources(items, entities=("TLS", "HGSC"))
+        self.assertTrue(any(v.status == "corroborated" for v in validations))
+
+
+class TestStructuredSections(unittest.TestCase):
+    def test_parse_orchestrator_sections_from_markdown(self) -> None:
+        answer = (
+            "**Executive summary**\n"
+            "TLS is linked to response.\n\n"
+            "### Evidence\n"
+            "- Finding one [1]\n\n"
+            "### Limitations & confidence\n"
+            "Medium confidence due to limited cohorts.\n\n"
+            "### References\n"
+            "[1] Example paper"
+        )
+        sections = parse_orchestrator_sections(answer)
+        ids = [s["id"] for s in sections]
+        self.assertIn("executive_summary", ids)
+        self.assertIn("evidence", ids)
+        self.assertIn("limitations", ids)
+        self.assertIn("references", ids)
+
+    def test_orchestrator_answer_metadata_round_trip(self) -> None:
+        answer = "**Executive summary**\nShort answer.\n\n### Evidence\nDetail [1]."
+        meta = orchestrator_answer_metadata(answer)
+        self.assertIn("response_sections", meta)
+        self.assertGreaterEqual(len(meta["response_sections"]), 2)
 
 
 if __name__ == "__main__":

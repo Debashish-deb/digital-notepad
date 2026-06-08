@@ -19,6 +19,8 @@ fi
 if [[ -n "${TAILSCALE_LINUX_IP:-}" ]]; then
   export OLLAMA_BASE_URL="http://${TAILSCALE_LINUX_IP}:11434/v1"
   export QDRANT_URL="http://${TAILSCALE_LINUX_IP}:6333"
+  export DOCKER_LOCAL=false
+  export DOCKER_AUTO_START=false
 fi
 
 if [[ "${DOCKER_LOCAL:-true}" != "false" && "${DOCKER_LOCAL:-true}" != "0" ]]; then

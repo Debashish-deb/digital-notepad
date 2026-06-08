@@ -1538,3 +1538,36 @@
     padding: 0.7rem 0.85rem 0.85rem;
   }
 }
+
+.chat-feedback-row {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.chat-feedback-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.45rem;
+  border: 1px solid var(--color-border-subtle, rgba(255, 255, 255, 0.12));
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-muted, #94a3b8);
+  cursor: pointer;
+}
+
+.chat-feedback-btn:hover:not(:disabled) {
+  color: var(--color-text, #e2e8f0);
+  border-color: var(--color-accent, #38bdf8);
+}
+
+.chat-feedback-btn.is-active {
+  color: var(--color-accent, #38bdf8);
+  border-color: var(--color-accent, #38bdf8);
+}
+
+.chat-feedback-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}

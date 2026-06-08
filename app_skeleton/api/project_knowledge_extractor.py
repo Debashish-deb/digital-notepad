@@ -201,6 +201,9 @@ def extract_and_ingest_project(project_code: str) -> dict:
     if not conn_uri:
         raise ConnectionError("PostgreSQL connection URI not configured.")
 
+    vectors_upserted = 0
+    chunks_by_doc: dict[str, list[dict]] = {}
+
     with psycopg.connect(conn_uri) as conn:
         with conn.cursor() as cur:
             # 1. Insert into rag.document_source
@@ -215,10 +218,11 @@ def extract_and_ingest_project(project_code: str) -> dict:
                     RETURNING document_id;
                 """, (doc["document_code"], doc["title"], doc["source_type"], json.dumps(doc["metadata"])))
                 doc_id = cur.fetchone()[0]
-                doc["_db_id"] = doc_id
+                doc["_db_id"] = str(doc_id)
             
             # Map document_code to generated document_id
             doc_id_map = {doc["document_code"]: doc["_db_id"] for doc in document_sources}
+            doc_meta_map = {doc["document_code"]: doc for doc in document_sources}
             
             # 2. Insert into rag.document_chunk in batches
             batch_size = 50
@@ -234,6 +238,7 @@ def extract_and_ingest_project(project_code: str) -> dict:
                         token_count = EXCLUDED.token_count,
                         metadata = EXCLUDED.metadata;
                 """, (doc_id, chunk["chunk_index"], chunk["chunk_uid"], chunk["chunk_text"], chunk["token_count"], json.dumps(chunk["metadata"])))
+                chunks_by_doc.setdefault(chunk["document_code"], []).append(chunk)
                 
                 # Commit periodically to avoid exceeding transaction limits on massive files
                 if (i + 1) % batch_size == 0:
@@ -241,9 +246,27 @@ def extract_and_ingest_project(project_code: str) -> dict:
             
             # Final commit for remaining chunks
             conn.commit()
+
+    try:
+        from app_skeleton.api.project_knowledge_store import upsert_chunks_to_qdrant
+
+        for doc_code, doc_chunks in chunks_by_doc.items():
+            doc = doc_meta_map.get(doc_code) or {}
+            meta = doc.get("metadata") or {}
+            vectors_upserted += upsert_chunks_to_qdrant(
+                document_code=doc_code,
+                title=doc.get("title") or doc_code,
+                project_code=meta.get("project_code") or project_code,
+                relative_path=meta.get("relative_path") or "",
+                chunks=doc_chunks,
+                document_id=doc_id_map.get(doc_code, ""),
+            )
+    except Exception as exc:
+        print(f"Qdrant project vector upsert failed (Postgres ingest OK): {exc}")
     
     return {
         "extracted_docs": len(document_sources),
         "extracted_chunks": len(document_chunks),
-        "message": f"Successfully ingested {len(document_sources)} docs."
+        "vectors_upserted": vectors_upserted,
+        "message": f"Successfully ingested {len(document_sources)} docs ({vectors_upserted} vectors).",
     }
