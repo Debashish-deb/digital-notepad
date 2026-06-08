@@ -497,7 +497,7 @@ class DecisionCreate(BaseModel):
     decision_details: str
     rationale: str
     alternatives_considered: Optional[str] = None
-    decided_by_username: str = "debdeba"
+    decided_by_username: Optional[str] = None
     decision_date: Optional[str] = None
     linked_notebook_entry_id: Optional[str] = None
     linked_dataset_id: Optional[str] = None
@@ -663,7 +663,7 @@ class DocumentIngestRequest(BaseModel):
 class ChecklistToggleRequest(BaseModel):
     checklist_id: str
     status: str
-    username: str = "debdeba"
+    username: Optional[str] = None
 
 import pathlib
 

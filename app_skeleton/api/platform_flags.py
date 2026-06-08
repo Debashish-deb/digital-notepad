@@ -40,3 +40,8 @@ def canonical_chunk_pipeline_enabled() -> bool:
 def ocr_enabled() -> bool:
     """When false (default), needs_ocr files stay metadata-only and the OCR worker idles."""
     return _env_bool("ENABLE_OCR", "false")
+
+
+def project_rbac_enabled() -> bool:
+    """When true, enforce project-level access via platform.project_member + researcher binding."""
+    return _env_bool("PROJECT_RBAC_ENABLED", "false")

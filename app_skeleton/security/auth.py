@@ -1,5 +1,6 @@
 import os
 import time
+from dataclasses import dataclass
 from typing import Any, Optional
 
 import firebase_admin
@@ -146,29 +147,127 @@ def _username_from_user(user: dict[str, Any]) -> str:
     return local or "researcher"
 
 
-def resolve_researcher_id(cur: Any, user: dict[str, Any]) -> Any:
-    """Map authenticated user to platform.researcher.researcher_id; create row if missing."""
+@dataclass
+class ResolvedResearcher:
+    researcher_id: Any
+    username: str
+    email: str
+    firebase_uid: str | None = None
+
+
+def _researcher_role(user: dict[str, Any]) -> str:
+    return "admin" if user.get("role") == "admin" else "researcher"
+
+
+def _row_to_resolved(row: tuple[Any, ...]) -> ResolvedResearcher:
+    return ResolvedResearcher(
+        researcher_id=row[0],
+        username=row[1],
+        email=(row[2] or "").lower(),
+        firebase_uid=row[3],
+    )
+
+
+def resolve_researcher(cur: Any, user: dict[str, Any]) -> ResolvedResearcher:
+    """Map Firebase user to platform.researcher; create or bind row if missing."""
+    email = (user.get("email") or "").strip().lower()
+    if not email:
+        raise HTTPException(status_code=401, detail="User email required for researcher binding")
+
+    firebase_uid = (user.get("uid") or user.get("sub") or "").strip() or None
     username = _username_from_user(user)
+    full_name = (user.get("display_name") or username.replace(".", " ").replace("_", " ")).strip()
+    role = _researcher_role(user)
+
+    if firebase_uid:
+        cur.execute(
+            """
+            SELECT researcher_id, username, email, firebase_uid
+            FROM platform.researcher
+            WHERE firebase_uid = %s;
+            """,
+            (firebase_uid,),
+        )
+        row = cur.fetchone()
+        if row:
+            cur.execute(
+                """
+                UPDATE platform.researcher
+                SET email = COALESCE(%s, email),
+                    full_name = COALESCE(%s, full_name),
+                    role = CASE WHEN %s = 'admin' THEN 'admin' ELSE role END
+                WHERE researcher_id = %s;
+                """,
+                (email, full_name or None, role, row[0]),
+            )
+            return _row_to_resolved((row[0], row[1], email or row[2], firebase_uid))
+
     cur.execute(
-        "SELECT researcher_id FROM platform.researcher WHERE lower(username) = lower(%s);",
+        """
+        SELECT researcher_id, username, email, firebase_uid
+        FROM platform.researcher
+        WHERE lower(email) = lower(%s);
+        """,
+        (email,),
+    )
+    row = cur.fetchone()
+    if row:
+        cur.execute(
+            """
+            UPDATE platform.researcher
+            SET firebase_uid = COALESCE(%s, firebase_uid),
+                full_name = COALESCE(%s, full_name),
+                email = COALESCE(%s, email)
+            WHERE researcher_id = %s;
+            """,
+            (firebase_uid, full_name or None, email, row[0]),
+        )
+        return _row_to_resolved((row[0], row[1], email, firebase_uid or row[3]))
+
+    cur.execute(
+        """
+        SELECT researcher_id, username, email, firebase_uid
+        FROM platform.researcher
+        WHERE lower(username) = lower(%s);
+        """,
         (username,),
     )
     row = cur.fetchone()
     if row:
-        return row[0]
+        cur.execute(
+            """
+            UPDATE platform.researcher
+            SET firebase_uid = COALESCE(%s, firebase_uid),
+                email = COALESCE(%s, email),
+                full_name = COALESCE(%s, full_name)
+            WHERE researcher_id = %s;
+            """,
+            (firebase_uid, email, full_name or None, row[0]),
+        )
+        return _row_to_resolved((row[0], row[1], email, firebase_uid or row[3]))
 
-    full_name = (user.get("display_name") or username.replace(".", " ").replace("_", " ")).strip()
-    role = "admin" if user.get("role") == "admin" else "researcher"
     cur.execute(
         """
-        INSERT INTO platform.researcher (username, full_name, role)
-        VALUES (%s, %s, %s)
-        ON CONFLICT (username) DO UPDATE SET full_name = COALESCE(EXCLUDED.full_name, platform.researcher.full_name)
-        RETURNING researcher_id;
+        INSERT INTO platform.researcher (username, full_name, role, firebase_uid, email)
+        VALUES (%s, %s, %s, %s, %s)
+        ON CONFLICT (username) DO UPDATE SET
+            full_name = COALESCE(EXCLUDED.full_name, platform.researcher.full_name),
+            firebase_uid = COALESCE(EXCLUDED.firebase_uid, platform.researcher.firebase_uid),
+            email = COALESCE(EXCLUDED.email, platform.researcher.email),
+            role = CASE
+                WHEN EXCLUDED.role = 'admin' THEN 'admin'
+                ELSE platform.researcher.role
+            END
+        RETURNING researcher_id, username, email, firebase_uid;
         """,
-        (username, full_name or username, role),
+        (username, full_name or username, role, firebase_uid, email),
     )
     created = cur.fetchone()
     if not created:
         raise HTTPException(status_code=500, detail="Failed to resolve researcher identity")
-    return created[0]
+    return _row_to_resolved(created)
+
+
+def resolve_researcher_id(cur: Any, user: dict[str, Any]) -> Any:
+    """Return platform.researcher.researcher_id for an authenticated user."""
+    return resolve_researcher(cur, user).researcher_id

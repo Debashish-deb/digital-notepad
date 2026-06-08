@@ -1,5 +1,15 @@
-from app_skeleton.security.permissions import require_role
-from app_skeleton.security.auth import require_platform_user, resolve_researcher_id
+from app_skeleton.security.permissions import (
+    ensure_authenticated_for_rbac,
+    ensure_project_access,
+    filter_projects_for_user,
+    require_role,
+)
+from app_skeleton.security.auth import (
+    optional_public_user,
+    require_platform_user,
+    resolve_researcher_id,
+)
+from app_skeleton.api.platform_flags import project_rbac_enabled
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
 from app_skeleton.api.common import *
 from typing import *
@@ -9,8 +19,14 @@ import psycopg
 router = APIRouter()
 
 @router.get("/projects")
-def get_projects() -> List[Dict[str, Any]]:
-    return fetch_projects_unified()
+def get_projects(user: Optional[dict] = Depends(optional_public_user)) -> List[Dict[str, Any]]:
+    projects = fetch_projects_unified()
+    if not project_rbac_enabled():
+        return projects
+    user = ensure_authenticated_for_rbac(user)
+    with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
+        with conn.cursor() as cur:
+            return filter_projects_for_user(user, projects, cur)
 
 @router.put("/projects/{project_code}")
 def update_project(project_code: str, req: ProjectExtensionUpdate, user: dict = Depends(require_platform_user)) -> dict:
@@ -23,6 +39,7 @@ def update_project(project_code: str, req: ProjectExtensionUpdate, user: dict = 
                 if not row:
                     raise HTTPException(status_code=404, detail="Project not found")
                 pid = row[0]
+                ensure_project_access(user, project_code, cur=cur)
 
                 # Make sure row exists in project_extension
                 cur.execute("INSERT INTO platform.project_extension (project_id) VALUES (%s) ON CONFLICT DO NOTHING;", (pid,))
@@ -53,10 +70,17 @@ def update_project(project_code: str, req: ProjectExtensionUpdate, user: dict = 
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.get("/notebook")
-def get_notebook(project_code: Optional[str] = None) -> List[Dict[str, Any]]:
+def get_notebook(
+    project_code: Optional[str] = None,
+    user: Optional[dict] = Depends(optional_public_user),
+) -> List[Dict[str, Any]]:
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
+                if project_rbac_enabled():
+                    user = ensure_authenticated_for_rbac(user)
+                    if project_code:
+                        ensure_project_access(user, project_code, cur=cur)
                 query = """
                     SELECT ne.entry_id, p.project_code, s.sample_code, ne.title, ne.pipeline_stage, ne.content, ne.conclusions, ne.issues_found, ne.next_steps, ne.tags, ne.entry_type, ne.visibility_level, ne.created_at, r.full_name,
                            (SELECT COUNT(*) FROM platform.notebook_revision nr WHERE nr.entry_id = ne.entry_id) as revision_count
@@ -73,6 +97,14 @@ def get_notebook(project_code: Optional[str] = None) -> List[Dict[str, Any]]:
                 
                 cur.execute(query, tuple(params))
                 rows = cur.fetchall()
+                if project_rbac_enabled() and user and not project_code:
+                    allowed = filter_projects_for_user(
+                        user,
+                        [{"project_code": r[1]} for r in rows],
+                        cur,
+                    )
+                    allowed_codes = {(p.get("project_code") or "").upper() for p in allowed}
+                    rows = [r for r in rows if (r[1] or "").upper() in allowed_codes]
                 result = []
                 for r in rows:
                     result.append({
@@ -129,6 +161,7 @@ def create_notebook(req: NotebookEntryCreate, user: dict = Depends(require_platf
                 if not p_row:
                     raise HTTPException(status_code=404, detail="Project not found")
                 pid = p_row[0]
+                ensure_project_access(user, req.project_code, cur=cur)
 
                 sid = None
                 if req.sample_code:
@@ -214,11 +247,16 @@ def rollback_notebook(entry_id: str, revision_number: int = Query(...)) -> dict:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.get("/decisions")
-def get_decisions(project_code: Optional[str] = None, user: dict = Depends(require_platform_user)) -> List[Dict[str, Any]]:
+def get_decisions(
+    project_code: Optional[str] = None,
+    user: dict = Depends(require_platform_user),
+) -> List[Dict[str, Any]]:
     require_role(user, ["editor", "admin"])
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
+                if project_rbac_enabled() and project_code:
+                    ensure_project_access(user, project_code, cur=cur)
                 query = """
                     SELECT d.decision_id, p.project_code, d.title, d.decision_details, d.rationale, d.alternatives_considered, r.full_name, d.decision_date
                     FROM platform.decision_registry d
@@ -252,10 +290,12 @@ def create_decision(req: DecisionCreate, user: dict = Depends(require_platform_u
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
                 cur.execute("SELECT project_id FROM core.project WHERE project_code = %s;", (req.project_code,))
-                pid = cur.fetchone()[0]
-                
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = %s;", (req.decided_by_username,))
-                rid = cur.fetchone()[0]
+                pid_row = cur.fetchone()
+                if not pid_row:
+                    raise HTTPException(status_code=404, detail="Project not found")
+                pid = pid_row[0]
+                ensure_project_access(user, req.project_code, cur=cur)
+                rid = resolve_researcher_id(cur, user)
 
                 cur.execute("""
                     INSERT INTO platform.decision_registry (project_id, title, decision_details, rationale, alternatives_considered, decided_by_id)
@@ -313,7 +353,11 @@ def create_wiki_page(req: WikiPageCreate, user: dict = Depends(require_platform_
                 pid = None
                 if req.project_code:
                     cur.execute("SELECT project_id FROM core.project WHERE project_code = %s;", (req.project_code,))
-                    pid = cur.fetchone()[0]
+                    p_row = cur.fetchone()
+                    if not p_row:
+                        raise HTTPException(status_code=404, detail="Project not found")
+                    pid = p_row[0]
+                    ensure_project_access(user, req.project_code, cur=cur)
 
                 rid = resolve_researcher_id(cur, user)
 
@@ -853,10 +897,17 @@ def get_pipeline_runs(project_code: Optional[str] = None) -> List[Dict[str, Any]
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.get("/tasks")
-def get_tasks(project_code: Optional[str] = None) -> List[Dict[str, Any]]:
+def get_tasks(
+    project_code: Optional[str] = None,
+    user: Optional[dict] = Depends(optional_public_user),
+) -> List[Dict[str, Any]]:
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
+                if project_rbac_enabled():
+                    user = ensure_authenticated_for_rbac(user)
+                    if project_code:
+                        ensure_project_access(user, project_code, cur=cur)
                 query = """
                     SELECT t.task_id, p.project_code, s.sample_code, r.full_name, t.title, t.description, t.status, t.priority, t.due_date
                     FROM platform.task t
@@ -870,6 +921,14 @@ def get_tasks(project_code: Optional[str] = None) -> List[Dict[str, Any]]:
                     params.append(project_code)
                 cur.execute(query, tuple(params))
                 rows = cur.fetchall()
+                if project_rbac_enabled() and user and not project_code:
+                    allowed = filter_projects_for_user(
+                        user,
+                        [{"project_code": r[1]} for r in rows],
+                        cur,
+                    )
+                    allowed_codes = {(p.get("project_code") or "").upper() for p in allowed}
+                    rows = [r for r in rows if (r[1] or "").upper() in allowed_codes]
                 return [{
                     "task_id": str(r[0]),
                     "project_code": r[1],
@@ -891,7 +950,11 @@ def create_task(req: TaskCreate, user: dict = Depends(require_platform_user)) ->
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
             with conn.cursor() as cur:
                 cur.execute("SELECT project_id FROM core.project WHERE project_code = %s;", (req.project_code,))
-                pid = cur.fetchone()[0]
+                pid_row = cur.fetchone()
+                if not pid_row:
+                    raise HTTPException(status_code=404, detail="Project not found")
+                pid = pid_row[0]
+                ensure_project_access(user, req.project_code, cur=cur)
 
                 sid = None
                 if req.sample_code:
@@ -1228,7 +1291,15 @@ def toggle_checklist(req: ChecklistToggleRequest, user: dict = Depends(require_p
                     raise HTTPException(status_code=404, detail="Checklist item not found")
                 
                 pid, category, item_name, current_status = row[0], row[1], row[2], row[3]
-                
+                cur.execute(
+                    "SELECT project_code FROM core.project WHERE project_id = %s;",
+                    (pid,),
+                )
+                pcode_row = cur.fetchone()
+                if pcode_row:
+                    ensure_project_access(user, pcode_row[0], cur=cur)
+                rid = resolve_researcher_id(cur, user)
+
                 # Toggle or set status
                 checked_at = datetime.now() if req.status == 'completed' else None
                 cur.execute("""
@@ -1236,11 +1307,6 @@ def toggle_checklist(req: ChecklistToggleRequest, user: dict = Depends(require_p
                     SET status = %s, checked_at = %s, updated_at = now()
                     WHERE checklist_id = %s;
                 """, (req.status, checked_at, req.checklist_id))
-
-                # Fetch researcher ID
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = %s LIMIT 1;", (req.username,))
-                res_row = cur.fetchone()
-                rid = res_row[0] if res_row else None
 
                 # Log to notebook
                 auto_log_notebook_entry(

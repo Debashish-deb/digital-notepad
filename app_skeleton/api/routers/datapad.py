@@ -1,5 +1,6 @@
-from app_skeleton.security.permissions import require_role
-from app_skeleton.security.auth import require_platform_user
+from app_skeleton.security.permissions import ensure_authenticated_for_rbac, ensure_project_access, require_role
+from app_skeleton.security.auth import optional_public_user, require_platform_user
+from app_skeleton.api.platform_flags import project_rbac_enabled
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
 from app_skeleton.api.common import *
 from typing import *
@@ -9,8 +10,21 @@ from app_skeleton.api.thumbnail_service import generate_thumbnail
 
 router = APIRouter()
 
+
+def _guard_project_access(user: dict | None, project_code: str) -> dict:
+    if not project_rbac_enabled():
+        return user or {}
+    user = ensure_authenticated_for_rbac(user)
+    ensure_project_access(user, project_code)
+    return user
+
+
 @router.get("/api/project-files/list/{project_code}")
-def list_project_files(project_code: str):
+def list_project_files(
+    project_code: str,
+    user: dict | None = Depends(optional_public_user),
+):
+    _guard_project_access(user, project_code)
     folder_path = get_project_folder_path(project_code)
     if not folder_path:
         raise HTTPException(status_code=404, detail="Project folder not found on disk.")
@@ -98,6 +112,7 @@ def serve_project_file(project_code: str = Query(...), relative_path: str = Quer
 @router.post("/api/project-files/write")
 def write_project_file(req: FileWriteRequest, user: dict = Depends(require_platform_user)):
     require_role(user, ["editor", "admin"])
+    _guard_project_access(user, req.project_code)
     folder_path = get_project_folder_path(req.project_code)
     if not folder_path:
         raise HTTPException(status_code=404, detail="Project folder not found on disk.")
@@ -115,7 +130,12 @@ def write_project_file(req: FileWriteRequest, user: dict = Depends(require_platf
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/api/projects/{project_code}/digital-twin")
-def project_digital_twin(project_code: str, refresh: bool = False) -> dict:
+def project_digital_twin(
+    project_code: str,
+    refresh: bool = False,
+    user: dict | None = Depends(optional_public_user),
+) -> dict:
+    _guard_project_access(user, project_code)
     try:
         return get_digital_twin(project_code, refresh=refresh)
     except Exception as exc:
@@ -124,6 +144,7 @@ def project_digital_twin(project_code: str, refresh: bool = False) -> dict:
 @router.put("/api/projects/{project_code}/digital-twin")
 def save_project_digital_twin(project_code: str, body: dict, user: dict = Depends(require_platform_user)) -> dict:
     require_role(user, ["editor", "admin"])
+    _guard_project_access(user, project_code)
     try:
         return update_digital_twin(project_code, body)
     except ValueError as exc:

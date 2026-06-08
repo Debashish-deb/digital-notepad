@@ -9,6 +9,7 @@ from app_skeleton.api.platform_flags import (
     canonical_chunk_pipeline_enabled,
     knowledge_indexer_enabled,
     platform_chunk_write_enabled,
+    project_rbac_enabled,
     require_auth_static_enabled,
     vault_json_fallback_enabled,
     vault_use_vector_indexer_enabled,
@@ -52,3 +53,8 @@ def test_vault_use_vector_indexer_defaults_false(monkeypatch: pytest.MonkeyPatch
 def test_canonical_chunk_pipeline_defaults_false(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("CANONICAL_CHUNK_PIPELINE", raising=False)
     assert canonical_chunk_pipeline_enabled() is False
+
+
+def test_project_rbac_defaults_false(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("PROJECT_RBAC_ENABLED", raising=False)
+    assert project_rbac_enabled() is False
