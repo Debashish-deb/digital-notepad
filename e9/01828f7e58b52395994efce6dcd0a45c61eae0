@@ -1,0 +1,23 @@
+docs/YOUR_SETUP.md
+  s_d8ca0dcf385045::t_fae8264a3ae550 1-79
+docs/LINUX_PRIMARY_DEPLOYMENT.md
+  s_d8ca0dcf385045::t_6111f8270d4e17 14,16-24,28,31,33-37,39,42-43,46
+scripts/deploy/mac_push_to_linux.sh
+  s_d8ca0dcf385045::t_69d0ebdff33219 19,21-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "e901828f7e58b52395994efce6dcd0a45c61eae0",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
