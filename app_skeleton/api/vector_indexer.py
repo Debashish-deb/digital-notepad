@@ -7,8 +7,15 @@ from typing import Any
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
 
-from app_skeleton.api.embedding_service import embed_text, embedding_dim
-from app_skeleton.api.qdrant_collections import collection_dim
+from app_skeleton.api.embedding_service import embed_text
+from app_skeleton.api.qdrant_collections import (
+    DOC_CHUNKS,
+    RESEARCH_KB,
+    VAULT_CHUNKS,
+    CollectionKind,
+    collection_dim,
+    resolve_collection,
+)
 from app_skeleton.api.qdrant_vectors import (
     TEXT_VECTOR_NAME,
     stable_point_uuid,
@@ -48,11 +55,13 @@ def upsert_text_chunks(
     points_data: list[dict[str, Any]],
     collection: str | None = None,
     *,
+    kind: CollectionKind | str | None = "doc",
     llm: Any | None = None,
 ) -> int:
     """Embed and upsert chunk dicts: each item needs chunk_uid, text, payload."""
     if not points_data:
         return 0
+    collection = resolve_collection(kind, explicit=collection)
     dim = collection_dim()
     points: list[models.PointStruct] = []
     for item in points_data:
@@ -79,6 +88,7 @@ def upsert_chunk_records(
     records: list[ChunkRecord],
     collection: str | None = None,
     *,
+    kind: CollectionKind | str | None = "doc",
     llm: Any | None = None,
 ) -> int:
     """Convenience wrapper for ChunkRecord lists."""
@@ -94,4 +104,61 @@ def upsert_chunk_records(
         }
         for r in records
     ]
-    return upsert_text_chunks(client, points_data, collection=collection, llm=llm)
+    return upsert_text_chunks(
+        client,
+        points_data,
+        collection=collection,
+        kind=kind,
+        llm=llm,
+    )
+
+
+def upsert_vault_asset_chunks(
+    client: QdrantClient,
+    asset_id: str,
+    chunks: list[dict[str, Any]],
+    *,
+    source_path: str = "",
+    llm: Any | None = None,
+) -> int:
+    """Upsert vault extraction chunks into vault_asset_chunks via shared embed path."""
+    points_data: list[dict[str, Any]] = []
+    for chunk in chunks[:50]:
+        text = (chunk.get("text") or "").strip()
+        if len(text) < 8:
+            continue
+        chunk_key = chunk.get("chunk_id") or chunk.get("chunk_index") or len(points_data)
+        chunk_uid = f"{asset_id}:{chunk_key}"
+        points_data.append({
+            "chunk_uid": chunk_uid,
+            "text": text,
+            "payload": {
+                "asset_id": asset_id,
+                "source_file": source_path,
+                "chunk_index": chunk.get("chunk_index"),
+                "text_preview": text[:2000],
+            },
+        })
+    return upsert_text_chunks(
+        client,
+        points_data,
+        collection=VAULT_CHUNKS,
+        kind="vault",
+        llm=llm,
+    )
+
+
+def upsert_research_kb_chunks(
+    client: QdrantClient,
+    points_data: list[dict[str, Any]],
+    *,
+    llm: Any | None = None,
+) -> int:
+    """Upsert research knowledge chunks into research_knowledge collection."""
+    return upsert_text_chunks(
+        client,
+        points_data,
+        collection=RESEARCH_KB,
+        kind="research",
+        llm=llm,
+    )

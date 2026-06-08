@@ -274,6 +274,11 @@ def search_vault(
             return _sanitize_metadata_in_rows(hits)
     except Exception as exc:
         LOGGER.debug("Postgres vault search unavailable: %s", exc)
+
+    from app_skeleton.api.platform_flags import vault_json_fallback_enabled
+
+    if not vault_json_fallback_enabled():
+        return []
     return _sanitize_metadata_in_rows(
         _search_vault_json(
             query,

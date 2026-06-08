@@ -1,5 +1,5 @@
 from app_skeleton.security.permissions import require_role
-from app_skeleton.security.auth import require_platform_user
+from app_skeleton.security.auth import require_platform_user, resolve_researcher_id
 from fastapi import APIRouter, Depends, Query, Path, HTTPException, Request, Response, BackgroundTasks, UploadFile, File
 from app_skeleton.api.common import *
 from typing import *
@@ -40,10 +40,9 @@ def update_project(project_code: str, req: ProjectExtensionUpdate, user: dict = 
                     cur.execute(query, tuple(params))
 
                 # Automatically append to the notebook system of record!
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = 'debdeba';")
-                debdeba_id = cur.fetchone()[0]
+                author_id = resolve_researcher_id(cur, user)
                 auto_log_notebook_entry(
-                    conn, pid, debdeba_id, 
+                    conn, pid, author_id,
                     title=f"Project {project_code} parameters updated",
                     content=f"Researcher updated project extensions: {', '.join(fields)}",
                     entry_type="protocol_deviation_note"
@@ -138,11 +137,10 @@ def create_notebook(req: NotebookEntryCreate, user: dict = Depends(require_platf
                     if s_row:
                         sid = s_row[0]
 
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = 'debdeba';")
-                debdeba_id = cur.fetchone()[0]
+                author_id = resolve_researcher_id(cur, user)
 
                 entry_id = auto_log_notebook_entry(
-                    conn, pid, debdeba_id, req.title, req.content,
+                    conn, pid, author_id, req.title, req.content,
                     req.entry_type, sid, req.pipeline_stage
                 )
 
@@ -170,8 +168,7 @@ def update_notebook(entry_id: str, req: NotebookEntryUpdate, user: dict = Depend
                 rev_count = cur.fetchone()[0]
                 new_rev = rev_count + 1
 
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = 'debdeba';")
-                debdeba_id = cur.fetchone()[0]
+                author_id = resolve_researcher_id(cur, user)
 
                 # Update main table
                 cur.execute("""
@@ -184,7 +181,7 @@ def update_notebook(entry_id: str, req: NotebookEntryUpdate, user: dict = Depend
                 cur.execute("""
                     INSERT INTO platform.notebook_revision (entry_id, revision_number, title, content, conclusions, issues_found, next_steps, tags, author_id)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s::text[], %s);
-                """, (entry_id, new_rev, req.title, req.content, req.conclusions, req.issues_found, req.next_steps, req.tags, debdeba_id))
+                """, (entry_id, new_rev, req.title, req.content, req.conclusions, req.issues_found, req.next_steps, req.tags, author_id))
 
                 conn.commit()
                 return {"status": "success", "revision_number": new_rev}
@@ -318,8 +315,7 @@ def create_wiki_page(req: WikiPageCreate, user: dict = Depends(require_platform_
                     cur.execute("SELECT project_id FROM core.project WHERE project_code = %s;", (req.project_code,))
                     pid = cur.fetchone()[0]
 
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = 'debdeba';")
-                rid = cur.fetchone()[0]
+                rid = resolve_researcher_id(cur, user)
 
                 cur.execute("""
                     INSERT INTO platform.research_wiki (title, slug, content, wiki_type, project_id, created_by_id)
@@ -349,8 +345,7 @@ def update_wiki_page(wiki_id: str, req: WikiPageUpdate, user: dict = Depends(req
                 count = cur.fetchone()[0]
                 new_rev = count + 1
 
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = 'debdeba';")
-                rid = cur.fetchone()[0]
+                rid = resolve_researcher_id(cur, user)
 
                 cur.execute("""
                     UPDATE platform.research_wiki
@@ -473,7 +468,11 @@ def get_wiki_revisions(wiki_id: str) -> List[Dict[str, Any]]:
         raise HTTPException(status_code=500, detail=str(exc))
 
 @router.post("/wiki/{wiki_id}/rollback")
-def rollback_wiki(wiki_id: str, revision_number: int = Query(...)) -> dict:
+def rollback_wiki(
+    wiki_id: str,
+    revision_number: int = Query(...),
+    user: dict = Depends(require_platform_user),
+) -> dict:
     """Restore a wiki page to a specific previous revision."""
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
@@ -491,8 +490,7 @@ def rollback_wiki(wiki_id: str, revision_number: int = Query(...)) -> dict:
                 cur.execute("SELECT COUNT(*) FROM platform.wiki_revision WHERE wiki_id = %s;", (wiki_id,))
                 next_rev = cur.fetchone()[0] + 1
 
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = 'debdeba';")
-                rid = cur.fetchone()[0]
+                rid = resolve_researcher_id(cur, user)
 
                 # Apply rollback to main table
                 cur.execute("""
@@ -902,8 +900,7 @@ def create_task(req: TaskCreate, user: dict = Depends(require_platform_user)) ->
                     if s_row:
                         sid = s_row[0]
 
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = 'debdeba';")
-                rid = cur.fetchone()[0]
+                rid = resolve_researcher_id(cur, user)
 
                 due = datetime.strptime(req.due_date, "%Y-%m-%d").date() if req.due_date else None
 
@@ -914,11 +911,12 @@ def create_task(req: TaskCreate, user: dict = Depends(require_platform_user)) ->
                 """, (pid, sid, req.title, req.description, req.status, req.priority, due, rid))
                 task_id = cur.fetchone()[0]
 
+                assignee_name = user.get("email") or "researcher"
                 # Automatically log in the notebook
                 auto_log_notebook_entry(
                     conn, pid, rid,
                     title=f"Task Created: {req.title}",
-                    content=f"Task assigned to debdeba.\nDetails: {req.description or ''}\nStatus: {req.status}, Priority: {req.priority}",
+                    content=f"Task assigned to {assignee_name}.\nDetails: {req.description or ''}\nStatus: {req.status}, Priority: {req.priority}",
                     entry_type="general_note",
                     sample_id=sid
                 )
@@ -945,8 +943,7 @@ def update_task(task_id: str, req: TaskUpdate, user: dict = Depends(require_plat
                     raise HTTPException(status_code=404, detail="Task not found")
                 
                 pid, sid = row[0], row[1]
-                cur.execute("SELECT researcher_id FROM platform.researcher WHERE username = 'debdeba';")
-                rid = cur.fetchone()[0]
+                rid = resolve_researcher_id(cur, user)
 
                 # Automatically log in the notebook
                 auto_log_notebook_entry(

@@ -134,3 +134,41 @@ async def optional_public_user(request: Request) -> Optional[dict[str, Any]]:
         return await require_platform_user(request)
     except HTTPException:
         return None
+
+
+def _username_from_user(user: dict[str, Any]) -> str:
+    email = (user.get("email") or "").strip().lower()
+    if not email:
+        raise HTTPException(status_code=401, detail="User email required for researcher binding")
+    if email == "dev@localhost":
+        return "debdeba"
+    local = email.split("@", 1)[0].strip()
+    return local or "researcher"
+
+
+def resolve_researcher_id(cur: Any, user: dict[str, Any]) -> Any:
+    """Map authenticated user to platform.researcher.researcher_id; create row if missing."""
+    username = _username_from_user(user)
+    cur.execute(
+        "SELECT researcher_id FROM platform.researcher WHERE lower(username) = lower(%s);",
+        (username,),
+    )
+    row = cur.fetchone()
+    if row:
+        return row[0]
+
+    full_name = (user.get("display_name") or username.replace(".", " ").replace("_", " ")).strip()
+    role = "admin" if user.get("role") == "admin" else "researcher"
+    cur.execute(
+        """
+        INSERT INTO platform.researcher (username, full_name, role)
+        VALUES (%s, %s, %s)
+        ON CONFLICT (username) DO UPDATE SET full_name = COALESCE(EXCLUDED.full_name, platform.researcher.full_name)
+        RETURNING researcher_id;
+        """,
+        (username, full_name or username, role),
+    )
+    created = cur.fetchone()
+    if not created:
+        raise HTTPException(status_code=500, detail="Failed to resolve researcher identity")
+    return created[0]

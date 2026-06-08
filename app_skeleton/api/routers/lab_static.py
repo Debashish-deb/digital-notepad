@@ -6,13 +6,22 @@ from __future__ import annotations
 
 import mimetypes
 from pathlib import Path
+from typing import Any
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import FileResponse
 
 from app_skeleton.api.paths import DATABASE_ROOT, PROJECTS_ROOT
+from app_skeleton.api.platform_flags import require_auth_static_enabled
+from app_skeleton.security.auth import require_platform_user
 
 router = APIRouter(tags=["lab-static"])
+
+
+async def _static_auth_guard(request: Request) -> dict[str, Any] | None:
+    if not require_auth_static_enabled():
+        return None
+    return await require_platform_user(request)
 
 
 def _resolve_under_root(root: Path, rel: str) -> Path:
@@ -37,10 +46,16 @@ def _file_response(path: Path) -> FileResponse:
 
 
 @router.get("/database-static/{file_path:path}")
-async def serve_database_static(file_path: str) -> FileResponse:
+async def serve_database_static(
+    file_path: str,
+    _user: dict[str, Any] | None = Depends(_static_auth_guard),
+) -> FileResponse:
     return _file_response(_resolve_under_root(DATABASE_ROOT, file_path))
 
 
 @router.get("/projects-static/{file_path:path}")
-async def serve_projects_static(file_path: str) -> FileResponse:
+async def serve_projects_static(
+    file_path: str,
+    _user: dict[str, Any] | None = Depends(_static_auth_guard),
+) -> FileResponse:
     return _file_response(_resolve_under_root(PROJECTS_ROOT, file_path))

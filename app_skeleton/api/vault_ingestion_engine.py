@@ -16,6 +16,7 @@ import psycopg
 from app_skeleton.api import document_extraction as de
 from app_skeleton.api.page_registry import resolve_page_ids
 from app_skeleton.api.paths import BLUEPRINT_ROOT, DATABASE_ROOT, PROJECTS_ROOT
+from app_skeleton.api.qdrant_collections import VAULT_CHUNKS as VAULT_QDRANT_COLLECTION
 from app_skeleton.api.raw_vault_store import ensure_vault_schema
 
 LOGGER = logging.getLogger(__name__)
@@ -45,9 +46,6 @@ SKIP_PARTS = de.SKIP_PARTS
 VECTORIZATION_ENABLED = os.environ.get("VECTORIZATION_ENABLED", "false").strip().lower() in {
     "1", "true", "yes", "on",
 }
-VAULT_QDRANT_COLLECTION = os.environ.get("VAULT_QDRANT_COLLECTION", "vault_asset_chunks")
-
-
 def _db_conn() -> str:
     from app_skeleton.api.supabase_config import postgres_conn
 
@@ -343,13 +341,8 @@ def _maybe_vectorize(cur, asset_id: str, result: de.ExtractionResult) -> None:
     if not VECTORIZATION_ENABLED or not result.chunks:
         return
     try:
-        from app_skeleton.api.llm_client import LLMClient
-        from app_skeleton.api.qdrant_vectors import (
-            get_qdrant_client,
-            ping_qdrant,
-            upsert_text_points,
-        )
-        from qdrant_client.http import models
+        from app_skeleton.api.platform_flags import vault_use_vector_indexer_enabled
+        from app_skeleton.api.qdrant_vectors import get_qdrant_client, ping_qdrant
     except ImportError:
         cur.execute(
             "UPDATE platform.raw_asset_vault SET vector_status = 'disabled' WHERE asset_id = %s;",
@@ -357,48 +350,68 @@ def _maybe_vectorize(cur, asset_id: str, result: de.ExtractionResult) -> None:
         )
         return
 
-    client = LLMClient()
     if not ping_qdrant():
         cur.execute(
             "UPDATE platform.raw_asset_vault SET vector_status = 'disabled' WHERE asset_id = %s;",
             (asset_id,),
         )
         return
-    qc = get_qdrant_client()
 
-    points = []
-    for chunk in result.chunks[:50]:
-        text = chunk.get("text") or ""
-        if not text.strip():
-            continue
-        vec = client.embed(text)
-        point_id = hashlib.md5(f"{asset_id}:{chunk.get('chunk_id', '')}".encode()).hexdigest()
-        points.append(
-            models.PointStruct(
-                id=point_id,
-                vector=vec,
-                payload={
-                    "asset_id": asset_id,
-                    "source_file": result.path,
-                    "chunk_index": chunk.get("chunk_index"),
-                    "text_preview": text[:2000],
-                    "embedding_model": "llm_client_hashed_embed",
-                },
+    qc = get_qdrant_client()
+    try:
+        if vault_use_vector_indexer_enabled():
+            from app_skeleton.api.vector_indexer import upsert_vault_asset_chunks
+
+            n = upsert_vault_asset_chunks(
+                qc,
+                asset_id,
+                result.chunks,
+                source_path=result.path,
             )
-        )
-    if points:
-        try:
-            upsert_text_points(qc, points, collection=VAULT_QDRANT_COLLECTION)
+        else:
+            from app_skeleton.api.llm_client import LLMClient
+            from app_skeleton.api.qdrant_vectors import upsert_text_points
+            from qdrant_client.http import models
+
+            llm = LLMClient()
+            points = []
+            for chunk in result.chunks[:50]:
+                text = chunk.get("text") or ""
+                if not text.strip():
+                    continue
+                vec = llm.embed(text)
+                point_id = hashlib.md5(f"{asset_id}:{chunk.get('chunk_id', '')}".encode()).hexdigest()
+                points.append(
+                    models.PointStruct(
+                        id=point_id,
+                        vector=vec,
+                        payload={
+                            "asset_id": asset_id,
+                            "source_file": result.path,
+                            "chunk_index": chunk.get("chunk_index"),
+                            "text_preview": text[:2000],
+                            "embedding_model": "llm_client_hashed_embed",
+                        },
+                    )
+                )
+            n = upsert_text_points(qc, points, collection=VAULT_QDRANT_COLLECTION) if points else 0
+
+        if n:
             cur.execute(
                 "UPDATE platform.raw_asset_vault SET vector_status = 'vectorized' WHERE asset_id = %s;",
                 (asset_id,),
             )
-        except Exception as exc:
-            LOGGER.warning("Qdrant upsert failed for %s: %s", asset_id, exc)
+        else:
             cur.execute(
                 "UPDATE platform.raw_asset_vault SET vector_status = 'failed' WHERE asset_id = %s;",
                 (asset_id,),
             )
+    except Exception as exc:
+        LOGGER.warning("Qdrant upsert failed for %s: %s", asset_id, exc)
+        cur.execute(
+            "UPDATE platform.raw_asset_vault SET vector_status = 'failed' WHERE asset_id = %s;",
+            (asset_id,),
+        )
 
 
 def _write_report(run_id: str, payload: dict[str, Any]) -> Path:

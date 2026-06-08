@@ -19,10 +19,7 @@ TEXT_VECTOR_NAME = os.getenv("DOCUMENT_QDRANT_VECTOR_NAME", "text")
 
 
 def embedding_dimension() -> int:
-    """Lazy embedding dimension — prefers TEXT_EMBEDDING_DIM, else embedding_service."""
-    raw = (os.getenv("TEXT_EMBEDDING_DIM") or "").strip()
-    if raw:
-        return int(raw)
+    """Embedding dimension — delegated to qdrant_collections.collection_dim()."""
     return collection_dim()
 
 

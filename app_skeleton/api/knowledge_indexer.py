@@ -3,27 +3,18 @@ from __future__ import annotations
 
 import json
 import logging
-import os
 import uuid
 from typing import Any
 
 import psycopg
 from qdrant_client import QdrantClient
 
+from app_skeleton.api.platform_flags import knowledge_indexer_enabled, platform_chunk_write_enabled
 from app_skeleton.api.qdrant_collections import DOC_CHUNKS
 from app_skeleton.api.qdrant_vectors import get_qdrant_client
 from app_skeleton.api.vector_indexer import upsert_text_chunks
 
 LOGGER = logging.getLogger(__name__)
-
-
-def knowledge_indexer_enabled() -> bool:
-    return (os.getenv("KNOWLEDGE_INDEXER_ENABLED", "false") or "false").strip().lower() in (
-        "1",
-        "true",
-        "yes",
-        "on",
-    )
 
 
 def _db_conn() -> str:
@@ -123,4 +114,9 @@ def write_chunks(
         "document_code": document_code,
         "chunks_written": len(chunks),
         "vectors_upserted": vectors_upserted,
+        "platform_chunk_write": platform_chunk_write_enabled(),
     }
+
+
+# Re-export for backward-compatible imports
+__all__ = ["knowledge_indexer_enabled", "platform_chunk_write_enabled", "write_chunks"]

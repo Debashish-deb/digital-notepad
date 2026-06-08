@@ -10,7 +10,7 @@ validate_environment()
 
 from app_skeleton.api.common import *
 from app_skeleton.api.common import _app_lifespan
-from app_skeleton.api.routers import health, research, copilot, knowledge, vault, storage, datapad, digitalization, search, research_knowledge, chat, document_library, image_assets, biomedical_models, agent_categories, lab_static
+from app_skeleton.api.routers import health, research, copilot, knowledge, vault, storage, datapad, digitalization, search, research_knowledge, chat, document_library, image_assets, biomedical_models, agent_categories, lab_static, admin_index
 from app_skeleton.security import secure_files
 
 app = FastAPI(title="OMEIA Research Copilot API", version="0.4.0-premium", lifespan=_app_lifespan)
@@ -44,6 +44,7 @@ app.include_router(document_library.router, dependencies=api_dependencies)
 app.include_router(image_assets.router, dependencies=api_dependencies)
 app.include_router(biomedical_models.router, dependencies=api_dependencies)
 app.include_router(agent_categories.router, dependencies=api_dependencies)
+app.include_router(admin_index.router, dependencies=api_dependencies)
 
 # Secure files router has its own internal dependency checks, 
 # but we can enforce it here as well for defense-in-depth, though it's already in the router definition

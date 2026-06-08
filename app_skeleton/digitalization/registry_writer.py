@@ -200,6 +200,12 @@ def insert_chunks(conn, chunks: list[DocumentChunk]) -> int:
     if not chunks:
         return 0
 
+    from app_skeleton.api.platform_flags import platform_chunk_write_enabled
+
+    if not platform_chunk_write_enabled():
+        LOGGER.info("PLATFORM_CHUNK_WRITE=false — skipping platform.document_chunk inserts")
+        return 0
+
     inserted = 0
     with conn.cursor() as cur:
         for chunk in chunks:
