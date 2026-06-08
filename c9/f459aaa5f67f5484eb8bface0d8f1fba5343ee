@@ -1,0 +1,54 @@
+app_skeleton/api/raw_vault_store.py
+  s_b9168c368b5282::t_451e5efd4d7052 172-173
+  s_b9168c368b5282::t_a5382a9d050fdc 444-445
+  s_b9168c368b5282::t_f61c1bc503d245 418,430
+  s_b9168c368b5282::t_fe1b376ccbe733 66-90
+  s_b9168c368b5282::t_f66c2b2d972a2b 545
+  s_b9168c368b5282::t_9170397e8eced4 322-367
+  s_b9168c368b5282::t_32709ef7d840c6 497-528
+  s_b9168c368b5282::t_dd9b252a0cb940 236
+app_skeleton/api/vector_indexer.py
+  s_b9168c368b5282::t_23eab06cc0b5a7 122-124,135,142-144
+app_skeleton/api/vault_ingestion_engine.py
+  s_b9168c368b5282::t_d911c9e538b657 390-393,396-408,414-416
+tests/test_vault_semantic_search.py
+  s_b9168c368b5282::t_fedc981b80fffb 1-6,10-50,61-166,168-177,182-187,189-200
+  s_b9168c368b5282::t_78a05e1ae2fb0e 51-60
+  s_b9168c368b5282::t_67b3398c8274c2 9
+  s_b9168c368b5282::t_78dfa3caad35bb 178-181,188
+  s_b9168c368b5282::t_62ec11a90635db 7-8
+  s_b9168c368b5282::t_0d3a4381820350 167
+app_skeleton/api/search_service.py
+  s_b9168c368b5282::t_e202f0fafcbd69 1072-1073,1077
+  s_b9168c368b5282::t_8cb3c6e9c7d566 1223
+  s_b9168c368b5282::t_e96cd9e2f35d0f 520-568
+  s_b9168c368b5282::t_97d7077fc9822d 1011-1012,1027-1031
+  s_b9168c368b5282::t_6d0e6b9098ba19 22
+sql/148_vault_search_indexes.sql
+  s_b9168c368b5282::t_16a456c032c372 1-17
+configs/.env.example
+  s_b9168c368b5282::t_0b49541ec13bf5 53-54,57
+  s_b9168c368b5282::t_2b4824b65067e5 361-362
+app_skeleton/api/routers/vault.py
+  s_b9168c368b5282::t_a29328aed3ca2f 252,255,266-298
+app_skeleton/api/platform_flags.py
+  s_b9168c368b5282::t_8a8a83e76445e8 30-34
+app_skeleton/api/vault_vector_search.py
+  s_b9168c368b5282::t_fcbef2fa8a7144 11,14-18,23-65,101,105
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "c9f459aaa5f67f5484eb8bface0d8f1fba5343ee",
+  "prompts": {},
+  "sessions": {
+    "s_b9168c368b5282": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "2014bff7-11c1-4d46-b439-9b83ad0c4526",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
