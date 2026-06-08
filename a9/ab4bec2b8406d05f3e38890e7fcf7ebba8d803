@@ -1,0 +1,92 @@
+requirements.txt
+  s_d8ca0dcf385045::t_be335c099ddef2 1-2
+scripts/dev/start_linux_desktop.sh
+  s_d8ca0dcf385045::t_e5afea3ca3bf40 34
+app_skeleton/api/lab_knowledge_store.py
+  s_6b73098ab26784::t_db93d703819f75 12
+  s_6b73098ab26784::t_d125fd195b37fb 419
+  s_6b73098ab26784::t_38c7be6117cb85 30,33-34
+  s_6b73098ab26784::t_ae78b48e52eb18 316,334-338,358,364-366
+tests/test_embedding_dim_contract.py
+  s_6b73098ab26784::t_320633e985d7a6 1-39
+scripts/ops/run_ocr_queue.py
+  s_6b73098ab26784::t_b2ab7e2f67a6b8 1-43
+app_skeleton/api/vector_indexer.py
+  s_6b73098ab26784::t_f29a235f5ad0f8 1-97
+app_skeleton/api/knowledge_indexer.py
+  s_6b73098ab26784::t_cf63c75b2fe76b 1-126
+sql/146_taxonomy_assignment.sql
+  s_6b73098ab26784::t_90dcadfd51611f 1-21
+app_skeleton/api/qdrant_research_indexer.py
+  s_6b73098ab26784::t_db4801bbdd9f4e 10-13,17-27,43,48,50-54,56-62,65-67,72,86,90-96,98
+  s_6b73098ab26784::t_a9fead9cb05125 37-42,47
+scripts/docker/linux_post_stack_setup.sh
+  s_d8ca0dcf385045::t_066ff43a909295 25
+app_skeleton/api/document_extraction.py
+  s_6b73098ab26784::t_98d3454f99c9cb 373-380
+scripts/dev/start_mac_thin_client.sh
+  s_d8ca0dcf385045::t_870bd4866ec78f 30
+app_skeleton/api/raw_vault_store.py
+  s_6b73098ab26784::t_7fbd23bd0eab82 209-210
+app_skeleton/api/project_knowledge_extractor.py
+  s_6b73098ab26784::t_54ad6ed02aab1d 199-222
+app_skeleton/api/search_service.py
+  s_6b73098ab26784::t_eb0e992fffd536 951,959-990
+  s_6b73098ab26784::t_6098a06a1e5404 1000-1002,1009
+app_skeleton/api/vault_vector_search.py
+  s_6b73098ab26784::t_d2eb2870eac3e9 1-66
+app_skeleton/api/ocr/adapter.py
+  s_6b73098ab26784::t_25ca662f494489 1-36
+app_skeleton/api/qdrant_collections.py
+  s_6b73098ab26784::t_a3291b14b5a308 1-18
+app_skeleton/api/ocr/tesseract_backend.py
+  s_6b73098ab26784::t_deb5c12ba93e93 1-27
+app_skeleton/api/qdrant_vectors.py
+  s_6b73098ab26784::t_3d5c2703f56b81 73
+  s_6b73098ab26784::t_06c86a070aa00f 15
+  s_6b73098ab26784::t_459f358aeaa80d 13-14,19-32
+docs/KNOWLEDGE_DOCUMENT_SUBSYSTEM_REVIEW.md
+  s_d8ca0dcf385045::t_4cf10a6bfdcc3d 1-820
+app_skeleton/api/taxonomy_service.py
+  s_6b73098ab26784::t_c9330f307c6bd6 1-100
+sql/145_ocr_jobs.sql
+  s_6b73098ab26784::t_8ef039277d296c 1-24
+tests/test_vector_indexer.py
+  s_6b73098ab26784::t_3053d683d60314 1-52
+configs/.env.example
+  s_6b73098ab26784::t_4c1619e0b8288b 43-59
+  s_6b73098ab26784::t_5378d6a8b8dd80 174
+scripts/ingest/reindex_research_vectors.py
+  s_6b73098ab26784::t_6403726e7416c7 1-152
+app_skeleton/api/project_knowledge_store.py
+  s_6b73098ab26784::t_a12b1a6ec88687 23
+  s_6b73098ab26784::t_df151a837fcc73 64,91-93,95
+docs/KNOWLEDGE_PLATFORM_REMEDIATION_PLAN.md
+  s_d8ca0dcf385045::t_435706f9b2ec86 1-935
+app_skeleton/api/chunking.py
+  s_6b73098ab26784::t_6e870ee7286e6b 1-58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "a9ab4bec2b8406d05f3e38890e7fcf7ebba8d803",
+  "prompts": {},
+  "sessions": {
+    "s_6b73098ab26784": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "609bcea6-8335-4ef6-9e0d-98c7de17556a",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
