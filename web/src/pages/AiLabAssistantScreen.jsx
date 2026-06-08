@@ -15,11 +15,6 @@ import {
   Microscope,
 } from 'lucide-react';
 const ChatWidget = lazy(() => import('@/features/ai-assistant/components/ChatWidget.jsx'));
-const AiAssistant3DScene = lazy(() => import('@/features/ai-assistant/components/AiAssistant3DScene.jsx'));
-
-function SceneFallback() {
-  return <div className="ai3d-hero-skeleton" role="presentation" aria-hidden />;
-}
 import { apiFetch } from '@/services/client.js';
 import { fetchAgentCategories } from '@/services/agentCategoryClient.js';
 import { fetchBiomedicalModelsForUi } from '@/services/biomedicalModelsClient.js';
@@ -205,94 +200,43 @@ export default function AiLabAssistantScreen({
     },
   ];
 
-  const heroStats = useMemo(
-    () => [
-      { label: 'Services', value: menuItems.length },
-      { label: 'Projects', value: projectOptions.length },
-      { label: 'Mode', value: subTab === 'copilot' ? 'Live' : 'Tools' },
-    ],
-    [menuItems.length, projectOptions.length, subTab],
-  );
-
   return (
-    <section className={`ai-lab-assistant${hideChrome ? ' ai-lab-assistant--embedded' : ''}`}>
+    <section
+      className={[
+        'ai-lab-assistant',
+        hideChrome ? 'ai-lab-assistant--embedded' : '',
+        subTab === 'copilot' ? 'ai-lab-assistant--copilot' : '',
+      ].filter(Boolean).join(' ')}
+    >
       {!hideChrome && (
-        <aside className="ai-lab-rail" aria-label="AI assistant services">
-          <Suspense fallback={<SceneFallback />}>
-            <AiAssistant3DScene
-              title="AI Lab Assistant"
-              subtitle="A 3D command center for RAG search, document indexing, prompt workflows, and model intelligence."
-              stats={heroStats}
-              compact
-              className="ai-lab-rail-hero"
-            />
-          </Suspense>
+        <nav className="ai-lab-tool-tabs" aria-label="AI assistant tools">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const active = subTab === item.id;
 
-          <div className="ai-lab-rail-label">Assistant services</div>
-
-          <nav className="ai-lab-menu">
-            {menuItems.map((item) => {
-              const Icon = item.icon;
-              const active = subTab === item.id;
-
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  className={`ai-lab-menu-item${active ? ' active' : ''}`}
-                  onClick={() => {
-                    if (item.id === 'research_kb' && onNavigate) {
-                      onNavigate('ai_assistant', 'research_kb');
-                      return;
-                    }
-                    setSubTab(item.id);
-                  }}
-                  aria-current={active ? 'page' : undefined}
-                >
-                  <span className="ai-lab-menu-item__icon">
-                    <Icon size={17} aria-hidden="true" />
-                  </span>
-                  <span className="ai-lab-menu-item__copy">
-                    <strong>{item.label}</strong>
-                    <small>{item.desc}</small>
-                  </span>
-                </button>
-              );
-            })}
-          </nav>
-        </aside>
+            return (
+              <button
+                key={item.id}
+                type="button"
+                className={`ai-lab-tool-tab${active ? ' is-active' : ''}`}
+                onClick={() => {
+                  if (item.id === 'research_kb' && onNavigate) {
+                    onNavigate('ai_assistant', 'research_kb');
+                    return;
+                  }
+                  setSubTab(item.id);
+                }}
+                aria-current={active ? 'page' : undefined}
+              >
+                <Icon size={15} aria-hidden="true" />
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
+        </nav>
       )}
 
       <main className="ai-lab-main">
-        {subTab !== 'copilot' && (
-          <div className="ai-lab-top-hero">
-            <Suspense fallback={<SceneFallback />}>
-              <AiAssistant3DScene
-                title={
-                  subTab === 'copilot'
-                    ? 'Research Copilot'
-                    : subTab === 'ingest'
-                      ? 'RAG Document Indexer'
-                      : subTab === 'models'
-                        ? 'Deep Learning Registry'
-                        : 'Prompt Engineering Library'
-                }
-                subtitle={
-                  subTab === 'copilot'
-                    ? 'Ask questions across Qdrant vectors, database counts, and lab knowledge.'
-                    : subTab === 'ingest'
-                      ? 'Paste or prepare protocols, scripts, and SOP text for vector retrieval.'
-                      : subTab === 'models'
-                        ? 'Track model families, frameworks, tasks, and target compute environments.'
-                        : 'Reusable expert prompts for manuscript writing, logbooks, code review, and analysis.'
-                }
-                stats={heroStats}
-                compact
-              />
-            </Suspense>
-          </div>
-        )}
-
         {subTab === 'copilot' && (
           <Suspense fallback={<div className="panel module-loading-fallback">Loading copilot…</div>}>
             <ChatWidget

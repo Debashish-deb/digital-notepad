@@ -74,6 +74,55 @@ export default function AgentCategorySelector({
     ? teamRoster
     : (active?.team_preview || []).map((label) => ({ label, model: 'Auto', chains: [label] }));
 
+  if (variant === 'toolbar') {
+    return (
+      <div className="agent-category-toolbar" aria-label="Research intelligence mode">
+        <label className="agent-category-toolbar__field">
+          <span className="agent-category-toolbar__label">Team</span>
+          <select
+            className="form-select agent-category-toolbar__select"
+            value={selectedCategory}
+            onChange={(e) => onCategoryChange?.(e.target.value)}
+            disabled={disabled || loading}
+            aria-label="Intelligence team"
+          >
+            {(categories.length ? categories : [{ id: selectedCategory, label: 'Lab Research Assistant' }]).map((cat) => (
+              <option key={cat.id} value={cat.id}>{cat.label}</option>
+            ))}
+          </select>
+        </label>
+        <div className="agent-category-mode-pills agent-category-toolbar__modes" role="tablist" aria-label="Collaboration mode">
+          {MODES.map((m) => (
+            <button
+              key={m.id}
+              type="button"
+              role="tab"
+              aria-selected={selectedMode === m.id}
+              className={`agent-category-mode-pill agent-category-mode-pill--${m.id}${selectedMode === m.id ? ' is-active' : ''}`}
+              onClick={() => onModeChange?.(m.id)}
+              disabled={disabled}
+            >
+              {m.label}
+            </button>
+          ))}
+        </div>
+        {showDebug ? (
+          <details className="agent-category-debug agent-category-toolbar__debug">
+            <summary>Debug</summary>
+            <label className="agent-category-debug__toggle">
+              <input
+                type="checkbox"
+                checked={debugModels}
+                onChange={(e) => onToggleDebugModels?.(e.target.checked)}
+              />
+              Legacy model picker
+            </label>
+          </details>
+        ) : null}
+      </div>
+    );
+  }
+
   if (variant === 'context') {
     const ActiveIcon = ICONS[active?.icon] || FlaskConical;
     const toneId = active?.id || 'general_research';

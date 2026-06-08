@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AlertTriangle,
   Bot,
@@ -46,12 +46,12 @@ import {
   stashOmniboxPrefill,
   formatChatProviderLabel,
 } from '@/lib/searchNavigation.js';
-import AssistantSearchHits from '@/features/search/components/AssistantSearchHits.jsx';
 import OrchestratorAnswerView, { parseOrchestratorSections } from './OrchestratorAnswerView.jsx';
 import ResearchStrategyAnswerView from './ResearchStrategyAnswerView.jsx';
+import AssistantScopeBar from './AssistantScopeBar.jsx';
+import AssistantSourcesPanel from './AssistantSourcesPanel.jsx';
 import '@/features/search/components/UnifiedSearch.css';
 import '@/features/ai-assistant/styles/AiAssistantChat.css';
-const AiAssistant3DScene = lazy(() => import('./AiAssistant3DScene.jsx'));
 import TaskpadSheet from '@/features/taskpad/components/TaskpadSheet.jsx';
 import { useModuleShellCover } from '@/contexts/ModuleShellCoverContext.jsx';
 import { useGuiT } from '@/i18n/useGuiT.js';
@@ -65,9 +65,14 @@ const WELCOME_MESSAGE = {
 };
 
 const SUGGESTED_PROMPTS = [
-  'How do I install Napari on macOS?',
-  'What CycIF gating workflow does the lab use?',
-  'Summarize SPACEStat spatial statistics steps',
+  'What CycIF antibody panel do we use for TLS cohorts?',
+  'How do I run SPACEStat on exported cell tables?',
+  'Summarize EyeMT spatial stats workflow',
+  'Where is the Ashlar stitching protocol?',
+  'StarDist nuclei segmentation defaults for HGSC',
+  'GeoMx ROI selection best practices in our SOPs',
+  'What Napari plugins does the lab recommend?',
+  'KRAS project: latest gating exclusions',
 ];
 
 const CHAT_MODEL_STORAGE_KEY = 'omeia.chat.modelKey';
@@ -219,11 +224,26 @@ function formatTime(iso) {
   }
 }
 
-function renderInlineMarkdown(text, keyPrefix = 'inline') {
+function renderInlineMarkdown(text, keyPrefix = 'inline', { onCitationClick } = {}) {
   const raw = String(text || '');
-  const tokens = raw.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*|`[^`]+`|https?:\/\/[^\s)]+)/g);
+  const tokens = raw.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*|`[^`]+`|https?:\/\/[^\s)]+|\[\d+\])/g);
   return tokens.map((part, i) => {
     const key = `${keyPrefix}-${i}`;
+    const citeMatch = part.match(/^\[(\d+)\]$/);
+    if (citeMatch && onCitationClick) {
+      const index = Number(citeMatch[1]) - 1;
+      return (
+        <button
+          key={key}
+          type="button"
+          className="chat-citation-ref"
+          onClick={() => onCitationClick(index)}
+          aria-label={`Source ${citeMatch[1]}`}
+        >
+          [{citeMatch[1]}]
+        </button>
+      );
+    }
     const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (linkMatch) {
       return (
@@ -353,8 +373,9 @@ function parseMarkdownBlocks(content) {
   return blocks;
 }
 
-function MarkdownLite({ text }) {
+function MarkdownLite({ text, onCitationClick }) {
   const blocks = useMemo(() => parseMarkdownBlocks(text), [text]);
+  const inlineOpts = onCitationClick ? { onCitationClick } : {};
 
   return (
     <div className="chat-rich-text">
@@ -363,19 +384,19 @@ function MarkdownLite({ text }) {
           return <div key={`space-${index}`} className="chat-rich-spacer" aria-hidden="true" />;
         }
         if (block.type === 'h2') {
-          return <h2 key={index}>{renderInlineMarkdown(block.text, `h2-${index}`)}</h2>;
+          return <h2 key={index}>{renderInlineMarkdown(block.text, `h2-${index}`, inlineOpts)}</h2>;
         }
         if (block.type === 'h3') {
-          return <h3 key={index}>{renderInlineMarkdown(block.text, `h3-${index}`)}</h3>;
+          return <h3 key={index}>{renderInlineMarkdown(block.text, `h3-${index}`, inlineOpts)}</h3>;
         }
         if (block.type === 'p') {
-          return <p key={index}>{renderInlineMarkdown(block.text, `p-${index}`)}</p>;
+          return <p key={index}>{renderInlineMarkdown(block.text, `p-${index}`, inlineOpts)}</p>;
         }
         if (block.type === 'ul') {
           return (
             <ul key={index} className="chat-rich-list">
               {block.items.map((item, j) => (
-                <li key={j}>{renderInlineMarkdown(item, `ul-${index}-${j}`)}</li>
+                <li key={j}>{renderInlineMarkdown(item, `ul-${index}-${j}`, inlineOpts)}</li>
               ))}
             </ul>
           );
@@ -384,7 +405,7 @@ function MarkdownLite({ text }) {
           return (
             <ol key={index} className="chat-rich-list chat-rich-list--numbered">
               {block.items.map((item, j) => (
-                <li key={j}>{renderInlineMarkdown(item, `ol-${index}-${j}`)}</li>
+                <li key={j}>{renderInlineMarkdown(item, `ol-${index}-${j}`, inlineOpts)}</li>
               ))}
             </ol>
           );
@@ -461,6 +482,8 @@ export default function ChatWidget({
   const [challengeMessageId, setChallengeMessageId] = useState(null);
   const [challengeText, setChallengeText] = useState('');
   const [challengeLoading, setChallengeLoading] = useState(false);
+  const [selectedSourceIndex, setSelectedSourceIndex] = useState(0);
+  const [pinnedEvidenceMessageId, setPinnedEvidenceMessageId] = useState(null);
 
   const textareaRef = useRef(null);
   const revealAbortRef = useRef(null);
@@ -1032,47 +1055,60 @@ export default function ChatWidget({
     return `${label} (${mode})`;
   }, [activeCategoryLabel, chatModel, chatProvider, debugModels, providerLabel, selectedMode]);
 
-  const heroStats = useMemo(() => {
-    const status = loading
-      ? { value: 'Thinking', tone: 'warn' }
-      : chatHealthy === false
-        ? { value: 'Offline', tone: 'danger' }
-        : { value: 'Ready', tone: 'live' };
-    return [
-      {
-        id: 'mode',
-        label: 'Mode',
-        icon: 'database',
-        value: 'RAG',
-        tone: 'cyan',
-        title: 'Retrieval-augmented generation',
-      },
-      {
-        id: 'team',
-        label: 'Team',
-        icon: 'team',
-        value: debugModels ? (chatModel || 'LLM') : activeCategoryLabel,
-        tone: 'primary',
-        title: providerBadge,
-      },
-      {
-        id: 'scope',
-        label: 'Scope',
-        icon: 'scope',
-        value: `${selProjs.length || 0} proj`,
-        tone: 'neutral',
-        title: `${selProjs.length || 0} scoped project(s)`,
-      },
-      {
-        id: 'status',
-        label: 'Status',
-        icon: 'status',
-        value: status.value,
-        tone: status.tone,
-        title: 'Copilot availability',
-      },
-    ];
-  }, [loading, chatHealthy, debugModels, chatModel, activeCategoryLabel, providerBadge, selProjs.length]);
+  const handleSetProjects = useCallback((codes) => {
+    const next = (codes || []).filter(Boolean);
+    if (!next.length) return;
+    setSelProjs(next);
+    onSelectProject?.(next[0]);
+  }, [onSelectProject]);
+
+  const resolveMessageEvidence = useCallback((message) => {
+    if (!message || message.role !== 'assistant') return null;
+    const hits = message.searchHits?.length
+      ? message.searchHits
+      : (message.sources?.length ? message.sources : null);
+    if (!hits?.length) return null;
+    return {
+      hits,
+      query: message.queryContext || '',
+      messageId: message.id,
+    };
+  }, []);
+
+  const activeEvidence = useMemo(() => {
+    if (pinnedEvidenceMessageId) {
+      const pinned = messages.find((m) => m.id === pinnedEvidenceMessageId);
+      const resolved = resolveMessageEvidence(pinned);
+      if (resolved) return resolved;
+    }
+    for (let i = messages.length - 1; i >= 0; i -= 1) {
+      const resolved = resolveMessageEvidence(messages[i]);
+      if (resolved) return resolved;
+    }
+    return null;
+  }, [messages, pinnedEvidenceMessageId, resolveMessageEvidence]);
+
+  useEffect(() => {
+    if (!activeEvidence?.messageId) return;
+    setSelectedSourceIndex(0);
+  }, [activeEvidence?.messageId]);
+
+  const focusEvidenceSource = useCallback((messageId, index = 0) => {
+    setPinnedEvidenceMessageId(messageId);
+    setSelectedSourceIndex(Math.max(0, index));
+  }, []);
+
+  const scopeStatusLabel = loading
+    ? 'Thinking…'
+    : chatHealthy === false
+      ? 'Offline'
+      : providerBadge;
+
+  const scopeStatusTone = loading
+    ? 'warn'
+    : chatHealthy === false
+      ? 'danger'
+      : 'success';
 
   const coverToolbar = shellCover ? (
     <>
@@ -1105,41 +1141,37 @@ export default function ChatWidget({
   const showSuggestions = messages.length === 1 && messages[0]?.isWelcome && !loading;
 
   return (
-    <section className="assistant-chat-shell" aria-label="OMEIA AI Lab Assistant">
-      <div className="assistant-cover-card">
-        <Suspense fallback={<div className="ai3d-hero-skeleton" aria-hidden />}>
-          <AiAssistant3DScene
-            merged
-            toolbar={coverToolbar}
-            title="OMEIA Copilot"
-            subtitle="Spatial-biology RAG · lab protocols · intelligence teams"
-            stats={heroStats}
-            swimmingTopics={[]}
-            compact
-            dense
-            visual="solar"
-            visualPosition="right"
-            className="ai3d-hero--module-ai"
-          />
-        </Suspense>
-        <div className="assistant-cover-card__intel">
-          <AgentCategorySelector
-            layout="cover"
-            categories={agentCategories}
-            selectedCategory={selectedCategory}
-            selectedMode={selectedMode}
-            onCategoryChange={handleCategoryChange}
-            onModeChange={handleModeChange}
-            disabled={loading}
-            loading={categoriesLoading}
-            showDebug
-            modelCatalog={modelCatalog}
-            debugModels={debugModels}
-            onToggleDebugModels={handleToggleDebugModels}
-          />
-        </div>
-      </div>
+    <section className="assistant-chat-shell assistant-chat-shell--copilot-v2" aria-label="OMEIA AI Lab Assistant">
+      <header className="assistant-copilot-toolbar">
+        {coverToolbar ? (
+          <div className="assistant-copilot-toolbar__module">{coverToolbar}</div>
+        ) : null}
+        <AssistantScopeBar
+          projectCodes={projectCodes.length ? projectCodes : swimmingTopics}
+          selectedProjects={selProjs}
+          onToggleProject={handleSetProjects}
+          libraryScopeLabel={libraryScope?.scope_label || null}
+          statusLabel={scopeStatusLabel}
+          statusTone={scopeStatusTone}
+        />
+        <AgentCategorySelector
+          variant="toolbar"
+          categories={agentCategories}
+          selectedCategory={selectedCategory}
+          selectedMode={selectedMode}
+          onCategoryChange={handleCategoryChange}
+          onModeChange={handleModeChange}
+          disabled={loading}
+          loading={categoriesLoading}
+          showDebug
+          modelCatalog={modelCatalog}
+          debugModels={debugModels}
+          onToggleDebugModels={handleToggleDebugModels}
+        />
+      </header>
 
+      <div className="assistant-copilot-split">
+        <div className="assistant-copilot-chat">
       <div className="chat-container assistant-chat-container">
         <div
           ref={messagesContainerRef}
@@ -1237,7 +1269,14 @@ export default function ChatWidget({
                     claimValidations={message.claimValidations}
                   />
                 ) : (
-                  <MarkdownLite text={message.content} />
+                  <MarkdownLite
+                    text={message.content}
+                    onCitationClick={
+                      (message.searchHits?.length || message.sources?.length)
+                        ? (index) => focusEvidenceSource(message.id, index)
+                        : undefined
+                    }
+                  />
                 )}
                 {message.streaming && message.content ? (
                   <span className="chat-streaming-cursor" aria-hidden="true" />
@@ -1253,14 +1292,26 @@ export default function ChatWidget({
                 {message.showSources !== false
                   && message.intent !== 'smalltalk'
                   && (message.sources?.length > 0 || message.searchHits?.length > 0) ? (
-                  <AssistantSearchHits
-                    hits={message.searchHits}
-                    sources={message.sources}
-                    query={message.queryContext || ''}
-                    onOpenHit={onNavigate ? handleOpenSource : null}
-                    onAskFollowUp={handleAskFollowUp}
-                    onSearchOmnibox={onOpenSearch ? handleSearchOmnibox : null}
-                  />
+                  <div className="assistant-citation-strip" role="group" aria-label="Answer sources">
+                    <span className="assistant-citation-strip__label">
+                      {(message.searchHits?.length || message.sources?.length || 0)} sources
+                    </span>
+                    {(message.searchHits?.length ? message.searchHits : message.sources).map((hit, index) => (
+                      <button
+                        key={`${message.id}-cite-${index}`}
+                        type="button"
+                        className={`assistant-citation-strip__ref${
+                          pinnedEvidenceMessageId === message.id && selectedSourceIndex === index
+                            ? ' is-active'
+                            : ''
+                        }`}
+                        onClick={() => focusEvidenceSource(message.id, index)}
+                        title={hit.title || `Source ${index + 1}`}
+                      >
+                        [{index + 1}]
+                      </button>
+                    ))}
+                  </div>
                 ) : null}
 
                 {message.role === 'assistant' && !message.isError && !message.isWelcome && message.queryContext ? (
@@ -1569,6 +1620,18 @@ export default function ChatWidget({
           </button>
           <span className="assistant-chat-input-hint">Enter to send · Shift+Enter for newline</span>
         </form>
+      </div>
+        </div>
+
+        <AssistantSourcesPanel
+          items={activeEvidence?.hits || []}
+          query={activeEvidence?.query || ''}
+          selectedIndex={selectedSourceIndex}
+          onSelectIndex={setSelectedSourceIndex}
+          onOpenHit={onNavigate ? handleOpenSource : null}
+          onAskFollowUp={handleAskFollowUp}
+          onSearchOmnibox={onOpenSearch ? handleSearchOmnibox : null}
+        />
       </div>
     </section>
   );
