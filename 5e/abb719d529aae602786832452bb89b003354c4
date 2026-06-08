@@ -1,0 +1,22 @@
+scripts/deploy/mac_push_to_linux.sh
+  s_d8ca0dcf385045::t_0191fc71ae9625 47,49
+  s_d8ca0dcf385045::t_a2d6e7e50ab81c 28,34,37-41
+  s_d8ca0dcf385045::t_af5c82488cedff 70-77
+  s_d8ca0dcf385045::t_575b85617b6af4 81
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "5eabb719d529aae602786832452bb89b003354c4",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
