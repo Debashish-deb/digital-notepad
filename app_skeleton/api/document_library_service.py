@@ -1315,11 +1315,16 @@ def load_category_trees() -> dict[str, Any]:
     return trees
 
 
-def _find_row_by_asset_id(asset_id: str) -> dict[str, Any] | None:
+def find_row_by_asset_id(asset_id: str) -> dict[str, Any] | None:
+    """Return a single enriched inventory row by asset_id."""
     for row in get_enriched_rows():
         if row.get("asset_id") == asset_id:
             return row
     return None
+
+
+def _find_row_by_asset_id(asset_id: str) -> dict[str, Any] | None:
+    return find_row_by_asset_id(asset_id)
 
 
 def _row_export_text(row: dict[str, Any], *, full: bool = False) -> str:

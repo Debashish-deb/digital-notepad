@@ -39,10 +39,7 @@ def _infer_provider(asset_row: dict[str, Any]) -> str:
 
 
 def lookup_asset_row(asset_id: str) -> dict[str, Any] | None:
-    for row in doc_svc.get_enriched_rows():
-        if row.get("asset_id") == asset_id:
-            return row
-    return None
+    return doc_svc.find_row_by_asset_id(asset_id)
 
 
 class ImageStorageAdapter:

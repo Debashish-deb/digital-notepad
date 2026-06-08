@@ -26,6 +26,95 @@ from app_skeleton.api.thumbnail_service import preview_cache_dir
 LOGGER = logging.getLogger(__name__)
 
 
+def _image_plane_shape(shape: tuple[int, ...]) -> tuple[int, int]:
+    if len(shape) < 2:
+        return 1, 1
+    return int(shape[-2]), int(shape[-1])
+
+
+def _get_pyramid_page(tif: Any, *, series: int, level: int) -> Any:
+    """Resolve TIFF page for series and pyramid level (SubIFD chain)."""
+    if tif.series and series < len(tif.series):
+        pages = tif.series[series].pages
+        page = pages[0] if pages else tif.pages[0]
+    else:
+        page = tif.pages[0]
+    if level > 0 and page.subifds and level - 1 < len(page.subifds):
+        page = page.subifds[level - 1]
+    return page
+
+
+def _build_tile_key(
+    shape: tuple[int, ...],
+    *,
+    x: int,
+    y: int,
+    width: int,
+    height: int,
+    channel: int,
+    z: int,
+    t: int,
+) -> tuple:
+    y_end = y + height
+    x_end = x + width
+    if len(shape) == 2:
+        return (slice(y, y_end), slice(x, x_end))
+    if len(shape) == 3:
+        if shape[0] <= 8:
+            ch = min(channel, shape[0] - 1)
+            return (ch, slice(y, y_end), slice(x, x_end))
+        ch = min(channel, shape[2] - 1)
+        return (slice(y, y_end), slice(x, x_end), ch)
+    if len(shape) == 4:
+        ti = min(t, shape[0] - 1)
+        ch = min(channel, shape[1] - 1)
+        return (ti, ch, slice(y, y_end), slice(x, x_end))
+    ti = min(t, shape[0] - 1)
+    zi = min(z, shape[1] - 1)
+    ch = min(channel, shape[2] - 1)
+    return (ti, zi, ch, slice(y, y_end), slice(x, x_end))
+
+
+def _read_tile_region(
+    page: Any,
+    *,
+    x: int,
+    y: int,
+    width: int,
+    height: int,
+    channel: int,
+    z: int,
+    t: int,
+) -> Any:
+    import numpy as np  # type: ignore
+
+    shape = tuple(int(s) for s in page.shape)
+    img_h, img_w = _image_plane_shape(shape)
+    if x >= img_w or y >= img_h:
+        raise HTTPException(status_code=400, detail="Tile origin outside image bounds")
+    width = min(width, img_w - x)
+    height = min(height, img_h - y)
+    if width <= 0 or height <= 0:
+        raise HTTPException(status_code=400, detail="Tile region outside image bounds")
+
+    key = _build_tile_key(
+        shape,
+        x=x,
+        y=y,
+        width=width,
+        height=height,
+        channel=channel,
+        z=z,
+        t=t,
+    )
+    try:
+        region = page.asarray(key=key)
+    except Exception:
+        arr = page.asarray()
+        region = np.asarray(arr)[key]  # type: ignore[index]
+    return np.asarray(region), width, height
+
+
 def _thumb_cache_path(asset_id: str) -> Path:
     digest = hashlib.sha256(asset_id.encode("utf-8")).hexdigest()[:16]
     return preview_cache_dir() / f"asset_{digest}.thumb.jpg"
@@ -70,14 +159,25 @@ class ImageStreamingService:
         width = meta.get("width")
         height = meta.get("height")
         tile_size = min(MAX_TILE_EDGE, 256)
+        dims = meta.get("dimensions") or {}
+        axes = dims.get("axes") or ""
+        shape = dims.get("shape") or []
+
+        def _axis_count(axis: str) -> int:
+            if not axes or axis not in axes or not shape:
+                return 1
+            return max(1, int(shape[axes.index(axis)]))
+
         return {
             "asset_id": asset_id,
             "format": meta.get("format"),
             "streaming_status": meta.get("streaming_status"),
-            "dimensions": meta.get("dimensions"),
+            "dimensions": dims,
             "width": width,
             "height": height,
             "channels": meta.get("channels"),
+            "z_slices": _axis_count("Z"),
+            "timepoints": _axis_count("T"),
             "pyramid_levels": levels,
             "tile_size": tile_size,
             "tile_ready": bool(meta.get("tile_ready")),
@@ -212,41 +312,34 @@ class ImageStreamingService:
             raise HTTPException(status_code=503, detail="Pillow not available")
 
         path = Path(resolved["disk_path"])
-        with tifffile.TiffFile(str(path)) as tif:
-            if tif.series and series < len(tif.series):
-                arr = tif.series[series].asarray()
-            else:
-                page = tif.pages[0]
-                if level > 0 and page.subifds and level - 1 < len(page.subifds):
-                    page = page.subifds[level - 1]
-                arr = page.asarray()
+        try:
+            with tifffile.TiffFile(str(path)) as tif:
+                page = _get_pyramid_page(tif, series=series, level=level)
+                region, width, height = _read_tile_region(
+                    page,
+                    x=x,
+                    y=y,
+                    width=width,
+                    height=height,
+                    channel=channel,
+                    z=z,
+                    t=t,
+                )
+        except HTTPException:
+            raise
+        except Exception as exc:
+            LOGGER.warning("tile decode failed for %s: %s", asset_id, exc)
+            raise HTTPException(status_code=422, detail="Unable to decode tile region") from exc
 
-        arr = np.asarray(arr)
-        if arr.ndim == 2:
-            region = arr[y : y + height, x : x + width]
-        elif arr.ndim == 3:
-            if arr.shape[0] <= 8:
-                region = arr[min(channel, arr.shape[0] - 1), y : y + height, x : x + width]
-            else:
-                region = arr[y : y + height, x : x + width, min(channel, arr.shape[2] - 1)]
-        elif arr.ndim == 4:
-            region = arr[min(t, arr.shape[0] - 1), min(channel, arr.shape[1] - 1), y : y + height, x : x + width]
-        elif arr.ndim >= 5:
-            region = arr[
-                min(t, arr.shape[0] - 1),
-                min(z, arr.shape[1] - 1),
-                min(channel, arr.shape[2] - 1),
-                y : y + height,
-                x : x + width,
-            ]
-        else:
-            region = arr[y : y + height, x : x + width]
-
-        region = np.asarray(region)
         if region.dtype != np.uint8:
             region = region.astype(np.float32)
             region = (region - region.min()) / max(region.max() - region.min(), 1e-6) * 255
             region = region.astype(np.uint8)
+
+        if region.ndim > 2:
+            region = np.squeeze(region)
+        if region.ndim != 2:
+            raise HTTPException(status_code=422, detail="Tile region is not a 2D plane")
 
         im = Image.fromarray(region)
         buf = io.BytesIO()

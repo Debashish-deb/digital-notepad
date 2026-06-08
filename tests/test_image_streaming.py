@@ -140,6 +140,16 @@ class TestImageStreaming(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn("image/", response.headers.get("content-type", ""))
 
+    def test_tile_rejects_out_of_bounds_origin(self) -> None:
+        with self._mock_resolve():
+            response = self.client.get(
+                f"/api/assets/{TEST_ASSET_ID}/image/tile",
+                params={"x": 9999, "y": 9999, "width": 32, "height": 32},
+            )
+            if response.status_code == 503:
+                self.skipTest("tifffile or Pillow unavailable")
+            self.assertEqual(response.status_code, 400)
+
     def test_stream_range(self) -> None:
         with self._mock_resolve():
             full = self.client.get(f"/api/assets/{TEST_ASSET_ID}/image/stream")
