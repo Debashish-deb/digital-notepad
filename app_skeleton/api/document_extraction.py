@@ -370,6 +370,14 @@ def _chunk_text(text: str, source_path: str, *, chunk_chars: int = DEFAULT_CHUNK
     text = _normalize_extracted_text(text)
     if not text:
         return []
+    try:
+        from app_skeleton.api.chunking import chunk_text as facade_chunk_text
+
+        chunks = facade_chunk_text(text, section_path=source_path)
+        if chunks:
+            return chunks
+    except Exception:
+        LOGGER.debug("chunking facade unavailable; using legacy _chunk_text", exc_info=True)
     chunk_chars = max(500, int(chunk_chars))
     overlap = min(max(0, int(overlap)), chunk_chars // 2)
     chunks: list[dict[str, Any]] = []

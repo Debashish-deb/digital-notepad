@@ -1,0 +1,2 @@
+# Repo-root entrypoint — API/runtime deps live in app_skeleton/api/
+-r app_skeleton/api/requirements.txt

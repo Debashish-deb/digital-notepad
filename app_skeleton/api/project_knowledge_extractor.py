@@ -196,6 +196,30 @@ def extract_and_ingest_project(project_code: str) -> dict:
     if not document_sources:
         return {"extracted_docs": 0, "extracted_chunks": 0, "message": "No valid documents found."}
 
+    import os
+    if os.getenv("KNOWLEDGE_INDEXER_ENABLED", "false").strip().lower() in ("1", "true", "yes", "on"):
+        from app_skeleton.api.knowledge_indexer import write_chunks
+
+        total_vectors = 0
+        for doc in document_sources:
+            doc_code = doc["document_code"]
+            doc_chunks = [c for c in document_chunks if c["document_code"] == doc_code]
+            result = write_chunks(
+                document_code=doc_code,
+                title=doc["title"],
+                source_type=doc["source_type"],
+                metadata=doc["metadata"],
+                chunks=doc_chunks,
+            )
+            total_vectors += result.get("vectors_upserted", 0)
+        return {
+            "extracted_docs": len(document_sources),
+            "extracted_chunks": len(document_chunks),
+            "vectors_upserted": total_vectors,
+            "message": f"Knowledge indexer ingested {len(document_sources)} docs ({total_vectors} vectors).",
+            "knowledge_indexer": True,
+        }
+
     # Push to database
     conn_uri = postgres_conn()
     if not conn_uri:

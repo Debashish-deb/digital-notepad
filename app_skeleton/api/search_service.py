@@ -948,6 +948,7 @@ class SearchService:
             vault_review_status = None
             if (search_filters.indexed_status or "").strip().lower() == "not_indexed":
                 vault_review_status = "raw"
+            vault_rows: list[dict[str, Any]] = []
             for row in search_vault(
                 query,
                 domain=vault_domain,
@@ -955,6 +956,38 @@ class SearchService:
                 limit=vault_limit,
                 review_status=vault_review_status,
             ):
+                vault_rows.append(row)
+            if run_semantic:
+                try:
+                    from app_skeleton.api.vault_vector_search import search_vault_vectors, vectorization_enabled
+
+                    if vectorization_enabled():
+                        semantic = search_vault_vectors(
+                            query, limit=vault_limit, qdrant=self.qdrant, llm=self.llm
+                        )
+                        seen_assets = {str(r.get("asset_id") or "") for r in vault_rows}
+                        for sh in semantic:
+                            aid = str(sh.get("asset_id") or "")
+                            if aid and aid in seen_assets:
+                                continue
+                            vault_rows.append({
+                                "asset_id": aid,
+                                "filename": sh.get("filename"),
+                                "logical_path": sh.get("logical_path"),
+                                "metadata_preview": {"excerpt": sh.get("excerpt")},
+                                "_semantic_score": sh.get("score"),
+                            })
+                            if aid:
+                                seen_assets.add(aid)
+                        if explain:
+                            explain_data["engines"].append({
+                                "scope": "vault",
+                                "engine": "qdrant_semantic",
+                                "count": len(semantic),
+                            })
+                except Exception as exc:
+                    LOGGER.debug("Vault semantic merge skipped: %s", exc)
+            for row in vault_rows:
                 rel = row.get("logical_path") or row.get("filename") or ""
                 if rel:
                     seen_paths.add(rel)
@@ -964,13 +997,16 @@ class SearchService:
                 title = row.get("filename") or rel.split("/")[-1] or "Vault asset"
                 excerpt = (row.get("metadata_preview") or {}).get("excerpt") or row.get("excerpt") or ""
                 snippet = (excerpt or f"Vault asset in {row.get('page_domain_id') or 'lab storage'}")[:1200]
+                base_score = 0.72
+                if row.get("_semantic_score") is not None:
+                    base_score = 0.72 + float(row["_semantic_score"]) * 0.28
                 raw_hits.append(
                     SearchHit(
                         id=str(row.get("asset_id") or row.get("vault_id") or rel),
                         bucket="vault",
                         title=title,
                         snippet=snippet,
-                        score=0.72 * BUCKET_WEIGHTS["vault"],
+                        score=base_score * BUCKET_WEIGHTS["vault"],
                         source=hit_source_label("vault"),
                         page_domain_id=row.get("page_domain_id"),
                         project_code=row.get("project_hint"),

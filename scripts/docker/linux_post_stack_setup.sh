@@ -22,7 +22,7 @@ for candidate in \
   fi
 done
 if [[ -z "$PY" ]]; then
-  echo "ERROR: python3 not found. Create a venv: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt"
+  echo "ERROR: python3 not found. Create a venv: python3 -m venv .venv && .venv/bin/pip install -r app_skeleton/api/requirements.txt"
   exit 1
 fi
 

@@ -31,7 +31,7 @@ for arg in "$@"; do
 done
 
 if [[ ! -x "$ROOT/.venv/bin/python3" && ! -x "$ROOT/.venv-local/bin/python3" ]]; then
-  echo "ERROR: create venv first: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt"
+  echo "ERROR: create venv first: python3 -m venv .venv && .venv/bin/pip install -r app_skeleton/api/requirements.txt"
   exit 1
 fi
 

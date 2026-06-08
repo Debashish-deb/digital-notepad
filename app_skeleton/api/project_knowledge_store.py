@@ -19,9 +19,8 @@ from app_skeleton.api.qdrant_vectors import (
     TEXT_VECTOR_NAME,
     ensure_doc_chunks_collection,
     get_qdrant_client,
-    stable_point_uuid,
-    upsert_text_points,
 )
+from app_skeleton.api.vector_indexer import upsert_text_chunks
 
 LOGGER = logging.getLogger(__name__)
 
@@ -62,7 +61,7 @@ def upsert_chunks_to_qdrant(
     client = qdrant or get_qdrant_client(_qdrant_url())
     ensure_doc_chunks_collection(client)
 
-    points: list[models.PointStruct] = []
+    points_data: list[dict[str, Any]] = []
     for chunk in chunks:
         text = (chunk.get("chunk_text") or "").strip()
         if len(text) < 8:
@@ -70,7 +69,6 @@ def upsert_chunks_to_qdrant(
         chunk_uid = chunk.get("chunk_uid") or ""
         if not chunk_uid:
             continue
-        vector = embed_text(text[:4000], llm=llm)
         payload = {
             "schema_version": 1,
             "corpus": PROJECT_CORPUS,
@@ -90,17 +88,11 @@ def upsert_chunks_to_qdrant(
             "status": "active",
             "created_at": datetime.now(timezone.utc).isoformat(),
         }
-        points.append(
-            models.PointStruct(
-                id=stable_point_uuid(chunk_uid),
-                vector={TEXT_VECTOR_NAME: vector},
-                payload=payload,
-            )
-        )
+        points_data.append({"chunk_uid": chunk_uid, "text": text, "payload": payload})
 
-    if not points:
+    if not points_data:
         return 0
-    return upsert_text_points(client, points, collection=DOC_CHUNKS_COLLECTION)
+    return upsert_text_chunks(client, points_data, collection=DOC_CHUNKS_COLLECTION, llm=llm)
 
 
 def search_project_knowledge(

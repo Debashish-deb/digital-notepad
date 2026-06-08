@@ -206,6 +206,8 @@ def _search_vault_postgres(
         params.append(extraction_status)
     if uncategorized_only:
         clauses.append("v.page_domain_id IS NULL")
+    # Suppress duplicate copies in search results
+    clauses.append("COALESCE(v.metadata_json->>'duplicate_status', 'unique') != 'duplicate'")
     if tokens:
         ors = [
             "(lower(v.logical_path || ' ' || coalesce(v.filename, '')) LIKE %s)"

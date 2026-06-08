@@ -9,6 +9,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import os
 import re
 import uuid
 from datetime import datetime, timezone
@@ -26,15 +27,16 @@ from app_skeleton.api.database_processor import (
     get_section_record,
     load_processed_section,
 )
-from app_skeleton.api.embedding_service import embedding_dim as _embedding_dim
+from app_skeleton.api.embedding_service import embed_text, embedding_dim as _embedding_dim
 from app_skeleton.api.llm_client import LLMClient
 from app_skeleton.api.paths import DATABASE_ROOT
+from app_skeleton.api.qdrant_collections import DOC_CHUNKS as COLLECTION_DOC_CHUNKS
+from app_skeleton.api.vector_indexer import upsert_text_chunks
 
 LOGGER = logging.getLogger(__name__)
 
 LAB_CORPUS = "lab_operations"
 SOURCE_TYPE_LAB = "lab_policy_document"
-COLLECTION_DOC_CHUNKS = "doc_chunks"
 EMBEDDING_DIM = _embedding_dim()
 SCHEMA_VERSION = 1
 
@@ -311,7 +313,7 @@ def ingest_section_to_database(
                     stats["documents_upserted"] += 1
                     stats["chunks_indexed"] += len(stored_chunks)
 
-                    points = []
+                    points_data = []
                     for sc in stored_chunks:
                         text = sc.get("text") or ""
                         chunk_uid = sc["chunk_uid"]
@@ -328,13 +330,12 @@ def ingest_section_to_database(
                             text_preview=text,
                             document_kind=metadata["document_kind"],
                         )
-                        vector = llm.embed(text[:4000], dim=EMBEDDING_DIM)
                         qid = _qdrant_point_id(chunk_uid)
-                        points.append(models.PointStruct(
-                            id=qid,
-                            vector={"text": vector},
-                            payload=payload,
-                        ))
+                        points_data.append({
+                            "chunk_uid": chunk_uid,
+                            "text": text,
+                            "payload": payload,
+                        })
                         cur.execute(
                             """
                             INSERT INTO rag.vector_point_registry (
@@ -354,15 +355,15 @@ def ingest_section_to_database(
                                 SOURCE_TYPE_LAB,
                                 document_id,
                                 uuid.UUID(sc["db_chunk_id"]),
-                                "llm_client_hashed_embed",
+                                os.getenv("EMBEDDING_PROVIDER", "hash"),
                                 EMBEDDING_DIM,
                                 psycopg.types.json.Jsonb(payload),
                             ),
                         )
 
-                    if points:
-                        qdrant.upsert(collection_name=COLLECTION_DOC_CHUNKS, points=points)
-                        stats["vectors_upserted"] += len(points)
+                    if points_data:
+                        n = upsert_text_chunks(qdrant, points_data, collection=COLLECTION_DOC_CHUNKS, llm=llm)
+                        stats["vectors_upserted"] += n
 
                 except Exception as exc:
                     stats["errors"].append({"path": rel_path, "error": str(exc)[:300]})
@@ -415,7 +416,7 @@ def search_lab_knowledge(
     llm = llm or LLMClient()
     try:
         qdrant = qdrant or QdrantClient(url=_qdrant_url())
-        vector = llm.embed(query, dim=EMBEDDING_DIM)
+        vector = embed_text(query, llm=llm, dim=EMBEDDING_DIM)
         must = [models.FieldCondition(key="corpus", match=models.MatchValue(value=LAB_CORPUS))]
         if section_id:
             must.append(models.FieldCondition(key="section_id", match=models.MatchValue(value=section_id)))

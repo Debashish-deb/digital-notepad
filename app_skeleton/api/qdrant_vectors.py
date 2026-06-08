@@ -10,11 +10,26 @@ from typing import Any
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
 
+from app_skeleton.api.qdrant_collections import DOC_CHUNKS as DOC_CHUNKS_COLLECTION
+from app_skeleton.api.qdrant_collections import collection_dim
+
 LOGGER = logging.getLogger(__name__)
 
-DOC_CHUNKS_COLLECTION = os.getenv("DOCUMENT_QDRANT_COLLECTION", "doc_chunks")
 TEXT_VECTOR_NAME = os.getenv("DOCUMENT_QDRANT_VECTOR_NAME", "text")
-EMBEDDING_DIM = int(os.getenv("TEXT_EMBEDDING_DIM", "384"))
+
+
+def embedding_dimension() -> int:
+    """Lazy embedding dimension — prefers TEXT_EMBEDDING_DIM, else embedding_service."""
+    raw = (os.getenv("TEXT_EMBEDDING_DIM") or "").strip()
+    if raw:
+        return int(raw)
+    return collection_dim()
+
+
+def __getattr__(name: str) -> int:
+    if name == "EMBEDDING_DIM":
+        return embedding_dimension()
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 def qdrant_url() -> str:
@@ -55,7 +70,7 @@ def ensure_named_text_collection(
         collection_name=collection,
         vectors_config={
             TEXT_VECTOR_NAME: models.VectorParams(
-                size=EMBEDDING_DIM,
+                size=embedding_dimension(),
                 distance=models.Distance.COSINE,
             ),
         },
