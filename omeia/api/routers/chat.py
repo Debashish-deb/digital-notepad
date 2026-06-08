@@ -88,6 +88,8 @@ class ChatResponse(BaseModel):
     research_strategy: bool = False
     strategy_report: Optional[dict[str, Any]] = None
     strategy_agents: List[str] = Field(default_factory=list)
+    ai_response_id: Optional[str] = None
+    continuous_learning_enabled: bool = False
 
 
 _ORCHESTRATOR_SSE_KEYS = (

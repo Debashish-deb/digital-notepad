@@ -1879,6 +1879,15 @@ class SearchService:
                 bucket_caps=bucket_caps,
             )
 
+        try:
+            from omeia.api.platform_flags import continuous_learning_enabled
+            from omeia.api.learning_retrieval_service import merge_learning_into_copilot_hits
+
+            if continuous_learning_enabled():
+                result = merge_learning_into_copilot_hits(query, result, learning_limit=max(2, limit // 3))
+        except Exception as exc:
+            LOGGER.debug("Learning retrieval merge skipped: %s", exc)
+
         if should_cache(include_restricted=allow_restricted, user_role=user_role):
             set_copilot_cached(cache_key, [h.model_dump() for h in result])
         return result

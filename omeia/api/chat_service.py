@@ -44,7 +44,7 @@ from omeia.api.chat_session_store import (
 from omeia.api.common import SourceInfo, _clinical_context_for_question, query_postgres_metadata
 from omeia.api.privacy_guardrails import allow_external_llm, guard_for_llm, is_external_provider
 from omeia.api.search_service import SearchService
-from omeia.api.platform_flags import research_strategy_assistant_enabled
+from omeia.api.platform_flags import continuous_learning_enabled, research_strategy_assistant_enabled
 
 LOGGER = logging.getLogger(__name__)
 
@@ -591,6 +591,25 @@ def answer_chat(
             metadata={"regenerated": regenerated},
         )
 
+    ai_response_id: str | None = None
+    if continuous_learning_enabled():
+        try:
+            from omeia.api.learning_pipeline_service import record_chat_response
+
+            ai_response_id = record_chat_response(
+                query_text=safe_message,
+                answer_text=answer,
+                user_email=user_email,
+                session_id=active_session,
+                model_provider=provenance.get("provider"),
+                model_name=provenance.get("model"),
+                intent=intent_decision.intent,
+                project_codes=project_codes,
+                sources=retrieved_sources,
+            )
+        except Exception as exc:
+            LOGGER.warning("Continuous learning record failed: %s", exc)
+
     return {
         "answer": answer,
         "limitations": limitations,
@@ -601,6 +620,8 @@ def answer_chat(
         "blocked_by_guardrail": False,
         "session_id": active_session or None,
         "answer_regenerated": regenerated,
+        "ai_response_id": ai_response_id,
+        "continuous_learning_enabled": continuous_learning_enabled(),
         **provenance,
         "audit": {
             "redaction_count": audit.get("redaction_count", 0),

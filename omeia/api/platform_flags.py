@@ -80,3 +80,8 @@ def continuous_eval_enabled() -> bool:
 def quality_gate_strict_enabled() -> bool:
     """When true, quality eval failures/regressions mark run status as fail."""
     return _env_bool("OMEIA_QUALITY_GATE_STRICT", "false")
+
+
+def continuous_learning_enabled() -> bool:
+    """When true, record AI responses, run learning pipeline, and expose feedback API."""
+    return _env_bool("OMEIA_CONTINUOUS_LEARNING_ENABLED", "false")

@@ -7,9 +7,12 @@ import {
   RefreshCw,
   Send,
   Sparkles,
+  Bookmark,
+  Flag,
   ThumbsDown,
   ThumbsUp,
   User,
+  XCircle,
 } from 'lucide-react';
 import { apiFetch } from '@/services/client.js';
 import { getChatStatus, sendChatMessage, streamChatMessage } from '@/services/chatClient.js';
@@ -26,6 +29,7 @@ import {
   writeStoredCategory,
   writeStoredMode,
 } from '@/services/agentCategoryClient.js';
+import { sendLearningFeedback } from '@/services/learningClient.js';
 import { FALLBACK_AGENT_CATEGORIES } from '@/data/agentCategoryFallback.js';
 import { getLibraryScopeContext } from '@/lib/documentExplorerPresets.js';
 import AgentCategorySelector from './AgentCategorySelector.jsx';
@@ -144,7 +148,30 @@ function formatAssistantPayload(data) {
     responseSections: Array.isArray(data?.response_sections) ? data.response_sections : [],
     researchStrategy: Boolean(data?.research_strategy),
     strategyReport: data?.strategy_report || null,
+    aiResponseId: data?.ai_response_id || null,
+    continuousLearningEnabled: Boolean(data?.continuous_learning_enabled),
   };
+}
+
+async function submitAnswerFeedback(message, { feedbackType, rating, selProjs, sessionId }) {
+  if (message.aiResponseId) {
+    return sendLearningFeedback({
+      response_id: message.aiResponseId,
+      feedback_type: feedbackType,
+      rating,
+    });
+  }
+  if (rating !== undefined) {
+    return sendCopilotFeedback({
+      query_text: message.queryContext,
+      answer_excerpt: (message.content || '').slice(0, 500),
+      rating,
+      session_id: sessionId || null,
+      intent: message.intent,
+      project_codes: selProjs,
+    });
+  }
+  return null;
 }
 
 function evidenceConfidenceLabel(level) {
@@ -669,6 +696,8 @@ export default function ChatWidget({
             agentsUsed: data?.agents_used || [],
             confidence: data?.confidence,
             traceId: data?.trace_id,
+            aiResponseId: formatted.aiResponseId,
+            continuousLearningEnabled: formatted.continuousLearningEnabled,
             ...evidenceMessageMeta(formatted),
           };
 
@@ -750,6 +779,8 @@ export default function ChatWidget({
                     provider: formatted.provider || streamMeta.provider || chatProvider,
                     synthesisMode: formatted.synthesisMode,
                     streaming: false,
+                    aiResponseId: formatted.aiResponseId,
+                    continuousLearningEnabled: formatted.continuousLearningEnabled,
                     ...evidenceMessageMeta(formatted),
                   }
                 : msg,
@@ -785,6 +816,8 @@ export default function ChatWidget({
             provider: formatted.provider || chatProvider,
             synthesisMode: formatted.synthesisMode,
             model: formatted.model,
+            aiResponseId: formatted.aiResponseId,
+            continuousLearningEnabled: formatted.continuousLearningEnabled,
             ...evidenceMessageMeta(formatted),
           }),
         ]);
@@ -1160,13 +1193,11 @@ export default function ChatWidget({
                       disabled={message.feedbackSent}
                       onClick={async () => {
                         try {
-                          await sendCopilotFeedback({
-                            query_text: message.queryContext,
-                            answer_excerpt: (message.content || '').slice(0, 500),
+                          await submitAnswerFeedback(message, {
+                            feedbackType: 'thumbs_up',
                             rating: 1,
-                            session_id: sessionIdRef.current || null,
-                            intent: message.intent,
-                            project_codes: selProjs,
+                            selProjs,
+                            sessionId: sessionIdRef.current,
                           });
                           setMessages((prev) =>
                             prev.map((m) =>
@@ -1187,13 +1218,11 @@ export default function ChatWidget({
                       disabled={message.feedbackSent}
                       onClick={async () => {
                         try {
-                          await sendCopilotFeedback({
-                            query_text: message.queryContext,
-                            answer_excerpt: (message.content || '').slice(0, 500),
+                          await submitAnswerFeedback(message, {
+                            feedbackType: 'thumbs_down',
                             rating: -1,
-                            session_id: sessionIdRef.current || null,
-                            intent: message.intent,
-                            project_codes: selProjs,
+                            selProjs,
+                            sessionId: sessionIdRef.current,
                           });
                           setMessages((prev) =>
                             prev.map((m) =>
@@ -1207,6 +1236,106 @@ export default function ChatWidget({
                     >
                       <ThumbsDown size={14} aria-hidden="true" />
                     </button>
+                    {message.aiResponseId ? (
+                      <>
+                        <button
+                          type="button"
+                          className={`chat-feedback-btn${message.feedbackUseful ? ' is-active' : ''}`}
+                          title="Mark useful"
+                          disabled={message.feedbackUseful}
+                          onClick={async () => {
+                            try {
+                              await submitAnswerFeedback(message, {
+                                feedbackType: 'mark_useful',
+                                selProjs,
+                                sessionId: sessionIdRef.current,
+                              });
+                              setMessages((prev) =>
+                                prev.map((m) =>
+                                  m.id === message.id ? { ...m, feedbackUseful: true } : m,
+                                ),
+                              );
+                            } catch {
+                              /* ignore */
+                            }
+                          }}
+                        >
+                          <Sparkles size={14} aria-hidden="true" />
+                        </button>
+                        <button
+                          type="button"
+                          className={`chat-feedback-btn${message.feedbackIncorrect ? ' is-active' : ''}`}
+                          title="Mark incorrect"
+                          disabled={message.feedbackIncorrect}
+                          onClick={async () => {
+                            try {
+                              await submitAnswerFeedback(message, {
+                                feedbackType: 'mark_incorrect',
+                                selProjs,
+                                sessionId: sessionIdRef.current,
+                              });
+                              setMessages((prev) =>
+                                prev.map((m) =>
+                                  m.id === message.id ? { ...m, feedbackIncorrect: true } : m,
+                                ),
+                              );
+                            } catch {
+                              /* ignore */
+                            }
+                          }}
+                        >
+                          <XCircle size={14} aria-hidden="true" />
+                        </button>
+                        <button
+                          type="button"
+                          className={`chat-feedback-btn${message.feedbackNeedsReview ? ' is-active' : ''}`}
+                          title="Needs review"
+                          disabled={message.feedbackNeedsReview}
+                          onClick={async () => {
+                            try {
+                              await submitAnswerFeedback(message, {
+                                feedbackType: 'needs_review',
+                                selProjs,
+                                sessionId: sessionIdRef.current,
+                              });
+                              setMessages((prev) =>
+                                prev.map((m) =>
+                                  m.id === message.id ? { ...m, feedbackNeedsReview: true } : m,
+                                ),
+                              );
+                            } catch {
+                              /* ignore */
+                            }
+                          }}
+                        >
+                          <Flag size={14} aria-hidden="true" />
+                        </button>
+                        <button
+                          type="button"
+                          className={`chat-feedback-btn${message.feedbackSavedKb ? ' is-active' : ''}`}
+                          title="Save to knowledge base"
+                          disabled={message.feedbackSavedKb}
+                          onClick={async () => {
+                            try {
+                              await submitAnswerFeedback(message, {
+                                feedbackType: 'save_to_knowledge_base',
+                                selProjs,
+                                sessionId: sessionIdRef.current,
+                              });
+                              setMessages((prev) =>
+                                prev.map((m) =>
+                                  m.id === message.id ? { ...m, feedbackSavedKb: true } : m,
+                                ),
+                              );
+                            } catch {
+                              /* ignore */
+                            }
+                          }}
+                        >
+                          <Bookmark size={14} aria-hidden="true" />
+                        </button>
+                      </>
+                    ) : null}
                   </div>
                 ) : null}
 
