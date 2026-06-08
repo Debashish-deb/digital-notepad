@@ -1,0 +1,47 @@
+app_skeleton/api/document_extraction.py
+  s_d8ca0dcf385045::t_9f9b9937e1622b 1014-1025
+tests/test_ocr_queue_flag.py
+  s_d8ca0dcf385045::t_ece266712f23c3 17,19-20,22-27,29
+app_skeleton/api/document_library_service.py
+  s_d8ca0dcf385045::t_1e7f12dcce68f8 36-113
+  s_d8ca0dcf385045::t_291ca5755ea80f 759
+  s_d8ca0dcf385045::t_77b500ff5fc5b4 1253-1254
+app_skeleton/api/ocr/queue.py
+  s_d8ca0dcf385045::t_5f0f870c55b61d 60
+  s_d8ca0dcf385045::t_724d9a78b31c60 26-49
+  s_d8ca0dcf385045::t_41c7455da739fd 321-385,387-398,400-440
+  s_d8ca0dcf385045::t_b9e049b718b090 386,399
+app_skeleton/api/routers/digitalization.py
+  s_d8ca0dcf385045::t_e4be6a33d635bb 345-363
+  s_d8ca0dcf385045::t_87c54e860ae654 11-13
+  s_d8ca0dcf385045::t_70d46c91daec2c 63-69,79-81
+tests/test_document_digitalization_pipeline.py
+  s_d8ca0dcf385045::t_5f7199d59910d2 65-71
+app_skeleton/digitalization/extractors.py
+  s_d8ca0dcf385045::t_5ce81c869bece6 119-120,122-123
+scripts/ops/run_ocr_queue.py
+  s_d8ca0dcf385045::t_02678d11fc96d7 18
+  s_d8ca0dcf385045::t_5d4386b22c3640 90-91
+tests/test_ocr_queue.py
+  s_d8ca0dcf385045::t_8c7b4afecf21e8 79-80
+  s_d8ca0dcf385045::t_5a954feccb542e 98-99
+  s_d8ca0dcf385045::t_4063110258c2db 1-78,81-97,100-144
+app_skeleton/digitalization/ingestion_job.py
+  s_d8ca0dcf385045::t_768f71e14b72b6 204-205
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "6b1c3cd862f8735cee487074cd0a6c42f268386e",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
