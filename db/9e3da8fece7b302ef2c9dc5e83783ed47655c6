@@ -1,0 +1,19 @@
+docs/PROJECT_INTELLIGENCE_SUBSYSTEM_REVIEW.md
+  s_237d28b5005087::t_dc7b139cb2bff8 1-674
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "db9e3da8fece7b302ef2c9dc5e83783ed47655c6",
+  "prompts": {},
+  "sessions": {
+    "s_237d28b5005087": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "28d7a555-8d95-479e-87b0-68c9900ac079",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
