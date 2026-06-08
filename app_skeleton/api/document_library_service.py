@@ -1206,6 +1206,7 @@ def get_preview(asset_id: str) -> dict[str, Any] | None:
             if streamable:
                 try:
                     from app_skeleton.api.image_streaming.image_metadata_service import ImageMetadataService
+                    from app_skeleton.api.image_streaming.storage_adapter import ImageStorageAdapter
 
                     image_meta = ImageMetadataService().get_or_stub(
                         asset_id=asset_id,
@@ -1213,8 +1214,14 @@ def get_preview(asset_id: str) -> dict[str, Any] | None:
                         extension=row.get("extension") or "",
                         size_bytes=int(row.get("size_bytes") or 0),
                     )
-                    thumb_url = f"/api/assets/{asset_id}/image/thumbnail"
-                    viewer_url = f"#viewer/image/{asset_id}"
+                    resolved, resolve_reason = ImageStorageAdapter().resolve_asset_detail(asset_id)
+                    if resolved:
+                        thumb_url = f"/api/assets/{asset_id}/image/thumbnail"
+                        viewer_url = f"#viewer/image/{asset_id}"
+                    elif resolve_reason.startswith("file_missing:"):
+                        badges.append("File missing on disk")
+                    elif resolve_reason.startswith("storage_root_missing:"):
+                        badges.append("Storage root missing")
                 except Exception as exc:
                     LOGGER.debug("image preview enrichment failed for %s: %s", asset_id, exc)
             return {

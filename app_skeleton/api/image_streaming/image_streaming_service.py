@@ -127,9 +127,22 @@ class ImageStreamingService:
         self.jobs = ImageJobQueue()
 
     def _resolve_or_404(self, asset_id: str) -> dict[str, Any]:
-        resolved = self.storage.resolve_asset(asset_id)
+        resolved, reason = self.storage.resolve_asset_detail(asset_id)
         if not resolved:
-            raise HTTPException(status_code=404, detail="Image asset not found or unsupported")
+            if reason.startswith("file_missing:"):
+                detail = "Image file not on disk — sync DATABASE_ROOT to this host"
+                LOGGER.warning(
+                    "image resolve file_missing asset=%s disk_path=%s",
+                    asset_id,
+                    reason.split(":", 1)[1],
+                )
+            elif reason.startswith("storage_root_missing:"):
+                detail = "Image storage root not configured on this host"
+                LOGGER.warning("image resolve %s asset=%s", reason, asset_id)
+            else:
+                detail = "Image asset not found or unsupported"
+                LOGGER.debug("image resolve %s asset=%s", reason, asset_id)
+            raise HTTPException(status_code=404, detail=detail)
         return resolved
 
     def get_metadata(self, asset_id: str) -> dict[str, Any]:

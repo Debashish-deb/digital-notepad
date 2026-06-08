@@ -46,21 +46,29 @@ class ImageStorageAdapter:
     """Read-only access to image files keyed by asset_id."""
 
     def resolve_asset(self, asset_id: str) -> dict[str, Any] | None:
+        resolved, _reason = self.resolve_asset_detail(asset_id)
+        return resolved
+
+    def resolve_asset_detail(self, asset_id: str) -> tuple[dict[str, Any] | None, str]:
+        """Resolve asset; second value explains failure (for logs / diagnostics)."""
         row = lookup_asset_row(asset_id)
-        if not row or not is_streamable_image(row):
-            return None
+        if not row:
+            return None, "catalog_missing"
+        if not is_streamable_image(row):
+            ext = row.get("extension") or row.get("filename") or ""
+            return None, f"unsupported_type:{ext}"
         provider = _infer_provider(row)
         logical_path = row.get("logical_path") or ""
         root = _ROOTS.get(provider)
         if not root or not root.is_dir():
-            return None
+            return None, f"storage_root_missing:{provider}:{root}"
         disk_path = (root / logical_path).resolve()
         try:
             disk_path.relative_to(root.resolve())
         except ValueError:
-            return None
+            return None, "path_escape_blocked"
         if not disk_path.is_file():
-            return None
+            return None, f"file_missing:{disk_path}"
         return {
             "asset_id": asset_id,
             "provider": provider,
@@ -71,7 +79,7 @@ class ImageStorageAdapter:
             "size_bytes": row.get("size_bytes") or disk_path.stat().st_size,
             "project_hint": row.get("project_hint"),
             "asset_row": row,
-        }
+        }, "ok"
 
     def exists(self, resolved: dict[str, Any]) -> bool:
         path = resolved.get("disk_path")
