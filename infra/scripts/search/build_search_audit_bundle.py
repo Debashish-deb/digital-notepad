@@ -466,19 +466,19 @@ BACKEND_FILES = [
 ]
 
 FRONTEND_FILES = [
-    "apps/web/src/components/GlobalSearchOverlay.jsx",
-    "apps/web/src/screens/KnowledgeSearchScreen.jsx",
-    "apps/web/src/components/DocumentFileSearch.jsx",
-    "apps/web/src/utils/documentBrowserUtils.js",
-    "apps/web/src/components/ChatWidget.jsx",
-    "apps/web/src/api/client.js",
-    "apps/web/src/App.jsx",
-    "apps/web/src/components/Sidebar.jsx",
-    "apps/web/src/components/ProjectFolderBrowser.jsx",
-    "apps/web/src/components/LabDocumentsBrowser.jsx",
-    "apps/web/src/screens/AiLabAssistantScreen.jsx",
-    "apps/web/src/screens/LabKnowledgeScreen.jsx",
-    "apps/web/src/components/ProjectDocumentsBrowser.jsx",
+    "web/src/components/GlobalSearchOverlay.jsx",
+    "web/src/screens/KnowledgeSearchScreen.jsx",
+    "web/src/components/DocumentFileSearch.jsx",
+    "web/src/utils/documentBrowserUtils.js",
+    "web/src/components/ChatWidget.jsx",
+    "web/src/api/client.js",
+    "web/src/App.jsx",
+    "web/src/components/Sidebar.jsx",
+    "web/src/components/ProjectFolderBrowser.jsx",
+    "web/src/components/LabDocumentsBrowser.jsx",
+    "web/src/screens/AiLabAssistantScreen.jsx",
+    "web/src/screens/LabKnowledgeScreen.jsx",
+    "web/src/components/ProjectDocumentsBrowser.jsx",
 ]
 
 

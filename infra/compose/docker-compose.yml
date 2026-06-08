@@ -103,7 +103,7 @@ services:
       - "127.0.0.1:5173:5173"
     volumes:
       - ../../config/env/caddy/Caddyfile.platform:/etc/caddy/Caddyfile:ro
-      - ../../apps/web/dist:/srv/frontend:ro
+      - ../../web/dist:/srv/frontend:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
