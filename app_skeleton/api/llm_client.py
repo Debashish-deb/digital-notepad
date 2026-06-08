@@ -698,10 +698,10 @@ class LLMClient:
 
     def embed(self, text: str, dim: int = 384) -> List[float]:
         """Embed via embedding_service (Ollama when EMBEDDING_PROVIDER=ollama, else hash)."""
-        from app_skeleton.api.embedding_service import embed_text, embedding_dim
+        from app_skeleton.api.embedding_service import embed_text
 
-        dim = _bounded_int(dim, embedding_dim(), 32, 4096)
-        return embed_text(text, llm=self)
+        dim = _bounded_int(dim, 384, 32, 4096)
+        return embed_text(text, llm=self, dim=dim)
 
     @staticmethod
     def _char_ngrams(text: str, *, n: int = 4, limit: int = 64) -> list[str]:
@@ -711,10 +711,10 @@ class LLMClient:
         return [compact[i:i + n] for i in range(min(len(compact) - n + 1, limit))]
 
     def embed_many(self, texts: list[str], dim: int = 384) -> list[list[float]]:
-        from app_skeleton.api.embedding_service import embed_many, embedding_dim
+        from app_skeleton.api.embedding_service import embed_many
 
-        dim = _bounded_int(dim, embedding_dim(), 32, 4096)
-        return embed_many(texts, llm=self)
+        dim = _bounded_int(dim, 384, 32, 4096)
+        return embed_many(texts, llm=self, dim=dim)
 
     def synthesis_provenance(self) -> dict[str, Any]:
         """Return provenance for the most recent synthesis call."""

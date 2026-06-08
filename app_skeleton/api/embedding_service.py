@@ -91,34 +91,55 @@ def hash_embed(text: str, *, dim: int | None = None) -> list[float]:
     return [v / norm for v in vec]
 
 
-def ollama_embed(text: str, *, model: str | None = None, dim: int | None = None) -> list[float]:
-    """Call Ollama /api/embeddings (pull model first: ollama pull nomic-embed-text)."""
-    if requests is None:
-        raise RuntimeError("requests package unavailable")
-    model = model or embedding_model_name()
-    dim = dim or embedding_dim()
-    url = f"{_ollama_base()}/api/embeddings"
+def _ollama_auth_headers() -> dict[str, str]:
     headers: dict[str, str] = {}
     token = (os.getenv("OLLAMA_INTERNAL_TOKEN") or os.getenv("OLLAMA_PROXY_TOKEN") or "").strip()
     if token:
         headers["Authorization"] = f"Bearer {token}"
+    return headers
+
+
+def ollama_embed(text: str, *, model: str | None = None, dim: int | None = None) -> list[float]:
+    """Call Ollama embed API (legacy /api/embeddings or /api/embed)."""
+    if requests is None:
+        raise RuntimeError("requests package unavailable")
+    model = model or embedding_model_name()
+    dim = dim or embedding_dim()
+    prompt = (text or "")[:8000]
+    base = _ollama_base()
+    headers = _ollama_auth_headers()
+    timeout = float(os.getenv("OLLAMA_EMBED_TIMEOUT_SEC", "60"))
+
+    # Legacy Ollama: POST /api/embeddings {"model","prompt"}
+    legacy_url = f"{base}/api/embeddings"
     resp = requests.post(
-        url,
-        json={"model": model, "prompt": (text or "")[:8000]},
+        legacy_url,
+        json={"model": model, "prompt": prompt},
         headers=headers,
-        timeout=float(os.getenv("OLLAMA_EMBED_TIMEOUT_SEC", "60")),
+        timeout=timeout,
     )
+    if resp.status_code == 404:
+        # Newer Ollama: POST /api/embed {"model","input"}
+        resp = requests.post(
+            f"{base}/api/embed",
+            json={"model": model, "input": prompt},
+            headers=headers,
+            timeout=timeout,
+        )
     resp.raise_for_status()
     data = resp.json()
     vector = data.get("embedding") or []
+    if not vector and data.get("embeddings"):
+        embeddings = data["embeddings"]
+        vector = embeddings[0] if embeddings else []
     if not vector:
         raise ValueError("Ollama returned empty embedding")
     return _normalize([float(x) for x in vector], dim)
 
 
-def embed_text(text: str, *, llm: LLMClient | None = None) -> list[float]:
+def embed_text(text: str, *, llm: LLMClient | None = None, dim: int | None = None) -> list[float]:
     """Primary embed entry — Ollama when configured, else hash."""
-    dim = embedding_dim()
+    dim = dim or embedding_dim()
     if embedding_provider() == "ollama":
         try:
             return ollama_embed(text, dim=dim)
@@ -129,5 +150,5 @@ def embed_text(text: str, *, llm: LLMClient | None = None) -> list[float]:
     return hash_embed(text, dim=dim)
 
 
-def embed_many(texts: list[str], *, llm: LLMClient | None = None) -> list[list[float]]:
-    return [embed_text(t, llm=llm) for t in texts]
+def embed_many(texts: list[str], *, llm: LLMClient | None = None, dim: int | None = None) -> list[list[float]]:
+    return [embed_text(t, llm=llm, dim=dim) for t in texts]
