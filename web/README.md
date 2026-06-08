@@ -38,7 +38,7 @@ API listens at **http://127.0.0.1:8000** (`GET /health` should return `"status":
 ### 3. Frontend
 
 ```bash
-cd apps/web
+cd web
 cp .env.local.example .env.local
 npm ci
 npm run dev

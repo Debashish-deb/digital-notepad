@@ -17,8 +17,8 @@ Equivalent: `./start_linux.sh` (Docker + API :8000 + Vite :5173).
 
 | App | Path | Port |
 |-----|------|------|
-| Frontend | `apps/web/` | **5173** (dev) |
-| Backend | `apps/api/src/omeia/` | **8000** |
+| Frontend | `web/` | **5173** (dev) |
+| Backend | `omeia/` (`omeia.api.main`) | **8000** |
 | Compose | `infra/compose/docker-compose.yml` | Postgres, Qdrant, Ollama |
 
 ```bash

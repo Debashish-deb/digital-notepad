@@ -1,6 +1,6 @@
 # OMEIA FastAPI backend
 
-REST API for the Farkki lab platform. The React UI is a **separate app** at `apps/web/`.
+REST API for the Farkki lab platform. The React UI is a **separate app** at `web/`.
 
 ## Run (dev)
 
