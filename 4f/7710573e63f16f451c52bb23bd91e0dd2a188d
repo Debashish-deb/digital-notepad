@@ -1,0 +1,83 @@
+app_skeleton/ui/react_frontend/src/App.jsx
+  s_fb050ff8641f4b::t_945cc020d7b779 738-757
+  s_f0dbbcc2fdc96d::t_8d6f387ec8629d 697-701,703,705-717
+  s_f0dbbcc2fdc96d::t_a1000802cbee7a 387-390,395-397
+  s_fb050ff8641f4b::t_1c1e739aee8c5a 5
+  s_fb050ff8641f4b::t_55cf99233b3df7 803,806
+app_skeleton/ui/react_frontend/src/pages/ProjectsScreen.jsx
+  s_f0dbbcc2fdc96d::t_f1be6ff5b8cdfb 32-42
+  s_f0dbbcc2fdc96d::t_3975de4da4bcee 906-916
+  s_f0dbbcc2fdc96d::t_280ede4f7ce663 2-3
+  s_f0dbbcc2fdc96d::t_20f5d7c21c5267 956-966
+  s_f0dbbcc2fdc96d::t_eba11de3343add 931-940
+scripts/dev/start_linux_desktop.sh
+  s_d8ca0dcf385045::t_818f844e8d4a48 71
+  s_d8ca0dcf385045::t_09d1a9ba8ed640 30-40
+  s_d8ca0dcf385045::t_a1913ed9683249 113,116-127,129-130
+  s_d8ca0dcf385045::t_0246b72dad6554 59-70,72
+  s_d8ca0dcf385045::t_67573003f2fc05 2-4,7-10
+start_linux.sh
+  s_d8ca0dcf385045::t_58ac5c49676dbc 1-4
+start.sh
+  s_d8ca0dcf385045::t_ac0a4f301edda5 142
+app_skeleton/api/common.py
+  s_f0dbbcc2fdc96d::t_c64ebbc91ffeb0 291-306,322-370,373-385
+  s_f0dbbcc2fdc96d::t_b3228948ca34d8 17-18
+app_skeleton/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.css
+  s_fb050ff8641f4b::t_4b19596d2880e1 720-728
+  s_fb050ff8641f4b::t_9ae02279a7537a 1068-1072
+  s_fb050ff8641f4b::t_5aca8282b06fa5 707-710
+app_skeleton/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx
+  s_fb050ff8641f4b::t_5e61ea356d71f9 60
+  s_fb050ff8641f4b::t_bdc0f8224f9c93 220
+  s_fb050ff8641f4b::t_b8cdd593040d06 168-170,172-177
+app_skeleton/ui/react_frontend/src/shared/layout/ScreenCache.jsx
+  s_fb050ff8641f4b::t_76f8414698564a 1,10-16,20
+  s_fb050ff8641f4b::t_f5e51280d786b0 8
+  s_fb050ff8641f4b::t_268cad5e3b17ac 2-7,9,17-19,21-32
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentResultList.jsx
+  s_fb050ff8641f4b::t_9d39b34e9fc9ff 1,176-194,197-209,211
+scripts/start_linux.sh
+  s_d8ca0dcf385045::t_1562b968124c0c 2-9
+scripts/dev/ensure_node_for_vite.sh
+  s_d8ca0dcf385045::t_ca3e74abb54788 24-26
+  s_d8ca0dcf385045::t_39e5f3333cdfd7 2-3,10,15,23,35-36,38,40,44-46
+  s_d8ca0dcf385045::t_95365dada75c9d 6-7,18-20,22,28-31,33,41
+  s_d8ca0dcf385045::t_ad461941a52ed4 39
+app_skeleton/ui/react_frontend/src/features/documents/hooks/useDocumentLibrary.js
+  s_fb050ff8641f4b::t_d5e8dfd862d4a8 99-104,120-123,126-130
+  s_fb050ff8641f4b::t_259de8f60ffe33 212
+  s_fb050ff8641f4b::t_902dc0404a755f 36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "4f7710573e63f16f451c52bb23bd91e0dd2a188d",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_f0dbbcc2fdc96d": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4d8cdcfc-1030-4fb3-b242-fa0340f114bc",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_fb050ff8641f4b": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "1f5743fa-3f7b-47b8-af72-7b55c82eb07d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
