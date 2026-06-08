@@ -1,0 +1,29 @@
+docs/LINUX_PRIMARY_DEPLOYMENT.md
+  s_d8ca0dcf385045::t_a9b43757674834 1-81
+scripts/deploy/mac_push_to_linux.sh
+  s_d8ca0dcf385045::t_5b7d35c3e87c6d 1-93
+scripts/docker/linux_post_stack_setup.sh
+  s_d8ca0dcf385045::t_c694a02bbad87f 66,69-75
+scripts/deploy/linux_bootstrap_all.sh
+  s_d8ca0dcf385045::t_3036ecbb8585ad 1-43,45-132
+.cursor/rules/git-push-linux-pull.mdc
+  s_d8ca0dcf385045::t_cfac1d5d4ccefe 6,8-12,17-19,22-24
+configs/linux-workstation.env.template
+  s_d8ca0dcf385045::t_755574500f9a93 1-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "31be67f115c6ff5aeddde6cec6b93d73b8b08f38",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
