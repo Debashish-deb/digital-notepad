@@ -119,6 +119,8 @@ BACKEND_PID=$!
 wait_for_backend || exit 1
 
 echo "Vite frontend http://localhost:5173"
+# shellcheck disable=SC1091
+source "$PROJECT_ROOT/scripts/dev/ensure_node_for_vite.sh"
 cd "$FRONTEND_DIR" || exit 1
 npm run dev -- --host 0.0.0.0 --port 5173 --strictPort &
 FRONTEND_PID=$!
