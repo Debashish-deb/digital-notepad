@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+# Mac → Linux: push git + rsync heavy data (OMEIA-database, optional bundles).
+#
+# Usage (on Mac):
+#   export LINUX_SSH=debdeba@100.80.231.55   # Tailscale IP of Linux workstation
+#   ./scripts/deploy/mac_push_to_linux.sh
+#   ./scripts/deploy/mac_push_to_linux.sh --data-only
+#   ./scripts/deploy/mac_push_to_linux.sh --code-only
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+cd "$ROOT"
+
+if [[ -f "$ROOT/configs/.env" ]]; then
+  # shellcheck disable=SC1091
+  eval "$("$ROOT/scripts/dev/load_env.sh" "$ROOT/configs/.env")" 2>/dev/null || true
+fi
+
+LINUX_SSH="${LINUX_SSH:-${OLLAMA_LINUX_SSH:-}}"
+if [[ -z "$LINUX_SSH" && -n "${TAILSCALE_LINUX_IP:-}" ]]; then
+  LINUX_SSH="${LINUX_SSH_USER:-debdeba}@${TAILSCALE_LINUX_IP}"
+fi
+LINUX_REPO="${LINUX_REPO:-~/data4TB/digital-notepad}"
+LINUX_DATA="${LINUX_DATA:-~/data4TB/OMEIA-database}"
+
+CODE_ONLY=false
+DATA_ONLY=false
+DRY_RUN=false
+for arg in "$@"; do
+  case "$arg" in
+    --code-only) CODE_ONLY=true ;;
+    --data-only) DATA_ONLY=true ;;
+    --dry-run) DRY_RUN=true ;;
+    -h|--help)
+      echo "Usage: LINUX_SSH=user@host $0 [--code-only|--data-only|--dry-run]"
+      exit 0
+      ;;
+  esac
+done
+
+if [[ -z "$LINUX_SSH" ]]; then
+  echo "ERROR: set LINUX_SSH=debdeba@<linux-tailscale-ip>"
+  echo "  Or set TAILSCALE_LINUX_IP in configs/.env"
+  exit 1
+fi
+
+RSYNC_FLAGS=(-avz --progress)
+[[ "$DRY_RUN" == true ]] && RSYNC_FLAGS+=(--dry-run)
+
+MAC_DATABASE="${DATABASE_ROOT:-$ROOT/../OMEIA-database}"
+MAC_DATABASE="$(cd "$MAC_DATABASE" 2>/dev/null && pwd || echo "$MAC_DATABASE")"
+
+echo "=== Mac → Linux deploy ==="
+echo "  SSH:      $LINUX_SSH"
+echo "  Repo:     $LINUX_REPO"
+echo "  Data:     $LINUX_DATA"
+echo "  Mac DB:   $MAC_DATABASE"
+echo ""
+
+if [[ "$DATA_ONLY" != true ]]; then
+  echo "--- Git push (Mac) ---"
+  git push -u origin HEAD
+  echo ""
+  echo "--- Git pull on Linux ---"
+  ssh "$LINUX_SSH" "cd $LINUX_REPO && git pull"
+  echo ""
+fi
+
+if [[ "$CODE_ONLY" != true ]]; then
+  if [[ ! -d "$MAC_DATABASE" ]]; then
+    echo "WARN: Mac DATABASE_ROOT not found: $MAC_DATABASE"
+    echo "      Skip data rsync or set DATABASE_ROOT in configs/.env"
+  else
+    echo "--- Rsync OMEIA-database (heavy — may take a long time) ---"
+    ssh "$LINUX_SSH" "mkdir -p $LINUX_DATA"
+    rsync "${RSYNC_FLAGS[@]}" \
+      --exclude '.DS_Store' \
+      --exclude '**/.Trash/**' \
+      "$MAC_DATABASE/" "$LINUX_SSH:$LINUX_DATA/"
+    echo ""
+  fi
+
+  # Optional: lab member avatars / large assets outside database root
+  if [[ -d "$ROOT/labMember" ]]; then
+    echo "--- Rsync labMember assets ---"
+    rsync "${RSYNC_FLAGS[@]}" "$ROOT/labMember/" "$LINUX_SSH:$LINUX_REPO/labMember/"
+  fi
+fi
+
+echo "=== Done ==="
+echo "On Linux, run full bootstrap:"
+echo "  ssh $LINUX_SSH"
+echo "  cd $LINUX_REPO && ./scripts/deploy/linux_bootstrap_all.sh"

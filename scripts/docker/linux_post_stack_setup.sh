@@ -63,8 +63,16 @@ echo "--- Reindex vectors (Ollama embeddings) ---"
 PYTHONPATH="$ROOT" \
   EMBEDDING_PROVIDER=ollama \
   TEXT_EMBEDDING_DIM=768 \
+  RESEARCH_KB_VECTOR_SIZE=768 \
   QDRANT_URL="${QDRANT_URL:-http://127.0.0.1:6333}" \
   "$PY" "$ROOT/scripts/ingest/reindex_vectors.py" --limit 5000
+if [[ -f "$ROOT/scripts/ingest/reindex_research_vectors.py" ]]; then
+  PYTHONPATH="$ROOT" \
+    EMBEDDING_PROVIDER=ollama \
+    TEXT_EMBEDDING_DIM=768 \
+    RESEARCH_KB_VECTOR_SIZE=768 \
+    "$PY" "$ROOT/scripts/ingest/reindex_research_vectors.py" --limit 5000 || true
+fi
 
 echo "--- LLM smoke test ---"
 PYTHONPATH="$ROOT" \

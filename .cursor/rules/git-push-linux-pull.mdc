@@ -3,20 +3,22 @@ description: Commit and push Mac changes after major updates; provide Linux pull
 alwaysApply: true
 ---
 
-After each major code or docs update on Mac:
+Linux is the permanent host. Mac pushes code + heavy data; Mac clients use the Linux URL in a browser.
 
-1. Commit all relevant changes (exclude secrets: `configs/.env`, `*.pem`, tokens; exclude large artifacts: `docs/OMEIA_app_code_bundle.md`, `tests/*_last_run.json`).
-2. Push to `origin` on the current feature branch.
-3. End the response with Linux pull/sync commands:
+After each major update on Mac:
+
+1. Commit relevant changes (exclude `configs/.env`, secrets, `docs/OMEIA_app_code_bundle.md`, `tests/*_last_run.json`).
+2. Run `./scripts/deploy/mac_push_to_linux.sh --code-only` (or full push with `--data-only` when syncing OMEIA-database).
+3. End responses with Linux commands:
 
 ```bash
 cd ~/data4TB/digital-notepad
 git pull
-eval "$(./scripts/dev/load_env.sh configs/.env)"
-# Run migrations/reindex only when schema or vectors changed:
-# PYTHONPATH=. .venv/bin/python3 scripts/database/apply_sql_migrations.py
-# PYTHONPATH=. .venv/bin/python3 scripts/ingest/reindex_vectors.py --limit 5000
-./scripts/start_linux.sh   # or restart API if already running
+./scripts/deploy/linux_bootstrap_all.sh --skip-docker   # or full bootstrap after schema changes
+./scripts/start_linux.sh
+# Browser: http://$(tailscale ip -4):5173
 ```
 
-Branch: `cursor/unified-search-ai-lab-assistant` unless user specifies otherwise.
+First-time data migration from Mac: `./scripts/deploy/mac_push_to_linux.sh` (includes rsync OMEIA-database).
+
+See `docs/LINUX_PRIMARY_DEPLOYMENT.md`.
