@@ -38,12 +38,12 @@ def _qdrant_ready(qdrant_client: Any) -> tuple[bool, str | None]:
         return False, f"Qdrant unreachable: {exc}"
 
     try:
-        from omeia.api.qdrant_collections import all_collections, collection_dim
+        from omeia.api.qdrant_collections import collection_dim, readiness_collections
 
         expected = collection_dim()
         mismatches: list[str] = []
         missing: list[str] = []
-        for label, name in all_collections().items():
+        for label, name in readiness_collections().items():
             try:
                 info = qdrant_client.get_collection(name)
                 vectors = getattr(getattr(info, "config", None), "params", None)

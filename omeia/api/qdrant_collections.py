@@ -49,5 +49,18 @@ def all_collections() -> dict[str, str]:
     }
 
 
+def readiness_collections() -> dict[str, str]:
+    """Collections required for /ready when Qdrant indexing checks are active."""
+    from omeia.api.platform_flags import vectorization_enabled
+
+    cols = {
+        "doc_chunks": DOC_CHUNKS,
+        "research_knowledge": RESEARCH_KB,
+    }
+    if vectorization_enabled():
+        cols["vault_asset_chunks"] = VAULT_CHUNKS
+    return cols
+
+
 def collection_kinds() -> tuple[str, ...]:
     return tuple(_COLLECTION_BY_KIND.keys())

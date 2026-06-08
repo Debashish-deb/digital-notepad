@@ -59,6 +59,9 @@ docker exec omeia-ollama ollama pull nomic-embed-text || echo "WARN: nomic-embed
 echo "--- SQL migrations ---"
 PYTHONPATH="$ROOT" "$PY" "$ROOT/scripts/database/apply_sql_migrations.py"
 
+echo "--- Ensure runtime Qdrant collections ---"
+PYTHONPATH="$ROOT" "$PY" "$ROOT/scripts/ingest/ensure_runtime_qdrant_collections.py" || echo "WARN: Qdrant collection ensure failed"
+
 echo "--- Reindex vectors (Ollama embeddings) ---"
 PYTHONPATH="$ROOT" \
   EMBEDDING_PROVIDER=ollama \
