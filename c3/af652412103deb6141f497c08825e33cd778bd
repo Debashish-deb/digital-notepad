@@ -1,0 +1,23 @@
+web/src/features/documents/hooks/useDocumentLibrary.js
+  s_86cd6e716882fd::t_703449719df6a1 1
+  s_86cd6e716882fd::t_c2e9a01e884ab0 49-53
+  s_86cd6e716882fd::t_ac95a3af699fe0 129-131,133-136,139,148-150,154-155,159-160
+web/src/features/documents/components/DocumentResultList.jsx
+  s_86cd6e716882fd::t_f92f248c4cee8a 1,176-177
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "c3af652412103deb6141f497c08825e33cd778bd",
+  "prompts": {},
+  "sessions": {
+    "s_86cd6e716882fd": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "e327659d-1576-42d1-9d13-57f547bdf39f",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
