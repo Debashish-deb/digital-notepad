@@ -70,6 +70,31 @@ mv OMEIA-database ~/data4TB/
 
 Files must exist on **Linux disk** at `DATABASE_ROOT`, not on Mac. See `docs/LINUX_MEDIA_AND_DATA_PATHS.md`.
 
+## Sync lab files Mac → Linux (previews / thumbnails)
+
+**Run on the Mac**, not on Linux. Linux only has metadata until you rsync binaries.
+
+```bash
+# Mac Terminal:
+cd ~/Downloads/OMEIA-AI   # or your clone path
+export LINUX_SSH=debdeba@100.80.231.55
+export MAC_DATABASE_ROOT=/Users/debashishdeb/Downloads/OMEIA-database
+./scripts/deploy/mac_push_to_linux.sh --data-only
+```
+
+First time: set up passwordless SSH so rsync does not stop mid-transfer:
+
+```bash
+ssh-copy-id debdeba@100.80.231.55
+```
+
+Expect a long run (full `SOCIAL & MISCELLANEOUS`, `WET_LAB`, etc.). After sync, on Linux:
+
+```bash
+ls ~/data4TB/OMEIA-database
+./scripts/start_linux.sh
+```
+
 ## Node.js on Linux (Vite 8)
 
 Cubbli ships Node 20.11 — **too old**. Upgrade once with nvm:

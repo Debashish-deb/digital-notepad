@@ -56,8 +56,30 @@ fi
 RSYNC_FLAGS=(-avz --progress)
 [[ "$DRY_RUN" == true ]] && RSYNC_FLAGS+=(--dry-run)
 
-MAC_DATABASE="${DATABASE_ROOT:-$ROOT/../OMEIA-database}"
+# Explicit Mac source wins; DATABASE_ROOT in configs/.env is often the Linux path after copy-paste.
+MAC_DATABASE="${MAC_DATABASE_ROOT:-${DATABASE_ROOT:-$ROOT/../OMEIA-database}}"
 MAC_DATABASE="$(cd "$MAC_DATABASE" 2>/dev/null && pwd || echo "$MAC_DATABASE")"
+
+if [[ "$(uname -s)" != "Darwin" && "$DATA_ONLY" == true ]]; then
+  echo "ERROR: --data-only must run on your Mac (source = Mac OMEIA-database)."
+  echo "  You are on: $(uname -n) ($(uname -s))"
+  echo "  Detected source: $MAC_DATABASE"
+  echo ""
+  echo "On Mac, run:"
+  echo "  export LINUX_SSH=debdeba@100.80.231.55"
+  echo "  export MAC_DATABASE_ROOT=/Users/debashishdeb/Downloads/OMEIA-database"
+  echo "  ./scripts/deploy/mac_push_to_linux.sh --data-only"
+  exit 1
+fi
+
+if [[ "$MAC_DATABASE" == /home/* ]]; then
+  echo "WARN: Mac source looks like a Linux path: $MAC_DATABASE"
+  echo "      Set MAC_DATABASE_ROOT to your Mac folder, e.g.:"
+  echo "      export MAC_DATABASE_ROOT=/Users/debashishdeb/Downloads/OMEIA-database"
+  if [[ "$DATA_ONLY" == true ]]; then
+    exit 1
+  fi
+fi
 
 echo "=== Mac → Linux deploy ==="
 echo "  SSH:      $LINUX_SSH"
