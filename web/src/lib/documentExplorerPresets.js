@@ -53,9 +53,22 @@ const WET_LAB_TOP_SCOPE_CHIP_IDS = new Set([
   'histology_services',
 ]);
 
+/** Workflow sub-filters nested under top-level wet-lab categories. */
+const WET_LAB_WORKFLOW_SCOPE_CHIP_IDS = new Set([
+  'patient_samples',
+  'sample_preparation',
+  'tissue_processing',
+  'spatial_assays',
+  'staining_flow',
+  'reagents_inventory',
+]);
+
 /** Scope chips shown per wet-lab sub-tab (ids from smart_taxonomy.json). */
 const WET_LAB_SCOPE_CHIP_IDS = {
-  files: WET_LAB_TOP_SCOPE_CHIP_IDS,
+  files: new Set([
+    ...WET_LAB_TOP_SCOPE_CHIP_IDS,
+    ...WET_LAB_WORKFLOW_SCOPE_CHIP_IDS,
+  ]),
   protocols: new Set([
     'protocols_methods',
     'patient_samples',

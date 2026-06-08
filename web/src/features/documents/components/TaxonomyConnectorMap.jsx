@@ -14,84 +14,39 @@ const SCOPE_PARENT_BY_ID = {
   reagents_inventory: 'reagents_panels',
 };
 
-function filtersSubset(subset, superset) {
-  return Object.entries(subset).every(([key, value]) => superset[key] === value);
-}
-
-function resolveRootId(chips, initialFilters) {
-  const ids = new Set(chips.map((c) => c.id));
-  const hasHierarchy = chips.some(
-    (c) => SCOPE_PARENT_BY_ID[c.id] && ids.has(SCOPE_PARENT_BY_ID[c.id]),
-  );
-  if (!hasHierarchy) return null;
-
-  if (ids.has('protocols_methods') && chips.some((c) => SCOPE_PARENT_BY_ID[c.id] === 'protocols_methods')) {
-    return 'protocols_methods';
-  }
-  if (ids.has('reagents_panels') && chips.some((c) => SCOPE_PARENT_BY_ID[c.id] === 'reagents_panels')) {
-    return 'reagents_panels';
-  }
-
-  const exact = chips.find((chip) => chip.filter && filtersSubset(chip.filter, initialFilters));
-  if (exact) return exact.id;
-
-  const orphan = chips.find((c) => !SCOPE_PARENT_BY_ID[c.id] || !ids.has(SCOPE_PARENT_BY_ID[c.id]));
-  return orphan?.id || chips[0]?.id || null;
-}
-
-function buildTreeTiers(chips, rootId, scopeLabel) {
+function buildHierarchyLayout(chips) {
   if (!chips.length) return null;
 
-  const byId = Object.fromEntries(chips.map((c) => [c.id, c]));
   const ids = new Set(chips.map((c) => c.id));
+  const parentChips = chips.filter((chip) => {
+    const parentId = SCOPE_PARENT_BY_ID[chip.id];
+    return !parentId || !ids.has(parentId);
+  });
 
-  if (!rootId || !byId[rootId]) {
-    const total = chips.reduce((sum, c) => sum + (c.count || 0), 0);
-    return {
-      topTier: {
-        anchor: {
-          id: '__root__',
-          label: scopeLabel || 'Library scope',
-          count: total,
-          synthetic: true,
-        },
-        peers: chips,
-      },
-      subTiers: [],
-    };
-  }
-
-  const directChildren = chips.filter((c) => SCOPE_PARENT_BY_ID[c.id] === rootId);
-  const topPeers = directChildren.length
-    ? directChildren
-    : chips.filter((c) => c.id !== rootId);
-
-  const subTiers = directChildren
-    .map((hub) => ({
-      hub,
-      peers: chips.filter((c) => SCOPE_PARENT_BY_ID[c.id] === hub.id),
+  const childGroups = parentChips
+    .map((parent) => ({
+      parent,
+      children: chips.filter((chip) => SCOPE_PARENT_BY_ID[chip.id] === parent.id),
     }))
-    .filter((tier) => tier.peers.length > 0 && ids.has(tier.hub.id));
+    .filter((group) => group.children.length > 0);
 
-  return {
-    topTier: {
-      anchor: byId[rootId],
-      peers: topPeers,
-    },
-    subTiers,
-  };
+  return { parentChips, childGroups };
 }
 
-function TaxonomyNode({ chip, active, onClick, variant = 'leaf' }) {
+function TaxonomyNode({ chip, active, onClick, variant = 'child', chipId }) {
   const shortLabel = chip.label?.replace(/^All /, '') || chip.label;
+  const isEmpty = chip.count === 0;
+
   return (
     <button
       type="button"
+      data-chip-id={chipId || chip.id}
       className={[
         'tcx-node',
         `tcx-node--${variant}`,
         active ? 'is-active' : '',
         chip.synthetic ? 'tcx-node--synthetic' : '',
+        isEmpty ? 'tcx-node--empty' : '',
       ].filter(Boolean).join(' ')}
       onClick={() => onClick(chip)}
       title={chip.description || chip.label}
@@ -106,79 +61,7 @@ function TaxonomyNode({ chip, active, onClick, variant = 'leaf' }) {
   );
 }
 
-function ConnectorBranch({ peers, isChipActive, onChipClick, variant = 'peer' }) {
-  if (!peers.length) return null;
-
-  return (
-    <div className="tcx-branch-row" role="group">
-      <div className="tcx-branch-nodes">
-        {peers.map((chip) => (
-          <TaxonomyNode
-            key={chip.id}
-            chip={chip}
-            active={isChipActive(chip)}
-            onClick={onChipClick}
-            variant={variant}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function TreeTier({
-  tier,
-  tierIndex,
-  isChipActive,
-  onChipClick,
-  onAnchorClick,
-  peerVariant = 'peer',
-}) {
-  const { anchor, peers } = tier;
-  const anchorActive = anchor.synthetic
-    ? peers.every((c) => !isChipActive(c))
-    : isChipActive(anchor);
-
-  const handleAnchorClick = () => {
-    if (anchor.synthetic) {
-      onAnchorClick();
-      return;
-    }
-    onChipClick(anchor);
-  };
-
-  const anchorVariant = tierIndex === 0 ? 'root' : 'hub';
-  const hasBranches = peers.length > 0;
-
-  return (
-    <div
-      className={[
-        'tcx-tier',
-        tierIndex === 0 ? 'tcx-tier--root' : 'tcx-tier--child',
-      ].filter(Boolean).join(' ')}
-      data-tier-index={tierIndex}
-    >
-      <div className="tcx-tier__row">
-        <TaxonomyNode
-          chip={anchor}
-          active={anchorActive}
-          onClick={handleAnchorClick}
-          variant={anchorVariant}
-        />
-        {hasBranches ? (
-          <ConnectorBranch
-            peers={peers}
-            isChipActive={isChipActive}
-            onChipClick={onChipClick}
-            variant={peerVariant}
-          />
-        ) : null}
-      </div>
-    </div>
-  );
-}
-
-function TaxonomyWireCanvas({ frameRef, hasSubTiers, tiersKey }) {
+function TaxonomyWireCanvas({ frameRef, layoutKey, childGroupCount }) {
   const uid = useId().replace(/:/g, '');
   const [geometry, setGeometry] = useState(null);
   const rafRef = useRef(0);
@@ -190,66 +73,61 @@ function TaxonomyWireCanvas({ frameRef, hasSubTiers, tiersKey }) {
     const fr = frame.getBoundingClientRect();
     if (fr.width < 1 || fr.height < 1) return false;
 
-    const tierEls = [...frame.querySelectorAll('.tcx-tier')];
-    const tierSegments = tierEls.map((tierEl) => {
-      const anchor = tierEl.querySelector('.tcx-node--root, .tcx-node--hub');
-      const peers = [...tierEl.querySelectorAll('.tcx-node--peer, .tcx-node--leaf')];
-      if (!anchor || !peers.length) return null;
+    const parentRow = frame.querySelector('.tcx-parent-row');
+    if (!parentRow) return false;
 
-      const ar = anchor.getBoundingClientRect();
-      const anchorPt = {
-        x: ar.right - fr.left,
-        y: ar.top + ar.height / 2 - fr.top,
+    const parentNodes = [...parentRow.querySelectorAll('.tcx-node--parent')];
+    const parentById = Object.fromEntries(
+      parentNodes.map((node) => [node.dataset.chipId, node]),
+    );
+
+    const groups = [...frame.querySelectorAll('.tcx-child-group')].map((groupEl) => {
+      const parentId = groupEl.dataset.parentId;
+      const parentNode = parentById[parentId];
+      const childNodes = [...groupEl.querySelectorAll('.tcx-node--child')];
+      if (!parentNode || !childNodes.length) return null;
+
+      const pr = parentNode.getBoundingClientRect();
+      const parentPt = {
+        x: pr.left + pr.width / 2 - fr.left,
+        y: pr.bottom - fr.top + 2,
       };
 
-      const peerPts = peers.map((peer) => {
-        const pr = peer.getBoundingClientRect();
+      const childPts = childNodes.map((child) => {
+        const cr = child.getBoundingClientRect();
         return {
-          x: pr.left - fr.left,
-          y: pr.top + pr.height / 2 - fr.top,
-          active: peer.classList.contains('is-active'),
+          x: cr.left - fr.left,
+          y: cr.top + cr.height / 2 - fr.top,
+          active: child.classList.contains('is-active'),
         };
       });
 
-      const junctionX = anchorPt.x + Math.max(10, (peerPts[0].x - anchorPt.x) * 0.22);
-      const busY = anchorPt.y;
-      const busEnd = peerPts[peerPts.length - 1].x - 6;
+      const trunkX = parentPt.x;
+      const trunkTop = parentPt.y;
+      const trunkBottom = childPts[childPts.length - 1].y;
+      const busY = childPts[0].y;
+      const busEnd = childPts[childPts.length - 1].x - 6;
+      const active = parentNode.classList.contains('is-active')
+        || childPts.some((pt) => pt.active);
 
       return {
-        anchor: anchorPt,
-        junction: { x: junctionX, y: busY },
-        bus: { x1: junctionX, y1: busY, x2: busEnd, y2: busY },
-        peers: peerPts,
-        active: anchor.classList.contains('is-active') || peerPts.some((p) => p.active),
+        parent: parentPt,
+        trunk: { x: trunkX, y1: trunkTop, y2: trunkBottom },
+        bus: childPts.length > 1
+          ? { x1: trunkX, y1: busY, x2: busEnd, y2: busY }
+          : null,
+        children: childPts,
+        active,
       };
     }).filter(Boolean);
 
-    let spine = null;
-    if (hasSubTiers && tierSegments.length > 1) {
-      const spineX = Math.min(
-        ...tierSegments.slice(1).map((s) => s.anchor.x - 14),
-        tierSegments[0].anchor.x - 6,
-      );
-      const rootY = tierSegments[0].anchor.y;
-      const childAnchors = tierSegments.slice(1).map((s) => s.anchor);
-      const childYs = childAnchors.map((a) => a.y);
-      spine = {
-        x: spineX,
-        y1: rootY,
-        y2: Math.max(...childYs),
-        hooks: childAnchors.map((a) => ({
-          x1: spineX,
-          y1: a.y,
-          x2: a.x - 4,
-          y2: a.y,
-          active: tierEls.slice(1).some((el) => el.querySelector('.tcx-node.is-active')),
-        })),
-      };
-    }
-
-    setGeometry({ tierSegments, spine, width: fr.width, height: fr.height });
+    setGeometry({
+      groups,
+      width: fr.width,
+      height: fr.height,
+    });
     return true;
-  }, [frameRef, hasSubTiers]);
+  }, [frameRef]);
 
   const scheduleMeasure = useCallback(() => {
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -288,11 +166,11 @@ function TaxonomyWireCanvas({ frameRef, hasSubTiers, tiersKey }) {
       mo.disconnect();
       window.removeEventListener('resize', scheduleMeasure);
     };
-  }, [scheduleMeasure, tiersKey, hasSubTiers]);
+  }, [scheduleMeasure, layoutKey, childGroupCount]);
 
-  if (!geometry) return null;
+  if (!geometry?.groups?.length) return null;
 
-  const { tierSegments, spine, width, height } = geometry;
+  const { groups, width, height } = geometry;
   const gradId = `tcx-grad-${uid}`;
   const gradActiveId = `tcx-grad-active-${uid}`;
   const glowId = `tcx-glow-${uid}`;
@@ -306,15 +184,13 @@ function TaxonomyWireCanvas({ frameRef, hasSubTiers, tiersKey }) {
       aria-hidden
     >
       <defs>
-        <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="var(--text-muted)" stopOpacity="0.22" />
-          <stop offset="45%" stopColor="var(--text-muted)" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="var(--text-muted)" stopOpacity="0.3" />
+        <linearGradient id={gradId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="var(--text-muted)" stopOpacity="0.35" />
+          <stop offset="100%" stopColor="var(--text-muted)" stopOpacity="0.55" />
         </linearGradient>
-        <linearGradient id={gradActiveId} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.35" />
-          <stop offset="50%" stopColor="var(--color-primary)" stopOpacity="1" />
-          <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0.45" />
+        <linearGradient id={gradActiveId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.45" />
+          <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="1" />
         </linearGradient>
         <filter id={glowId} x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="2.2" result="blur" />
@@ -325,87 +201,73 @@ function TaxonomyWireCanvas({ frameRef, hasSubTiers, tiersKey }) {
         </filter>
       </defs>
 
-      {spine ? (
-        <g className="tcx-wire tcx-wire--spine">
-          <line
-            x1={spine.x}
-            y1={spine.y1}
-            x2={spine.x}
-            y2={spine.y2}
-            stroke={`url(#${gradId})`}
-            strokeWidth="1.5"
-            strokeDasharray="5 4"
-            strokeLinecap="round"
-          />
-          {spine.hooks.map((hook, i) => (
-            <path
-              key={`hook-${i}`}
-              d={`M ${hook.x1} ${hook.y1} H ${hook.x2}`}
-              fill="none"
-              stroke={hook.active ? `url(#${gradActiveId})` : `url(#${gradId})`}
-              strokeWidth={hook.active ? 2 : 1.5}
-              strokeLinecap="round"
-              filter={hook.active ? `url(#${glowId})` : undefined}
-            />
-          ))}
-        </g>
-      ) : null}
-
-      {tierSegments.map((seg, tierIdx) => {
-        const stroke = seg.active ? `url(#${gradActiveId})` : `url(#${gradId})`;
-        const sw = seg.active ? 2.25 : 1.65;
+      {groups.map((group, groupIdx) => {
+        const stroke = group.active ? `url(#${gradActiveId})` : `url(#${gradId})`;
+        const sw = group.active ? 2.25 : 1.65;
 
         return (
-          <g key={`tier-wire-${tierIdx}`} className="tcx-wire tcx-wire--tier">
-            <path
-              d={`M ${seg.anchor.x} ${seg.anchor.y} H ${seg.junction.x}`}
-              fill="none"
-              stroke={stroke}
-              strokeWidth={sw}
-              strokeLinecap="round"
-              filter={seg.active ? `url(#${glowId})` : undefined}
-            />
-            <circle
-              cx={seg.junction.x}
-              cy={seg.junction.y}
-              r={seg.active ? 4.2 : 3.2}
-              className={`tcx-wire-junction${seg.active ? ' is-active' : ''}`}
-              filter={seg.active ? `url(#${glowId})` : undefined}
-            />
-            <circle
-              cx={seg.junction.x}
-              cy={seg.junction.y}
-              r={1.4}
-              className="tcx-wire-junction__core"
-            />
+          <g key={`group-wire-${groupIdx}`} className="tcx-wire tcx-wire--group">
             <line
-              x1={seg.bus.x1}
-              y1={seg.bus.y1}
-              x2={seg.bus.x2}
-              y2={seg.bus.y2}
+              x1={group.trunk.x}
+              y1={group.trunk.y1}
+              x2={group.trunk.x}
+              y2={group.trunk.y2}
               stroke={stroke}
               strokeWidth={sw}
               strokeLinecap="round"
-              filter={seg.active ? `url(#${glowId})` : undefined}
+              filter={group.active ? `url(#${glowId})` : undefined}
             />
-            {seg.peers.map((peer, i) => (
-              <g key={`peer-tap-${tierIdx}-${i}`}>
-                <line
-                  x1={peer.x - 5}
-                  y1={seg.bus.y1}
-                  x2={peer.x}
-                  y2={peer.y}
-                  stroke={peer.active ? `url(#${gradActiveId})` : `url(#${gradId})`}
-                  strokeWidth={peer.active ? 2 : 1.5}
-                  strokeLinecap="round"
-                  filter={peer.active ? `url(#${glowId})` : undefined}
-                />
-                <circle
-                  cx={peer.x - 5}
-                  cy={seg.bus.y1}
-                  r={peer.active ? 2.8 : 2}
-                  className={`tcx-wire-tap${peer.active ? ' is-active' : ''}`}
-                />
+            <circle
+              cx={group.parent.x}
+              cy={group.parent.y - 2}
+              r={group.active ? 3.5 : 2.8}
+              className={`tcx-wire-anchor${group.active ? ' is-active' : ''}`}
+            />
+            {group.bus ? (
+              <line
+                x1={group.bus.x1}
+                y1={group.bus.y1}
+                x2={group.bus.x2}
+                y2={group.bus.y2}
+                stroke={stroke}
+                strokeWidth={sw}
+                strokeLinecap="round"
+                filter={group.active ? `url(#${glowId})` : undefined}
+              />
+            ) : null}
+            {group.children.map((child, childIdx) => (
+              <g key={`child-wire-${groupIdx}-${childIdx}`}>
+                {group.bus ? (
+                  <>
+                    <line
+                      x1={group.bus.x1}
+                      y1={group.bus.y1}
+                      x2={child.x}
+                      y2={child.y}
+                      stroke={child.active ? `url(#${gradActiveId})` : `url(#${gradId})`}
+                      strokeWidth={child.active ? 2 : 1.5}
+                      strokeLinecap="round"
+                      filter={child.active ? `url(#${glowId})` : undefined}
+                    />
+                    <circle
+                      cx={group.bus.x1}
+                      cy={group.bus.y1}
+                      r={child.active ? 2.8 : 2}
+                      className={`tcx-wire-tap${child.active ? ' is-active' : ''}`}
+                    />
+                  </>
+                ) : (
+                  <line
+                    x1={group.trunk.x}
+                    y1={group.trunk.y2}
+                    x2={child.x}
+                    y2={child.y}
+                    stroke={child.active ? `url(#${gradActiveId})` : `url(#${gradId})`}
+                    strokeWidth={child.active ? 2 : 1.5}
+                    strokeLinecap="round"
+                    filter={child.active ? `url(#${glowId})` : undefined}
+                  />
+                )}
               </g>
             ))}
           </g>
@@ -418,57 +280,72 @@ function TaxonomyWireCanvas({ frameRef, hasSubTiers, tiersKey }) {
 export default function TaxonomyConnectorMap({
   chips = [],
   scopeLabel = 'Library scope',
-  initialFilters = {},
   isChipActive,
   onChipClick,
   onResetScope,
 }) {
   const frameRef = useRef(null);
 
-  const tree = useMemo(
-    () => buildTreeTiers(chips, resolveRootId(chips, initialFilters), scopeLabel),
-    [chips, initialFilters, scopeLabel],
-  );
+  const layout = useMemo(() => buildHierarchyLayout(chips), [chips]);
+  if (!layout) return null;
 
-  if (!tree) return null;
+  const { parentChips, childGroups } = layout;
+  const layoutKey = `${parentChips.map((c) => c.id).join(',')}-${childGroups.map((g) => g.parent.id).join(',')}`;
 
-  const { topTier, subTiers } = tree;
-  const hasSubTiers = subTiers.length > 0;
-  const tiersKey = `${topTier.anchor.id}-${subTiers.map((t) => t.hub.id).join(',')}-${chips.length}`;
+  const handleParentClick = (chip) => {
+    const hasChildren = childGroups.some((group) => group.parent.id === chip.id);
+    if (hasChildren && isChipActive(chip)) {
+      onResetScope?.();
+      return;
+    }
+    onChipClick(chip);
+  };
 
   return (
-    <section
-      className={`tcx-map${hasSubTiers ? ' tcx-map--layered' : ''}`}
-      aria-label="Folder taxonomy map"
-    >
+    <section className="tcx-map tcx-map--stacked" aria-label={`${scopeLabel} taxonomy`}>
+      <header className="tcx-map__heading">
+        <span className="tcx-map__title">{scopeLabel}</span>
+      </header>
       <div className="tcx-tree-frame" ref={frameRef}>
         <TaxonomyWireCanvas
           frameRef={frameRef}
-          hasSubTiers={hasSubTiers}
-          tiersKey={tiersKey}
+          layoutKey={layoutKey}
+          childGroupCount={childGroups.length}
         />
         <div className="tcx-tree">
-          <div className="tcx-tree__tiers">
-            <TreeTier
-              tier={topTier}
-              tierIndex={0}
-              isChipActive={isChipActive}
-              onChipClick={onChipClick}
-              onAnchorClick={onResetScope}
-              peerVariant="peer"
-            />
-            {subTiers.map((tier) => (
-              <TreeTier
-                key={tier.hub.id}
-                tier={{ anchor: tier.hub, peers: tier.peers }}
-                tierIndex={1}
-                isChipActive={isChipActive}
-                onChipClick={onChipClick}
-                onAnchorClick={() => onChipClick(tier.hub)}
-                peerVariant="leaf"
+          <div className="tcx-parent-row" data-row="parents" role="group" aria-label="Categories">
+            {parentChips.map((chip) => (
+              <TaxonomyNode
+                key={chip.id}
+                chip={chip}
+                active={isChipActive(chip)}
+                onClick={handleParentClick}
+                variant="parent"
+                chipId={chip.id}
               />
             ))}
           </div>
+          {childGroups.map((group) => (
+            <div
+              key={group.parent.id}
+              className="tcx-child-group"
+              data-parent-id={group.parent.id}
+              role="group"
+              aria-label={`${group.parent.label} subcategories`}
+            >
+              <div className="tcx-child-row" data-row="children">
+                {group.children.map((chip) => (
+                  <TaxonomyNode
+                    key={chip.id}
+                    chip={chip}
+                    active={isChipActive(chip)}
+                    onClick={onChipClick}
+                    variant="child"
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

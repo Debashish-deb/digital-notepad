@@ -91,11 +91,9 @@ function TaxonomyFilterRail({
   initialFilters = {},
 }) {
   const facet = facets?.facets || {};
-  const subcategoryFacet = filters.category ? (facet.subcategory || {}) : {};
 
   const scopeChipItems = useMemo(
     () => (scopeChips || [])
-      .filter((chip) => chip.count > 0)
       .filter((chip) => !scopeChipIds || scopeChipIds.has(chip.id))
       .map((chip) => ({
         kind: 'scope',
@@ -196,8 +194,32 @@ function TaxonomyFilterRail({
   );
 
   const hasScopeMap = scopeChipItems.length > 0;
-  const showCategoryMap = !hideScopeFilters && categoryMapChips.length > 0;
-  const showSubcategoryMap = !hideScopeFilters && filters.category && subcategoryMapChips.length > 0;
+  const allSubcategoryChipItems = useMemo(
+    () => Object.entries(facet.subcategory || {})
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 14)
+      .map(([id, count]) => ({
+        kind: 'subcategory',
+        id,
+        label: prettifyCategory(id),
+        count,
+        filter: { subcategory: id },
+      })),
+    [facet.subcategory],
+  );
+
+  const allSubcategoryMapChips = useMemo(
+    () => allSubcategoryChipItems.map((chip) => ({
+      ...chip,
+      filter: filters.category
+        ? { category: filters.category, subcategory: chip.id }
+        : { subcategory: chip.id },
+    })),
+    [allSubcategoryChipItems, filters.category],
+  );
+
+  const showCategoryMap = categoryMapChips.length > 0;
+  const showSubcategoryMap = allSubcategoryMapChips.length > 0;
 
   if (!hasScopeMap && !showCategoryMap && !showSubcategoryMap) return null;
 
@@ -207,7 +229,6 @@ function TaxonomyFilterRail({
         <TaxonomyConnectorMap
           chips={scopeChipItems}
           scopeLabel={scopeLabel || (hideScopeFilters ? 'Library scope' : 'Domain scope')}
-          initialFilters={scopedBaseFilters}
           isChipActive={isChipActive}
           onChipClick={handleChipClick}
           onResetScope={() => {
@@ -220,7 +241,6 @@ function TaxonomyFilterRail({
         <TaxonomyConnectorMap
           chips={categoryMapChips}
           scopeLabel="Categories"
-          initialFilters={filters}
           isChipActive={isChipActive}
           onChipClick={handleChipClick}
           onResetScope={() => onFilterChange({ ...filters, category: undefined, subcategory: undefined })}
@@ -228,9 +248,8 @@ function TaxonomyFilterRail({
       ) : null}
       {showSubcategoryMap ? (
         <TaxonomyConnectorMap
-          chips={subcategoryMapChips}
-          scopeLabel={prettifyCategory(filters.category)}
-          initialFilters={filters}
+          chips={allSubcategoryMapChips}
+          scopeLabel={filters.category ? prettifyCategory(filters.category) : 'Subcategories'}
           isChipActive={isChipActive}
           onChipClick={handleChipClick}
           onResetScope={() => onFilterChange({ ...filters, subcategory: undefined })}
