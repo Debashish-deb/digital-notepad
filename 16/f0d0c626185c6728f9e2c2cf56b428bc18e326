@@ -1,0 +1,206 @@
+app_skeleton/api/readiness.py
+  s_d8ca0dcf385045::t_c6f4170c3e3010 21
+  s_20b279746cf099::t_8d716806d95288 10,12-13,15,20,22,30-31,34,36-38,40-41,45,61-63,67-68,71,96-97,117
+  s_d8ca0dcf385045::t_97dd58ad93dcfd 1-9,11,14,16-19,23-29,35,42-44,46-60,64-66,69-70,72-95,98-116,118
+  s_d8ca0dcf385045::t_3cf12d42e48a5a 32-33,39
+app_skeleton/api/retrieval_cache.py
+  s_20b279746cf099::t_0a6f434d3375c0 1-6
+app_skeleton/ui/react_frontend/package.json
+  s_d8ca0dcf385045::t_d67341ef3e03b7 11
+tests/test_agent_categories.py
+  s_d8ca0dcf385045::t_2b4561cfc06c5e 4-7
+  s_d8ca0dcf385045::t_3c5f6e7ea06570 68-69,71-82
+  s_d8ca0dcf385045::t_a328feddababcb 70
+app_skeleton/api/requirements.txt
+  s_d8ca0dcf385045::t_760ffc9ab7dfec 5
+  s_20b279746cf099::t_2cec4e59fccec0 4
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentViewer.jsx
+  s_d8ca0dcf385045::t_593944d04cdd80 23
+  s_d8ca0dcf385045::t_31f2c5adf979b8 136
+  s_20b279746cf099::t_fabc8656c34f43 138
+  s_d8ca0dcf385045::t_a16a4045aaf5cc 146
+  s_20b279746cf099::t_79d757f8c7af2a 162,164,177
+  s_d8ca0dcf385045::t_93dfdc6b02f5c3 192
+app_skeleton/ui/react_frontend/src/features/documents/hooks/useDocumentLibrary.js
+  s_d8ca0dcf385045::t_c7492710ee7131 13-15
+  s_d8ca0dcf385045::t_eeb989d12a92ce 38,41
+  s_d8ca0dcf385045::t_6002439b8150ed 91,100-101,103,105-121,128,135,139,144,154
+  s_20b279746cf099::t_2bc46dd5590672 102,104,124,130-134,147,157,215-225,249-251
+app_skeleton/api/startup_validation.py
+  s_d8ca0dcf385045::t_758783112c7d49 120
+app_skeleton/api/service_clients.py
+  s_20b279746cf099::t_5cafbff52c3334 52-57,62-63
+  s_20b279746cf099::t_9d3f6745ed2c12 8-12,42-43,45-46,48-51,60-61,66,72
+  s_20b279746cf099::t_c56dd632312ba9 1,6,16-19,21-30,32-33,35-36,38-40,58-59,67-69,73-75
+  s_d8ca0dcf385045::t_bbac4fe25bb676 2-5,7,13-15,20,31,34,37,41,44,47,64-65,70-71
+start.sh
+  s_d8ca0dcf385045::t_5ca78c8991c159 4
+  s_d8ca0dcf385045::t_6d915f887bf5f8 75-76,80,82,86-87
+  s_20b279746cf099::t_c821b670ab1e0f 114
+app_skeleton/api/routers/knowledge.py
+  s_20b279746cf099::t_b2fe3ec32dc114 11-28,34-49
+  s_20b279746cf099::t_3fef4c500c6f67 29-33
+app_skeleton/api/routers/agent_categories.py
+  s_d8ca0dcf385045::t_267312990375f3 62,66
+  s_d8ca0dcf385045::t_10a27a028ee805 157-166,168-174,176
+app_skeleton/api/observability.py
+  s_d8ca0dcf385045::t_99e6dbb3090ba6 64-66
+  s_20b279746cf099::t_e94f64d0efb5a3 31,39,46-48
+  s_d8ca0dcf385045::t_d2e5801012cf45 2-4,6,9,11,14-15,18-19,23
+  s_20b279746cf099::t_cc8968ef31d288 1,5,7-8,10,12-13,16-17,20-22,24-30,32-38,40-45,49-63
+docs/OMEIA_INFORMATION_FLOW.md
+  s_1310c1d807a4f8::t_156a23081f345e 30,46,49-51,55-56,63-66,69,71,79,81,85,92
+  s_c66b6a77dc49d1::t_a43481c6c78480 7,37,59,74-75,78,90-91,106,108,110,112-126,137-139,172-175,177-191,193,195-207,258,272,280-282,315-318,320,324,332,343-346,350-352,354-355,368-376,379-390,394,397,403,407-408,410,412,416,422,424-430,440,442-446,452-454,457,473-481,484-502,511,513-514,527-529,531-532,536,546-552,559-560,563,581-582,584,588-595,598-605,618,620,622,624-625,714,724-725,729,753,755,757,759,761,815,817,832,834,838-840,842
+  s_1310c1d807a4f8::t_a0c0a68a82c3b7 31-34,58,60-62,805,807
+  s_1310c1d807a4f8::t_c8cb7efe9be4f3 629-713
+  s_1310c1d807a4f8::t_3025a813fd7876 730,732,734,736,738,740,742,744,746,748,750,752,754,756,758,760,762-779,791-802,804,806,808,810,812,814,816,818,820,822,824
+  s_d8ca0dcf385045::t_a4d251a9e3129c 3,5,8-29,35-36,38-39,47-48,52-53,57,67-68,70,73,76-77,86,88-89,93-97,104-105,107,109,111,127-136,140-171,176,192,194,208-239,248-254,257,259-265,269-271,273-275,278-279,286-287,291-293,295,297-298,301-302,305,307,309-311,313-314,319,321-322,328,333-338,340-342,347-349,353,356-357,359-362,364-366,393,395-396,400-402,406,409,411,413-415,419,421,423,431,438-439,441,447,450-451,458-469,472,505,507-510,512,515-516,523-526,530,533-535,539-542,545,553,555-556,558,561-562,571-577,585-587,596-597,606-607,609-617,619,621,623,627,716,718,720-723,726,728,780,782-786,788,790,826,828-831,833,835-837,841,843-846,848,850
+  s_1310c1d807a4f8::t_77d3bec7058a63 98-103
+  s_1e4318e81f788a::t_bdf182de3536df 1-2,4,6,240-247,255-256,266-268,276-277,283-285,288-290,294,296,299-300,303-304,306,308,312,323,325-327,329-331,339,358,363,367,377-378,391-392,398-399,404-405,417-418,420,432-437,448-449,455-456,470-471,482-483,503-504,506,517-522,537-538,543-544,554,557,564-570,578-580,583,608,626,628,715,717,719,727,731,733,735,737,739,741,743,745,747,749,751,781,787,789,803,809,811,813,819,821,823,825,827,847,849
+  s_1310c1d807a4f8::t_4d93c7b3c059aa 40-45,54,72,80,82-84,87
+scripts/dev/start_linux_desktop.sh
+  s_d8ca0dcf385045::t_c18d42336e8436 97
+  s_d8ca0dcf385045::t_ad5c75d3ab2af4 124
+  s_d8ca0dcf385045::t_cafcb3acfe181c 102
+app_skeleton/ui/react_frontend/src/lib/digitalTwinUtils.js
+  s_d8ca0dcf385045::t_db65a26a5e6efa 91,94-96,98-107
+scripts/ops/migrate_lab_catalog_off_public.sh
+  s_d8ca0dcf385045::t_6db69bfa3a5af0 1-29
+app_skeleton/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.css
+  s_d8ca0dcf385045::t_f347ea72bb1a65 1710-1733
+.gitignore
+  s_20b279746cf099::t_04bc2c226f50af 32-36
+  s_d8ca0dcf385045::t_13b2408e7d7089 43
+configs/.env.example
+  s_d8ca0dcf385045::t_9ec51ecc39a631 15-25
+tests/test_architecture_audit.py
+  s_20b279746cf099::t_38292794cc1dbc 1-80
+app_skeleton/api/platform_admin.py
+  s_20b279746cf099::t_67ebb9e92a05c1 18-23
+  s_20b279746cf099::t_1644b8fde22146 37
+  s_20b279746cf099::t_879d0ad2842eea 50,80,132,163,189,209,226
+app_skeleton/ui/react_frontend/src/lib/catalogPreviewUtils.js
+  s_d8ca0dcf385045::t_1cf922dcf91dbc 3
+  s_20b279746cf099::t_4456ab288306e6 1,27,34-36,38,66
+tests/test_audit_implementations.py
+  s_d8ca0dcf385045::t_b9897390a1cada 17-18,20-22
+  s_d8ca0dcf385045::t_ecbaedc1340ec4 1-16,19,23-50
+app_skeleton/ui/react_frontend/src/services/client.js
+  s_d8ca0dcf385045::t_10bc195bddc807 21,23
+scripts/ops/check_frontend_public_lab_data.sh
+  s_d8ca0dcf385045::t_65e1dfa57d4387 1-40
+app_skeleton/api/agent_orchestrator/trace_store.py
+  s_20b279746cf099::t_2e8a6af1d56f4f 1-6
+tests/test_deployment_ops.py
+  s_d8ca0dcf385045::t_7fd5e9398dcc78 44-68,76-78
+scripts/dev/start_backend.sh
+  s_d8ca0dcf385045::t_4fcf32d013259a 35
+app_skeleton/api/routers/health.py
+  s_d8ca0dcf385045::t_1ed57deb626b0a 26-42,47-50,53-55,57,60
+  s_20b279746cf099::t_f552e7c7454d5e 70,72-76
+  s_d8ca0dcf385045::t_2bb6b192ae72a3 15-16,21-22
+  s_d8ca0dcf385045::t_d0db8857056d89 71
+app_skeleton/ui/react_frontend/src/features/documents/components/ScientificFileExplorer.jsx
+  s_d8ca0dcf385045::t_16642c4d03ad1a 226-233,235-253
+  s_20b279746cf099::t_51c681ad66fd46 234
+  s_20b279746cf099::t_90da15704bbd40 61-63
+configs/linux-workstation.env.template
+  s_d8ca0dcf385045::t_9f05eb59168ef5 57
+  s_d8ca0dcf385045::t_f6bc9f929feb40 20,23-30
+  s_d8ca0dcf385045::t_d3763a6833bdbd 5-9
+app_skeleton/api/main.py
+  s_d8ca0dcf385045::t_b786c669fd1eb3 1-4
+app_skeleton/api/env_bootstrap.py
+  s_d8ca0dcf385045::t_08392f95d7c3ed 1-28
+app_skeleton/ui/react_frontend/src/features/documents/components/DocumentResultList.jsx
+  s_20b279746cf099::t_8c5f0d0e7a4d65 205-211
+  s_20b279746cf099::t_f3f205dd2ddc56 1
+  s_20b279746cf099::t_3dd2297f4e595c 109-137
+  s_20b279746cf099::t_23fb110a7e5c8a 246
+app_skeleton/api/common.py
+  s_d8ca0dcf385045::t_c00089418312ce 154,156,158
+  s_d8ca0dcf385045::t_d69013e73b3e8c 142-143
+  s_d8ca0dcf385045::t_dc3777169e5aab 169-171,173-174,176-178,180-186,190-191,204
+app_skeleton/api/db_pool.py
+  s_d8ca0dcf385045::t_170cb62fbb8b6d 2-6,8,10,12,14-16,19-21,24,28,30-32,43,47,56,58-62,65-70,72
+  s_20b279746cf099::t_3f9b8da4d432d5 1,7,9,11,13,17-18,23,25-27,29,33-42,44-46,49-55,57,63-64,71
+  s_20b279746cf099::t_8548608c90a1df 22,48,73-77
+app_skeleton/security/auth.py
+  s_d8ca0dcf385045::t_54976ead9619bd 6-9
+app_skeleton/ui/react_frontend/src/pages/LabKnowledgeScreen.jsx
+  s_20b279746cf099::t_5b4af067acfa0a 26
+  s_20b279746cf099::t_426815f2d8e899 4
+  s_d8ca0dcf385045::t_f47556d2bbe09b 25
+  s_d8ca0dcf385045::t_9d32ccf9bf6935 3
+app_skeleton/ui/react_frontend/src/lib/labDatabaseUtils.js
+  s_d8ca0dcf385045::t_c88f14f818203d 109-112,114-123,125
+  s_d8ca0dcf385045::t_69425235a7390b 156-157,161-167
+  s_d8ca0dcf385045::t_382c7f5af2e9a1 1,3
+app_skeleton/ui/react_frontend/src/features/lab/components/LabSectionTwinPanel.jsx
+  s_20b279746cf099::t_2fa9fd94679caa 137,146
+  s_20b279746cf099::t_0506b87ad73120 11
+app_skeleton/api/routers/document_library.py
+  s_20b279746cf099::t_d0737ebef64fb8 108-111
+  s_20b279746cf099::t_f0c99919367595 178-181
+app_skeleton/ui/react_frontend/src/features/documents/components/LabDocumentMapPanel.jsx
+  s_d8ca0dcf385045::t_d267df1e3f44cc 27
+  s_20b279746cf099::t_f8e5fc239fe5ce 28
+  s_20b279746cf099::t_b8a63a1178590f 9
+  s_d8ca0dcf385045::t_ad59f74623bb77 10
+app_skeleton/api/lab_catalog_service.py
+  s_20b279746cf099::t_11ece88338f0cf 11
+  s_20b279746cf099::t_34575baba980dc 97-102,105
+  s_d8ca0dcf385045::t_d403c445bd7f55 2-3,5,8-10,115,119
+  s_20b279746cf099::t_5a7bbfd2581b51 51-52
+  s_20b279746cf099::t_ea20321c3a62f3 1,4,6-7,12-50,53-96,103-104,106-114,116-118,120-183
+scripts/dev/docker_bootstrap.sh
+  s_20b279746cf099::t_1a41011bcb2f6f 53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "16f0d0c626185c6728f9e2c2cf56b428bc18e326",
+  "prompts": {},
+  "sessions": {
+    "s_1310c1d807a4f8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ea854-cc78-7673-b81e-4c02c212f1a7",
+        "model": "gpt-5.5"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_1e4318e81f788a": {
+      "agent_id": {
+        "tool": "windsurf",
+        "id": "06de0e08-e055-4b42-9df8-efe6e522c113",
+        "model": "SWE-1.6 Slow"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_20b279746cf099": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "46573325-3aa1-4000-a169-43f2597308a2",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_c66b6a77dc49d1": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "08b17588-d6c0-4a7f-bc17-ade19ca64dbb",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
