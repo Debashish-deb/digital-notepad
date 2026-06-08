@@ -34,16 +34,16 @@ html[data-theme='academic'] {
   --sg-saturate: 1.22;
   --sg-radius: 13px;
   --sg-radius-lg: 20px;
-  --sg-border: rgba(30, 58, 95, 0.16);
-  --sg-border-strong: rgba(30, 58, 95, 0.3);
+  --sg-border: rgba(255, 255, 255, 0.58);
+  --sg-border-strong: rgba(255, 255, 255, 0.72);
   --sg-sheen: rgba(255, 255, 255, 0.82);
   --sg-sheen-soft: rgba(255, 255, 255, 0.42);
-  --sg-depth: rgba(46, 34, 24, 0.14);
+  --sg-depth: rgba(88, 108, 132, 0.14);
   --sg-fill-top: rgba(255, 255, 255, 0.68);
-  --sg-fill-bottom: rgba(30, 58, 95, 0.06);
-  --sg-surface: var(--academic-glass, rgba(255, 253, 248, 0.74));
-  --sg-surface-strong: var(--academic-glass-strong, rgba(255, 253, 248, 0.9));
-  --sg-inset: rgba(241, 230, 213, 0.82);
+  --sg-fill-bottom: rgba(107, 138, 163, 0.06);
+  --sg-surface: var(--academic-glass, rgba(255, 255, 255, 0.34));
+  --sg-surface-strong: var(--academic-glass-strong, rgba(255, 255, 255, 0.44));
+  --sg-inset: rgba(255, 255, 255, 0.28);
   --sg-shadow:
     0 1px 0 var(--sg-sheen) inset,
     0 -1px 0 rgba(30, 58, 95, 0.05) inset,
@@ -159,7 +159,6 @@ html[data-theme='academic'] {
 .surface-inset,
 .log-scroller-viewport,
 .code-preview,
-.doc-preview-editor-stage,
 .form-input,
 .form-textarea,
 .form-select,

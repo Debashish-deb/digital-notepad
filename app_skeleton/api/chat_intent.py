@@ -25,11 +25,15 @@ class IntentDecision:
     require_citations: bool
     answer_style: str
     reason: str
+    intent_category: str = "GENERAL_CHAT"
+    confidence: float = 0.7
 
 SMALLTALK_PATTERNS = [
-    r"^\s*(hi|hello|hey|yo|hiya|good morning|good afternoon|good evening)(?:\s+there)?\s*[!.,]*\s*$",
+    r"^\s*(hi|hello|hey|yo|hiya|howdy)(?:\s+there)?\s*[!.,]*\s*$",
+    r"^\s*good\s+(morning|afternoon|evening|day)\s*[!.,]*\s*$",
+    r"^\s*(morning|afternoon|evening)\s*[!.,]*\s*$",
     r"^\s*(thanks|thank you|thx|ok|okay|great|nice|cool|good)\s*[!.]*\s*$",
-    r"^\s*(how are you|who are you|what can you do)\s*[?!.]*\s*$",
+    r"^\s*(how are you|who are you|what can you do|what do you do)\s*[?!.]*\s*$",
 ]
 
 RESEARCH_TERMS = {

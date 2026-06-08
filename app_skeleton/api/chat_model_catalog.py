@@ -139,3 +139,43 @@ def build_chat_model_catalog() -> dict[str, Any]:
         "groups": groups,
         "options": flat,
     }
+
+
+def make_chat_llm(
+    provider: str | None = None,
+    model: str | None = None,
+    *,
+    default_llm: LLMClient | None = None,
+) -> LLMClient:
+    """Resolve chat provider/model — UI overrides env defaults per request."""
+    base = default_llm or LLMClient()
+    chat_provider = (
+        (provider or "").strip().lower()
+        or _env("CHAT_LLM_PROVIDER", "").strip().lower()
+        or base.provider
+    ).lower()
+    if chat_provider not in LLMClient._KNOWN_PROVIDERS:
+        chat_provider = base.provider
+
+    if not provider and not model and not _env("CHAT_LLM_PROVIDER", "").strip():
+        return base
+
+    active = LLMClient()
+    active.provider = chat_provider
+
+    if chat_provider == "gemini":
+        active.api_key = _env("GEMINI_API_KEY", "")
+        active.base_url = _env("GEMINI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
+        active.model = (model or _env("GEMINI_MODEL", "gemini-3.5-flash")).strip()
+    elif chat_provider == "ollama":
+        ollama_cfg = active._ollama_endpoint()
+        active.api_key = ollama_cfg["api_key"]
+        active.base_url = ollama_cfg["base_url"]
+        active.model = (model or _env("OLLAMA_MODEL", "qwen2.5:3b")).strip()
+    elif model:
+        active.model = model.strip()
+        active.api_key = base.api_key
+        active.base_url = base.base_url
+
+    active._init_client()
+    return active

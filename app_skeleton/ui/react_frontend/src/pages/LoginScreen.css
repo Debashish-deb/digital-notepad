@@ -195,7 +195,9 @@
   font-weight: 780;
   line-height: 1.07;
   letter-spacing: -0.048em;
-  color: #fbfffd;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background: none;
   text-wrap: balance;
   text-shadow:
     0 13px 42px rgba(0, 0, 0, 0.55),
@@ -807,4 +809,81 @@
   .login-card {
     background-color: rgba(7, 13, 29, 0.94);
   }
+}
+
+/* Academic / Kindle theme — pale clear glass (overrides dark cinematic login base) */
+html[data-theme='academic'] .login-page {
+  color: #2a3542;
+  background:
+    linear-gradient(128deg, #e8eef4 0%, #d4dee8 48%, #bcc9d6 100%) !important;
+}
+
+html[data-theme='academic'] .login-page::before,
+html[data-theme='academic'] .login-page::after {
+  display: none !important;
+  content: none !important;
+}
+
+html[data-theme='academic'] .login-scene,
+html[data-theme='academic'] .login-scene canvas,
+html[data-theme='academic'] .login-scene-veil,
+html[data-theme='academic'] .login-scene-grid,
+html[data-theme='academic'] .login-scene-vignette {
+  display: none !important;
+}
+
+html[data-theme='academic'] .login-page__scene-wrap {
+  background: transparent !important;
+}
+
+html[data-theme='academic'] .login-page__panel-wrap {
+  border-left-color: rgba(255, 255, 255, 0.38) !important;
+  background: rgba(255, 255, 255, 0.34) !important;
+  backdrop-filter: blur(24px) saturate(1.05);
+  -webkit-backdrop-filter: blur(24px) saturate(1.05);
+  box-shadow: 0 10px 36px rgba(88, 108, 132, 0.14) !important;
+}
+
+html[data-theme='academic'] .login-page__panel-wrap::before {
+  opacity: 0 !important;
+}
+
+html[data-theme='academic'] .login-page__brand {
+  background: rgba(255, 255, 255, 0.34) !important;
+  border-color: rgba(255, 255, 255, 0.58) !important;
+  box-shadow: 0 10px 36px rgba(88, 108, 132, 0.14) !important;
+  backdrop-filter: blur(24px) saturate(1.05);
+  -webkit-backdrop-filter: blur(24px) saturate(1.05);
+}
+
+html[data-theme='academic'] .login-card {
+  color: #2a3542;
+  background: rgba(255, 255, 255, 0.34) !important;
+  border-color: rgba(255, 255, 255, 0.58) !important;
+  box-shadow: 0 10px 36px rgba(88, 108, 132, 0.14) !important;
+  backdrop-filter: blur(24px) saturate(1.05);
+  -webkit-backdrop-filter: blur(24px) saturate(1.05);
+}
+
+html[data-theme='academic'] .login-card__title {
+  color: #2a3542 !important;
+  background: none !important;
+  -webkit-text-fill-color: unset !important;
+}
+
+html[data-theme='academic'] .login-page__brand-title {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html[data-theme='academic'] .login-page__brand-lead,
+html[data-theme='academic'] .login-card__subtitle,
+html[data-theme='academic'] .login-footnote {
+  color: #4a5568;
+}
+
+html[data-theme='academic'] .login-page__brand-eyebrow,
+html[data-theme='academic'] .login-card__kicker,
+html[data-theme='academic'] .login-field label {
+  color: #6b7a8c;
 }

@@ -76,8 +76,7 @@ html[data-theme='academic'] .log-scroller-viewport::-webkit-scrollbar-thumb {
   border-color: var(--border-color);
 }
 
-html[data-theme='academic'] .code-preview,
-html[data-theme='academic'] .doc-preview-editor-stage {
+html[data-theme='academic'] .code-preview:not(.doc-preview-editor-stage .code-preview) {
   background: var(--bg-surface);
 }
 

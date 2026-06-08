@@ -104,8 +104,14 @@ export default function DocumentPreviewPane({
   const showPlainText =
     previewKind === 'text' && (rawLoading || rawContent || rawError) && !showSpreadsheet;
 
+  const resolvedMediaKind = mediaKind || (isImage && (imageUrl || mediaUrl) ? 'image' : null);
+  const resolvedMediaUrl = mediaUrl || imageUrl;
+  const resolvedMediaAlt = mediaAlt || imageAlt || title;
+  const isMediaPreview = Boolean(resolvedMediaKind && resolvedMediaUrl);
+
   const hasFormattedText =
     Boolean(previewText) &&
+    !isMediaPreview &&
     !hasEditor &&
     !editorHint &&
     !showSpreadsheet &&
@@ -115,17 +121,13 @@ export default function DocumentPreviewPane({
     (!sheetFailed || !previewText);
   const showPdfThumb = Boolean(pdfPreviewUrl);
 
-  const resolvedMediaKind = mediaKind || (isImage && (imageUrl || mediaUrl) ? 'image' : null);
-  const resolvedMediaUrl = mediaUrl || imageUrl;
-  const resolvedMediaAlt = mediaAlt || imageAlt || title;
   const showMedia =
-    Boolean(resolvedMediaKind && resolvedMediaUrl) &&
+    isMediaPreview &&
     !hasEditor &&
     !showSpreadsheet &&
     !showCode &&
     !showMarkup &&
-    !showPlainText &&
-    !hasFormattedText;
+    !showPlainText;
 
   const markupSource = rawContent || previewText;
   const completeness = metadataCompleteness ?? 0;
@@ -222,26 +224,6 @@ export default function DocumentPreviewPane({
           error={rawError}
           labels={codeLabels}
         />
-      ) : showMarkup ? (
-        <div className="doc-preview-editor-scroll kindle-doc-scroll academic-manuscript doc-preview-prose">
-          <DocumentFormatter text={markupSource} onCreateTask={onCreateTask} preferProse={preferProse} />
-        </div>
-      ) : hasFormattedText ? (
-        <div className="doc-preview-editor-scroll kindle-doc-scroll academic-manuscript doc-preview-prose">
-          {previewFallbackNote ? (
-            <p className="doc-preview-fallback-note text-footnote muted" role="status">
-              {previewFallbackNote}
-            </p>
-          ) : null}
-          <DocumentFormatter text={previewText} onCreateTask={onCreateTask} preferProse={preferProse} />
-        </div>
-      ) : showPdfThumb ? (
-        <div className="doc-preview-placeholder doc-preview-pdf-only">
-          <FileText size={28} aria-hidden />
-          <p className="text-footnote muted">
-            No extracted text for this file. Use the PDF thumbnail to open the original layout.
-          </p>
-        </div>
       ) : showMedia && resolvedMediaKind === 'model3d' ? (
         <Suspense
           fallback={
@@ -263,6 +245,26 @@ export default function DocumentPreviewPane({
           onNavigate={onMediaNavigate}
           labels={mediaLabels}
         />
+      ) : showMarkup ? (
+        <div className="doc-preview-editor-scroll kindle-doc-scroll academic-manuscript doc-preview-prose">
+          <DocumentFormatter text={markupSource} onCreateTask={onCreateTask} preferProse={preferProse} />
+        </div>
+      ) : hasFormattedText ? (
+        <div className="doc-preview-editor-scroll kindle-doc-scroll academic-manuscript doc-preview-prose">
+          {previewFallbackNote ? (
+            <p className="doc-preview-fallback-note text-footnote muted" role="status">
+              {previewFallbackNote}
+            </p>
+          ) : null}
+          <DocumentFormatter text={previewText} onCreateTask={onCreateTask} preferProse={preferProse} />
+        </div>
+      ) : showPdfThumb ? (
+        <div className="doc-preview-placeholder doc-preview-pdf-only">
+          <FileText size={28} aria-hidden />
+          <p className="text-footnote muted">
+            No extracted text for this file. Use the PDF thumbnail to open the original layout.
+          </p>
+        </div>
       ) : (
         <p className="text-footnote muted doc-preview-placeholder">
           {emptyHint || 'No preview available.'}

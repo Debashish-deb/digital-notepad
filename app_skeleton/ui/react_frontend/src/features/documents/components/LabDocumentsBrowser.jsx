@@ -293,7 +293,17 @@ export default function LabDocumentsBrowser({
   const previewFromCatalog = Boolean(
     !twinPreviewText && (catalogPreview.displayText || catalogPreview.sheets?.length)
   );
+  const hasImmediatePreview = Boolean(
+    (mediaKind && assetUrl) ||
+    (isPdf && assetUrl) ||
+    previewKind === 'code' ||
+    previewKind === 'json' ||
+    previewKind === 'text' ||
+    previewKind === 'markup' ||
+    isSpreadsheet
+  );
   const previewLoading =
+    !hasImmediatePreview &&
     !previewText &&
     !spreadsheetReady &&
     (catalogPreview.loading || (isSpreadsheet && spreadsheetPreview.loading));

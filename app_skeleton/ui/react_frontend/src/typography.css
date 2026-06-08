@@ -11,22 +11,22 @@
   html[data-theme="academic"] {
     color-scheme: light;
 
-    /* Core palette — warm Kindle paper + Apple graphite */
-    --academic-paper: #f7f1e6;
-    --academic-paper-2: #efe4d4;
-    --academic-paper-3: #e6d7c3;
+    /* Core palette — clear glass blue-gray */
+    --academic-paper: #e8eef4;
+    --academic-paper-2: #d4dee8;
+    --academic-paper-3: #bcc9d6;
     --academic-ink: #211b16;
     --academic-ink-soft: #3f362d;
     --academic-muted: #75695d;
     --academic-faint: #9a8d7e;
 
     /* Apple-style surface system */
-    --academic-glass: rgba(255, 252, 246, 0.74);
-    --academic-glass-strong: rgba(255, 252, 246, 0.88);
-    --academic-glass-soft: rgba(255, 252, 246, 0.52);
-    --academic-surface: rgba(255, 250, 242, 0.82);
-    --academic-surface-hover: rgba(255, 246, 234, 0.94);
-    --academic-elevated: rgba(255, 253, 249, 0.92);
+    --academic-glass: rgba(255, 255, 255, 0.34);
+    --academic-glass-strong: rgba(255, 255, 255, 0.44);
+    --academic-glass-soft: rgba(255, 255, 255, 0.22);
+    --academic-surface: rgba(255, 255, 255, 0.34);
+    --academic-surface-hover: rgba(255, 255, 255, 0.48);
+    --academic-elevated: rgba(255, 255, 255, 0.52);
 
     /* Academic accents */
     --academic-sepia: #9b6a3c;
@@ -53,13 +53,13 @@
     --text-muted: var(--academic-muted);
     --text-faint: var(--academic-faint);
 
-    --border-color: rgba(88, 68, 48, 0.16);
-    --border-strong: rgba(88, 68, 48, 0.26);
+    --border-color: rgba(255, 255, 255, 0.52);
+    --border-strong: rgba(255, 255, 255, 0.68);
 
     --color-primary: var(--academic-blue-strong);
     --color-primary-soft: rgba(79, 111, 143, 0.12);
-    --color-accent: var(--academic-sepia);
-    --color-accent-soft: rgba(155, 106, 60, 0.12);
+    --color-accent: var(--academic-blue);
+    --color-accent-soft: rgba(79, 111, 143, 0.12);
     --color-success: var(--academic-green);
     --color-warning: var(--academic-gold);
     --color-danger: var(--academic-red);
@@ -89,41 +89,15 @@
   html[data-theme="academic"] body {
     min-height: 100%;
     background:
-      radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.72), transparent 28%),
-      radial-gradient(circle at 88% 18%, rgba(195, 153, 79, 0.16), transparent 30%),
-      radial-gradient(circle at 78% 80%, rgba(79, 111, 143, 0.12), transparent 34%),
-      linear-gradient(135deg, #f8f1e5 0%, #f2e6d5 48%, #e9d8bf 100%);
+      linear-gradient(128deg, #e8eef4 0%, #d4dee8 48%, #bcc9d6 100%);
+    background-attachment: fixed;
     color: var(--text-primary);
   }
 
-  html[data-theme="academic"] body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    pointer-events: none;
-    opacity: 0.38;
-    background-image:
-      linear-gradient(rgba(82, 61, 42, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(82, 61, 42, 0.03) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: radial-gradient(ellipse 78% 72% at 50% 40%, #000 20%, transparent 88%);
-  }
-
+  html[data-theme="academic"] body::before,
   html[data-theme="academic"] body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.18;
-    mix-blend-mode: multiply;
-    background:
-      repeating-linear-gradient(0deg,
-        rgba(96, 72, 48, 0.045) 0,
-        rgba(96, 72, 48, 0.045) 1px,
-        transparent 1px,
-        transparent 4px);
+    display: none;
+    content: none;
   }
 
   html[data-theme="academic"] ::selection {
@@ -283,29 +257,25 @@
   html[data-theme="academic"] .sidebar-item,
   html[data-theme="academic"] .workspace-nav-item {
     color: var(--text-secondary);
-    border: 1px solid transparent;
-    border-radius: 14px;
+    border: 1px solid rgba(107, 138, 163, 0.16);
+    border-radius: 8px;
   }
 
   html[data-theme="academic"] .sidebar-item:hover,
   html[data-theme="academic"] .workspace-nav-item:hover {
     color: var(--text-primary);
-    border-color: rgba(88, 68, 48, 0.13);
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 246, 232, 0.5)),
-      rgba(155, 106, 60, 0.06);
+    border-color: rgba(255, 255, 255, 0.34);
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow: none;
+    transform: none;
   }
 
   html[data-theme="academic"] .sidebar-item.active,
   html[data-theme="academic"] .workspace-nav-item.active {
     color: var(--academic-blue-strong);
-    border-color: rgba(49, 91, 123, 0.18);
-    background:
-      linear-gradient(135deg, rgba(79, 111, 143, 0.14), rgba(255, 255, 255, 0.55)),
-      rgba(255, 252, 246, 0.7);
-    box-shadow:
-      0 8px 24px rgba(49, 91, 123, 0.09),
-      inset 0 1px 0 rgba(255, 255, 255, 0.68);
+    border-color: rgba(255, 255, 255, 0.52);
+    background: rgba(255, 255, 255, 0.34);
+    box-shadow: inset 3px 0 0 var(--academic-blue-strong);
   }
 
   html[data-theme="academic"] .sidebar-footer {
@@ -337,17 +307,12 @@
     .tab-button,
     .report-nav-btn,
     .module-subnav-item) {
-    border: 1px solid rgba(88, 68, 48, 0.16);
-    border-radius: 14px;
+    border: 1px solid rgba(107, 138, 163, 0.16);
+    border-radius: 8px;
     color: var(--academic-ink);
-    background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(250, 241, 227, 0.58));
-    box-shadow:
-      0 6px 18px rgba(46, 34, 24, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.74);
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow: none;
     transition:
-      transform 0.16s ease,
-      box-shadow 0.16s ease,
       border-color 0.16s ease,
       background 0.16s ease,
       color 0.16s ease;
@@ -361,14 +326,11 @@
     .tab-button,
     .report-nav-btn,
     .module-subnav-item):hover {
-    transform: translateY(-1px);
-    border-color: rgba(49, 91, 123, 0.25);
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.52);
     color: var(--academic-blue-strong);
-    background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(239, 228, 212, 0.7));
-    box-shadow:
-      0 12px 30px rgba(46, 34, 24, 0.12),
-      inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.34);
+    box-shadow: none;
   }
 
   html[data-theme="academic"] :where(.btn-primary,
@@ -455,13 +417,11 @@
   /* Tabs / chips ---------------------------------------------------------- */
 
   html[data-theme="academic"] .tab-bar {
-    padding: 0.35rem;
-    border: 1px solid rgba(88, 68, 48, 0.13);
-    border-radius: 18px;
-    background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.54), rgba(239, 228, 212, 0.36)),
-      rgba(255, 252, 246, 0.56);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.64);
+    padding: 0.3rem;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow: none;
   }
 
   html[data-theme="academic"] :where(.tab-button.active,
@@ -469,13 +429,9 @@
     .module-subnav-item.active,
     .scope-chip.is-checked) {
     color: var(--academic-blue-strong);
-    border-color: rgba(49, 91, 123, 0.2);
-    background:
-      linear-gradient(135deg, rgba(79, 111, 143, 0.14), rgba(255, 255, 255, 0.7)),
-      rgba(255, 252, 246, 0.72);
-    box-shadow:
-      0 8px 24px rgba(49, 91, 123, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    border-color: rgba(255, 255, 255, 0.52);
+    background: rgba(255, 255, 255, 0.44);
+    box-shadow: inset 0 -2px 0 var(--academic-blue-strong);
   }
 
   html[data-theme="academic"] .scope-chip,
@@ -684,18 +640,18 @@
   /* Login screen compatibility ------------------------------------------ */
 
   html[data-theme="academic"] .login-page {
-    --login-bg-0: #f8f1e5;
-    --login-bg-1: #efe4d4;
-    --login-bg-2: #dcc6a9;
-    --login-panel: rgba(255, 252, 246, 0.78);
-    --login-panel-strong: rgba(255, 250, 242, 0.92);
-    --login-card: rgba(255, 252, 246, 0.76);
-    --login-card-border: rgba(88, 68, 48, 0.16);
-    --login-text: var(--academic-ink);
-    --login-muted: var(--academic-muted);
-    --login-soft: var(--academic-faint);
-    --login-pink: var(--academic-sepia);
-    --login-pink-2: var(--academic-bronze);
+    --login-bg-0: #e8eef4;
+    --login-bg-1: #d4dee8;
+    --login-bg-2: #bcc9d6;
+    --login-panel: rgba(255, 255, 255, 0.34);
+    --login-panel-strong: rgba(255, 255, 255, 0.44);
+    --login-card: rgba(255, 255, 255, 0.34);
+    --login-card-border: rgba(255, 255, 255, 0.58);
+    --login-text: #2a3542;
+    --login-muted: #6b7a8c;
+    --login-soft: #8a98a8;
+    --login-pink: var(--academic-blue);
+    --login-pink-2: var(--academic-blue-strong);
     --login-fuchsia: var(--academic-blue);
     --login-violet: var(--academic-blue-strong);
     --login-dapi: var(--academic-blue);
@@ -703,24 +659,21 @@
     --login-amber: var(--academic-gold);
 
     background:
-      radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.78), transparent 28%),
-      radial-gradient(circle at 74% 70%, rgba(79, 111, 143, 0.12), transparent 34%),
-      linear-gradient(135deg, #f8f1e5 0%, #efe4d4 48%, #dcc6a9 100%);
+      linear-gradient(128deg, #e8eef4 0%, #d4dee8 48%, #bcc9d6 100%);
   }
 
   html[data-theme="academic"] .login-page__panel-wrap {
-    border-left-color: rgba(88, 68, 48, 0.14);
-    background:
-      radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.62), transparent 30%),
-      linear-gradient(180deg, rgba(255, 252, 246, 0.8), rgba(239, 228, 212, 0.86));
+    border-left-color: rgba(255, 255, 255, 0.38);
+    background: rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(24px) saturate(1.05);
+    -webkit-backdrop-filter: blur(24px) saturate(1.05);
   }
 
   html[data-theme="academic"] .login-card {
     color: var(--academic-ink);
   }
 
-  html[data-theme="academic"] .login-card__title,
-  html[data-theme="academic"] .login-page__brand-title {
+  html[data-theme="academic"] .login-card__title {
     color: var(--academic-ink);
     background:
       linear-gradient(135deg, #1f1812 0%, #6d4829 48%, #315b7b 100%);
@@ -729,7 +682,24 @@
     -webkit-text-fill-color: transparent;
   }
 
-  html[data-theme="academic"] .login-page__brand,
+  html[data-theme="academic"] .login-page__brand-title {
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+  }
+
+  html[data-theme="academic"] .login-page__brand {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.045)),
+      rgba(6, 12, 28, 0.52);
+    border-color: rgba(138, 255, 223, 0.18);
+    box-shadow:
+      0 28px 80px rgba(0, 0, 0, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
   html[data-theme="academic"] .login-card {
     background:
       linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 246, 232, 0.52)),

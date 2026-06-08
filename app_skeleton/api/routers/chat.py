@@ -9,7 +9,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
-from app_skeleton.api.chat_model_catalog import build_chat_model_catalog
+from app_skeleton.api.chat_model_catalog import build_chat_model_catalog, make_chat_llm
 from app_skeleton.api.agent_orchestrator.registry import list_visible_categories, load_categories_config
 from app_skeleton.api.chat_service import answer_chat
 from app_skeleton.api.common import LOGGER, SourceInfo, llm_client, qdrant_client, rag_agent, DB_CONN
@@ -45,39 +45,46 @@ class ChatResponse(BaseModel):
     synthesis_mode: str = "mock"
     blocked_by_guardrail: bool = False
     intent: str = "general_chat"
+    intent_category: str = "GENERAL_CHAT"
+    confidence: float = 0.7
     use_rag: bool = False
     show_sources: bool = False
     require_citations: bool = False
     answer_style: str = "natural"
     reason: str = ""
+    evidence_orchestrator: bool = False
+    query_domains: List[str] = Field(default_factory=list)
+    query_entities: List[str] = Field(default_factory=list)
+    search_plan: Optional[dict[str, Any]] = None
+    evidence_confidence: Optional[str] = None
+    evidence_buckets: Optional[dict[str, int]] = None
+    evidence_count: Optional[int] = None
+    cross_source_summary: Optional[str] = None
+    evidence_validation_notes: List[str] = Field(default_factory=list)
+
+
+_ORCHESTRATOR_SSE_KEYS = (
+    "evidence_orchestrator",
+    "query_domains",
+    "query_entities",
+    "search_plan",
+    "evidence_confidence",
+    "evidence_buckets",
+    "evidence_count",
+    "cross_source_summary",
+    "evidence_validation_notes",
+    "intent_category",
+    "confidence",
+    "use_rag",
+    "show_sources",
+    "require_citations",
+    "answer_style",
+    "synthesis_mode",
+)
 
 
 def _chat_llm(provider: Optional[str] = None, model: Optional[str] = None) -> LLMClient:
-    """Resolve chat provider/model — UI overrides env defaults per request."""
-    chat_provider = (provider or os.getenv("CHAT_LLM_PROVIDER", "").strip().lower() or llm_client.provider).lower()
-    if chat_provider not in LLMClient._KNOWN_PROVIDERS:
-        chat_provider = llm_client.provider
-
-    if not provider and not model and not os.getenv("CHAT_LLM_PROVIDER", "").strip():
-        return llm_client
-
-    active = LLMClient()
-    active.provider = chat_provider
-
-    if chat_provider == "gemini":
-        active.api_key = _env("GEMINI_API_KEY", "")
-        active.base_url = _env("GEMINI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
-        active.model = (model or _env("GEMINI_MODEL", "gemini-3.5-flash")).strip()
-    elif chat_provider == "ollama":
-        ollama_cfg = active._ollama_endpoint()
-        active.api_key = ollama_cfg["api_key"]
-        active.base_url = ollama_cfg["base_url"]
-        active.model = (model or _env("OLLAMA_MODEL", "qwen2.5:3b")).strip()
-    elif model:
-        active.model = model.strip()
-
-    active._init_client()
-    return active
+    return make_chat_llm(provider, model, default_llm=llm_client)
 
 
 def _search_service(active_llm: LLMClient) -> SearchService:
@@ -174,7 +181,11 @@ def chat_stream(
 
     if base.get("blocked_by_guardrail"):
         def blocked_iter() -> Iterator[str]:
-            yield _sse_event({"type": "metadata", **{k: public_base[k] for k in ("sources", "search_hits", "limitations", "provider", "is_safe", "intent", "show_sources")}})
+            yield _sse_event({
+                "type": "metadata",
+                **{k: public_base[k] for k in ("sources", "search_hits", "limitations", "provider", "is_safe", "intent", "show_sources") if k in public_base},
+                **{k: public_base[k] for k in _ORCHESTRATOR_SSE_KEYS if k in public_base},
+            })
             yield _sse_event({"type": "delta", "content": public_base.get("answer", "")})
             yield _sse_event({"type": "done"})
         return StreamingResponse(blocked_iter(), media_type="text/event-stream")
@@ -190,6 +201,7 @@ def chat_stream(
             "is_safe": public_base.get("is_safe", True),
             "intent": public_base.get("intent", "general_chat"),
             "show_sources": public_base.get("show_sources", False),
+            **{k: public_base[k] for k in _ORCHESTRATOR_SSE_KEYS if k in public_base},
         })
         try:
             for delta in active_llm.stream_generate(user_content, system_prompt):

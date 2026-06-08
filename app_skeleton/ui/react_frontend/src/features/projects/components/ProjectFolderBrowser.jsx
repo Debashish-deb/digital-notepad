@@ -297,6 +297,13 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
     const status = getFilePreviewStatus(file, twin, normPath);
     setPreviewMeta(status);
 
+    const fileMediaKind = getMediaPreviewKind(ext);
+    if (fileMediaKind && ext !== '.pdf') {
+      setAssetUrl(projectAssetUrl(projectCode, normPath, API_URL, contentRoot));
+      setPreviewSource('asset');
+      return;
+    }
+
     const fromChunks = getChunkTextForProjectFile(twin, normPath);
     if (fromChunks) {
       setPreview(fromChunks);
@@ -729,7 +736,7 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
                   }}
                 />
               )}
-              {previewSlice && !['.md', '.txt', '.html', '.rtf'].includes(selectedExt) && (
+              {previewSlice && !mediaKind && !['.md', '.txt', '.html', '.rtf'].includes(selectedExt) && (
                 <>
                   <div className="surface-inset" style={{ padding: '1.5rem' }}>
                     <DocumentFormatter 
@@ -757,12 +764,12 @@ export default function ProjectFolderBrowser({ twin, projectCode, API_URL, proje
               {assetUrl && isPdf && (
                 <iframe title={selectedFile.name} src={assetUrl} className="database-pdf-frame pfb-pdf-frame" />
               )}
-              {assetUrl && mediaKind === 'model3d' && !previewSlice && !previewLoading && (
+              {assetUrl && mediaKind === 'model3d' && !previewLoading && (
                 <Suspense fallback={<p className="text-footnote muted">Loading 3D viewer…</p>}>
                   <ModelViewer3D url={assetUrl} title={selectedFile.name} />
                 </Suspense>
               )}
-              {assetUrl && mediaKind && mediaKind !== 'model3d' && !previewSlice && !previewLoading && (
+              {assetUrl && mediaKind && mediaKind !== 'model3d' && !previewLoading && (
                 <MediaViewer
                   url={assetUrl}
                   title={selectedFile.name}

@@ -45,7 +45,7 @@ const WELCOME_MESSAGE = {
   role: 'assistant',
   isWelcome: true,
   content:
-    'Hello — I am **OMEIA Research Copilot**. Ask about staining methodology, spatial deconvolution, ROI selection, Gate normalization, SPACEStat, Ashlar stitching, StarDist masks, or any indexed lab document.',
+    'Good morning. What are you working on today — a project, a paper, image-analysis results, or something else?',
 };
 
 const SUGGESTED_PROMPTS = [
@@ -126,6 +126,33 @@ function formatAssistantPayload(data) {
     synthesisMode,
     model: data?.model || '',
     fallbackUsed: Boolean(data?.fallback_used),
+    evidenceOrchestrator: Boolean(data?.evidence_orchestrator),
+    evidenceConfidence: data?.evidence_confidence || null,
+    evidenceCount: data?.evidence_count ?? null,
+    crossSourceSummary: data?.cross_source_summary || null,
+    evidenceValidationNotes: Array.isArray(data?.evidence_validation_notes)
+      ? data.evidence_validation_notes.filter(Boolean)
+      : [],
+  };
+}
+
+function evidenceConfidenceLabel(level) {
+  const normalized = String(level || '').toLowerCase();
+  if (normalized === 'high') return 'High confidence';
+  if (normalized === 'medium') return 'Medium confidence';
+  if (normalized === 'low') return 'Low confidence';
+  if (normalized === 'insufficient') return 'Insufficient evidence';
+  return null;
+}
+
+function evidenceMessageMeta(formatted) {
+  if (!formatted?.evidenceOrchestrator && !formatted?.evidenceConfidence) return {};
+  return {
+    evidenceOrchestrator: formatted.evidenceOrchestrator,
+    evidenceConfidence: formatted.evidenceConfidence,
+    evidenceCount: formatted.evidenceCount,
+    crossSourceSummary: formatted.crossSourceSummary,
+    evidenceValidationNotes: formatted.evidenceValidationNotes,
   };
 }
 
@@ -610,6 +637,7 @@ export default function ChatWidget({
             agentsUsed: data?.agents_used || [],
             confidence: data?.confidence,
             traceId: data?.trace_id,
+            ...evidenceMessageMeta(formatted),
           };
 
           setMessages((prev) =>
@@ -688,7 +716,9 @@ export default function ChatWidget({
                     databaseCounts: formatted.databaseCounts,
                     isSafe: formatted.isSafe,
                     provider: formatted.provider || streamMeta.provider || chatProvider,
+                    synthesisMode: formatted.synthesisMode,
                     streaming: false,
+                    ...evidenceMessageMeta(formatted),
                   }
                 : msg,
             ),
@@ -723,6 +753,7 @@ export default function ChatWidget({
             provider: formatted.provider || chatProvider,
             synthesisMode: formatted.synthesisMode,
             model: formatted.model,
+            ...evidenceMessageMeta(formatted),
           }),
         ]);
       } catch (error) {
@@ -1005,6 +1036,21 @@ export default function ChatWidget({
                       >
                         {message.agentCategory || activeCategoryLabel}
                         {message.agentMode ? ` · ${message.agentMode}` : ''}
+                      </span>
+                    ) : null}
+                    {message.role === 'assistant' && message.evidenceConfidence ? (
+                      <span
+                        className={`assistant-evidence-confidence-pill is-${String(message.evidenceConfidence).toLowerCase()}`}
+                        title={
+                          [
+                            evidenceConfidenceLabel(message.evidenceConfidence),
+                            message.evidenceCount != null ? `${message.evidenceCount} evidence items` : null,
+                            message.crossSourceSummary,
+                            ...(message.evidenceValidationNotes || []),
+                          ].filter(Boolean).join(' · ')
+                        }
+                      >
+                        {evidenceConfidenceLabel(message.evidenceConfidence)}
                       </span>
                     ) : null}
                     {message.createdAt && !message.isWelcome ? (

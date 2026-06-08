@@ -8,6 +8,8 @@ import '@/styles/theme/themeManager.css';
 import '@/styles/theme/navGlass.css';
 import '@/styles/theme/consistency.css';
 import '@/styles/theme/superGlass.css';
+import '@/styles/theme/clearGlassPages.css';
+import '@/styles/theme/darkAcademicTheme.css';
 
 import { ApiProvider } from '@/services/ApiContext.jsx';
 import { LocaleProvider } from './contexts/LocaleContext.jsx';

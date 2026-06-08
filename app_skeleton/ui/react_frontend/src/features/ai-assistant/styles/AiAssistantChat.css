@@ -464,6 +464,36 @@
   color: var(--color-warning);
 }
 
+.assistant-evidence-confidence-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--bg-surface) 88%, transparent);
+  color: var(--text-secondary);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.assistant-evidence-confidence-pill.is-high {
+  border-color: color-mix(in srgb, var(--color-success, #2ecc71) 34%, var(--border-color));
+  color: color-mix(in srgb, var(--color-success, #2ecc71) 82%, var(--text-primary));
+}
+
+.assistant-evidence-confidence-pill.is-medium {
+  border-color: color-mix(in srgb, var(--color-primary) 30%, var(--border-color));
+  color: var(--color-primary);
+}
+
+.assistant-evidence-confidence-pill.is-low,
+.assistant-evidence-confidence-pill.is-insufficient {
+  border-color: color-mix(in srgb, var(--color-warning) 34%, var(--border-color));
+  color: var(--color-warning);
+}
+
 /* Rich text */
 .chat-rich-text {
   white-space: normal;

@@ -7,7 +7,6 @@ import re
 from typing import Any, Callable
 
 from app_skeleton.api.answer_grounding_service import (
-    SYSTEM_PROMPT as RESEARCH_SYSTEM_PROMPT,
     build_grounded_prompt,
     empty_corpus_answer,
     enforce_citations,
@@ -16,7 +15,25 @@ from app_skeleton.api.answer_grounding_service import (
     validate_answer_sources,
     CONVERSATIONAL_ANSWER_STYLES,
 )
-from app_skeleton.api.chat_intent import IntentDecision, classify_chat_intent
+from app_skeleton.api.chat_conversation import (
+    build_user_context,
+    classify_and_enrich,
+    conversational_system_prompt,
+    instant_greeting_response,
+    resolve_route_model,
+    should_use_instant_greeting,
+)
+from app_skeleton.api.chat_intent import IntentDecision
+from app_skeleton.api.chat_model_catalog import make_chat_llm
+from app_skeleton.api.evidence_orchestrator import (
+    build_orchestrator_system_prompt,
+    build_orchestrator_user_prompt,
+    evidence_items_to_grounding_hits,
+    orchestrator_metadata,
+    package_evidence,
+    should_use_orchestrator,
+    understand_query,
+)
 from app_skeleton.api.common import SourceInfo, _clinical_context_for_question, query_postgres_metadata
 from app_skeleton.api.privacy_guardrails import allow_external_llm, guard_for_llm, is_external_provider
 from app_skeleton.api.search_service import SearchService
@@ -122,63 +139,7 @@ def _format_db_counts_block(db_data: dict[str, Any]) -> str:
 
 
 def _intent_system_prompt(intent_decision: IntentDecision, *, user_name: str = "", lang: str | None = None) -> str:
-    name_hint = f" The user's name is {user_name}." if user_name else ""
-    lang_hint = _language_instruction(lang)
-
-    if intent_decision.answer_style == "safety":
-        return (
-            "You are the OMEIA platform safety assistant. "
-            "Decline to process or repeat sensitive identifiers or secrets. "
-            "Ask the user to remove patient identifiers, credentials, or secrets and try again."
-        )
-
-    if intent_decision.answer_style in {"brief_conversational", "natural"}:
-        return (
-            "You are OMEIA Research Copilot, a friendly lab assistant for the Färkkilä research group."
-            f"{name_hint}{lang_hint}"
-            " Reply naturally in one or two short sentences."
-            " Do not use headings, numbered sections, bullet lists, citations, or formal report structure."
-            " Briefly offer help with research questions, lab protocols, document ingestion, or app setup."
-        )
-
-    if intent_decision.answer_style == "helpful_steps":
-        return (
-            "You are the OMEIA platform guide."
-            f"{name_hint}{lang_hint}"
-            " Explain how to use the app with clear, practical steps."
-            " Stay conversational — avoid research-report formatting and citations unless unavoidable."
-        )
-
-    if intent_decision.answer_style == "technical":
-        return (
-            "You are the OMEIA engineering assistant."
-            f"{name_hint}{lang_hint}"
-            " Give concise technical guidance for code and debugging."
-            " Use code blocks when helpful. No citations or source cards."
-        )
-
-    if intent_decision.answer_style == "practical_with_sources":
-        return (
-            "You are the OMEIA lab protocol assistant."
-            f"{name_hint}{lang_hint}"
-            " Give practical step-by-step guidance grounded in retrieved documentation."
-            " Cite sources as [1], [2], etc. when using context. Be concise and actionable."
-        )
-
-    if intent_decision.answer_style == "search_summary":
-        return (
-            RESEARCH_SYSTEM_PROMPT
-            + lang_hint
-            + "\n\nSummarize the most relevant retrieved matches for the user's search request."
-            " Cite sources as [1], [2], etc."
-        )
-
-    return (
-        RESEARCH_SYSTEM_PROMPT
-        + lang_hint
-        + "\n\nCite every scientific claim with [1], [2], etc. Report patient/sample statistics "
-        "only when non-zero database counts are provided. Do NOT invent figures."
-    )
+    return conversational_system_prompt(intent_decision, user_name=user_name, lang=lang)
 
 
 def _grounding_hits_from_retrieval(unified_hits: list[Any], rag_sources: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -216,6 +177,8 @@ def _build_prompts(
     intent_decision: IntentDecision,
     user_name: str = "",
     lang: str | None = None,
+    evidence_package: Any | None = None,
+    query_understanding: Any | None = None,
 ) -> tuple[str, str]:
     if not intent_decision.use_rag:
         system_prompt = _intent_system_prompt(intent_decision, user_name=user_name, lang=lang)
@@ -225,6 +188,27 @@ def _build_prompts(
     clinical_prefix = (
         f"Structured clinical/feature analysis:\n{clinical_block}\n\n" if clinical_block else ""
     )
+
+    if (
+        should_use_orchestrator(intent_decision)
+        and evidence_package is not None
+        and query_understanding is not None
+        and evidence_package.items
+    ):
+        system_prompt = build_orchestrator_system_prompt(
+            query_understanding,
+            evidence_package,
+            user_name=user_name,
+            lang=lang,
+            answer_style=intent_decision.answer_style,
+        )
+        user_content = build_orchestrator_user_prompt(
+            question,
+            evidence_package,
+            db_block=db_block,
+            clinical_block=clinical_prefix,
+        )
+        return system_prompt, user_content
 
     has_research = any(h.bucket == "research" for h in unified_hits)
     use_grounding_template = has_research or intent_decision.answer_style in {
@@ -257,12 +241,30 @@ def _build_prompts(
 def _intent_metadata(intent_decision: IntentDecision) -> dict[str, Any]:
     return {
         "intent": intent_decision.intent,
+        "intent_category": intent_decision.intent_category,
+        "confidence": intent_decision.confidence,
         "use_rag": intent_decision.use_rag,
         "show_sources": intent_decision.show_sources,
         "require_citations": intent_decision.require_citations,
         "answer_style": intent_decision.answer_style,
         "reason": intent_decision.reason,
     }
+
+
+def _route_llm_for_intent(
+    llm: Any,
+    intent_decision: IntentDecision,
+    *,
+    user_provider: str | None = None,
+    user_model: str | None = None,
+) -> Any:
+    """Fast local models for greetings/chat; keep user-selected or premium models for research."""
+    if user_provider or user_model:
+        return llm
+    provider, model = resolve_route_model(intent_decision)
+    if not provider:
+        return llm
+    return make_chat_llm(provider, model, default_llm=llm)
 
 
 def _llm_provenance(llm: Any, *, configured_provider: str) -> dict[str, Any]:
@@ -299,10 +301,12 @@ def answer_chat(
     """Answer a chat turn with privacy guardrails, intent routing, and optional RAG."""
     provider = getattr(llm, "provider", "mock") or "mock"
     max_sources = _env_int("CHAT_MAX_SOURCES", 12, low=4, high=24)
-    intent_decision = classify_chat_intent(message)
+    intent_decision = classify_and_enrich(message)
+    query_understanding = understand_query(message, intent_decision)
     user_name = _user_display_name(user)
     response_lang = _detect_response_language(message)
     intent_meta = _intent_metadata(intent_decision)
+    chat_ctx = build_user_context(message, user=user, project_codes=project_codes)
 
     safe_message, audit, limitations = guard_for_llm(message, provider)
     if is_external_provider(provider) and not allow_external_llm(audit, provider):
@@ -319,6 +323,24 @@ def answer_chat(
             "search_hits": [],
             "provider": provider,
             "blocked_by_guardrail": True,
+            **intent_meta,
+        }
+
+    if should_use_instant_greeting(intent_decision, message):
+        answer = instant_greeting_response(message, chat_ctx)
+        return {
+            "answer": answer,
+            "limitations": limitations,
+            "sources": [],
+            "database_counts": {},
+            "is_safe": True,
+            "search_hits": [],
+            "provider": provider,
+            "blocked_by_guardrail": False,
+            "synthesis_mode": "template",
+            "effective_provider": provider,
+            "model": getattr(llm, "model", ""),
+            "fallback_used": False,
             **intent_meta,
         }
 
@@ -352,12 +374,17 @@ def answer_chat(
             **intent_meta,
         }
 
+    llm = _route_llm_for_intent(llm, intent_decision)
+    provider = getattr(llm, "provider", provider) or provider
+
     db_data = query_postgres_metadata(project_codes) if intent_decision.use_rag else {}
+    chat_ctx = build_user_context(message, user=user, project_codes=project_codes, db_data=db_data)
     clinical_block = _clinical_context_for_question(safe_message, project_codes or []) if intent_decision.use_rag else ""
 
     unified_hits: list[Any] = []
     rag_sources: list[dict[str, Any]] = []
     retrieved_sources: list[dict[str, Any]] = []
+    evidence_package = None
 
     if intent_decision.use_rag:
         if search_fn is not None:
@@ -373,6 +400,12 @@ def answer_chat(
         if use_legacy_rag and len(unified_hits) < max(3, max_sources // 2):
             rag_sources = rag_agent.retrieve(safe_message, project_codes)
         retrieved_sources, unified_hits = _hits_to_sources(unified_hits, rag_sources, limit=max_sources)
+        evidence_package = package_evidence(
+            unified_hits,
+            rag_sources,
+            entities=query_understanding.entities,
+            limit=max_sources,
+        )
 
         if not retrieved_sources:
             honest = empty_corpus_answer(safe_message, intent=intent_decision.intent)
@@ -403,13 +436,18 @@ def answer_chat(
         intent_decision=intent_decision,
         user_name=user_name,
         lang=response_lang,
+        evidence_package=evidence_package,
+        query_understanding=query_understanding,
     )
 
     answer = llm.generate(user_content, system_prompt)
     provenance = _llm_provenance(llm, configured_provider=provider)
 
     if intent_decision.require_citations and retrieved_sources:
-        grounding_hits = _grounding_hits_from_retrieval(unified_hits, rag_sources)
+        if evidence_package and evidence_package.items:
+            grounding_hits = evidence_items_to_grounding_hits(evidence_package)
+        else:
+            grounding_hits = _grounding_hits_from_retrieval(unified_hits, rag_sources)
         answer, citation_notes = enforce_citations(
             answer,
             grounding_hits,
@@ -459,5 +497,6 @@ def answer_chat(
         },
         "system_prompt": system_prompt,
         "user_content": user_content,
+        **orchestrator_metadata(query_understanding, evidence_package if intent_decision.use_rag else None),
         **intent_meta,
     }

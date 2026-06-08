@@ -5416,7 +5416,7 @@ html[data-theme='academic'] .doc-preview-pane .kindle-doc {
 
 html[data-theme='academic'] .doc-preview-editor-stage,
 html[data-theme='academic'] .doc-preview-editor-stage .code-preview {
-  background: rgba(255, 253, 248, 0.88);
+  background: rgba(255, 255, 255, 0.94);
 }
 
 /* Catalog document UI — shared across Overview, Orders, Social, Wet-lab, CyCIF, Storage, etc. */

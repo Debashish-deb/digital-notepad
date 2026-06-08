@@ -55,16 +55,16 @@
 html[data-theme='academic'] {
   color-scheme: light;
 
-  /* ── Kindle × Apple paper palette ─────────────────────────────────────── */
+  /* ── Clear glass palette (cool blue-gray, not warm Kindle paper) ─────── */
 
-  --academic-paper-0: #fbf7ee;
-  --academic-paper-1: #f5ecde;
-  --academic-paper-2: #eadcc8;
-  --academic-paper-3: #ddc9ad;
-  --academic-porcelain: #fffdf8;
-  --academic-glass: rgba(255, 253, 248, 0.74);
-  --academic-glass-strong: rgba(255, 253, 248, 0.9);
-  --academic-glass-soft: rgba(255, 253, 248, 0.52);
+  --academic-paper-0: #e8eef4;
+  --academic-paper-1: #d4dee8;
+  --academic-paper-2: #bcc9d6;
+  --academic-paper-3: #a8b8c8;
+  --academic-porcelain: #ffffff;
+  --academic-glass: rgba(255, 255, 255, 0.34);
+  --academic-glass-strong: rgba(255, 255, 255, 0.44);
+  --academic-glass-soft: rgba(255, 255, 255, 0.22);
 
   --academic-ink: #172235;
   --academic-ink-2: #26364c;
@@ -90,10 +90,10 @@ html[data-theme='academic'] {
   --bg-app: var(--academic-paper-1);
   --bg-page: var(--academic-paper-0);
   --bg-surface: var(--academic-glass);
-  --bg-surface-hover: rgba(255, 248, 238, 0.95);
+  --bg-surface-hover: rgba(255, 255, 255, 0.48);
   --bg-elevated: var(--academic-glass-strong);
-  --bg-input: rgba(255, 253, 248, 0.88);
-  --bg-inset: #f1e6d5;
+  --bg-input: rgba(255, 255, 255, 0.52);
+  --bg-inset: rgba(255, 255, 255, 0.28);
   --bg-table-hover: rgba(30, 58, 95, 0.055);
   --bg-badge: rgba(30, 58, 95, 0.095);
   --bg-panel: var(--academic-glass);
@@ -108,7 +108,7 @@ html[data-theme='academic'] {
   --color-primary-strong: var(--academic-navy-strong);
   --color-primary-soft: rgba(30, 58, 95, 0.12);
   --color-accent: var(--academic-blue);
-  --color-accent-2: var(--academic-sepia);
+  --color-accent-2: var(--academic-blue);
   --color-success: var(--academic-green);
   --color-warning: #a55d08;
   --color-danger: var(--academic-red);
@@ -116,8 +116,8 @@ html[data-theme='academic'] {
   --color-citation: var(--academic-plum);
   --color-highlight: var(--academic-highlight);
 
-  --border-color: rgba(30, 58, 95, 0.15);
-  --border-strong: rgba(30, 58, 95, 0.28);
+  --border-color: rgba(255, 255, 255, 0.52);
+  --border-strong: rgba(255, 255, 255, 0.68);
   --border-focus: var(--academic-navy);
   --ring-focus:
     0 0 0 3px rgba(30, 58, 95, 0.18),
@@ -148,8 +148,8 @@ html[data-theme='academic'] {
     0 22px 58px rgba(30, 58, 95, 0.13);
 
   --shadow-glass:
-    0 18px 48px rgba(46, 34, 24, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    0 10px 36px rgba(88, 108, 132, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.74);
 
   --shadow-inset-paper:
     inset 0 1px 0 rgba(255, 255, 255, 0.76),
@@ -258,8 +258,8 @@ html[data-theme='academic'] {
   }
 
   html[data-theme="academic"] {
-    --mx-manuscript-rule: rgba(30, 58, 95, .065);
-    --mx-paper-redline: rgba(152, 50, 50, .18);
+    --mx-manuscript-rule: transparent;
+    --mx-paper-redline: transparent;
   }
 }
 
@@ -279,18 +279,8 @@ html[data-theme='academic'] {
 
   html[data-theme="academic"] body {
     background:
-      radial-gradient(circle at 16% -6%, rgba(255,255,255,.9), transparent 24rem),
-      radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--color-primary) 9%, transparent), transparent 26rem),
-      linear-gradient(180deg, var(--bg-app), color-mix(in srgb, var(--bg-app) 88%, #d8cebd 12%));
-  }
-
-  html[data-theme="academic"] body {
-    background:
-      linear-gradient(90deg, var(--mx-paper-redline) 0 1px, transparent 1px) 5.7rem 0 / 1px 100% fixed,
-      linear-gradient(var(--mx-manuscript-rule) 1px, transparent 1px) 0 1.25rem / 100% 2rem fixed,
-      radial-gradient(circle at 16% -6%, rgba(255,255,255,.9), transparent 24rem),
-      radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--color-primary) 8%, transparent), transparent 26rem),
-      linear-gradient(180deg, var(--bg-app), color-mix(in srgb, var(--bg-app) 88%, #d8cebd 12%));
+      linear-gradient(128deg, #e8eef4 0%, #d4dee8 48%, #bcc9d6 100%);
+    background-attachment: fixed;
   }
 
   ::selection {
@@ -1422,6 +1412,19 @@ html[data-theme='academic'] {
 html[data-theme='academic'] .btn-primary {
   color: #fff;
   border-color: color-mix(in srgb, var(--color-primary) 70%, #000);
+}
+
+html[data-theme='academic'] :is(
+  .tab-button.active,
+  .report-nav-btn.active,
+  .workspace-nav-item.active,
+  .sidebar-item.active:not(.sidebar-item-main),
+  .scope-chip.is-checked
+) {
+  color: var(--color-primary) !important;
+  background: rgba(255, 255, 255, 0.44) !important;
+  border-color: rgba(255, 255, 255, 0.52) !important;
+  box-shadow: inset 0 -2px 0 var(--color-primary) !important;
 }
 
 html[data-theme='academic'] .btn-primary:hover {
