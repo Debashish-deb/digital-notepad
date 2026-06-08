@@ -1,0 +1,120 @@
+omeia/api/confidence_scorer.py
+  s_d8ca0dcf385045::t_adae77363c0aba 45,63-71
+  s_d8ca0dcf385045::t_f3dbd21db4f2fd 98-99
+RUN_ON_LINUX.sh
+  s_ff4713b7fe1540::t_4eb7a125a76497 30-37,39-42
+omeia/api/chat_intent.py
+  s_ff4713b7fe1540::t_769c473ef8db4a 38-39
+  s_ff4713b7fe1540::t_995501494bb5b5 40-43
+infra/scripts/llm/ensure_linux_ollama.sh
+  s_ff4713b7fe1540::t_777c8d5cd56912 1-80
+omeia/api/external_cancer_evidence.py
+  s_d8ca0dcf385045::t_d11ed5a478070d 1-94
+web/src/features/ai-assistant/components/ChatWidget.jsx
+  s_d8ca0dcf385045::t_989e08992580a0 33-37
+  s_d8ca0dcf385045::t_30e20732a85174 460-463
+  s_d8ca0dcf385045::t_ecd4e99707b6fa 515-580
+  s_d8ca0dcf385045::t_5f23e9ddab3159 600
+  s_d8ca0dcf385045::t_9e9e0b5aa597d2 158-160
+  s_d8ca0dcf385045::t_e8410f9b5a3ccd 1418-1431,1435-1474
+  s_d8ca0dcf385045::t_040dabaec6ba90 16
+omeia/api/routers/chat.py
+  s_d8ca0dcf385045::t_dbdc25612edb0a 196-204,207-210,222-239,248
+omeia/api/routers/agent_categories.py
+  s_d8ca0dcf385045::t_4f1d552f187a24 116
+tests/test_chat_conversation.py
+  s_ff4713b7fe1540::t_75701ffca6b4c1 62-71
+omeia/api/search_service.py
+  s_d8ca0dcf385045::t_74359bfe3127d8 1883,1886
+  s_d8ca0dcf385045::t_2de214368259bf 1891-1899
+omeia/api/expert_model_router.py
+  s_d8ca0dcf385045::t_636bcdab2cdfe8 1-114,166-169,171-173,175-178,180-187,189-196,198-237
+  s_d8ca0dcf385045::t_d3369f7e02cb3a 162-164
+  s_d8ca0dcf385045::t_dab171e815450a 165,170,174,179,188,197
+  s_d8ca0dcf385045::t_0f0afec68d2ddd 115-161
+tests/test_chat_intent.py
+  s_ff4713b7fe1540::t_933e49c592439e 89-103
+sql/151_lab_knowledge_threads.sql
+  s_d8ca0dcf385045::t_05b0985a926d25 1-34
+web/src/services/learningClient.js
+  s_d8ca0dcf385045::t_bf2698568ea997 31-65
+omeia/api/chat_conversation.py
+  s_ff4713b7fe1540::t_597d5a3917ee5b 175-178
+  s_d8ca0dcf385045::t_4c622875b315e4 247-252,257-262,264,266,268,270
+  s_ff4713b7fe1540::t_dd3df0a4de0c52 33,35-36,38-41
+  s_ff4713b7fe1540::t_a23f2b2caee8b6 34,37
+  s_ff4713b7fe1540::t_be4f9dc10eedc9 129
+omeia/api/learning_pipeline_service.py
+  s_d8ca0dcf385045::t_26ea2873874c05 304-308
+  s_d8ca0dcf385045::t_47f013fd863710 136
+  s_d8ca0dcf385045::t_55760d4215e954 281-282
+web/src/features/ai-assistant/styles/AiAssistantChat.css
+  s_d8ca0dcf385045::t_9bbf36aa1ad12b 1574-1612
+omeia/api/routers/learning.py
+  s_d8ca0dcf385045::t_2a2f59d7597b53 120-225
+  s_d8ca0dcf385045::t_1497b507e40f4b 9
+docs/OMEIA_THREE_LAYER_AI_STRATEGY.md
+  s_d8ca0dcf385045::t_42c1fec0dc1787 1-327
+omeia/api/chat_service.py
+  s_d8ca0dcf385045::t_83e02a5229ac9a 676-677
+  s_d8ca0dcf385045::t_9df50bba88012f 496-497
+  s_d8ca0dcf385045::t_fe64ba84cfc0ae 286-287,291,294-298
+  s_d8ca0dcf385045::t_b4257fe2f947d3 422-428,430-460
+  s_d8ca0dcf385045::t_a0739bf469f7f0 331
+  s_d8ca0dcf385045::t_2623346c7116fa 47-48
+  s_d8ca0dcf385045::t_e37876349c46d1 658-659
+  s_d8ca0dcf385045::t_f3a3d430e2734b 555,557
+tests/test_expert_model_router.py
+  s_d8ca0dcf385045::t_9c022f7c669afd 1-56
+docs/THREE_LAYER_IMPLEMENTATION_REPORT.md
+  s_d8ca0dcf385045::t_716352ce225d7d 1-175
+tests/fixtures/ai_quality_benchmark.json
+  s_d8ca0dcf385045::t_75f2cfc5703b26 1-48
+omeia/api/llm_client.py
+  s_ff4713b7fe1540::t_a4593afb507bc1 587-614,618
+  s_ff4713b7fe1540::t_15848f584ad65a 670-672
+omeia/api/project_intelligence_briefs.py
+  s_d8ca0dcf385045::t_9faad975ee0cc5 1-85,96-115
+  s_d8ca0dcf385045::t_1a78f558f36f7b 86-95
+tests/test_learning_verified_policy.py
+  s_d8ca0dcf385045::t_ccce645b38333d 1-29
+config/env/linux-workstation.env.template
+  s_d8ca0dcf385045::t_0e62b0a8498be6 64-78
+omeia/api/platform_flags.py
+  s_d8ca0dcf385045::t_4fb66c14d0dfff 88-112
+omeia/api/lab_knowledge_threads.py
+  s_d8ca0dcf385045::t_7f8b889a29ae03 19,21-22
+  s_d8ca0dcf385045::t_0d5f32b85b418b 1-18,20,28-47,50-51,54-55,59,61,78-98,101-115,142-152,154,171-177
+  s_d8ca0dcf385045::t_03349fd53dbfe8 48-49,52-53,56-58,60,62-77
+  s_d8ca0dcf385045::t_a57083f0f51c85 170
+  s_d8ca0dcf385045::t_b3a2d4f22764d3 99-100
+  s_d8ca0dcf385045::t_b074f93a9b7486 157-169
+  s_d8ca0dcf385045::t_ade965d4f50d86 153,155-156
+  s_d8ca0dcf385045::t_6bf694e5be4c82 23-26
+  s_d8ca0dcf385045::t_05cd9ce1b440f1 116-141
+  s_d8ca0dcf385045::t_ac03c88f72a12b 27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9e4fdeec4804eacf3ce5eaa362968f7b7028d522",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_ff4713b7fe1540": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "49479697-2283-4db4-add1-629b0b00167b",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
