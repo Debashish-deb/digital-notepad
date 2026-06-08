@@ -1,0 +1,90 @@
+configs/.env.example
+  s_986792cd0fab1f::t_f606db6d4ae488 147
+  s_986792cd0fab1f::t_3cd5e174431c31 188
+scripts/deploy/mac_push_to_linux.sh
+  s_986792cd0fab1f::t_479d5480378aee 22,24
+  s_986792cd0fab1f::t_0e6c39302b4bc5 51
+  s_986792cd0fab1f::t_c87c28cf5ad7d1 78
+  s_986792cd0fab1f::t_39c93108050d0b 69-70
+  s_986792cd0fab1f::t_2ae290c4e29e72 5
+scripts/deploy/linux_bootstrap_all.sh
+  s_986792cd0fab1f::t_b6793c7f851eaa 151
+configs/linux-workstation.env.template
+  s_986792cd0fab1f::t_f8ca163131e61a 6
+  s_986792cd0fab1f::t_4573c6a1e47b3b 30-34
+app_skeleton/security/auth.py
+  s_986792cd0fab1f::t_8611f292436d19 149
+tests/test_audit_implementations.py
+  s_986792cd0fab1f::t_220d532c1086a3 5
+  s_986792cd0fab1f::t_f7728d72fb3c0e 41-44
+docs/LINUX_MEDIA_AND_DATA_PATHS.md
+  s_986792cd0fab1f::t_025c37a6377d46 48
+  s_986792cd0fab1f::t_078a7c3d186ccb 19-21
+scripts/ops/linux_post_pull.sh
+  s_d8ca0dcf385045::t_3b6e59dd92050c 2-37
+configs/DATACLOUD_WEBDAV_SETUP.md
+  s_d8ca0dcf385045::t_13291bdf207c5d 16
+  s_d8ca0dcf385045::t_fceb9f1b2874f1 10
+CONTRIBUTING.md
+  s_d8ca0dcf385045::t_f687536509c4d9 1-4,6-11,13,15-16,18-19,21,25,27,29,34,36,38-39,41
+  s_986792cd0fab1f::t_ded11ceaeef4ef 5,12,14,17,20,22-24,26,28,30-33,35,37,40
+docs/OMEIA_INFORMATION_FLOW.md
+  s_986792cd0fab1f::t_ccc11cec2a7b2a 7
+app_skeleton/api/db_pool.py
+  s_986792cd0fab1f::t_83ec3ba1a60c50 17-20
+configs/DEPLOYMENT_ENV.md
+  s_d8ca0dcf385045::t_1e141721cae5b5 56
+tests/test_architecture_audit.py
+  s_20b279746cf099::t_88cad30948e9e6 51-52,59-65
+  s_986792cd0fab1f::t_06bedf323e6287 9-26,41-50,94-95,103-104
+  s_20b279746cf099::t_960efcb3dd1055 66
+app_skeleton/ui/react_frontend/package.json
+  s_20b279746cf099::t_d0a61b45768e16 11
+.mailmap
+  s_d8ca0dcf385045::t_15172189a3b210 1
+docs/LINUX_PRIMARY_DEPLOYMENT.md
+  s_986792cd0fab1f::t_0773d06545912e 43
+  s_986792cd0fab1f::t_21ebd22a2d067a 16
+  s_986792cd0fab1f::t_68bb58801c3051 27
+docs/YOUR_SETUP.md
+  s_986792cd0fab1f::t_477ffdeec1b5f1 28
+  s_986792cd0fab1f::t_c28f3fdda4e46d 9
+  s_986792cd0fab1f::t_a97e23803683bb 52
+  s_d8ca0dcf385045::t_b60afbb9660d8b 88
+  s_986792cd0fab1f::t_0f5bd0f7eafe52 40
+  s_986792cd0fab1f::t_b4a62ef1c2c799 80-81
+tests/test_researcher_resolver.py
+  s_986792cd0fab1f::t_7142d3644d3a72 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "69e0ca840517992dc635e4b481a47ec4957bf079",
+  "prompts": {},
+  "sessions": {
+    "s_20b279746cf099": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "46573325-3aa1-4000-a169-43f2597308a2",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_986792cd0fab1f": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "719e130d-518d-4ce4-9ac9-46c70cbd4cb5",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
