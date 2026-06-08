@@ -1,0 +1,29 @@
+scripts/dev/start_portable.sh
+  s_d8ca0dcf385045::t_b4132937c66d28 2,6-9
+scripts/dev/start_linux_desktop.sh
+  s_d8ca0dcf385045::t_8138571026601c 1-79
+scripts/dev/start_mac_thin_client.sh
+  s_d8ca0dcf385045::t_24914213b7ff1c 1-66
+scripts/start_linux.sh
+  s_d8ca0dcf385045::t_d096bc6a263ac0 1-2
+scripts/start_portable.sh
+  s_d8ca0dcf385045::t_211ab93fc3ef7c 2-7
+scripts/start_mac.sh
+  s_d8ca0dcf385045::t_b826ad2615e7c9 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "054d8b341d64e6f391a4165eb7138398e484f878",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
