@@ -1,0 +1,66 @@
+tests/test_project_permissions.py
+  s_d8ca0dcf385045::t_581305c4ef38e3 38,42-43
+  s_d8ca0dcf385045::t_7dcf4bd0067d75 1-37,39-41,44-95
+tests/test_researcher_resolver.py
+  s_d8ca0dcf385045::t_df14dc3a90aa50 1,9-14,17,31,33-37,39,42,44-69
+app_skeleton/api/platform_flags.py
+  s_d8ca0dcf385045::t_f2ed41247f347f 43-47
+tests/test_phase1_platform_flags.py
+  s_d8ca0dcf385045::t_7b2541e09d1258 56-60
+  s_d8ca0dcf385045::t_1ee119ca1bdff2 12
+configs/linux-workstation.env.template
+  s_d8ca0dcf385045::t_d346d8019c0f71 33
+app_skeleton/api/common.py
+  s_d8ca0dcf385045::t_58c1e630f05f70 666
+  s_d8ca0dcf385045::t_cfbe1390d98d91 500
+app_skeleton/api/routers/datapad.py
+  s_d8ca0dcf385045::t_cef57b847e8d95 115
+  s_d8ca0dcf385045::t_8db088b1e3001d 133-138
+  s_d8ca0dcf385045::t_806e8ffa258045 13-21,23-27
+  s_d8ca0dcf385045::t_87f387877d97a9 1-3
+  s_d8ca0dcf385045::t_ed04a7aca661df 147
+app_skeleton/api/image_streaming/permissions.py
+  s_d8ca0dcf385045::t_8f2eaff00e2129 6
+  s_d8ca0dcf385045::t_3dbe417cf195a9 15-16
+app_skeleton/security/auth.py
+  s_d8ca0dcf385045::t_198a7011e1deb7 3
+  s_d8ca0dcf385045::t_3ede0fd860e14c 150-177,179-204,206-232,237-247,251-261,263,268-273
+app_skeleton/api/routers/admin_index.py
+  s_d8ca0dcf385045::t_dac85b3d25b017 94,99
+sql/147_researcher_firebase_binding.sql
+  s_d8ca0dcf385045::t_f3da28a53e1b8b 1-21
+app_skeleton/security/permissions.py
+  s_d8ca0dcf385045::t_15779b22d4d7d8 1-2,4-5,7-8,11,16,23-32,44-84,86-88,90-149,153-157,159-160,168,182
+configs/.env.example
+  s_d8ca0dcf385045::t_3fba69204ea52f 67-69
+app_skeleton/api/routers/research.py
+  s_d8ca0dcf385045::t_90ca3c9374b4cc 900-903,907-910
+  s_d8ca0dcf385045::t_561e70b5ad291b 924-931
+  s_d8ca0dcf385045::t_1827de2b512da0 73-76,80-83
+  s_d8ca0dcf385045::t_cf4e1f1f561b84 250-253,258-259
+  s_d8ca0dcf385045::t_cf25a6ee7cbfcf 22-29
+  s_d8ca0dcf385045::t_d0cf32a54ceff3 1-12
+  s_d8ca0dcf385045::t_b015b9e5597eb9 293-298
+  s_d8ca0dcf385045::t_775b6cd4391f53 953-957
+  s_d8ca0dcf385045::t_0aed75a12bc908 1294-1302
+  s_d8ca0dcf385045::t_6727fefd9fbd54 164
+  s_d8ca0dcf385045::t_e8f8db7c45180e 100-107
+  s_d8ca0dcf385045::t_9a0e22acfcfaba 42
+  s_d8ca0dcf385045::t_a68cc2feba4f35 356-360
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "123b3ea3b76faed875d711b91db5f4ac5b15f189",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
