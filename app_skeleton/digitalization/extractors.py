@@ -116,7 +116,11 @@ def _map_extraction_status(result_status: str, raw_text: str, ext: str) -> str:
             return "needs_ocr"
         return "metadata_only"
     if not raw_text or len(raw_text.strip()) < 5:
+        if ext in IMAGE_EXTENSIONS or ext == ".pdf":
+            return "needs_ocr"
         return "extraction_failed"
+    if ext == ".pdf" and len(raw_text.strip()) < 40 and result_status in ("empty", "metadata_only"):
+        return "needs_ocr"
     return "extracted"
 
 

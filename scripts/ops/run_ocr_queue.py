@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from app_skeleton.api.ocr.adapter import get_ocr_backend, ocr_enabled  # noqa: E402
-from app_skeleton.api.ocr.queue import apply_ocr_result  # noqa: E402
+from app_skeleton.api.ocr.queue import apply_ocr_result, resolve_ocr_source_path  # noqa: E402
 from app_skeleton.api.sql_migrations import apply_pending_migrations, db_conn  # noqa: E402
 
 LOGGER = logging.getLogger(__name__)
@@ -87,7 +87,8 @@ def process_queue(*, limit: int = 10, dry_run: bool = False) -> dict[str, Any]:
                 )
 
             try:
-                ocr_result = backend.extract(source_path, metadata=meta)
+                resolved_path = resolve_ocr_source_path(source_path, meta)
+                ocr_result = backend.extract(resolved_path, metadata=meta)
                 error = ocr_result.metadata.get("error")
                 outcome = apply_ocr_result(
                     conn,

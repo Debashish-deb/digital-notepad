@@ -201,7 +201,8 @@ def _process_single_file(
     extracted = extractors.extract_file(manifest, root)
     extracted.manifest_id = manifest.id
 
-    rw.upsert_extracted(conn, extracted)
+    extracted_id = rw.upsert_extracted(conn, extracted)
+    extracted.id = extracted_id
 
     if extracted.extraction_status in ("extraction_failed", "needs_ocr"):
         status = Status.EXTRACTION_FAILED if extracted.extraction_status == "extraction_failed" else Status.NEEDS_OCR

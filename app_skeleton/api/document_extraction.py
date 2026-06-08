@@ -1011,8 +1011,18 @@ def _extract_file(path: Path, base_folder: Path | None = None) -> ExtractionResu
         res.word_count = _count_words(text)
         res.excerpt = _clean_for_excerpt(text)
         res.title = _guess_title_from_text_or_name(text, path.name)
-        res.status = "extracted" if text.strip() else "empty"
-        res.chunks = _chunk_text(text, rel)
+        if ext == ".pdf" and not text.strip():
+            res.status = "metadata_only"
+            res.metadata["needs_ocr"] = True
+            res.metadata["ocr_reason"] = "scanned_or_image_pdf"
+            res.warnings.append("PDF has no text layer — eligible for OCR queue")
+        elif ext in IMAGE_EXTENSIONS:
+            res.status = "metadata_only"
+            res.metadata["needs_ocr"] = True
+            res.metadata["ocr_reason"] = "image_asset"
+        else:
+            res.status = "extracted" if text.strip() else "empty"
+        res.chunks = _chunk_text(text, rel) if text.strip() else []
         return res
     except Exception as e:  # pragma: no cover
         LOGGER.warning("Extraction failed for %s: %s", path, e)

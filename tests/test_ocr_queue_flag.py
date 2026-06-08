@@ -14,19 +14,19 @@ def test_platform_flags_ocr_defaults_false(monkeypatch: pytest.MonkeyPatch) -> N
     assert ocr_enabled() is False
 
 
-def test_enqueue_returns_none_when_disabled(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_enqueue_inserts_even_when_disabled(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ENABLE_OCR", "false")
+    cur = MagicMock()
+    cur.fetchone.return_value = ("job-uuid-2",)
     conn = MagicMock()
-    assert (
-        enqueue_ocr_job(
-            conn,
-            manifest_id="m1",
-            extracted_document_id="d1",
-            source_path="/tmp/scan.png",
-        )
-        is None
+    conn.cursor.return_value.__enter__.return_value = cur
+    job_id = enqueue_ocr_job(
+        conn,
+        manifest_id="m1",
+        extracted_document_id="d1",
+        source_path="/tmp/scan.png",
     )
-    conn.cursor.assert_not_called()
+    assert job_id == "job-uuid-2"
 
 
 def test_enqueue_inserts_when_enabled(monkeypatch: pytest.MonkeyPatch) -> None:

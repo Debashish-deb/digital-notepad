@@ -8,7 +8,9 @@ from typing import Any, Optional
 import psycopg
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
 
-from app_skeleton.security.auth import require_platform_user
+from app_skeleton.security.auth import require_admin_user, require_platform_user
+from app_skeleton.security.permissions import require_role
+from app_skeleton.api.ocr.adapter import ocr_enabled
 from pydantic import BaseModel, Field
 
 LOGGER = logging.getLogger(__name__)
@@ -58,6 +60,13 @@ def digitalization_status() -> dict:
                 cur.execute("SELECT COUNT(*) FROM platform.canonical_document WHERE should_index = true AND validation_status = 'validated';")
                 ready_for_rag = cur.fetchone()[0]
 
+                ocr_counts: dict[str, int] = {}
+                try:
+                    cur.execute("SELECT status, COUNT(*) FROM platform.ocr_job GROUP BY status;")
+                    ocr_counts = {r[0]: r[1] for r in cur.fetchall()}
+                except Exception:
+                    ocr_counts = {}
+
         return {
             "manifest_by_status": manifest_counts,
             "discovered": sum(manifest_counts.values()),
@@ -67,6 +76,9 @@ def digitalization_status() -> dict:
             "chunks_total": chunks_total,
             "ready_for_rag": ready_for_rag,
             "failed": manifest_counts.get("extraction_failed", 0) + manifest_counts.get("validation_failed", 0),
+            "needs_ocr": manifest_counts.get("needs_ocr", 0),
+            "ocr_enabled": ocr_enabled(),
+            "ocr_jobs_by_status": ocr_counts,
         }
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
@@ -330,3 +342,22 @@ def digitalization_chunks(document_id: str, limit: int = Query(50, ge=1, le=200)
         return {"document_id": document_id, "chunks": chunks, "count": len(chunks)}
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
+
+
+# ── OCR retry ─────────────────────────────────────────────────
+
+@router.post("/api/digitalization/ocr/retry/{document_id}")
+def digitalization_ocr_retry(document_id: str, user: dict = Depends(require_admin_user)) -> dict:
+    """Re-queue OCR for a scanned document (admin)."""
+    from app_skeleton.api.ocr.queue import requeue_ocr_for_document
+
+    try:
+        with psycopg.connect(_db_conn(), connect_timeout=10) as conn:
+            result = requeue_ocr_for_document(conn, document_id)
+            conn.commit()
+        return {"status": "ok", **result}
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except Exception as exc:
+        LOGGER.exception("OCR retry failed for %s", document_id)
+        raise HTTPException(status_code=500, detail=str(exc)[:300]) from exc

@@ -33,6 +33,84 @@ CATEGORY_CONFIG_DIR = BLUEPRINT_ROOT / "configs" / "document_library"
 
 LARGE_FILE_BYTES = 10 * 1024 * 1024  # 10 MB
 
+_OCR_BADGE_LABELS = {
+    "ocr_pending": "OCR pending",
+    "ocr_failed": "OCR failed",
+    "ocr_indexed": "OCR indexed",
+}
+
+
+@lru_cache(maxsize=1)
+def _ocr_status_index() -> dict[str, dict[str, str]]:
+    """Map logical_path and asset_id → latest OCR job + manifest snapshot."""
+    index: dict[str, dict[str, str]] = {}
+    try:
+        from app_skeleton.api.supabase_config import postgres_conn
+        import psycopg
+
+        conn_str = postgres_conn().strip()
+        if not conn_str:
+            return index
+        with psycopg.connect(conn_str, connect_timeout=6) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT
+                        COALESCE(sfm.logical_path, j.source_path) AS logical_path,
+                        j.asset_id,
+                        j.status AS job_status,
+                        sfm.status AS manifest_status,
+                        ed.extraction_status
+                    FROM platform.ocr_job j
+                    LEFT JOIN platform.source_file_manifest sfm ON sfm.id = j.manifest_id
+                    LEFT JOIN platform.extracted_document ed ON ed.id = j.extracted_document_id
+                    ORDER BY j.queued_at DESC;
+                    """
+                )
+                for logical_path, asset_id, job_status, manifest_status, extraction_status in cur.fetchall():
+                    payload = {
+                        "job_status": job_status or "",
+                        "manifest_status": manifest_status or "",
+                        "extraction_status": extraction_status or "",
+                    }
+                    lp = (logical_path or "").replace("\\", "/").strip()
+                    if lp and lp not in index:
+                        index[lp] = payload
+                    if asset_id and asset_id not in index:
+                        index[str(asset_id)] = payload
+    except Exception as exc:
+        LOGGER.debug("OCR status index unavailable: %s", exc)
+    return index
+
+
+def _ocr_status_for_row(row: dict[str, Any]) -> str | None:
+    from app_skeleton.api.ocr.queue import ocr_badge_for_manifest
+
+    idx = _ocr_status_index()
+    logical = (row.get("logical_path") or "").replace("\\", "/").strip()
+    asset_id = (row.get("asset_id") or "").strip()
+    snap = idx.get(logical) or idx.get(asset_id)
+    if snap:
+        return ocr_badge_for_manifest(
+            logical_path=logical,
+            manifest_status=snap.get("manifest_status"),
+            extraction_status=snap.get("extraction_status"),
+            job_status=snap.get("job_status"),
+        )
+    manifest_status = (row.get("digitalization_status") or "").strip()
+    extraction_status = (row.get("extraction_status") or "").strip()
+    if extraction_status == "needs_ocr" or manifest_status == "needs_ocr":
+        return "ocr_pending"
+    return None
+
+
+def _append_ocr_badges(row: dict[str, Any], badges: list[str]) -> None:
+    ocr_status = row.get("ocr_status") or _ocr_status_for_row(row)
+    if ocr_status:
+        label = _OCR_BADGE_LABELS.get(ocr_status, ocr_status)
+        if label not in badges:
+            badges.append(label)
+
 DOMAIN_TAB_MAP = {
     "overview": {"administration", "social_memory"},
     "wet_lab": {"lab_operations"},
@@ -678,6 +756,7 @@ def _enrich_row(row: dict[str, Any]) -> dict[str, Any]:
         "search_aliases": meta.get("search_aliases") or [],
         "page_label": meta.get("page_label"),
         "primary_ui_badges": meta.get("primary_ui_badges") or [],
+        "ocr_status": _ocr_status_for_row(r),
         "metadata_score": enriched.get("metadata_score") or r.get("metadata_score"),
         "metadata_grade": enriched.get("metadata_grade") or r.get("metadata_grade"),
         "review_status_meta": meta.get("review_status"),
@@ -1171,7 +1250,8 @@ def get_preview(asset_id: str) -> dict[str, Any] | None:
                 badges.append("Unknown type")
             if row.get("needs_review"):
                 badges.append("Needs review")
-            badges = badges[:3]
+            _append_ocr_badges(row, badges)
+            badges = badges[:4]
 
             md = row.get("metadata_json")
             excerpt = row.get("processed_excerpt") or None

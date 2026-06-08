@@ -23,6 +23,30 @@ def ocr_engine_name() -> str:
     return (os.getenv("OCR_ENGINE", "tesseract") or "tesseract").strip().lower()
 
 
+def resolve_ocr_source_path(source_path: str, metadata: dict[str, Any] | None = None) -> str:
+    """Resolve absolute filesystem path for OCR worker."""
+    meta = metadata or {}
+    path = Path(source_path)
+    if path.is_file():
+        return str(path)
+    logical = (meta.get("logical_path") or "").strip()
+    root = (meta.get("root_path") or "").strip()
+    if logical and root:
+        candidate = (Path(root) / logical).resolve()
+        if candidate.is_file():
+            return str(candidate)
+    if logical:
+        try:
+            from app_skeleton.api.paths import DATABASE_ROOT
+
+            candidate = (DATABASE_ROOT / logical).resolve()
+            if candidate.is_file():
+                return str(candidate)
+        except Exception:
+            pass
+    return source_path
+
+
 def enqueue_ocr_job(
     conn,
     *,
@@ -33,12 +57,7 @@ def enqueue_ocr_job(
     asset_id: str | None = None,
     metadata: dict[str, Any] | None = None,
 ) -> str | None:
-    """Insert platform.ocr_job when ENABLE_OCR=true. Returns job_id or None."""
-    from app_skeleton.api.ocr.adapter import ocr_enabled
-
-    if not ocr_enabled():
-        return None
-
+    """Insert platform.ocr_job for needs_ocr documents. Worker runs only when ENABLE_OCR=true."""
     job_meta = dict(metadata or {})
     if root_path:
         job_meta.setdefault("root_path", root_path)
@@ -299,3 +318,123 @@ def apply_ocr_result(
             pipeline_result["job_status"] = job_status
 
     return pipeline_result
+
+
+def requeue_ocr_for_document(conn, document_id: str) -> dict[str, Any]:
+    """Re-queue a failed or stalled OCR job for a digitalization document."""
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            SELECT cd.manifest_id, cd.extracted_document_id, sfm.logical_path, sfm.status,
+                   ed.extraction_status
+            FROM platform.canonical_document cd
+            JOIN platform.source_file_manifest sfm ON sfm.id = cd.manifest_id
+            LEFT JOIN platform.extracted_document ed ON ed.id = cd.extracted_document_id
+            WHERE cd.document_id = %s OR cd.id::text = %s
+            LIMIT 1;
+            """,
+            (document_id, document_id),
+        )
+        row = cur.fetchone()
+        if not row:
+            cur.execute(
+                """
+                SELECT sfm.id, ed.id, sfm.logical_path, sfm.status, ed.extraction_status
+                FROM platform.source_file_manifest sfm
+                JOIN platform.extracted_document ed ON ed.manifest_id = sfm.id
+                WHERE sfm.id::text = %s OR ed.id::text = %s
+                LIMIT 1;
+                """,
+                (document_id, document_id),
+            )
+            row = cur.fetchone()
+        if not row:
+            raise ValueError(f"No digitalization document found for id={document_id}")
+
+        manifest_id, extracted_document_id, logical_path, manifest_status, extraction_status = row
+        cur.execute(
+            """
+            SELECT job_id, status FROM platform.ocr_job
+            WHERE manifest_id = %s
+            ORDER BY queued_at DESC
+            LIMIT 1;
+            """,
+            (manifest_id,),
+        )
+        existing = cur.fetchone()
+        if existing:
+            job_id, job_status = existing
+            cur.execute(
+                """
+                UPDATE platform.ocr_job SET
+                    status = 'queued',
+                    error_message = NULL,
+                    started_at = NULL,
+                    finished_at = NULL,
+                    attempt_count = 0
+                WHERE job_id = %s;
+                """,
+                (job_id,),
+            )
+            return {
+                "job_id": str(job_id),
+                "manifest_id": str(manifest_id),
+                "action": "requeued",
+                "previous_status": job_status,
+            }
+
+        abs_source = resolve_ocr_source_path(logical_path or "", {"logical_path": logical_path})
+        cur.execute(
+            """
+            INSERT INTO platform.ocr_job (
+                manifest_id, extracted_document_id, document_id, source_path,
+                status, engine, metadata
+            ) VALUES (%s, %s, %s, %s, 'queued', %s, %s::jsonb)
+            RETURNING job_id;
+            """,
+            (
+                manifest_id,
+                extracted_document_id,
+                extracted_document_id,
+                abs_source,
+                ocr_engine_name(),
+                _jsonb({"logical_path": logical_path, "retry": True}),
+            ),
+        )
+        new_job = cur.fetchone()
+        return {
+            "job_id": str(new_job[0]),
+            "manifest_id": str(manifest_id),
+            "action": "created",
+            "manifest_status": manifest_status,
+            "extraction_status": extraction_status,
+        }
+
+
+def ocr_badge_for_manifest(
+    *,
+    logical_path: str,
+    manifest_status: str | None = None,
+    extraction_status: str | None = None,
+    job_status: str | None = None,
+) -> str | None:
+    """Return document-library OCR badge: pending | failed | indexed."""
+    job = (job_status or "").lower()
+    manifest = (manifest_status or "").lower()
+    extraction = (extraction_status or "").lower()
+
+    if job in ("queued", "processing"):
+        return "ocr_pending"
+    if job == "failed" or extraction == "ocr_failed":
+        return "ocr_failed"
+    if job in ("completed", "review") and manifest in (
+        "chunked",
+        "canonicalized",
+        "extracted",
+    ):
+        return "ocr_indexed"
+    if extraction == "needs_ocr" or manifest == "needs_ocr":
+        return "ocr_pending"
+    if job == "completed" and extraction == "extracted":
+        return "ocr_indexed"
+    return None
