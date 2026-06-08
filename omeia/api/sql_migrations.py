@@ -20,6 +20,7 @@ def db_conn() -> str:
 
 
 def ensure_migration_table(cur) -> None:
+    cur.execute("CREATE SCHEMA IF NOT EXISTS platform;")
     cur.execute(
         """
         CREATE TABLE IF NOT EXISTS platform.schema_migration (
