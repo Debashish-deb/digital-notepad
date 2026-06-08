@@ -1,9 +1,9 @@
 import pytest
 from fastapi import HTTPException
-from app_skeleton.security.secure_files import _resolve_secure_path
+from omeia.security.secure_files import _resolve_secure_path
 import tempfile
 from pathlib import Path
-import app_skeleton.security.secure_files as secure_files
+import omeia.security.secure_files as secure_files
 
 def test_resolve_secure_path_valid():
     with tempfile.TemporaryDirectory() as tmpdir:

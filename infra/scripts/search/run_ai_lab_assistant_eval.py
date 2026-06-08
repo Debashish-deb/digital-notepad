@@ -270,15 +270,15 @@ def run_eval(*, role: str = "researcher") -> dict[str, Any]:
     from tests.auth_fixtures import apply_auth_override, clear_auth_override
 
     apply_auth_override(role)
-    client = TestClient(__import__("app_skeleton.api.main", fromlist=["app"]).app)
+    client = TestClient(__import__("omeia.api.main", fromlist=["app"]).app)
     env_info: dict[str, Any] = {"auth_role": role}
     chat_results: list[dict] = []
     ask_comparisons: list[dict] = []
     infra: dict[str, Any] = {}
 
     try:
-        with patch("app_skeleton.api.routers.chat.require_role"), patch(
-            "app_skeleton.api.routers.copilot.require_role"
+        with patch("omeia.api.routers.chat.require_role"), patch(
+            "omeia.api.routers.copilot.require_role"
         ):
             t0 = time.time()
             status_r = client.get("/api/chat/status")
@@ -473,8 +473,8 @@ def run_eval(*, role: str = "researcher") -> dict[str, Any]:
 
 def _strategy_benchmark() -> dict[str, Any]:
     """Lightweight strategy detection + schema checks (no live LLM required)."""
-    from app_skeleton.api.chat_conversation import classify_and_enrich
-    from app_skeleton.api.research_strategy_engine import is_strategy_question
+    from omeia.api.chat_conversation import classify_and_enrich
+    from omeia.api.research_strategy_engine import is_strategy_question
 
     if not STRATEGY_FIXTURE.is_file():
         return {"enabled": False, "reason": "fixture missing"}

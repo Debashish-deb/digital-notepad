@@ -39,7 +39,7 @@ Fix:
   export NVM_DIR=\"\$HOME/.nvm\" && . \"\$NVM_DIR/nvm.sh\"
   nvm install ${VITE_MIN_NODE} && nvm use ${VITE_MIN_NODE}
   nvm alias default ${VITE_MIN_NODE}
-  cd apps/web && npm install
+  cd web && npm install
   ./scripts/start_linux.sh"
 fi
 

@@ -11,7 +11,7 @@ _SCRIPT = Path(__file__).resolve()
 ROOT = _SCRIPT.parents[2]
 sys.path.insert(0, str(ROOT))
 
-from app_skeleton.api.document_library_service import (  # noqa: E402
+from omeia.api.document_library_service import (  # noqa: E402
     AUDIT_INVENTORY_JSON,
     INVENTORY_JSON,
     _lookup_processed_doc,

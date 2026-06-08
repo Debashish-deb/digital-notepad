@@ -47,7 +47,7 @@ def _sample_readable_file(root: Path, *, limit: int = 3) -> dict[str, Any]:
 
 def _runtime_roots() -> tuple[Path, Path, Path, Path]:
     """Resolve roots at call time so DATABASE_ROOT/PROJECTS_ROOT env overrides apply."""
-    from app_skeleton.api.paths import (
+    from omeia.api.paths import (
         CSC_MEDIA_DIR,
         PUBLIC_PROCESSED_DIR,
         _default_database_root,
@@ -58,7 +58,7 @@ def _runtime_roots() -> tuple[Path, Path, Path, Path]:
 
 
 def run_checks() -> dict[str, Any]:
-    from app_skeleton.api.data_layout import LEGACY_PROCESSED_DIR, inventory_json
+    from omeia.api.data_layout import LEGACY_PROCESSED_DIR, inventory_json
 
     DATABASE_ROOT, PROJECTS_ROOT, PUBLIC_PROCESSED_DIR, CSC_MEDIA_DIR = _runtime_roots()
 

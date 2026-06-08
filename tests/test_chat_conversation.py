@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import unittest
 
-from app_skeleton.api.chat_conversation import (
+from omeia.api.chat_conversation import (
     INTENT_GREETING,
     INTENT_QUESTION,
     classify_and_enrich,
@@ -12,7 +12,7 @@ from app_skeleton.api.chat_conversation import (
     should_use_instant_greeting,
     UserChatContext,
 )
-from app_skeleton.api.chat_service import answer_chat
+from omeia.api.chat_service import answer_chat
 
 
 class TestChatConversation(unittest.TestCase):
@@ -35,7 +35,7 @@ class TestChatConversation(unittest.TestCase):
         self.assertTrue(decision.use_rag)
 
     def test_eyemt_project_maps_to_project_category(self) -> None:
-        from app_skeleton.api.chat_conversation import INTENT_PROJECT
+        from omeia.api.chat_conversation import INTENT_PROJECT
 
         decision = classify_and_enrich("tell more about EYEMT project")
         self.assertEqual(decision.intent, "project_question")

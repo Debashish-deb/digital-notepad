@@ -27,7 +27,7 @@ LOGGER = logging.getLogger("scheduled_ingest")
 
 
 def _datacloud_scan(max_entries: int) -> dict:
-    from app_skeleton.storage import datacloud_webdav
+    from omeia.storage import datacloud_webdav
 
     if not datacloud_webdav.is_configured():
         return {"status": "skipped", "provider": "datacloud_webdav", "reason": "not_configured"}
@@ -44,8 +44,8 @@ def _datacloud_scan(max_entries: int) -> dict:
 
 
 def _pdrive_scan(max_entries: int) -> dict:
-    from app_skeleton.storage import pdrive_smb
-    from app_skeleton.storage.env import pdrive_enabled
+    from omeia.storage import pdrive_smb
+    from omeia.storage.env import pdrive_enabled
 
     if not pdrive_enabled():
         return {"status": "skipped", "provider": "pdrive_smb", "reason": "disabled"}
@@ -62,7 +62,7 @@ def _pdrive_scan(max_entries: int) -> dict:
 
 
 def _supabase_sync(dry_run: bool) -> dict:
-    from app_skeleton.api.supabase_sync import (
+    from omeia.api.supabase_sync import (
         supabase_hosted_password_set,
         supabase_sync_enabled,
         sync_documents_to_supabase,
@@ -84,8 +84,8 @@ def _supabase_sync(dry_run: bool) -> dict:
 
 
 def _thumbnails() -> dict:
-    from app_skeleton.api.thumbnail_service import scan_and_thumbnail_directory
-    from app_skeleton.storage.env import pdrive_mount_path
+    from omeia.api.thumbnail_service import scan_and_thumbnail_directory
+    from omeia.storage.env import pdrive_mount_path
 
     roots: list[Path] = []
     lab = os.getenv("LAB_STORAGE_ROOT", "").strip()

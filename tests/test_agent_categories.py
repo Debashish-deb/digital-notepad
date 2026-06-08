@@ -5,7 +5,7 @@ import inspect
 
 import pytest
 
-from app_skeleton.api.agent_orchestrator.registry import (
+from omeia.api.agent_orchestrator.registry import (
     agents_for_category,
     get_agent,
     list_visible_categories,
@@ -69,7 +69,7 @@ def test_category_detail_includes_team_roster_with_models():
 
 def test_agent_category_run_route_signature() -> None:
     """Duplicate /run route must accept Request/Response like /api/chat/category."""
-    from app_skeleton.api.routers import agent_categories
+    from omeia.api.routers import agent_categories
 
     run_fn = agent_categories.run_category
     sig = inspect.signature(run_fn)

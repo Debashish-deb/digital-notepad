@@ -18,17 +18,17 @@ sys.path.insert(0, str(ROOT))
 
 import psycopg
 
-from app_skeleton.api.embedding_service import embedding_dim, embedding_model_name, embedding_provider
-from app_skeleton.api.llm_client import LLMClient
-from app_skeleton.api.qdrant_collections import RESEARCH_KB
-from app_skeleton.api.qdrant_research_indexer import stable_point_id, upsert_research_chunks
-from app_skeleton.api.qdrant_vectors import ensure_named_text_collection, get_qdrant_client
+from omeia.api.embedding_service import embedding_dim, embedding_model_name, embedding_provider
+from omeia.api.llm_client import LLMClient
+from omeia.api.qdrant_collections import RESEARCH_KB
+from omeia.api.qdrant_research_indexer import stable_point_id, upsert_research_chunks
+from omeia.api.qdrant_vectors import ensure_named_text_collection, get_qdrant_client
 
 LOGGER = logging.getLogger(__name__)
 
 
 def _db_conn() -> str:
-    from app_skeleton.api.supabase_config import postgres_conn
+    from omeia.api.supabase_config import postgres_conn
 
     return postgres_conn()
 

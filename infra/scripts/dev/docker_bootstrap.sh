@@ -40,7 +40,7 @@ import os
 import sys
 
 sys.path.insert(0, os.getcwd())
-from app_skeleton.api.docker_service_client import docker_services
+from omeia.api.docker_service_client import docker_services
 
 summary = docker_services.bootstrap()
 print(json.dumps(summary, indent=2))

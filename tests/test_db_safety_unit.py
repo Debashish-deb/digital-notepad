@@ -35,7 +35,7 @@ class TestDbSafety(unittest.TestCase):
         ))
 
     def test_supabase_config_uses_test_resolver_in_pytest(self) -> None:
-        from app_skeleton.api import supabase_config as sc
+        from omeia.api import supabase_config as sc
 
         with patch.dict(
             os.environ,

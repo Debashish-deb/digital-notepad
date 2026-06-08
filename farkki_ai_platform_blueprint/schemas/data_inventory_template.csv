@@ -1,2 +1,0 @@
-inventory_id,project_code,cohort_code,sample_code,patient_code,modality,data_type,storage_backend,path_or_uri,file_role,sensitivity_level,has_real_patient_data,owner,status,notes
-INV-0001,SPACE,SYNTH_COHORT,SYNTH_SAMPLE_001,SYNTH_PATIENT_001,tcycif,ome_tiff,local,/path/to/synthetic_or_redacted.ome.tif,stitched_image,internal,false,TBD,draft,Synthetic placeholder

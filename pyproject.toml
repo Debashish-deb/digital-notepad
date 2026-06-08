@@ -6,5 +6,5 @@ readme = "README.md"
 requires-python = ">=3.11"
 
 [tool.pytest.ini_options]
-pythonpath = ["apps/api/src", "."]
+pythonpath = ["."]
 testpaths = ["tests"]

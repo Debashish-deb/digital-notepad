@@ -60,7 +60,7 @@ def resolve_test_postgres_conn() -> str:
         return local
 
     if production_db_tests_allowed():
-        from app_skeleton.api.supabase_config import postgres_conn
+        from omeia.api.supabase_config import postgres_conn
 
         return postgres_conn()
 

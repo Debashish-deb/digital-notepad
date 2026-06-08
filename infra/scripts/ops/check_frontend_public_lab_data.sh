@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
-PUBLIC="$ROOT/apps/web/public"
+PUBLIC="$ROOT/web/public"
 MAX_JSON_KB="${OMEIA_PUBLIC_JSON_MAX_KB:-512}"
 FAIL=0
 
@@ -33,7 +33,7 @@ done < <(find "$PUBLIC/processed" -name '*.json' -type f -print0 2>/dev/null || 
 if [ "$FAIL" -ne 0 ]; then
   echo ""
   echo "Remediation: serve lab twins via /api/database/processed/* and document-library preview/export."
-  echo "Remove large extracted payloads from app_skeleton/ui/react_frontend/public/ before production deploy."
+  echo "Remove large extracted payloads from omeia/ui/react_frontend/public/ before production deploy."
   exit 1
 fi
 

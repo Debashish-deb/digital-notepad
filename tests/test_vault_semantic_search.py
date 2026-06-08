@@ -8,14 +8,14 @@ from fastapi.testclient import TestClient
 
 from tests.auth_fixtures import auth_override
 
-from app_skeleton.api.search_models import SearchHit
-from app_skeleton.api.search_service import _suppress_checksum_duplicates
-from app_skeleton.api.raw_vault_store import (
+from omeia.api.search_models import SearchHit
+from omeia.api.search_service import _suppress_checksum_duplicates
+from omeia.api.raw_vault_store import (
     _is_vault_row_active,
     _search_vault_json,
     _vault_active_sql_clauses,
 )
-from app_skeleton.api.vault_vector_search import filter_and_enrich_vault_vector_hits
+from omeia.api.vault_vector_search import filter_and_enrich_vault_vector_hits
 
 
 class TestVaultActiveFilters(unittest.TestCase):
@@ -47,7 +47,7 @@ class TestVaultActiveFilters(unittest.TestCase):
                 "metadata_json": {"inventory_active": "no"},
             },
         ]
-        with patch("app_skeleton.api.raw_vault_store.load_inventory_rows", return_value=rows):
+        with patch("omeia.api.raw_vault_store.load_inventory_rows", return_value=rows):
             hits = _search_vault_json(
                 "keep",
                 domain=None,
@@ -87,10 +87,10 @@ class TestVaultVectorEnrichment(unittest.TestCase):
             },
         }
         with patch(
-            "app_skeleton.api.vault_vector_search.fetch_vault_assets_by_ids",
+            "omeia.api.vault_vector_search.fetch_vault_assets_by_ids",
             return_value=assets,
         ), patch(
-            "app_skeleton.api.vault_vector_search.vault_postgres_reachable",
+            "omeia.api.vault_vector_search.vault_postgres_reachable",
             return_value=True,
         ):
             enriched = filter_and_enrich_vault_vector_hits(hits)
@@ -128,7 +128,7 @@ class TestChecksumCrossBucketDedupe(unittest.TestCase):
             "v1": {"checksum_sha256": "same-hash"},
             "f1": {"checksum_sha256": "same-hash"},
         }
-        with patch("app_skeleton.api.search_service.fetch_vault_assets_by_ids", return_value=assets):
+        with patch("omeia.api.search_service.fetch_vault_assets_by_ids", return_value=assets):
             deduped = _suppress_checksum_duplicates(hits)
         self.assertEqual(len(deduped), 1)
         self.assertEqual(deduped[0].id, "f1")
@@ -143,8 +143,8 @@ class TestVectorIndexerPayload(unittest.TestCase):
             captured.extend(points_data)
             return len(points_data)
 
-        with patch("app_skeleton.api.vector_indexer.upsert_text_chunks", side_effect=_capture):
-            from app_skeleton.api.vector_indexer import upsert_vault_asset_chunks
+        with patch("omeia.api.vector_indexer.upsert_text_chunks", side_effect=_capture):
+            from omeia.api.vector_indexer import upsert_vault_asset_chunks
 
             n = upsert_vault_asset_chunks(
                 MagicMock(),
@@ -164,7 +164,7 @@ class TestVectorIndexerPayload(unittest.TestCase):
 
 class TestVaultApiSemanticMerge(unittest.TestCase):
     def test_vault_search_merges_semantic_hits(self) -> None:
-        from app_skeleton.api.main import app
+        from omeia.api.main import app
 
         metadata_hit = {"asset_id": "meta-1", "filename": "meta.pdf", "logical_path": "x/meta.pdf"}
         semantic_hit = {
@@ -176,13 +176,13 @@ class TestVaultApiSemanticMerge(unittest.TestCase):
             "score": 0.88,
         }
         with auth_override("researcher"), patch(
-            "app_skeleton.api.routers.vault.search_vault",
+            "omeia.api.routers.vault.search_vault",
             return_value=[metadata_hit],
         ), patch(
-            "app_skeleton.api.platform_flags.vectorization_enabled",
+            "omeia.api.platform_flags.vectorization_enabled",
             return_value=True,
         ), patch(
-            "app_skeleton.api.vault_vector_search.search_vault_vectors",
+            "omeia.api.vault_vector_search.search_vault_vectors",
             return_value=[semantic_hit],
         ):
             client = TestClient(app)

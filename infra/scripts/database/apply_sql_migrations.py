@@ -18,7 +18,7 @@ _ROOT = Path(__file__).resolve().parents[2]
 load_dotenv(_ROOT / "configs" / ".env")
 load_dotenv(_ROOT / ".env")
 
-from app_skeleton.api.sql_migrations import apply_pending_migrations, db_conn
+from omeia.api.sql_migrations import apply_pending_migrations, db_conn
 
 
 def main() -> int:

@@ -15,9 +15,9 @@ if [[ ! -x "$ROOT/.venv/bin/python3" ]]; then
 fi
 
 # Frontend deps
-if [[ ! -d "$ROOT/apps/web/node_modules" ]]; then
+if [[ ! -d "$ROOT/web/node_modules" ]]; then
   echo "=== npm install (frontend) ==="
-  (cd "$ROOT/apps/web" && npm install)
+  (cd "$ROOT/web" && npm install)
 fi
 
 # Env file

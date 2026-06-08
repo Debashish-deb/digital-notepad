@@ -73,7 +73,7 @@ flowchart LR
 - One command: `make start` or `./start_linux.sh` → `infra/scripts/start_linux.sh` → `infra/scripts/dev/start_linux_desktop.sh` → `start.sh`
 - Default Docker stack (`infra/compose/docker-compose.yml`, root symlink): **postgres** (`127.0.0.1:5432`), **qdrant** (`127.0.0.1:6333`), **ollama** (internal), **ollama-proxy** (`127.0.0.1:11434` with bearer auth)
 - Optional biomedical model services: `docker-compose.biomodels.yml` + `/api/biomedical-models/*`
-- API: `uvicorn app_skeleton.api.main:app --host 0.0.0.0 --port 8000`
+- API: `uvicorn omeia.api.main:app --host 0.0.0.0 --port 8000`
 - Dev UI: Vite `0.0.0.0:5173` (proxies API paths to `:8000`)
 - Typical URLs: `http://<tailscale-ip>:5173/`, campus LAN as configured
 
@@ -651,7 +651,7 @@ Global `require_platform_user` on most routers unless noted. Write/admin handler
 
    **Fix:** split `/live` from `/ready`. Keep `/live` cheap and always process-level. Make `/ready` fail with 503 until required dependencies (Postgres, Qdrant when indexing/search needs it, LLM when configured as required) pass. Change launchers and monitoring to wait on `/ready`.
 
-4. **Direct `uvicorn` env-ordering hazard** - `main.py` imports auth and runs `validate_environment()` before `common.py` loads `configs/.env`; `auth.py` freezes `APP_ENV`, `AUTH_DISABLED`, and `AUTH_ALLOW_SKIP` at import time. Launchers load `.env` first, but direct `uvicorn app_skeleton.api.main:app` can validate/auth against process defaults instead of `configs/.env`.
+4. **Direct `uvicorn` env-ordering hazard** - `main.py` imports auth and runs `validate_environment()` before `common.py` loads `configs/.env`; `auth.py` freezes `APP_ENV`, `AUTH_DISABLED`, and `AUTH_ALLOW_SKIP` at import time. Launchers load `.env` first, but direct `uvicorn omeia.api.main:app` can validate/auth against process defaults instead of `configs/.env`.
 
    **Fix:** centralize settings loading before importing auth/security modules. Make `validate_environment()` and auth config read from one settings object, not module-level constants. Also document that production must start through the launcher or a service file that exports the same env.
 
@@ -733,7 +733,7 @@ These are **implemented today** — not gaps:
 
 3. **Readiness/liveness mismatch** — `/health` returns 200 + `"status": "ok"` even when dependency checks are degraded; launcher waits on liveness rather than readiness.
 
-4. **Env/auth import ordering** — launchers load env correctly, but direct `uvicorn app_skeleton.api.main:app` can evaluate `validate_environment()` and auth constants before `configs/.env` is loaded.
+4. **Env/auth import ordering** — launchers load env correctly, but direct `uvicorn omeia.api.main:app` can evaluate `validate_environment()` and auth constants before `configs/.env` is loaded.
 
 5. **Broken agent-category duplicate route** — `/api/agent-categories/{category_id}/run` calls `chat_category(req, user)` with the wrong function signature.
 

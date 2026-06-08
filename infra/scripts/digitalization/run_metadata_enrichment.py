@@ -14,17 +14,17 @@ _SCRIPT = Path(__file__).resolve()
 ROOT = _SCRIPT.parents[2]
 sys.path.insert(0, str(ROOT))
 
-from app_skeleton.api.document_library_service import (  # noqa: E402
+from omeia.api.document_library_service import (  # noqa: E402
     AUDIT_INVENTORY_JSON,
     INVENTORY_JSON,
     invalidate_cache,
 )
-from app_skeleton.api.metadata_engine.duplicates import (  # noqa: E402
+from omeia.api.metadata_engine.duplicates import (  # noqa: E402
     build_duplicate_groups,
     plan_lookup_by_asset,
 )
-from app_skeleton.api.metadata_engine.enricher import enrich_all  # noqa: E402
-from app_skeleton.api.metadata_engine.scoring import metadata_grade  # noqa: E402
+from omeia.api.metadata_engine.enricher import enrich_all  # noqa: E402
+from omeia.api.metadata_engine.scoring import metadata_grade  # noqa: E402
 
 OUT_DIR = ROOT / "reports" / "document_library_audit" / "metadata_v2"
 ENRICHED_JSON = OUT_DIR / "metadata_enriched_inventory.json"

@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
-FRONTEND="$ROOT/apps/web"
+FRONTEND="$ROOT/web"
 
 if [[ -f "$ROOT/configs/.env" ]]; then
   # shellcheck disable=SC1091

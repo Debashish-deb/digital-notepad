@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import unittest
 
-from app_skeleton.api import document_library_service as svc
+from omeia.api import document_library_service as svc
 
 
 class CycifWetLabSeparationTest(unittest.TestCase):

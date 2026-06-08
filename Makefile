@@ -3,18 +3,18 @@
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 export OMEIA_REPO_ROOT := $(ROOT)
-export PYTHONPATH := $(ROOT)/apps/api/src$(if $(PYTHONPATH),:$(PYTHONPATH),)
+export PYTHONPATH := $(ROOT)$(if $(PYTHONPATH),:$(PYTHONPATH),)
 
 install:
-	python3 -m pip install -r apps/api/requirements.txt
-	cd apps/web && npm ci
+	python3 -m pip install -r requirements.txt
+	cd web && npm ci
 
 up start:
 	./start_linux.sh
 
 stop:
 	./scripts/dev/stop_local_docker.sh || true
-	-pkill -f 'uvicorn app_skeleton.api.main' || true
+	-pkill -f 'uvicorn omeia.api.main' || true
 	-pkill -f 'vite' || true
 
 test:

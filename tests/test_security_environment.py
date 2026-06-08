@@ -1,7 +1,7 @@
 import os
 import pytest
-from app_skeleton.security.environment import validate_environment
-from app_skeleton.security.cors import get_cors_origins
+from omeia.security.environment import validate_environment
+from omeia.security.cors import get_cors_origins
 
 def test_production_auth_disabled_fails(monkeypatch):
     monkeypatch.setenv("APP_ENV", "production")

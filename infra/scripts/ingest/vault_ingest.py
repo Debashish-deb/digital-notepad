@@ -10,8 +10,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from app_skeleton.api.paths import DATABASE_ROOT  # noqa: E402
-from app_skeleton.api.vault_ingestion_engine import (  # noqa: E402
+from omeia.api.paths import DATABASE_ROOT  # noqa: E402
+from omeia.api.vault_ingestion_engine import (  # noqa: E402
     ingest_project,
     retry_failed_extractions,
     run_ingest_scan,

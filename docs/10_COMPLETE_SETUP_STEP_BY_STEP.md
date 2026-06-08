@@ -59,7 +59,7 @@ python scripts/ops/query_copilot_demo.py
 ## 8. Start API
 
 ```bash
-uvicorn app_skeleton.api.main:app --reload --host 0.0.0.0 --port 8000
+uvicorn omeia.api.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 Test:

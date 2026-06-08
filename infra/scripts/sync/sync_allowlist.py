@@ -5,8 +5,8 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import psycopg
-from app_skeleton.api.common import DB_CONN
-from app_skeleton.api.supabase_config import postgres_conn
+from omeia.api.common import DB_CONN
+from omeia.api.supabase_config import postgres_conn
 
 def sync_allowlist():
     conn_str = postgres_conn() or DB_CONN

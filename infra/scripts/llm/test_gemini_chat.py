@@ -35,8 +35,8 @@ def _inprocess_chat() -> tuple[dict, dict]:
     from fastapi.testclient import TestClient
     from unittest.mock import patch
 
-    from app_skeleton.api.main import app
-    from app_skeleton.security.auth import _dev_user, require_platform_user
+    from omeia.api.main import app
+    from omeia.security.auth import _dev_user, require_platform_user
 
     async def _auth_override():
         return _dev_user()
@@ -44,7 +44,7 @@ def _inprocess_chat() -> tuple[dict, dict]:
     app.dependency_overrides[require_platform_user] = _auth_override
     try:
         client = TestClient(app)
-        with patch("app_skeleton.api.routers.chat.require_role"):
+        with patch("omeia.api.routers.chat.require_role"):
             status = client.get("/api/chat/status")
             chat = client.post(
                 "/api/chat",

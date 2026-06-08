@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
-SRC="$ROOT/apps/web/public/database"
+SRC="$ROOT/web/public/database"
 DEST="$ROOT/omeia/data/lab_catalog"
 
 if [ ! -d "$SRC" ]; then

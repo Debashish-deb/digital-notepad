@@ -18,7 +18,7 @@ Equivalent: `./start_linux.sh` (Docker + API :8000 + Vite :5173).
 | App | Path | Port |
 |-----|------|------|
 | Frontend | `apps/web/` | **5173** (dev) |
-| Backend | `apps/api/src/app_skeleton/` | **8000** |
+| Backend | `apps/api/src/omeia/` | **8000** |
 | Compose | `infra/compose/docker-compose.yml` | Postgres, Qdrant, Ollama |
 
 ```bash
@@ -31,7 +31,7 @@ make stop       # stop local stack
 
 See [docs/architecture/REPOSITORY_LAYOUT.md](docs/architecture/REPOSITORY_LAYOUT.md).
 
-Legacy path stubs: root `scripts/` → `infra/scripts/`, `configs/` → `config/env/`, `app_skeleton/README.md` → API package.
+Legacy path stubs: root `scripts/` → `infra/scripts/`, `configs/` → `config/env/`, `omeia/README.md` → API package.
 
 ## Mac thin client
 

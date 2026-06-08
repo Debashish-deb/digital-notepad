@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from app_skeleton.api.data_layout import (  # noqa: E402
+from omeia.api.data_layout import (  # noqa: E402
     DATA_ROOT,
     INGESTION_AUDIT_DIR,
     LAB_PROCESSED_ROOT,

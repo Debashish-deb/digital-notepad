@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import unittest
 
-from app_skeleton.api.chat_intent import classify_chat_intent
+from omeia.api.chat_intent import classify_chat_intent
 
 
 class TestChatIntent(unittest.TestCase):

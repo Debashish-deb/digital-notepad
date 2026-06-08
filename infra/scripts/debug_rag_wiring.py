@@ -28,10 +28,10 @@ def _print_report(report: dict) -> None:
 
 
 def run_in_process(query: str, *, category: str, mode: str, probe_llm: bool) -> dict:
-    from app_skeleton.api.chat_model_catalog import make_chat_llm
-    from app_skeleton.api.common import DB_CONN, qdrant_client, rag_agent
-    from app_skeleton.api.rag_diagnostics import run_rag_diagnostics
-    from app_skeleton.api.search_service import SearchService
+    from omeia.api.chat_model_catalog import make_chat_llm
+    from omeia.api.common import DB_CONN, qdrant_client, rag_agent
+    from omeia.api.rag_diagnostics import run_rag_diagnostics
+    from omeia.api.search_service import SearchService
 
     llm = make_chat_llm(None, None)
     search_svc = SearchService(db_conn=DB_CONN, qdrant=qdrant_client, llm=llm)

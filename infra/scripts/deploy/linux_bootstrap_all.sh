@@ -120,7 +120,7 @@ fi
 echo "--- Frontend packages ---"
 if command -v npm >/dev/null 2>&1; then
   echo "  node: $(node -v)  npm: $(npm -v)"
-  (cd "$ROOT/apps/web" && npm install)
+  (cd "$ROOT/web" && npm install)
 else
   echo "WARN: npm not found — install Node.js 22 via nvm"
 fi

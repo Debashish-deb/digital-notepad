@@ -45,7 +45,7 @@ def main() -> int:
 
     # Import the pipeline runner
     try:
-        from app_skeleton.digitalization.ingestion_job import run_digitalization
+        from omeia.digitalization.ingestion_job import run_digitalization
     except ImportError as exc:
         LOGGER.error("Failed to import pipeline: %s", exc)
         return 1

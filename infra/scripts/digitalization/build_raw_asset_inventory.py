@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 DATABASE_ROOT = Path(os.environ.get("DATABASE_ROOT", str(ROOT.parent / "OMEIA-database"))).expanduser().resolve()
 
-from app_skeleton.api.data_layout import inventory_write_dir  # noqa: E402
+from omeia.api.data_layout import inventory_write_dir  # noqa: E402
 
 OUTPUT_DIR = inventory_write_dir()
 

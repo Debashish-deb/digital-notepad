@@ -21,9 +21,9 @@ sys.path.insert(0, str(ROOT))
 import psycopg
 from qdrant_client.http import models
 
-from app_skeleton.api.embedding_service import embed_text, embedding_dim, embedding_model_name, embedding_provider
-from app_skeleton.api.llm_client import LLMClient
-from app_skeleton.api.qdrant_vectors import (
+from omeia.api.embedding_service import embed_text, embedding_dim, embedding_model_name, embedding_provider
+from omeia.api.llm_client import LLMClient
+from omeia.api.qdrant_vectors import (
     DOC_CHUNKS_COLLECTION,
     TEXT_VECTOR_NAME,
     ensure_named_text_collection,
@@ -36,7 +36,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 def _db_conn() -> str:
-    from app_skeleton.api.supabase_config import postgres_conn
+    from omeia.api.supabase_config import postgres_conn
 
     return postgres_conn()
 

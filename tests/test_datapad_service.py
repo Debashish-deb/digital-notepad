@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from app_skeleton.api import datapad_service as dp
+from omeia.api import datapad_service as dp
 
 
 class TestDatapadPathSafety(unittest.TestCase):
@@ -24,9 +24,9 @@ class TestDatapadPathSafety(unittest.TestCase):
     def tearDown(self) -> None:
         self._tmp.cleanup()
 
-    @patch("app_skeleton.api.datapad_service.get_content_root")
-    @patch("app_skeleton.api.datapad_service.find_project_folder")
-    @patch("app_skeleton.api.datapad_service.projects_roots_for_scan")
+    @patch("omeia.api.datapad_service.get_content_root")
+    @patch("omeia.api.datapad_service.find_project_folder")
+    @patch("omeia.api.datapad_service.projects_roots_for_scan")
     def test_read_and_save_with_backup(self, mock_scan, mock_find, mock_content) -> None:
         proj = self.root / "1_TestProj"
         mock_find.return_value = proj
@@ -51,9 +51,9 @@ class TestDatapadPathSafety(unittest.TestCase):
             on_disk = self.doc.read_text(encoding="utf-8")
             self.assertIn("Updated body", on_disk)
 
-    @patch("app_skeleton.api.datapad_service.get_content_root")
-    @patch("app_skeleton.api.datapad_service.find_project_folder")
-    @patch("app_skeleton.api.datapad_service.projects_roots_for_scan")
+    @patch("omeia.api.datapad_service.get_content_root")
+    @patch("omeia.api.datapad_service.find_project_folder")
+    @patch("omeia.api.datapad_service.projects_roots_for_scan")
     def test_path_traversal_blocked(self, mock_scan, mock_find, mock_content) -> None:
         proj = self.root / "1_TestProj"
         mock_find.return_value = proj
@@ -63,9 +63,9 @@ class TestDatapadPathSafety(unittest.TestCase):
         with self.assertRaises((FileNotFoundError, ValueError)):
             dp.read_section_document(self.project, "../../etc/passwd")
 
-    @patch("app_skeleton.api.datapad_service.get_content_root")
-    @patch("app_skeleton.api.datapad_service.find_project_folder")
-    @patch("app_skeleton.api.datapad_service.projects_roots_for_scan")
+    @patch("omeia.api.datapad_service.get_content_root")
+    @patch("omeia.api.datapad_service.find_project_folder")
+    @patch("omeia.api.datapad_service.projects_roots_for_scan")
     def test_conflict_on_stale_etag(self, mock_scan, mock_find, mock_content) -> None:
         proj = self.root / "1_TestProj"
         mock_find.return_value = proj

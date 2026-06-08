@@ -81,7 +81,7 @@ PYTHONPATH="$ROOT" \
   OLLAMA_MODEL=qwen2.5:3b \
   OLLAMA_BASE_URL=http://127.0.0.1:11434/v1 \
   "$PY" - <<'PY'
-from app_skeleton.api.llm_client import LLMClient
+from omeia.api.llm_client import LLMClient
 llm = LLMClient()
 print("provider:", llm.provider, "model:", llm.model, "healthy:", llm.healthCheck())
 out = llm.generate("What is HGSC in one sentence?", "You are a concise research assistant.")
@@ -92,7 +92,7 @@ PY
 
 echo "--- Qdrant ping ---"
 PYTHONPATH="$ROOT" "$PY" - <<'PY'
-from app_skeleton.api.qdrant_vectors import get_qdrant_client, ping_qdrant
+from omeia.api.qdrant_vectors import get_qdrant_client, ping_qdrant
 c = get_qdrant_client()
 print("qdrant_ok:", ping_qdrant(c))
 try:

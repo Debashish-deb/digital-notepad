@@ -16,7 +16,7 @@ import psycopg
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from app_skeleton.api.sql_migrations import apply_pending_migrations, db_conn  # noqa: E402
+from omeia.api.sql_migrations import apply_pending_migrations, db_conn  # noqa: E402
 
 ELIGIBLE_STATUS = "eligible_pending_review"
 BLOCKED_IMAGE_MIMES = ("image/tiff", "image/tif", "application/ome-tiff")

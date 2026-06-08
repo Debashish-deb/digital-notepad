@@ -15,12 +15,12 @@ _SCRIPT = Path(__file__).resolve()
 ROOT = _SCRIPT.parents[2]
 sys.path.insert(0, str(ROOT))
 
-from app_skeleton.api.document_library_service import (  # noqa: E402
+from omeia.api.document_library_service import (  # noqa: E402
     AUDIT_INVENTORY_JSON,
     INVENTORY_JSON,
     invalidate_cache,
 )
-from app_skeleton.api.paths import DATABASE_ROOT  # noqa: E402
+from omeia.api.paths import DATABASE_ROOT  # noqa: E402
 
 LOGGER = logging.getLogger(__name__)
 LOG_DIR = ROOT / "reports" / "document_library_audit" / "metadata_v2"

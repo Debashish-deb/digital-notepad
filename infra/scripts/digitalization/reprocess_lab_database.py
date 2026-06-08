@@ -11,7 +11,7 @@ ROOT = os.environ.get("OMEIA_REPO_ROOT", str(_SCRIPT.parents[2]))
 sys.path.insert(0, str(_SCRIPT.parents[2]))
 os.environ.setdefault("OMEIA_REPO_ROOT", ROOT)
 
-from app_skeleton.api.database_processor import _cli  # noqa: E402
+from omeia.api.database_processor import _cli  # noqa: E402
 
 if __name__ == "__main__":
     sys.argv = [sys.argv[0], "--all", "--refresh", *sys.argv[1:]]

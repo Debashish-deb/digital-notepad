@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import unittest
 
-from app_skeleton.api import document_library_service as svc
-from app_skeleton.api.library_taxonomy import describe_nav_scope, resolve_preset_from_nav
+from omeia.api import document_library_service as svc
+from omeia.api.library_taxonomy import describe_nav_scope, resolve_preset_from_nav
 
 
 class WetLabDocumentFiltersTest(unittest.TestCase):

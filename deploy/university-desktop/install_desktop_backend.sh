@@ -97,8 +97,8 @@ install_macos() {
   ensure_env_template "${ENV_FILE}" ""
 
   mkdir -p "${REPO_ROOT}/logs"
-  local PLIST_SRC="${REPO_DEPLOY}/launchd/com.app_skeleton.api.plist"
-  local PLIST_DEST="${HOME}/Library/LaunchAgents/com.app_skeleton.api.plist"
+  local PLIST_SRC="${REPO_DEPLOY}/launchd/com.omeia.api.plist"
+  local PLIST_DEST="${HOME}/Library/LaunchAgents/com.omeia.api.plist"
 
   if [[ -f "${PLIST_SRC}" ]]; then
     sed \
@@ -115,7 +115,7 @@ install_macos() {
   echo "  3. Quick run: ${REPO_DEPLOY}/run_api_dev.sh"
   echo "  4. Optional auto-start:"
   echo "       launchctl load ${PLIST_DEST}"
-  echo "       launchctl start com.app_skeleton.api"
+  echo "       launchctl start com.omeia.api"
   echo "  5. Optional TLS: brew install caddy && edit Caddyfile.example"
   echo "  6. Scheduled ingest: ${REPO_DEPLOY}/scheduled_ingest.sh (or launchd/cron)"
   echo ""

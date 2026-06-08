@@ -31,7 +31,7 @@ def run_search_qa_report() -> dict:
     # --- Migration verify ---
     try:
         import psycopg
-        from app_skeleton.api.supabase_config import postgres_conn
+        from omeia.api.supabase_config import postgres_conn
 
         with psycopg.connect(postgres_conn(), connect_timeout=15) as conn:
             with conn.cursor() as cur:
@@ -45,8 +45,8 @@ def run_search_qa_report() -> dict:
         results.append({"id": "SQL-141", "check": "search_query_log on Supabase", "status": f"FAIL — {exc}"})
 
     # --- SearchService direct ---
-    from app_skeleton.api.common import DB_CONN, llm_client, qdrant_client
-    from app_skeleton.api.search_service import SearchService
+    from omeia.api.common import DB_CONN, llm_client, qdrant_client
+    from omeia.api.search_service import SearchService
 
     svc = SearchService(db_conn=DB_CONN, qdrant=qdrant_client, llm=llm_client)
     user_admin = {"email": "qa-admin@omeia.test", "role": "admin"}
@@ -128,8 +128,8 @@ def run_search_qa_report() -> dict:
     # HTTP via TestClient (auth override)
     try:
         from fastapi.testclient import TestClient
-        from app_skeleton.api.main import app
-        from app_skeleton.security.auth import require_platform_user
+        from omeia.api.main import app
+        from omeia.security.auth import require_platform_user
 
         def _qa_user():
             return user_admin

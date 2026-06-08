@@ -1,2 +1,0 @@
-pipeline_run_code,pipeline_name,pipeline_version,git_commit,executor,project_code,dataset_name,started_at,finished_at,status,config_path,manifest_path,notes
-imageproc_SYNTH_001,image_processing,1.0.0,unknown,snakemake,SPACE,synthetic_demo,,,queued,configs/demo.yaml,manifests/pipeline_runs/demo.yaml,Synthetic placeholder

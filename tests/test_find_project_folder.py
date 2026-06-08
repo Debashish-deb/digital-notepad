@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from app_skeleton.api import paths
-from app_skeleton.api.project_processor import find_project_folder
+from omeia.api import paths
+from omeia.api.project_processor import find_project_folder
 
 
 @pytest.fixture()
@@ -32,7 +32,7 @@ def emt_folders(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
 
 def test_find_project_folder_prefers_richest_match(emt_folders, monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setattr(
-        "app_skeleton.api.project_processor._load_catalog",
+        "omeia.api.project_processor._load_catalog",
         lambda: {
             "EMT": {
                 "project_code": "EMT",

@@ -31,7 +31,7 @@ if [[ ! -x "$ROOT/.venv/bin/python3" && ! -x "$ROOT/.venv-local/bin/python3" ]];
   exit 1
 fi
 
-FRONTEND_DIR="$ROOT/apps/web"
+FRONTEND_DIR="$ROOT/web"
 if [[ ! -d "$FRONTEND_DIR/node_modules" ]]; then
   echo "--- npm install (first run) ---"
   (cd "$FRONTEND_DIR" && npm install)

@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 load_dotenv(ROOT / "configs" / ".env")
 load_dotenv()
 
-from app_skeleton.api.supabase_sync import (  # noqa: E402
+from omeia.api.supabase_sync import (  # noqa: E402
     sync_documents_to_supabase,
     supabase_hosted_password_set,
     supabase_sync_enabled,
