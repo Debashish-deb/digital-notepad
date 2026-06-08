@@ -1,0 +1,31 @@
+app_skeleton/api/main.py
+  s_d8ca0dcf385045::t_ebb1374b7b6d09 13
+  s_d8ca0dcf385045::t_a3e2a29d6490a2 28
+app_skeleton/api/image_streaming/image_streaming_service.py
+  s_d8ca0dcf385045::t_75b94f62a4eb06 122,124,127-143,145-146
+docs/LINUX_MEDIA_AND_DATA_PATHS.md
+  s_d8ca0dcf385045::t_9f52fed05eda90 1-59
+app_skeleton/api/document_library_service.py
+  s_d8ca0dcf385045::t_3d03659b5806ac 1236
+  s_d8ca0dcf385045::t_15ac418458297f 1200-1202,1206
+app_skeleton/api/image_streaming/constants.py
+  s_d8ca0dcf385045::t_10d69a6a2e281b 4-7
+app_skeleton/api/routers/lab_static.py
+  s_d8ca0dcf385045::t_aae2809e878787 1-46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9e7c02b31ecc12f19dd625256922b9b2c170f65a",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
