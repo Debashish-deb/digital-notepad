@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   fetchDocumentLibraryFacets,
   fetchDocumentLibraryStats,
@@ -46,6 +46,11 @@ export default function useDocumentLibrary({
   const [advancedOpen, setAdvancedOpen] = useState(false);
   const [listDetailExpanded, setListDetailExpanded] = useState(false);
   const [pinnedIds, setPinnedIds] = useState(() => loadPinnedIds());
+  const itemsLengthRef = useRef(0);
+
+  useEffect(() => {
+    itemsLengthRef.current = items.length;
+  }, [items.length]);
 
   useEffect(() => {
     const register = coverCtx?.setSubsectionSearch;
@@ -121,15 +126,17 @@ export default function useDocumentLibrary({
 
   useEffect(() => {
     let alive = true;
-    const isInitialLoad = offset === 0;
-    if (isInitialLoad) {
-      setLoading(true);
-    } else {
+    const hadItems = itemsLengthRef.current > 0;
+
+    if (offset > 0) {
       setLoadingMore(true);
-    }
-    if (isInitialLoad) {
+    } else if (hadItems) {
+      setIsRefreshing(true);
+    } else {
+      setLoading(true);
       setLoadError(null);
     }
+
     const params = { ...facetParams, offset, limit: DOCUMENT_LIBRARY_PAGE_SIZE };
     searchDocumentLibrary(params)
       .then((searchRes) => {
@@ -138,13 +145,19 @@ export default function useDocumentLibrary({
         rows = filterClientView(rows, systemView);
         setItems((prev) => (offset === 0 ? rows : [...prev, ...rows]));
         setTotal(systemView === 'recently_opened' || systemView === 'pinned' ? rows.length : searchRes.total || 0);
+        if (offset === 0) {
+          setLoadError(null);
+        }
       })
       .catch((err) => {
         if (!alive) return;
-        if (offset === 0) {
+        const isInitial = offset === 0 && !hadItems;
+        if (isInitial) {
           setItems([]);
           setTotal(0);
           setLoadError(err?.message || 'Could not load document library.');
+        } else if (offset === 0) {
+          setLoadError(err?.message || 'Could not refresh document library.');
         }
       })
       .finally(() => {
@@ -219,7 +232,6 @@ export default function useDocumentLibrary({
 
   const loadMore = useCallback(() => {
     if (loadingMore || loading || !hasMore) return;
-    setIsRefreshing(true);
     setOffset((prev) => prev + DOCUMENT_LIBRARY_PAGE_SIZE);
   }, [hasMore, loading, loadingMore]);
 

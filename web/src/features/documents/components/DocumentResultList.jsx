@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, useEffect, useCallback } from 'react';
+import { useMemo } from 'react';
 import {
   Database,
   FileCode,
@@ -106,35 +106,6 @@ export default function DocumentResultList({
   onSelect,
   listDetailExpanded = false,
 }) {
-  const scrollRef = useRef(null);
-  const [windowRange, setWindowRange] = useState({ start: 0, end: 40 });
-
-  const updateWindow = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el || viewMode === 'card') return;
-    const overscan = 8;
-    const start = Math.max(0, Math.floor(el.scrollTop / ROW_HEIGHT) - overscan);
-    const visible = Math.ceil(el.clientHeight / ROW_HEIGHT) + overscan * 2;
-    const end = Math.min(items.length, start + visible);
-    setWindowRange((prev) => (prev.start === start && prev.end === end ? prev : { start, end }));
-  }, [items.length, viewMode]);
-
-  useEffect(() => {
-    updateWindow();
-  }, [items.length, updateWindow]);
-
-  const visibleItems = useMemo(() => {
-    if (viewMode === 'card') return items.map((item, index) => ({ item, index }));
-    return items.slice(windowRange.start, windowRange.end).map((item, i) => ({
-      item,
-      index: windowRange.start + i,
-    }));
-  }, [items, viewMode, windowRange.end, windowRange.start]);
-
-  const topSpacer = viewMode === 'card' ? 0 : windowRange.start * ROW_HEIGHT;
-  const bottomSpacer = viewMode === 'card'
-    ? 0
-    : Math.max(0, (items.length - windowRange.end) * ROW_HEIGHT);
   const { gridTemplateColumns, startResize } = useResizableGridColumns(
     SFE_COLUMN_WIDTHS_KEY,
     SFE_LIST_COLUMNS,
@@ -202,13 +173,8 @@ export default function DocumentResultList({
           ))}
         </div>
       ) : null}
-      <div
-        className="sfe-virtual-scroll"
-        ref={scrollRef}
-        onScroll={updateWindow}
-      >
-        {topSpacer > 0 ? <div style={{ height: topSpacer }} aria-hidden /> : null}
-        {visibleItems.map(({ item, index: rowIndex }) => (
+      <div className="sfe-virtual-scroll">
+        {items.map((item, rowIndex) => (
           <div
             key={item.asset_id}
             className={`sfe-row${selectedId === item.asset_id ? ' is-selected' : ''}${rowIndex % 2 === 1 ? ' sfe-row--alt' : ''}`}
@@ -243,7 +209,6 @@ export default function DocumentResultList({
             ) : null}
           </div>
         ))}
-        {bottomSpacer > 0 ? <div style={{ height: bottomSpacer }} aria-hidden /> : null}
       </div>
     </div>
   );
