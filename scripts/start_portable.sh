@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
-# Backward-compat wrapper — use scripts/dev/start_portable.sh
-exec "$(dirname "$0")/dev/start_portable.sh" "$@"
+# Backward-compat — routes to start_linux.sh or start_mac.sh by OS
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+if [[ "$(uname -s)" == "Linux" ]]; then
+  exec "$ROOT/start_linux.sh" "$@"
+fi
+exec "$ROOT/start_mac.sh" "$@"

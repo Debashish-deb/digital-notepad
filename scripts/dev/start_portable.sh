@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
-# Portable launcher — Mac thin client today, same repo on Linux desktop tomorrow.
+# Backward-compat — use scripts/start_mac.sh or scripts/start_linux.sh
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-# shellcheck source=/dev/null
-source "$ROOT/scripts/network/portable_apply_env.sh"
-
-echo "Profile: ${OMEIA_DEPLOYMENT_PROFILE:-portable}"
-echo "Repo:    $OMEIA_REPO_ROOT"
-echo "Data:    $DATABASE_ROOT"
-exec "$ROOT/start.sh"
+if [[ "$(uname -s)" == "Linux" ]]; then
+  exec "$ROOT/scripts/dev/start_linux_desktop.sh" "$@"
+fi
+exec "$ROOT/scripts/dev/start_mac_thin_client.sh" "$@"
