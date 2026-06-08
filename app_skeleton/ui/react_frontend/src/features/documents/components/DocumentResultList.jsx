@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo } from 'react';
 import {
   Database,
   FileCode,
@@ -12,7 +12,6 @@ import { formatBytes } from '@/services/documentLibraryClient.js';
 import { smartDocumentTitle, documentTitleSubline } from '@/lib/smartDocumentTitle.js';
 import { useResizableGridColumns } from '@/lib/useResizableGridColumns.js';
 import {
-  CARD_HEIGHT,
   ROW_HEIGHT,
   SFE_COLUMN_WIDTHS_KEY,
   SFE_LIST_COLUMNS,
@@ -107,9 +106,6 @@ export default function DocumentResultList({
   onSelect,
   listDetailExpanded = false,
 }) {
-  const scrollRef = useRef(null);
-  const [scrollTop, setScrollTop] = useState(0);
-  const [viewportH, setViewportH] = useState(480);
   const { gridTemplateColumns, startResize } = useResizableGridColumns(
     SFE_COLUMN_WIDTHS_KEY,
     SFE_LIST_COLUMNS,
@@ -118,22 +114,6 @@ export default function DocumentResultList({
     () => ({ gridTemplateColumns }),
     [gridTemplateColumns],
   );
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return undefined;
-    const ro = new ResizeObserver(() => setViewportH(el.clientHeight || 480));
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  const rowH = viewMode === 'card' ? CARD_HEIGHT : ROW_HEIGHT;
-  const totalH = items.length * rowH;
-  const start = Math.max(0, Math.floor(scrollTop / rowH) - 4);
-  const visible = Math.ceil(viewportH / rowH) + 8;
-  const end = Math.min(items.length, start + visible);
-  const slice = items.slice(start, end);
-  const offsetY = start * rowH;
 
   if (!items.length) {
     return <div className="sfe-empty">No files match your filters.</div>;
@@ -193,50 +173,42 @@ export default function DocumentResultList({
           ))}
         </div>
       ) : null}
-      <div
-        className="sfe-virtual-scroll"
-        ref={scrollRef}
-        onScroll={(e) => setScrollTop(e.currentTarget.scrollTop)}
-      >
-        <div className="sfe-virtual-inner" style={{ height: totalH }}>
-          <div style={{ transform: `translateY(${offsetY}px)` }}>
-            {slice.map((item, rowIndex) => (
-              <div
-                key={item.asset_id}
-                className={`sfe-row${selectedId === item.asset_id ? ' is-selected' : ''}${(start + rowIndex) % 2 === 1 ? ' sfe-row--alt' : ''}`}
-                style={listDetailExpanded ? { ...rowGridStyle, height: ROW_HEIGHT } : { height: ROW_HEIGHT }}
-                onClick={() => onSelect(item)}
-                onKeyDown={(e) => e.key === 'Enter' && onSelect(item)}
-                role="button"
-                tabIndex={0}
-              >
-                <div className="sfe-col-cell sfe-col-cell--name">
-                  <div className="sfe-row-name-line">
-                    <FileListBullet item={item} selected={selectedId === item.asset_id} />
-                    <div className="sfe-row-name-copy">
-                      <div className="sfe-row-title">{smartDocumentTitle(item)}</div>
-                      {listDetailExpanded ? (
-                        <DocumentTitleSubline item={item} pathFallback={item.logical_path} />
-                      ) : null}
-                    </div>
-                  </div>
+      <div className="sfe-virtual-scroll">
+        {items.map((item, rowIndex) => (
+          <div
+            key={item.asset_id}
+            className={`sfe-row${selectedId === item.asset_id ? ' is-selected' : ''}${rowIndex % 2 === 1 ? ' sfe-row--alt' : ''}`}
+            style={listDetailExpanded ? { ...rowGridStyle, height: ROW_HEIGHT } : { height: ROW_HEIGHT }}
+            onClick={() => onSelect(item)}
+            onKeyDown={(e) => e.key === 'Enter' && onSelect(item)}
+            role="button"
+            tabIndex={0}
+          >
+            <div className="sfe-col-cell sfe-col-cell--name">
+              <div className="sfe-row-name-line">
+                <FileListBullet item={item} selected={selectedId === item.asset_id} />
+                <div className="sfe-row-name-copy">
+                  <div className="sfe-row-title">{smartDocumentTitle(item)}</div>
+                  {listDetailExpanded ? (
+                    <DocumentTitleSubline item={item} pathFallback={item.logical_path} />
+                  ) : null}
                 </div>
-                {listDetailExpanded ? (
-                  <>
-                    <span className="sfe-row-category sfe-col-cell">
-                      {item.professional_role_label || prettifyCategory(item.project_category_original || item.category) || item.domain || '—'}
-                    </span>
-                    <span className="sfe-col-cell">{formatBytes(item.size_bytes)}</span>
-                    <span className="sfe-col-cell">{item.modified_at?.slice(0, 10) || '—'}</span>
-                    <span className="sfe-col-cell sfe-col-cell--status">
-                      <StatusBadges item={item} />
-                    </span>
-                  </>
-                ) : null}
               </div>
-            ))}
+            </div>
+            {listDetailExpanded ? (
+              <>
+                <span className="sfe-row-category sfe-col-cell">
+                  {item.professional_role_label || prettifyCategory(item.project_category_original || item.category) || item.domain || '—'}
+                </span>
+                <span className="sfe-col-cell">{formatBytes(item.size_bytes)}</span>
+                <span className="sfe-col-cell">{item.modified_at?.slice(0, 10) || '—'}</span>
+                <span className="sfe-col-cell sfe-col-cell--status">
+                  <StatusBadges item={item} />
+                </span>
+              </>
+            ) : null}
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );

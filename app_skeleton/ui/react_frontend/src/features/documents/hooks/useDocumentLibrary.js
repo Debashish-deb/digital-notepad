@@ -33,6 +33,7 @@ export default function useDocumentLibrary({
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [selected, setSelected] = useState(null);
   const [viewMode, setViewMode] = useState('table');
   const [sort, setSort] = useState('filename');
@@ -95,7 +96,12 @@ export default function useDocumentLibrary({
 
   useEffect(() => {
     let alive = true;
-    setLoading(true);
+    const isInitialLoad = items.length === 0;
+    if (isInitialLoad) {
+      setLoading(true);
+    } else {
+      setIsRefreshing(true);
+    }
     setLoadError(null);
     Promise.all([
       searchDocumentLibrary(searchParams),
@@ -111,11 +117,17 @@ export default function useDocumentLibrary({
       })
       .catch((err) => {
         if (!alive) return;
-        setItems([]);
-        setTotal(0);
+        if (isInitialLoad) {
+          setItems([]);
+          setTotal(0);
+        }
         setLoadError(err?.message || 'Could not load document library.');
       })
-      .finally(() => { if (alive) setLoading(false); });
+      .finally(() => {
+        if (!alive) return;
+        setLoading(false);
+        setIsRefreshing(false);
+      });
     return () => { alive = false; };
   }, [searchParams, systemView]);
 
@@ -197,6 +209,7 @@ export default function useDocumentLibrary({
     items,
     total,
     loading,
+    isRefreshing,
     selected,
     viewMode,
     setViewMode,

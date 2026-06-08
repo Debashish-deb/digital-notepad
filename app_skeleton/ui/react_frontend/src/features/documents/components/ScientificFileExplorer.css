@@ -704,12 +704,25 @@
 
 .sfe-list-controls__meta {
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .sfe-list-controls__count {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.01em;
+  color: var(--text-muted);
+}
+
+.sfe-list-controls__refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
   color: var(--text-muted);
 }
 
@@ -1050,6 +1063,11 @@
 .sfe-virtual-inner {
   position: relative;
   width: 100%;
+}
+
+.sfe-row:not(.sfe-row--header) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 52px;
 }
 
 .sfe-row {

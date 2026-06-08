@@ -57,6 +57,7 @@ export default function ScientificFileExplorer({
     items,
     total,
     loading,
+    isRefreshing,
     selected,
     viewMode,
     setViewMode,
@@ -164,8 +165,16 @@ export default function ScientificFileExplorer({
             <div className="sfe-list-controls">
               <p className="sfe-list-controls__meta">
                 <span className="sfe-list-controls__count">
-                  {loading ? 'Loading…' : `${total.toLocaleString()} results`}
+                  {loading && !items.length
+                    ? 'Loading…'
+                    : `${total.toLocaleString()} results`}
                 </span>
+                {isRefreshing ? (
+                  <span className="sfe-list-controls__refresh" aria-live="polite">
+                    <Loader2 className="spin-inline" size={12} aria-hidden />
+                    Updating…
+                  </span>
+                ) : null}
               </p>
               <div className="sfe-list-controls__tools" role="toolbar" aria-label="List options">
                 <label className="sfe-list-controls__sort">
@@ -208,7 +217,7 @@ export default function ScientificFileExplorer({
           </div>
 
           <div className="sfe-list-section sfe-list-section--files">
-            {loading ? (
+            {loading && !items.length ? (
               <div className="sfe-loading"><Loader2 className="spin-inline" size={20} /> Loading files…</div>
             ) : (
               <DocumentResultList

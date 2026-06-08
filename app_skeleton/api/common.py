@@ -14,6 +14,8 @@ import logging
 
 import subprocess
 
+import time
+
 from contextlib import asynccontextmanager
 
 from datetime import datetime
@@ -286,7 +288,22 @@ def project_catalog_coverage() -> dict[str, Any]:
         "needs_confirmation": needs,
     }
 
-def fetch_projects_unified() -> List[Dict[str, Any]]:
+_PROJECTS_UNIFIED_CACHE_TTL_SEC = max(
+    30,
+    int(os.getenv("PROJECTS_UNIFIED_CACHE_TTL_SEC", "45") or 45),
+)
+_projects_unified_cache: Optional[tuple[float, List[Dict[str, Any]]]] = None
+
+
+def _catalog_only_projects() -> List[Dict[str, Any]]:
+    catalog = load_projects_catalog()
+    return [
+        {**p, "project_id": f"cat-{p.get('project_index', idx)}"}
+        for idx, p in enumerate(catalog, start=1)
+    ]
+
+
+def _fetch_projects_unified_uncached() -> List[Dict[str, Any]]:
     catalog = load_projects_catalog()
     try:
         with psycopg.connect(DB_CONN, connect_timeout=5) as conn:
@@ -302,49 +319,70 @@ def fetch_projects_unified() -> List[Dict[str, Any]]:
                     ORDER BY p.project_code;
                 """)
                 rows = cur.fetchall()
-                if rows:
-                    result = []
-                    for r in rows:
-                        pid = r[0]
-                        cur.execute("""
-                            SELECT r.full_name, pm.role
-                            FROM platform.project_member pm
-                            JOIN platform.researcher r ON pm.researcher_id = r.researcher_id
-                            WHERE pm.project_id = %s;
-                        """, (pid,))
-                        members = [{"name": row[0], "role": row[1]} for row in cur.fetchall()]
-                        db_proj = {
-                            "project_id": str(pid),
-                            "project_code": r[1],
-                            "project_name": r[2],
-                            "disease_focus": r[3],
-                            "principal_investigator": r[4],
-                            "project_lead": r[5],
-                            "start_date": str(r[6]) if r[6] else None,
-                            "end_date": str(r[7]) if r[7] else None,
-                            "status": r[8],
-                            "project_short_title": r[9] or r[1],
-                            "research_question": r[10] or "",
-                            "project_type": r[11] or "spatial_profiling",
-                            "priority": r[12] or "medium",
-                            "collaborators": r[13] or [],
-                            "ethics_approval_reference": r[14] or "",
-                            "current_blockers": r[15] or "",
-                            "next_actions": r[16] or "",
-                            "project_summary": r[17] or "",
-                            "latest_update": r[18] or "",
-                            "members": members,
-                        }
-                        result.append(merge_with_catalog(db_proj))
-                    seen = {p["project_code"] for p in result}
-                    for cat_proj in catalog:
-                        if cat_proj["project_code"] not in seen:
-                            result.append({**cat_proj, "project_id": f"cat-{cat_proj['project_index']}"})
-                    result.sort(key=lambda p: (p.get("project_index", 999), p.get("project_code", "")))
-                    return result
+                if not rows:
+                    return _catalog_only_projects()
+
+                project_ids = [r[0] for r in rows]
+                members_by_project: Dict[Any, List[Dict[str, str]]] = {pid: [] for pid in project_ids}
+                cur.execute("""
+                    SELECT pm.project_id, r.full_name, pm.role
+                    FROM platform.project_member pm
+                    JOIN platform.researcher r ON pm.researcher_id = r.researcher_id
+                    WHERE pm.project_id = ANY(%s)
+                    ORDER BY pm.project_id, r.full_name;
+                """, (project_ids,))
+                for project_id, full_name, role in cur.fetchall():
+                    members_by_project.setdefault(project_id, []).append(
+                        {"name": full_name, "role": role}
+                    )
+
+                result = []
+                for r in rows:
+                    pid = r[0]
+                    db_proj = {
+                        "project_id": str(pid),
+                        "project_code": r[1],
+                        "project_name": r[2],
+                        "disease_focus": r[3],
+                        "principal_investigator": r[4],
+                        "project_lead": r[5],
+                        "start_date": str(r[6]) if r[6] else None,
+                        "end_date": str(r[7]) if r[7] else None,
+                        "status": r[8],
+                        "project_short_title": r[9] or r[1],
+                        "research_question": r[10] or "",
+                        "project_type": r[11] or "spatial_profiling",
+                        "priority": r[12] or "medium",
+                        "collaborators": r[13] or [],
+                        "ethics_approval_reference": r[14] or "",
+                        "current_blockers": r[15] or "",
+                        "next_actions": r[16] or "",
+                        "project_summary": r[17] or "",
+                        "latest_update": r[18] or "",
+                        "members": members_by_project.get(pid, []),
+                    }
+                    result.append(merge_with_catalog(db_proj))
+                seen = {p["project_code"] for p in result}
+                for cat_proj in catalog:
+                    if cat_proj["project_code"] not in seen:
+                        result.append({**cat_proj, "project_id": f"cat-{cat_proj['project_index']}"})
+                result.sort(key=lambda p: (p.get("project_index", 999), p.get("project_code", "")))
+                return result
     except Exception as exc:
         LOGGER.warning("Project DB lookup failed, using catalog fallback: %s", exc)
-    return [{**p, "project_id": f"cat-{p.get('project_index', idx)}"} for idx, p in enumerate(catalog, start=1)]
+    return _catalog_only_projects()
+
+
+def fetch_projects_unified() -> List[Dict[str, Any]]:
+    global _projects_unified_cache
+    now = time.time()
+    if _projects_unified_cache is not None:
+        cached_at, cached_data = _projects_unified_cache
+        if now - cached_at < _PROJECTS_UNIFIED_CACHE_TTL_SEC:
+            return cached_data
+    result = _fetch_projects_unified_uncached()
+    _projects_unified_cache = (now, result)
+    return result
 
 class QuestionRequest(BaseModel):
     question: str

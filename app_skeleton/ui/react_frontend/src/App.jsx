@@ -2,6 +2,7 @@ import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import Sidebar from '@/shared/layout/Sidebar';
 import ModuleShell from '@/shared/layout/ModuleShell';
+import ScreenCache from '@/shared/layout/ScreenCache';
 import ErrorBoundary from '@/shared/layout/ErrorBoundary';
 import DashboardScreen from '@/pages/DashboardScreen';
 import LoginScreen from '@/pages/LoginScreen.jsx';
@@ -383,13 +384,17 @@ function App() {
     }
   }, []);
 
-  const refreshReferenceData = useCallback(async (signal, phase = 'refreshing') => {
-    setLoadState({ phase });
+  const refreshReferenceData = useCallback(async (signal, phase = 'idle') => {
+    if (phase === 'refreshing') {
+      setLoadState({ phase: 'refreshing' });
+    }
     try {
       await fetchProjects(signal);
       setLoadState({ phase: 'ready' });
     } catch (err) {
-      setLoadState({ phase: 'warning' });
+      if (phase === 'refreshing') {
+        setLoadState({ phase: 'warning' });
+      }
     }
   }, [fetchProjects]);
 
@@ -689,10 +694,27 @@ function App() {
   }, [navMain, navSub]);
 
   useEffect(() => {
+    if (!authReady) return undefined;
+    const canFetchProjects =
+      !firebaseAuthEnabled || authDisabled || Boolean(authToken) || isAuthenticated;
+    if (!canFetchProjects) return undefined;
+
     const controller = new AbortController();
-    refreshReferenceData(controller.signal, 'loading');
+    refreshReferenceData(controller.signal, 'idle');
     return () => controller.abort();
-  }, [refreshReferenceData]);
+  }, [
+    authReady,
+    firebaseAuthEnabled,
+    authDisabled,
+    authToken,
+    isAuthenticated,
+    refreshReferenceData,
+  ]);
+
+  useEffect(() => {
+    if (!authReady) return;
+    import('@/pages/ProjectsScreen');
+  }, [authReady]);
 
   const handleModuleSubChange = useCallback(
     (sub) => handleNavChange(navMain, sub),
@@ -712,6 +734,26 @@ function App() {
     localizedSub?.label,
     localizedSub?.description,
   ]);
+
+  const screenCacheKey = useMemo(() => {
+    let key = `${navMain}:${navSub}`;
+    if (hubNestedSection) key += `:${hubNestedSection}`;
+    if (navMain === 'overview' && navSub === 'social') key += `:${overviewSocialSub}`;
+    if (
+      navMain === 'projects_data' &&
+      selectedProject &&
+      ['portfolio', 'notebook', 'decisions'].includes(navSub)
+    ) {
+      key += `:${selectedProject}`;
+    }
+    return key;
+  }, [navMain, navSub, hubNestedSection, overviewSocialSub, selectedProject]);
+
+  const cachedScreenBody = (
+    <ScreenCache cacheKey={screenCacheKey} isActive>
+      <Suspense fallback={<ScreenFallback />}>{screenBody}</Suspense>
+    </ScreenCache>
+  );
 
   const requireLogin = firebaseAuthEnabled && !authDisabled;
   const hasFirebaseSession = Boolean(authUser || authToken);
@@ -758,10 +800,10 @@ function App() {
       compact={navMain === 'computational'}
       landing
     >
-      <Suspense fallback={<ScreenFallback />}>{screenBody}</Suspense>
+      {cachedScreenBody}
     </ModuleShell>
   ) : (
-    <Suspense fallback={<ScreenFallback />}>{screenBody}</Suspense>
+    cachedScreenBody
   );
 
   return (

@@ -1,42 +1,46 @@
 #!/usr/bin/env bash
-# Vite 8 requires Node >= 20.19 or >= 22.12. Cubbli ships 20.11 — use nvm when available.
+# Vite 8 requires Node >= 20.19 or >= 22.12. Pin nvm to 22.14.0 (not generic "22").
+# Sourced from start.sh — must NOT use "return" (that exits the parent start.sh).
 set -euo pipefail
+
+VITE_MIN_NODE="${VITE_MIN_NODE:-22.14.0}"
 
 _die() {
   echo "$@" >&2
-  (return 1 2>/dev/null) || exit 1
+  exit 1
 }
 
 _node_ok() {
   command -v node >/dev/null 2>&1 || return 1
-  node -e 'const v=process.versions.node.split(".").map(Number); const ok=(v[0]>22||(v[0]===22&&v[1]>=12)||(v[0]===20&&v[1]>=19)); process.exit(ok?0:1)' 2>/dev/null
+  node -e 'const p=process.versions.node.split(".").map(Number);const m=p[0]||0,n=p[1]||0;process.exit(m>22||(m===22&&n>=12)||(m===20&&n>=19)?0:1)'
 }
 
-if _node_ok; then
-  (return 0 2>/dev/null) || exit 0
-fi
-
-if [[ -s "${NVM_DIR:-$HOME/.nvm}/nvm.sh" ]]; then
+_activate_nvm_node() {
+  export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+  [[ -s "$NVM_DIR/nvm.sh" ]] || return 1
   # shellcheck disable=SC1091
-  . "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
-  if ! nvm use 22 2>/dev/null; then
-    echo "Installing Node.js 22 via nvm (Vite 8 requires >=20.19 or >=22.12)..."
-    nvm install 22
-    nvm use 22
+  . "$NVM_DIR/nvm.sh"
+  if ! nvm use "$VITE_MIN_NODE" >/dev/null 2>&1; then
+    echo "Installing Node.js ${VITE_MIN_NODE} via nvm (Vite 8 requires >=20.19 or >=22.12)..."
+    nvm install "$VITE_MIN_NODE"
+    nvm use "$VITE_MIN_NODE"
   fi
-fi
+  nvm alias default "$VITE_MIN_NODE" 2>/dev/null || true
+  hash -r
+  export PATH="${NVM_DIR}/versions/node/v${VITE_MIN_NODE}/bin:${PATH}"
+}
 
-if _node_ok; then
-  echo "Using Node $(node -v) for Vite"
-  (return 0 2>/dev/null) || exit 0
-fi
+_activate_nvm_node || true
 
-_die "ERROR: Node $(node -v 2>/dev/null || echo missing) is too old for Vite 8.
+if ! _node_ok; then
+  _die "ERROR: Node $(node -v 2>/dev/null || echo missing) is too old for Vite 8 (need >=20.19 or >=22.12).
 
-On Linux (one-time):
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-  source ~/.nvm/nvm.sh
-  nvm install 22
-  nvm use 22
+Fix:
+  export NVM_DIR=\"\$HOME/.nvm\" && . \"\$NVM_DIR/nvm.sh\"
+  nvm install ${VITE_MIN_NODE} && nvm use ${VITE_MIN_NODE}
+  nvm alias default ${VITE_MIN_NODE}
   cd app_skeleton/ui/react_frontend && npm install
   ./scripts/start_linux.sh"
+fi
+
+echo "Using Node $(node -v) for Vite"

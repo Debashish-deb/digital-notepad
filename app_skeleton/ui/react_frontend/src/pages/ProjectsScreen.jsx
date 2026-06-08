@@ -1,4 +1,6 @@
 import {
+  Suspense,
+  lazy,
   useCallback,
   useEffect,
   useMemo,
@@ -27,9 +29,17 @@ import './ProjectsScreen.css';
 import ProjectBrandMark from '@/features/projects/components/ProjectBrandMark.jsx';
 import { useModuleShellCover } from '@/contexts/ModuleShellCoverContext.jsx';
 
-import WorkspaceScreen from './WorkspaceScreen';
-import NotebookWikiScreen from './NotebookWikiScreen';
-import DecisionsScreen from './DecisionsScreen';
+const WorkspaceScreen = lazy(() => import('./WorkspaceScreen'));
+const NotebookWikiScreen = lazy(() => import('./NotebookWikiScreen'));
+const DecisionsScreen = lazy(() => import('./DecisionsScreen'));
+
+function SubScreenFallback() {
+  return (
+    <div className="panel module-loading-fallback" role="status" aria-live="polite">
+      Loading…
+    </div>
+  );
+}
 import ProjectPortfolioContextBar from '@/features/projects/components/portfolio/ProjectPortfolioContextBar.jsx';
 import '@/features/projects/components/portfolio/ProjectPortfolioIntegrated.css';
 import { PROJECT_CATEGORIES } from '@/data/projectsCatalog.js';
@@ -893,15 +903,17 @@ export default function ProjectsScreen({
 
   if (selectedProject) {
     return (
-      <WorkspaceScreen
-        projectCode={selectedProject}
-        onBack={handleBackFromWorkspace}
-        API_URL={API_URL}
-        dbProjects={dbProjects}
-        initialTab={workspaceInitialTab}
-        onNavigate={onNavigate}
-        onSelectProject={handleOpenProject}
-      />
+      <Suspense fallback={<SubScreenFallback />}>
+        <WorkspaceScreen
+          projectCode={selectedProject}
+          onBack={handleBackFromWorkspace}
+          API_URL={API_URL}
+          dbProjects={dbProjects}
+          initialTab={workspaceInitialTab}
+          onNavigate={onNavigate}
+          onSelectProject={handleOpenProject}
+        />
+      </Suspense>
     );
   }
 
@@ -916,14 +928,16 @@ export default function ProjectsScreen({
           onOpenWorkspace={handleOpenProject}
           onBrowsePortfolio={() => onNavigate?.('projects_data', 'portfolio')}
         />
-        <NotebookWikiScreen
-          dbProjects={dbProjects}
-          API_URL={API_URL}
-          hideHeader
-          projectCode={focusProject || null}
-          onNavigate={onNavigate}
-          onSelectProject={handleOpenProject}
-        />
+        <Suspense fallback={<SubScreenFallback />}>
+          <NotebookWikiScreen
+            dbProjects={dbProjects}
+            API_URL={API_URL}
+            hideHeader
+            projectCode={focusProject || null}
+            onNavigate={onNavigate}
+            onSelectProject={handleOpenProject}
+          />
+        </Suspense>
       </div>
     );
   }
@@ -939,15 +953,17 @@ export default function ProjectsScreen({
           onOpenWorkspace={handleOpenProject}
           onBrowsePortfolio={() => onNavigate?.('projects_data', 'portfolio')}
         />
-        <DecisionsScreen
-          dbProjects={dbProjects}
-          API_URL={API_URL}
-          hideHeader
-          projectCode={focusProject || null}
-          onOpenProject={handleOpenProject}
-          onNavigate={onNavigate}
-          onSelectProject={handleOpenProject}
-        />
+        <Suspense fallback={<SubScreenFallback />}>
+          <DecisionsScreen
+            dbProjects={dbProjects}
+            API_URL={API_URL}
+            hideHeader
+            projectCode={focusProject || null}
+            onOpenProject={handleOpenProject}
+            onNavigate={onNavigate}
+            onSelectProject={handleOpenProject}
+          />
+        </Suspense>
       </div>
     );
   }

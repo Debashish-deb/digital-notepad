@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
-# Linux desktop — one command: Docker stack + FastAPI + Vite (single terminal).
+# Linux desktop — ONE script: Docker + FastAPI + Vite (single terminal, Ctrl+C stops all).
+#
+# Prefer: ./start_linux.sh   or   ./scripts/start_linux.sh
 #
 # Usage:
-#   ./scripts/dev/start_linux_desktop.sh           # daily start
-#   ./scripts/dev/start_linux_desktop.sh --setup   # first boot: models + post-stack hints
-#   ./scripts/dev/start_linux_desktop.sh --api-only
+#   ./start_linux.sh                    # daily start
+#   ./start_linux.sh --setup            # first boot: models + post-stack hints
+#   ./start_linux.sh --prod             # production UI on :8000 (no Vite dev server)
+#   ./start_linux.sh --api-only         # Docker + API only
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -24,11 +27,17 @@ for arg in "$@"; do
     --prod) export OMEIA_FRONTEND_MODE=prod ;;
     --dev) export OMEIA_FRONTEND_MODE=dev ;;
     -h|--help)
-      echo "Usage: $0 [--setup] [--api-only] [--prod|--dev]"
-      echo "  --setup    Run full docker stack script (Ollama model pulls, token gen)"
-      echo "  --api-only FastAPI only (no Vite / no prod UI build)"
-      echo "  --prod     OMEIA_FRONTEND_MODE=prod (npm build + serve dist on :8000)"
-      echo "  --dev      OMEIA_FRONTEND_MODE=dev (Vite on :5173, default)"
+      echo "OMEIA Linux — single launcher (Docker + API + frontend)"
+      echo ""
+      echo "Usage: ./start_linux.sh [options]"
+      echo ""
+      echo "  (no flags)  Docker compose up + FastAPI :8000 + Vite :5173"
+      echo "  --setup     First boot: full stack + Ollama model pulls"
+      echo "  --api-only  Docker + FastAPI only"
+      echo "  --prod      Build frontend; serve UI from API on :8000"
+      echo "  --dev       Vite dev server on :5173 (default)"
+      echo ""
+      echo "Tailscale: http://\$(tailscale ip -4):5173"
       exit 0
       ;;
   esac
@@ -47,6 +56,20 @@ if [[ -f "$ROOT/configs/.env" ]]; then
 fi
 
 export OMEIA_DEPLOYMENT_PROFILE="${OMEIA_DEPLOYMENT_PROFILE:-linux_desktop}"
+export VITE_MIN_NODE="${VITE_MIN_NODE:-22.14.0}"
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  # shellcheck disable=SC1091
+  . "$NVM_DIR/nvm.sh"
+  if ! nvm use "$VITE_MIN_NODE" 2>/dev/null; then
+    echo "Installing Node ${VITE_MIN_NODE} for Vite 8..."
+    nvm install "$VITE_MIN_NODE"
+    nvm use "$VITE_MIN_NODE"
+  fi
+  nvm alias default "$VITE_MIN_NODE" 2>/dev/null || true
+  hash -r
+  export PATH="${NVM_DIR}/versions/node/v${VITE_MIN_NODE}/bin:${PATH}"
+fi
 export DOCKER_LOCAL=true
 export DOCKER_AUTO_START=true
 export OLLAMA_BASE_URL="${OLLAMA_BASE_URL:-http://127.0.0.1:11434/v1}"
@@ -87,7 +110,22 @@ python3 "$ROOT/scripts/ops/check_linux_sync_health.py" || echo "WARN: sync healt
 
 if [[ "$OMEIA_FRONTEND_MODE" == "prod" ]]; then
   echo "--- FastAPI + production frontend ---"
+  UI_URL="http://$(hostname -I 2>/dev/null | awk '{print $1}'):8000"
 else
   echo "--- FastAPI + Vite dev ---"
+  UI_URL="http://$(hostname -I 2>/dev/null | awk '{print $1}'):5173"
 fi
+
+echo ""
+echo "=== Full stack starting (one terminal — Ctrl+C stops API + UI) ==="
+echo "  Docker:   postgres :5432, qdrant :6333, ollama :11434"
+echo "  API:      http://127.0.0.1:8000/health"
+if [[ "$OMEIA_FRONTEND_MODE" == "prod" ]]; then
+  echo "  Frontend: ${UI_URL} (production build on :8000)"
+else
+  echo "  Frontend: ${UI_URL} (Vite dev :5173)"
+  echo "  Node:     $(node -v 2>/dev/null || echo 'missing — install nvm + Node 22.14.0')"
+fi
+echo ""
+
 exec "$ROOT/start.sh"

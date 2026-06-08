@@ -139,6 +139,7 @@ else
   # shellcheck disable=SC1091
   source "$PROJECT_ROOT/scripts/dev/ensure_node_for_vite.sh"
   cd "$FRONTEND_DIR" || exit 1
+  echo "Starting Vite (Node $(node -v), npm $(npm -v))..."
   npm run dev -- --host 0.0.0.0 --port 5173 --strictPort &
   FRONTEND_PID=$!
   wait $BACKEND_PID $FRONTEND_PID
