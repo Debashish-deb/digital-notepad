@@ -1,0 +1,19 @@
+web/src/features/documents/components/DocumentFilterPanel.jsx
+  s_d8ca0dcf385045::t_5a2e6c5846b59f 200-201
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9fb5efb1bd616ba12f48339ad74425f63ff5d64e",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
