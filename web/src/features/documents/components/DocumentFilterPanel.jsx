@@ -119,19 +119,6 @@ function TaxonomyFilterRail({
     [facet.category],
   );
 
-  const subcategoryChipItems = useMemo(
-    () => Object.entries(subcategoryFacet)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 14)
-      .map(([id, count]) => ({
-        kind: 'subcategory',
-        id,
-        label: prettifyCategory(id),
-        count,
-      })),
-    [subcategoryFacet],
-  );
-
   const scopedBaseFilters = useMemo(
     () => Object.fromEntries(
       Object.entries(initialFilters).filter(([, value]) => value != null && value !== ''),
@@ -185,14 +172,6 @@ function TaxonomyFilterRail({
     [categoryChipItems],
   );
 
-  const subcategoryMapChips = useMemo(
-    () => subcategoryChipItems.map((chip) => ({
-      ...chip,
-      filter: { category: filters.category, subcategory: chip.id },
-    })),
-    [subcategoryChipItems, filters.category],
-  );
-
   const hasScopeMap = scopeChipItems.length > 0;
   const allSubcategoryChipItems = useMemo(
     () => Object.entries(facet.subcategory || {})
@@ -218,8 +197,8 @@ function TaxonomyFilterRail({
     [allSubcategoryChipItems, filters.category],
   );
 
-  const showCategoryMap = categoryMapChips.length > 0;
-  const showSubcategoryMap = allSubcategoryMapChips.length > 0;
+  const showCategoryMap = !hideScopeFilters && categoryMapChips.length > 0;
+  const showSubcategoryMap = !hideScopeFilters && allSubcategoryMapChips.length > 0;
 
   if (!hasScopeMap && !showCategoryMap && !showSubcategoryMap) return null;
 
