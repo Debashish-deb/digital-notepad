@@ -1,0 +1,44 @@
+web/src/features/ai-assistant/styles/AiAssistantChat.css
+  s_d8ca0dcf385045::t_a8c3a22f762bf6 1487-1831,1834-1842
+web/src/features/ai-assistant/components/AgentCategorySelector.jsx
+  s_d8ca0dcf385045::t_7d68e4504571fa 77-125
+web/src/features/ai-assistant/styles/AiAssistant3D.css
+  s_d8ca0dcf385045::t_fa2858d999c65f 1451-1458,1460-1490
+web/src/features/ai-assistant/components/ChatWidget.jsx
+  s_d8ca0dcf385045::t_c3ae5152e6b593 68-75
+  s_d8ca0dcf385045::t_72e2b0b43a5044 51-52
+  s_d8ca0dcf385045::t_a9e7ed7679ec17 485-486
+  s_d8ca0dcf385045::t_27cd13fed6eee6 1295-1314
+  s_d8ca0dcf385045::t_75a13ab152f505 1
+  s_d8ca0dcf385045::t_be63c21abb4d08 376,378,387,390,393,399,408
+  s_d8ca0dcf385045::t_6fdecb25a69a51 1624-1635
+  s_d8ca0dcf385045::t_d143c97f85eefe 1153
+  s_d8ca0dcf385045::t_66634327950dc0 227,229,232-246
+  s_d8ca0dcf385045::t_999687915b382c 1144-1152,1154-1174
+  s_d8ca0dcf385045::t_9556872207abe5 1272-1279
+  s_d8ca0dcf385045::t_72581b19291a7f 1058-1111
+web/src/pages/AiLabAssistantScreen.jsx
+  s_d8ca0dcf385045::t_0ecff39b68db67 204-210,212-215,217-236
+web/src/features/ai-assistant/components/AssistantScopeBar.jsx
+  s_d8ca0dcf385045::t_7435dbe4b872c1 1-63
+web/src/features/ai-assistant/components/AssistantSourcePreview.jsx
+  s_d8ca0dcf385045::t_477180750d30e7 1-108
+web/src/features/ai-assistant/components/AssistantSourcesPanel.jsx
+  s_d8ca0dcf385045::t_6e5cdd2c43fc44 1-110
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "72d50e97c67e5789143ba4e2d5bd3c06b84ee01f",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
