@@ -2,7 +2,9 @@
 # Run on Linux workstation — starts OMEIA Docker stack (Ollama, Postgres, Qdrant).
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+# shellcheck disable=SC1091
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../lib/common.sh"
+ROOT="${OMEIA_REPO_ROOT:?OMEIA_REPO_ROOT unset}"
 cd "$ROOT"
 
 if ! command -v docker >/dev/null 2>&1; then
@@ -16,7 +18,8 @@ if [[ -f "$ROOT/configs/.env" && ! -f "$ROOT/.env" ]]; then
   ln -sf configs/.env "$ROOT/.env"
   echo "Linked .env -> configs/.env for docker compose"
 fi
-docker compose up -d
+COMPOSE_FILE="$ROOT/infra/compose/docker-compose.yml"
+docker compose -f "$COMPOSE_FILE" up -d
 
 if [[ -x "$ROOT/scripts/llm/generate_ollama_token.sh" ]] && ! grep -q '^OLLAMA_INTERNAL_TOKEN=.\+' "$ROOT/configs/.env" 2>/dev/null; then
   echo "=== Generating Ollama proxy token ==="
@@ -36,7 +39,7 @@ fi
 
 echo ""
 echo "=== Stack ready ==="
-docker compose ps
+docker compose -f "$COMPOSE_FILE" ps
 echo ""
 echo "On this Linux host, run post-setup (migrations + reindex + LLM smoke test):"
 echo "  ./scripts/docker/linux_post_stack_setup.sh"

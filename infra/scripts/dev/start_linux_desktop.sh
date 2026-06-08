@@ -99,8 +99,9 @@ if [[ "$FULL_SETUP" == true ]]; then
   export DOCKER_COMPOSE_STARTED=true
 else
   echo "--- Docker stack (quick) ---"
-  docker compose up -d
-  docker compose ps
+  COMPOSE_FILE="$ROOT/infra/compose/docker-compose.yml"
+  docker compose -f "$COMPOSE_FILE" up -d
+  docker compose -f "$COMPOSE_FILE" ps
   export DOCKER_COMPOSE_STARTED=true
 fi
 
