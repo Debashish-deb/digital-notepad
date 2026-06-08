@@ -15,6 +15,7 @@ if [[ -z "${OMEIA_LIB_COMMON_LOADED:-}" ]]; then
       export OMEIA_REPO_ROOT="$(cd "${OMEIA_SCRIPTS_ROOT}/../.." && pwd)"
     fi
   fi
+  export OMEIA_REPO_ROOT
 
   omeia_load_env() {
     local env_file="${1:-${OMEIA_REPO_ROOT}/configs/.env}"

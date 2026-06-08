@@ -10,7 +10,9 @@
 #   ./start_linux.sh --api-only         # Docker + API only
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+# shellcheck disable=SC1091
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../lib/common.sh"
+ROOT="${OMEIA_REPO_ROOT:?OMEIA_REPO_ROOT unset — cd to repo root first}"
 cd "$ROOT"
 
 if [[ "$(uname -s)" != "Linux" ]]; then
