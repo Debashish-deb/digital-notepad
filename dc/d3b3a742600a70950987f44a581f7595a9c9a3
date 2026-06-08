@@ -1,0 +1,19 @@
+infra/scripts/dev/start_linux_desktop.sh
+  s_d8ca0dcf385045::t_49d69b400af4b9 96-105,110-114,118-126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "dcd3b3a742600a70950987f44a581f7595a9c9a3",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
