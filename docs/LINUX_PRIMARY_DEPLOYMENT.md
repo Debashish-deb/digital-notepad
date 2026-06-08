@@ -13,7 +13,7 @@ OMEIA runs **entirely on the Linux workstation**. Mac is a **browser client only
 
 ## Your Tailscale setup (already done)
 
-- Linux: `dx9-3049-11090` @ **`100.80.231.55`**
+- Linux workstation @ **`100.x.x.x`** (Tailscale IP)
 - Browser: **http://100.80.231.55:5173**
 - Mac `TAILSCALE_LINUX_IP=100.80.231.55` in `configs/.env`
 
@@ -24,7 +24,7 @@ See **`docs/YOUR_SETUP.md`** for the single canonical workflow (avoid re-asking 
 **Mac:**
 
 ```bash
-cd /Users/debashishdeb/Downloads/OMEIA-AI
+cd /path/to/OMEIA-AI
 ./scripts/deploy/mac_push_to_linux.sh --git-only
 ```
 
@@ -40,7 +40,7 @@ Tailscale HTTP does not rsync files. Use **Linux terminal**, USB, or:
 
 ```bash
 # Mac
-tailscale file cp -r /Users/debashishdeb/Downloads/OMEIA-database debdeba@dx9-3049-11090:
+tailscale file cp -r /path/to/OMEIA-database labuser@<linux-hostname>:
 ```
 
 Optional: `mac_push_to_linux.sh` rsync only works with SSH keys or Tailscale SSH — not the Linux login password unless you know it.

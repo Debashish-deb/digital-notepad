@@ -14,8 +14,10 @@ _pool: Any | None = None
 
 
 def _pool_bounds() -> tuple[int, int]:
-    min_size = max(1, int(os.getenv("POSTGRES_POOL_MIN", "1") or 1))
-    max_size = max(min_size, int(os.getenv("POSTGRES_POOL_MAX", "10") or 10))
+    min_raw = os.getenv("POSTGRES_POOL_MIN_SIZE") or os.getenv("POSTGRES_POOL_MIN", "1")
+    max_raw = os.getenv("POSTGRES_POOL_MAX_SIZE") or os.getenv("POSTGRES_POOL_MAX", "10")
+    min_size = max(1, int(min_raw or 1))
+    max_size = max(min_size, int(max_raw or 10))
     return min_size, max_size
 
 

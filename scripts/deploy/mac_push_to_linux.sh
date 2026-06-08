@@ -2,7 +2,7 @@
 # Mac → Linux: push git + rsync heavy data (OMEIA-database, optional bundles).
 #
 # Usage (on Mac):
-#   export LINUX_SSH=debdeba@100.80.231.55   # Tailscale IP of Linux workstation
+#   export LINUX_SSH=labuser@100.80.231.55   # Tailscale IP of Linux workstation
 #   ./scripts/deploy/mac_push_to_linux.sh
 #   ./scripts/deploy/mac_push_to_linux.sh --data-only
 #   ./scripts/deploy/mac_push_to_linux.sh --code-only
@@ -19,9 +19,9 @@ fi
 # Prefer Tailscale machine name (Tailscale SSH) then IP from configs/.env
 LINUX_SSH="${LINUX_SSH:-${OLLAMA_LINUX_SSH:-}}"
 if [[ -z "$LINUX_SSH" && -n "${TAILSCALE_LINUX_HOST:-}" ]]; then
-  LINUX_SSH="${LINUX_SSH_USER:-debdeba}@${TAILSCALE_LINUX_HOST}"
+  LINUX_SSH="${LINUX_SSH_USER:-labuser}@${TAILSCALE_LINUX_HOST}"
 elif [[ -z "$LINUX_SSH" && -n "${TAILSCALE_LINUX_IP:-}" ]]; then
-  LINUX_SSH="${LINUX_SSH_USER:-debdeba}@${TAILSCALE_LINUX_IP}"
+  LINUX_SSH="${LINUX_SSH_USER:-labuser}@${TAILSCALE_LINUX_IP}"
 fi
 LINUX_REPO="${LINUX_REPO:-~/data4TB/digital-notepad}"
 LINUX_DATA="${LINUX_DATA:-~/data4TB/OMEIA-database}"
@@ -48,7 +48,7 @@ for arg in "$@"; do
 done
 
 if [[ "$GIT_ONLY" != true && -z "$LINUX_SSH" ]]; then
-  echo "ERROR: set LINUX_SSH=debdeba@<linux-tailscale-ip>"
+  echo "ERROR: set LINUX_SSH=labuser@<linux-tailscale-ip>"
   echo "  Or use --git-only (no SSH) and run git pull on Linux yourself"
   exit 1
 fi
@@ -66,8 +66,8 @@ if [[ "$(uname -s)" != "Darwin" && "$DATA_ONLY" == true ]]; then
   echo "  Detected source: $MAC_DATABASE"
   echo ""
   echo "On Mac, run:"
-  echo "  export LINUX_SSH=debdeba@100.80.231.55"
-  echo "  export MAC_DATABASE_ROOT=/Users/debashishdeb/Downloads/OMEIA-database"
+  echo "  export LINUX_SSH=labuser@100.80.231.55"
+  echo "  export MAC_DATABASE_ROOT=/path/to/OMEIA-database"
   echo "  ./scripts/deploy/mac_push_to_linux.sh --data-only"
   exit 1
 fi
@@ -75,7 +75,7 @@ fi
 if [[ "$MAC_DATABASE" == /home/* ]]; then
   echo "WARN: Mac source looks like a Linux path: $MAC_DATABASE"
   echo "      Set MAC_DATABASE_ROOT to your Mac folder, e.g.:"
-  echo "      export MAC_DATABASE_ROOT=/Users/debashishdeb/Downloads/OMEIA-database"
+  echo "      export MAC_DATABASE_ROOT=/path/to/OMEIA-database"
   if [[ "$DATA_ONLY" == true ]]; then
     exit 1
   fi

@@ -4,7 +4,7 @@
 
 **Scope:** System as built in this repository (not a roadmap). When behavior depends on environment flags, that is called out explicitly.
 
-**Last verified against codebase:** branch `cursor/unified-search-ai-lab-assistant`, commit `4f77105`, date **2026-06-08**.
+**Last verified against codebase:** commit `311d7e6`, date **2026-06-08**.
 
 ---
 

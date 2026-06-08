@@ -16,8 +16,9 @@ Postgres metadata (INDEXED badge, excellent grade) can exist **without** the bin
 ## Required Linux `configs/.env`
 
 ```env
-DATABASE_ROOT=/home/debdeba/data4TB/OMEIA-database
-PROJECTS_ROOT=/home/debdeba/data4TB/OMEIA-database/projects
+OMEIA_DATA_ROOT=/var/lib/omeia
+DATABASE_ROOT=${OMEIA_DATA_ROOT}/database
+PROJECTS_ROOT=${OMEIA_DATA_ROOT}/database/projects
 # Optional SMB lab notebook mount:
 # LAB_STORAGE_ROOT=/mnt/lab-notebook
 ```
@@ -44,7 +45,7 @@ curl -sI "http://127.0.0.1:8000/database-static/SOCIAL/.../20220617_170839.jpg" 
 If the canonical lab tree lives on Mac:
 
 ```bash
-rsync -av --progress /path/to/Mac/OMEIA-database/ debdeba@100.80.231.55:~/data4TB/OMEIA-database/
+rsync -av --progress /path/to/Mac/OMEIA-database/ labuser@<linux-tailscale-ip>:/var/lib/omeia/database/
 ```
 
 ## Integrated software (biomedical, imaging)

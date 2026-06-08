@@ -53,7 +53,7 @@ FIREBASE_AUTH_DOMAIN=farkki-digital-notebook.firebaseapp.com
 FIREBASE_WEB_API_KEY=<same as VITE_FIREBASE_API_KEY>
 FIREBASE_WEB_APP_ID=1:570069536455:web:4c4623a81262e6c4eef8e2
 FIREBASE_SERVICE_ACCOUNT_PATH=/opt/omeia/secrets/firebase-adminsdk.json
-PLATFORM_ADMIN_EMAILS=anniina.farkkila@helsinki.fi,debashish.deb@helsinki.fi,joonas.jukonen@helsinki.fi
+PLATFORM_ADMIN_EMAILS=pi@lab.example,admin@lab.example
 
 # --- Supabase (backend only) ---
 SUPABASE_URL=https://ccpvupyiqxubcupvtrtp.supabase.co

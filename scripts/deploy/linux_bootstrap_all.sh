@@ -148,5 +148,5 @@ echo "  Tailscale:  http://\$(tailscale ip -4):5173"
 echo ""
 if [[ ! -d "$DATA_ROOT/WET_LAB" && ! -d "$DATA_ROOT/SOCIAL" ]]; then
   echo "WARN: $DATA_ROOT looks empty — run from Mac:"
-  echo "  LINUX_SSH=debdeba@\$(tailscale ip -4) ./scripts/deploy/mac_push_to_linux.sh --data-only"
+  echo "  LINUX_SSH=labuser@\$(tailscale ip -4) ./scripts/deploy/mac_push_to_linux.sh --data-only"
 fi

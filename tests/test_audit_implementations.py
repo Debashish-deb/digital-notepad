@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import inspect
+from unittest.mock import patch
 
 import pytest
 from fastapi.testclient import TestClient
@@ -37,9 +38,10 @@ def test_scheduled_scanner_status_endpoint(monkeypatch: pytest.MonkeyPatch) -> N
 def test_database_catalog_routes_require_auth(monkeypatch: pytest.MonkeyPatch) -> None:
     from app_skeleton.api.main import app
 
-    client = TestClient(app)
-    assert client.get("/api/database/catalog").status_code == 401
-    assert client.get("/api/database/catalog/document/test-id").status_code == 401
+    with patch("app_skeleton.security.auth.AUTH_DISABLED", False):
+        client = TestClient(app)
+        assert client.get("/api/database/catalog").status_code == 401
+        assert client.get("/api/database/catalog/document/test-id").status_code == 401
 
 
 def test_agent_run_route_has_request_response() -> None:

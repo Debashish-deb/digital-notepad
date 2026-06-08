@@ -146,7 +146,7 @@ def _username_from_user(user: dict[str, Any]) -> str:
     if not email:
         raise HTTPException(status_code=401, detail="User email required for researcher binding")
     if email == "dev@localhost":
-        return "debdeba"
+        return "local_dev"
     local = email.split("@", 1)[0].strip()
     return local or "researcher"
 

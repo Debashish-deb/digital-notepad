@@ -7,13 +7,13 @@
 
 | Item | Value |
 |------|--------|
-| WebDAV base | `https://datacloud.helsinki.fi/remote.php/dav/files/debdeba%40helsinki.fi` |
+| WebDAV base | `https://datacloud.example.org/remote.php/dav/files/YOUR_USERNAME` |
 | Logical root | `/farkkila/LAB-ASSISTANT-PLATFORM` |
 
 ## Environment variables (canonical names)
 
 ```bash
-DATACLOUD_WEBDAV_BASE_URL=https://datacloud.helsinki.fi/remote.php/dav/files/debdeba%40helsinki.fi
+DATACLOUD_WEBDAV_BASE_URL=https://datacloud.example.org/remote.php/dav/files/YOUR_USERNAME
 DATACLOUD_ROOT=/farkkila/LAB-ASSISTANT-PLATFORM
 DATACLOUD_USERNAME=<helsinki username>
 DATACLOUD_APP_PASSWORD=<Nextcloud app password>

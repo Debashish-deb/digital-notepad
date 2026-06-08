@@ -6,7 +6,7 @@
 
 | Item | Value |
 |------|--------|
-| Linux host | `dx9-3049-11090` |
+| Linux host | `<linux-hostname>` |
 | Linux Tailscale IP | `100.80.231.55` |
 | Linux repo | `~/data4TB/digital-notepad` |
 | Linux data | `~/data4TB/OMEIA-database` |
@@ -25,7 +25,7 @@ Ollama + Qdrant reach Linux via Tailscale HTTP + `OLLAMA_INTERNAL_TOKEN` (alread
 **Mac** — push only:
 
 ```bash
-cd /Users/debashishdeb/Downloads/OMEIA-AI
+cd /path/to/OMEIA-AI
 ./scripts/deploy/mac_push_to_linux.sh --git-only
 ```
 
@@ -37,7 +37,7 @@ git pull
 ./scripts/start_linux.sh
 ```
 
-That is the normal loop. Do **not** rely on `ssh debdeba@100.80.231.55` from Mac unless you explicitly set up SSH keys or Tailscale SSH.
+That is the normal loop. Do **not** rely on `ssh labuser@100.80.231.55` from Mac unless you explicitly set up SSH keys or Tailscale SSH.
 
 ## Heavy data (OMEIA-database)
 
@@ -49,7 +49,7 @@ Tailscale does **not** replace SSH for `rsync`. Options:
 
 ```bash
 # Mac
-tailscale file cp -r /Users/debashishdeb/Downloads/OMEIA-database debdeba@dx9-3049-11090:
+tailscale file cp -r /path/to/OMEIA-database labuser@<linux-hostname>:
 
 # Linux
 tailscale file get .
@@ -77,15 +77,15 @@ Files must exist on **Linux disk** at `DATABASE_ROOT`, not on Mac. See `docs/LIN
 ```bash
 # Mac Terminal:
 cd ~/Downloads/OMEIA-AI   # or your clone path
-export LINUX_SSH=debdeba@100.80.231.55
-export MAC_DATABASE_ROOT=/Users/debashishdeb/Downloads/OMEIA-database
+export LINUX_SSH=labuser@100.80.231.55
+export MAC_DATABASE_ROOT=/path/to/OMEIA-database
 ./scripts/deploy/mac_push_to_linux.sh --data-only
 ```
 
 First time: set up passwordless SSH so rsync does not stop mid-transfer:
 
 ```bash
-ssh-copy-id debdeba@100.80.231.55
+ssh-copy-id labuser@100.80.231.55
 ```
 
 Expect a long run (full `SOCIAL & MISCELLANEOUS`, `WET_LAB`, etc.). After sync, on Linux:

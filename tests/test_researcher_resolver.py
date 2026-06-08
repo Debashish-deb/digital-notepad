@@ -15,7 +15,7 @@ from app_skeleton.security.auth import (
 
 
 def test_username_from_dev_user_maps_legacy_row() -> None:
-    assert _username_from_user({"email": "dev@localhost"}) == "debdeba"
+    assert _username_from_user({"email": "dev@localhost"}) == "local_dev"
 
 
 def test_username_from_email() -> None:
