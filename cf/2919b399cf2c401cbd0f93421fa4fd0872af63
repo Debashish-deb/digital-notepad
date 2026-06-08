@@ -1,0 +1,58 @@
+web/src/data/moduleCoverContent.js
+  s_d8ca0dcf385045::t_cfcb519a5db137 12-13
+  s_d8ca0dcf385045::t_bd550445d0e05b 28-53
+web/src/shared/layout/Sidebar.jsx
+  s_d8ca0dcf385045::t_65f409008d15e0 88-99,101-105,107-128,130-154,156-159
+web/src/styles/theme/navGlass.css
+  s_d8ca0dcf385045::t_80066eaee478e7 247-248
+web/src/config/navigation.test.mjs
+  s_d8ca0dcf385045::t_ed87cd2d01e920 1-51
+web/src/i18n/guiStrings/en.js
+  s_d8ca0dcf385045::t_8fc4f70584329d 31-46,48-51,54-56,58,64-66,69-74
+web/src/lib/documentExplorerPresets.js
+  s_d8ca0dcf385045::t_d989f31ea91baf 207-216
+  s_d8ca0dcf385045::t_666727c3ece740 228
+web/package.json
+  s_d8ca0dcf385045::t_bca4d8342fb210 11,13
+web/src/index.css
+  s_d8ca0dcf385045::t_b773e06d37bc90 240-260
+web/src/App.jsx
+  s_d8ca0dcf385045::t_149f87a7b0e410 24
+  s_d8ca0dcf385045::t_aa6592fe9df0a1 474-475
+  s_d8ca0dcf385045::t_acc72317d2705a 156,166-171
+docs/OMEIA_PRODUCT_IA_REDESIGN.md
+  s_d8ca0dcf385045::t_d9a241104583be 1-58
+web/src/config/navigation.js
+  s_d8ca0dcf385045::t_86acc55ca8af7b 133-148,151-153
+  s_d8ca0dcf385045::t_99eccec4a31e89 346,348
+  s_d8ca0dcf385045::t_edf6046cde8566 42
+  s_d8ca0dcf385045::t_7cef7617c57f85 10,15-41,43-67
+  s_d8ca0dcf385045::t_e79fcb98204522 212,215,217,219,221-279,284-286
+  s_d8ca0dcf385045::t_2a28a34bad2717 503-504,506,508,510-515
+  s_d8ca0dcf385045::t_b9f3d52b92980d 313,315,327,332-333
+  s_d8ca0dcf385045::t_7c11bfbb12b18c 188-190,199-201
+web/src/i18n/localizeNav.js
+  s_d8ca0dcf385045::t_71b657cb220088 1
+  s_d8ca0dcf385045::t_08712a5df4248d 56-69
+web/src/pages/DocumentLibraryScreen.jsx
+  s_d8ca0dcf385045::t_e3d511c2f96633 3-8,12-17
+web/src/i18n/useGuiT.js
+  s_d8ca0dcf385045::t_7e4c4b454c6f98 10
+  s_d8ca0dcf385045::t_23eb77b00d3db7 46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "cf2919b399cf2c401cbd0f93421fa4fd0872af63",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
