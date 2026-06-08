@@ -1,0 +1,23 @@
+app_skeleton/api/llm_client.py
+  s_d8ca0dcf385045::t_16b4efadd2bdc0 701,703-704,714,716-717
+configs/.env.example
+  s_d8ca0dcf385045::t_a09183c931d509 319
+app_skeleton/api/embedding_service.py
+  s_d8ca0dcf385045::t_fbbeb94f74cbbe 94-101,103,108-114,116-117,119,121-128,132-134,140,142,153-154
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "0697e8ab98d4882df9703e3ad97d4f17b5185034",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
