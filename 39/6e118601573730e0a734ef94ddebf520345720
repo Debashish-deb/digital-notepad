@@ -1,0 +1,66 @@
+web/src/features/projects/components/ProjectContentLibrary.jsx
+  s_d8ca0dcf385045::t_573644c43f1d04 4
+  s_d8ca0dcf385045::t_fcf1edd85c5921 195-197,205
+  s_d8ca0dcf385045::t_0652136270e9ed 198-203
+start.sh
+  s_d8ca0dcf385045::t_4fbde4e8ecc5a5 144-152,154-156
+web/src/features/documents/components/PdfDocumentViewer.css
+  s_d8ca0dcf385045::t_6627b5a563c3ac 308-312
+  s_d8ca0dcf385045::t_778a145cc49983 3,10-20,30-131,196-209,218-244,247-303,327-335
+  s_d8ca0dcf385045::t_ab34073e0ec0cc 1-2,4-9,21-29,132-195,210-217,245-246,304-307,313-326,336
+web/src/features/documents/components/PdfDocumentViewer.jsx
+  s_d8ca0dcf385045::t_e9be5079a38018 18-19,30-34,36,41-48,70-71,81-85,95,97,99,116-117,122-155,166-167,169,172,187-214,294,427-430,432-439,441-449,619-620,662-665
+  s_d8ca0dcf385045::t_47ac11ed99bc75 1-17,20-29,35,37-40,49-69,72-80,86-94,96,98,100-115,118-121,156-165,168,170-171,173-186,215-293,295-426,431,440,450-618,621-661
+web/src/lib/pdfAnnotationStore.js
+  s_d8ca0dcf385045::t_22eef7642888b4 1-58
+web/src/features/documents/components/ScientificFileExplorer.css
+  s_d8ca0dcf385045::t_92baf456c8c28e 1309
+  s_d8ca0dcf385045::t_9db1d98c346940 205-206,215,219
+config/env/.env.example
+  s_d8ca0dcf385045::t_b9b096a8412a79 309-310
+web/src/features/projects/components/ProjectFolderBrowser.jsx
+  s_d8ca0dcf385045::t_4116e796c58473 42
+  s_d8ca0dcf385045::t_a38fac12c7e382 766-776
+web/src/index.css
+  s_d8ca0dcf385045::t_5c6d02c9c0d7c5 3004
+  s_d8ca0dcf385045::t_c6af4f03e2a5a1 4619-4639
+  s_d8ca0dcf385045::t_e936315f3df463 3063
+  s_d8ca0dcf385045::t_d01235fe09bfbe 3089,3094
+  s_d8ca0dcf385045::t_92fca5171c94f3 3323
+web/package.json
+  s_d8ca0dcf385045::t_2fa50949c78275 23
+web/vite.config.js
+  s_d8ca0dcf385045::t_c87ccf3dc3472e 245-257
+  s_d8ca0dcf385045::t_3c4b1513d13270 42-84
+  s_d8ca0dcf385045::t_2108b7e79dfb43 3
+web/src/features/documents/components/DocumentPreviewPane.jsx
+  s_d8ca0dcf385045::t_24610ebe7011f1 290
+  s_d8ca0dcf385045::t_3038acd46a36c5 19
+  s_d8ca0dcf385045::t_2d0f2d5640f649 437-447
+  s_d8ca0dcf385045::t_cb01e7f2797938 434-436,449
+infra/scripts/dev/start_frontend.sh
+  s_d8ca0dcf385045::t_584ea9e5325cb2 11-24
+  s_d8ca0dcf385045::t_d1facac4dc187a 43-45
+web/package-lock.json
+  s_d8ca0dcf385045::t_14035f89e64f25 17,1304-1568,4684-4693
+web/src/features/documents/components/DocumentMetadataPanel.jsx
+  s_d8ca0dcf385045::t_0f21eb2eedb326 16
+  s_d8ca0dcf385045::t_8e883f7383585d 346-347
+  s_d8ca0dcf385045::t_00a5747f2dcb47 343-344
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "396e118601573730e0a734ef94ddebf520345720",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
