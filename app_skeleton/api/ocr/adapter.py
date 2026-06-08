@@ -8,7 +8,9 @@ from typing import Any
 
 
 def ocr_enabled() -> bool:
-    return (os.getenv("ENABLE_OCR", "false") or "false").strip().lower() in ("1", "true", "yes", "on")
+    from app_skeleton.api.platform_flags import ocr_enabled as _flag
+
+    return _flag()
 
 
 @dataclass
