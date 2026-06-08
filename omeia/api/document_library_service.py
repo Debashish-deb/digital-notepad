@@ -580,37 +580,30 @@ def _categorize_wet_lab_protocol_path(path: str) -> str | None:
     p = (path or "").replace("\\", "/")
     lower = p.lower()
     if _PATIENT_ROOT.search(p):
-        file_name = p.split("/")[-1] if "/" in p else p
-        if re.search(r"pome|pova", file_name, re.I):
-            return "patient_omentum"
-        if re.search(r"padn", file_name, re.I):
-            return "patient_adnexa"
-        if re.search(r"r(spl|bow|vagina|per|asc)", file_name, re.I):
-            return "patient_other_sites"
-        return "patient_misc"
+        return "patient_samples"
     if _PROTOCOLS_ROOT.search(p) or lower.startswith("protocols"):
         rest = p[p.index("/") + 1 :] if "/" in p else p
         rest_lower = rest.lower()
         top_folder = rest.split("/")[0].lower() if "/" in rest else rest.lower()
-        if "spatial" in top_folder or re.search(r"cycif|geomx|pickseq|lc-ms|tcycif", rest_lower, re.I):
-            return "proto_spatial"
+        if "spatial" in top_folder or re.search(r"geomx|pickseq|lc-ms|tcycif", rest_lower, re.I):
+            return "spatial_assays"
         if any(x in top_folder for x in ("tissue dissociation", "organoid", "ipdc")):
-            return "proto_sample_prep"
+            return "sample_preparation"
         if top_folder == "anastasia" or re.search(r"tissue.fixation|tissue.processing|tissue_processing|ffpe", rest_lower, re.I):
-            return "proto_tissue_processing"
+            return "tissue_processing"
         if "archive" in top_folder:
-            return "proto_archive"
+            return "protocol_archive"
         if "evos" in top_folder or "reference" in top_folder:
-            return "proto_imaging"
+            return "imaging_qc"
         if "scrna" in top_folder:
-            return "proto_scrna"
+            return "scrna"
         if re.search(r"flowcytometry|flow cytometry|immunofluorescence|\bif\b|staining", rest_lower, re.I):
-            return "proto_staining"
+            return "staining_flow"
         if re.search(r"steriliz|calibration|precipitation|troubleshoot|ph meter", rest_lower, re.I):
-            return "proto_lab_ops"
-        return "proto_general"
+            return "lab_operations"
+        return "general_protocols"
     if "orders for slides" in lower:
-        return "slide_orders"
+        return "histology_services"
     return None
 
 
@@ -623,20 +616,36 @@ def _categorize_reagent_panel_path(path: str) -> str | None:
     p = (path or "").replace("\\", "/")
     if _is_cycif_path(p):
         return None
-    rel = p.split("/", 1)[-1] if "/" in p else p
-    lower = rel.lower()
+    lower = p.lower()
     if lower.startswith("inventories"):
         return "reagents_inventory"
-    if lower.startswith("nanostring geomx") or lower.startswith("geomx projects"):
-        return "reagents_geomx"
-    if lower.startswith("xenium"):
-        return "reagents_xenium"
-    if lower.startswith("waste management"):
-        return "reagents_waste"
-    if re.search(r"\.xlsx$", lower) or "reagents.xlsx" in lower or "vacation" in lower:
-        return "reagents_spreadsheets"
     if any(x in lower for x in ("inventory", "antibody", "panel", "reagent", "buffers and reagents")):
-        return "reagents_general"
+        return "reagents_inventory"
+    return None
+
+
+def _assign_wet_lab_category(
+    rel_path: str,
+    *,
+    protocol_category: str | None,
+    reagent_category: str | None,
+    is_protocol: bool,
+    is_reagent_panel: bool,
+) -> str | None:
+    """Top-level wet-lab library category for scope chips (max two visual tiers)."""
+    lower = (rel_path or "").replace("\\", "/").lower()
+    if "orders for slides" in lower:
+        return "histology_services"
+    if is_protocol or protocol_category:
+        return "protocols_methods"
+    if lower.startswith("waste management"):
+        return "chemical_safety"
+    if lower.startswith("nanostring geomx") or lower.startswith("geomx projects") or lower.startswith("xenium"):
+        return "spatial_platforms"
+    if is_reagent_panel or reagent_category:
+        return "reagents_panels"
+    if re.search(r"\.xlsx$", lower) or "reagents.xlsx" in lower or "vacation" in lower:
+        return "registers_data"
     return None
 
 
@@ -744,6 +753,13 @@ def _enrich_row(row: dict[str, Any]) -> dict[str, Any]:
         "protocol_category": protocol_category,
         "is_reagent_panel": is_reagent_panel,
         "reagent_category": reagent_category,
+        "wet_lab_category": _assign_wet_lab_category(
+            rel_path,
+            protocol_category=protocol_category,
+            reagent_category=reagent_category,
+            is_protocol=is_protocol,
+            is_reagent_panel=is_reagent_panel,
+        ),
         "is_cycif_document": _is_cycif_path(logical),
         "display_title": meta.get("display_title") or title,
         "short_title": meta.get("short_title"),
@@ -986,6 +1002,8 @@ def _apply_filters(
         if filters.get("reagents_only") and not row.get("is_reagent_panel"):
             continue
         if filters.get("reagent_category") and row.get("reagent_category") != filters["reagent_category"]:
+            continue
+        if filters.get("wet_lab_category") and row.get("wet_lab_category") != filters["wet_lab_category"]:
             continue
         if filters.get("exclude_cycif") and _is_cycif_path(row.get("logical_path") or ""):
             continue

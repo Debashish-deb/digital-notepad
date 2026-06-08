@@ -84,6 +84,8 @@ def assign_smart_chip(row: dict[str, Any]) -> str | None:
         return section.replace("overview_", "")
     if section == "social_misc":
         return "social"
+    if section == "wet_lab_files" and row.get("wet_lab_category"):
+        return str(row.get("wet_lab_category"))
     if section == "wet_lab_files" and row.get("protocol_category"):
         return str(row.get("protocol_category"))
     if section == "wet_lab_files" and row.get("reagent_category"):
@@ -210,9 +212,10 @@ def describe_nav_scope(main_id: str, sub_id: str) -> dict[str, Any] | None:
         "filter_fields": {
             "section": "Filesystem twin section (e.g. wet_lab_files).",
             "protocol_only": "When true, only protocol/SOP paths (is_protocol).",
-            "protocol_category": "Workflow chip: proto_spatial, proto_staining, proto_tissue_processing, etc.",
+            "protocol_category": "Workflow chip: spatial_assays, staining_flow, tissue_processing, patient_samples, etc.",
             "reagents_only": "When true, only reagent/panel/inventory paths (is_reagent_panel).",
-            "reagent_category": "Reagent chip: reagents_inventory, reagents_geomx, reagents_xenium, etc.",
+            "reagent_category": "Reagent chip: reagents_inventory, spatial_geomx, spatial_xenium, etc.",
+            "wet_lab_category": "Top-level wet-lab chip: protocols_methods, reagents_panels, spatial_platforms, etc.",
             "smart_chip": "Orders/billing or archive sub-scope chip id.",
             "file_type": "Asset type facet (e.g. table_or_registry for spreadsheets).",
             "exclude_cycif": "When true, omit CyCIF/t-CyCIF paths from Oetlab/wet-lab views.",

@@ -1,6 +1,6 @@
 /**
- * Path-based micro-categories for wet-lab protocols — flattens deep folder trees
- * into workflow-oriented chips (sample prep, spatial, staining, etc.).
+ * Path-based workflow categories for wet-lab protocols.
+ * IDs align with backend document_library_service._categorize_wet_lab_protocol_path.
  */
 
 import { isCycifDocumentPath } from './cycifCategories.js';
@@ -8,91 +8,76 @@ import { isCycifDocumentPath } from './cycifCategories.js';
 const PROTOCOLS_ROOT = /^protocols(?:,\s*instructions)?\//i;
 const PATIENT_ROOT = /^patient sample protocols\//i;
 
-/** Workflow chips inside the Protocols & SOPs nav group. */
-export const WET_LAB_PROTOCOL_MICRO_GROUPS = [
+/** Workflow categories inside Protocols & Methods (flat list — no duplicate group label). */
+export const WET_LAB_PROTOCOL_CATEGORIES = [
   {
-    id: 'wet_protocols',
-    label: 'Protocols & SOPs',
-    categories: [
-      {
-        id: 'patient_omentum',
-        label: 'Patient · Omentum',
-        description: 'Per-sample protocols for omentum (pOme / pOva) specimens.',
-      },
-      {
-        id: 'patient_adnexa',
-        label: 'Patient · Adnexa',
-        description: 'Per-sample protocols for adnexal (pAdn) specimens.',
-      },
-      {
-        id: 'patient_other_sites',
-        label: 'Patient · Other Sites',
-        description: 'Protocols for bowel, spleen, vaginal, and other non-omentum sites.',
-      },
-      {
-        id: 'patient_misc',
-        label: 'Patient · Unsorted',
-        description: 'Patient sample protocols without a clear site code in the filename.',
-      },
-      {
-        id: 'proto_sample_prep',
-        label: 'Sample Prep & Organoids',
-        description: 'Tissue dissociation, organoid culture, iPDCs, and related medium recipes.',
-      },
-      {
-        id: 'proto_tissue_processing',
-        label: 'Tissue Fixation & FFPE',
-        description: 'Fixation, processing, and FFPE block preparation SOPs.',
-      },
-      {
-        id: 'proto_spatial',
-        label: 'Spatial & CycIF',
-        description: 'Spatial assays, t-CycIF, GeoMx slide prep, and imaging reports.',
-      },
-      {
-        id: 'proto_staining',
-        label: 'Staining & Flow',
-        description: 'Immunofluorescence, flow cytometry, and immune profiling protocols.',
-      },
-      {
-        id: 'proto_archive',
-        label: 'Protocol Archive',
-        description: 'Legacy bench protocols stored under Archive 2.0.',
-      },
-      {
-        id: 'proto_imaging',
-        label: 'Imaging & QC References',
-        description: 'EVOS scale-bar references, counting chambers, and microscopy QC.',
-      },
-      {
-        id: 'proto_lab_ops',
-        label: 'Lab Operations',
-        description: 'Sterilization, calibration, precipitation, and troubleshooting SOPs.',
-      },
-      {
-        id: 'proto_scrna',
-        label: 'scRNA-seq',
-        description: 'Single-cell RNA sequencing protocols and notes.',
-      },
-      {
-        id: 'proto_general',
-        label: 'General Protocols',
-        description: 'Root-level protocols and instructions not in a subfolder.',
-      },
-      {
-        id: 'slide_orders',
-        label: 'Slides & Sections Orders',
-        description: 'Orders for slides, sections, and histology services.',
-      },
-    ],
+    id: 'patient_samples',
+    label: 'Patient Sample Protocols',
+    description: 'Per-patient tissue collection and processing protocols.',
+  },
+  {
+    id: 'sample_preparation',
+    label: 'Sample Preparation',
+    description: 'Tissue dissociation, organoid culture, iPDCs, and medium recipes.',
+  },
+  {
+    id: 'tissue_processing',
+    label: 'Tissue Processing & FFPE',
+    description: 'Fixation, processing, and FFPE block preparation SOPs.',
+  },
+  {
+    id: 'spatial_assays',
+    label: 'Spatial & Imaging Assays',
+    description: 'Spatial assays, GeoMx slide prep, and imaging workflow SOPs.',
+  },
+  {
+    id: 'staining_flow',
+    label: 'Staining & Flow Cytometry',
+    description: 'Immunofluorescence, flow cytometry, and immune profiling protocols.',
+  },
+  {
+    id: 'lab_operations',
+    label: 'Lab Operations',
+    description: 'Sterilization, calibration, precipitation, and troubleshooting SOPs.',
+  },
+  {
+    id: 'imaging_qc',
+    label: 'Imaging & QC References',
+    description: 'EVOS scale-bar references, counting chambers, and microscopy QC.',
+  },
+  {
+    id: 'scrna',
+    label: 'scRNA-seq',
+    description: 'Single-cell RNA sequencing protocols and notes.',
+  },
+  {
+    id: 'protocol_archive',
+    label: 'Protocol Archive',
+    description: 'Legacy bench protocols stored under Archive 2.0.',
+  },
+  {
+    id: 'general_protocols',
+    label: 'General Protocols',
+    description: 'Root-level protocols and instructions not in a subfolder.',
   },
 ];
 
+/** @deprecated Use WET_LAB_PROTOCOL_CATEGORIES — kept for callers expecting group shape. */
+export const WET_LAB_PROTOCOL_MICRO_GROUPS = [
+  {
+    id: 'protocols_methods',
+    label: 'Protocols & Methods',
+    categories: WET_LAB_PROTOCOL_CATEGORIES,
+  },
+];
+
+const PATIENT_CATEGORY_IDS = new Set(['patient_samples']);
+
 export function isWetLabProtocolCategory(categoryId) {
   return (
-    categoryId?.startsWith('patient_')
-    || categoryId?.startsWith('proto_')
-    || categoryId === 'slide_orders'
+    PATIENT_CATEGORY_IDS.has(categoryId)
+    || WET_LAB_PROTOCOL_CATEGORIES.some((c) => c.id === categoryId)
+    || categoryId === 'histology_services'
   );
 }
 
@@ -101,11 +86,7 @@ export function categorizeWetLabProtocolPath(path) {
   const lower = p.toLowerCase();
 
   if (PATIENT_ROOT.test(p)) {
-    const fileName = p.split('/').pop() || '';
-    if (/pome|pova/i.test(fileName)) return 'patient_omentum';
-    if (/padn/i.test(fileName)) return 'patient_adnexa';
-    if (/r(spl|bow|vagina|per|asc)/i.test(fileName)) return 'patient_other_sites';
-    return 'patient_misc';
+    return 'patient_samples';
   }
 
   if (PROTOCOLS_ROOT.test(p) || lower.startsWith('protocols')) {
@@ -113,35 +94,35 @@ export function categorizeWetLabProtocolPath(path) {
     const restLower = rest.toLowerCase();
     const topFolder = rest.split('/')[0].toLowerCase();
 
-    if (topFolder.includes('spatial') || /cycif|geomx|pickseq|lc-ms|tcycif/i.test(restLower)) {
-      return 'proto_spatial';
+    if (topFolder.includes('spatial') || /geomx|pickseq|lc-ms|tcycif/i.test(restLower)) {
+      return 'spatial_assays';
     }
     if (
       topFolder.includes('tissue dissociation')
       || topFolder.includes('organoid')
       || topFolder.includes('ipdc')
     ) {
-      return 'proto_sample_prep';
+      return 'sample_preparation';
     }
     if (
       topFolder === 'anastasia'
       || /tissue.fixation|tissue.processing|tissue_processing|ffpe/i.test(restLower)
     ) {
-      return 'proto_tissue_processing';
+      return 'tissue_processing';
     }
-    if (topFolder.includes('archive')) return 'proto_archive';
-    if (topFolder.includes('evos') || topFolder.includes('reference')) return 'proto_imaging';
-    if (topFolder.includes('scrna')) return 'proto_scrna';
+    if (topFolder.includes('archive')) return 'protocol_archive';
+    if (topFolder.includes('evos') || topFolder.includes('reference')) return 'imaging_qc';
+    if (topFolder.includes('scrna')) return 'scrna';
     if (/flowcytometry|flow cytometry|immunofluorescence|\bif\b|staining/i.test(restLower)) {
-      return 'proto_staining';
+      return 'staining_flow';
     }
     if (/steriliz|calibration|precipitation|troubleshoot|ph meter/i.test(restLower)) {
-      return 'proto_lab_ops';
+      return 'lab_operations';
     }
-    return 'proto_general';
+    return 'general_protocols';
   }
 
-  if (lower.includes('orders for slides')) return 'slide_orders';
+  if (lower.includes('orders for slides')) return 'histology_services';
   return null;
 }
 

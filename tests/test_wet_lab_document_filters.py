@@ -33,7 +33,7 @@ class WetLabDocumentFiltersTest(unittest.TestCase):
             "section": "wet_lab_files",
             "protocol_only": True,
             "exclude_cycif": True,
-            "protocol_category": "proto_spatial",
+            "protocol_category": "spatial_assays",
         })
 
         self.assertGreater(all_count, proto_count)

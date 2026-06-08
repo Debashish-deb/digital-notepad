@@ -72,72 +72,72 @@
       "default_section": "wet_lab_files",
       "scope_chips": [
         {
-          "id": "all_wet_lab",
-          "label": "All wet-lab files",
-          "filter": { "section": "wet_lab_files" },
-          "nav_sub": "files"
-        },
-        {
-          "id": "protocols",
-          "label": "Protocols & SOPs",
+          "id": "protocols_methods",
+          "label": "Protocols & Methods",
+          "description": "SOPs, bench protocols, and method instructions",
           "filter": { "section": "wet_lab_files", "protocol_only": true },
           "nav_sub": "protocols"
         },
         {
           "id": "reagents_panels",
-          "label": "Reagents & panels",
+          "label": "Reagents & Panels",
+          "description": "Antibody panels, reagent lists, and sample inventories",
           "filter": { "section": "wet_lab_files", "reagents_only": true },
           "nav_sub": "inventory"
         },
         {
-          "id": "reagents_inventory",
-          "label": "Reagent inventories",
-          "filter": { "section": "wet_lab_files", "reagents_only": true, "reagent_category": "reagents_inventory" }
+          "id": "spatial_platforms",
+          "label": "Spatial Platforms",
+          "description": "GeoMx and Xenium project notes and run documentation",
+          "filter": { "section": "wet_lab_files", "wet_lab_category": "spatial_platforms" }
         },
         {
-          "id": "reagents_geomx",
-          "label": "GeoMx resources",
-          "filter": { "section": "wet_lab_files", "reagents_only": true, "reagent_category": "reagents_geomx" }
+          "id": "registers_data",
+          "label": "Registers & Data",
+          "description": "Spreadsheets, sample registers, and tracking tables",
+          "filter": { "section": "wet_lab_files", "wet_lab_category": "registers_data" }
         },
         {
-          "id": "reagents_xenium",
-          "label": "Xenium resources",
-          "filter": { "section": "wet_lab_files", "reagents_only": true, "reagent_category": "reagents_xenium" }
+          "id": "chemical_safety",
+          "label": "Chemical Safety & Waste",
+          "description": "Chemical inventory, waste handling, and Fortum forms",
+          "filter": { "section": "wet_lab_files", "wet_lab_category": "chemical_safety" }
         },
         {
-          "id": "reagents_spreadsheets",
-          "label": "Registers & spreadsheets",
-          "filter": { "section": "wet_lab_files", "reagents_only": true, "reagent_category": "reagents_spreadsheets" }
+          "id": "histology_services",
+          "label": "Histology Services",
+          "description": "Slide and section orders from histology providers",
+          "filter": { "section": "wet_lab_files", "wet_lab_category": "histology_services" }
         },
         {
-          "id": "proto_spatial",
-          "label": "Spatial & CyCIF",
-          "filter": { "section": "wet_lab_files", "protocol_category": "proto_spatial" }
+          "id": "patient_samples",
+          "label": "Patient Samples",
+          "filter": { "section": "wet_lab_files", "protocol_category": "patient_samples" }
         },
         {
-          "id": "proto_staining",
-          "label": "Staining & IF",
-          "filter": { "section": "wet_lab_files", "protocol_category": "proto_staining" }
+          "id": "sample_preparation",
+          "label": "Sample Preparation",
+          "filter": { "section": "wet_lab_files", "protocol_category": "sample_preparation" }
         },
         {
-          "id": "proto_tissue",
+          "id": "tissue_processing",
           "label": "Tissue Processing",
-          "filter": { "section": "wet_lab_files", "protocol_category": "proto_tissue_processing" }
+          "filter": { "section": "wet_lab_files", "protocol_category": "tissue_processing" }
         },
         {
-          "id": "proto_sample_prep",
-          "label": "Sample Prep",
-          "filter": { "section": "wet_lab_files", "protocol_category": "proto_sample_prep" }
+          "id": "spatial_assays",
+          "label": "Spatial Assays",
+          "filter": { "section": "wet_lab_files", "protocol_category": "spatial_assays" }
         },
         {
-          "id": "patient_protocols",
-          "label": "Patient Sample Protocols",
-          "filter": { "section": "wet_lab_files", "protocol_category": "patient_omentum" }
+          "id": "staining_flow",
+          "label": "Staining & Flow",
+          "filter": { "section": "wet_lab_files", "protocol_category": "staining_flow" }
         },
         {
-          "id": "spreadsheets",
-          "label": "Spreadsheets & Registers",
-          "filter": { "section": "wet_lab_files", "file_type": "table_or_registry" }
+          "id": "reagents_inventory",
+          "label": "Reagent Inventories",
+          "filter": { "section": "wet_lab_files", "reagents_only": true, "reagent_category": "reagents_inventory" }
         }
       ]
     },

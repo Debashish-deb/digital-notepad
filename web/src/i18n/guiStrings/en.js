@@ -625,7 +625,75 @@ export default {
     },
     patient_samples: {
       label: 'Patient Sample Protocols',
-      description: 'Collection, handling, and processing protocols for patient samples.',
+      description: 'Per-patient tissue collection and processing protocols.',
+    },
+    sample_preparation: {
+      label: 'Sample Preparation',
+      description: 'Tissue dissociation, organoid culture, iPDCs, and medium recipes.',
+    },
+    tissue_processing: {
+      label: 'Tissue Processing & FFPE',
+      description: 'Fixation, processing, and FFPE block preparation SOPs.',
+    },
+    spatial_assays: {
+      label: 'Spatial & Imaging Assays',
+      description: 'Spatial assays, GeoMx slide prep, and imaging workflow SOPs.',
+    },
+    staining_flow: {
+      label: 'Staining & Flow Cytometry',
+      description: 'Immunofluorescence, flow cytometry, and immune profiling protocols.',
+    },
+    lab_operations: {
+      label: 'Lab Operations',
+      description: 'Sterilization, calibration, precipitation, and troubleshooting SOPs.',
+    },
+    imaging_qc: {
+      label: 'Imaging & QC References',
+      description: 'EVOS scale-bar references, counting chambers, and microscopy QC.',
+    },
+    scrna: {
+      label: 'scRNA-seq',
+      description: 'Single-cell RNA sequencing protocols and notes.',
+    },
+    protocol_archive: {
+      label: 'Protocol Archive',
+      description: 'Legacy bench protocols stored under Archive 2.0.',
+    },
+    general_protocols: {
+      label: 'General Protocols',
+      description: 'Root-level protocols and instructions not in a subfolder.',
+    },
+    reagents_inventory: {
+      label: 'Reagent Inventories',
+      description: 'Reagent lists, antibody panels, and sample inventory spreadsheets.',
+    },
+    spatial_geomx: {
+      label: 'GeoMx Resources',
+      description: 'GeoMx project notes, run documentation, and platform files.',
+    },
+    spatial_xenium: {
+      label: 'Xenium Resources',
+      description: 'Xenium experiment plans and spatial transcriptomics files.',
+    },
+    registers_data: {
+      label: 'Registers & Spreadsheets',
+      description: 'Vacation sample collection, legacy reagent lists, and misc. registers.',
+    },
+    chemical_safety: {
+      label: 'Chemical Safety & Waste',
+      description: 'Waste management, Fortum forms, and chemical inventory SOPs.',
+    },
+    histology_services: {
+      label: 'Histology & Slide Orders',
+      description: 'Orders for slides, sections, and histology services.',
+    },
+    protocols_methods: {
+      label: 'Protocols & Methods',
+      description: 'SOPs, bench protocols, and method instructions.',
+    },
+    spatial_platforms: {
+      label: 'Spatial Platforms',
+      description: 'GeoMx and Xenium project notes and run documentation.',
     },
     patient_omentum: {
       label: 'Patient · Omentum',

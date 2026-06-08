@@ -1,7 +1,7 @@
 /**
- * Side-tab categories for Wet-lab database files (wet_lab_files twin).
- * CycIF files are shown under the CyCif section — see cycifCategories.js.
- * Protocol paths use micro-categories from wetLabProtocolCategories.js.
+ * Wet-lab library categories (wet_lab_files twin).
+ * Single group, flat leaf categories — avoids duplicate parent/child labels in the UI.
+ * CyCIF paths are excluded; see cycifCategories.js.
  */
 
 import { humanizeFilenameLabel } from './textCleanup.js';
@@ -9,53 +9,50 @@ import { smartDocumentTitle } from './smartDocumentTitle.js';
 import { isCycifDocumentPath } from './cycifCategories.js';
 import {
   categorizeWetLabProtocolPath,
-  WET_LAB_PROTOCOL_MICRO_GROUPS,
+  WET_LAB_PROTOCOL_CATEGORIES,
   isWetLabProtocolPath,
 } from './wetLabProtocolCategories.js';
 
-const WET_LAB_NON_PROTOCOL_GROUPS = [
+const WET_LAB_SUPPORT_CATEGORIES = [
   {
-    id: 'wet_platforms',
-    label: 'Spatial & Platform Assays',
-    categories: [
-      {
-        id: 'geomx',
-        label: 'NanoString GeoMx',
-        description: 'GeoMx project notes, protocols, and run documentation.',
-      },
-      {
-        id: 'xenium',
-        label: 'Xenium',
-        description: 'Xenium experiment plans and spatial transcriptomics files.',
-      },
-    ],
+    id: 'reagents_inventory',
+    label: 'Reagent Inventories',
+    description: 'Reagent lists, antibody panels, and sample inventory spreadsheets.',
   },
   {
-    id: 'wet_ops',
-    label: 'Inventory & Operations',
-    categories: [
-      {
-        id: 'inventories',
-        label: 'Reagents, Samples & Equipment',
-        description: 'Inventory spreadsheets, reagent lists, and equipment records.',
-      },
-      {
-        id: 'waste_mgmt',
-        label: 'Waste & Chemical Inventory',
-        description: 'Waste management, Fortum forms, and chemical inventory SOPs.',
-      },
-      {
-        id: 'wet_spreadsheets',
-        label: 'Registers & Spreadsheets',
-        description: 'Vacation sample collection, legacy reagent lists, and misc. registers.',
-      },
-    ],
+    id: 'spatial_geomx',
+    label: 'GeoMx Resources',
+    description: 'GeoMx project notes, run documentation, and platform files.',
+  },
+  {
+    id: 'spatial_xenium',
+    label: 'Xenium Resources',
+    description: 'Xenium experiment plans and spatial transcriptomics files.',
+  },
+  {
+    id: 'registers_data',
+    label: 'Registers & Spreadsheets',
+    description: 'Vacation sample collection, legacy reagent lists, and misc. registers.',
+  },
+  {
+    id: 'chemical_safety',
+    label: 'Chemical Safety & Waste',
+    description: 'Waste management, Fortum forms, and chemical inventory SOPs.',
+  },
+  {
+    id: 'histology_services',
+    label: 'Histology & Slide Orders',
+    description: 'Orders for slides, sections, and histology services.',
   },
 ];
 
+/** One library group — section headers use category labels only (no repeated group name). */
 export const WET_LAB_CATEGORY_GROUPS = [
-  WET_LAB_PROTOCOL_MICRO_GROUPS[0],
-  ...WET_LAB_NON_PROTOCOL_GROUPS,
+  {
+    id: 'wet_lab_library',
+    label: 'Lab Operations',
+    categories: [...WET_LAB_PROTOCOL_CATEGORIES, ...WET_LAB_SUPPORT_CATEGORIES],
+  },
 ];
 
 export function categorizeWetLabPath(path) {
@@ -63,15 +60,14 @@ export function categorizeWetLabPath(path) {
   if (protocolCat) return protocolCat;
 
   const p = (path || '').replace(/\\/g, '/').toLowerCase();
-  if (p.includes('orders for slides')) return 'slide_orders';
-  if (p.startsWith('nanostring geomx') || p.startsWith('geomx projects')) return 'geomx';
-  if (p.startsWith('xenium')) return 'xenium';
-  if (p.startsWith('inventories')) return 'inventories';
-  if (p.startsWith('waste management')) return 'waste_mgmt';
+  if (p.startsWith('inventories')) return 'reagents_inventory';
+  if (p.startsWith('nanostring geomx') || p.startsWith('geomx projects')) return 'spatial_geomx';
+  if (p.startsWith('xenium')) return 'spatial_xenium';
+  if (p.startsWith('waste management')) return 'chemical_safety';
   if (/\.xlsx$/i.test(p) || p.includes('reagents.xlsx') || p.includes('vacation')) {
-    return 'wet_spreadsheets';
+    return 'registers_data';
   }
-  return 'proto_general';
+  return 'general_protocols';
 }
 
 export function wetLabDocumentTitle(doc) {
@@ -85,7 +81,7 @@ export function wetLabDocumentTitle(doc) {
 export const WET_LAB_FILES_CONFIG = {
   sectionIds: ['wet_lab_files'],
   categoryGroups: WET_LAB_CATEGORY_GROUPS,
-  defaultCategory: 'proto_sample_prep',
+  defaultCategory: 'general_protocols',
   categorizePath: categorizeWetLabPath,
   documentTitle: wetLabDocumentTitle,
   documentFilter: (path) => !isCycifDocumentPath(path),
@@ -93,8 +89,14 @@ export const WET_LAB_FILES_CONFIG = {
 
 export const WET_LAB_PROTOCOLS_CONFIG = {
   sectionIds: ['wet_lab_files'],
-  categoryGroups: WET_LAB_PROTOCOL_MICRO_GROUPS,
-  defaultCategory: 'proto_sample_prep',
+  categoryGroups: [
+    {
+      id: 'protocols_methods',
+      label: 'Protocols & Methods',
+      categories: WET_LAB_PROTOCOL_CATEGORIES,
+    },
+  ],
+  defaultCategory: 'general_protocols',
   categorizePath: categorizeWetLabPath,
   documentTitle: wetLabDocumentTitle,
   documentFilter: isWetLabProtocolPath,

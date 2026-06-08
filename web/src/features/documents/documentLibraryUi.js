@@ -23,7 +23,13 @@ export const MAINTENANCE_CHIP_IDS = [
   'large_files',
 ];
 
-export const SCOPE_OVERLAY_FILTER_KEYS = ['protocol_category', 'reagent_category', 'smart_chip', 'file_type'];
+export const SCOPE_OVERLAY_FILTER_KEYS = [
+  'wet_lab_category',
+  'protocol_category',
+  'reagent_category',
+  'smart_chip',
+  'file_type',
+];
 
 export function prettifyCategory(value) {
   return (value || '')

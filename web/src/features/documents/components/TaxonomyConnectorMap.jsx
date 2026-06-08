@@ -1,20 +1,17 @@
 import { useCallback, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import './TaxonomyConnectorMap.css';
 
-/** Parent folder relationships for scope chips (smart_taxonomy.json ids). */
+/**
+ * Parent relationships for wet-lab scope chips (smart_taxonomy.json ids).
+ * Max two visual tiers — top-level library categories, then workflow sub-filters.
+ */
 const SCOPE_PARENT_BY_ID = {
-  protocols: 'all_wet_lab',
-  reagents_panels: 'all_wet_lab',
-  spreadsheets: 'all_wet_lab',
-  proto_spatial: 'protocols',
-  proto_staining: 'protocols',
-  proto_tissue: 'protocols',
-  proto_sample_prep: 'protocols',
-  patient_protocols: 'protocols',
+  patient_samples: 'protocols_methods',
+  sample_preparation: 'protocols_methods',
+  tissue_processing: 'protocols_methods',
+  spatial_assays: 'protocols_methods',
+  staining_flow: 'protocols_methods',
   reagents_inventory: 'reagents_panels',
-  reagents_geomx: 'reagents_panels',
-  reagents_xenium: 'reagents_panels',
-  reagents_spreadsheets: 'reagents_panels',
 };
 
 function filtersSubset(subset, superset) {
@@ -28,9 +25,12 @@ function resolveRootId(chips, initialFilters) {
   );
   if (!hasHierarchy) return null;
 
-  if (ids.has('all_wet_lab')) return 'all_wet_lab';
-  if (ids.has('protocols') && !ids.has('all_wet_lab')) return 'protocols';
-  if (ids.has('reagents_panels') && !ids.has('all_wet_lab')) return 'reagents_panels';
+  if (ids.has('protocols_methods') && chips.some((c) => SCOPE_PARENT_BY_ID[c.id] === 'protocols_methods')) {
+    return 'protocols_methods';
+  }
+  if (ids.has('reagents_panels') && chips.some((c) => SCOPE_PARENT_BY_ID[c.id] === 'reagents_panels')) {
+    return 'reagents_panels';
+  }
 
   const exact = chips.find((chip) => chip.filter && filtersSubset(chip.filter, initialFilters));
   if (exact) return exact.id;

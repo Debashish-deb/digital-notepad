@@ -43,23 +43,30 @@ const CYCIF_SCOPE_LABELS = {
 /** Wet-lab (Oetlab) twins exclude CyCIF paths — those live under CyCIF nav only. */
 const WET_LAB_BASE_FILTERS = { section: 'wet_lab_files', exclude_cycif: true };
 
+/** Top-level library categories (files tab) — flat, no redundant parent chip. */
+const WET_LAB_TOP_SCOPE_CHIP_IDS = new Set([
+  'protocols_methods',
+  'reagents_panels',
+  'spatial_platforms',
+  'registers_data',
+  'chemical_safety',
+  'histology_services',
+]);
+
 /** Scope chips shown per wet-lab sub-tab (ids from smart_taxonomy.json). */
 const WET_LAB_SCOPE_CHIP_IDS = {
-  files: null,
+  files: WET_LAB_TOP_SCOPE_CHIP_IDS,
   protocols: new Set([
-    'protocols',
-    'proto_spatial',
-    'proto_staining',
-    'proto_tissue',
-    'proto_sample_prep',
-    'patient_protocols',
+    'protocols_methods',
+    'patient_samples',
+    'sample_preparation',
+    'tissue_processing',
+    'spatial_assays',
+    'staining_flow',
   ]),
   inventory: new Set([
     'reagents_panels',
     'reagents_inventory',
-    'reagents_geomx',
-    'reagents_xenium',
-    'reagents_spreadsheets',
   ]),
 };
 
@@ -113,7 +120,7 @@ export function getExplorerPreset(mainId, subId) {
       filters: { ...WET_LAB_BASE_FILTERS },
       showDomainTabs: false,
       hideScopeFilters: true,
-      scopeLabel: 'Lab database files',
+      scopeLabel: 'Lab Operations',
       scopeChipIds: WET_LAB_SCOPE_CHIP_IDS.files,
     };
   }
@@ -125,7 +132,7 @@ export function getExplorerPreset(mainId, subId) {
       filters: { ...WET_LAB_BASE_FILTERS, protocol_only: true },
       showDomainTabs: false,
       hideScopeFilters: true,
-      scopeLabel: 'Protocols & SOPs',
+      scopeLabel: 'Protocols & Methods',
       scopeChipIds: WET_LAB_SCOPE_CHIP_IDS.protocols,
     };
   }
@@ -137,7 +144,7 @@ export function getExplorerPreset(mainId, subId) {
       filters: { ...WET_LAB_BASE_FILTERS, reagents_only: true },
       showDomainTabs: false,
       hideScopeFilters: true,
-      scopeLabel: 'Reagents & panels',
+      scopeLabel: 'Reagents & Panels',
       scopeChipIds: WET_LAB_SCOPE_CHIP_IDS.inventory,
     };
   }
