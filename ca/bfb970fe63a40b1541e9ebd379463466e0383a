@@ -1,0 +1,104 @@
+infra/scripts/dev/docker_bootstrap.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/imaging/linux_paste_install_imaging_worker.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 160
+infra/scripts/network/mac_test_tailscale_ollama.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/imaging/copy_imaging_bundle_to_linux.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/dev/build_frontend_prod.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/docker/setup_biomodels_docker.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/compose/docker-compose.yml
+  s_eaa6f401e95506::t_3ab3dd91486acd 1-2,21,74,78,105-106,121-122,128
+infra/scripts/llm/setup_ollama_local_llm.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 6
+infra/scripts/ops/restore_linux_backup.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 12
+apps/api/src/omeia/api/paths.py
+  s_efdcdca69a2820::t_598f46c1ffc8af 14-17
+  s_efdcdca69a2820::t_3b538d503fab48 77,79-82
+infra/scripts/dev/start_linux_desktop.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 13
+infra/scripts/dev/start_frontend.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 7
+infra/scripts/docker/start_linux_docker_stack.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/ops/linux_post_pull.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 6
+infra/scripts/dev/start_portable.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/network/mac_connect_linux.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/imaging/sync_imaging_worker_to_linux.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 13
+infra/scripts/llm/pull_ollama_research_models.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/ops/migrate_lab_catalog_off_public.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/dev/start_mac_thin_client.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 11
+infra/scripts/deploy/linux_bootstrap_all.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 11
+infra/scripts/search/setup_search_portable.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 6
+infra/scripts/ops/autonomous_processor.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 6
+infra/scripts/network/portable_apply_env.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 6
+infra/scripts/deploy/mac_push_to_linux.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 11
+infra/scripts/ci/run_copilot_quality_gate.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 4
+infra/scripts/document-library/setup_research_knowledge.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/network/linux_fix_tailscale_inbound.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 6
+infra/scripts/network/mac_test_linux.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/ops/check_frontend_public_lab_data.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/docker/linux_post_stack_setup.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 6
+infra/scripts/ops/backup_linux.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 11
+infra/scripts/llm/generate_ollama_token.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/dev/stop_local_docker.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/network/setup_mac_portable.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/network/sync_mac_repo_to_usb.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 6
+infra/scripts/dev/start_backend.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 8
+infra/scripts/imaging/pack_imaging_worker_bundle.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+infra/scripts/docker/build_imaging_worker.sh
+  s_eaa6f401e95506::t_0b48e04dec7762 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "cabfb970fe63a40b1541e9ebd379463466e0383a",
+  "prompts": {},
+  "sessions": {
+    "s_eaa6f401e95506": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "e68cae3c-136f-4fed-9f2c-37ca9b3f29d2",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_efdcdca69a2820": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "c5b1a92a-383a-4551-918f-ee94ebbe639d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
