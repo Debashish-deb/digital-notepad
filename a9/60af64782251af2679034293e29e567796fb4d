@@ -1,0 +1,25 @@
+scripts/deploy/linux_bootstrap_all.sh
+  s_d8ca0dcf385045::t_980a77ad6a6b65 101-119,122,125
+app_skeleton/ui/react_frontend/package.json
+  s_d8ca0dcf385045::t_1d149c149b7033 6-8
+docs/YOUR_SETUP.md
+  s_d8ca0dcf385045::t_b812f8efae3a37 73-86
+app_skeleton/ui/react_frontend/.nvmrc
+  s_d8ca0dcf385045::t_31f1a80109d273 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "a960af64782251af2679034293e29e567796fb4d",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
