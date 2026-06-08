@@ -25,22 +25,28 @@ LINUX_DATA="${LINUX_DATA:-~/data4TB/OMEIA-database}"
 
 CODE_ONLY=false
 DATA_ONLY=false
+GIT_ONLY=false
 DRY_RUN=false
 for arg in "$@"; do
   case "$arg" in
     --code-only) CODE_ONLY=true ;;
     --data-only) DATA_ONLY=true ;;
+    --git-only) GIT_ONLY=true; CODE_ONLY=true ;;
     --dry-run) DRY_RUN=true ;;
     -h|--help)
-      echo "Usage: LINUX_SSH=user@host $0 [--code-only|--data-only|--dry-run]"
+      echo "Usage: LINUX_SSH=user@host $0 [--git-only|--code-only|--data-only|--dry-run]"
+      echo ""
+      echo "  --git-only   git push only; no SSH (run git pull on Linux yourself)"
+      echo "  --code-only  git push + ssh git pull on Linux"
+      echo "  --data-only  rsync OMEIA-database only"
       exit 0
       ;;
   esac
 done
 
-if [[ -z "$LINUX_SSH" ]]; then
+if [[ "$GIT_ONLY" != true && -z "$LINUX_SSH" ]]; then
   echo "ERROR: set LINUX_SSH=debdeba@<linux-tailscale-ip>"
-  echo "  Or set TAILSCALE_LINUX_IP in configs/.env"
+  echo "  Or use --git-only (no SSH) and run git pull on Linux yourself"
   exit 1
 fi
 
@@ -61,12 +67,18 @@ if [[ "$DATA_ONLY" != true ]]; then
   echo "--- Git push (Mac) ---"
   git push -u origin HEAD
   echo ""
-  echo "--- Git pull on Linux ---"
-  ssh "$LINUX_SSH" "cd $LINUX_REPO && git pull"
+  if [[ "$GIT_ONLY" == true ]]; then
+    echo "--- Skipping SSH ( --git-only ) ---"
+    echo "On Linux, run:"
+    echo "  cd $LINUX_REPO && git pull"
+  else
+    echo "--- Git pull on Linux ---"
+    ssh "$LINUX_SSH" "cd $LINUX_REPO && git pull"
+  fi
   echo ""
 fi
 
-if [[ "$CODE_ONLY" != true ]]; then
+if [[ "$CODE_ONLY" != true && "$GIT_ONLY" != true ]]; then
   if [[ ! -d "$MAC_DATABASE" ]]; then
     echo "WARN: Mac DATABASE_ROOT not found: $MAC_DATABASE"
     echo "      Skip data rsync or set DATABASE_ROOT in configs/.env"
