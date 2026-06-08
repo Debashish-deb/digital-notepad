@@ -63,6 +63,31 @@ def _db_conn() -> str:
     return postgres_conn()
 
 
+def _vault_active_sql_clauses(*, table: str = "v") -> list[str]:
+    """SQL fragments excluding duplicate copies and inventory-inactive assets."""
+    col = f"{table}.metadata_json" if table else "metadata_json"
+    return [
+        f"COALESCE({col}->>'duplicate_status', 'unique') != 'duplicate'",
+        f"COALESCE({col}->>'inventory_active', 'true') NOT IN ('false', '0', 'no')",
+    ]
+
+
+def _is_vault_row_active(row: dict[str, Any]) -> bool:
+    """JSON-side filter mirroring _vault_active_sql_clauses."""
+    md = row.get("metadata_json") or row.get("metadata_preview") or {}
+    if isinstance(md, str):
+        try:
+            md = json.loads(md)
+        except Exception:
+            md = {}
+    if not isinstance(md, dict):
+        md = {}
+    if (md.get("duplicate_status") or "unique") == "duplicate":
+        return False
+    inv = str(md.get("inventory_active", "true")).strip().lower()
+    return inv not in ("false", "0", "no")
+
+
 def _public_row(row: dict[str, Any]) -> dict[str, Any]:
     out = {k: row[k] for k in _PUBLIC_FIELDS if k in row}
     conf = float(row.get("assignment_confidence") or 0)
@@ -144,6 +169,8 @@ def _search_vault_json(
     hits: list[tuple[float, dict[str, Any]]] = []
 
     for row in load_inventory_rows():
+        if not _is_vault_row_active(row):
+            continue
         if domain and row.get("domain") != domain:
             continue
         if project_hint and (row.get("project_hint") or "").lower() != project_hint.lower():
@@ -206,8 +233,7 @@ def _search_vault_postgres(
         params.append(extraction_status)
     if uncategorized_only:
         clauses.append("v.page_domain_id IS NULL")
-    # Suppress duplicate copies in search results
-    clauses.append("COALESCE(v.metadata_json->>'duplicate_status', 'unique') != 'duplicate'")
+    clauses.extend(_vault_active_sql_clauses(table="v"))
     if tokens:
         ors = [
             "(lower(v.logical_path || ' ' || coalesce(v.filename, '')) LIKE %s)"
@@ -293,6 +319,52 @@ def search_vault(
     )
 
 
+_FETCH_VAULT_BY_IDS_COLUMNS = [
+    "asset_id", "storage_provider", "logical_path", "filename", "extension",
+    "size_bytes", "checksum_sha256", "asset_type", "domain", "project_hint", "section_hint",
+    "sensitivity_level", "assignment_confidence", "sensitivity_confidence",
+    "review_status", "vector_status", "graph_status", "extraction_status",
+    "modified_at", "indexed_at", "mime_type", "page_domain_id", "page_section_id",
+    "metadata_json",
+]
+
+
+def fetch_vault_assets_by_ids(asset_ids: list[str]) -> dict[str, dict[str, Any]]:
+    """Load vault rows by asset_id for semantic enrichment and checksum dedupe."""
+    ids = [str(i).strip() for i in asset_ids if str(i).strip()]
+    if not ids:
+        return {}
+    try:
+        with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    f"""
+                    SELECT {", ".join(_FETCH_VAULT_BY_IDS_COLUMNS)}
+                    FROM platform.raw_asset_vault
+                    WHERE asset_id = ANY(%s);
+                    """,
+                    (ids,),
+                )
+                return {
+                    str(record[0]): _row_from_pg(record, _FETCH_VAULT_BY_IDS_COLUMNS)
+                    for record in cur.fetchall()
+                }
+    except Exception as exc:
+        LOGGER.debug("fetch_vault_assets_by_ids unavailable: %s", exc)
+        return {}
+
+
+def vault_postgres_reachable() -> bool:
+    """True when platform.raw_asset_vault is queryable."""
+    try:
+        with psycopg.connect(_db_conn(), connect_timeout=3) as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT 1 FROM platform.raw_asset_vault LIMIT 1;")
+                return True
+    except Exception:
+        return False
+
+
 def _sanitize_metadata_in_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Expose safe metadata subset; never leak original_path from metadata."""
     out: list[dict[str, Any]] = []
@@ -343,6 +415,7 @@ def review_queue(
                 if review_status:
                     clauses.append("review_status = %s")
                     params.append(review_status)
+                clauses.extend(_vault_active_sql_clauses(table="raw_asset_vault"))
                 params.append(limit)
                 cur.execute(
                     f"""
@@ -354,7 +427,7 @@ def review_queue(
                         modified_at, indexed_at, mime_type, page_domain_id, page_section_id,
                         metadata_json
                     FROM platform.raw_asset_vault
-                    WHERE {' AND '.join(clauses)}
+                    WHERE {' AND '.join(clauses) if clauses else '1=1'}
                     ORDER BY updated_at DESC NULLS LAST, logical_path
                     LIMIT %s;
                     """,
@@ -368,6 +441,8 @@ def review_queue(
     rows = load_inventory_rows()
     filtered: list[dict[str, Any]] = []
     for r in rows:
+        if not _is_vault_row_active(r):
+            continue
         if queue == "uncategorized" and r.get("page_domain_id"):
             continue
         if queue == "failed" and r.get("extraction_status") != "failed":
@@ -419,6 +494,38 @@ def list_failed_assets(*, project_hint: str | None = None, limit: int = 100) -> 
 
 def deduplication_report(*, limit: int = 30) -> dict[str, Any]:
     """Duplicate groups by checksum (logical paths only in response)."""
+    limit = max(1, min(int(limit or 30), 200))
+    try:
+        with psycopg.connect(_db_conn(), connect_timeout=8) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT checksum_sha256, COUNT(*), array_agg(logical_path ORDER BY logical_path)
+                    FROM platform.raw_asset_vault
+                    WHERE checksum_sha256 IS NOT NULL AND checksum_sha256 <> ''
+                    GROUP BY checksum_sha256
+                    HAVING COUNT(*) > 1
+                    ORDER BY COUNT(*) DESC
+                    LIMIT %s;
+                    """,
+                    (limit,),
+                )
+                groups = [
+                    {
+                        "checksum_sha256": digest,
+                        "count": count,
+                        "logical_paths": sorted(paths or [])[:20],
+                    }
+                    for digest, count, paths in cur.fetchall()
+                ]
+                return {
+                    "duplicate_checksum_groups": len(groups),
+                    "groups": groups,
+                    "source": "postgres",
+                }
+    except Exception as exc:
+        LOGGER.debug("Postgres deduplication_report unavailable: %s", exc)
+
     by_hash: dict[str, list[str]] = defaultdict(list)
     for row in load_inventory_rows():
         digest = (row.get("checksum_sha256") or "").strip()
@@ -435,6 +542,7 @@ def deduplication_report(*, limit: int = 30) -> dict[str, Any]:
     return {
         "duplicate_checksum_groups": len(groups),
         "groups": groups[:limit],
+        "source": "json",
     }
 
 

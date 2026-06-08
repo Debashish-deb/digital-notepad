@@ -370,7 +370,6 @@ def _maybe_vectorize(cur, asset_id: str, result: de.ExtractionResult) -> None:
     if not VECTORIZATION_ENABLED or not result.chunks:
         return
     try:
-        from app_skeleton.api.platform_flags import vault_use_vector_indexer_enabled
         from app_skeleton.api.qdrant_vectors import get_qdrant_client, ping_qdrant
     except ImportError:
         cur.execute(
@@ -388,14 +387,33 @@ def _maybe_vectorize(cur, asset_id: str, result: de.ExtractionResult) -> None:
 
     qc = get_qdrant_client()
     try:
-        if vault_use_vector_indexer_enabled():
+        from app_skeleton.api.platform_flags import vectorization_enabled, vault_use_vector_indexer_enabled
+
+        use_vector_indexer = vault_use_vector_indexer_enabled() or vectorization_enabled()
+        if use_vector_indexer:
             from app_skeleton.api.vector_indexer import upsert_vault_asset_chunks
+
+            cur.execute(
+                """
+                SELECT filename, logical_path, checksum_sha256
+                FROM platform.raw_asset_vault
+                WHERE asset_id = %s;
+                """,
+                (asset_id,),
+            )
+            vault_row = cur.fetchone()
+            filename = vault_row[0] if vault_row else (result.name or "")
+            logical_path = vault_row[1] if vault_row else (result.path or "")
+            checksum_sha256 = vault_row[2] if vault_row else (result.sha256 or "")
 
             n = upsert_vault_asset_chunks(
                 qc,
                 asset_id,
                 result.chunks,
                 source_path=result.path,
+                filename=filename or "",
+                logical_path=logical_path or "",
+                checksum_sha256=checksum_sha256 or "",
             )
         else:
             from app_skeleton.api.llm_client import LLMClient

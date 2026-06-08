@@ -249,8 +249,10 @@ def vault_search(
     extraction_status: Optional[str] = Query(None),
     vector_status: Optional[str] = Query(None),
     uncategorized_only: bool = Query(False),
+    semantic: bool = Query(True),
     limit: int = Query(25, ge=1, le=100),
 ) -> dict:
+    engines: list[dict[str, Any]] = []
     results = search_vault(
         q,
         domain=domain,
@@ -261,7 +263,39 @@ def vault_search(
         uncategorized_only=uncategorized_only,
         limit=limit,
     )
-    return {"query": q, "count": len(results), "results": results}
+    engines.append({"scope": "vault", "engine": "postgres_metadata", "count": len(results)})
+
+    if semantic and q.strip():
+        try:
+            from app_skeleton.api.platform_flags import vectorization_enabled
+            from app_skeleton.api.vault_vector_search import search_vault_vectors
+
+            if vectorization_enabled():
+                semantic_hits = search_vault_vectors(q, limit=limit)
+                engines.append({"scope": "vault", "engine": "qdrant_semantic", "count": len(semantic_hits)})
+                seen_ids = {str(r.get("asset_id") or "") for r in results}
+                for sh in semantic_hits:
+                    aid = str(sh.get("asset_id") or "")
+                    if aid and aid in seen_ids:
+                        continue
+                    results.append({
+                        "asset_id": aid,
+                        "filename": sh.get("filename"),
+                        "logical_path": sh.get("logical_path"),
+                        "checksum_sha256": sh.get("checksum_sha256"),
+                        "review_status": sh.get("review_status"),
+                        "vector_status": sh.get("vector_status"),
+                        "project_hint": sh.get("project_hint"),
+                        "page_domain_id": sh.get("page_domain_id"),
+                        "metadata_preview": {"excerpt": sh.get("excerpt")},
+                        "_semantic_score": sh.get("score"),
+                    })
+                    if aid:
+                        seen_ids.add(aid)
+        except Exception as exc:
+            LOGGER.debug("Vault API semantic merge skipped: %s", exc)
+
+    return {"query": q, "count": len(results), "results": results, "engines": engines}
 
 @router.get("/api/vault/review-queue")
 def vault_review_queue_endpoint(

@@ -19,7 +19,7 @@ from app_skeleton.api.storage_stub import storage_roots
 from app_skeleton.api.lab_knowledge_store import get_lab_index_stats, search_lab_knowledge
 from app_skeleton.api.llm_client import LLMClient
 from app_skeleton.api.document_library_service import search_documents as search_document_library_rows
-from app_skeleton.api.raw_vault_store import deduplication_report, review_queue, search_vault
+from app_skeleton.api.raw_vault_store import deduplication_report, fetch_vault_assets_by_ids, review_queue, search_vault
 from app_skeleton.api.retrieval_cache import (
     get_cached,
     get_copilot_cached,
@@ -517,6 +517,55 @@ def _row_matches_query(query: str, *parts: str | None) -> bool:
     return any(tok in blob for tok in tokens)
 
 
+_CHECKSUM_DEDUPE_BUCKETS = frozenset({"vault", "file", "lab", "document_library"})
+
+
+def _hit_asset_id(hit: SearchHit) -> str | None:
+    meta = hit.metadata or {}
+    aid = meta.get("asset_id")
+    if aid:
+        return str(aid)
+    if hit.bucket == "vault":
+        return str(hit.id)
+    return None
+
+
+def _suppress_checksum_duplicates(hits: list[SearchHit]) -> list[SearchHit]:
+    """Keep the highest-scoring hit per checksum across vault/file/lab/document_library."""
+    candidate_ids: list[str] = []
+    for hit in hits:
+        if hit.bucket not in _CHECKSUM_DEDUPE_BUCKETS:
+            continue
+        aid = _hit_asset_id(hit)
+        if aid:
+            candidate_ids.append(aid)
+
+    assets = fetch_vault_assets_by_ids(list(dict.fromkeys(candidate_ids)))
+    checksum_groups: dict[str, list[SearchHit]] = {}
+    passthrough: list[SearchHit] = []
+
+    for hit in hits:
+        if hit.bucket not in _CHECKSUM_DEDUPE_BUCKETS:
+            passthrough.append(hit)
+            continue
+        aid = _hit_asset_id(hit)
+        checksum = ""
+        if aid and aid in assets:
+            checksum = (assets[aid].get("checksum_sha256") or "").strip()
+        if not checksum:
+            checksum = str((hit.metadata or {}).get("checksum_sha256") or "").strip()
+        if not checksum:
+            passthrough.append(hit)
+            continue
+        checksum_groups.setdefault(checksum, []).append(hit)
+
+    kept: list[SearchHit] = list(passthrough)
+    for group in checksum_groups.values():
+        kept.append(max(group, key=lambda h: h.score))
+    kept.sort(key=lambda h: h.score, reverse=True)
+    return kept
+
+
 def search_document_library(
     query: str,
     *,
@@ -959,7 +1008,8 @@ class SearchService:
                 vault_rows.append(row)
             if run_semantic:
                 try:
-                    from app_skeleton.api.vault_vector_search import search_vault_vectors, vectorization_enabled
+                    from app_skeleton.api.platform_flags import vectorization_enabled
+                    from app_skeleton.api.vault_vector_search import search_vault_vectors
 
                     if vectorization_enabled():
                         semantic = search_vault_vectors(
@@ -974,6 +1024,11 @@ class SearchService:
                                 "asset_id": aid,
                                 "filename": sh.get("filename"),
                                 "logical_path": sh.get("logical_path"),
+                                "checksum_sha256": sh.get("checksum_sha256"),
+                                "review_status": sh.get("review_status"),
+                                "vector_status": sh.get("vector_status"),
+                                "page_domain_id": sh.get("page_domain_id"),
+                                "project_hint": sh.get("project_hint"),
                                 "metadata_preview": {"excerpt": sh.get("excerpt")},
                                 "_semantic_score": sh.get("score"),
                             })
@@ -1014,9 +1069,12 @@ class SearchService:
                         highlights=_highlight_tokens(query, snippet),
                         nav=nav_for_bucket("vault", relative_path=rel or None),
                         metadata={
+                            "asset_id": row.get("asset_id"),
+                            "checksum_sha256": row.get("checksum_sha256"),
                             "review_status": row.get("review_status"),
                             "vector_status": row.get("vector_status"),
                             "domain": row.get("domain"),
+                            "semantic": row.get("_semantic_score") is not None,
                         },
                     )
                 )
@@ -1162,6 +1220,7 @@ class SearchService:
                 })
 
         raw_hits = _post_filter_hits(raw_hits, search_filters, filters_applied)
+        raw_hits = _suppress_checksum_duplicates(raw_hits)
 
         # Deduplicate by id+bucket, sort by score desc
         seen: set[str] = set()

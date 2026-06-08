@@ -27,6 +27,11 @@ def require_auth_static_enabled() -> bool:
     return _env_bool("REQUIRE_AUTH_STATIC", "false")
 
 
+def vectorization_enabled() -> bool:
+    """When true, vault chunks are embedded into Qdrant and semantic vault search is enabled."""
+    return _env_bool("VECTORIZATION_ENABLED", "false")
+
+
 def vault_use_vector_indexer_enabled() -> bool:
     """When true, vault ingestion upserts via vector_indexer (shared embed path)."""
     return _env_bool("VAULT_USE_VECTOR_INDEXER", "false")

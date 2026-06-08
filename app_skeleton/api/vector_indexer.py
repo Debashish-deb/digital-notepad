@@ -119,6 +119,9 @@ def upsert_vault_asset_chunks(
     chunks: list[dict[str, Any]],
     *,
     source_path: str = "",
+    filename: str = "",
+    logical_path: str = "",
+    checksum_sha256: str = "",
     llm: Any | None = None,
 ) -> int:
     """Upsert vault extraction chunks into vault_asset_chunks via shared embed path."""
@@ -129,12 +132,16 @@ def upsert_vault_asset_chunks(
             continue
         chunk_key = chunk.get("chunk_id") or chunk.get("chunk_index") or len(points_data)
         chunk_uid = f"{asset_id}:{chunk_key}"
+        chunk_meta = chunk.get("metadata") if isinstance(chunk.get("metadata"), dict) else {}
         points_data.append({
             "chunk_uid": chunk_uid,
             "text": text,
             "payload": {
                 "asset_id": asset_id,
                 "source_file": source_path,
+                "filename": filename or chunk_meta.get("filename") or "",
+                "logical_path": logical_path or chunk_meta.get("logical_path") or source_path,
+                "checksum_sha256": checksum_sha256 or chunk_meta.get("checksum_sha256") or "",
                 "chunk_index": chunk.get("chunk_index"),
                 "text_preview": text[:2000],
             },
