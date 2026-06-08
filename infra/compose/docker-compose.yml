@@ -18,7 +18,8 @@ services:
       - "127.0.0.1:5432:5432"
     volumes:
       - omeia-pg-data:/var/lib/postgresql/data
-      - ../../sql:/docker-entrypoint-initdb.d:ro
+      # SQL migrations: run via psql / linux_bootstrap_all.sh (not docker-entrypoint-initdb.d —
+      # host sql/ mount caused Permission denied crash loops on Linux).
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U farkki -d farkki_ai"]
