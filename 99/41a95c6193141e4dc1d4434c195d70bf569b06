@@ -1,0 +1,71 @@
+app_skeleton/api/platform_flags.py
+  s_36dba99d4976c1::t_31dd950e3da3b2 38-42
+  s_d8ca0dcf385045::t_b33a473f46fd4e 33-37
+tests/test_phase1_platform_flags.py
+  s_d8ca0dcf385045::t_d0ec55dddcab6b 9
+  s_d8ca0dcf385045::t_f345ffbc516701 50-54
+app_skeleton/api/lab_knowledge_store.py
+  s_d8ca0dcf385045::t_e589d75ce3eff4 242-266
+app_skeleton/api/project_digitalization_engine.py
+  s_d8ca0dcf385045::t_6cfbf39f4c25a6 511-514
+app_skeleton/api/document_extraction.py
+  s_d8ca0dcf385045::t_4471a4c7ba8b95 375,380-381,383-387
+configs/linux-workstation.env.template
+  s_d8ca0dcf385045::t_c443293ebe032a 32
+  s_36dba99d4976c1::t_3df6565d0847dc 39
+app_skeleton/digitalization/ingestion_job.py
+  s_d8ca0dcf385045::t_54fb0ecbac4fe8 270-289
+  s_36dba99d4976c1::t_c44ada73a9664e 211-224
+app_skeleton/api/chunking.py
+  s_d8ca0dcf385045::t_608054bb676fc0 12,31-35,54,56-57,65-66,69-109
+app_skeleton/api/project_knowledge_extractor.py
+  s_d8ca0dcf385045::t_52ca1429df9f78 31
+  s_d8ca0dcf385045::t_18e3e1851b1faf 222-225,231
+  s_d8ca0dcf385045::t_0aff54985a96cb 205-207,211-214
+  s_d8ca0dcf385045::t_133a8740c61ec2 57-79
+tests/test_knowledge_indexer_pipeline.py
+  s_d8ca0dcf385045::t_8e9087f5c742b4 1-89
+app_skeleton/api/routers/admin_index.py
+  s_d8ca0dcf385045::t_3299c8c8762532 94-95,98
+app_skeleton/api/database_processor.py
+  s_d8ca0dcf385045::t_52e3194c70ea54 6
+  s_d8ca0dcf385045::t_58160c3d393f4a 23-24
+  s_d8ca0dcf385045::t_0015fec543ff60 186-197
+app_skeleton/api/vault_ingestion_engine.py
+  s_d8ca0dcf385045::t_691461d6ba187c 340-368
+  s_d8ca0dcf385045::t_b3f65af2e0a5ba 533-534
+configs/.env.example
+  s_d8ca0dcf385045::t_9ec014ad3eebc5 58
+app_skeleton/api/knowledge_indexer.py
+  s_d8ca0dcf385045::t_c14764efed3d17 28-34
+  s_d8ca0dcf385045::t_ae25ef54b89a42 13,50-51,74,97,125,131-291
+  s_d8ca0dcf385045::t_b0213b9d7b1b5b 4,7
+app_skeleton/api/scientific_document_parser.py
+  s_d8ca0dcf385045::t_ca2671977ca6fc 46-66
+tests/test_chunking_normalize.py
+  s_d8ca0dcf385045::t_9a1184e7ebed55 1-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9941a95c6193141e4dc1d4434c195d70bf569b06",
+  "prompts": {},
+  "sessions": {
+    "s_36dba99d4976c1": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "fdd140a6-4b6c-4023-b584-83ff376c9d47",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
