@@ -11,30 +11,39 @@ OMEIA runs **entirely on the Linux workstation**. Mac is a **browser client only
 | Biomedical / imaging Docker | Linux |
 | Mac | Chrome → `http://100.x.x.x:5173` |
 
-## One-time: Mac → Linux pack & push
+## Your Tailscale setup (already done)
 
-On **Mac** (repo + heavy data):
+- Linux: `dx9-3049-11090` @ **`100.80.231.55`**
+- Browser: **http://100.80.231.55:5173**
+- Mac `TAILSCALE_LINUX_IP=100.80.231.55` in `configs/.env`
+
+See **`docs/YOUR_SETUP.md`** for the single canonical workflow (avoid re-asking each session).
+
+## Code push (normal — no SSH from Mac)
+
+**Mac:**
 
 ```bash
 cd /Users/debashishdeb/Downloads/OMEIA-AI
-export LINUX_SSH=debdeba@100.80.231.55   # Linux Tailscale IP
-./scripts/deploy/mac_push_to_linux.sh
+./scripts/deploy/mac_push_to_linux.sh --git-only
 ```
 
-This will:
-
-1. `git push` from Mac  
-2. `git pull` on Linux  
-3. `rsync` `OMEIA-database/` → Linux `~/data4TB/OMEIA-database/`  
-4. `rsync` `labMember/` avatars if present  
-
-Options:
+**Linux** (workstation terminal):
 
 ```bash
-./scripts/deploy/mac_push_to_linux.sh --code-only   # git only, no rsync
-./scripts/deploy/mac_push_to_linux.sh --data-only   # rsync only
-./scripts/deploy/mac_push_to_linux.sh --dry-run
+cd ~/data4TB/digital-notepad && git pull && ./scripts/start_linux.sh
 ```
+
+## Heavy data (one-time)
+
+Tailscale HTTP does not rsync files. Use **Linux terminal**, USB, or:
+
+```bash
+# Mac
+tailscale file cp -r /Users/debashishdeb/Downloads/OMEIA-database debdeba@dx9-3049-11090:
+```
+
+Optional: `mac_push_to_linux.sh` rsync only works with SSH keys or Tailscale SSH — not the Linux login password unless you know it.
 
 ## One-time: Linux full bootstrap
 

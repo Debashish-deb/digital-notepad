@@ -16,8 +16,11 @@ if [[ -f "$ROOT/configs/.env" ]]; then
   eval "$("$ROOT/scripts/dev/load_env.sh" "$ROOT/configs/.env")" 2>/dev/null || true
 fi
 
+# Prefer Tailscale machine name (Tailscale SSH) then IP from configs/.env
 LINUX_SSH="${LINUX_SSH:-${OLLAMA_LINUX_SSH:-}}"
-if [[ -z "$LINUX_SSH" && -n "${TAILSCALE_LINUX_IP:-}" ]]; then
+if [[ -z "$LINUX_SSH" && -n "${TAILSCALE_LINUX_HOST:-}" ]]; then
+  LINUX_SSH="${LINUX_SSH_USER:-debdeba}@${TAILSCALE_LINUX_HOST}"
+elif [[ -z "$LINUX_SSH" && -n "${TAILSCALE_LINUX_IP:-}" ]]; then
   LINUX_SSH="${LINUX_SSH_USER:-debdeba}@${TAILSCALE_LINUX_IP}"
 fi
 LINUX_REPO="${LINUX_REPO:-~/data4TB/digital-notepad}"
