@@ -1,0 +1,72 @@
+app_skeleton/api/qdrant_vectors.py
+  s_d8ca0dcf385045::t_6937ccb5bfde32 22
+configs/.env.example
+  s_d8ca0dcf385045::t_2f0fbd40492d62 50,53-57
+app_skeleton/security/auth.py
+  s_d8ca0dcf385045::t_bae0acf224d2c5 137-174
+app_skeleton/api/routers/lab_static.py
+  s_d8ca0dcf385045::t_2d14ece348701c 9,11,15-16,21-26,49-52,57-60
+app_skeleton/api/raw_vault_store.py
+  s_d8ca0dcf385045::t_d40285d3912281 277-281
+tests/test_vault_json_fallback.py
+  s_d8ca0dcf385045::t_b669ca915b130f 1-33
+app_skeleton/api/vector_indexer.py
+  s_d8ca0dcf385045::t_483dbcf9be493d 10-18,58,64,91,107-164
+configs/linux-workstation.env.template
+  s_d8ca0dcf385045::t_07800dbb43f55c 30,32-35
+app_skeleton/api/main.py
+  s_d8ca0dcf385045::t_16075462d28374 13
+  s_d8ca0dcf385045::t_ff77861888a495 47
+app_skeleton/api/knowledge_indexer.py
+  s_d8ca0dcf385045::t_a8effc7c944515 12
+  s_d8ca0dcf385045::t_9488b6ff6814b6 117,119-122
+app_skeleton/api/platform_flags.py
+  s_d8ca0dcf385045::t_b6954719859336 1-32
+app_skeleton/api/routers/research.py
+  s_d8ca0dcf385045::t_acc46eb90e43eb 171,184
+  s_d8ca0dcf385045::t_e00ef60ff6e772 318
+  s_d8ca0dcf385045::t_48279bd5c274a0 140,143
+  s_d8ca0dcf385045::t_85e83faddfc3d1 946
+  s_d8ca0dcf385045::t_7b6da0ba6cb1a7 2
+  s_d8ca0dcf385045::t_32b7e1e9ae1836 471-475
+  s_d8ca0dcf385045::t_e4aee10683d858 43,45
+  s_d8ca0dcf385045::t_115fb09dbabc94 348
+  s_d8ca0dcf385045::t_35e6233096da8c 493
+  s_d8ca0dcf385045::t_398621cc59c761 903,914,919
+tests/test_admin_index_health.py
+  s_d8ca0dcf385045::t_e4811e9d90be34 4,6
+  s_d8ca0dcf385045::t_67956fe739d972 1-3,5,7-37
+tests/test_phase1_platform_flags.py
+  s_d8ca0dcf385045::t_94cf27b2b699f6 1-48
+app_skeleton/api/routers/admin_index.py
+  s_d8ca0dcf385045::t_26b7345c37daea 1-122
+app_skeleton/api/vault_ingestion_engine.py
+  s_d8ca0dcf385045::t_b3318ff5f1dc29 19
+  s_d8ca0dcf385045::t_f05105fbe085f9 344-345,360-369,371-399,404,409-414
+tests/test_researcher_resolver.py
+  s_d8ca0dcf385045::t_19b92b6b472262 1-39
+app_skeleton/digitalization/registry_writer.py
+  s_d8ca0dcf385045::t_9c1d0598ccd343 203-208
+tests/test_qdrant_collections.py
+  s_d8ca0dcf385045::t_72e59073cc5a42 1-27
+app_skeleton/api/qdrant_collections.py
+  s_d8ca0dcf385045::t_b7e2e8943e0a97 5,13-20,28-53
+tests/test_vector_indexer_vault.py
+  s_d8ca0dcf385045::t_ff0907ec21598c 1-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "4bf61d67c0b447b7d0bed199a9bfe66e4da9dfde",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
