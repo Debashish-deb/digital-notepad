@@ -203,3 +203,83 @@ html[data-theme='academic'] .obp-doc-item.is-active {
   background: color-mix(in srgb, var(--color-primary) 10%, var(--bg-surface));
   border-color: color-mix(in srgb, var(--color-primary) 40%, var(--border-color));
 }
+
+/* Data index observatory (Administration) */
+.data-index-observatory__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.data-index-observatory__lead {
+  margin: 0 0 0.75rem;
+  line-height: 1.45;
+}
+
+.data-index-observatory__layers {
+  display: grid;
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.data-index-observatory__layer {
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
+}
+
+.data-index-observatory__layer-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  margin-bottom: 0.35rem;
+}
+
+.data-index-observatory__bar {
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--border-color) 70%, transparent);
+  overflow: hidden;
+  margin-bottom: 0.35rem;
+}
+
+.data-index-observatory__bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 55%, #22c55e));
+}
+
+.data-index-observatory__audit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.35rem 0 0.65rem;
+  display: grid;
+  gap: 0.28rem;
+}
+
+.data-index-observatory__audit-list li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.76rem;
+}
+
+.data-index-observatory__drift {
+  list-style: none;
+  padding: 0;
+  margin: 0.45rem 0 0;
+  display: grid;
+  gap: 0.3rem;
+  color: var(--color-danger, #ef4444);
+  font-size: 0.74rem;
+}
+
+.data-index-observatory__drift li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+}

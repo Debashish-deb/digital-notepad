@@ -122,6 +122,16 @@ function getDefaultProjects(dbProjects = []) {
   return codes.length ? [codes[0]] : ['EyeMT'];
 }
 
+function buildConversationHistory(messages = [], { maxTurns = 8 } = {}) {
+  return messages
+    .filter((m) => !m.isWelcome && !m.streaming && !m.isError && String(m.content || '').trim())
+    .slice(-maxTurns)
+    .map((m) => ({
+      role: m.role,
+      content: String(m.content).slice(0, 1200),
+    }));
+}
+
 function formatAssistantPayload(data) {
   const answer = data?.answer || 'No answer was returned by the copilot.';
   const showSources = data?.show_sources === true;
@@ -767,6 +777,7 @@ export default function ChatWidget({
             project_codes: selProjs,
             library_scope: libraryScope,
             session_id: sessionIdRef.current || null,
+            conversation_history: buildConversationHistory(messages),
           });
           if (data?.session_id) {
             sessionIdRef.current = data.session_id;

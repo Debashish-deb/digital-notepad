@@ -1,7 +1,23 @@
+import { findSubNav } from '../config/navigation.js';
+
 /**
  * Maps nav context → Scientific File Explorer domain tab + default filters.
  * Project Portfolio is intentionally excluded — research twins stay on their own screens.
  */
+
+/** Map Document Library sidebar ids → explorer preset main/sub (libraryMain/librarySub). */
+export function resolveExplorerNav(mainId, subId) {
+  if (mainId === 'library') {
+    const sub = findSubNav('library', subId);
+    if (sub?.libraryMain) {
+      return {
+        mainId: sub.libraryMain,
+        subId: sub.librarySub || subId,
+      };
+    }
+  }
+  return { mainId, subId };
+}
 
 const OVERVIEW_SECTION_BY_SUB = {
   onboarding: 'overview_onboarding',
@@ -90,8 +106,12 @@ const ORDERS_SCOPE_BY_SUB = {
   related: { section: 'orders_billing', scopeLabel: 'Shipping & Related Records' },
 };
 
-/** @returns {{ domainTab: string, filters: Record<string, unknown>, systemView?: string, showDomainTabs: boolean, scopeLabel?: string, initialQuery?: string, taxonomyTab?: string }} */
+/** @returns {{ domainTab: string, filters: Record<string, unknown>, systemView?: string, showDomainTabs: boolean, scopeLabel?: string, initialQuery?: string, taxonomyTab?: string, folderTreeRoot?: string|null }} */
 export function getExplorerPreset(mainId, subId) {
+  const resolved = resolveExplorerNav(mainId, subId);
+  mainId = resolved.mainId;
+  subId = resolved.subId;
+
   if (mainId === 'overview') {
     if (subId === 'social') {
       return {
@@ -101,6 +121,7 @@ export function getExplorerPreset(mainId, subId) {
         showDomainTabs: false,
         hideScopeFilters: true,
         scopeLabel: OVERVIEW_SCOPE_LABELS.social,
+        folderTreeRoot: 'SOCIAL & MISCELLANEOUS',
       };
     }
     const section = OVERVIEW_SECTION_BY_SUB[subId];
@@ -112,6 +133,7 @@ export function getExplorerPreset(mainId, subId) {
         showDomainTabs: false,
         hideScopeFilters: true,
         scopeLabel: OVERVIEW_SCOPE_LABELS[subId] || 'Lab Administration',
+        folderTreeRoot: 'Overview',
       };
     }
     if (subId === 'get_started') {
@@ -122,6 +144,7 @@ export function getExplorerPreset(mainId, subId) {
         showDomainTabs: false,
         hideScopeFilters: true,
         scopeLabel: OVERVIEW_SCOPE_LABELS.get_started,
+        folderTreeRoot: 'Overview',
       };
     }
   }
@@ -135,6 +158,7 @@ export function getExplorerPreset(mainId, subId) {
       hideScopeFilters: true,
       scopeLabel: 'Lab Operations',
       scopeChipIds: WET_LAB_SCOPE_CHIP_IDS.files,
+      folderTreeRoot: 'WET_LAB',
     };
   }
 
@@ -147,6 +171,7 @@ export function getExplorerPreset(mainId, subId) {
       hideScopeFilters: true,
       scopeLabel: 'Protocols & Methods',
       scopeChipIds: WET_LAB_SCOPE_CHIP_IDS.protocols,
+      folderTreeRoot: 'WET_LAB',
     };
   }
 
@@ -159,6 +184,7 @@ export function getExplorerPreset(mainId, subId) {
       hideScopeFilters: true,
       scopeLabel: 'Reagents & Panels',
       scopeChipIds: WET_LAB_SCOPE_CHIP_IDS.inventory,
+      folderTreeRoot: 'WET_LAB',
     };
   }
 
@@ -176,6 +202,7 @@ export function getExplorerPreset(mainId, subId) {
       showDomainTabs: false,
       hideScopeFilters: true,
       scopeLabel: CYCIF_SCOPE_LABELS[subId] || 'CyCIF documents',
+      folderTreeRoot: 'WET_LAB',
     };
   }
 
@@ -190,6 +217,7 @@ export function getExplorerPreset(mainId, subId) {
         showDomainTabs: false,
         hideScopeFilters: true,
         scopeLabel,
+        folderTreeRoot: 'ORDERS & RELATED INFORMATION',
       };
     }
   }
@@ -201,6 +229,7 @@ export function getExplorerPreset(mainId, subId) {
       filters: {},
       showDomainTabs: true,
       scopeLabel: subId === 'all_files' ? 'Full Library' : 'All Lab Documents',
+      folderTreeRoot: null,
     };
   }
 
@@ -211,6 +240,18 @@ export function getExplorerPreset(mainId, subId) {
       filters: {},
       showDomainTabs: true,
       scopeLabel: 'Full Library',
+      folderTreeRoot: null,
+    };
+  }
+
+  if (mainId === 'projects') {
+    return {
+      domainTab: 'projects',
+      taxonomyTab: 'projects',
+      filters: {},
+      showDomainTabs: false,
+      scopeLabel: 'Project workspace files',
+      folderTreeRoot: 'projects',
     };
   }
 
@@ -220,6 +261,7 @@ export function getExplorerPreset(mainId, subId) {
     filters: {},
     showDomainTabs: true,
     scopeLabel: 'Full Library',
+    folderTreeRoot: null,
   };
 }
 
@@ -241,13 +283,19 @@ export function isDocumentExplorerRoute(mainId, subId, screen) {
 
 /** Structured scope summary for AI assistant / chat context. */
 export function getLibraryScopeContext(mainId, subId) {
-  const preset = getExplorerPreset(mainId, subId);
+  const uiMain = mainId;
+  const uiSub = subId;
+  const resolved = resolveExplorerNav(mainId, subId);
+  const preset = getExplorerPreset(resolved.mainId, resolved.subId);
   if (!preset?.filters || preset.domainTab === 'all_files') return null;
   return {
-    main_id: mainId,
-    sub_id: subId,
+    main_id: resolved.mainId,
+    sub_id: resolved.subId,
+    ui_main_id: uiMain,
+    ui_sub_id: uiSub,
     domain_tab: preset.domainTab,
     scope_label: preset.scopeLabel,
     filters: preset.filters,
+    ...(preset.folderTreeRoot ? { folder_tree_root: preset.folderTreeRoot } : {}),
   };
 }

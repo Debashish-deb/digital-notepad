@@ -164,6 +164,19 @@ INTENT_SCOPE_MAP: dict[str, tuple[str, ...]] = {
     "people_question": ("people", "lab", "wiki"),
 }
 
+CATEGORY_BUCKET_BOOST: dict[str, tuple[str, ...]] = {
+    "general_research": ("lab", "research", "file"),
+    "cancer_oncology": ("research", "lab", "project"),
+    "spatial_multiplex": ("lab", "file", "research", "document_library"),
+    "wet_lab_cycif": ("lab", "document_library", "vault", "file"),
+    "bioinformatics_omics": ("file", "lab", "research", "notebook"),
+    "literature_evidence": ("research", "lab"),
+    "platform_engineering": ("wiki", "notebook", "file"),
+    "scientific_imaging": ("lab", "file", "document_library"),
+    "fast_local": ("lab", "file"),
+    "deep_research": ("research", "lab", "project", "file"),
+}
+
 
 @dataclass(frozen=True)
 class SearchPlan:
@@ -240,7 +253,28 @@ def extract_entities(message: str) -> tuple[str, ...]:
     return tuple(unique)
 
 
-def build_search_plan(intent_decision: IntentDecision, domains: tuple[str, ...], entities: tuple[str, ...]) -> SearchPlan:
+def apply_category_search_boost(plan: SearchPlan, agent_category: str | None) -> SearchPlan:
+    boost = CATEGORY_BUCKET_BOOST.get((agent_category or "").strip())
+    if not boost:
+        return plan
+    merged = tuple(dict.fromkeys(boost + plan.prioritize_buckets))
+    rationale = plan.rationale + f"; category={agent_category}"
+    return SearchPlan(
+        scopes=plan.scopes,
+        prioritize_buckets=merged,
+        retrieval_mode=plan.retrieval_mode,
+        require_citations=plan.require_citations,
+        rationale=rationale,
+    )
+
+
+def build_search_plan(
+    intent_decision: IntentDecision,
+    domains: tuple[str, ...],
+    entities: tuple[str, ...],
+    *,
+    agent_category: str | None = None,
+) -> SearchPlan:
     intent = intent_decision.intent
     default_scopes = INTENT_SCOPE_MAP.get(intent, ("lab", "file", "vault", "notebook", "wiki", "research", "people"))
 
@@ -264,21 +298,27 @@ def build_search_plan(intent_decision: IntentDecision, domains: tuple[str, ...],
     if entities:
         rationale_parts.append(f"entities={','.join(entities[:5])}")
 
-    return SearchPlan(
+    plan = SearchPlan(
         scopes=default_scopes,
         prioritize_buckets=tuple(dict.fromkeys(prioritize)),
         retrieval_mode="hybrid",
         require_citations=intent_decision.require_citations,
         rationale="; ".join(rationale_parts),
     )
+    return apply_category_search_boost(plan, agent_category)
 
 
-def understand_query(message: str, intent_decision: IntentDecision) -> QueryUnderstanding:
+def understand_query(
+    message: str,
+    intent_decision: IntentDecision,
+    *,
+    agent_category: str | None = None,
+) -> QueryUnderstanding:
     normalized = normalize_query(message)
     domains = extract_domains(message)
     entities = extract_entities(message)
     terms = tuple(tokenize_query(normalized))
-    plan = build_search_plan(intent_decision, domains, entities)
+    plan = build_search_plan(intent_decision, domains, entities, agent_category=agent_category)
     return QueryUnderstanding(
         raw_query=message,
         normalized_query=normalized,
@@ -748,9 +788,12 @@ def build_orchestrator_user_prompt(
     *,
     db_block: str = "",
     clinical_block: str = "",
+    library_scope_block: str = "",
 ) -> str:
     """User message with structured evidence package and synthesis instructions."""
     sections = []
+    if library_scope_block:
+        sections.append(library_scope_block.rstrip())
     if db_block:
         sections.append(db_block.rstrip())
     if clinical_block:

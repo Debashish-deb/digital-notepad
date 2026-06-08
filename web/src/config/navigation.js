@@ -359,9 +359,27 @@ export const MAIN_NAV = [
   },
 ];
 
-export function findMainNav(mainId) {
-  return MAIN_NAV.find((m) => m.id === mainId) || AUX_NAV.find((m) => m.id === mainId) || MAIN_NAV[0];
+/** Resolve a main nav id without fallback (null if unknown). */
+export function lookupMainNav(mainId) {
+  return MAIN_NAV.find((m) => m.id === mainId) || AUX_NAV.find((m) => m.id === mainId) || null;
 }
+
+export function findMainNav(mainId) {
+  return lookupMainNav(mainId) || MAIN_NAV[0];
+}
+
+/** Bare stored keys (no colon) from pre-IA nav. */
+export const LEGACY_BARE_NAV_ALIASES = {
+  dashboard: { main: 'workbench', sub: 'home' },
+  projects: { main: 'projects_data', sub: 'portfolio' },
+  notebook: { main: 'projects_data', sub: 'notebook' },
+  chat: { main: 'ai_assistant', sub: 'copilot' },
+  decisions: { main: 'projects_data', sub: 'decisions' },
+  tasks: { main: 'projects_data', sub: 'portfolio' },
+  bioinformatics: { main: 'computational', sub: 'onboarding' },
+  features: { main: 'projects_data', sub: 'features' },
+  ai_assistant: { main: 'ai_assistant', sub: 'prompts' },
+};
 
 const DATA_STORAGE_LEGACY_SUBS = {
   vault: 'landscape',
@@ -498,19 +516,52 @@ export function resolveCycifLegacyNav(main, sub) {
   };
 }
 
+function resolveLegacySub(mainId, subId, rawSubId) {
+  let resolvedSub = subId;
+  if (mainId === 'data_storage' && DATA_STORAGE_LEGACY_SUBS[resolvedSub]) {
+    resolvedSub = DATA_STORAGE_LEGACY_SUBS[resolvedSub];
+  } else if (mainId === 'computational' && COMPUTATIONAL_LEGACY_SUBS[resolvedSub]) {
+    resolvedSub = COMPUTATIONAL_LEGACY_SUBS[resolvedSub];
+  }
+  const mainNav = lookupMainNav(mainId);
+  if (!mainNav) return null;
+  const validSub = mainNav.children.some((child) => child.id === resolvedSub)
+    ? resolvedSub
+    : mainNav.defaultSub;
+  const result = { main: mainId, sub: validSub };
+  const nestedKey = rawSubId || subId;
+  if (mainId === 'computational' && COMPUTATIONAL_LEGACY_NESTED[nestedKey]) {
+    result.hubNested = COMPUTATIONAL_LEGACY_NESTED[nestedKey].section;
+  }
+  return result;
+}
+
 export function parseNavFromStorage(raw) {
   if (!raw || typeof raw !== 'string') return null;
+  if (!raw.includes(':')) {
+    return LEGACY_BARE_NAV_ALIASES[raw] || null;
+  }
   const [rawMain, rawSub] = raw.split(':');
   const socialResolved = resolveSocialLegacyNav(rawMain, rawSub);
   if (socialResolved) return socialResolved;
   const cycifResolved = resolveCycifLegacyNav(rawMain, rawSub);
   if (cycifResolved) return cycifResolved;
   const { main, sub } = normalizeLegacyNavPair(rawMain, rawSub || '');
-  if (!findMainNav(main)) return null;
-  const resolvedSub = sub || findMainNav(main).defaultSub;
-  const mainNav = findMainNav(main);
-  const validSub = mainNav.children.some((child) => child.id === resolvedSub)
-    ? resolvedSub
-    : mainNav.defaultSub;
-  return { main, sub: validSub };
+  if (!lookupMainNav(main)) return null;
+  return resolveLegacySub(main, sub || lookupMainNav(main).defaultSub, rawSub);
+}
+
+/** Full stored-nav resolution for app boot (legacy bare keys + pairs + defaults). */
+export function resolveStoredNavigation(stored) {
+  const bare = stored && LEGACY_BARE_NAV_ALIASES[stored];
+  if (bare) return { ...bare };
+  const parsed = parseNavFromStorage(stored);
+  if (parsed) return { ...parsed };
+  if (stored && stored.includes(':')) {
+    const [main, sub] = stored.split(':');
+    const normalized = normalizeLegacyNavPair(main, sub);
+    const resolved = resolveLegacySub(normalized.main, normalized.sub, sub);
+    if (resolved) return resolved;
+  }
+  return { main: 'workbench', sub: 'home' };
 }

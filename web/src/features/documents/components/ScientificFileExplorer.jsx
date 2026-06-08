@@ -1,10 +1,13 @@
+import { useEffect, useMemo, useState } from 'react';
 import { LayoutGrid, List, Loader2, PanelLeftClose, PanelLeftOpen, Search } from 'lucide-react';
-import { DOMAIN_TABS } from '@/services/documentLibraryClient.js';
+import { DOMAIN_TABS, fetchCategoryTrees } from '@/services/documentLibraryClient.js';
 import { useModuleShellCover } from '@/contexts/ModuleShellCoverContext.jsx';
 import useDocumentLibrary from '@/features/documents/hooks/useDocumentLibrary.js';
 import DocumentFilterPanel from './DocumentFilterPanel.jsx';
 import DocumentResultList from './DocumentResultList.jsx';
 import DocumentMetadataPanel from './DocumentMetadataPanel.jsx';
+import DocumentFolderTree from './DocumentFolderTree.jsx';
+import DocumentFolderBreadcrumb from './DocumentFolderBreadcrumb.jsx';
 import './ScientificFileExplorer.css';
 import '@/features/overview/components/OverviewReadingPage.css';
 import './DocumentExportMenu.css';
@@ -24,10 +27,14 @@ export default function ScientificFileExplorer({
   hideScopeFilters = false,
   scopeChipIds = null,
   layoutMode = 'split',
+  folderTreeRoot = null,
   className = '',
 }) {
   const coverCtx = useModuleShellCover();
   const hideHeroText = Boolean(coverCtx?.showModuleCover);
+  const [categoryTrees, setCategoryTrees] = useState(null);
+  const [treesLoading, setTreesLoading] = useState(true);
+  const [treesError, setTreesError] = useState(null);
 
   const library = useDocumentLibrary({
     initialDomainTab,
@@ -39,7 +46,28 @@ export default function ScientificFileExplorer({
     layoutMode,
     coverCtx,
     hideHeroText,
+    folderTreeRoot,
   });
+
+  useEffect(() => {
+    let alive = true;
+    setTreesLoading(true);
+    fetchCategoryTrees()
+      .then((data) => {
+        if (!alive) return;
+        setCategoryTrees(data);
+        setTreesError(null);
+      })
+      .catch((err) => {
+        if (!alive) return;
+        setCategoryTrees(null);
+        setTreesError(err?.message || 'Could not load folder tree.');
+      })
+      .finally(() => {
+        if (alive) setTreesLoading(false);
+      });
+    return () => { alive = false; };
+  }, []);
 
   const {
     isReadingLayout,
@@ -79,7 +107,16 @@ export default function ScientificFileExplorer({
     scopeChips,
     displayTotal,
     audit,
+    selectedFolderPath,
+    handleSelectFolder,
   } = library;
+
+  const folderTreeNodes = useMemo(
+    () => categoryTrees?.category_tree_folder_derived?.nodes || [],
+    [categoryTrees],
+  );
+  const showFolderTree = folderTreeNodes.length > 0;
+  const groupByDocumentType = !selectedFolderPath;
 
   const domainTabsNav = showDomainTabs ? (
     <nav className="sfe-domain-tabs" aria-label="Domain tabs">
@@ -152,15 +189,38 @@ export default function ScientificFileExplorer({
       <div
         className={[
           'sfe-body',
+          showFolderTree ? 'sfe-body--with-tree' : '',
           isReadingLayout ? 'sfe-body--reading' : '',
           !isReadingLayout && listDetailExpanded ? 'sfe-body--list-expanded' : '',
           !isReadingLayout && !listDetailExpanded ? 'sfe-body--list-compact' : '',
         ].filter(Boolean).join(' ')}
       >
+        {showFolderTree ? (
+          <DocumentFolderTree
+            nodes={folderTreeNodes}
+            rootPrefix={folderTreeRoot}
+            selectedPath={selectedFolderPath}
+            onSelect={handleSelectFolder}
+            loading={treesLoading}
+            error={treesError}
+          />
+        ) : null}
+
         <section className={`sfe-main${isReadingLayout || !listDetailExpanded ? ' sfe-main--list-compact' : ''}`}>
           {loadError ? (
             <div className="sfe-list-section sfe-list-section--alert">
               <div className="sfe-error-banner" role="alert">{loadError}</div>
+            </div>
+          ) : null}
+
+          {selectedFolderPath ? (
+            <div className="sfe-list-section sfe-list-section--breadcrumb">
+              <DocumentFolderBreadcrumb
+                selectedPath={selectedFolderPath}
+                rootPrefix={folderTreeRoot}
+                scopeLabel={scopeLabel}
+                onNavigate={handleSelectFolder}
+              />
             </div>
           ) : null}
 
@@ -230,7 +290,7 @@ export default function ScientificFileExplorer({
                   selectedId={selected?.asset_id}
                   onSelect={handleSelect}
                   listDetailExpanded={listDetailExpanded}
-                  groupByDocumentType
+                  groupByDocumentType={groupByDocumentType}
                 />
                 {hasMore ? (
                   <div className="sfe-load-more">

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Activity, Image, Shield } from 'lucide-react';
 import AuthLoginPanel from '@/features/auth/components/AuthLoginPanel.jsx';
 import ComputeStatusPanel from '@/features/admin/components/ComputeStatusPanel.jsx';
+import DataIndexObservatoryPanel from '@/features/admin/components/DataIndexObservatoryPanel.jsx';
 import { apiGet, apiPost } from '@/services/client.js';
 import { useApiContext } from '@/services/ApiContext.jsx';
 
@@ -71,6 +72,7 @@ export default function AdministrationScreen({ title, description, onNavigate })
       
       <div className="grid-2col" style={{ gap: '2rem', alignItems: 'start' }}>
         <div className="stack-md">
+          <DataIndexObservatoryPanel onNavigate={onNavigate} />
           <ComputeStatusPanel />
 
           {health && (

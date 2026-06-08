@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from datetime import date
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "docs" / "31_SEARCH_UNIFIED_AUDIT_AND_SOURCE_BUNDLE.md"
 
 MASTER_AUDIT = ROOT / "docs" / "30_SEARCH_FUNCTIONALITY_AUDIT.md"

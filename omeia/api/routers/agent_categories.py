@@ -34,6 +34,10 @@ class CategoryChatRequest(BaseModel):
         None,
         description="Active document library nav scope (main_id, sub_id, filters) from the UI.",
     )
+    conversation_history: List[dict[str, Any]] = Field(
+        default_factory=list,
+        description="Recent UI turns [{role, content}] when server session memory is unavailable.",
+    )
     use_rag: bool = True
     use_local_models: bool = True
 
@@ -109,11 +113,20 @@ def _execute_category_chat(
     }
     if use_unified and req.mode in {"fast", "balanced"}:
         unified_llm = llm_factory(None, None)
+        scope = req.library_scope
+        if scope and scope.get("main_id") and scope.get("sub_id"):
+            from omeia.api.library_taxonomy import describe_nav_scope
+
+            enriched = describe_nav_scope(scope["main_id"], scope["sub_id"])
+            if enriched:
+                scope = {**scope, **enriched}
         result = answer_chat(
             req.message,
             project_codes=req.project_codes,
             session_id=req.session_id,
             agent_category=req.category,
+            library_scope=scope,
+            client_history=req.conversation_history or None,
             user=user,
             llm=unified_llm,
             search_svc=search_svc,

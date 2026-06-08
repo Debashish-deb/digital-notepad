@@ -31,6 +31,7 @@ export default function LabDocumentExplorer({
         hideScopeFilters={preset.hideScopeFilters ?? Boolean(preset.filters?.section)}
         scopeChipIds={preset.scopeChipIds}
         layoutMode={layoutMode}
+        folderTreeRoot={preset.folderTreeRoot ?? null}
       />
     </div>
   );

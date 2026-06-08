@@ -22,7 +22,7 @@ import {
   findSubNav,
   getDefaultSocialSub,
   normalizeLegacyNavPair,
-  parseNavFromStorage,
+  resolveStoredNavigation,
   resolveCycifLegacyNav,
   resolveSectionSub,
   resolveSocialInnerSub,
@@ -124,51 +124,25 @@ function safeStorageSet(key, value) {
 }
 
 function resolveStoredNav(raw) {
+  const socialSub = raw.socialSub || null;
   if (raw.hubNested) {
-    return { main: raw.main, sub: raw.sub, hubNested: raw.hubNested };
+    return { main: raw.main, sub: raw.sub, hubNested: raw.hubNested, socialSub };
   }
   if (raw.main === 'computational' && raw.sub === 'utilities' && raw.hubNested === 'tools') {
-    return { main: raw.main, sub: 'tools', hubNested: null };
+    return { main: raw.main, sub: 'tools', hubNested: null, socialSub };
   }
   const legacy = COMPUTATIONAL_LEGACY_NESTED[raw.sub];
   if (raw.main === 'computational' && legacy) {
-    return { main: raw.main, sub: legacy.tab, hubNested: legacy.section };
+    return { main: raw.main, sub: legacy.tab, hubNested: legacy.section, socialSub };
   }
   if (raw.main === 'computational' && raw.sub === 'tools') {
-    return { main: raw.main, sub: 'tools', hubNested: null };
+    return { main: raw.main, sub: 'tools', hubNested: null, socialSub };
   }
-  return { main: raw.main, sub: raw.sub, hubNested: null };
+  return { main: raw.main, sub: raw.sub, hubNested: null, socialSub };
 }
 
 function migrateLegacyNav(stored) {
-  const legacy = parseNavFromStorage(stored);
-  if (legacy) {
-    if (legacy.socialSub) {
-      return {
-        main: legacy.main,
-        sub: legacy.sub,
-        socialSub: legacy.socialSub,
-      };
-    }
-    return legacy;
-  }
-  const map = {
-    dashboard: { main: 'workbench', sub: 'home' },
-    projects: { main: 'projects_data', sub: 'portfolio' },
-    notebook: { main: 'projects_data', sub: 'notebook' },
-    chat: { main: 'ai_assistant', sub: 'copilot' },
-    decisions: { main: 'projects_data', sub: 'decisions' },
-    tasks: { main: 'projects_data', sub: 'portfolio' },
-    bioinformatics: { main: 'computational', sub: 'onboarding' },
-    features: { main: 'projects_data', sub: 'features' },
-    ai_assistant: { main: 'ai_assistant', sub: 'prompts' },
-  };
-  if (map[stored]) return map[stored];
-  if (stored && stored.includes(':')) {
-    const [main, sub] = stored.split(':');
-    return normalizeLegacyNavPair(main, sub);
-  }
-  return { main: 'workbench', sub: 'home' };
+  return resolveStoredNavigation(stored);
 }
 
 function normalizeProjectCodes(value) {

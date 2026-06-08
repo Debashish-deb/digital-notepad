@@ -111,6 +111,7 @@ export async function sendCategoryChat({
   project_codes = [],
   library_scope = null,
   session_id = null,
+  conversation_history = [],
   timeoutMs = 180_000,
 } = {}) {
   const text = String(message || '').trim();
@@ -125,6 +126,7 @@ export async function sendCategoryChat({
   };
   if (library_scope) body.library_scope = library_scope;
   if (session_id) body.session_id = session_id;
+  if (conversation_history?.length) body.conversation_history = conversation_history;
   return apiFetch('/api/chat/category', {
     method: 'POST',
     timeoutMs,

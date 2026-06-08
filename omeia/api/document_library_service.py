@@ -1025,6 +1025,11 @@ def _apply_filters(
             cutoff = _parse_dt(filters["modified_before"])
             if not dt or not cutoff or dt > cutoff:
                 continue
+        if filters.get("path_prefix"):
+            prefix = str(filters["path_prefix"]).replace("\\", "/").strip("/")
+            logical = (row.get("logical_path") or "").replace("\\", "/").strip("/")
+            if prefix and logical != prefix and not logical.startswith(f"{prefix}/"):
+                continue
 
         blob = _search_blob(row)
         if tokens:

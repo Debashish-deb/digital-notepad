@@ -35,6 +35,11 @@ from omeia.api.evidence_orchestrator import (
     should_use_orchestrator,
     understand_query,
 )
+from omeia.api.agent_orchestrator.rag_context import _format_library_scope
+from omeia.api.chat_query_expansion import (
+    build_contextual_retrieval_query,
+    enrich_query_with_library_scope,
+)
 from omeia.api.chat_session_store import (
     append_turn,
     ensure_session,
@@ -189,6 +194,7 @@ def _build_prompts(
     evidence_package: Any | None = None,
     query_understanding: Any | None = None,
     memory_block: str = "",
+    library_scope_block: str = "",
 ) -> tuple[str, str]:
     memory_prefix = memory_block or ""
     if not intent_decision.use_rag:
@@ -218,6 +224,7 @@ def _build_prompts(
             evidence_package,
             db_block=db_block,
             clinical_block=clinical_prefix,
+            library_scope_block=library_scope_block,
         )
         return system_prompt, user_content
 
@@ -230,7 +237,10 @@ def _build_prompts(
     if use_grounding_template:
         grounding_hits = _grounding_hits_from_retrieval(unified_hits, rag_sources)
         system_prompt = _intent_system_prompt(intent_decision, user_name=user_name, lang=lang)
-        user_content = memory_prefix + db_block + clinical_prefix + build_grounded_prompt(question, grounding_hits)
+        scope_prefix = f"{library_scope_block}\n\n" if library_scope_block else ""
+        user_content = (
+            memory_prefix + scope_prefix + db_block + clinical_prefix + build_grounded_prompt(question, grounding_hits)
+        )
         return system_prompt, user_content
 
     context_str = ""
@@ -329,6 +339,8 @@ def answer_chat(
     user: dict[str, Any] | None = None,
     session_id: str | None = None,
     agent_category: str | None = None,
+    library_scope: dict[str, Any] | None = None,
+    client_history: list[dict[str, Any]] | None = None,
     llm: Any,
     search_svc: SearchService,
     rag_agent: Any,
@@ -339,7 +351,11 @@ def answer_chat(
     max_sources = _env_int("CHAT_MAX_SOURCES", 12, low=4, high=24)
     user_role = (user or {}).get("role")
     intent_decision = classify_and_enrich(message)
-    query_understanding = understand_query(message, intent_decision)
+    query_understanding = understand_query(
+        message,
+        intent_decision,
+        agent_category=agent_category,
+    )
     user_name = _user_display_name(user)
     user_email = (user or {}).get("email") or ""
     active_session = ensure_session(
@@ -349,6 +365,22 @@ def answer_chat(
     )
     session_ctx = load_session_context(active_session, user_email=user_email) if active_session else None
     memory_block = format_memory_block(session_ctx)
+    retrieval_query, expansion_note = build_contextual_retrieval_query(
+        message,
+        session_ctx=session_ctx,
+        client_history=client_history,
+    )
+    if library_scope and library_scope.get("main_id") and library_scope.get("sub_id"):
+        try:
+            from omeia.api.library_taxonomy import describe_nav_scope
+
+            enriched = describe_nav_scope(library_scope["main_id"], library_scope["sub_id"])
+            if enriched:
+                library_scope = {**library_scope, **enriched}
+        except Exception:
+            pass
+    retrieval_query = enrich_query_with_library_scope(retrieval_query, library_scope)
+    library_scope_block = _format_library_scope(library_scope)
     response_lang = _detect_response_language(message)
     intent_meta = _intent_metadata(intent_decision)
     chat_ctx = build_user_context(message, user=user, project_codes=project_codes)
@@ -507,8 +539,12 @@ def answer_chat(
     evidence_package = None
 
     if intent_decision.use_rag:
+        if expansion_note:
+            limitations.append(
+                "Retrieval query expanded using conversation context for better follow-up grounding."
+            )
         if search_fn is not None:
-            unified_hits = search_fn(safe_message, project_codes, max_sources)
+            unified_hits = search_fn(retrieval_query, project_codes, max_sources)
         else:
             retrieval_limit = max_sources
             if intent_decision.intent == "project_question" and (user_role or "").lower() in {
@@ -518,7 +554,7 @@ def answer_chat(
             }:
                 retrieval_limit = min(max_sources + 4, 24)
             unified_hits = search_svc.hits_for_copilot(
-                safe_message,
+                retrieval_query,
                 intent=intent_decision.intent,
                 project_codes=project_codes,
                 limit=retrieval_limit,
@@ -527,7 +563,7 @@ def answer_chat(
             )
         use_legacy_rag = os.getenv("CHAT_USE_LEGACY_RAG", "false").lower() in {"1", "true", "yes"}
         if use_legacy_rag and rag_agent is not None and len(unified_hits) < max(3, max_sources // 2):
-            rag_sources = rag_agent.retrieve(safe_message, project_codes)
+            rag_sources = rag_agent.retrieve(retrieval_query, project_codes)
             limitations.append("Legacy RAGAgent supplement used — prefer unified SearchService only.")
         retrieved_sources, unified_hits = _hits_to_sources(unified_hits, rag_sources, limit=max_sources)
         evidence_package = package_evidence(
@@ -571,6 +607,7 @@ def answer_chat(
         evidence_package=evidence_package,
         query_understanding=query_understanding,
         memory_block=memory_block,
+        library_scope_block=library_scope_block,
     )
 
     answer = llm.generate(user_content, system_prompt)

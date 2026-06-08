@@ -7,8 +7,10 @@ import {
   buildNavSections,
   findMainNav,
   findSubNav,
+  lookupMainNav,
   normalizeLegacyNavPair,
   parseNavFromStorage,
+  resolveStoredNavigation,
 } from './navigation.js';
 
 test('every main nav item belongs to a known sidebar group', () => {
@@ -48,4 +50,38 @@ test('buildNavSections preserves all modules', () => {
   const flattened = sections.flatMap((section) => section.items);
   assert.equal(flattened.length, MAIN_NAV.length);
   assert.equal(findMainNav('workbench').defaultSub, 'home');
+});
+
+test('lookupMainNav returns null for unknown main ids', () => {
+  assert.equal(lookupMainNav('tasks'), null);
+  assert.equal(lookupMainNav('bioinformatics'), null);
+  assert.ok(lookupMainNav('workbench'));
+});
+
+test('bare legacy tasks redirects to project portfolio', () => {
+  const parsed = parseNavFromStorage('tasks');
+  assert.equal(parsed.main, 'projects_data');
+  assert.equal(parsed.sub, 'portfolio');
+});
+
+test('computational conda legacy preserves nested utilities section', () => {
+  const parsed = parseNavFromStorage('computational:conda');
+  assert.equal(parsed.main, 'computational');
+  assert.equal(parsed.sub, 'utilities');
+  assert.equal(parsed.hubNested, 'conda');
+});
+
+test('resolveStoredNavigation handles invalid mains with safe default', () => {
+  const resolved = resolveStoredNavigation('totally_invalid:foo');
+  assert.equal(resolved.main, 'workbench');
+  assert.equal(resolved.sub, 'home');
+});
+
+test('every nav screen id is a non-empty string', () => {
+  for (const main of MAIN_NAV) {
+    for (const child of main.children) {
+      assert.ok(child.screen, `missing screen on ${main.id}:${child.id}`);
+      assert.equal(typeof child.screen, 'string');
+    }
+  }
 });

@@ -23,6 +23,7 @@ export default function useDocumentLibrary({
   layoutMode = 'split',
   coverCtx = null,
   hideHeroText = false,
+  folderTreeRoot = null,
 }) {
   const isReadingLayout = layoutMode === 'reading';
   const [domainTab, setDomainTab] = useState(initialDomainTab);
@@ -46,6 +47,7 @@ export default function useDocumentLibrary({
   const [advancedOpen, setAdvancedOpen] = useState(false);
   const [listDetailExpanded, setListDetailExpanded] = useState(false);
   const [pinnedIds, setPinnedIds] = useState(() => loadPinnedIds());
+  const [selectedFolderPath, setSelectedFolderPath] = useState(null);
   const itemsLengthRef = useRef(0);
 
   useEffect(() => {
@@ -100,7 +102,8 @@ export default function useDocumentLibrary({
     sort,
     order,
     ...filters,
-  }), [debouncedQ, effectiveDomainTab, systemView, sort, order, filters]);
+    ...(selectedFolderPath ? { path_prefix: selectedFolderPath } : {}),
+  }), [debouncedQ, effectiveDomainTab, systemView, sort, order, filters, selectedFolderPath]);
 
   const searchParams = useMemo(() => ({
     ...facetParams,
@@ -218,12 +221,17 @@ export default function useDocumentLibrary({
   }, [selected]);
 
   const handleClearFilters = useCallback(() => {
+    setSelectedFolderPath(null);
     setFilters(
       hideScopeFilters
         ? Object.fromEntries(Object.entries(initialFilters).filter(([, v]) => v != null && v !== ''))
         : {},
     );
   }, [hideScopeFilters, initialFilters]);
+
+  const handleSelectFolder = useCallback((path) => {
+    setSelectedFolderPath(path || null);
+  }, []);
 
   const hasMore = useMemo(() => {
     if (systemView === 'recently_opened' || systemView === 'pinned') return false;
@@ -279,5 +287,8 @@ export default function useDocumentLibrary({
     scopeChips,
     displayTotal,
     audit,
+    folderTreeRoot,
+    selectedFolderPath,
+    handleSelectFolder,
   };
 }

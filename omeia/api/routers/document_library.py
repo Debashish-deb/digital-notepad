@@ -69,6 +69,7 @@ def document_library_search(
     cycif_only: Optional[bool] = Query(None),
     app_page: Optional[str] = Query(None),
     smart_chip: Optional[str] = Query(None),
+    path_prefix: Optional[str] = Query(None, description="Filter files under this folder path prefix"),
     modified_after: Optional[str] = Query(None),
     modified_before: Optional[str] = Query(None),
     sort: str = Query("filename"),
@@ -102,6 +103,7 @@ def document_library_search(
             "cycif_only": cycif_only,
             "app_page": app_page,
             "smart_chip": smart_chip,
+            "path_prefix": path_prefix,
             "modified_after": modified_after,
             "modified_before": modified_before,
         }.items()
@@ -149,6 +151,7 @@ def document_library_facets(
     cycif_only: Optional[bool] = Query(None),
     app_page: Optional[str] = Query(None),
     smart_chip: Optional[str] = Query(None),
+    path_prefix: Optional[str] = Query(None, description="Filter files under this folder path prefix"),
     user: dict = Depends(require_platform_user),
 ) -> dict[str, Any]:
     filters = {
@@ -176,6 +179,7 @@ def document_library_facets(
             "cycif_only": cycif_only,
             "app_page": app_page,
             "smart_chip": smart_chip,
+            "path_prefix": path_prefix,
         }.items()
         if v is not None
     }
