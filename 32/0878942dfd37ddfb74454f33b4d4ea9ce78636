@@ -1,0 +1,38 @@
+app_skeleton/api/document_library_service.py
+  s_e6b5c37a286441::t_026e1fbff59c85 1318-1319,1326-1327
+app_skeleton/api/image_streaming/storage_adapter.py
+  s_e6b5c37a286441::t_ca2f5cad7bed0f 42
+docker-compose.yml
+  s_e6b5c37a286441::t_dbe96e6cb00c60 116-121
+app_skeleton/api/imaging_capabilities.py
+  s_e6b5c37a286441::t_e9cd5d2d35c01e 18-63
+  s_e6b5c37a286441::t_df95c40cf34217 136-140
+  s_e6b5c37a286441::t_5a6c3edcecdffb 100-101,107-108
+  s_e6b5c37a286441::t_6769ba99da593c 116,119
+docker-compose.imaging.yml
+  s_e6b5c37a286441::t_f24db38cff8860 28-33
+tests/test_image_streaming.py
+  s_e6b5c37a286441::t_d62de04c87c3b1 143-152
+app_skeleton/api/image_streaming/image_streaming_service.py
+  s_e6b5c37a286441::t_62aacc41335e4c 315-332,339-342
+  s_e6b5c37a286441::t_c142756f99d9ac 162-170,175,179-180
+  s_e6b5c37a286441::t_9fdc0597c3fc00 29-117
+docs/IMAGING_SUBSYSTEM_REVIEW.md
+  s_e6b5c37a286441::t_0600e2ab6a43ee 1-570
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "320878942dfd37ddfb74454f33b4d4ea9ce78636",
+  "prompts": {},
+  "sessions": {
+    "s_e6b5c37a286441": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "703f3ffc-2363-4dc4-94cd-1d60847e7ebe",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
