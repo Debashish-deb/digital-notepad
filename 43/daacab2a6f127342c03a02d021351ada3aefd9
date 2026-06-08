@@ -1,0 +1,171 @@
+web/src/features/overview/components/OverviewReadingPage.css
+  s_d8ca0dcf385045::t_56c62053baaaf3 87-153
+  s_d8ca0dcf385045::t_3d5a7140b89536 17-19,22-24
+  s_d8ca0dcf385045::t_9c8ac0a619f77e 256-257
+  s_d8ca0dcf385045::t_4e895d0c0df6e4 267
+  s_d8ca0dcf385045::t_f051de2af86475 374,377
+  s_d8ca0dcf385045::t_e5828e795cbfe0 468-472
+  s_d8ca0dcf385045::t_3ee5dbcfd78797 220-221
+  s_d8ca0dcf385045::t_b7f9462c3ebc6b 295-297
+  s_d8ca0dcf385045::t_4ecdc1243c5aea 487-488
+  s_d8ca0dcf385045::t_800116a30e2740 28-35,37-41
+infra/scripts/deploy/auto_sync_daemon.sh
+  s_d8ca0dcf385045::t_bd2f4fef58c75e 139
+  s_d8ca0dcf385045::t_434bad6505664a 149
+  s_d8ca0dcf385045::t_4f2a9bea89240c 185
+  s_d8ca0dcf385045::t_a919863869e554 62,70-71,73-78
+  s_d8ca0dcf385045::t_5a3d9078ac1c98 32
+  s_d8ca0dcf385045::t_1e672a66859cdc 63-69,80-85,87-90
+  s_d8ca0dcf385045::t_d62f0e50ead72d 180
+  s_d8ca0dcf385045::t_efc7566f23a54f 17-18
+  s_d8ca0dcf385045::t_68524bcf394e94 156,158
+  s_d8ca0dcf385045::t_2fc38d5c362c35 200
+  s_d8ca0dcf385045::t_35e913cceda796 160
+  s_d8ca0dcf385045::t_9ceacd02415b43 197
+  s_d8ca0dcf385045::t_4871ca0f39a259 211-213,220-238
+  s_d8ca0dcf385045::t_18c02ce6383081 1-16,19-31,33-61,72,79,86,91-138,140-148,150-155,157,159,161-179,181-184,186-196,198-199,201-210,214-219,239-248
+docs/OMEIA_PRODUCT_UPGRADE_MASTER_PLAN.md
+  s_d8ca0dcf385045::t_1c368022b40ef0 1-64
+omeia/api/main.py
+  s_10d59f59eb0a6f::t_72835f92b18dc1 52
+  s_d8ca0dcf385045::t_2a999891979a63 57
+  s_10d59f59eb0a6f::t_35dc6ff119b85e 19
+omeia/api/image_streaming/image_viewer_store.py
+  s_10d59f59eb0a6f::t_d3a45bb7253cb7 1-473
+omeia/api/routers/system_status.py
+  s_d8ca0dcf385045::t_65648e0f0eda3c 1-53
+omeia/api/model_runtime_selector.py
+  s_d8ca0dcf385045::t_3479a7efb9354f 1-70
+omeia/api/routers/image_viewer.py
+  s_10d59f59eb0a6f::t_f1835b703b4745 1-236
+omeia/api/image_streaming/measurement_helpers.py
+  s_10d59f59eb0a6f::t_ea97bfaca8afad 1-42
+infra/scripts/deploy/linux_ssh_auth.sh
+  s_d8ca0dcf385045::t_49549d0f03e0ac 1-62
+tests/test_image_viewer_phase7b.py
+  s_10d59f59eb0a6f::t_b028fbc8500dfc 1-266
+web/src/features/imaging/components/HistogramPanel.jsx
+  s_10d59f59eb0a6f::t_04c9b8af14fdf1 1-99
+web/src/features/imaging/components/SpatialAnalysisOverlay.jsx
+  s_10d59f59eb0a6f::t_71a0521ac5d997 1-14
+web/src/features/imaging/components/HeatmapOverlay.jsx
+  s_10d59f59eb0a6f::t_9c49daf0f1250e 1-28
+omeia/api/image_streaming/image_streaming_service.py
+  s_10d59f59eb0a6f::t_b91d39330ae576 382-447
+  s_10d59f59eb0a6f::t_780c7194fc2401 24
+  s_10d59f59eb0a6f::t_25529d56dbe685 193,199-201
+docs/SCIENTIFIC_VIEWER_FEATURE_REFERENCES.md
+  s_10d59f59eb0a6f::t_2c9c3f3f442a8d 1-122
+config/env/linux-workstation.env.template
+  s_d8ca0dcf385045::t_272e07cb69578b 89-97
+omeia/api/platform_flags.py
+  s_10d59f59eb0a6f::t_5fc378c3e58701 123-152
+  s_d8ca0dcf385045::t_b14342df639305 113-122
+docs/SCIENTIFIC_REFERENCE_REGISTRY.md
+  s_d8ca0dcf385045::t_a1776ef27b5063 1-17
+tests/test_adaptive_compute.py
+  s_d8ca0dcf385045::t_ae6eab3df096fa 1-55
+web/src/features/documents/components/ScientificFileExplorer.css
+  s_d8ca0dcf385045::t_672929d9a65021 205-206,216,220
+omeia/api/compute_profile_service.py
+  s_d8ca0dcf385045::t_76bc325cbfccd0 70-72
+  s_d8ca0dcf385045::t_ad73b61c2110f3 1-69,73-123
+web/src/features/imaging/components/ScaleBar.jsx
+  s_10d59f59eb0a6f::t_6e2290d0333441 1-25
+web/src/features/admin/components/ComputeStatusPanel.jsx
+  s_d8ca0dcf385045::t_33c0419f6e5b02 1-88
+web/src/features/documents/components/ScientificFileExplorer.jsx
+  s_d8ca0dcf385045::t_205bf107879417 160
+infra/scripts/ops/linux_post_pull.sh
+  s_d8ca0dcf385045::t_f147832475ca48 28-36,38
+web/src/pages/AdministrationScreen.jsx
+  s_d8ca0dcf385045::t_430d0a48bf6f2e 4
+  s_d8ca0dcf385045::t_387ec6cdac03da 74-75
+docs/LINUX_PRIMARY_DEPLOYMENT.md
+  s_d8ca0dcf385045::t_b24727ad066505 60-81,86-87
+omeia/api/image_streaming/image_metadata_service.py
+  s_10d59f59eb0a6f::t_5767457b311e19 170-177
+  s_10d59f59eb0a6f::t_47137af3b57a9c 6-7
+  s_10d59f59eb0a6f::t_ece73e77df0bad 138-140
+  s_10d59f59eb0a6f::t_ad7df4614c3549 23-71
+docs/SCIENTIFIC_IMAGE_VIEWER_REFERENCES.md
+  s_d8ca0dcf385045::t_90046e4fe6bdd6 1-24
+web/src/features/imaging/components/ImageTileViewer.css
+  s_10d59f59eb0a6f::t_ccd712588a8458 305-306,308
+  s_10d59f59eb0a6f::t_6b921fa51ee128 5
+  s_10d59f59eb0a6f::t_f322edaf4d7f8d 50-194
+docs/IMAGE_STREAMING_API.md
+  s_10d59f59eb0a6f::t_84c0feb2113967 32-59
+docs/ADAPTIVE_COMPUTE_PROFILES.md
+  s_d8ca0dcf385045::t_cf7f173e2b69ae 1-54
+omeia/api/worker_capability_probe.py
+  s_d8ca0dcf385045::t_f736b03ae0328c 1-112,114-120
+  s_d8ca0dcf385045::t_34128c384fb950 113
+web/src/services/imageAssetsClient.js
+  s_10d59f59eb0a6f::t_338e796726fbea 98-180
+config/env/.env.example
+  s_10d59f59eb0a6f::t_be6a605252ad7b 108-114
+  s_d8ca0dcf385045::t_7343f7d6c9fccd 296-302,304
+  s_d8ca0dcf385045::t_0fcabf4c6e4848 303
+  s_d8ca0dcf385045::t_2ef0f9d1d1fd76 104-107,115-119
+web/src/features/imaging/components/ChannelManager.jsx
+  s_10d59f59eb0a6f::t_89b360407af1be 1-139
+sql/152_image_viewer_extensions.sql
+  s_10d59f59eb0a6f::t_4ae6fd9c5713d9 1-51
+web/src/index.css
+  s_d8ca0dcf385045::t_211364cbdd823f 3004
+  s_d8ca0dcf385045::t_cc368cc06ddd42 3089,3094
+  s_d8ca0dcf385045::t_9cd9f56c79b3ce 3313
+  s_d8ca0dcf385045::t_6b0bdba5024634 3323,3327
+  s_d8ca0dcf385045::t_509b1cb84f7fd2 3302
+  s_d8ca0dcf385045::t_0696e67a8fe06a 3063
+  s_d8ca0dcf385045::t_9b09c680f655bb 3013,3017,3020,3023,3028
+web/src/features/imaging/components/MeasurementTools.jsx
+  s_10d59f59eb0a6f::t_ce27c88b535307 1-42
+web/src/features/imaging/components/CellInspector.jsx
+  s_10d59f59eb0a6f::t_6855b4912a3b7a 1-46
+web/src/features/imaging/utils/measurementHelpers.js
+  s_10d59f59eb0a6f::t_2b5f220c7434dc 1-56
+web/src/features/imaging/components/SegmentationOverlay.jsx
+  s_10d59f59eb0a6f::t_58d9b0b56705c4 1-78
+web/src/features/imaging/components/ROIManager.jsx
+  s_10d59f59eb0a6f::t_259057f6057401 1-101
+infra/scripts/deploy/omeia-auto-sync.service
+  s_d8ca0dcf385045::t_72d6800cad0fd2 1-26
+infra/scripts/deploy/mac_push_to_linux.sh
+  s_d8ca0dcf385045::t_c87a8ce7f82e65 114
+  s_d8ca0dcf385045::t_70f2dc9f16c5f7 63-68
+  s_d8ca0dcf385045::t_a16696c93365f0 125
+web/src/features/imaging/components/PixelInspector.jsx
+  s_10d59f59eb0a6f::t_916f152f4961cd 1-30
+web/src/features/imaging/components/ImageTileViewer.jsx
+  s_10d59f59eb0a6f::t_a5d3d52fabec3b 2,4-14,17-24,49-55,57,69-72,79,82,84-86,94-103,108-109,115-118,211-216,220-233,238,271,279-337,358-376,378-417,424-482,512-527,529-536,541-568,573,575,582,584,600-601,604
+docs/OMEIA_PHASE_STATUS.md
+  s_d8ca0dcf385045::t_226c2596bb5f39 1-202
+web/src/features/imaging/utils/channelState.js
+  s_10d59f59eb0a6f::t_6524cb119c7e00 1-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "43daacab2a6f127342c03a02d021351ada3aefd9",
+  "prompts": {},
+  "sessions": {
+    "s_10d59f59eb0a6f": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "18ab1777-d529-4b5d-bf3a-b05b8eef55fc",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    },
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
