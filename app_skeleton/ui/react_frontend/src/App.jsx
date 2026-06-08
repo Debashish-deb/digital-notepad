@@ -31,6 +31,7 @@ import { parseViewerHash } from '@/services/imageAssetsClient.js';
 import { useGuiT } from './i18n/useGuiT.js';
 import { initFirebaseAnalytics } from './config/firebase.js';
 import { stashOmniboxPrefill } from '@/lib/searchHits.js';
+import { userProfilesData } from './data/userProfilesData.js';
 import { getModulePageMeta } from './data/moduleCoverContent.js';
 import { applyPageMeta } from '@/lib/pageMeta.js';
 import './App.css';
@@ -208,6 +209,7 @@ function App() {
     firebaseAuthEnabled,
     onAuthToken,
     authUser,
+    authToken,
     userProfile,
     signOut,
   } = useApiContext();
@@ -712,6 +714,8 @@ function App() {
   ]);
 
   const requireLogin = firebaseAuthEnabled && !authDisabled;
+  const hasFirebaseSession = Boolean(authUser || authToken);
+  const showSignOut = firebaseAuthEnabled && hasFirebaseSession;
 
   if (firebaseAuthEnabled && !authReady) {
     return (
@@ -725,9 +729,15 @@ function App() {
     return <LoginScreen onAuthenticated={onAuthToken} />;
   }
 
+  const profileByEmail = authUser?.email
+    ? Object.values(userProfilesData).find(
+        (p) => p.email?.toLowerCase() === authUser.email.toLowerCase(),
+      )
+    : null;
   const displayUser =
-    userProfile?.name ||
     authUser?.displayName ||
+    userProfile?.name ||
+    profileByEmail?.full_name ||
     (authUser?.email ? authUser.email.split('@')[0] : null) ||
     'Guest';
 
@@ -773,7 +783,8 @@ function App() {
         onOpenSearch={handleOpenSearchOverlay}
         userLabel={displayUser}
         userEmail={authUser?.email || userProfile?.email}
-        onSignOut={requireLogin ? signOut : null}
+        onSignOut={showSignOut ? signOut : null}
+        onSignIn={firebaseAuthEnabled && !hasFirebaseSession ? handleProfileClick : null}
         onProfileClick={handleProfileClick}
       />
 

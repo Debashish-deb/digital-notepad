@@ -82,7 +82,7 @@ The platform is organized into five cooperating planes:
 
 OMEIA is an **ambitious, domain-rich research platform** that successfully demonstrates end-to-end lab workflows on a **single Linux workstation** with Tailscale remote access. It is **not yet production-grade** for a full lab corpus at scale: knowledge planes are duplicated, vector indexes are thin or misaligned, collaboration/RBAC is audit-only, observability is minimal, and data sync between Mac and Linux remains manual.
 
-**Platform production readiness: 58%** (see §18; was 52% before Phases 1–3 remediation merge).
+**Platform production readiness: 63%** (see §18 and `docs/PRODUCTION_READINESS_REPORT.md`; was 58% after Phases 1–3, 52% before remediation).
 
 ---
 
@@ -1017,7 +1017,9 @@ Configured in `.env.example` (`NEO4J_URI`) but **no active graph queries** in ap
 
 ## 18. Production Readiness Score
 
-### Composite score: **58%** (post Phases 1–3 merge; flags default off until Linux reindex)
+### Composite score: **63%** (post Phases 4–8 validation 2026-06-08; was 58% post Phases 1–3)
+
+> Full validation log: `docs/PRODUCTION_READINESS_REPORT.md`
 
 | Category | Weight | Score | Weighted | Rationale |
 |----------|--------|-------|----------|-----------|

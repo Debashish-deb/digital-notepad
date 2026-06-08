@@ -24,7 +24,8 @@ def _ok(cond: bool, note: str = "") -> str:
     return f"PASS{(' — ' + note) if note and cond else ''}" if cond else f"FAIL{(' — ' + note) if note else ''}"
 
 
-def main() -> int:
+def run_search_qa_report() -> dict:
+    """Execute search QA checks and return structured report (no process exit)."""
     results: list[dict] = []
 
     # --- Migration verify ---
@@ -172,18 +173,25 @@ def main() -> int:
     except Exception as exc:
         results.append({"id": "HTTP", "check": "TestClient routes", "status": f"FAIL — {exc}"})
 
-    # Print report
-    print("\n=== OMEIA Search QA Report (Supabase + SearchService) ===\n")
     pass_n = sum(1 for r in results if str(r["status"]).startswith("PASS"))
     fail_n = len(results) - pass_n
-    for row in results:
-        print(f"[{row['id']}] {row['status']}: {row['check']}")
-    print(f"\nTotal: {pass_n} passed, {fail_n} failed / {len(results)} checks\n")
-
+    report = {"passed": pass_n, "failed": fail_n, "results": results}
     out = ROOT / "tests" / "search_qa_last_run.json"
-    out.write_text(json.dumps({"passed": pass_n, "failed": fail_n, "results": results}, indent=2))
-    print(f"Wrote {out}")
-    return 0 if fail_n == 0 else 1
+    out.write_text(json.dumps(report, indent=2))
+    return report
+
+
+def main() -> int:
+    report = run_search_qa_report()
+    print("\n=== OMEIA Search QA Report (Supabase + SearchService) ===\n")
+    for row in report["results"]:
+        print(f"[{row['id']}] {row['status']}: {row['check']}")
+    print(
+        f"\nTotal: {report['passed']} passed, {report['failed']} failed "
+        f"/ {len(report['results'])} checks\n"
+    )
+    print(f"Wrote {ROOT / 'tests' / 'search_qa_last_run.json'}")
+    return 0 if report["failed"] == 0 else 1
 
 
 if __name__ == "__main__":

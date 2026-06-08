@@ -38,6 +38,7 @@ fi
 export OMEIA_REPO_ROOT="${OMEIA_REPO_ROOT:-$PROJECT_ROOT}"
 export DATABASE_ROOT="${DATABASE_ROOT:-$PROJECT_ROOT/../OMEIA-database}"
 export PROJECTS_ROOT="${PROJECTS_ROOT:-$DATABASE_ROOT/projects}"
+export OMEIA_FRONTEND_MODE="${OMEIA_FRONTEND_MODE:-dev}"
 if [ -z "${FIREBASE_SERVICE_ACCOUNT_PATH:-}" ] && [ -f "$PROJECT_ROOT/configs/secrets/firebase-adminsdk.json" ]; then
   export FIREBASE_SERVICE_ACCOUNT_PATH="$PROJECT_ROOT/configs/secrets/firebase-adminsdk.json"
 fi
@@ -96,8 +97,9 @@ wait_for_backend() {
 }
 
 echo "Starting OMEIA Research Platform..."
-echo "  REPO:     $OMEIA_REPO_ROOT"
-echo "  DATABASE: $DATABASE_ROOT"
+echo "  REPO:          $OMEIA_REPO_ROOT"
+echo "  DATABASE:      $DATABASE_ROOT"
+echo "  FRONTEND_MODE: $OMEIA_FRONTEND_MODE (dev=Vite :5173 | prod=dist on :8000)"
 
 # Auto-verify / start Docker stack when Docker runs locally (skip when DOCKER_LOCAL=false).
 if [ "${DOCKER_LOCAL:-true}" = "false" ] || [ "${DOCKER_LOCAL:-true}" = "0" ]; then
@@ -109,20 +111,35 @@ else
 fi
 
 free_port 8000
-free_port 5173
+
+if [ "$OMEIA_FRONTEND_MODE" = "prod" ]; then
+  echo "Building production frontend..."
+  bash "$PROJECT_ROOT/scripts/dev/build_frontend_prod.sh"
+  export OMEIA_SERVE_FRONTEND_STATIC=true
+else
+  free_port 5173
+fi
 
 echo "FastAPI backend http://localhost:8000"
 cd "$BACKEND_DIR" || exit 1
-"$VENV_UVICORN" app_skeleton.api.main:app --host 0.0.0.0 --port 8000 --reload &
+if [ "$OMEIA_FRONTEND_MODE" = "prod" ]; then
+  "$VENV_UVICORN" app_skeleton.api.main:app --host 0.0.0.0 --port 8000 &
+else
+  "$VENV_UVICORN" app_skeleton.api.main:app --host 0.0.0.0 --port 8000 --reload &
+fi
 BACKEND_PID=$!
 
 wait_for_backend || exit 1
 
-echo "Vite frontend http://localhost:5173"
-# shellcheck disable=SC1091
-source "$PROJECT_ROOT/scripts/dev/ensure_node_for_vite.sh"
-cd "$FRONTEND_DIR" || exit 1
-npm run dev -- --host 0.0.0.0 --port 5173 --strictPort &
-FRONTEND_PID=$!
-
-wait $BACKEND_PID $FRONTEND_PID
+if [ "$OMEIA_FRONTEND_MODE" = "prod" ]; then
+  echo "Production UI served from API http://localhost:8000"
+  wait $BACKEND_PID
+else
+  echo "Vite frontend http://localhost:5173"
+  # shellcheck disable=SC1091
+  source "$PROJECT_ROOT/scripts/dev/ensure_node_for_vite.sh"
+  cd "$FRONTEND_DIR" || exit 1
+  npm run dev -- --host 0.0.0.0 --port 5173 --strictPort &
+  FRONTEND_PID=$!
+  wait $BACKEND_PID $FRONTEND_PID
+fi

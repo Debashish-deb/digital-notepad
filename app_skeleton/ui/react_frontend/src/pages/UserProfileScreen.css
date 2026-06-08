@@ -4,6 +4,62 @@
   gap: 2rem;
 }
 
+.profile-auth-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-auth-card__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.profile-auth-card__status,
+.profile-auth-card__hint,
+.profile-auth-card__warning {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.profile-auth-card__hint,
+.profile-auth-card__warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.profile-auth-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-auth-card__email {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.profile-auth-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.profile-auth-card__login {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 .profile-layout {
   display: grid;
   grid-template-columns: 280px 1fr;

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+from pathlib import Path
 from typing import Any
 
 import psycopg
@@ -20,6 +21,7 @@ from app_skeleton.api.supabase_config import postgres_conn
 from app_skeleton.security.auth import require_admin_user
 
 LOGGER = logging.getLogger(__name__)
+ROOT = Path(__file__).resolve().parents[3]
 
 router = APIRouter(tags=["admin-index"])
 
@@ -124,3 +126,49 @@ def admin_index_health(
         "feature_flags": flags,
         "drift_hints": drift_hints,
     }
+
+
+@router.get("/api/admin/quality-eval/latest")
+def admin_quality_eval_latest(
+    user: dict[str, Any] = Depends(require_admin_user),
+) -> dict[str, Any]:
+    """Latest continuous quality evaluation snapshot."""
+    _ = user
+    from app_skeleton.api.quality_eval_service import fetch_latest_eval_run
+
+    latest = fetch_latest_eval_run()
+    file_path = ROOT / "tests" / "quality_eval_last_run.json"
+    file_snapshot = None
+    if file_path.is_file():
+        try:
+            import json
+
+            file_snapshot = json.loads(file_path.read_text(encoding="utf-8"))
+        except Exception:
+            file_snapshot = None
+    return {"latest": latest, "file_snapshot": file_snapshot}
+
+
+@router.get("/api/admin/quality-eval/history")
+def admin_quality_eval_history(
+    limit: int = 30,
+    user: dict[str, Any] = Depends(require_admin_user),
+) -> dict[str, Any]:
+    """Historical quality eval runs for trend charts."""
+    _ = user
+    from app_skeleton.api.quality_eval_service import fetch_eval_history
+
+    rows = fetch_eval_history(limit=limit)
+    return {"count": len(rows), "runs": rows}
+
+
+@router.post("/api/admin/quality-eval/run")
+def admin_quality_eval_run(
+    user: dict[str, Any] = Depends(require_admin_user),
+) -> dict[str, Any]:
+    """Trigger on-demand continuous quality evaluation (admin only)."""
+    _ = user
+    from app_skeleton.api.quality_eval_service import run_continuous_eval
+
+    report = run_continuous_eval(trigger_source="admin_api", persist=True)
+    return {"status": report.get("status"), "composite_score": report.get("composite_score"), "report": report}

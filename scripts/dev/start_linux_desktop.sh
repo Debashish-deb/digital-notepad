@@ -21,14 +21,20 @@ for arg in "$@"; do
   case "$arg" in
     --api-only) API_ONLY=true ;;
     --setup) FULL_SETUP=true ;;
+    --prod) export OMEIA_FRONTEND_MODE=prod ;;
+    --dev) export OMEIA_FRONTEND_MODE=dev ;;
     -h|--help)
-      echo "Usage: $0 [--setup] [--api-only]"
+      echo "Usage: $0 [--setup] [--api-only] [--prod|--dev]"
       echo "  --setup    Run full docker stack script (Ollama model pulls, token gen)"
-      echo "  --api-only FastAPI only (no Vite)"
+      echo "  --api-only FastAPI only (no Vite / no prod UI build)"
+      echo "  --prod     OMEIA_FRONTEND_MODE=prod (npm build + serve dist on :8000)"
+      echo "  --dev      OMEIA_FRONTEND_MODE=dev (Vite on :5173, default)"
       exit 0
       ;;
   esac
 done
+
+export OMEIA_FRONTEND_MODE="${OMEIA_FRONTEND_MODE:-dev}"
 
 if [[ ! -x "$ROOT/.venv/bin/python3" && ! -x "$ROOT/.venv-local/bin/python3" ]]; then
   echo "ERROR: create venv first: python3 -m venv .venv && .venv/bin/pip install -r app_skeleton/api/requirements.txt"
@@ -48,8 +54,9 @@ export QDRANT_URL="${QDRANT_URL:-http://127.0.0.1:6333}"
 export POSTGRES_CONN="${POSTGRES_CONN:-postgresql://farkki:farkki_dev_password@127.0.0.1:5432/farkki_ai}"
 
 echo "=== OMEIA Linux desktop ==="
-echo "  Profile: $OMEIA_DEPLOYMENT_PROFILE"
-echo "  Repo:    $ROOT"
+echo "  Profile:       $OMEIA_DEPLOYMENT_PROFILE"
+echo "  Frontend mode: $OMEIA_FRONTEND_MODE"
+echo "  Repo:          $ROOT"
 
 if ! command -v docker >/dev/null 2>&1; then
   echo "ERROR: docker not found"
@@ -75,5 +82,12 @@ if [[ "$API_ONLY" == true ]]; then
   exec "$ROOT/scripts/dev/start_backend.sh"
 fi
 
-echo "--- FastAPI + Vite ---"
+echo "--- Sync health (non-blocking) ---"
+python3 "$ROOT/scripts/ops/check_linux_sync_health.py" || echo "WARN: sync health reported issues — see JSON above."
+
+if [[ "$OMEIA_FRONTEND_MODE" == "prod" ]]; then
+  echo "--- FastAPI + production frontend ---"
+else
+  echo "--- FastAPI + Vite dev ---"
+fi
 exec "$ROOT/start.sh"

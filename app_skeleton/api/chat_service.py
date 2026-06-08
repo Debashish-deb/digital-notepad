@@ -44,6 +44,7 @@ from app_skeleton.api.chat_session_store import (
 from app_skeleton.api.common import SourceInfo, _clinical_context_for_question, query_postgres_metadata
 from app_skeleton.api.privacy_guardrails import allow_external_llm, guard_for_llm, is_external_provider
 from app_skeleton.api.search_service import SearchService
+from app_skeleton.api.platform_flags import research_strategy_assistant_enabled
 
 LOGGER = logging.getLogger(__name__)
 
@@ -412,6 +413,42 @@ def answer_chat(
 
     llm = _route_llm_for_intent(llm, intent_decision)
     provider = getattr(llm, "provider", provider) or provider
+
+    if research_strategy_assistant_enabled() and intent_decision.use_rag:
+        from app_skeleton.api.research_strategy_engine import (
+            ResearchStrategyEngine,
+            is_strategy_question,
+        )
+
+        if is_strategy_question(safe_message, intent_decision):
+            engine = ResearchStrategyEngine(search_svc, llm)
+            strategy_payload = engine.run(
+                safe_message,
+                intent_decision=intent_decision,
+                project_codes=project_codes,
+                user_role=user_role,
+            )
+            strategy_payload.update(_llm_provenance(llm, configured_provider=provider))
+            strategy_payload.update(intent_meta)
+            strategy_payload["database_counts"] = (
+                query_postgres_metadata(project_codes) if intent_decision.use_rag else {}
+            )
+            strategy_payload["is_safe"] = True
+            strategy_payload["blocked_by_guardrail"] = False
+            strategy_payload["provider"] = strategy_payload.get("provider") or provider
+            strategy_payload["intent"] = intent_decision.intent
+            if active_session and user_email:
+                append_turn(active_session, user_email=user_email, role="user", content=safe_message, intent=intent_decision.intent)
+                append_turn(
+                    active_session,
+                    user_email=user_email,
+                    role="assistant",
+                    content=(strategy_payload.get("answer") or "")[:8000],
+                    intent=intent_decision.intent,
+                    metadata={"research_strategy": True},
+                )
+            strategy_payload["session_id"] = active_session or None
+            return strategy_payload
 
     db_data = query_postgres_metadata(project_codes) if intent_decision.use_rag else {}
     chat_ctx = build_user_context(message, user=user, project_codes=project_codes, db_data=db_data)

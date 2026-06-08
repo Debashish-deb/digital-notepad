@@ -19,4 +19,8 @@ python -m pytest \
 echo "== AI Lab Assistant eval (in-process) =="
 python scripts/search/run_ai_lab_assistant_eval.py --role researcher
 
+echo "== Continuous quality eval (search + retrieval + strategy sample) =="
+OMEIA_CONTINUOUS_EVAL_ENABLED=true OMEIA_QUALITY_GATE_STRICT="${OMEIA_QUALITY_GATE_STRICT:-false}" \
+  python scripts/ops/run_continuous_eval.py --force --skip-copilot
+
 echo "Copilot quality gate passed."

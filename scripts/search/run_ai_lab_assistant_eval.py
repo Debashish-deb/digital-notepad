@@ -41,6 +41,7 @@ QUESTIONS = [
 ]
 
 GOLD_SET_PATH = ROOT / "tests" / "ai_eval_gold_set.json"
+STRATEGY_FIXTURE = ROOT / "tests" / "fixtures" / "research_strategy_questions.json"
 EVAL_DELAY_S = float(os.getenv("EVAL_REQUEST_DELAY_S", "0.15"))
 
 
@@ -470,6 +471,39 @@ def run_eval(*, role: str = "researcher") -> dict[str, Any]:
     }
 
 
+def _strategy_benchmark() -> dict[str, Any]:
+    """Lightweight strategy detection + schema checks (no live LLM required)."""
+    from app_skeleton.api.chat_conversation import classify_and_enrich
+    from app_skeleton.api.research_strategy_engine import is_strategy_question
+
+    if not STRATEGY_FIXTURE.is_file():
+        return {"enabled": False, "reason": "fixture missing"}
+
+    specs = json.loads(STRATEGY_FIXTURE.read_text(encoding="utf-8"))
+    rows: list[dict[str, Any]] = []
+    for spec in specs:
+        q = spec.get("question") or ""
+        intent = classify_and_enrich(q)
+        detected = is_strategy_question(q, intent)
+        expect = spec.get("expect_strategy_detect")
+        ok = True if expect is None else detected == expect
+        rows.append({
+            "id": spec.get("id"),
+            "category": spec.get("category"),
+            "detected": detected,
+            "expect": expect,
+            "pass": ok,
+        })
+    passed = sum(1 for r in rows if r["pass"])
+    return {
+        "enabled": True,
+        "fixture": str(STRATEGY_FIXTURE),
+        "passed": passed,
+        "failed": len(rows) - passed,
+        "rows": rows,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run AI Lab Assistant evaluation battery")
     parser.add_argument(
@@ -481,6 +515,7 @@ def main() -> None:
     args = parser.parse_args()
 
     report = run_eval(role=args.role)
+    report["strategy_benchmark"] = _strategy_benchmark()
     out_name = "search_qa_ai_baseline.json" if args.baseline else "search_qa_ai_last_run.json"
     out = ROOT / "tests" / out_name
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -492,6 +527,7 @@ def main() -> None:
         "synthesis_modes": report["synthesis_modes_seen"],
         "gemini_key": report["gemini_key_configured"],
         "release_gates": report.get("release_gates"),
+        "strategy_benchmark": report.get("strategy_benchmark"),
     }
     print(json.dumps(summary, indent=2))
     gates = report.get("release_gates") or {}

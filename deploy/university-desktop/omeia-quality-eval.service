@@ -1,0 +1,19 @@
+[Unit]
+Description=OMEIA continuous quality evaluation battery
+After=network-online.target omeia-api.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=omeia
+Group=omeia
+WorkingDirectory=/opt/omeia/digital-notepad
+EnvironmentFile=/opt/omeia/deploy/university-desktop/.env
+Environment=PYTHONUNBUFFERED=1
+Environment=OMEIA_CONTINUOUS_EVAL_ENABLED=true
+ExecStart=/opt/omeia/venv/bin/python scripts/ops/run_continuous_eval.py --force
+Nice=10
+IOSchedulingClass=idle
+
+[Install]
+WantedBy=multi-user.target

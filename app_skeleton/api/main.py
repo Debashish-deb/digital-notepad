@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from app_skeleton.security.environment import validate_environment
 from app_skeleton.security.cors import get_cors_origins
 from app_skeleton.security.auth import require_platform_user
+from app_skeleton.api.middleware.metrics import RequestMetricsMiddleware
+from app_skeleton.api.frontend_static import register_frontend_static
 
 # Validate security environment immediately
 validate_environment()
@@ -16,6 +18,7 @@ from app_skeleton.security import secure_files
 app = FastAPI(title="OMEIA Research Copilot API", version="0.4.0-premium", lifespan=_app_lifespan)
 
 _cors_origins = get_cors_origins()
+app.add_middleware(RequestMetricsMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=_cors_origins,
@@ -49,3 +52,5 @@ app.include_router(admin_index.router, dependencies=api_dependencies)
 # Secure files router has its own internal dependency checks, 
 # but we can enforce it here as well for defense-in-depth, though it's already in the router definition
 app.include_router(secure_files.router)
+
+register_frontend_static(app)

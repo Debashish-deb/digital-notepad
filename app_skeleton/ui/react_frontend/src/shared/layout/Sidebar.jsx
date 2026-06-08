@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import {
   ChevronDown,
   Dna,
+  LogIn,
   LogOut,
   Search,
 } from 'lucide-react';
@@ -27,6 +28,7 @@ function Sidebar({
   userLabel = 'Guest',
   userEmail = null,
   onSignOut = null,
+  onSignIn = null,
   onProfileClick = null,
 }) {
   const { t, nav } = useGuiT();
@@ -177,6 +179,17 @@ function Sidebar({
             >
               <LogOut size={18} strokeWidth={2.25} aria-hidden="true" />
               <span>Exit</span>
+            </button>
+          ) : onSignIn ? (
+            <button
+              type="button"
+              className="sidebar-exit-btn nav-glass-square sidebar-signin-btn"
+              onClick={onSignIn}
+              title="Sign in"
+              aria-label="Sign in"
+            >
+              <LogIn size={18} strokeWidth={2.25} aria-hidden="true" />
+              <span>Sign in</span>
             </button>
           ) : null}
         </div>

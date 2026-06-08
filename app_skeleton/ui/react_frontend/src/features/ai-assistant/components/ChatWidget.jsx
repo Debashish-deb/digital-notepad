@@ -39,6 +39,7 @@ import {
 } from '@/lib/searchNavigation.js';
 import AssistantSearchHits from '@/features/search/components/AssistantSearchHits.jsx';
 import OrchestratorAnswerView, { parseOrchestratorSections } from './OrchestratorAnswerView.jsx';
+import ResearchStrategyAnswerView from './ResearchStrategyAnswerView.jsx';
 import '@/features/search/components/UnifiedSearch.css';
 import '@/features/ai-assistant/styles/AiAssistantChat.css';
 const AiAssistant3DScene = lazy(() => import('./AiAssistant3DScene.jsx'));
@@ -141,6 +142,8 @@ function formatAssistantPayload(data) {
       : [],
     claimValidations: Array.isArray(data?.claim_validations) ? data.claim_validations : [],
     responseSections: Array.isArray(data?.response_sections) ? data.response_sections : [],
+    researchStrategy: Boolean(data?.research_strategy),
+    strategyReport: data?.strategy_report || null,
   };
 }
 
@@ -1111,6 +1114,8 @@ export default function ChatWidget({
                     <TypingIndicator />
                     <span>{message.statusText || 'Composing answer…'}</span>
                   </div>
+                ) : message.researchStrategy && message.strategyReport ? (
+                  <ResearchStrategyAnswerView report={message.strategyReport} />
                 ) : message.evidenceOrchestrator
                   && (message.responseSections?.length > 0
                     || parseOrchestratorSections(message.content).length > 0) ? (

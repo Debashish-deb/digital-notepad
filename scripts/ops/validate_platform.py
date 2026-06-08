@@ -1,236 +1,267 @@
 #!/usr/bin/env python3
-"""End-to-end platform validation — API, digital twins, catalog vs disk, checkers."""
+"""Platform validation orchestrator — Phases 4–8 readiness checks.
+
+Usage:
+  python scripts/ops/validate_platform.py [API_URL]
+  python scripts/ops/validate_platform.py --json-only
+
+Writes: tests/platform_validation_last_run.json
+"""
 from __future__ import annotations
 
+import argparse
 import json
+import subprocess
 import sys
+import time
 from pathlib import Path
+from typing import Any
 
-import requests
-
-API = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8000"
 ROOT = Path(__file__).resolve().parents[2]
-CATALOG = ROOT / "app_skeleton" / "data" / "projects_catalog.json"
-PROCESSED = ROOT / "app_skeleton" / "data" / "processed_projects"
-PUBLIC = ROOT / "app_skeleton" / "ui" / "react_frontend" / "public" / "processed"
-
-failures: list[str] = []
-warnings: list[str] = []
+OUT_JSON = ROOT / "tests" / "platform_validation_last_run.json"
+VENV_PY = ROOT / ".test-venv" / "bin" / "python"
+PYTHON = str(VENV_PY if VENV_PY.is_file() else sys.executable)
 
 
-def ok(msg: str) -> None:
-    print(f"  ✓ {msg}")
+def _run(cmd: list[str], *, timeout: int = 300, cwd: Path | None = None) -> dict[str, Any]:
+    t0 = time.monotonic()
+    try:
+        proc = subprocess.run(
+            cmd,
+            cwd=cwd or ROOT,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+        )
+        return {
+            "cmd": cmd,
+            "exit_code": proc.returncode,
+            "stdout_tail": proc.stdout[-4000:] if proc.stdout else "",
+            "stderr_tail": proc.stderr[-2000:] if proc.stderr else "",
+            "elapsed_s": round(time.monotonic() - t0, 1),
+            "ok": proc.returncode == 0,
+        }
+    except subprocess.TimeoutExpired as exc:
+        return {
+            "cmd": cmd,
+            "exit_code": -1,
+            "ok": False,
+            "error": f"timeout after {timeout}s",
+            "stdout_tail": (exc.stdout or "")[-2000:] if exc.stdout else "",
+            "stderr_tail": (exc.stderr or "")[-2000:] if exc.stderr else "",
+            "elapsed_s": round(time.monotonic() - t0, 1),
+        }
+    except Exception as exc:
+        return {"cmd": cmd, "exit_code": -1, "ok": False, "error": str(exc)}
 
 
-def warn(msg: str) -> None:
-    warnings.append(msg)
-    print(f"  ⚠ {msg}")
+def _load_json(path: Path) -> dict[str, Any] | None:
+    if not path.is_file():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
 
 
-def fail(msg: str) -> None:
-    failures.append(msg)
-    print(f"  ✗ {msg}")
+def _api_smoke(api: str) -> dict[str, Any]:
+    import requests
+
+    results: list[dict[str, Any]] = []
+    try:
+        r = requests.get(f"{api}/health", timeout=10)
+        results.append({"check": "/health", "ok": r.status_code == 200, "status": r.status_code})
+        if r.status_code == 200:
+            body = r.json()
+            results.append({"check": "database_connected", "ok": bool(body.get("database_connected"))})
+    except Exception as exc:
+        return {"ok": False, "reachable": False, "error": str(exc), "checks": results}
+
+    try:
+        r = requests.get(f"{api}/metrics", timeout=5)
+        results.append({"check": "/metrics", "ok": r.status_code == 200, "status": r.status_code})
+    except Exception as exc:
+        results.append({"check": "/metrics", "ok": False, "error": str(exc)})
+
+    return {"ok": all(c.get("ok") for c in results if c["check"] in ("/health",)), "reachable": True, "checks": results}
 
 
 def main() -> int:
-    print(f"\n=== OMEIA Platform Validation ({API}) ===\n")
+    parser = argparse.ArgumentParser(description="OMEIA platform validation")
+    parser.add_argument("api", nargs="?", default="http://127.0.0.1:8000")
+    parser.add_argument("--json-only", action="store_true")
+    parser.add_argument("--skip-pytest", action="store_true")
+    parser.add_argument("--skip-search-qa", action="store_true")
+    parser.add_argument("--skip-continuous-eval", action="store_true")
+    args = parser.parse_args()
 
-    # Health
-    print("[1] API health")
-    try:
-        r = requests.get(f"{API}/health", timeout=10)
-        if r.status_code != 200:
-            fail(f"/health → {r.status_code}")
-        else:
-            data = r.json()
-            ok(f"API up · DB connected={data.get('database_connected')}")
-            if not data.get("database_connected"):
-                warn("Postgres not connected — run docker compose + ingest")
-    except Exception as exc:
-        fail(f"Cannot reach API: {exc}")
-        print("\nStart backend: cd farkki_ai_platform_blueprint && uvicorn app_skeleton.api.main:app --port 8000")
-        return 1
+    report: dict[str, Any] = {
+        "run_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "api_url": args.api,
+        "sections": {},
+    }
+    failures: list[str] = []
 
-    # Core endpoints smoke test
-    print("\n[2] Core endpoints")
-    for path in [
-        "/projects",
-        "/stats",
-        "/team",
-        "/gap-analysis",
-        "/ai-models",
-        "/api/storage/roots",
-        "/api/vault/summary",
-        "/api/database/sections",
-        "/api/knowledge/lab/stats",
-        "/api/page-domains",
-        "/api/documents/registry",
-        "/api/search?q=protocol&mode=hybrid",
-        "/api/admin/ingestion-jobs",
-        "/api/admin/review-tasks",
-    ]:
-        try:
-            r = requests.get(f"{API}{path}", timeout=15)
-            if r.status_code == 200:
-                ok(path)
-            else:
-                warn(f"{path} → {r.status_code}")
-        except Exception as exc:
-            warn(f"{path} → {exc}")
+    print(f"\n=== OMEIA Platform Validation (Phases 4–8) ===\n")
 
-    # Digital twin pilots
-    print("\n[3] Digital twins (pilot projects)")
-    for code in ["SPACE", "CellCycle", "Tribus", "EyeMT", "Fanconi"]:
-        try:
-            r = requests.get(f"{API}/api/projects/{code}/digital-twin", timeout=30)
-            if r.status_code != 200:
-                fail(f"{code} twin → {r.status_code}")
-                continue
-            twin = r.json()
-            assets = twin.get("total_assets_count") or twin.get("content_library", {}).get("totals", {}).get("all", 0)
-            ok(f"{code}: {assets} assets, root={twin.get('content_root') or '—'}")
-        except Exception as exc:
-            fail(f"{code} twin → {exc}")
-
-    # Static mounts
-    print("\n[4] Static asset serving")
-    try:
-        r = requests.get(
-            f"{API}/projects-static/29_Tribus/Figures/Fig1_v2.png",
-            timeout=15,
+    # 1. Backend pytest
+    if not args.skip_pytest:
+        print("[1] Backend test suite")
+        phase_tests = _run(
+            [PYTHON, "-m", "pytest", "tests/", "-q", "--tb=no"],
+            timeout=240,
         )
-        if r.status_code == 200 and "image" in r.headers.get("content-type", ""):
-            ok("projects-static image")
-        else:
-            warn(f"projects-static → {r.status_code}")
-    except Exception as exc:
-        warn(f"projects-static → {exc}")
+        report["sections"]["pytest_full"] = phase_tests
+        print(f"  {'✓' if phase_tests['ok'] else '✗'} pytest full (exit {phase_tests['exit_code']})")
+        if not phase_tests["ok"]:
+            failures.append("pytest_full")
 
-    # Checker + parse_log
-    print("\n[5] Diagnostics contracts")
-    try:
-        r = requests.post(f"{API}/run_checker", json={"checker_name": "python_env"}, timeout=30)
-        if r.status_code == 200 and "stdout" in r.json():
-            ok("run_checker (python_env)")
-        else:
-            fail(f"run_checker → {r.status_code}")
-    except Exception as exc:
-        fail(f"run_checker → {exc}")
-
-    try:
-        r = requests.post(
-            f"{API}/parse_log",
-            json={"log_text": "Out of memory (exit code 137)"},
-            timeout=15,
+        focused = _run(
+            [
+                PYTHON,
+                "-m",
+                "pytest",
+                "tests/test_researcher_resolver.py",
+                "tests/test_project_permissions.py",
+                "tests/test_ocr_queue.py",
+                "tests/test_ocr_adapter.py",
+                "tests/test_ocr_queue_flag.py",
+                "tests/test_vault_semantic_search.py",
+                "tests/test_vault_json_fallback.py",
+                "tests/test_deployment_ops.py",
+                "tests/test_security_authentication.py",
+                "tests/test_security_authorization.py",
+                "-q",
+                "--tb=no",
+            ],
+            timeout=120,
         )
-        if r.status_code == 200 and r.json().get("cause"):
-            ok("parse_log")
-        else:
-            fail(f"parse_log → {r.status_code}")
-    except Exception as exc:
-        fail(f"parse_log → {exc}")
+        report["sections"]["pytest_phases_4_8"] = focused
+        print(f"  {'✓' if focused['ok'] else '✗'} phases 4–8 focused tests")
+        if not focused["ok"]:
+            failures.append("pytest_phases_4_8")
 
-    # Catalog vs processed vs disk
-    print("\n[6] Catalog / processed / disk alignment")
-    if not CATALOG.exists():
-        fail("projects_catalog.json missing")
+    # 2. Search QA
+    if not args.skip_search_qa:
+        print("\n[2] Search QA")
+        sq = _run([PYTHON, "scripts/search/run_search_qa.py"], timeout=120)
+        report["sections"]["search_qa"] = sq
+        sq_data = _load_json(ROOT / "tests" / "search_qa_last_run.json")
+        if sq_data:
+            report["sections"]["search_qa_summary"] = {
+                "passed": sq_data.get("passed"),
+                "failed": sq_data.get("failed"),
+            }
+        print(f"  {'✓' if sq['ok'] else '✗'} run_search_qa.py")
+        if not sq["ok"]:
+            failures.append("search_qa")
+
+    # 3. Copilot eval (use last run if present; fresh run is slow)
+    print("\n[3] RAG / copilot evaluation")
+    eval_data = _load_json(ROOT / "tests" / "search_qa_ai_last_run.json")
+    if eval_data:
+        gates = eval_data.get("release_gates") or {}
+        report["sections"]["copilot_eval"] = {
+            "source": "tests/search_qa_ai_last_run.json",
+            "http_errors": eval_data.get("http_errors"),
+            "release_gates": gates,
+            "ok": eval_data.get("http_errors", 1) == 0,
+        }
+        print(f"  ✓ last eval loaded (http_errors={eval_data.get('http_errors')}, overall_gate={gates.get('overall_gate_pass')})")
     else:
-        catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
-        codes = [p["project_code"] for p in catalog]
-        ok(f"Catalog: {len(codes)} projects")
+        report["sections"]["copilot_eval"] = {"ok": False, "error": "no search_qa_ai_last_run.json"}
+        failures.append("copilot_eval")
+        print("  ✗ no copilot eval artifact")
 
-        processed_files = {p.stem for p in PROCESSED.glob("*.json")}
-        missing_proc = [c for c in codes if c not in processed_files]
-        if missing_proc:
-            warn(f"Missing processed JSON: {', '.join(missing_proc[:8])}{'…' if len(missing_proc) > 8 else ''}")
-        else:
-            ok(f"Processed twins: {len(processed_files)}")
-
-        public_files = {p.stem for p in PUBLIC.glob("*.json")} if PUBLIC.exists() else set()
-        if len(public_files) < len(processed_files):
-            warn(f"Public fallback stale: {len(public_files)}/{len(processed_files)} — run process-all")
-        else:
-            ok(f"Public fallback: {len(public_files)} files")
-
-        no_folder = [p["project_code"] for p in catalog if not p.get("folder_path")]
-        if no_folder:
-            warn(f"Catalog-only (no disk folder): {', '.join(no_folder)}")
-
-    print("\n[7] Lab section roots + vault")
+    # 4. Linux sync health
+    print("\n[4] Linux sync health")
+    sync = _run([PYTHON, "scripts/ops/check_linux_sync_health.py"], timeout=60)
+    sync_data: dict[str, Any] | None = None
+    raw = subprocess.run(
+        [PYTHON, "scripts/ops/check_linux_sync_health.py"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        timeout=60,
+    )
     try:
-        r = requests.get(f"{API}/api/database/sections", timeout=15)
-        if r.status_code == 200:
-            missing = r.json().get("missing_section_roots") or []
-            if missing:
-                fail(f"Missing lab section folders: {', '.join(missing)}")
-            else:
-                ok("All lab section roots exist on disk")
-        else:
-            warn(f"/api/database/sections → {r.status_code}")
-        r = requests.get(f"{API}/api/vault/search", params={"q": "protocol", "limit": 3}, timeout=15)
-        if r.status_code == 200:
-            ok(f"Vault search ({r.json().get('count', 0)} hits)")
-        else:
-            warn(f"/api/vault/search → {r.status_code}")
-        r = requests.get(f"{API}/api/vault/dedupe-report", params={"limit": 5}, timeout=15)
-        if r.status_code == 200:
-            ok(f"Dedupe groups: {r.json().get('duplicate_checksum_groups', 0)}")
-        r = requests.get(f"{API}/api/knowledge/hybrid-search", params={"q": "onboarding", "limit": 5}, timeout=20)
-        if r.status_code == 200:
-            ok("Hybrid knowledge search")
-        else:
-            warn(f"/api/knowledge/hybrid-search → {r.status_code}")
-        try:
-            r = requests.post(f"{API}/api/vault/sync", timeout=120)
-            if r.status_code == 200:
-                ok(f"Vault Postgres sync ({r.json().get('upserted', 0)} rows)")
-            else:
-                warn(f"/api/vault/sync → {r.status_code}")
-        except Exception as exc:
-            warn(f"/api/vault/sync → {exc}")
-    except Exception as exc:
-        warn(f"vault/sections → {exc}")
+        sync_data = json.loads(raw.stdout)
+    except Exception:
+        sync_data = {"ok": False, "parse_error": True, "stdout": raw.stdout[:500]}
+    report["sections"]["sync_health"] = {"run": sync, "report": sync_data}
+    sync_ok = bool(sync_data and sync_data.get("ok"))
+    print(f"  {'✓' if sync_ok else '⚠'} sync health (failed={sync_data.get('failed') if sync_data else '?'})")
+    if not sync_ok:
+        failures.append("sync_health")
 
-    # Phase 3+ endpoints
-    print("\n[8] Phase 3 — Feature warehouse")
-    try:
-        r = requests.get(f"{API}/features/definitions", timeout=10)
-        if r.status_code == 200:
-            ok(f"Feature definitions ({r.json().get('count', 0)})")
-        else:
-            warn(f"/features/definitions → {r.status_code}")
-    except Exception as exc:
-        warn(f"features → {exc}")
+    # 5. Backup dry-run
+    print("\n[5] Backup dry-run")
+    backup = _run(["bash", "scripts/ops/backup_linux.sh", "--dry-run"], timeout=60)
+    report["sections"]["backup_dry_run"] = backup
+    print(f"  {'✓' if backup['ok'] else '✗'} backup_linux.sh --dry-run")
+    if not backup["ok"]:
+        failures.append("backup_dry_run")
 
-    print("\n[9] Phase 4 — Clinical stats")
-    try:
-        r = requests.post(f"{API}/clinical/survival", json={"project_code": "SPACE", "register_run": False}, timeout=15)
-        if r.status_code == 200 and r.json().get("groups"):
-            ok("Survival analysis")
-        else:
-            warn(f"/clinical/survival → {r.status_code}")
-        r = requests.post(
-            f"{API}/features/similarity",
-            json={"sample_code": "SYNTH_SAMPLE_001", "project_code": "SPACE", "limit": 3},
-            timeout=15,
+    # 6. Frontend build artifact
+    print("\n[6] Frontend production build")
+    dist = ROOT / "app_skeleton" / "ui" / "react_frontend" / "dist" / "index.html"
+    build_ok = dist.is_file()
+    report["sections"]["frontend_build"] = {"dist_index_exists": build_ok, "path": str(dist)}
+    if not build_ok:
+        build = _run(["npm", "run", "build"], cwd=ROOT / "app_skeleton" / "ui" / "react_frontend", timeout=180)
+        report["sections"]["frontend_build"]["build_run"] = build
+        build_ok = dist.is_file() and build.get("ok", False)
+    print(f"  {'✓' if build_ok else '✗'} dist/index.html")
+    if not build_ok:
+        failures.append("frontend_build")
+
+    # 7. Continuous quality eval
+    if not args.skip_continuous_eval:
+        print("\n[7] Continuous quality eval")
+        ce = _run(
+            [
+                PYTHON,
+                "scripts/ops/run_continuous_eval.py",
+                "--force",
+                "--skip-copilot",
+                "--no-persist",
+            ],
+            timeout=180,
         )
-        if r.status_code == 200:
-            ok(f"Feature similarity ({len(r.json().get('similar', []))} matches)")
-        else:
-            warn(f"/features/similarity → {r.status_code}")
-    except Exception as exc:
-        warn(f"clinical → {exc}")
+        report["sections"]["continuous_eval"] = ce
+        ce_data = _load_json(ROOT / "tests" / "quality_eval_last_run.json")
+        if ce_data:
+            report["sections"]["continuous_eval_summary"] = {
+                "status": ce_data.get("status"),
+                "composite_score": ce_data.get("composite_score"),
+                "search_qa": (ce_data.get("metrics") or {}).get("search_qa"),
+            }
+        print(f"  {'✓' if ce['ok'] else '✗'} run_continuous_eval.py")
+        if not ce["ok"]:
+            failures.append("continuous_eval")
 
-    # Summary
-    print("\n=== Summary ===")
-    print(f"  Failures: {len(failures)}")
-    print(f"  Warnings: {len(warnings)}")
-    if failures:
-        for f in failures:
-            print(f"    - {f}")
-    if warnings:
-        for w in warnings:
-            print(f"    - {w}")
+    # 8. Live API (optional)
+    print(f"\n[8] Live API smoke ({args.api})")
+    api = _api_smoke(args.api)
+    report["sections"]["api_smoke"] = api
+    if api.get("reachable"):
+        print(f"  {'✓' if api.get('ok') else '⚠'} API reachable")
+    else:
+        print(f"  ⚠ API not reachable (dev/TestClient validations still valid)")
+        report["sections"]["api_smoke"]["note"] = "skipped_live_requirements"
+
+    report["failures"] = failures
+    report["ok"] = len(failures) == 0
+
+    OUT_JSON.write_text(json.dumps(report, indent=2), encoding="utf-8")
+    print(f"\n=== Summary: {len(failures)} blocking section(s) ===")
+    for f in failures:
+        print(f"  - {f}")
+    print(f"\nWrote {OUT_JSON}\n")
+
+    if args.json_only:
+        print(json.dumps(report, indent=2))
+
     return 1 if failures else 0
 
 

@@ -168,7 +168,9 @@ LOGGER = logging.getLogger(__name__)
 async def _app_lifespan(application: FastAPI):
     from app_skeleton.api.firebase_app import init_firebase_if_configured
     from app_skeleton.api.docker_service_client import docker_services
+    from app_skeleton.api.startup_validation import log_deployment_checklist
 
+    log_deployment_checklist()
     init_firebase_if_configured()
     try:
         bootstrap = docker_services.bootstrap()

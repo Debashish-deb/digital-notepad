@@ -99,6 +99,30 @@ services:
   # Optional full imaging stack (Linux workstation). Not needed for basic tifffile streaming.
   # docker compose --profile imaging build imaging-worker
   # docker compose --profile imaging run --rm imaging-worker
+  # Optional production UI on :5173 (dist/) with API reverse proxy to host :8000.
+  #   bash scripts/dev/build_frontend_prod.sh
+  #   docker compose --profile platform up -d caddy-platform
+  caddy-platform:
+    profiles: [platform]
+    image: caddy:2-alpine
+    container_name: omeia-caddy-platform
+    networks: [omeia-internal]
+    ports:
+      - "127.0.0.1:5173:5173"
+    volumes:
+      - ./configs/caddy/Caddyfile.platform:/etc/caddy/Caddyfile:ro
+      - ./app_skeleton/ui/react_frontend/dist:/srv/frontend:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /config
+      - /data
+    security_opt:
+      - no-new-privileges:true
+
   imaging-worker:
     profiles: [imaging]
     build:

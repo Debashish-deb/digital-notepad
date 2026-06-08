@@ -1,40 +1,103 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { LogIn, LogOut, ShieldAlert, User } from 'lucide-react';
+import AuthLoginPanel from '@/features/auth/components/AuthLoginPanel.jsx';
 import { useApiContext } from '@/services/ApiContext.jsx';
-import { User, Mail, Award, BookOpen, Code, Link, ExternalLink, Briefcase } from 'lucide-react';
+import { Award, BookOpen, Briefcase, Code, ExternalLink, Link, Mail } from 'lucide-react';
 import { userProfilesData } from '@/data/userProfilesData.js';
 import './UserProfileScreen.css';
 
-export default function UserProfileScreen({ title, description }) {
-  const { authUser, userProfile } = useApiContext();
-  
-  // Try to match the logged in user with our detailed mock data
+function resolveProfileKey(email = '') {
+  const normalized = email.trim().toLowerCase();
+  if (!normalized) return null;
+  return (
+    Object.keys(userProfilesData).find(
+      (key) => userProfilesData[key].email?.toLowerCase() === normalized,
+    ) || null
+  );
+}
+
+export default function UserProfileScreen() {
+  const {
+    authUser,
+    userProfile,
+    authToken,
+    firebaseAuthEnabled,
+    authDisabled,
+    onAuthToken,
+    signOut,
+  } = useApiContext();
+
   const loggedInEmail = authUser?.email || userProfile?.email || '';
-  const matchedUserKey = Object.keys(userProfilesData).find(
-    k => userProfilesData[k].email === loggedInEmail
-  ) || 'debdeba'; // Fallback to IT specialist for demo purposes
+  const isSignedIn = Boolean(authToken || authUser);
+  const matchedUserKey = useMemo(() => resolveProfileKey(loggedInEmail), [loggedInEmail]);
+  const [browseUserKey, setBrowseUserKey] = useState(matchedUserKey || Object.keys(userProfilesData)[0]);
 
-  const [selectedUserKey, setSelectedUserKey] = useState(matchedUserKey);
+  useEffect(() => {
+    if (matchedUserKey) setBrowseUserKey(matchedUserKey);
+  }, [matchedUserKey]);
 
+  const selectedUserKey = isSignedIn && matchedUserKey ? matchedUserKey : browseUserKey;
   const selectedProfile = userProfilesData[selectedUserKey];
 
   return (
     <div className="profile-container">
-      <div className="profile-selector">
-        <label htmlFor="user-select" style={{ fontWeight: 600 }}>View Profile:</label>
-        <select 
-          id="user-select" 
-          className="input" 
-          style={{ maxWidth: '300px' }}
-          value={selectedUserKey}
-          onChange={(e) => setSelectedUserKey(e.target.value)}
-        >
-          {Object.values(userProfilesData).map(profile => (
-            <option key={profile.username} value={profile.username}>
-              {profile.full_name} ({profile.role})
-            </option>
-          ))}
-        </select>
-      </div>
+      <section className="profile-auth-card">
+        <div className="profile-auth-card__header">
+          <h3 className="profile-auth-card__title">
+            {isSignedIn ? 'Signed in' : 'Lab account'}
+          </h3>
+          <p className="profile-auth-card__status">
+            {isSignedIn
+              ? (authUser?.email || userProfile?.email || 'Authenticated')
+              : authDisabled
+                ? 'Authentication is optional in this environment (PLATFORM_AUTH_DISABLED).'
+                : 'You are not signed in. Use your university email and password to access your profile.'}
+          </p>
+        </div>
+
+        {isSignedIn ? (
+          <div className="profile-auth-card__actions">
+            <span className="profile-auth-card__email">{authUser?.email || userProfile?.email}</span>
+            <button type="button" className="btn btn-secondary profile-auth-btn" onClick={() => signOut()}>
+              <LogOut size={16} aria-hidden="true" />
+              Sign out
+            </button>
+          </div>
+        ) : firebaseAuthEnabled ? (
+          <div className="profile-auth-card__login">
+            <p className="profile-auth-card__hint">
+              <LogIn size={16} aria-hidden="true" />
+              Sign in with Firebase Email/Password (not Google).
+            </p>
+            <AuthLoginPanel onToken={onAuthToken} />
+          </div>
+        ) : (
+          <p className="profile-auth-card__warning">
+            <ShieldAlert size={16} aria-hidden="true" />
+            Firebase login is not configured. Set <code>FIREBASE_WEB_API_KEY</code> in{' '}
+            <code>configs/.env</code> or <code>VITE_FIREBASE_API_KEY</code> in the frontend env, then restart the API and Vite dev server.
+          </p>
+        )}
+      </section>
+
+      {!isSignedIn ? (
+        <div className="profile-selector">
+          <label htmlFor="user-select" style={{ fontWeight: 600 }}>Browse team member:</label>
+          <select
+            id="user-select"
+            className="input"
+            style={{ maxWidth: '320px' }}
+            value={browseUserKey}
+            onChange={(e) => setBrowseUserKey(e.target.value)}
+          >
+            {Object.values(userProfilesData).map((profile) => (
+              <option key={profile.username} value={profile.username}>
+                {profile.full_name} ({profile.role})
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : null}
 
       <div className="profile-layout">
         {/* Sidebar */}

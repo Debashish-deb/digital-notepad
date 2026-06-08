@@ -1,0 +1,11 @@
+[Unit]
+Description=Weekly OMEIA continuous quality evaluation
+
+[Timer]
+OnCalendar=Sun *-*-* 03:00:00
+Persistent=true
+RandomizedDelaySec=1800
+Unit=omeia-quality-eval.service
+
+[Install]
+WantedBy=timers.target

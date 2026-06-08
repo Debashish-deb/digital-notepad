@@ -85,10 +85,16 @@ class ChatResponse(BaseModel):
     response_sections: List[dict[str, Any]] = Field(default_factory=list)
     session_id: Optional[str] = None
     answer_regenerated: bool = False
+    research_strategy: bool = False
+    strategy_report: Optional[dict[str, Any]] = None
+    strategy_agents: List[str] = Field(default_factory=list)
 
 
 _ORCHESTRATOR_SSE_KEYS = (
     "evidence_orchestrator",
+    "research_strategy",
+    "strategy_report",
+    "strategy_agents",
     "query_domains",
     "query_entities",
     "search_plan",

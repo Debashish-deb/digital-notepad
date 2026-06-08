@@ -50,3 +50,33 @@ def ocr_enabled() -> bool:
 def project_rbac_enabled() -> bool:
     """When true, enforce project-level access via platform.project_member + researcher binding."""
     return _env_bool("PROJECT_RBAC_ENABLED", "false")
+
+
+def research_strategy_assistant_enabled() -> bool:
+    """When true, route strategic research questions through ResearchStrategyEngine."""
+    return _env_bool("OMEIA_RESEARCH_STRATEGY_ASSISTANT", "false")
+
+
+def strategy_report_mode_enabled() -> bool:
+    """When true, include rendered markdown alongside structured strategy_report JSON."""
+    return _env_bool("OMEIA_STRATEGY_REPORT_MODE", "true")
+
+
+def strategy_external_search_enabled() -> bool:
+    """When true, supplement strategy retrieval with research_knowledge_store external search."""
+    return _env_bool("OMEIA_STRATEGY_EXTERNAL_SEARCH", "false")
+
+
+def strategy_require_citations_enabled() -> bool:
+    """When true, strategy answers require grounded references from retrieved evidence only."""
+    return _env_bool("OMEIA_STRATEGY_REQUIRE_CITATIONS", "true")
+
+
+def continuous_eval_enabled() -> bool:
+    """When true, allow scheduled/triggered continuous quality eval runs."""
+    return _env_bool("OMEIA_CONTINUOUS_EVAL_ENABLED", "false")
+
+
+def quality_gate_strict_enabled() -> bool:
+    """When true, quality eval failures/regressions mark run status as fail."""
+    return _env_bool("OMEIA_QUALITY_GATE_STRICT", "false")

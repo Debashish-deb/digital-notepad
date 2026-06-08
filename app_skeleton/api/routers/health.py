@@ -8,6 +8,17 @@ from app_skeleton.security.auth import require_platform_user, require_admin_user
 
 router = APIRouter()
 
+@router.get("/metrics")
+def metrics() -> dict:
+    """Basic in-memory request metrics (enable with ENABLE_REQUEST_METRICS=true)."""
+    from app_skeleton.api.middleware.metrics import metrics_enabled, snapshot_metrics
+
+    data = snapshot_metrics()
+    if not metrics_enabled():
+        return {"enabled": False, "message": "Set ENABLE_REQUEST_METRICS=true to collect request metrics."}
+    return data
+
+
 @router.get("/health")
 def health() -> dict:
     db_ok = True
