@@ -7,6 +7,7 @@ import {
   findLocalizedMainNav,
   findLocalizedSubNav,
   localizeMainNav,
+  localizeNavSections,
   localizedSectionTitle,
 } from './localizeNav.js';
 import { translate } from './translate.js';
@@ -42,6 +43,7 @@ export function useGuiT() {
   const nav = useMemo(
     () => ({
       mainNav: localizeMainNav(locale),
+      navSections: localizeNavSections(locale),
       findMain: (mainId) => findLocalizedMainNav(mainId, locale),
       findSub: (mainId, subId) => findLocalizedSubNav(mainId, subId, locale),
       sectionTitle: (mainId, subId) => localizedSectionTitle(mainId, subId, locale),

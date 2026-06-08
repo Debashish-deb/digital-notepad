@@ -85,71 +85,78 @@ function Sidebar({
       </header>
 
       <nav className="sidebar-menu" aria-label={t('common.mainNavAria')}>
-        {nav.mainNav.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeMain === item.id;
-          const hasChildren = item.children?.length > 1;
-          const isExpanded = sidebarExpandedMain === item.id;
-          const showChildren = isExpanded && hasChildren;
-          const handleMainClick = onMainNavClick || ((main) => onNavChange(main, item.defaultSub));
+        {(nav.navSections || [{ id: 'all', items: nav.mainNav }]).map((section) => (
+          <div key={section.id} className="sidebar-nav-section" data-nav-section={section.id}>
+            {section.label ? (
+              <p className="sidebar-nav-section-label">{section.sidebarLabel || section.label}</p>
+            ) : null}
+            {section.items.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeMain === item.id;
+              const hasChildren = item.children?.length > 1;
+              const isExpanded = sidebarExpandedMain === item.id;
+              const showChildren = isExpanded && hasChildren;
+              const handleMainClick = onMainNavClick || ((main) => onNavChange(main, item.defaultSub));
 
-          return (
-            <div
-              key={item.id}
-              data-main={item.id}
-              className={`sidebar-group${isExpanded ? ' sidebar-group--active' : ''}${isActive ? ' sidebar-group--current' : ''}`}
-            >
-              <button
-                type="button"
-                className={`sidebar-item sidebar-item-main sidebar-item-main--${item.id}${isActive ? ' active' : ''}${isExpanded ? ' expanded' : ''}`}
-                aria-current={isActive && !showChildren ? 'page' : undefined}
-                aria-expanded={hasChildren ? isExpanded : undefined}
-                onClick={() => handleMainClick(item.id)}
-              >
-                <span
-                  className={`sidebar-item-icon sidebar-item-icon--${item.id}`}
-                  aria-hidden="true"
+              return (
+                <div
+                  key={item.id}
+                  data-main={item.id}
+                  className={`sidebar-group${isExpanded ? ' sidebar-group--active' : ''}${isActive ? ' sidebar-group--current' : ''}`}
                 >
-                  <Icon size={17} strokeWidth={2.1} />
-                </span>
-                <span className="sidebar-item-label">{item.sidebarLabel || item.label}</span>
-                {hasChildren ? (
-                  <ChevronDown
-                    size={14}
-                    className="sidebar-item-chevron"
-                    aria-hidden="true"
-                  />
-                ) : null}
-              </button>
+                  <button
+                    type="button"
+                    className={`sidebar-item sidebar-item-main sidebar-item-main--${item.id}${isActive ? ' active' : ''}${isExpanded ? ' expanded' : ''}`}
+                    aria-current={isActive && !showChildren ? 'page' : undefined}
+                    aria-expanded={hasChildren ? isExpanded : undefined}
+                    onClick={() => handleMainClick(item.id)}
+                  >
+                    <span
+                      className={`sidebar-item-icon sidebar-item-icon--${item.id}`}
+                      aria-hidden="true"
+                    >
+                      <Icon size={17} strokeWidth={2.1} />
+                    </span>
+                    <span className="sidebar-item-label">{item.sidebarLabel || item.label}</span>
+                    {hasChildren ? (
+                      <ChevronDown
+                        size={14}
+                        className="sidebar-item-chevron"
+                        aria-hidden="true"
+                      />
+                    ) : null}
+                  </button>
 
-              {showChildren ? (
-                <div className="sidebar-subnav-wrap">
-                  <p className="sidebar-subnav-heading">{t('common.sectionPages')}</p>
-                  <ul className="sidebar-subnav" aria-label={t('common.sectionTabsAria')}>
-                    {item.children.map((child) => {
-                      const childActive = navSub === child.id;
-                      const childLabel = child.sidebarLabel || child.label;
-                      return (
-                        <li key={child.id} className="sidebar-subnav-item">
-                          <button
-                            type="button"
-                            className={`sidebar-item sidebar-item-sub${childActive ? ' active' : ''}`}
-                            aria-current={childActive ? 'page' : undefined}
-                            onClick={() => onNavChange(item.id, child.id)}
-                            title={child.label}
-                          >
-                            <span className="sidebar-subnav-dot" aria-hidden="true" />
-                            <span className="sidebar-item-label">{childLabel}</span>
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  {showChildren ? (
+                    <div className="sidebar-subnav-wrap">
+                      <p className="sidebar-subnav-heading">{t('common.sectionPages')}</p>
+                      <ul className="sidebar-subnav" aria-label={t('common.sectionTabsAria')}>
+                        {item.children.map((child) => {
+                          const childActive = navSub === child.id;
+                          const childLabel = child.sidebarLabel || child.label;
+                          return (
+                            <li key={child.id} className="sidebar-subnav-item">
+                              <button
+                                type="button"
+                                className={`sidebar-item sidebar-item-sub${childActive ? ' active' : ''}`}
+                                aria-current={childActive ? 'page' : undefined}
+                                onClick={() => onNavChange(item.id, child.id)}
+                                title={child.label}
+                              >
+                                <span className="sidebar-subnav-dot" aria-hidden="true" />
+                                <span className="sidebar-item-label">{childLabel}</span>
+                              </button>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ) : null}
                 </div>
-              ) : null}
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        ))}
       </nav>
 
       <div className="sidebar-footer">

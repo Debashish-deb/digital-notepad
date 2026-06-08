@@ -9,6 +9,8 @@ const OVERLAYS = '/covers/overlays';
  * @type {Record<string, { src: string, position?: CoverOverlayPosition }>}
  */
 export const MODULE_COVER_OVERLAYS = {
+  workbench: { src: `${OVERLAYS}/overview.svg`, position: 'bottom-right' },
+  library: { src: `${OVERLAYS}/data-storage.svg`, position: 'bottom-right' },
   overview: { src: `${OVERLAYS}/overview.svg`, position: 'bottom-right' },
   orders: { src: `${OVERLAYS}/orders.svg`, position: 'bottom-right' },
   data_storage: { src: `${OVERLAYS}/data-storage.svg`, position: 'bottom-right' },
@@ -23,6 +25,32 @@ export const MODULE_COVER_OVERLAYS = {
 };
 
 export const MODULE_COVER = {
+  workbench: {
+    tone: 'overview',
+    accentHue: '#4f46e5',
+    overlayArt: MODULE_COVER_OVERLAYS.workbench,
+    eyebrow: 'Daily lab home',
+    title: 'Workbench',
+    tagline: 'Tasks · projects · library health',
+    tags: ['Dashboard', 'Tasks', 'Quick links'],
+    lead:
+      'Your lab command center — open tasks, project status, document library health, and shortcuts to protocols, CyCIF, and search.',
+    metaDescription:
+      'Lab workbench dashboard — tasks, project pulse, and quick navigation across the Färkkilä research platform.',
+  },
+  library: {
+    tone: 'storage',
+    accentHue: '#7c3aed',
+    overlayArt: MODULE_COVER_OVERLAYS.library,
+    eyebrow: 'Unified knowledge',
+    title: 'Document Library',
+    tagline: 'Search · filter · preview · export',
+    tags: ['Full library', 'Wet-lab', 'CyCIF', 'Orders'],
+    lead:
+      'One searchable library for every lab document — wet-lab protocols, CyCIF resources, administration files, and procurement records.',
+    metaDescription:
+      'Unified document library with hybrid search, taxonomy filters, and audit-backed previews.',
+  },
   overview: {
     tone: 'overview',
     accentHue: '#c45c8a',

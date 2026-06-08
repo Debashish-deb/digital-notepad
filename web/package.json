@@ -8,8 +8,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "prebuild": "bash ../../../scripts/ops/check_frontend_public_lab_data.sh",
+    "prebuild": "bash ../infra/scripts/ops/check_frontend_public_lab_data.sh",
     "build": "vite build",
+    "test:nav": "node --test src/config/navigation.test.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

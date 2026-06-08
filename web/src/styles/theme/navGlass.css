@@ -244,6 +244,8 @@
 }
 
 /* Parent tone tokens for sub-tabs */
+.sidebar-group[data-main='workbench'] { --nav-tone: 79, 70, 229; }
+.sidebar-group[data-main='library'] { --nav-tone: 124, 58, 237; }
 .sidebar-group[data-main='overview'] { --nav-tone: 37, 99, 235; }
 .sidebar-group[data-main='projects_data'] { --nav-tone: 217, 119, 6; }
 .sidebar-group[data-main='data_storage'] { --nav-tone: 8, 145, 178; }

@@ -204,6 +204,16 @@ export function getExplorerPreset(mainId, subId) {
     };
   }
 
+  if (mainId === 'library' && subId === 'all_files') {
+    return {
+      domainTab: 'all_files',
+      taxonomyTab: 'all_files',
+      filters: {},
+      showDomainTabs: true,
+      scopeLabel: 'Full Library',
+    };
+  }
+
   return {
     domainTab: 'all_files',
     taxonomyTab: 'all_files',
@@ -215,6 +225,7 @@ export function getExplorerPreset(mainId, subId) {
 
 export function isDocumentExplorerRoute(mainId, subId, screen) {
   if (screen === 'document_library') return true;
+  if (mainId === 'library') return true;
   if (mainId === 'data_storage' && (subId === 'documents' || subId === 'all_files')) return true;
   if (screen === 'orders_billing' || screen === 'orders_archive') return true;
   if (screen === 'lab_knowledge') {

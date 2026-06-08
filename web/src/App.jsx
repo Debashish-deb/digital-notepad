@@ -21,6 +21,7 @@ import {
   findMainNav,
   findSubNav,
   getDefaultSocialSub,
+  normalizeLegacyNavPair,
   parseNavFromStorage,
   resolveCycifLegacyNav,
   resolveSectionSub,
@@ -142,12 +143,6 @@ function resolveStoredNav(raw) {
 function migrateLegacyNav(stored) {
   const legacy = parseNavFromStorage(stored);
   if (legacy) {
-    if (
-      legacy.main === 'overview' &&
-      (legacy.sub === 'dashboard' || legacy.sub === 'research')
-    ) {
-      return { main: 'overview', sub: 'get_started' };
-    }
     if (legacy.socialSub) {
       return {
         main: legacy.main,
@@ -158,7 +153,7 @@ function migrateLegacyNav(stored) {
     return legacy;
   }
   const map = {
-    dashboard: { main: 'overview', sub: 'get_started' },
+    dashboard: { main: 'workbench', sub: 'home' },
     projects: { main: 'projects_data', sub: 'portfolio' },
     notebook: { main: 'projects_data', sub: 'notebook' },
     chat: { main: 'ai_assistant', sub: 'copilot' },
@@ -168,7 +163,12 @@ function migrateLegacyNav(stored) {
     features: { main: 'projects_data', sub: 'features' },
     ai_assistant: { main: 'ai_assistant', sub: 'prompts' },
   };
-  return map[stored] || { main: 'overview', sub: 'get_started' };
+  if (map[stored]) return map[stored];
+  if (stored && stored.includes(':')) {
+    const [main, sub] = stored.split(':');
+    return normalizeLegacyNavPair(main, sub);
+  }
+  return { main: 'workbench', sub: 'home' };
 }
 
 function normalizeProjectCodes(value) {
@@ -471,7 +471,8 @@ function App() {
           <DocumentLibraryScreen
             title={localizedSub.label}
             description={localizedSub.description}
-            domainTab="all_files"
+            mainId={subNav.libraryMain || navMain}
+            subId={subNav.librarySub || navSub}
           />
         );
       case 'digitalization':

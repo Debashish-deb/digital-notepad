@@ -1,4 +1,4 @@
-import { findMainNav, MAIN_NAV } from '../config/navigation.js';
+import { buildNavSections, findMainNav, MAIN_NAV, NAV_GROUPS } from '../config/navigation.js';
 import { GUI_STRINGS } from './guiStrings/index.js';
 import { translate, translateNavSub } from './translate.js';
 
@@ -52,4 +52,18 @@ export function localizedSectionTitle(mainId, subId, locale) {
   const main = findLocalizedMainNav(mainId, locale);
   const sub = findLocalizedSubNav(mainId, subId, locale);
   return `${main.label} · ${sub.label}`;
+}
+
+export function localizeNavSections(locale) {
+  const mainNav = localizeMainNav(locale);
+  return buildNavSections(mainNav).map((section) => ({
+    ...section,
+    label: translate(GUI_STRINGS, locale, `navGroups.${section.id}`, NAV_GROUPS[section.id]?.label || section.label),
+    sidebarLabel: translate(
+      GUI_STRINGS,
+      locale,
+      `navGroupsSidebar.${section.id}`,
+      NAV_GROUPS[section.id]?.sidebarLabel || section.sidebarLabel,
+    ),
+  }));
 }

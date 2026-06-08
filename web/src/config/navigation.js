@@ -7,10 +7,64 @@ import {
   Cpu,
   Bot,
   HardDrive,
-  Shield,
+  BookOpen,
   User,
   Calendar,
 } from 'lucide-react';
+
+/**
+ * Sidebar groups — Labguru/Benchling-style product areas (Work · Lab · Knowledge · Infra · Admin).
+ * @see docs/OMEIA_PRODUCT_IA_REDESIGN.md
+ */
+export const NAV_GROUP_ORDER = ['work', 'laboratory', 'knowledge', 'infrastructure', 'admin'];
+
+export const NAV_GROUPS = {
+  work: { label: 'Work', sidebarLabel: 'Work' },
+  laboratory: { label: 'Laboratory', sidebarLabel: 'Lab' },
+  knowledge: { label: 'Knowledge', sidebarLabel: 'Knowledge' },
+  infrastructure: { label: 'Infrastructure', sidebarLabel: 'Infra' },
+  admin: { label: 'Administration', sidebarLabel: 'Admin' },
+};
+
+/** Map retired main ids → current main id (stored nav migration). */
+export const LEGACY_MAIN_NAV_ALIASES = {
+  dashboard: 'workbench',
+};
+
+/** Map retired main:sub pairs → current pair. */
+export const LEGACY_NAV_REDIRECTS = {
+  'data_storage:all_files': { main: 'library', sub: 'all_files' },
+  'data_storage:documents': { main: 'library', sub: 'all_files' },
+  'overview:dashboard': { main: 'workbench', sub: 'home' },
+  'overview:research': { main: 'workbench', sub: 'home' },
+};
+
+export function buildNavSections(navItems) {
+  const buckets = Object.fromEntries(NAV_GROUP_ORDER.map((id) => [id, []]));
+  for (const item of navItems) {
+    const groupId = item.group && buckets[item.group] ? item.group : NAV_GROUP_ORDER[0];
+    buckets[groupId].push(item);
+  }
+  return NAV_GROUP_ORDER
+    .filter((id) => buckets[id].length > 0)
+    .map((id) => ({
+      id,
+      ...NAV_GROUPS[id],
+      items: buckets[id],
+    }));
+}
+
+export function normalizeLegacyNavPair(mainId, subId) {
+  let main = LEGACY_MAIN_NAV_ALIASES[mainId] || mainId;
+  let sub = subId;
+  const redirect = LEGACY_NAV_REDIRECTS[`${mainId}:${subId}`]
+    || LEGACY_NAV_REDIRECTS[`${main}:${sub}`];
+  if (redirect) {
+    main = redirect.main;
+    sub = redirect.sub;
+  }
+  return { main, sub };
+}
 
 /** CyCif imaging hub (included in MAIN_NAV before Wet Lab). */
 export const CYCIF_NAV = {
@@ -76,9 +130,27 @@ const AUX_NAV = [PROFILE_NAV];
 /** Top-level lab areas and their sub-sections (screens map to App.jsx). */
 export const MAIN_NAV = [
   {
+    id: 'workbench',
+    group: 'work',
+    label: 'Workbench',
+    sidebarLabel: 'Workbench',
+    icon: LayoutDashboard,
+    defaultSub: 'home',
+    children: [
+      {
+        id: 'home',
+        label: 'Lab dashboard',
+        sidebarLabel: 'Dashboard',
+        screen: 'dashboard',
+        description: 'Tasks, project pulse, library health, and quick links — your daily lab home (SciNote/Labguru dashboard pattern).',
+      },
+    ],
+  },
+  {
     id: 'overview',
-    label: 'Get Started',
-    sidebarLabel: 'Get Started',
+    group: 'admin',
+    label: 'Lab Administration',
+    sidebarLabel: 'Lab admin',
     icon: LayoutDashboard,
     defaultSub: 'get_started',
     children: [
@@ -113,7 +185,9 @@ export const MAIN_NAV = [
   },
   {
     id: 'meeting',
-    label: 'Meeting',
+    group: 'admin',
+    label: 'Meetings',
+    sidebarLabel: 'Meetings',
     icon: Calendar,
     defaultSub: 'booking',
     children: [
@@ -122,8 +196,9 @@ export const MAIN_NAV = [
   },
   {
     id: 'projects_data',
-    label: 'Project Portfolio',
-    sidebarLabel: 'Project Portfolio',
+    group: 'work',
+    label: 'Projects',
+    sidebarLabel: 'Projects',
     icon: FolderOpen,
     defaultSub: 'portfolio',
     keepsProject: true,
@@ -134,22 +209,81 @@ export const MAIN_NAV = [
       { id: 'features', label: 'Feature warehouse', screen: 'features', description: 'Clinical feature matrix and similarity search.' },
     ],
   },
-  CYCIF_NAV,
+  { ...CYCIF_NAV, group: 'laboratory' },
   {
     id: 'wet_lab',
+    group: 'laboratory',
     label: 'Wet Lab',
+    sidebarLabel: 'Wet lab',
     icon: FlaskConical,
-    defaultSub: 'files',
+    defaultSub: 'protocols',
     children: [
-      { id: 'files', label: 'Lab database files', screen: 'lab_knowledge', databaseSub: 'wet_lab_files', description: 'Protocols, inventories, and wet-lab documents on disk.' },
-      { id: 'protocols', label: 'Wet-lab protocols', screen: 'wet_protocols', description: 'SOPs for sample prep, staining prep, and QC.' },
-      { id: 'tasks', label: 'Wet-lab tasks', screen: 'wet_tasks', description: 'Tasks tagged for wet-lab work.' },
-      { id: 'inventory', label: 'Reagents & panels', screen: 'wet_inventory', description: 'Antibody panels and reagent references.' },
+      { id: 'protocols', label: 'Protocols & methods', sidebarLabel: 'Protocols', screen: 'wet_protocols', description: 'Runnable SOPs for sample prep, staining, tissue processing, and QC.' },
+      { id: 'inventory', label: 'Reagents & panels', sidebarLabel: 'Inventory', screen: 'wet_inventory', description: 'Antibody panels, reagent lists, and sample inventories (Labguru inventory pattern).' },
+      { id: 'tasks', label: 'Lab tasks', sidebarLabel: 'Tasks', screen: 'wet_tasks', description: 'Assigned wet-lab tasks with due dates and status.' },
+      { id: 'files', label: 'Wet-lab library', sidebarLabel: 'Files', screen: 'lab_knowledge', databaseSub: 'wet_lab_files', description: 'Browse wet-lab documents on disk — protocols, registers, and platform files.' },
+    ],
+  },
+  {
+    id: 'library',
+    group: 'knowledge',
+    label: 'Document Library',
+    sidebarLabel: 'Library',
+    icon: BookOpen,
+    defaultSub: 'all_files',
+    children: [
+      {
+        id: 'all_files',
+        label: 'Full library',
+        sidebarLabel: 'All files',
+        screen: 'document_library',
+        libraryMain: 'library',
+        librarySub: 'all_files',
+        description: 'System-wide search across every indexed lab document (Benchling global search pattern).',
+      },
+      {
+        id: 'wet_lab',
+        label: 'Lab operations',
+        sidebarLabel: 'Lab ops',
+        screen: 'document_library',
+        libraryMain: 'wet_lab',
+        librarySub: 'files',
+        description: 'Protocols, reagents, spatial platforms, and wet-lab registers.',
+      },
+      {
+        id: 'cycif',
+        label: 'CyCIF resources',
+        sidebarLabel: 'CyCIF',
+        screen: 'document_library',
+        libraryMain: 'cycif',
+        librarySub: 'cycif_projects',
+        description: 'Staining plans, antibody panels, and CyCIF protocol files.',
+      },
+      {
+        id: 'lab_admin',
+        label: 'Administration docs',
+        sidebarLabel: 'Admin docs',
+        screen: 'document_library',
+        libraryMain: 'overview',
+        librarySub: 'get_started',
+        description: 'Onboarding, guidelines, permits, personnel, and lab policies.',
+      },
+      {
+        id: 'orders_docs',
+        label: 'Orders & procurement',
+        sidebarLabel: 'Orders',
+        screen: 'document_library',
+        libraryMain: 'orders',
+        librarySub: 'billing',
+        description: 'Billing instructions, vendor records, and procurement archives.',
+      },
     ],
   },
   {
     id: 'computational',
-    label: 'Computational Hub',
+    group: 'infrastructure',
+    label: 'Compute',
+    sidebarLabel: 'Compute',
     icon: Cpu,
     defaultSub: 'onboarding',
     children: [
@@ -176,7 +310,9 @@ export const MAIN_NAV = [
   },
   {
     id: 'data_storage',
+    group: 'infrastructure',
     label: 'Data & Storage',
+    sidebarLabel: 'Storage',
     icon: HardDrive,
     defaultSub: 'landscape',
     children: [
@@ -188,13 +324,13 @@ export const MAIN_NAV = [
       { id: 'local_storage', label: 'Local & external disks', screen: 'data_storage', dataSection: 'local_storage', description: 'Workstations, cPouta /data NFS, external disks, GeoMx exports, and HUH Datalake / OVCA.' },
       { id: 'guidelines', label: 'Guidelines & workflow', screen: 'data_storage', dataSection: 'guidelines', description: 'Lifecycle workflow, FAIR rules, sensitivity classes, cleaning-day checklist, and lab source docs.' },
       { id: 'tools', label: 'Transfer tools', screen: 'data_storage', dataSection: 'tools', description: 'rclone, Lumi-O, allas-conf, Cyberduck, rsync — when to use each and common transfer patterns.' },
-      { id: 'documents', label: 'Lab documents', screen: 'data_storage', dataSection: 'documents', description: 'Interactive map of every document zone in the app — browse and preview lab files with readable content.' },
-      { id: 'all_files', label: 'All Files', screen: 'document_library', description: 'Scientific file explorer — search, filter, and preview all 4800+ lab documents with audit-backed status badges.' },
+      { id: 'documents', label: 'Storage document map', screen: 'data_storage', dataSection: 'documents', description: 'Interactive map of document zones tied to storage locations.' },
     ],
   },
   {
     id: 'orders',
-    label: 'Orders & related information',
+    group: 'infrastructure',
+    label: 'Orders & Procurement',
     sidebarLabel: 'Orders',
     icon: ClipboardList,
     defaultSub: 'billing',
@@ -207,7 +343,9 @@ export const MAIN_NAV = [
   },
   {
     id: 'ai_assistant',
+    group: 'knowledge',
     label: 'AI Lab Assistant',
+    sidebarLabel: 'AI',
     icon: Bot,
     defaultSub: 'copilot',
     children: [
@@ -362,11 +500,17 @@ export function resolveCycifLegacyNav(main, sub) {
 
 export function parseNavFromStorage(raw) {
   if (!raw || typeof raw !== 'string') return null;
-  const [main, sub] = raw.split(':');
-  const socialResolved = resolveSocialLegacyNav(main, sub);
+  const [rawMain, rawSub] = raw.split(':');
+  const socialResolved = resolveSocialLegacyNav(rawMain, rawSub);
   if (socialResolved) return socialResolved;
-  const cycifResolved = resolveCycifLegacyNav(main, sub);
+  const cycifResolved = resolveCycifLegacyNav(rawMain, rawSub);
   if (cycifResolved) return cycifResolved;
+  const { main, sub } = normalizeLegacyNavPair(rawMain, rawSub || '');
   if (!findMainNav(main)) return null;
-  return { main, sub: sub || findMainNav(main).defaultSub };
+  const resolvedSub = sub || findMainNav(main).defaultSub;
+  const mainNav = findMainNav(main);
+  const validSub = mainNav.children.some((child) => child.id === resolvedSub)
+    ? resolvedSub
+    : mainNav.defaultSub;
+  return { main, sub: validSub };
 }

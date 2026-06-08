@@ -237,6 +237,27 @@ html[data-theme='academic'] .sidebar-header-theme-btn:hover {
   line-height: 1.2;
 }
 
+.sidebar-nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.sidebar-nav-section + .sidebar-nav-section {
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-muted) 12%, transparent);
+}
+
+.sidebar-nav-section-label {
+  margin: 0 0 0.2rem 0.65rem;
+  font-size: 0.5625rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--text-muted) 82%, transparent);
+}
+
 .sidebar-menu {
   display: flex;
   flex-direction: column;

@@ -28,25 +28,50 @@ export default {
     documentTitleSuffix: 'Farkki Lab Assistant',
   },
 
+  navGroups: {
+    work: 'Work',
+    laboratory: 'Laboratory',
+    knowledge: 'Knowledge',
+    infrastructure: 'Infrastructure',
+    admin: 'Administration',
+  },
+
+  navGroupsSidebar: {
+    work: 'Work',
+    laboratory: 'Lab',
+    knowledge: 'Knowledge',
+    infrastructure: 'Infra',
+    admin: 'Admin',
+  },
+
   navMain: {
-    overview: 'Get Started',
-    meeting: 'Meeting',
-    orders: 'Orders & related information',
+    workbench: 'Workbench',
+    overview: 'Lab Administration',
+    meeting: 'Meetings',
+    orders: 'Orders & Procurement',
     social: 'Social & miscellaneous',
     data_storage: 'Data & Storage',
-    projects_data: 'Project Portfolio',
-    wet_lab: 'Wet-lab',
+    projects_data: 'Projects',
+    wet_lab: 'Wet Lab',
+    library: 'Document Library',
     cycif: 'CyCif',
-    computational: 'Computational Hub',
+    computational: 'Compute',
     ai_assistant: 'AI Lab Assistant',
     administration: 'Administration',
   },
 
   navMainSidebar: {
-    overview: 'Get Started',
-    projects_data: 'Project Portfolio',
+    workbench: 'Workbench',
+    overview: 'Lab admin',
+    projects_data: 'Projects',
     orders: 'Orders',
     social: 'Social',
+    data_storage: 'Storage',
+    wet_lab: 'Wet lab',
+    library: 'Library',
+    computational: 'Compute',
+    ai_assistant: 'AI',
+    meeting: 'Meetings',
   },
 
   navSub: {
