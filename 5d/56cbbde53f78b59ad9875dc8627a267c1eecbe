@@ -1,0 +1,23 @@
+README.md
+  s_a5bffacab5ca2d::t_64a1946853f724 20-21
+omeia/api/README.md
+  s_a5bffacab5ca2d::t_4ba0dab7ff0698 3
+web/README.md
+  s_a5bffacab5ca2d::t_528b6e33179dbb 41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "5d56cbbde53f78b59ad9875dc8627a267c1eecbe",
+  "prompts": {},
+  "sessions": {
+    "s_a5bffacab5ca2d": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "c4881a6a-dbd0-413a-8914-554a0440f122",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
