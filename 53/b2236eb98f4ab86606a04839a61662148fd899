@@ -1,0 +1,21 @@
+infra/scripts/imaging/validate_scientific_instrument.py
+  s_d8ca0dcf385045::t_33f5c80305952d 12-21,33-62,156,194,209-210
+docs/SCIENTIFIC_INSTRUMENT_VALIDATION.md
+  s_d8ca0dcf385045::t_9733d2da68d901 8-15,18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "53b2236eb98f4ab86606a04839a61662148fd899",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
