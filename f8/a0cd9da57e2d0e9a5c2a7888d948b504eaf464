@@ -1,0 +1,30 @@
+web/src/features/dashboard/components/ProjectScopeSelector.jsx
+  s_d8ca0dcf385045::t_f4db1c62f3c66b 1-321
+web/src/lib/projectScopeGroups.js
+  s_d8ca0dcf385045::t_db60b583f87f14 1-102
+web/src/lib/projectScopeGroups.test.mjs
+  s_d8ca0dcf385045::t_8c1cfe1116db4f 1-47
+web/package.json
+  s_d8ca0dcf385045::t_1de04d62c5f54b 13
+web/src/pages/DashboardScreen.jsx
+  s_d8ca0dcf385045::t_2172312d974059 23
+  s_d8ca0dcf385045::t_2e4fcc39e6077e 398-400
+web/src/features/dashboard/components/ProjectScopeSelector.css
+  s_d8ca0dcf385045::t_a3c79422d65df5 1-348
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "f8a0cd9da57e2d0e9a5c2a7888d948b504eaf464",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
