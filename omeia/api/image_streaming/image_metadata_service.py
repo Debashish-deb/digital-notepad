@@ -15,6 +15,7 @@ from omeia.api.image_streaming.constants import (
     METADATA_ONLY_BYTES,
     OME_TIFF_SUFFIXES,
 )
+from omeia.api.image_streaming.dtype_helpers import dtype_profile
 
 LOGGER = logging.getLogger(__name__)
 
@@ -201,6 +202,10 @@ class ImageMetadataService:
                 meta["pyramidal"] = levels > 1
                 if pages:
                     meta["dtype"] = str(pages[0].dtype)
+                    profile = dtype_profile(meta["dtype"])
+                    meta["bit_depth"] = profile["bit_depth"]
+                    meta["value_min"] = profile["value_min"]
+                    meta["value_max"] = profile["value_max"]
                 meta["tile_ready"] = True
                 meta["streaming_status"] = "tile_ready"
                 meta["inspected_at"] = _utc_now()

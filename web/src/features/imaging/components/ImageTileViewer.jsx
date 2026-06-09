@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Crosshair, Maximize2, Ruler, ZoomIn, ZoomOut } from 'lucide-react';
+import { Crosshair, Maximize2, RotateCw, Ruler, Undo2, ZoomIn, ZoomOut } from 'lucide-react';
 import { useImageTileLoader } from '@/shared/hooks/useImageTileLoader.js';
+import { fetchPixelProbe } from '@/services/imageAssetsClient.js';
+import { INSTRUMENT_PHASE_LABEL, resolveDtypeProfile } from '@/lib/scientificImagery.js';
 import { applyIntensity, defaultChannelState } from '@/features/imaging/utils/channelState.js';
+import ScientificProbeBar from './ScientificProbeBar.jsx';
 import ChannelManager from './ChannelManager.jsx';
 import HistogramPanel from './HistogramPanel.jsx';
 import PixelInspector from './PixelInspector.jsx';
@@ -81,7 +84,10 @@ export default function ImageTileViewer({
   const renderGenRef = useRef(0);
   const tileIntensityCache = useRef(new Map());
 
-  const [channelState, setChannelState] = useState(() => defaultChannelState(channels, channelNames));
+  const dtypeProfile = useMemo(() => resolveDtypeProfile(manifest || {}), [manifest]);
+  const [channelState, setChannelState] = useState(() =>
+    defaultChannelState(channels, channelNames, manifest),
+  );
   const [selectedChannel, setSelectedChannel] = useState(0);
   const [sidebarTab, setSidebarTab] = useState('channels');
   const [zIndex, setZIndex] = useState(0);
@@ -101,11 +107,15 @@ export default function ImageTileViewer({
   const [measurement, setMeasurement] = useState(null);
   const [selectedCellId, setSelectedCellId] = useState(null);
   const [heatmapOpacity, setHeatmapOpacity] = useState(0.5);
+  const [rotationDeg, setRotationDeg] = useState(0);
+  const [rawProbe, setRawProbe] = useState(null);
+  const probeTimerRef = useRef(null);
+  const probeRequestRef = useRef(0);
 
   const { loadTile } = useImageTileLoader(assetId);
 
   useEffect(() => {
-    setChannelState(defaultChannelState(channels, channelNames));
+    setChannelState(defaultChannelState(channels, channelNames, manifest));
     setSelectedChannel(0);
     setZIndex(0);
     setTIndex(0);
@@ -114,8 +124,10 @@ export default function ImageTileViewer({
     setRenderError(null);
     setDraftRoi(null);
     setMeasurement(null);
+    setRotationDeg(0);
+    setRawProbe(null);
     tileIntensityCache.current.clear();
-  }, [assetId, channels, channelNames.join('|')]);
+  }, [assetId, channels, channelNames.join('|'), manifest?.dtype, manifest?.bit_depth]);
 
   const visibleChannels = useMemo(
     () => channelState.filter((ch) => ch.visible),
@@ -156,6 +168,7 @@ export default function ImageTileViewer({
     canvas.style.height = `${rect.height}px`;
 
     const ctx = canvas.getContext('2d', { alpha: false });
+    ctx.imageSmoothingEnabled = false;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.fillStyle = '#0b0f18';
     ctx.fillRect(0, 0, rect.width, rect.height);
@@ -218,18 +231,16 @@ export default function ImageTileViewer({
             offCtx.putImageData(imageData, 0, 0);
 
             const cacheKey = `${ch.index}:${tx}:${ty}:${tw}:${th}:${zIndex}:${tIndex}`;
-            if (inspectionMode) {
-              tileIntensityCache.current.set(cacheKey, {
-                channel: ch.index,
-                tx: tx * levelScale,
-                ty: ty * levelScale,
-                tw: tw * levelScale,
-                th: th * levelScale,
-                data: offCtx.getImageData(0, 0, tw, th).data,
-                label: ch.label,
-                color: ch.color,
-              });
-            }
+            tileIntensityCache.current.set(cacheKey, {
+              channel: ch.index,
+              tx: tx * levelScale,
+              ty: ty * levelScale,
+              tw: tw * levelScale,
+              th: th * levelScale,
+              data: offCtx.getImageData(0, 0, tw, th).data,
+              label: ch.label,
+              color: ch.color,
+            });
 
             const screenX = pan.x + tx * levelScale * zoom;
             const screenY = pan.y + ty * levelScale * zoom;
@@ -268,7 +279,6 @@ export default function ImageTileViewer({
     tileSize,
     pyramidLevels,
     loadTile,
-    inspectionMode,
   ]);
 
   useEffect(() => {
@@ -389,9 +399,21 @@ export default function ImageTileViewer({
       const sy = e.clientY - rect.top;
       const img = screenToImage(sx, sy, pan, zoom);
       setImageCoords(img);
-      if (inspectionMode) {
-        setPixelInfo({ intensities: samplePixelIntensities(img.x, img.y) });
-      }
+      setPixelInfo({ intensities: samplePixelIntensities(img.x, img.y) });
+
+      if (probeTimerRef.current) clearTimeout(probeTimerRef.current);
+      const ix = Math.max(0, Math.min(width - 1, Math.round(img.x)));
+      const iy = Math.max(0, Math.min(height - 1, Math.round(img.y)));
+      probeTimerRef.current = setTimeout(() => {
+        const reqId = ++probeRequestRef.current;
+        fetchPixelProbe(assetId, { x: ix, y: iy, z: zIndex, t: tIndex })
+          .then((data) => {
+            if (reqId === probeRequestRef.current) setRawProbe(data);
+          })
+          .catch(() => {
+            if (reqId === probeRequestRef.current) setRawProbe(null);
+          });
+      }, 120);
 
       if (!panRef.current.active) return;
 
@@ -413,8 +435,22 @@ export default function ImageTileViewer({
       panRef.current.lastY = e.clientY;
       setPan((p) => ({ x: p.x + dx, y: p.y + dy }));
     },
-    [pan, zoom, inspectionMode, samplePixelIntensities, draftRoi],
+    [pan, zoom, inspectionMode, samplePixelIntensities, draftRoi, assetId, zIndex, tIndex, width, height],
   );
+
+  useEffect(
+    () => () => {
+      if (probeTimerRef.current) clearTimeout(probeTimerRef.current);
+    },
+    [],
+  );
+
+  const resetInstrumentView = useCallback(() => {
+    setRotationDeg(0);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+    fitToView();
+  }, [fitToView]);
 
   const onPointerUp = useCallback(() => {
     panRef.current.active = false;
@@ -470,7 +506,13 @@ export default function ImageTileViewer({
       case 'inspect':
         return (
           <>
-            <PixelInspector pixel={pixelInfo} imageCoords={imageCoords} channelState={channelState} />
+            <PixelInspector
+              pixel={pixelInfo}
+              imageCoords={imageCoords}
+              channelState={channelState}
+              rawProbe={rawProbe}
+              manifest={manifest}
+            />
             <CellInspector assetId={assetId} cellId={selectedCellId} />
             <MeasurementTools manifest={manifest} measurement={measurement} unit={scaleUnit} />
           </>
@@ -497,8 +539,15 @@ export default function ImageTileViewer({
   }
 
   return (
-    <div className="image-tile-viewer">
-      <div className="image-tile-viewer__toolbar">
+    <div className="image-tile-viewer image-tile-viewer--instrument">
+      <div className="image-tile-viewer__toolbar sci-instrument-toolbar">
+        <div className="sci-instrument-badge" title={INSTRUMENT_PHASE_LABEL}>
+          <span className="sci-instrument-badge__dot" aria-hidden />
+          Scientific instrument
+          <span className="sci-instrument-badge__meta">
+            {dtypeProfile.bitDepth}-bit · {channels} ch
+          </span>
+        </div>
         <div className="image-tile-viewer__toolbar-group">
           <button type="button" className="btn btn-ghost btn-sm" onClick={() => setZoom((z) => Math.min(32, z * 1.25))} title="Zoom in">
             <ZoomIn size={14} />
@@ -506,8 +555,19 @@ export default function ImageTileViewer({
           <button type="button" className="btn btn-ghost btn-sm" onClick={() => setZoom((z) => Math.max(0.02, z / 1.25))} title="Zoom out">
             <ZoomOut size={14} />
           </button>
-          <button type="button" className="btn btn-ghost btn-sm" onClick={fitToView} title="Fit to view">
+          <button type="button" className="btn btn-ghost btn-sm" onClick={fitToView} title="Fit to screen">
             <Maximize2 size={14} />
+          </button>
+          <button
+            type="button"
+            className="btn btn-ghost btn-sm"
+            onClick={() => setRotationDeg((deg) => (deg + 90) % 360)}
+            title="Rotate view (display only)"
+          >
+            <RotateCw size={14} />
+          </button>
+          <button type="button" className="btn btn-ghost btn-sm" onClick={resetInstrumentView} title="Reset view">
+            <Undo2 size={14} />
           </button>
           <button
             type="button"
@@ -586,10 +646,14 @@ export default function ImageTileViewer({
         ) : null}
       </aside>
 
-      <div className="image-tile-viewer__viewport-wrap" ref={wrapRef}>
+      <div
+        className="image-tile-viewer__viewport-wrap"
+        ref={wrapRef}
+        style={{ '--sci-rotation': `${rotationDeg}deg` }}
+      >
         <canvas
           ref={canvasRef}
-          className={`image-tile-viewer__canvas${isPanning ? ' is-panning' : ''}`}
+          className={`image-tile-viewer__canvas image-tile-viewer__canvas--pixel-perfect${isPanning ? ' is-panning' : ''}`}
           onWheel={onWheel}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
@@ -599,10 +663,14 @@ export default function ImageTileViewer({
         />
         <canvas ref={overlayRef} className="image-tile-viewer__overlay-canvas" />
         {showScaleBar ? <ScaleBar manifest={manifest} zoom={zoom} visible={showScaleBar} unit={scaleUnit} /> : null}
-        <div className="image-tile-viewer__status">
-          {width}×{height} · {channels} ch · scroll zoom · drag pan
-          {inspectionMode ? ' · inspection on' : ''}
-        </div>
+        <ScientificProbeBar
+          manifest={manifest}
+          imageCoords={imageCoords}
+          rawProbe={rawProbe}
+          displayProbe={pixelInfo}
+          zIndex={zIndex}
+          tIndex={tIndex}
+        />
       </div>
     </div>
   );

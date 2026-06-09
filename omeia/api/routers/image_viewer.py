@@ -208,6 +208,21 @@ def get_cell_inspection(
     return inspect_cell(asset_id=asset_id, cell_id=cell_id, overlay_metadata=overlay_md)
 
 
+@router.get("/api/assets/{asset_id}/image/pixel")
+def get_pixel_probe(
+    asset_id: str,
+    x: int = Query(..., ge=0),
+    y: int = Query(..., ge=0),
+    z: int = Query(0, ge=0),
+    t: int = Query(0, ge=0),
+    level: int = Query(0, ge=0, le=32),
+    user: dict[str, Any] = Depends(require_platform_user),
+) -> dict[str, Any]:
+    _check_access(user, asset_id)
+    log_image_access(user.get("email", "unknown"), asset_id, f"pixel/{x}/{y}")
+    return _streaming.sample_pixel_probe(asset_id, x=x, y=y, z=z, t=t, level=level)
+
+
 @router.get("/api/assets/{asset_id}/image/histogram")
 def get_histogram(
     asset_id: str,

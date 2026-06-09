@@ -120,6 +120,17 @@ export async function fetchImageOverlays(assetId) {
   return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/overlays`);
 }
 
+/** Raw pixel probe at image coordinates (preserves source dtype). */
+export async function fetchPixelProbe(assetId, params = {}) {
+  const sp = new URLSearchParams();
+  sp.set('x', String(params.x ?? 0));
+  sp.set('y', String(params.y ?? 0));
+  if (params.z != null) sp.set('z', String(params.z));
+  if (params.t != null) sp.set('t', String(params.t));
+  if (params.level != null) sp.set('level', String(params.level));
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/pixel?${sp}`);
+}
+
 export async function createImageOverlay(assetId, body) {
   return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/overlays`, {
     method: 'POST',

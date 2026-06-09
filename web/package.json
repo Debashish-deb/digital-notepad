@@ -10,7 +10,7 @@
     "dev": "vite",
     "prebuild": "bash ../infra/scripts/ops/check_frontend_public_lab_data.sh",
     "build": "vite build",
-    "test:nav": "node --test src/config/navigation.test.mjs src/lib/documentFolderTree.test.mjs src/lib/documentExplorerPresets.test.mjs src/lib/projectFolderPage.test.mjs src/lib/projectScopeGroups.test.mjs",
+    "test:nav": "node --test src/config/navigation.test.mjs src/lib/documentFolderTree.test.mjs src/lib/documentExplorerPresets.test.mjs src/lib/projectFolderPage.test.mjs src/lib/projectScopeGroups.test.mjs src/lib/scientificImagery.test.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

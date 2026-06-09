@@ -95,12 +95,14 @@ function ImageMetadataCard({ preview, hideThumb = false }) {
         <MetaCell label="Channels" value={imgMeta.channels} />
         <MetaCell label="Pyramid" value={imgMeta.pyramid_levels} />
         <MetaCell label="OME-XML" value={imgMeta.ome_xml_present ? 'present' : 'no'} />
+        <MetaCell label="Dtype" value={imgMeta.dtype} />
+        <MetaCell label="Bit depth" value={imgMeta.bit_depth ? `${imgMeta.bit_depth}-bit` : null} />
       </div>
       {!hideThumb && thumbUrl ? (
         <img src={thumbUrl} alt="" className="sfe-preview-thumb-inline" loading="lazy" />
       ) : null}
       <button type="button" className="sfe-preview-viewer-btn" onClick={openViewer}>
-        <ExternalLink size={12} aria-hidden /> Streaming viewer
+        <ExternalLink size={12} aria-hidden /> Open scientific instrument
       </button>
     </div>
   );

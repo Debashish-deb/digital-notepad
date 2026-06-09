@@ -33,7 +33,18 @@ Additional Phase 7B manifest fields:
 
 - `channel_names` — from OME-XML when present
 - `physical_pixel_size_um` / `pixel_size_um` — micron calibration
+- `dtype`, `bit_depth`, `value_min`, `value_max`, `is_float_dtype` — scientific encoding (Phase 1 instrument)
+- `viewer_mode` — `scientific_instrument`
+- `inspected_at` — last header inspect timestamp
 - `viewer_flags` — `{ low_resource_mode, heatmaps, segmentation_overlays, roi_annotations }`
+
+### `GET /api/assets/{asset_id}/image/pixel`
+
+Raw pixel probe at image coordinates (preserves source dtype).
+
+Query: `x`, `y` (required), optional `z`, `t`, `level`.
+
+Returns per-channel `raw_value`, physical µm coordinates when calibrated, and dtype profile.
 
 ### `GET /api/assets/{asset_id}/image/rois`
 

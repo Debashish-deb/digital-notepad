@@ -14,6 +14,7 @@ from omeia.api.image_streaming.constants import (
     MAX_TILE_EDGE,
     MAX_TILE_PIXELS,
 )
+from omeia.api.image_streaming.dtype_helpers import dtype_profile
 from omeia.api.image_streaming.image_metadata_service import (
     ImageMetadataService,
     get_cached_metadata,
@@ -182,6 +183,7 @@ class ImageStreamingService:
                 return 1
             return max(1, int(shape[axes.index(axis)]))
 
+        profile = dtype_profile(meta.get("dtype"))
         return {
             "asset_id": asset_id,
             "format": meta.get("format"),
@@ -198,12 +200,19 @@ class ImageStreamingService:
             "tile_ready": bool(meta.get("tile_ready")),
             "physical_pixel_size_um": meta.get("physical_pixel_size_um"),
             "pixel_size_um": meta.get("pixel_size_um") or meta.get("physical_pixel_size_um"),
+            "dtype": profile["dtype"],
+            "bit_depth": profile["bit_depth"],
+            "value_min": profile["value_min"],
+            "value_max": profile["value_max"],
+            "is_float_dtype": profile["is_float"],
+            "viewer_mode": "scientific_instrument",
             "viewer_flags": build_viewer_flags(),
             "thumbnail_url": f"/api/assets/{asset_id}/image/thumbnail",
             "metadata_url": f"/api/assets/{asset_id}/image/metadata",
             "stream_url": f"/api/assets/{asset_id}/image/stream",
             "viewer_route": f"#viewer/image/{asset_id}",
             "ome_xml_present": bool(meta.get("ome_xml_present")),
+            "inspected_at": meta.get("inspected_at"),
         }
 
     def inspect_asset(self, asset_id: str) -> dict[str, Any]:
@@ -378,6 +387,92 @@ class ImageStreamingService:
     def iter_stream(self, asset_id: str, *, start: int | None, end: int | None):
         resolved = self._resolve_or_404(asset_id)
         return self.storage.open_read_stream(resolved, start=start, end=end)
+
+    def sample_pixel_probe(
+        self,
+        asset_id: str,
+        *,
+        x: int,
+        y: int,
+        z: int = 0,
+        t: int = 0,
+        level: int = 0,
+        series: int = 0,
+    ) -> dict[str, Any]:
+        """Read raw sensor values at image coordinates without display normalization."""
+        resolved = self._resolve_or_404(asset_id)
+        meta = self.metadata_svc.get_or_stub(
+            asset_id=asset_id,
+            filename=resolved.get("filename") or "",
+            extension=resolved.get("extension") or "",
+            size_bytes=int(resolved.get("size_bytes") or 0),
+        )
+        channel_count = max(1, int(meta.get("channels") or 1))
+        channel_names = meta.get("channel_names") or []
+        profile = dtype_profile(meta.get("dtype"))
+
+        try:
+            import tifffile  # type: ignore
+            import numpy as np  # type: ignore
+        except ImportError:
+            raise HTTPException(status_code=503, detail="tifffile not available")
+
+        path = Path(resolved["disk_path"])
+        values: list[dict[str, Any]] = []
+        try:
+            with tifffile.TiffFile(str(path)) as tif:
+                page = _get_pyramid_page(tif, series=series, level=level)
+                for ch in range(channel_count):
+                    region, _, _ = _read_tile_region(
+                        page,
+                        x=x,
+                        y=y,
+                        width=1,
+                        height=1,
+                        channel=ch,
+                        z=z,
+                        t=t,
+                    )
+                    raw = np.asarray(region).reshape(-1)[0]
+                    if np.issubdtype(raw.dtype, np.floating):
+                        raw_value = float(raw)
+                    else:
+                        raw_value = int(raw)
+                    values.append(
+                        {
+                            "channel": ch,
+                            "label": channel_names[ch] if ch < len(channel_names) else f"Channel {ch + 1}",
+                            "raw_value": raw_value,
+                            "dtype": str(region.dtype),
+                        }
+                    )
+        except HTTPException:
+            raise
+        except Exception as exc:
+            LOGGER.warning("pixel probe failed for %s: %s", asset_id, exc)
+            raise HTTPException(status_code=422, detail="Unable to read pixel values") from exc
+
+        um_per_px = meta.get("physical_pixel_size_um") or meta.get("pixel_size_um")
+        physical_x_um = float(x) * um_per_px if um_per_px else None
+        physical_y_um = float(y) * um_per_px if um_per_px else None
+
+        return {
+            "asset_id": asset_id,
+            "x": x,
+            "y": y,
+            "z": z,
+            "t": t,
+            "level": level,
+            "dtype": profile["dtype"],
+            "bit_depth": profile["bit_depth"],
+            "value_min": profile["value_min"],
+            "value_max": profile["value_max"],
+            "physical_x_um": physical_x_um,
+            "physical_y_um": physical_y_um,
+            "pixel_size_um": um_per_px,
+            "channels": values,
+            "source": "raw_file",
+        }
 
     def sample_histogram(
         self,

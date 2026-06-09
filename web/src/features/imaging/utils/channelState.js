@@ -11,27 +11,36 @@ export const CHANNEL_COLORS = [
   '#38bdf8',
 ];
 
-const DEFAULT_INTENSITY = {
-  min: 0,
-  max: 255,
-  gamma: 1,
-  brightness: 0,
-  contrast: 1,
-  opacity: 1,
-};
+import { resolveDtypeProfile } from '@/lib/scientificImagery.js';
+
+function defaultIntensityForProfile(profile) {
+  return {
+    min: profile?.valueMin ?? 0,
+    max: profile?.valueMax ?? 255,
+    gamma: 1,
+    brightness: 0,
+    contrast: 1,
+    opacity: 1,
+  };
+}
 
 /**
  * Build per-channel viewer state from manifest channel count and optional names.
+ * @param {number} channels
+ * @param {string[]} channelNames
+ * @param {object|null} manifestOrMeta dtype-aware intensity window defaults
  */
-export function defaultChannelState(channels, channelNames = []) {
+export function defaultChannelState(channels, channelNames = [], manifestOrMeta = null) {
   const count = Math.max(1, Number(channels) || 1);
   const names = Array.isArray(channelNames) ? channelNames : [];
+  const profile = resolveDtypeProfile(manifestOrMeta || {});
+  const intensity = defaultIntensityForProfile(profile);
   return Array.from({ length: count }, (_, i) => ({
     index: i,
     visible: i < 3,
     color: CHANNEL_COLORS[i % CHANNEL_COLORS.length],
     label: names[i] || `Channel ${i + 1}`,
-    ...DEFAULT_INTENSITY,
+    ...intensity,
   }));
 }
 
@@ -84,6 +93,14 @@ export const DEFAULT_PRESETS = {
       { index: 2, visible: true, color: '#4ade80', label: 'DAPI', min: 0, max: 255, gamma: 1, brightness: 0, contrast: 1, opacity: 1 },
     ],
   },
+  'Exhaustion Panel': {
+    channels: [
+      { index: 0, visible: true, color: '#ff4fd8', label: 'TIM3', min: 0, max: 255, gamma: 1, brightness: 0, contrast: 1, opacity: 0.9 },
+      { index: 1, visible: true, color: '#00d4ff', label: 'NKG2A', min: 0, max: 255, gamma: 1, brightness: 0, contrast: 1, opacity: 0.9 },
+      { index: 2, visible: true, color: '#ffd400', label: 'CD8', min: 0, max: 255, gamma: 1, brightness: 0, contrast: 1, opacity: 0.85 },
+      { index: 3, visible: true, color: '#4ade80', label: 'DAPI', min: 0, max: 255, gamma: 1, brightness: 0, contrast: 1, opacity: 1 },
+    ],
+  },
 };
 
 export function mergePresetIntoState(channelState, presetChannels) {
@@ -95,6 +112,13 @@ export function mergePresetIntoState(channelState, presetChannels) {
   });
 }
 
-export function resetChannelIntensity(row) {
-  return { ...row, ...DEFAULT_INTENSITY };
+export function resetChannelIntensity(row, manifestOrMeta = null) {
+  const profile = resolveDtypeProfile(manifestOrMeta || {});
+  return { ...row, ...defaultIntensityForProfile(profile) };
+}
+
+/** Map raw sensor value through display window (visualization only). */
+export function mapRawToDisplay(rawValue, opts = {}) {
+  const lum = applyIntensity(rawValue, opts);
+  return lum;
 }
