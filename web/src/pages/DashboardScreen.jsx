@@ -1,6 +1,5 @@
 
 import React, {
-  useCallback,
   useEffect,
   useMemo,
   useState,
@@ -14,15 +13,14 @@ import {
   FolderOpen,
   Layers,
   RefreshCw,
-  Settings,
   ShieldCheck,
   Sparkles,
   Terminal,
   Users,
-  X,
 } from 'lucide-react';
 
 import MetricCard from '@/shared/layout/MetricCard';
+import ProjectScopeSelector from '@/features/dashboard/components/ProjectScopeSelector.jsx';
 import LabTeamRoster from '@/features/lab/components/LabTeamRoster.jsx';
 import { normalizeTeamMember, sortLabTeamMembers } from '@/lib/teamRoster.js';
 import { apiGet } from '@/services/client.js';
@@ -241,118 +239,6 @@ function ReadinessPanel({ gap, loading }) {
   );
 }
 
-function ProjectScopeSelector({
-  projects,
-  projectCodes,
-  setProjectCodes,
-}) {
-  const selectedCodes = useMemo(
-    () => new Set(asArray(projectCodes).map(String)),
-    [projectCodes],
-  );
-
-  const activeProjects = useMemo(
-    () => projects.filter((project) => getProjectStatus(project.raw) === 'active'),
-    [projects],
-  );
-
-  const selectedCount = projects.filter((project) => selectedCodes.has(project.code)).length;
-
-  const toggleProject = useCallback(
-    (code) => {
-      if (typeof setProjectCodes !== 'function') return;
-
-      setProjectCodes((currentValue) => {
-        const current = asArray(currentValue).map(String);
-        const exists = current.includes(code);
-
-        if (exists) {
-          return current.filter((item) => item !== code);
-        }
-
-        return [...current, code];
-      });
-    },
-    [setProjectCodes],
-  );
-
-  const selectActive = useCallback(() => {
-    if (typeof setProjectCodes !== 'function') return;
-
-    const activeCodes = activeProjects.map((project) => project.code);
-    setProjectCodes(activeCodes);
-  }, [activeProjects, setProjectCodes]);
-
-  const clearSelection = useCallback(() => {
-    if (typeof setProjectCodes !== 'function') return;
-    setProjectCodes([]);
-  }, [setProjectCodes]);
-
-  return (
-    <section className="panel dashboard-scope-panel">
-      <div className="dashboard-panel-heading">
-        <div>
-          <p className="text-caption">Copilot context</p>
-          <h3 className="panel-title">
-            <Settings size={18} /> Project Scope Selector
-          </h3>
-        </div>
-
-        <span className="projects-category-count">
-          {selectedCount}/{projects.length} selected
-        </span>
-      </div>
-
-      <p className="panel-lead">
-        Select active research projects to scope LLM Copilot queries, summaries,
-        document retrieval, and global metric coordination.
-      </p>
-
-      <div className="dashboard-scope-actions">
-        <button type="button" className="btn btn-secondary" onClick={selectActive}>
-          Select active
-        </button>
-        <button type="button" className="btn btn-secondary" onClick={clearSelection}>
-          <X size={14} /> Clear
-        </button>
-      </div>
-
-      {projects.length === 0 ? (
-        <div className="obp-empty">
-          <p className="text-caption">No projects</p>
-          <h4 className="text-title-3">No project catalog loaded</h4>
-          <p className="text-body-secondary">
-            Project scope chips will appear once the database returns projects.
-          </p>
-        </div>
-      ) : (
-        <div className="dashboard-scope-chip-grid">
-          {projects.map((project) => {
-            const isChecked = selectedCodes.has(project.code);
-            const isActive = getProjectStatus(project.raw) === 'active';
-
-            return (
-              <label
-                key={project.code}
-                className={`scope-chip dashboard-scope-chip${isChecked ? ' is-checked' : ''}${isActive ? ' is-active-project' : ''}`}
-                title={project.name}
-              >
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  onChange={() => toggleProject(project.code)}
-                />
-                <span>{project.code}</span>
-                {isActive ? <small>Active</small> : null}
-              </label>
-            );
-          })}
-        </div>
-      )}
-    </section>
-  );
-}
-
 function AuditTrailPanel({ auditLogs }) {
   const logs = asArray(auditLogs).slice(0, 15);
 
@@ -509,6 +395,9 @@ export default function DashboardScreen({
           name: getProjectName(project, index),
           status: getProjectStatus(project),
           index: safeNumber(project?.project_index, index + 1),
+          categoryLabel: compactText(project?.category_label || project?.category || ''),
+          diseaseFocus: compactText(project?.disease_focus || ''),
+          lead: compactText(project?.project_lead || project?.principal_investigator || ''),
         }))
         .sort((a, b) => {
           const indexDiff = a.index - b.index;
