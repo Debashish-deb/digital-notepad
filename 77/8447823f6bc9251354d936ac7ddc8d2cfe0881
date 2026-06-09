@@ -1,0 +1,20 @@
+docs/DESIGN_RATIONALE/README.md
+  s_f288c5d5113bad::t_35f3f4f774fe1b 32,34
+  s_f288c5d5113bad::t_60caa198fecc03 24,27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "778447823f6bc9251354d936ac7ddc8d2cfe0881",
+  "prompts": {},
+  "sessions": {
+    "s_f288c5d5113bad": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "eebf8929-bdc4-4527-8ece-12f92a41bb08",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
