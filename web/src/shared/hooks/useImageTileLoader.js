@@ -4,13 +4,15 @@ import { loadTileBitmap } from '@/services/imageAssetsClient.js';
 const MAX_CACHE = 180;
 
 function tileKey(assetId, params) {
-  return `${assetId}:${params.level}:${params.x}:${params.y}:${params.width}:${params.height}:${params.channel}:${params.z}:${params.t}`;
+  const wm = params.windowMin ?? '';
+  const wx = params.windowMax ?? '';
+  return `${assetId}:${params.level}:${params.x}:${params.y}:${params.width}:${params.height}:${params.channel}:${params.z}:${params.t}:${wm}:${wx}`;
 }
 
 /**
  * LRU tile cache with in-flight deduplication for Napari-style canvas rendering.
  */
-export function useImageTileLoader(assetId) {
+export function useImageTileLoader(assetId, channelState = []) {
   const cacheRef = useRef(new Map());
   const orderRef = useRef([]);
 
@@ -27,17 +29,23 @@ export function useImageTileLoader(assetId) {
   const loadTile = useCallback(
     async (params) => {
       if (!assetId) return null;
-      const key = tileKey(assetId, params);
+      const ch = channelState[params.channel];
+      const merged = {
+        ...params,
+        windowMin: params.windowMin ?? ch?.min,
+        windowMax: params.windowMax ?? ch?.max,
+      };
+      const key = tileKey(assetId, merged);
       if (cacheRef.current.has(key)) {
         touch(key);
         return cacheRef.current.get(key);
       }
-      const bitmap = await loadTileBitmap(assetId, params);
+      const bitmap = await loadTileBitmap(assetId, merged);
       cacheRef.current.set(key, bitmap);
       touch(key);
       return bitmap;
     },
-    [assetId, touch],
+    [assetId, channelState, touch],
   );
 
   const clearCache = useCallback(() => {

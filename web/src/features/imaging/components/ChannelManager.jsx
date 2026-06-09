@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import {
   DEFAULT_PRESETS,
+  LUT_OPTIONS,
   mergePresetIntoState,
   resetChannelIntensity,
 } from '@/features/imaging/utils/channelState.js';
+import { resolveDtypeProfile } from '@/lib/scientificImagery.js';
 import {
   deleteChannelPreset,
   fetchChannelPresets,
@@ -23,11 +25,15 @@ function IntensitySlider({ label, value, min, max, step, onChange }) {
 export default function ChannelManager({
   channelState,
   onChange,
+  manifest = null,
   viewerFlags = {},
 }) {
   const [savedPresets, setSavedPresets] = useState([]);
   const [presetName, setPresetName] = useState('');
   const [loadError, setLoadError] = useState(null);
+  const profile = resolveDtypeProfile(manifest || {});
+  const valueMin = profile.valueMin ?? 0;
+  const valueMax = profile.valueMax ?? 255;
 
   const refreshPresets = useCallback(async () => {
     try {
@@ -49,7 +55,7 @@ export default function ChannelManager({
 
   const showAll = () => onChange(channelState.map((row) => ({ ...row, visible: true })));
   const hideAll = () => onChange(channelState.map((row) => ({ ...row, visible: false })));
-  const resetAll = () => onChange(channelState.map((row) => resetChannelIntensity({ ...row, visible: row.visible })));
+  const resetAll = () => onChange(channelState.map((row) => resetChannelIntensity({ ...row, visible: row.visible }, manifest)));
 
   const applyPreset = (preset) => {
     onChange(mergePresetIntoState(channelState, preset.channels || preset));
@@ -94,13 +100,21 @@ export default function ChannelManager({
               aria-label={`Color for ${ch.label}`}
             />
           </summary>
-          <IntensitySlider label="Min" value={ch.min} min={0} max={254} step={1} onChange={(v) => patchChannel(ch.index, { min: v })} />
-          <IntensitySlider label="Max" value={ch.max} min={1} max={255} step={1} onChange={(v) => patchChannel(ch.index, { max: v })} />
+          <label className="image-panel__field">
+            <span>LUT</span>
+            <select value={ch.lut || 'Gray'} onChange={(e) => patchChannel(ch.index, { lut: e.target.value })}>
+              {LUT_OPTIONS.map((lut) => (
+                <option key={lut} value={lut}>{lut}</option>
+              ))}
+            </select>
+          </label>
+          <IntensitySlider label="Min" value={ch.min} min={valueMin} max={valueMax - 1} step={1} onChange={(v) => patchChannel(ch.index, { min: v })} />
+          <IntensitySlider label="Max" value={ch.max} min={valueMin + 1} max={valueMax} step={1} onChange={(v) => patchChannel(ch.index, { max: v })} />
           <IntensitySlider label="Gamma" value={ch.gamma} min={0.2} max={3} step={0.05} onChange={(v) => patchChannel(ch.index, { gamma: v })} />
           <IntensitySlider label="Brightness" value={ch.brightness} min={-128} max={128} step={1} onChange={(v) => patchChannel(ch.index, { brightness: v })} />
           <IntensitySlider label="Contrast" value={ch.contrast} min={0.2} max={3} step={0.05} onChange={(v) => patchChannel(ch.index, { contrast: v })} />
           <IntensitySlider label="Opacity" value={ch.opacity} min={0} max={1} step={0.05} onChange={(v) => patchChannel(ch.index, { opacity: v })} />
-          <button type="button" className="btn btn-ghost btn-xs" onClick={() => patchChannel(ch.index, resetChannelIntensity(ch))}>
+          <button type="button" className="btn btn-ghost btn-xs" onClick={() => patchChannel(ch.index, resetChannelIntensity(ch, manifest))}>
             Reset
           </button>
         </details>

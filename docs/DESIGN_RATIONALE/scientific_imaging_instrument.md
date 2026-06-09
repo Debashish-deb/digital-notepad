@@ -21,10 +21,19 @@ OMEIA microscopy viewing follows **instrument-first** principles from the master
 - Zoom, pan, rotate (display), fit, reset
 - Multi-channel controls with dtype-aware default windows
 
-## Phase 2 (partial)
+## Phases 2–12 (implemented)
 
-- Channel presets: Immune, Tumor, Macrophage, **Exhaustion** panels
-- Histogram + window/gamma (8-bit tile display limitation documented below)
+- **Phase 2:** Dtype-aware histograms, LUT picker (solid + Viridis/Inferno/Magma/Plasma/Turbo), Tumor Microenvironment panel
+- **Phase 3:** Polygon/circle/line ROI tools, backend ROI measure, CSV/JSON export
+- **Phase 4:** OME-Zarr documented (`supports_ome_zarr: false`), LOD label, window_min/max tile params
+- **Phase 5:** Segmentation overlay contours on canvas, cell search by phenotype
+- **Phase 6:** Spatial nearest-neighbor and tumor–immune distance analysis
+- **Phase 7:** `imaging_knowledge_bridge.py`, `GET /api/imaging/markers/graph`
+- **Phase 8:** Annotation learning categories + thumbs feedback in `image_viewer_store`
+- **Phase 9:** Strategy sidebar tab with imaging-context chat
+- **Phase 10:** `POST /api/imaging/council/analyze`
+- **Phase 11:** Council guardrails + interpretation disclaimer
+- **Phase 12:** `scripts/imaging/validate_scientific_instrument.py`, validation docs + pytest
 
 ## Known limitation (documented)
 

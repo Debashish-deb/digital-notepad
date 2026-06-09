@@ -10,9 +10,14 @@ export default function HistogramPanel({
   onWindowChange,
   zIndex = 0,
   enabled = true,
+  valueMin = 0,
+  valueMax = 255,
 }) {
   const canvasRef = useRef(null);
   const dragRef = useRef(null);
+  const rangeMin = valueMin ?? 0;
+  const rangeMax = valueMax ?? 255;
+  const span = Math.max(rangeMax - rangeMin, 1);
 
   const drawHistogram = useCallback((counts, lo, hi) => {
     const canvas = canvasRef.current;
@@ -28,8 +33,8 @@ export default function HistogramPanel({
       const barH = (c / maxCount) * (h - 20);
       ctx.fillRect(i * barW, h - barH, barW, barH);
     });
-    const xMin = (lo / 255) * w;
-    const xMax = (hi / 255) * w;
+    const xMin = ((lo - rangeMin) / span) * w;
+    const xMax = ((hi - rangeMin) / span) * w;
     ctx.strokeStyle = '#00d4ff';
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -41,29 +46,34 @@ export default function HistogramPanel({
     ctx.moveTo(xMax, 0);
     ctx.lineTo(xMax, h);
     ctx.stroke();
-  }, []);
+  }, [rangeMin, span]);
 
   useEffect(() => {
     if (!enabled || !assetId) return undefined;
     let alive = true;
-    fetchImageHistogram(assetId, { channel: channelIndex, z: zIndex })
+    fetchImageHistogram(assetId, { channel: channelIndex, z: zIndex, bins: 64 })
       .then((data) => {
         if (alive) drawHistogram(data.counts, min, max);
       })
       .catch(() => {});
     return () => { alive = false; };
-  }, [assetId, channelIndex, zIndex, enabled, drawHistogram, min, max]);
+  }, [assetId, channelIndex, zIndex, enabled, drawHistogram]);
 
   useEffect(() => {
     drawHistogram(null, min, max);
   }, [min, max, drawHistogram]);
 
-  const handlePointer = (e, kind) => {
+  const valFromEvent = (e) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) return rangeMin;
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
-    const val = Math.round((x / rect.width) * 255);
+    const frac = x / rect.width;
+    return Math.round(rangeMin + frac * span);
+  };
+
+  const handlePointer = (e, kind) => {
+    const val = valFromEvent(e);
     if (kind === 'min') onWindowChange({ min: Math.min(val, max - 1) });
     else onWindowChange({ max: Math.max(val, min + 1) });
   };
@@ -77,11 +87,7 @@ export default function HistogramPanel({
         height={80}
         className="image-panel__histogram-canvas"
         onPointerDown={(e) => {
-          const canvas = canvasRef.current;
-          if (!canvas) return;
-          const rect = canvas.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const val = Math.round((x / rect.width) * 255);
+          const val = valFromEvent(e);
           dragRef.current = Math.abs(val - min) < Math.abs(val - max) ? 'min' : 'max';
         }}
         onPointerMove={(e) => {
@@ -93,6 +99,7 @@ export default function HistogramPanel({
       <div className="image-panel__histogram-labels">
         <span>Min: {min}</span>
         <span>Max: {max}</span>
+        <span className="muted">Range: {rangeMin}–{rangeMax}</span>
       </div>
     </div>
   );

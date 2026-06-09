@@ -15,6 +15,8 @@ import ROIManager from './ROIManager.jsx';
 import CellInspector from './CellInspector.jsx';
 import MeasurementTools from './MeasurementTools.jsx';
 import SpatialAnalysisOverlay from './SpatialAnalysisOverlay.jsx';
+import ResearchStrategyPanel from './ResearchStrategyPanel.jsx';
+import InterpretationDisclaimer from './InterpretationDisclaimer.jsx';
 import './ImageTileViewer.css';
 
 const SIDEBAR_TABS = [
@@ -23,8 +25,16 @@ const SIDEBAR_TABS = [
   { id: 'roi', label: 'ROI' },
   { id: 'overlays', label: 'Overlays' },
   { id: 'analysis', label: 'Analysis' },
+  { id: 'strategy', label: 'Strategy' },
   { id: 'inspect', label: 'Inspect' },
 ];
+
+const REGION_COLORS = {
+  Tumor: '#fb923c',
+  Stroma: '#4ade80',
+  TLS: '#00d4ff',
+  Necrosis: '#64748b',
+};
 
 function hexToRgb(hex) {
   const h = hex.replace('#', '');
@@ -109,10 +119,13 @@ export default function ImageTileViewer({
   const [heatmapOpacity, setHeatmapOpacity] = useState(0.5);
   const [rotationDeg, setRotationDeg] = useState(0);
   const [rawProbe, setRawProbe] = useState(null);
+  const [lodLevel, setLodLevel] = useState(0);
+  const [overlayContours, setOverlayContours] = useState([]);
+  const [savedRois, setSavedRois] = useState([]);
   const probeTimerRef = useRef(null);
   const probeRequestRef = useRef(0);
 
-  const { loadTile } = useImageTileLoader(assetId);
+  const { loadTile } = useImageTileLoader(assetId, channelState);
 
   useEffect(() => {
     setChannelState(defaultChannelState(channels, channelNames, manifest));
@@ -174,6 +187,7 @@ export default function ImageTileViewer({
     ctx.fillRect(0, 0, rect.width, rect.height);
 
     const level = pyramidLevelForScale(zoom, pyramidLevels);
+    setLodLevel(level);
     const levelScale = 2 ** level;
     const imgW = Math.max(1, Math.ceil(width / levelScale));
     const imgH = Math.max(1, Math.ceil(height / levelScale));
@@ -210,6 +224,8 @@ export default function ImageTileViewer({
               channel: ch.index,
               z: zIndex,
               t: tIndex,
+              windowMin: ch.min,
+              windowMax: ch.max,
             });
             if (gen !== renderGenRef.current) return;
 
@@ -221,12 +237,19 @@ export default function ImageTileViewer({
             const { r, g, b } = hexToRgb(ch.color);
             const data = imageData.data;
             for (let i = 0; i < data.length; i += 4) {
-              const lum = applyIntensity(data[i], ch);
-              const alpha = Math.max(0, Math.min(255, lum * ch.opacity));
-              data[i] = (alpha * r) / 255;
-              data[i + 1] = (alpha * g) / 255;
-              data[i + 2] = (alpha * b) / 255;
-              data[i + 3] = alpha;
+              const mapped = applyIntensity(data[i], ch);
+              if (typeof mapped === 'number') {
+                const alpha = Math.max(0, Math.min(255, mapped * ch.opacity));
+                data[i] = (alpha * r) / 255;
+                data[i + 1] = (alpha * g) / 255;
+                data[i + 2] = (alpha * b) / 255;
+                data[i + 3] = alpha;
+              } else {
+                data[i] = Math.round(mapped.r);
+                data[i + 1] = Math.round(mapped.g);
+                data[i + 2] = Math.round(mapped.b);
+                data[i + 3] = Math.round(mapped.a);
+              }
             }
             offCtx.putImageData(imageData, 0, 0);
 
@@ -255,7 +278,7 @@ export default function ImageTileViewer({
       if (gen === renderGenRef.current) {
         ctx.globalAlpha = 1;
         ctx.globalCompositeOperation = 'source-over';
-        setStatus(`Z ${zIndex + 1}/${zSlices} · T ${tIndex + 1}/${timepoints} · ${Math.round(zoom * 100)}%`);
+        setStatus(`LOD ${level} · Z ${zIndex + 1}/${zSlices} · T ${tIndex + 1}/${timepoints} · ${Math.round(zoom * 100)}%`);
         setRenderError(null);
       }
     } catch (err) {
@@ -302,12 +325,75 @@ export default function ImageTileViewer({
 
     const toScreen = (ix, iy) => ({ x: pan.x + ix * zoom, y: pan.y + iy * zoom });
 
-    if (draftRoi?.x != null) {
+    if (draftRoi?.x != null && roiTool === 'rectangle') {
       ctx.strokeStyle = '#ffd400';
       ctx.lineWidth = 2;
       const p = toScreen(draftRoi.x, draftRoi.y);
       ctx.strokeRect(p.x, p.y, draftRoi.width * zoom, draftRoi.height * zoom);
     }
+
+    if (draftRoi?.points?.length >= 2 && (roiTool === 'polygon' || roiTool === 'freehand')) {
+      ctx.strokeStyle = '#ffd400';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      draftRoi.points.forEach((pt, i) => {
+        const s = toScreen(pt.x, pt.y);
+        if (i === 0) ctx.moveTo(s.x, s.y);
+        else ctx.lineTo(s.x, s.y);
+      });
+      ctx.stroke();
+    }
+
+    if (draftRoi?.cx != null && roiTool === 'circle') {
+      ctx.strokeStyle = '#ffd400';
+      ctx.lineWidth = 2;
+      const c = toScreen(draftRoi.cx, draftRoi.cy);
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, (draftRoi.radius || 0) * zoom, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    savedRois.forEach((roi) => {
+      const color = REGION_COLORS[roi.region_type] || '#94a3b8';
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      const g = roi.geometry || {};
+      if (roi.roi_type === 'circle' && g.cx != null) {
+        const c = toScreen(g.cx, g.cy);
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, (g.radius || 0) * zoom, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (g.points?.length >= 2) {
+        ctx.beginPath();
+        g.points.forEach((pt, i) => {
+          const s = toScreen(pt.x, pt.y);
+          if (i === 0) ctx.moveTo(s.x, s.y);
+          else ctx.lineTo(s.x, s.y);
+        });
+        if (roi.roi_type === 'polygon') ctx.closePath();
+        ctx.stroke();
+      } else if (g.x != null) {
+        const p = toScreen(g.x, g.y);
+        ctx.strokeRect(p.x, p.y, (g.width || 0) * zoom, (g.height || 0) * zoom);
+      }
+    });
+
+    overlayContours.forEach((contour) => {
+      const pts = contour.points || [];
+      if (pts.length < 2) return;
+      ctx.strokeStyle = contour.color || '#ffd400';
+      ctx.lineWidth = contour.width || 1.5;
+      ctx.globalAlpha = contour.opacity ?? 0.7;
+      ctx.beginPath();
+      pts.forEach((pt, i) => {
+        const s = toScreen(pt.x, pt.y);
+        if (i === 0) ctx.moveTo(s.x, s.y);
+        else ctx.lineTo(s.x, s.y);
+      });
+      if (contour.closed !== false) ctx.closePath();
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    });
 
     if (measurement?.points?.length >= 2 && measurement.type === 'distance') {
       ctx.strokeStyle = '#00d4ff';
@@ -319,7 +405,7 @@ export default function ImageTileViewer({
       });
       ctx.stroke();
     }
-  }, [pan, zoom, draftRoi, measurement]);
+  }, [pan, zoom, draftRoi, measurement, roiTool, savedRois, overlayContours]);
 
   useEffect(() => {
     drawMeasurementOverlay();
@@ -377,6 +463,23 @@ export default function ImageTileViewer({
         panRef.current = { active: true, mode: 'roi', lastX: e.clientX, lastY: e.clientY, start: img };
         return;
       }
+      if (inspectionMode && sidebarTab === 'roi' && roiTool === 'circle') {
+        setDraftRoi({ cx: img.x, cy: img.y, radius: 0 });
+        panRef.current = { active: true, mode: 'roi-circle', lastX: e.clientX, lastY: e.clientY, center: img };
+        return;
+      }
+      if (inspectionMode && sidebarTab === 'roi' && (roiTool === 'polygon' || roiTool === 'freehand')) {
+        setDraftRoi((prev) => {
+          const pts = [...(prev?.points || []), img];
+          return { points: pts };
+        });
+        return;
+      }
+      if (inspectionMode && (roiTool === 'line' || measurement?.type === 'distance')) {
+        setMeasurement({ type: 'distance', mode: 'distance', points: [img] });
+        panRef.current = { active: true, mode: 'line', start: img };
+        return;
+      }
       if (inspectionMode && measurement?.type === 'distance') {
         setMeasurement((m) => ({
           ...m,
@@ -429,6 +532,18 @@ export default function ImageTileViewer({
         return;
       }
 
+      if (panRef.current.mode === 'roi-circle' && draftRoi) {
+        const center = panRef.current.center;
+        const r = Math.hypot(img.x - center.x, img.y - center.y);
+        setDraftRoi({ cx: center.x, cy: center.y, radius: r });
+        return;
+      }
+
+      if (panRef.current.mode === 'line' && measurement) {
+        setMeasurement((m) => ({ ...m, points: [panRef.current.start, img] }));
+        return;
+      }
+
       const dx = e.clientX - panRef.current.lastX;
       const dy = e.clientY - panRef.current.lastY;
       panRef.current.lastX = e.clientX;
@@ -467,8 +582,10 @@ export default function ImageTileViewer({
             assetId={assetId}
             channelIndex={selectedChannel}
             channelLabel={selectedCh?.label}
-            min={selectedCh?.min ?? 0}
-            max={selectedCh?.max ?? 255}
+            min={selectedCh?.min ?? dtypeProfile.valueMin}
+            max={selectedCh?.max ?? dtypeProfile.valueMax}
+            valueMin={dtypeProfile.valueMin}
+            valueMax={dtypeProfile.valueMax}
             zIndex={zIndex}
             enabled={!viewerFlags.low_resource_mode}
             onWindowChange={(patch) =>
@@ -486,6 +603,11 @@ export default function ImageTileViewer({
             onToolChange={setRoiTool}
             draftGeometry={draftRoi}
             onDraftClear={() => setDraftRoi(null)}
+            onRoisChange={setSavedRois}
+            manifest={manifest}
+            selectedChannel={selectedChannel}
+            zIndex={zIndex}
+            tIndex={tIndex}
             viewerFlags={viewerFlags}
           />
         );
@@ -496,13 +618,21 @@ export default function ImageTileViewer({
               assetId={assetId}
               enabled={tileReady}
               onSelectCell={setSelectedCellId}
+              onContoursChange={setOverlayContours}
               viewerFlags={viewerFlags}
             />
             <HeatmapOverlay viewerFlags={viewerFlags} opacity={heatmapOpacity} onOpacityChange={setHeatmapOpacity} />
           </>
         );
       case 'analysis':
-        return <SpatialAnalysisOverlay />;
+        return <SpatialAnalysisOverlay assetId={assetId} manifest={manifest} />;
+      case 'strategy':
+        return (
+          <>
+            <ResearchStrategyPanel assetId={assetId} manifest={manifest} channelState={channelState} />
+            <InterpretationDisclaimer />
+          </>
+        );
       case 'inspect':
         return (
           <>
@@ -514,12 +644,12 @@ export default function ImageTileViewer({
               manifest={manifest}
             />
             <CellInspector assetId={assetId} cellId={selectedCellId} />
-            <MeasurementTools manifest={manifest} measurement={measurement} unit={scaleUnit} />
+            <MeasurementTools manifest={manifest} measurement={measurement} draftRoi={draftRoi} roiTool={roiTool} unit={scaleUnit} />
           </>
         );
       default:
         return (
-          <ChannelManager channelState={channelState} onChange={setChannelState} viewerFlags={viewerFlags} />
+          <ChannelManager channelState={channelState} onChange={setChannelState} manifest={manifest} viewerFlags={viewerFlags} />
         );
     }
   };
@@ -594,7 +724,9 @@ export default function ImageTileViewer({
           <option value="um">µm</option>
           <option value="mm">mm</option>
         </select>
-        <span className="image-tile-viewer__toolbar-label">{status}</span>
+        <span className="image-tile-viewer__toolbar-label" title={`Pyramid level ${lodLevel} of ${pyramidLevels}`}>
+          {status}
+        </span>
         {renderError ? <span className="text-danger text-sm">{renderError}</span> : null}
       </div>
 

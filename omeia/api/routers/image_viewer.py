@@ -17,6 +17,7 @@ from omeia.api.image_streaming.image_viewer_store import (
     list_channel_presets,
     list_overlays,
     list_rois,
+    save_annotation_feedback,
     save_channel_preset,
 )
 from omeia.api.image_streaming.permissions import can_access_image_asset
@@ -42,10 +43,17 @@ def _check_access(user: dict[str, Any], asset_id: str) -> dict[str, Any]:
 class RoiCreateBody(BaseModel):
     name: str = Field(..., min_length=1, max_length=200)
     geometry: dict[str, Any]
-    roi_type: str = Field(default="rectangle", pattern="^(rectangle|polygon|freehand|point)$")
+    roi_type: str = Field(
+        default="rectangle",
+        pattern="^(rectangle|polygon|circle|line|freehand|point)$",
+    )
     project: str | None = None
     description: str | None = None
     tags: list[str] = Field(default_factory=list)
+    region_type: str | None = Field(
+        default=None,
+        pattern="^(Tumor|Stroma|TLS|Necrosis)$",
+    )
 
 
 class OverlayCreateBody(BaseModel):
@@ -62,6 +70,26 @@ class ChannelPresetBody(BaseModel):
     name: str = Field(..., min_length=1, max_length=120)
     channels: list[dict[str, Any]] = Field(default_factory=list)
     preset_id: str | None = None
+
+
+class MeasureRoiBody(BaseModel):
+    geometry: dict[str, Any]
+    roi_type: str = Field(default="rectangle", pattern="^(rectangle|polygon|circle|line|freehand)$")
+    channel: int = Field(default=0, ge=0)
+    z: int = Field(default=0, ge=0)
+    t: int = Field(default=0, ge=0)
+    level: int = Field(default=0, ge=0, le=32)
+
+
+class AnnotationFeedbackBody(BaseModel):
+    target_type: str = Field(..., pattern="^(roi|overlay|cell|interpretation)$")
+    target_id: str = Field(..., min_length=1)
+    learning_category: str = Field(
+        default="draft",
+        pattern="^(verified|draft|low_confidence)$",
+    )
+    feedback: str = Field(default="neutral", pattern="^(up|down|neutral)$")
+    notes: str | None = None
 
 
 @router.get("/api/assets/{asset_id}/image/rois")
@@ -95,6 +123,7 @@ def post_roi(
         project=body.project,
         description=body.description,
         tags=body.tags,
+        region_type=body.region_type,
     )
     return {"roi": roi}
 
@@ -221,6 +250,66 @@ def get_pixel_probe(
     _check_access(user, asset_id)
     log_image_access(user.get("email", "unknown"), asset_id, f"pixel/{x}/{y}")
     return _streaming.sample_pixel_probe(asset_id, x=x, y=y, z=z, t=t, level=level)
+
+
+@router.post("/api/assets/{asset_id}/image/measure")
+def post_measure_roi(
+    asset_id: str,
+    body: MeasureRoiBody,
+    user: dict[str, Any] = Depends(require_platform_user),
+) -> dict[str, Any]:
+    _check_access(user, asset_id)
+    log_image_access(user.get("email", "unknown"), asset_id, "measure/roi")
+    return _streaming.measure_roi(
+        asset_id,
+        geometry=body.geometry,
+        roi_type=body.roi_type,
+        channel=body.channel,
+        z=body.z,
+        t=body.t,
+        level=body.level,
+    )
+
+
+@router.post("/api/assets/{asset_id}/image/annotations/feedback")
+def post_annotation_feedback(
+    asset_id: str,
+    body: AnnotationFeedbackBody,
+    user: dict[str, Any] = Depends(require_platform_user),
+) -> dict[str, Any]:
+    _check_access(user, asset_id)
+    email = user.get("email") or "unknown"
+    record = save_annotation_feedback(
+        asset_id=asset_id,
+        user_email=email,
+        target_type=body.target_type,
+        target_id=body.target_id,
+        learning_category=body.learning_category,
+        feedback=body.feedback,
+        notes=body.notes,
+    )
+    return {"feedback": record}
+
+
+@router.get("/api/assets/{asset_id}/image/overlays/{overlay_id}/geometry")
+def get_overlay_geometry(
+    asset_id: str,
+    overlay_id: str,
+    user: dict[str, Any] = Depends(require_platform_user),
+) -> dict[str, Any]:
+    _check_access(user, asset_id)
+    overlays = list_overlays(asset_id=asset_id)
+    for ov in overlays:
+        if ov.get("overlay_id") == overlay_id:
+            md = ov.get("metadata") or {}
+            return {
+                "overlay_id": overlay_id,
+                "asset_id": asset_id,
+                "contours": md.get("contours") or [],
+                "cells": md.get("cells") or {},
+                "geojson": md.get("geojson"),
+            }
+    raise HTTPException(status_code=404, detail="Overlay not found")
 
 
 @router.get("/api/assets/{asset_id}/image/histogram")

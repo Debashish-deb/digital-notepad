@@ -213,6 +213,9 @@ class ImageStreamingService:
             "viewer_route": f"#viewer/image/{asset_id}",
             "ome_xml_present": bool(meta.get("ome_xml_present")),
             "inspected_at": meta.get("inspected_at"),
+            "supports_ome_zarr": False,
+            "ome_zarr_route": None,
+            "lod_hint": "pyramid_viewport_tiles",
         }
 
     def inspect_asset(self, asset_id: str) -> dict[str, Any]:
@@ -318,6 +321,8 @@ class ImageStreamingService:
         t: int = 0,
         series: int = 0,
         fmt: str = "png",
+        window_min: float | None = None,
+        window_max: float | None = None,
     ) -> tuple[bytes, str]:
         if width <= 0 or height <= 0:
             raise HTTPException(status_code=400, detail="Invalid tile dimensions")
@@ -360,7 +365,13 @@ class ImageStreamingService:
 
         if region.dtype != np.uint8:
             region = region.astype(np.float32)
-            region = (region - region.min()) / max(region.max() - region.min(), 1e-6) * 255
+            if window_min is not None and window_max is not None:
+                lo = float(window_min)
+                hi = float(window_max)
+                span = max(hi - lo, 1e-6)
+                region = np.clip((region - lo) / span, 0.0, 1.0) * 255.0
+            else:
+                region = (region - region.min()) / max(region.max() - region.min(), 1e-6) * 255
             region = region.astype(np.uint8)
 
         if region.ndim > 2:
@@ -487,29 +498,39 @@ class ImageStreamingService:
         height: int = 256,
         bins: int = 256,
     ) -> dict[str, Any]:
-        """Sample intensity histogram from a tile-sized region (viewer histogram panel)."""
+        """Sample dtype-aware intensity histogram from raw file region."""
         bins = max(16, min(int(bins), 512))
         width = min(width, MAX_TILE_EDGE)
         height = min(height, MAX_TILE_EDGE)
+        resolved = self._resolve_or_404(asset_id)
+        meta = self.metadata_svc.get_or_stub(
+            asset_id=asset_id,
+            filename=resolved.get("filename") or "",
+            extension=resolved.get("extension") or "",
+            size_bytes=int(resolved.get("size_bytes") or 0),
+        )
+        profile = dtype_profile(meta.get("dtype"))
+        value_min = float(profile["value_min"])
+        value_max = float(profile["value_max"])
         try:
-            data, _ = self.get_tile(
-                asset_id,
-                level=0,
-                x=x,
-                y=y,
-                width=width,
-                height=height,
-                channel=channel,
-                z=z,
-                t=t,
-                fmt="png",
-            )
+            import tifffile  # type: ignore
             import numpy as np  # type: ignore
-            from PIL import Image
-            import io
 
-            arr = np.asarray(Image.open(io.BytesIO(data)).convert("L"), dtype=np.float32)
-            hist, edges = np.histogram(arr.flatten(), bins=bins, range=(0, 255))
+            path = Path(resolved["disk_path"])
+            with tifffile.TiffFile(str(path)) as tif:
+                page = _get_pyramid_page(tif, series=0, level=0)
+                region, width, height = _read_tile_region(
+                    page,
+                    x=x,
+                    y=y,
+                    width=width,
+                    height=height,
+                    channel=channel,
+                    z=z,
+                    t=t,
+                )
+            arr = np.asarray(region, dtype=np.float64).reshape(-1)
+            hist, _ = np.histogram(arr, bins=bins, range=(value_min, value_max))
             return {
                 "asset_id": asset_id,
                 "channel": channel,
@@ -518,15 +539,18 @@ class ImageStreamingService:
                 "region": {"x": x, "y": y, "width": width, "height": height},
                 "bins": bins,
                 "counts": hist.astype(int).tolist(),
-                "min": int(arr.min()) if arr.size else 0,
-                "max": int(arr.max()) if arr.size else 255,
+                "min": float(arr.min()) if arr.size else value_min,
+                "max": float(arr.max()) if arr.size else value_max,
+                "value_min": value_min,
+                "value_max": value_max,
+                "dtype": profile["dtype"],
             }
         except HTTPException:
             raise
         except Exception as exc:
             LOGGER.debug("histogram sample failed %s: %s", asset_id, exc)
             counts = [0] * bins
-            counts[128] = 1
+            counts[bins // 2] = 1
             return {
                 "asset_id": asset_id,
                 "channel": channel,
@@ -535,10 +559,114 @@ class ImageStreamingService:
                 "region": {"x": x, "y": y, "width": width, "height": height},
                 "bins": bins,
                 "counts": counts,
-                "min": 0,
-                "max": 255,
+                "min": value_min,
+                "max": value_max,
+                "value_min": value_min,
+                "value_max": value_max,
+                "dtype": profile["dtype"],
                 "stub": True,
             }
+
+    def measure_roi(
+        self,
+        asset_id: str,
+        *,
+        geometry: dict[str, Any],
+        roi_type: str = "rectangle",
+        channel: int = 0,
+        z: int = 0,
+        t: int = 0,
+        level: int = 0,
+        series: int = 0,
+    ) -> dict[str, Any]:
+        """Measure area, perimeter, and raw intensity stats inside ROI geometry."""
+        from omeia.api.image_streaming.measurement_service import measure_region_stats
+
+        resolved = self._resolve_or_404(asset_id)
+        meta = self.metadata_svc.get_or_stub(
+            asset_id=asset_id,
+            filename=resolved.get("filename") or "",
+            extension=resolved.get("extension") or "",
+            size_bytes=int(resolved.get("size_bytes") or 0),
+        )
+        um_per_px = meta.get("physical_pixel_size_um") or meta.get("pixel_size_um")
+        profile = dtype_profile(meta.get("dtype"))
+
+        try:
+            import tifffile  # type: ignore
+        except ImportError:
+            raise HTTPException(status_code=503, detail="tifffile not available")
+
+        roi_type = (roi_type or "rectangle").lower()
+        geom = dict(geometry)
+        if roi_type == "rectangle":
+            ox = int(geom.get("x") or 0)
+            oy = int(geom.get("y") or 0)
+            rw = max(1, int(abs(float(geom.get("width") or 1))))
+            rh = max(1, int(abs(float(geom.get("height") or 1))))
+            geom["origin_x"] = ox
+            geom["origin_y"] = oy
+            read_x, read_y, read_w, read_h = ox, oy, rw, rh
+        elif roi_type == "circle":
+            cx = float(geom.get("cx") or geom.get("x") or 0)
+            cy = float(geom.get("cy") or geom.get("y") or 0)
+            r = max(1.0, float(geom.get("radius") or 1))
+            read_x = max(0, int(cx - r))
+            read_y = max(0, int(cy - r))
+            read_w = read_h = max(1, int(2 * r))
+            geom["origin_x"] = read_x
+            geom["origin_y"] = read_y
+        else:
+            pts = geom.get("points") or []
+            if not pts:
+                raise HTTPException(status_code=400, detail="ROI geometry requires points")
+            xs = [p["x"] for p in pts]
+            ys = [p["y"] for p in pts]
+            read_x = max(0, int(min(xs)))
+            read_y = max(0, int(min(ys)))
+            read_w = max(1, int(max(xs) - read_x))
+            read_h = max(1, int(max(ys) - read_y))
+            geom["origin_x"] = read_x
+            geom["origin_y"] = read_y
+
+        path = Path(resolved["disk_path"])
+        try:
+            with tifffile.TiffFile(str(path)) as tif:
+                page = _get_pyramid_page(tif, series=series, level=level)
+                region, read_w, read_h = _read_tile_region(
+                    page,
+                    x=read_x,
+                    y=read_y,
+                    width=read_w,
+                    height=read_h,
+                    channel=channel,
+                    z=z,
+                    t=t,
+                )
+        except HTTPException:
+            raise
+        except Exception as exc:
+            LOGGER.warning("roi measure failed for %s: %s", asset_id, exc)
+            raise HTTPException(status_code=422, detail="Unable to measure ROI region") from exc
+
+        stats = measure_region_stats(
+            region,
+            geometry=geom,
+            roi_type=roi_type,
+            um_per_pixel=float(um_per_px) if um_per_px else None,
+        )
+        return {
+            "asset_id": asset_id,
+            "roi_type": roi_type,
+            "geometry": geometry,
+            "channel": channel,
+            "z": z,
+            "t": t,
+            "dtype": profile["dtype"],
+            "bit_depth": profile["bit_depth"],
+            "measurements": stats,
+            "source": "raw_file",
+        }
 
     def readiness_stats(self) -> dict[str, Any]:
         from omeia.api.image_streaming.storage_adapter import is_streamable_image

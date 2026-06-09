@@ -37,6 +37,9 @@ Additional Phase 7B manifest fields:
 - `viewer_mode` — `scientific_instrument`
 - `inspected_at` — last header inspect timestamp
 - `viewer_flags` — `{ low_resource_mode, heatmaps, segmentation_overlays, roi_annotations }`
+- `supports_ome_zarr` — `false` (OME-Zarr planned as future primary large-image store)
+- `ome_zarr_route` — `null` until OME-Zarr is enabled
+- `lod_hint` — `pyramid_viewport_tiles` (viewport-only pyramid tile loading)
 
 ### `GET /api/assets/{asset_id}/image/pixel`
 
@@ -83,8 +86,27 @@ Query parameters:
 | `width`, `height` | 256 | 512 |
 | `channel`, `z`, `t`, `series` | 0 | — |
 | `format` | `png` | `png` or `jpeg` |
+| `window_min`, `window_max` | — | Optional dtype-preserving display window (skips per-tile min-max normalize) |
 
 Returns 400 if tile exceeds 512×512 pixels.
+
+### Future: OME-Zarr
+
+Large whole-slide and multiplex datasets will use OME-Zarr as the primary read path. Until `supports_ome_zarr` is `true`, TIFF/OME-TIFF pyramid tiles remain the production transport.
+
+### `POST /api/assets/{asset_id}/image/measure`
+
+ROI measurements from raw file regions: area, perimeter, mean/median/min/max/std, integrated intensity; µm/µm² when calibrated.
+
+### `GET /api/imaging/markers/graph`
+
+Channel marker nodes linked to research KB entities.
+
+### `POST /api/imaging/council/analyze`
+
+Multi-agent imaging council (literature, biomarker, spatial, critic) with guardrails.
+
+See `docs/SCIENTIFIC_INSTRUMENT_VALIDATION.md` for Napari/QuPath/OMERO checklists.
 
 ### `GET /api/assets/{asset_id}/image/stream`
 

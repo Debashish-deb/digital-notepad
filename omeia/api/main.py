@@ -16,7 +16,7 @@ validate_environment()
 
 from omeia.api.common import *
 from omeia.api.common import _app_lifespan
-from omeia.api.routers import health, research, copilot, knowledge, vault, storage, datapad, digitalization, search, research_knowledge, chat, document_library, image_assets, image_viewer, biomedical_models, agent_categories, lab_static, admin_index, learning, system_status
+from omeia.api.routers import health, research, copilot, knowledge, vault, storage, datapad, digitalization, search, research_knowledge, chat, document_library, image_assets, image_viewer, imaging_science, biomedical_models, agent_categories, lab_static, admin_index, learning, system_status
 from omeia.security import secure_files
 
 app = FastAPI(title="OMEIA Research Copilot API", version="0.4.0-premium", lifespan=_app_lifespan)
@@ -50,6 +50,7 @@ app.include_router(research_knowledge.router, dependencies=api_dependencies)
 app.include_router(document_library.router, dependencies=api_dependencies)
 app.include_router(image_assets.router, dependencies=api_dependencies)
 app.include_router(image_viewer.router, dependencies=api_dependencies)
+app.include_router(imaging_science.router, dependencies=api_dependencies)
 app.include_router(biomedical_models.router, dependencies=api_dependencies)
 app.include_router(agent_categories.router, dependencies=api_dependencies)
 app.include_router(admin_index.router, dependencies=api_dependencies)

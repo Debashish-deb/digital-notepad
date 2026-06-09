@@ -39,6 +39,8 @@ export function buildTileUrl(assetId, params = {}) {
     t = 0,
     series = 0,
     format = 'png',
+    windowMin,
+    windowMax,
   } = params;
   sp.set('level', String(level));
   sp.set('x', String(x));
@@ -50,6 +52,8 @@ export function buildTileUrl(assetId, params = {}) {
   sp.set('t', String(t));
   sp.set('series', String(series));
   sp.set('format', format);
+  if (windowMin != null && Number.isFinite(Number(windowMin))) sp.set('window_min', String(windowMin));
+  if (windowMax != null && Number.isFinite(Number(windowMax))) sp.set('window_max', String(windowMax));
   return `${base}/api/assets/${encodeURIComponent(assetId)}/image/tile?${sp}`;
 }
 
@@ -165,6 +169,49 @@ export async function deleteChannelPreset(presetId) {
 
 export async function fetchCellInspection(assetId, cellId) {
   return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/cells/${encodeURIComponent(cellId)}`);
+}
+
+export async function measureImageRoi(assetId, body) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/measure`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
+
+export async function fetchOverlayGeometry(assetId, overlayId) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/overlays/${encodeURIComponent(overlayId)}/geometry`);
+}
+
+export async function fetchMarkerGraph(channelNames = []) {
+  const sp = new URLSearchParams();
+  channelNames.forEach((n) => sp.append('channel_names', n));
+  const qs = sp.toString();
+  return apiFetch(`/api/imaging/markers/graph${qs ? `?${qs}` : ''}`);
+}
+
+export async function postImagingCouncil(body) {
+  return apiFetch('/api/imaging/council/analyze', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
+
+export async function postSpatialAnalyze(assetId, body) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/spatial/analyze`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
+
+export async function postAnnotationFeedback(assetId, body) {
+  return apiFetch(`/api/assets/${encodeURIComponent(assetId)}/image/annotations/feedback`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
 }
 
 export async function fetchImageHistogram(assetId, params = {}) {

@@ -83,6 +83,8 @@ def image_tile(
     t: int = Query(0, ge=0),
     series: int = Query(0, ge=0),
     format: str = Query("png", pattern="^(png|jpeg|jpg)$"),
+    window_min: float | None = Query(None),
+    window_max: float | None = Query(None),
     user: dict[str, Any] = Depends(require_platform_user),
 ) -> Response:
     _check_access(user, asset_id)
@@ -100,6 +102,8 @@ def image_tile(
         t=t,
         series=series,
         fmt=fmt,
+        window_min=window_min,
+        window_max=window_max,
     )
     return Response(content=data, media_type=media_type, headers={"Cache-Control": "private, max-age=300"})
 

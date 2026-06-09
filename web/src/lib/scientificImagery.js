@@ -62,4 +62,4 @@ export function formatScientificValue(value, profile) {
   return String(Math.round(Number(value)));
 }
 
-export const INSTRUMENT_PHASE_LABEL = 'Scientific Imaging Instrument · Phase 1';
+export const INSTRUMENT_PHASE_LABEL = 'Scientific Imaging Instrument · Phases 1–12';

@@ -29,12 +29,12 @@ def _db_conn() -> str:
 
 def _load_json_store() -> dict[str, Any]:
     if not STORE_PATH.is_file():
-        return {"rois": [], "overlays": [], "presets": []}
+        return {"rois": [], "overlays": [], "presets": [], "annotation_feedback": []}
     try:
         return json.loads(STORE_PATH.read_text(encoding="utf-8"))
     except Exception as exc:
         LOGGER.warning("image_viewer_store read failed: %s", exc)
-        return {"rois": [], "overlays": [], "presets": []}
+        return {"rois": [], "overlays": [], "presets": [], "annotation_feedback": []}
 
 
 def _save_json_store(data: dict[str, Any]) -> None:
@@ -119,6 +119,7 @@ def create_roi(
     project: str | None = None,
     description: str | None = None,
     tags: list[str] | None = None,
+    region_type: str | None = None,
 ) -> dict[str, Any]:
     roi_id = str(uuid.uuid4())
     now = _utc_now()
@@ -132,6 +133,7 @@ def create_roi(
         "tags": list(tags or []),
         "geometry": geometry,
         "roi_type": roi_type,
+        "region_type": region_type,
         "created_at": now,
         "updated_at": now,
     }
@@ -157,7 +159,7 @@ def create_roi(
                             name,
                             description,
                             json.dumps(record["tags"]),
-                            json.dumps(geometry),
+                            json.dumps({**geometry, **({"region_type": region_type} if region_type else {})}),
                             roi_type,
                         ),
                     )
@@ -443,6 +445,38 @@ def delete_channel_preset(*, preset_id: str, user_email: str) -> bool:
     ]
     _save_json_store(store)
     return len(store["presets"]) < before
+
+
+def save_annotation_feedback(
+    *,
+    asset_id: str,
+    user_email: str,
+    target_type: str,
+    target_id: str,
+    learning_category: str = "draft",
+    feedback: str = "neutral",
+    notes: str | None = None,
+) -> dict[str, Any]:
+    """Persist lab-memory feedback for viewer annotations."""
+    feedback_id = str(uuid.uuid4())
+    record = {
+        "feedback_id": feedback_id,
+        "asset_id": asset_id,
+        "user_email": user_email,
+        "target_type": target_type,
+        "target_id": target_id,
+        "learning_category": learning_category,
+        "feedback": feedback,
+        "notes": notes,
+        "created_at": _utc_now(),
+    }
+    store = _load_json_store()
+    entries = store.setdefault("annotation_feedback", [])
+    entries = [e for e in entries if not (e.get("target_id") == target_id and e.get("user_email") == user_email)]
+    entries.append(record)
+    store["annotation_feedback"] = entries
+    _save_json_store(store)
+    return record
 
 
 def inspect_cell(
