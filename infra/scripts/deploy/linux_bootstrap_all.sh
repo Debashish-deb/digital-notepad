@@ -145,8 +145,10 @@ fi
 
 echo ""
 echo "=== Bootstrap complete ==="
+echo "  Python:     $PY"
 echo "  Data root:  $DATA_ROOT"
 echo "  Start UI:   ./scripts/start_linux.sh"
+echo "  Validate:   $PY scripts/imaging/validate_scientific_instrument.py"
 echo "  Tailscale:  http://\$(tailscale ip -4):5173"
 echo ""
 if [[ ! -d "$DATA_ROOT/WET_LAB" && ! -d "$DATA_ROOT/SOCIAL" ]]; then

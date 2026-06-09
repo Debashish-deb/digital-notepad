@@ -37,24 +37,44 @@ def _venv_python_candidates() -> list[Path]:
     ]
 
 
-def _ensure_project_python() -> None:
-    """Re-exec with repo venv when system python lacks FastAPI and other API deps."""
+def _python_has_fastapi(python_exe: Path) -> bool:
+    import subprocess
+
+    if not python_exe.is_file():
+        return False
     try:
-        import fastapi  # noqa: F401
+        proc = subprocess.run(
+            [str(python_exe), "-c", "import fastapi"],
+            capture_output=True,
+            timeout=30,
+            check=False,
+        )
+        return proc.returncode == 0
+    except (OSError, subprocess.TimeoutExpired):
+        return False
 
+
+def _find_capable_python() -> Path | None:
+    for candidate in _venv_python_candidates():
+        if _python_has_fastapi(candidate):
+            return candidate
+    return None
+
+
+def _ensure_project_python() -> None:
+    """Re-exec with repo venv when current interpreter lacks FastAPI."""
+    if _python_has_fastapi(Path(sys.executable)):
         return
-    except ModuleNotFoundError:
-        pass
 
-    exe = Path(sys.executable).resolve()
-    for vpy in _venv_python_candidates():
-        if vpy.is_file() and vpy.resolve() != exe:
-            os.execv(str(vpy), [str(vpy), *sys.argv])
+    capable = _find_capable_python()
+    if capable is not None and capable.resolve() != Path(sys.executable).resolve():
+        os.execv(str(capable), [str(capable), *sys.argv])
 
+    hint = _find_capable_python() or (REPO_ROOT / ".venv" / "bin" / "python3")
     print(
-        "ERROR: project dependencies missing (fastapi). Use the repo venv:\n"
-        f"  {REPO_ROOT / '.venv/bin/python3'} {Path(__file__).resolve()}\n"
-        "Or bootstrap once: ./scripts/deploy/linux_bootstrap_all.sh --skip-docker",
+        "ERROR: current Python lacks FastAPI. Re-run with the bootstrapped venv:\n"
+        f"  {hint} {Path(__file__).resolve()}\n"
+        "If that venv is missing packages: ./scripts/deploy/linux_bootstrap_all.sh --skip-docker",
         file=sys.stderr,
     )
     raise SystemExit(1)
