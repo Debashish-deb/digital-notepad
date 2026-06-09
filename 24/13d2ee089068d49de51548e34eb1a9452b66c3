@@ -1,0 +1,70 @@
+omeia/api/routers/image_viewer.py
+  s_d8ca0dcf385045::t_cd0e3003a38bec 211-225
+web/src/features/imaging/components/ScientificMetadataPanel.jsx
+  s_d8ca0dcf385045::t_08d67c5a6cbf75 1-82
+web/package.json
+  s_d8ca0dcf385045::t_329b863b3afafd 13
+omeia/api/image_streaming/image_metadata_service.py
+  s_d8ca0dcf385045::t_e3a9744be0e386 18
+  s_d8ca0dcf385045::t_74431f300c11a9 205-208
+omeia/api/image_streaming/image_streaming_service.py
+  s_d8ca0dcf385045::t_885c22f59a71de 186,203-208,215
+  s_d8ca0dcf385045::t_f01b2c4f1e505b 17
+  s_d8ca0dcf385045::t_c0f1e8ac99e338 391-476
+web/src/features/documents/components/DocumentMetadataPanel.jsx
+  s_d8ca0dcf385045::t_5aa7b8574af203 98-99,105
+web/src/features/imaging/components/ScientificProbeBar.jsx
+  s_d8ca0dcf385045::t_3a3df655144394 1-71
+web/src/lib/scientificImagery.test.mjs
+  s_d8ca0dcf385045::t_7e251133c9c1d8 1-16
+omeia/api/image_streaming/dtype_helpers.py
+  s_d8ca0dcf385045::t_ac7a00fb129bb7 1-42
+web/src/features/imaging/components/ImageTileViewer.jsx
+  s_d8ca0dcf385045::t_125b551cb36544 509-515
+  s_d8ca0dcf385045::t_24afbf1816615e 542-550
+  s_d8ca0dcf385045::t_8797ee162c312c 558,561-570
+  s_d8ca0dcf385045::t_ecaadef1be57c2 171
+  s_d8ca0dcf385045::t_2f3919aa19c2b8 666-673
+  s_d8ca0dcf385045::t_d991f070655df4 2,4-5,7
+  s_d8ca0dcf385045::t_051ff20006fc78 110-113,118
+  s_d8ca0dcf385045::t_b9c8f0cd4e4049 87-90
+  s_d8ca0dcf385045::t_e28528fef9b628 234-243
+  s_d8ca0dcf385045::t_a7ff6d9e7468d2 127-128,130
+  s_d8ca0dcf385045::t_93f7486298d5fe 402-416
+  s_d8ca0dcf385045::t_09fdaf1f0ab36c 438,441-453
+  s_d8ca0dcf385045::t_cec7a01320cd7d 649-653,656
+web/src/pages/ImageViewerPlaceholderScreen.jsx
+  s_d8ca0dcf385045::t_1f58126827cb83 2,4-5,11,77-78,82-90,98,108-122
+web/src/features/imaging/components/PixelInspector.jsx
+  s_d8ca0dcf385045::t_a1ae1fbfb60c70 1-6,9-11,20-27,30-48,52,57
+web/src/features/imaging/utils/channelState.js
+  s_d8ca0dcf385045::t_f885116a5cf61a 115-123
+  s_d8ca0dcf385045::t_b9dbc564773aa8 14-25,29-31,33,36-37,43
+  s_d8ca0dcf385045::t_7d363c828fb5f1 96-103
+docs/DESIGN_RATIONALE/scientific_imaging_instrument.md
+  s_d8ca0dcf385045::t_e33b5b66da5f80 1-43
+docs/IMAGE_STREAMING_API.md
+  s_d8ca0dcf385045::t_61015ab8e2436e 36-38,41-47
+web/src/services/imageAssetsClient.js
+  s_d8ca0dcf385045::t_160cbed434f058 123-133
+web/src/lib/scientificImagery.js
+  s_d8ca0dcf385045::t_d2c6276f7ab2a6 1-65
+web/src/features/imaging/components/ImageTileViewer.css
+  s_d8ca0dcf385045::t_b21b6967743f4f 1-216
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "2413d2ee089068d49de51548e34eb1a9452b66c3",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
