@@ -1,0 +1,21 @@
+infra/scripts/deploy/linux_bootstrap_all.sh
+  s_d8ca0dcf385045::t_b56984ce1037b1 148,151
+infra/scripts/imaging/validate_scientific_instrument.py
+  s_d8ca0dcf385045::t_c939e0aa801c8d 40-44,46-61,63-66,69-71,73,75-77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "270f8f88be9e94ede6284880afa39617424ee615",
+  "prompts": {},
+  "sessions": {
+    "s_d8ca0dcf385045": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4815e052-81f7-4f56-866b-e432bfb1489d",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
