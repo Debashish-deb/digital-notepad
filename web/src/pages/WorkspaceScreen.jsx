@@ -5,6 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import ProjectIntroHeader from '@/features/projects/components/ProjectIntroHeader';
 import ProjectWorkspaceTaskbar from '@/features/projects/components/ProjectWorkspaceTaskbar';
 import ProjectDocumentsBrowser from '@/features/projects/components/ProjectDocumentsBrowser';
+import ProjectFolderPage from '@/features/projects/components/ProjectFolderPage.jsx';
 import ProjectLogPanel from '@/features/projects/components/ProjectLogPanel';
 import { useDigitalTwin } from '@/shared/hooks/useDigitalTwin.js';
 import { ProjectTaskpadScope } from '@/contexts/TaskpadContext.jsx';
@@ -111,6 +112,16 @@ export default function WorkspaceScreen({
             <div className="panel text-empty"><p>Scan the project folder to load overview files.</p></div>
           )}
         </div>
+      );
+    }
+    else if (workspaceMenu === 'folders') {
+      return (
+        <ProjectFolderPage
+          projectCode={projectCode}
+          projectData={projectData}
+          twin={twin}
+          onOpenNotebook={() => setWorkspaceMenu('notebook')}
+        />
       );
     }
     else if (workspaceMenu === 'plan') {

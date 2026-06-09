@@ -50,8 +50,9 @@ echo "  Host: $(hostname)"
 echo "  Repo: $ROOT"
 echo "  Python: $PY"
 
-echo "--- Git pull ---"
-git pull
+echo "--- Git pull (branch: $(git branch --show-current)) ---"
+git fetch origin
+git pull --ff-only origin "$(git branch --show-current)"
 
 echo "--- configs/.env (Linux paths) ---"
 if [[ ! -f "$ENV_FILE" ]]; then
