@@ -5,10 +5,17 @@ Automated and manual validation for the OMEIA Scientific Imaging Instrument (Pha
 ## Automated validation (tifffile ground truth)
 
 ```bash
-python scripts/imaging/validate_scientific_instrument.py
-# or specify OME-TIFF:
-SCI_VALIDATION_TIFF=/path/to/sample.ome.tif python scripts/imaging/validate_scientific_instrument.py
+# Use the repo venv (system python3 lacks FastAPI)
+./.venv/bin/python scripts/imaging/validate_scientific_instrument.py
+
+# Or from repo root after bootstrap — script auto-re-execs into .venv when needed:
+python3 scripts/imaging/validate_scientific_instrument.py
+
+# Specify OME-TIFF:
+SCI_VALIDATION_TIFF=/path/to/sample.ome.tif ./.venv/bin/python scripts/imaging/validate_scientific_instrument.py
 ```
+
+If you see `ModuleNotFoundError: No module named 'fastapi'`, run `./scripts/deploy/linux_bootstrap_all.sh --skip-docker` once to create `.venv`, then use `./.venv/bin/python` as above.
 
 Report: `tests/imaging_validation_last_run.json` (gitignored).
 

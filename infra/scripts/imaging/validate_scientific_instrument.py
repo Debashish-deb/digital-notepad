@@ -9,7 +9,16 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
+
+def _find_repo_root() -> Path:
+    here = Path(__file__).resolve()
+    for parent in [here.parent, *here.parents]:
+        if (parent / "omeia").is_dir() and (parent / "web").is_dir():
+            return parent
+    return here.parents[3]
+
+
+REPO_ROOT = _find_repo_root()
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
@@ -19,6 +28,36 @@ REPORT_PATH = REPO_ROOT / "tests" / "imaging_validation_last_run.json"
 
 def _utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def _venv_python_candidates() -> list[Path]:
+    return [
+        REPO_ROOT / ".venv-local" / "bin" / "python3",
+        REPO_ROOT / ".venv" / "bin" / "python3",
+    ]
+
+
+def _ensure_project_python() -> None:
+    """Re-exec with repo venv when system python lacks FastAPI and other API deps."""
+    try:
+        import fastapi  # noqa: F401
+
+        return
+    except ModuleNotFoundError:
+        pass
+
+    exe = Path(sys.executable).resolve()
+    for vpy in _venv_python_candidates():
+        if vpy.is_file() and vpy.resolve() != exe:
+            os.execv(str(vpy), [str(vpy), *sys.argv])
+
+    print(
+        "ERROR: project dependencies missing (fastapi). Use the repo venv:\n"
+        f"  {REPO_ROOT / '.venv/bin/python3'} {Path(__file__).resolve()}\n"
+        "Or bootstrap once: ./scripts/deploy/linux_bootstrap_all.sh --skip-docker",
+        file=sys.stderr,
+    )
+    raise SystemExit(1)
 
 
 def _read_ground_truth(path: Path) -> dict:
@@ -114,7 +153,7 @@ def _probe_via_service(path: Path, asset_id: str, truth: dict) -> dict:
                 probes.append({"x": x, "y": y, "raw_value": ch0.get("raw_value")})
         except Exception as exc:
             return {"manifest": manifest, "probes": probes, "error": str(exc)}
-        return {"manifest": manifest, "probes": probes}
+        return {"manifest": manifest, "probes": probes, "validation_mode": "image_streaming_service"}
 
 
 def run_validation(tiff_path: Path) -> dict:
@@ -152,6 +191,7 @@ def run_validation(tiff_path: Path) -> dict:
     report = {
         "validated_at": _utc_now(),
         "tiff_path": str(tiff_path),
+        "python": sys.executable,
         "equivalence_note": "Napari/QuPath/OMERO equivalence = same file read via tifffile ground truth",
         "dimensions_match": dim_ok,
         "dtype_match": dtype_ok,
@@ -166,6 +206,8 @@ def run_validation(tiff_path: Path) -> dict:
 
 
 def main() -> int:
+    _ensure_project_python()
+
     parser = argparse.ArgumentParser(description="Validate scientific imaging instrument")
     parser.add_argument("--tiff", type=Path, default=None, help="OME-TIFF path (env SCI_VALIDATION_TIFF)")
     parser.add_argument("--output", type=Path, default=REPORT_PATH, help="JSON report path")
