@@ -1,0 +1,113 @@
+web/src/features/imaging/components/ROIManager.jsx
+  s_6656bd32bef4b6::t_0c7e22c89e83f2 87
+  s_6656bd32bef4b6::t_3c9612f9caf164 98
+  s_6656bd32bef4b6::t_75248f6448bba6 2-8,13-14,18-19,26-30,39-40,46-48,53,59-84,92,96-97,99-101,132-140,146-156,160-166,173,182-200
+omeia/api/main.py
+  s_6656bd32bef4b6::t_33585bc540b277 53
+  s_6656bd32bef4b6::t_4c8e874308956d 19
+web/src/features/imaging/components/MeasurementTools.jsx
+  s_6656bd32bef4b6::t_6c235839063855 1,13-19,21,23-47,55-59,61-63,65-67,69-70,73-74,79-82
+web/src/features/imaging/components/InterpretationDisclaimer.jsx
+  s_6656bd32bef4b6::t_d5a5ec1627a5a9 1-29
+web/src/features/imaging/components/ChannelManager.jsx
+  s_6656bd32bef4b6::t_45bf475144bce3 4,8,28,34-36,58,103-112,117
+omeia/api/image_streaming/image_streaming_service.py
+  s_6656bd32bef4b6::t_832dfbbbc6adaf 501,505-514,516,519-533,542-546,553,562-566,570-669
+  s_6656bd32bef4b6::t_024d589222752e 216-218
+  s_6656bd32bef4b6::t_0a8733ad831729 324-325
+  s_6656bd32bef4b6::t_56da15ac6de84e 368-374
+infra/scripts/imaging/validate_scientific_instrument.py
+  s_6656bd32bef4b6::t_a418d21b7aebd9 1-205
+docs/IMAGE_STREAMING_API.md
+  s_6656bd32bef4b6::t_55184482a592ef 89,93-109
+  s_6656bd32bef4b6::t_c5b88f4a5cd40a 40-42
+web/src/features/imaging/components/ImageTileViewer.jsx
+  s_6656bd32bef4b6::t_6af79f5ade0468 240-252
+  s_6656bd32bef4b6::t_878b7f5263de3f 18-19,28,32-37
+  s_6656bd32bef4b6::t_5df26701b0e038 190
+  s_6656bd32bef4b6::t_cf1ca5236c2120 466-482
+  s_6656bd32bef4b6::t_0d503429f6cded 621
+  s_6656bd32bef4b6::t_7f841ff6bbe7b0 281
+  s_6656bd32bef4b6::t_be4bd7a810c2ba 727-729
+  s_6656bd32bef4b6::t_33131a87688ca5 585-588
+  s_6656bd32bef4b6::t_d484f44d7da87b 628-635
+  s_6656bd32bef4b6::t_adb1d11edaf779 535-546
+  s_6656bd32bef4b6::t_39206d5240ec2e 227-228
+  s_6656bd32bef4b6::t_8faa163b478b09 328,335-396
+  s_6656bd32bef4b6::t_2d236fb0fdfefb 408
+  s_6656bd32bef4b6::t_0b4ef5afd7e0ee 647
+  s_6656bd32bef4b6::t_3bab47bfb68199 606-610
+  s_6656bd32bef4b6::t_569b749307263a 122-124,128
+  s_6656bd32bef4b6::t_fea5d052bd8382 652
+tests/test_scientific_instrument_validation.py
+  s_6656bd32bef4b6::t_9709f615f6efd2 73-74,81-85,110-113
+  s_6656bd32bef4b6::t_2a02b1f1dd6a14 54-60,65-66
+  s_6656bd32bef4b6::t_015bb16ed0033b 1-15,31-38,50-53,61,63-64,67-72,75-80,86-109,114-136
+  s_6656bd32bef4b6::t_624d7deff6ab54 16-30,39-49
+  s_6656bd32bef4b6::t_05b19ac5fc3738 62
+web/src/features/imaging/components/SegmentationOverlay.jsx
+  s_6656bd32bef4b6::t_7aeec20218dc5c 1-2,10,19-21,37-116,154-174
+omeia/api/image_streaming/spatial_analysis.py
+  s_6656bd32bef4b6::t_55ef25868f4011 1-116
+docs/SCIENTIFIC_INSTRUMENT_VALIDATION.md
+  s_6656bd32bef4b6::t_d8b43b3b4c343c 1-60
+omeia/api/image_streaming/measurement_service.py
+  s_6656bd32bef4b6::t_a657e76a7318be 1-151
+web/src/features/imaging/components/HistogramPanel.jsx
+  s_6656bd32bef4b6::t_82ab127e597863 13-14,18-20,36-37,49,54,60,66,68,71-76,90,102
+web/src/features/imaging/components/ResearchStrategyPanel.jsx
+  s_6656bd32bef4b6::t_b1306677ca652f 2-3
+  s_6656bd32bef4b6::t_92a3bebebecfff 1,4-91
+omeia/api/routers/image_viewer.py
+  s_6656bd32bef4b6::t_a681eebc0baa95 75-94
+  s_6656bd32bef4b6::t_3914b3f904093f 126
+  s_6656bd32bef4b6::t_c9dda0c1f2055f 46-49,53-56
+  s_6656bd32bef4b6::t_130258005bd124 20
+  s_6656bd32bef4b6::t_1aa63e32645eb9 255-314
+omeia/api/routers/imaging_science.py
+  s_6656bd32bef4b6::t_10657a5b6aafb9 1-36,38-60,62-109
+  s_6656bd32bef4b6::t_b4617f1f205903 61
+  s_6656bd32bef4b6::t_55d0b6c38fe7a8 37
+web/src/shared/hooks/useImageTileLoader.js
+  s_6656bd32bef4b6::t_54bc12e8daef8a 7-9,15,32-38,43,48
+omeia/api/imaging_council_service.py
+  s_6656bd32bef4b6::t_3f989c1c74e3c0 1-122
+web/src/features/imaging/components/SpatialAnalysisOverlay.jsx
+  s_6656bd32bef4b6::t_2d62d0135b0c81 1-28,31-33,35-77
+omeia/api/routers/image_assets.py
+  s_6656bd32bef4b6::t_07077ba34089a3 86-87,105-106
+omeia/api/image_streaming/image_viewer_store.py
+  s_6656bd32bef4b6::t_e756b06d3fbbd7 32
+  s_6656bd32bef4b6::t_a185eee872986c 450-481
+  s_6656bd32bef4b6::t_a7bd62542e65d0 122
+  s_6656bd32bef4b6::t_769c17816bb559 136,162
+  s_6656bd32bef4b6::t_5403e6fe74f56d 37
+web/src/services/imageAssetsClient.js
+  s_6656bd32bef4b6::t_7e2c500aec1125 174-216
+  s_6656bd32bef4b6::t_ffd6e9fa4d2e1d 55-56
+  s_6656bd32bef4b6::t_b77ba96491f224 42-43
+omeia/api/imaging_knowledge_bridge.py
+  s_6656bd32bef4b6::t_3d779575edd4c1 1-115
+docs/DESIGN_RATIONALE/scientific_imaging_instrument.md
+  s_6656bd32bef4b6::t_c871c41386f3a0 24-36
+web/src/lib/scientificImagery.js
+  s_6656bd32bef4b6::t_06ff23ec3f5d07 65
+web/src/features/imaging/utils/channelState.js
+  s_6656bd32bef4b6::t_2d35a5fb24f4f7 1,14-30,33-77,86,108,118-119,131-142,149-152,157-173,178-180,185-188,208-209
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "092f1976d788f7db376c8e00c9421070d0eaabf8",
+  "prompts": {},
+  "sessions": {
+    "s_6656bd32bef4b6": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "dbb1eb21-9cf7-4355-965e-d8bf618a1905",
+        "model": "default"
+      },
+      "human_author": "debashishdeb1 <debashish.deb101@outlook.com>"
+    }
+  }
+}
