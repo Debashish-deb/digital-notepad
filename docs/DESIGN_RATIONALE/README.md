@@ -21,12 +21,16 @@ This directory records **why** OMEIA features are shaped the way they are — gr
 | Document | Category | Supports in OMEIA |
 |----------|----------|-------------------|
 | [eln_folder_taxonomy_research.md](./eln_folder_taxonomy_research.md) | ELN industry survey | Document Library folder tree scope and hierarchy |
+| [eln_project_folder_research.md](./eln_project_folder_research.md) | ELN project hub survey | Per-project folder page (`ProjectFolderPage`) |
 | [supporting_articles/INDEX.md](./supporting_articles/INDEX.md) | Supporting articles index | Cross-links all rationale docs |
 | [supporting_articles/document_library_folder_tree.md](./supporting_articles/document_library_folder_tree.md) | Feature mapping | `DocumentFolderTree`, `path_prefix` API, presets |
+| [supporting_articles/project_folder_pages.md](./supporting_articles/project_folder_pages.md) | Feature mapping | Project workspace folder hub, `projects/{code}` scope |
 
 ## Related code
 
 - `web/src/features/documents/components/ScientificFileExplorer.jsx`
+- `web/src/features/projects/components/ProjectFolderPage.jsx`
 - `web/src/lib/documentExplorerPresets.js`
+- `web/src/lib/projectFolderPage.js`
 - `omeia/api/document_library_service.py` (`path_prefix` filter)
 - `config/env/document_library/category_tree_folder_derived.json`
